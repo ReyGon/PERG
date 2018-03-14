@@ -1,0 +1,641 @@
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class frmClienteMotrisa
+    Inherits laFuente.frmBaseTelerik2
+
+    'Form invalida a Dispose para limpiar la lista de componentes.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        If disposing AndAlso components IsNot Nothing Then
+            components.Dispose()
+        End If
+        MyBase.Dispose(disposing)
+    End Sub
+
+    'Requerido por el Diseñador de Windows Forms
+    Private components As System.ComponentModel.IContainer
+
+    'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
+    'Se puede modificar usando el Diseñador de Windows Forms.  
+    'No lo modifique con el editor de código.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Dim GridViewCheckBoxColumn1 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewTextBoxColumn1 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn2 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn3 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn2 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewTextBoxColumn4 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn5 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn6 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmClienteMotrisa))
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.txtClave = New System.Windows.Forms.TextBox()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txtNegocio = New System.Windows.Forms.TextBox()
+        Me.txtCodigo = New System.Windows.Forms.TextBox()
+        Me.lblProductos = New System.Windows.Forms.Label()
+        Me.pgClasificacion = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.lblRecuentoClasificacion = New System.Windows.Forms.Label()
+        Me.chkTodosModelo = New System.Windows.Forms.CheckBox()
+        Me.chkTodosClasificacion = New System.Windows.Forms.CheckBox()
+        Me.lblRecuentoModeloVehiculo = New System.Windows.Forms.Label()
+        Me.grdPrecios = New Telerik.WinControls.UI.RadGridView()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.grdClasificacion = New Telerik.WinControls.UI.RadGridView()
+        Me.lblRecuentoPrecios = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.cmbTipoNegocio = New System.Windows.Forms.ComboBox()
+        Me.cmbTipoPago = New System.Windows.Forms.ComboBox()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.pageDatos = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.txtDireccion1 = New System.Windows.Forms.TextBox()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.txtTelefono = New System.Windows.Forms.TextBox()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.txtNombre1 = New System.Windows.Forms.TextBox()
+        Me.txtNit1 = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.rpv = New Telerik.WinControls.UI.RadPageView()
+        Me.chkHabilitado = New System.Windows.Forms.CheckBox()
+        Me.chkMostrador = New System.Windows.Forms.CheckBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.cmbClasificacionNegocio = New System.Windows.Forms.ComboBox()
+        Me.txtDiasCredito = New System.Windows.Forms.TextBox()
+        Me.txtLimiteCredito = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pgClasificacion.SuspendLayout()
+        CType(Me.grdPrecios, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdPrecios.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdClasificacion, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdClasificacion.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pageDatos.SuspendLayout()
+        CType(Me.rpv, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.rpv.SuspendLayout()
+        CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'rgbDatos
+        '
+        Me.rgbDatos.Location = New System.Drawing.Point(4, 545)
+        '
+        '
+        '
+        Me.rgbDatos.RootElement.ForeColor = System.Drawing.Color.DimGray
+        Me.rgbDatos.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        Me.rgbDatos.Size = New System.Drawing.Size(951, 0)
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label37.Location = New System.Drawing.Point(97, 89)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(41, 13)
+        Me.Label37.TabIndex = 126
+        Me.Label37.Text = "Clave :"
+        '
+        'txtClave
+        '
+        Me.txtClave.BackColor = System.Drawing.SystemColors.InactiveBorder
+        Me.txtClave.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtClave.Location = New System.Drawing.Point(141, 84)
+        Me.txtClave.Name = "txtClave"
+        Me.txtClave.Size = New System.Drawing.Size(100, 22)
+        Me.txtClave.TabIndex = 119
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label30.Location = New System.Drawing.Point(80, 112)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(57, 13)
+        Me.Label30.TabIndex = 125
+        Me.Label30.Text = "Negocio :"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label3.Location = New System.Drawing.Point(114, 59)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(24, 13)
+        Me.Label3.TabIndex = 124
+        Me.Label3.Text = "ID :"
+        '
+        'txtNegocio
+        '
+        Me.txtNegocio.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtNegocio.Location = New System.Drawing.Point(141, 108)
+        Me.txtNegocio.Name = "txtNegocio"
+        Me.txtNegocio.Size = New System.Drawing.Size(441, 22)
+        Me.txtNegocio.TabIndex = 120
+        '
+        'txtCodigo
+        '
+        Me.txtCodigo.BackColor = System.Drawing.SystemColors.InactiveBorder
+        Me.txtCodigo.Enabled = False
+        Me.txtCodigo.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtCodigo.Location = New System.Drawing.Point(141, 56)
+        Me.txtCodigo.Name = "txtCodigo"
+        Me.txtCodigo.Size = New System.Drawing.Size(100, 22)
+        Me.txtCodigo.TabIndex = 122
+        '
+        'lblProductos
+        '
+        Me.lblProductos.AutoSize = True
+        Me.lblProductos.BackColor = System.Drawing.Color.Transparent
+        Me.lblProductos.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblProductos.ForeColor = System.Drawing.Color.DimGray
+        Me.lblProductos.Location = New System.Drawing.Point(349, 47)
+        Me.lblProductos.Name = "lblProductos"
+        Me.lblProductos.Size = New System.Drawing.Size(249, 29)
+        Me.lblProductos.TabIndex = 121
+        Me.lblProductos.Text = "Información General"
+        '
+        'pgClasificacion
+        '
+        Me.pgClasificacion.BackColor = System.Drawing.Color.White
+        Me.pgClasificacion.Controls.Add(Me.txtDiasCredito)
+        Me.pgClasificacion.Controls.Add(Me.txtLimiteCredito)
+        Me.pgClasificacion.Controls.Add(Me.Label9)
+        Me.pgClasificacion.Controls.Add(Me.Label12)
+        Me.pgClasificacion.Controls.Add(Me.Label22)
+        Me.pgClasificacion.Controls.Add(Me.cmbClasificacionNegocio)
+        Me.pgClasificacion.Controls.Add(Me.lblRecuentoClasificacion)
+        Me.pgClasificacion.Controls.Add(Me.chkTodosModelo)
+        Me.pgClasificacion.Controls.Add(Me.chkTodosClasificacion)
+        Me.pgClasificacion.Controls.Add(Me.lblRecuentoModeloVehiculo)
+        Me.pgClasificacion.Controls.Add(Me.grdPrecios)
+        Me.pgClasificacion.Controls.Add(Me.Label33)
+        Me.pgClasificacion.Controls.Add(Me.grdClasificacion)
+        Me.pgClasificacion.Controls.Add(Me.lblRecuentoPrecios)
+        Me.pgClasificacion.Controls.Add(Me.Label7)
+        Me.pgClasificacion.Controls.Add(Me.Label18)
+        Me.pgClasificacion.Controls.Add(Me.cmbTipoNegocio)
+        Me.pgClasificacion.Controls.Add(Me.cmbTipoPago)
+        Me.pgClasificacion.Controls.Add(Me.Label24)
+        Me.pgClasificacion.Location = New System.Drawing.Point(10, 44)
+        Me.pgClasificacion.Name = "pgClasificacion"
+        Me.pgClasificacion.Size = New System.Drawing.Size(897, 227)
+        Me.pgClasificacion.Text = "Clasificación"
+        '
+        'lblRecuentoClasificacion
+        '
+        Me.lblRecuentoClasificacion.AutoSize = True
+        Me.lblRecuentoClasificacion.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRecuentoClasificacion.Location = New System.Drawing.Point(614, 32)
+        Me.lblRecuentoClasificacion.Name = "lblRecuentoClasificacion"
+        Me.lblRecuentoClasificacion.Size = New System.Drawing.Size(17, 19)
+        Me.lblRecuentoClasificacion.TabIndex = 132
+        Me.lblRecuentoClasificacion.Text = "0"
+        '
+        'chkTodosModelo
+        '
+        Me.chkTodosModelo.AutoSize = True
+        Me.chkTodosModelo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkTodosModelo.Location = New System.Drawing.Point(743, 30)
+        Me.chkTodosModelo.Name = "chkTodosModelo"
+        Me.chkTodosModelo.Size = New System.Drawing.Size(59, 19)
+        Me.chkTodosModelo.TabIndex = 131
+        Me.chkTodosModelo.Text = "Todos"
+        Me.chkTodosModelo.UseVisualStyleBackColor = True
+        '
+        'chkTodosClasificacion
+        '
+        Me.chkTodosClasificacion.AutoSize = True
+        Me.chkTodosClasificacion.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkTodosClasificacion.Location = New System.Drawing.Point(522, 32)
+        Me.chkTodosClasificacion.Name = "chkTodosClasificacion"
+        Me.chkTodosClasificacion.Size = New System.Drawing.Size(59, 19)
+        Me.chkTodosClasificacion.TabIndex = 130
+        Me.chkTodosClasificacion.Text = "Todos"
+        Me.chkTodosClasificacion.UseVisualStyleBackColor = True
+        '
+        'lblRecuentoModeloVehiculo
+        '
+        Me.lblRecuentoModeloVehiculo.AutoSize = True
+        Me.lblRecuentoModeloVehiculo.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRecuentoModeloVehiculo.Location = New System.Drawing.Point(910, 30)
+        Me.lblRecuentoModeloVehiculo.Name = "lblRecuentoModeloVehiculo"
+        Me.lblRecuentoModeloVehiculo.Size = New System.Drawing.Size(17, 19)
+        Me.lblRecuentoModeloVehiculo.TabIndex = 129
+        Me.lblRecuentoModeloVehiculo.Text = "0"
+        Me.lblRecuentoModeloVehiculo.Visible = False
+        '
+        'grdPrecios
+        '
+        Me.grdPrecios.Location = New System.Drawing.Point(672, 53)
+        '
+        'grdPrecios
+        '
+        Me.grdPrecios.MasterTemplate.AllowAddNewRow = False
+        Me.grdPrecios.MasterTemplate.AutoGenerateColumns = False
+        GridViewCheckBoxColumn1.FormatString = ""
+        GridViewCheckBoxColumn1.HeaderText = "Agregar"
+        GridViewCheckBoxColumn1.Name = "Agregar"
+        GridViewCheckBoxColumn1.Width = 48
+        GridViewTextBoxColumn1.HeaderText = "Id"
+        GridViewTextBoxColumn1.IsVisible = False
+        GridViewTextBoxColumn1.Name = "Id"
+        GridViewTextBoxColumn2.FormatString = ""
+        GridViewTextBoxColumn2.HeaderText = "Codigo"
+        GridViewTextBoxColumn2.IsVisible = False
+        GridViewTextBoxColumn2.Name = "Codigo"
+        GridViewTextBoxColumn2.ReadOnly = True
+        GridViewTextBoxColumn3.FormatString = ""
+        GridViewTextBoxColumn3.HeaderText = "Nombre"
+        GridViewTextBoxColumn3.Name = "Nombre"
+        GridViewTextBoxColumn3.ReadOnly = True
+        Me.grdPrecios.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn1, GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3})
+        Me.grdPrecios.MasterTemplate.EnableGrouping = False
+        Me.grdPrecios.Name = "grdPrecios"
+        Me.grdPrecios.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        '
+        '
+        '
+        Me.grdPrecios.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdPrecios.Size = New System.Drawing.Size(209, 154)
+        Me.grdPrecios.TabIndex = 128
+        Me.grdPrecios.Text = "RadGridView2"
+        Me.grdPrecios.ThemeName = "Office2007Black"
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.Label33.Location = New System.Drawing.Point(685, 8)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(59, 20)
+        Me.Label33.TabIndex = 127
+        Me.Label33.Text = "Precios"
+        '
+        'grdClasificacion
+        '
+        Me.grdClasificacion.Location = New System.Drawing.Point(459, 54)
+        '
+        'grdClasificacion
+        '
+        Me.grdClasificacion.MasterTemplate.AllowAddNewRow = False
+        Me.grdClasificacion.MasterTemplate.AutoGenerateColumns = False
+        GridViewCheckBoxColumn2.FormatString = ""
+        GridViewCheckBoxColumn2.HeaderText = "Agregar"
+        GridViewCheckBoxColumn2.Name = "Agregar"
+        GridViewCheckBoxColumn2.Width = 48
+        GridViewTextBoxColumn4.HeaderText = "Id"
+        GridViewTextBoxColumn4.IsVisible = False
+        GridViewTextBoxColumn4.Name = "Id"
+        GridViewTextBoxColumn5.FormatString = ""
+        GridViewTextBoxColumn5.HeaderText = "Codigo"
+        GridViewTextBoxColumn5.IsVisible = False
+        GridViewTextBoxColumn5.Name = "Codigo"
+        GridViewTextBoxColumn5.ReadOnly = True
+        GridViewTextBoxColumn6.FormatString = ""
+        GridViewTextBoxColumn6.HeaderText = "Nombre"
+        GridViewTextBoxColumn6.Name = "Nombre"
+        GridViewTextBoxColumn6.ReadOnly = True
+        Me.grdClasificacion.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn2, GridViewTextBoxColumn4, GridViewTextBoxColumn5, GridViewTextBoxColumn6})
+        Me.grdClasificacion.MasterTemplate.EnableGrouping = False
+        Me.grdClasificacion.Name = "grdClasificacion"
+        Me.grdClasificacion.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        '
+        '
+        '
+        Me.grdClasificacion.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdClasificacion.Size = New System.Drawing.Size(194, 154)
+        Me.grdClasificacion.TabIndex = 124
+        Me.grdClasificacion.Text = "RadGridView2"
+        Me.grdClasificacion.ThemeName = "Office2007Black"
+        '
+        'lblRecuentoPrecios
+        '
+        Me.lblRecuentoPrecios.AutoSize = True
+        Me.lblRecuentoPrecios.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRecuentoPrecios.Location = New System.Drawing.Point(833, 31)
+        Me.lblRecuentoPrecios.Name = "lblRecuentoPrecios"
+        Me.lblRecuentoPrecios.Size = New System.Drawing.Size(17, 19)
+        Me.lblRecuentoPrecios.TabIndex = 123
+        Me.lblRecuentoPrecios.Text = "0"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.Label7.Location = New System.Drawing.Point(455, 9)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(175, 20)
+        Me.Label7.TabIndex = 60
+        Me.Label7.Text = "Clasificación de Compra"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label18.Location = New System.Drawing.Point(66, 92)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(82, 13)
+        Me.Label18.TabIndex = 45
+        Me.Label18.Text = "Tipo de Pago :"
+        '
+        'cmbTipoNegocio
+        '
+        Me.cmbTipoNegocio.FormattingEnabled = True
+        Me.cmbTipoNegocio.Location = New System.Drawing.Point(152, 20)
+        Me.cmbTipoNegocio.Name = "cmbTipoNegocio"
+        Me.cmbTipoNegocio.Size = New System.Drawing.Size(248, 21)
+        Me.cmbTipoNegocio.TabIndex = 0
+        '
+        'cmbTipoPago
+        '
+        Me.cmbTipoPago.FormattingEnabled = True
+        Me.cmbTipoPago.Location = New System.Drawing.Point(155, 92)
+        Me.cmbTipoPago.Name = "cmbTipoPago"
+        Me.cmbTipoPago.Size = New System.Drawing.Size(248, 21)
+        Me.cmbTipoPago.TabIndex = 3
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label24.Location = New System.Drawing.Point(47, 22)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(99, 13)
+        Me.Label24.TabIndex = 56
+        Me.Label24.Text = "Tipo de Negocio :"
+        '
+        'pageDatos
+        '
+        Me.pageDatos.BackColor = System.Drawing.Color.White
+        Me.pageDatos.Controls.Add(Me.txtDireccion1)
+        Me.pageDatos.Controls.Add(Me.Label29)
+        Me.pageDatos.Controls.Add(Me.Label32)
+        Me.pageDatos.Controls.Add(Me.txtTelefono)
+        Me.pageDatos.Controls.Add(Me.Label31)
+        Me.pageDatos.Controls.Add(Me.txtNombre1)
+        Me.pageDatos.Controls.Add(Me.txtNit1)
+        Me.pageDatos.Controls.Add(Me.Label6)
+        Me.pageDatos.Location = New System.Drawing.Point(10, 44)
+        Me.pageDatos.Name = "pageDatos"
+        Me.pageDatos.Size = New System.Drawing.Size(897, 227)
+        Me.pageDatos.Text = "Información"
+        '
+        'txtDireccion1
+        '
+        Me.txtDireccion1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtDireccion1.Location = New System.Drawing.Point(138, 103)
+        Me.txtDireccion1.Name = "txtDireccion1"
+        Me.txtDireccion1.Size = New System.Drawing.Size(299, 22)
+        Me.txtDireccion1.TabIndex = 2
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label29.Location = New System.Drawing.Point(63, 106)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(58, 13)
+        Me.Label29.TabIndex = 68
+        Me.Label29.Text = "Dirección:"
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label32.Location = New System.Drawing.Point(62, 155)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(59, 13)
+        Me.Label32.TabIndex = 60
+        Me.Label32.Text = "Telefono :"
+        '
+        'txtTelefono
+        '
+        Me.txtTelefono.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtTelefono.Location = New System.Drawing.Point(139, 152)
+        Me.txtTelefono.Name = "txtTelefono"
+        Me.txtTelefono.Size = New System.Drawing.Size(298, 22)
+        Me.txtTelefono.TabIndex = 3
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label31.Location = New System.Drawing.Point(68, 27)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(53, 13)
+        Me.Label31.TabIndex = 58
+        Me.Label31.Text = "Nombre:"
+        '
+        'txtNombre1
+        '
+        Me.txtNombre1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtNombre1.Location = New System.Drawing.Point(139, 18)
+        Me.txtNombre1.Name = "txtNombre1"
+        Me.txtNombre1.Size = New System.Drawing.Size(298, 22)
+        Me.txtNombre1.TabIndex = 0
+        '
+        'txtNit1
+        '
+        Me.txtNit1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtNit1.Location = New System.Drawing.Point(139, 64)
+        Me.txtNit1.Name = "txtNit1"
+        Me.txtNit1.Size = New System.Drawing.Size(298, 22)
+        Me.txtNit1.TabIndex = 1
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label6.Location = New System.Drawing.Point(95, 73)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(26, 13)
+        Me.Label6.TabIndex = 14
+        Me.Label6.Text = "Nit:"
+        '
+        'rpv
+        '
+        Me.rpv.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rpv.BackColor = System.Drawing.Color.White
+        Me.rpv.Controls.Add(Me.pageDatos)
+        Me.rpv.Controls.Add(Me.pgClasificacion)
+        Me.rpv.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.rpv.Location = New System.Drawing.Point(8, 141)
+        Me.rpv.Name = "rpv"
+        Me.rpv.SelectedPage = Me.pgClasificacion
+        Me.rpv.Size = New System.Drawing.Size(918, 282)
+        Me.rpv.TabIndex = 127
+        Me.rpv.Text = "Historiales"
+        CType(Me.rpv.GetChildAt(0), Telerik.WinControls.UI.RadPageViewStripElement).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll
+        '
+        'chkHabilitado
+        '
+        Me.chkHabilitado.AutoSize = True
+        Me.chkHabilitado.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.chkHabilitado.Location = New System.Drawing.Point(260, 89)
+        Me.chkHabilitado.Name = "chkHabilitado"
+        Me.chkHabilitado.Size = New System.Drawing.Size(80, 17)
+        Me.chkHabilitado.TabIndex = 128
+        Me.chkHabilitado.Text = "Habilitado"
+        Me.chkHabilitado.UseVisualStyleBackColor = True
+        '
+        'chkMostrador
+        '
+        Me.chkMostrador.AutoSize = True
+        Me.chkMostrador.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.chkMostrador.Location = New System.Drawing.Point(588, 110)
+        Me.chkMostrador.Name = "chkMostrador"
+        Me.chkMostrador.Size = New System.Drawing.Size(95, 17)
+        Me.chkMostrador.TabIndex = 129
+        Me.chkMostrador.Text = "MOSTRADOR"
+        Me.chkMostrador.UseVisualStyleBackColor = True
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label22.Location = New System.Drawing.Point(9, 56)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(140, 13)
+        Me.Label22.TabIndex = 134
+        Me.Label22.Text = "Clasificación de Negocio :"
+        '
+        'cmbClasificacionNegocio
+        '
+        Me.cmbClasificacionNegocio.FormattingEnabled = True
+        Me.cmbClasificacionNegocio.Location = New System.Drawing.Point(155, 54)
+        Me.cmbClasificacionNegocio.Name = "cmbClasificacionNegocio"
+        Me.cmbClasificacionNegocio.Size = New System.Drawing.Size(248, 21)
+        Me.cmbClasificacionNegocio.TabIndex = 133
+        '
+        'txtDiasCredito
+        '
+        Me.txtDiasCredito.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtDiasCredito.Location = New System.Drawing.Point(155, 119)
+        Me.txtDiasCredito.Name = "txtDiasCredito"
+        Me.txtDiasCredito.Size = New System.Drawing.Size(115, 22)
+        Me.txtDiasCredito.TabIndex = 135
+        '
+        'txtLimiteCredito
+        '
+        Me.txtLimiteCredito.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtLimiteCredito.Location = New System.Drawing.Point(155, 147)
+        Me.txtLimiteCredito.Name = "txtLimiteCredito"
+        Me.txtLimiteCredito.Size = New System.Drawing.Size(115, 22)
+        Me.txtLimiteCredito.TabIndex = 136
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label9.Location = New System.Drawing.Point(56, 122)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(92, 13)
+        Me.Label9.TabIndex = 137
+        Me.Label9.Text = "Días de Crédito :"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label12.Location = New System.Drawing.Point(64, 151)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(84, 13)
+        Me.Label12.TabIndex = 138
+        Me.Label12.Text = "Límite crédito :"
+        '
+        'frmClienteMotrisa
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.ClientSize = New System.Drawing.Size(930, 430)
+        Me.Controls.Add(Me.chkMostrador)
+        Me.Controls.Add(Me.chkHabilitado)
+        Me.Controls.Add(Me.rpv)
+        Me.Controls.Add(Me.Label37)
+        Me.Controls.Add(Me.txtClave)
+        Me.Controls.Add(Me.Label30)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.txtNegocio)
+        Me.Controls.Add(Me.txtCodigo)
+        Me.Controls.Add(Me.lblProductos)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Name = "frmClienteMotrisa"
+        '
+        '
+        '
+        Me.RootElement.ApplyShapeToControl = True
+        Me.RootElement.ForeColor = System.Drawing.Color.Gray
+        Me.Controls.SetChildIndex(Me.lblProductos, 0)
+        Me.Controls.SetChildIndex(Me.txtCodigo, 0)
+        Me.Controls.SetChildIndex(Me.txtNegocio, 0)
+        Me.Controls.SetChildIndex(Me.Label3, 0)
+        Me.Controls.SetChildIndex(Me.Label30, 0)
+        Me.Controls.SetChildIndex(Me.txtClave, 0)
+        Me.Controls.SetChildIndex(Me.Label37, 0)
+        Me.Controls.SetChildIndex(Me.rpv, 0)
+        Me.Controls.SetChildIndex(Me.rgbDatos, 0)
+        Me.Controls.SetChildIndex(Me.chkHabilitado, 0)
+        Me.Controls.SetChildIndex(Me.chkMostrador, 0)
+        CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pgClasificacion.ResumeLayout(False)
+        Me.pgClasificacion.PerformLayout()
+        CType(Me.grdPrecios.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdPrecios, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdClasificacion.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdClasificacion, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pageDatos.ResumeLayout(False)
+        Me.pageDatos.PerformLayout()
+        CType(Me.rpv, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.rpv.ResumeLayout(False)
+        CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
+    End Sub
+    Friend WithEvents Label37 As System.Windows.Forms.Label
+    Friend WithEvents txtClave As System.Windows.Forms.TextBox
+    Friend WithEvents Label30 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents txtNegocio As System.Windows.Forms.TextBox
+    Friend WithEvents txtCodigo As System.Windows.Forms.TextBox
+    Friend WithEvents lblProductos As System.Windows.Forms.Label
+    Friend WithEvents pgClasificacion As Telerik.WinControls.UI.RadPageViewPage
+    Friend WithEvents chkTodosModelo As System.Windows.Forms.CheckBox
+    Friend WithEvents chkTodosClasificacion As System.Windows.Forms.CheckBox
+    Friend WithEvents lblRecuentoModeloVehiculo As System.Windows.Forms.Label
+    Friend WithEvents grdPrecios As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents Label33 As System.Windows.Forms.Label
+    Friend WithEvents grdClasificacion As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents lblRecuentoPrecios As System.Windows.Forms.Label
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents cmbTipoNegocio As System.Windows.Forms.ComboBox
+    Friend WithEvents cmbTipoPago As System.Windows.Forms.ComboBox
+    Friend WithEvents Label24 As System.Windows.Forms.Label
+    Friend WithEvents pageDatos As Telerik.WinControls.UI.RadPageViewPage
+    Friend WithEvents txtDireccion1 As System.Windows.Forms.TextBox
+    Friend WithEvents Label29 As System.Windows.Forms.Label
+    Friend WithEvents Label32 As System.Windows.Forms.Label
+    Friend WithEvents txtTelefono As System.Windows.Forms.TextBox
+    Friend WithEvents Label31 As System.Windows.Forms.Label
+    Friend WithEvents txtNombre1 As System.Windows.Forms.TextBox
+    Friend WithEvents txtNit1 As System.Windows.Forms.TextBox
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents rpv As Telerik.WinControls.UI.RadPageView
+    Friend WithEvents chkHabilitado As System.Windows.Forms.CheckBox
+    Friend WithEvents lblRecuentoClasificacion As System.Windows.Forms.Label
+    Friend WithEvents chkMostrador As System.Windows.Forms.CheckBox
+    Friend WithEvents Label22 As System.Windows.Forms.Label
+    Friend WithEvents cmbClasificacionNegocio As System.Windows.Forms.ComboBox
+    Friend WithEvents txtDiasCredito As System.Windows.Forms.TextBox
+    Friend WithEvents txtLimiteCredito As System.Windows.Forms.TextBox
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents Label12 As System.Windows.Forms.Label
+
+End Class

@@ -1,0 +1,626 @@
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class frmDespachoFacturaAsignar
+    Inherits laFuente.FrmBaseEspeciales
+
+    'Form invalida a Dispose para limpiar la lista de componentes.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        If disposing AndAlso components IsNot Nothing Then
+            components.Dispose()
+        End If
+        MyBase.Dispose(disposing)
+    End Sub
+
+    'Requerido por el Diseñador de Windows Forms
+    Private components As System.ComponentModel.IContainer
+
+    'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
+    'Se puede modificar usando el Diseñador de Windows Forms.  
+    'No lo modifique con el editor de código.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Dim GridViewCommandColumn1 As Telerik.WinControls.UI.GridViewCommandColumn = New Telerik.WinControls.UI.GridViewCommandColumn()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDespachoFacturaAsignar))
+        Me.pnlBarra = New System.Windows.Forms.Panel()
+        Me.pnx0Guardar = New System.Windows.Forms.Panel()
+        Me.lbl0Guardar = New System.Windows.Forms.Label()
+        Me.pbx0Guardar = New System.Windows.Forms.PictureBox()
+        Me.pnx1Salir = New System.Windows.Forms.Panel()
+        Me.lbl1Salir = New System.Windows.Forms.Label()
+        Me.pbx1Salir = New System.Windows.Forms.PictureBox()
+        Me.rgbInfoViaje = New Telerik.WinControls.UI.RadGroupBox()
+        Me.nm2Precio = New System.Windows.Forms.NumericUpDown()
+        Me.btnProductosAgregados = New System.Windows.Forms.Button()
+        Me.btnAgregar = New System.Windows.Forms.Button()
+        Me.cmbTransporte = New System.Windows.Forms.ComboBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtObservacion = New System.Windows.Forms.TextBox()
+        Me.lblCorrelativo = New System.Windows.Forms.Label()
+        Me.lblPordilleros = New System.Windows.Forms.Label()
+        Me.lblNoPordilleros = New System.Windows.Forms.Label()
+        Me.dtpFecha = New System.Windows.Forms.DateTimePicker()
+        Me.cmbSucursalSalida = New System.Windows.Forms.ComboBox()
+        Me.cmbTipoTransporte = New System.Windows.Forms.ComboBox()
+        Me.cmbPiloto = New System.Windows.Forms.ComboBox()
+        Me.lblPlaca = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.rgbClientes = New Telerik.WinControls.UI.RadGroupBox()
+        Me.grdClientes = New Telerik.WinControls.UI.RadGridView()
+        Me.rgbProductos = New Telerik.WinControls.UI.RadGroupBox()
+        Me.grdProductos = New Telerik.WinControls.UI.RadGridView()
+        CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlBarra.SuspendLayout()
+        Me.pnx0Guardar.SuspendLayout()
+        CType(Me.pbx0Guardar, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnx1Salir.SuspendLayout()
+        CType(Me.pbx1Salir, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rgbInfoViaje, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.rgbInfoViaje.SuspendLayout()
+        CType(Me.nm2Precio, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rgbClientes, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.rgbClientes.SuspendLayout()
+        CType(Me.grdClientes, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdClientes.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rgbProductos, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.rgbProductos.SuspendLayout()
+        CType(Me.grdProductos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdProductos.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'lbTituloFrm
+        '
+        Me.lbTituloFrm.Size = New System.Drawing.Size(226, 32)
+        Me.lbTituloFrm.Text = "FrmBaseEspeciales"
+        '
+        'pnlBarra
+        '
+        Me.pnlBarra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlBarra.BackColor = System.Drawing.Color.SteelBlue
+        Me.pnlBarra.Controls.Add(Me.pnx0Guardar)
+        Me.pnlBarra.Controls.Add(Me.pnx1Salir)
+        Me.pnlBarra.Location = New System.Drawing.Point(466, 0)
+        Me.pnlBarra.Name = "pnlBarra"
+        Me.pnlBarra.Size = New System.Drawing.Size(636, 48)
+        Me.pnlBarra.TabIndex = 107
+        '
+        'pnx0Guardar
+        '
+        Me.pnx0Guardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnx0Guardar.BackColor = System.Drawing.Color.Navy
+        Me.pnx0Guardar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnx0Guardar.Controls.Add(Me.lbl0Guardar)
+        Me.pnx0Guardar.Controls.Add(Me.pbx0Guardar)
+        Me.pnx0Guardar.Location = New System.Drawing.Point(404, 4)
+        Me.pnx0Guardar.Name = "pnx0Guardar"
+        Me.pnx0Guardar.Size = New System.Drawing.Size(107, 40)
+        Me.pnx0Guardar.TabIndex = 178
+        '
+        'lbl0Guardar
+        '
+        Me.lbl0Guardar.AutoSize = True
+        Me.lbl0Guardar.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl0Guardar.ForeColor = System.Drawing.Color.White
+        Me.lbl0Guardar.Location = New System.Drawing.Point(41, 9)
+        Me.lbl0Guardar.Name = "lbl0Guardar"
+        Me.lbl0Guardar.Size = New System.Drawing.Size(64, 19)
+        Me.lbl0Guardar.TabIndex = 66
+        Me.lbl0Guardar.Text = "Guardar"
+        '
+        'pbx0Guardar
+        '
+        Me.pbx0Guardar.Image = Global.laFuente.My.Resources.Resources.guardar_Blanco
+        Me.pbx0Guardar.Location = New System.Drawing.Point(2, 2)
+        Me.pbx0Guardar.Name = "pbx0Guardar"
+        Me.pbx0Guardar.Size = New System.Drawing.Size(40, 33)
+        Me.pbx0Guardar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx0Guardar.TabIndex = 65
+        Me.pbx0Guardar.TabStop = False
+        '
+        'pnx1Salir
+        '
+        Me.pnx1Salir.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnx1Salir.BackColor = System.Drawing.Color.Navy
+        Me.pnx1Salir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnx1Salir.Controls.Add(Me.lbl1Salir)
+        Me.pnx1Salir.Controls.Add(Me.pbx1Salir)
+        Me.pnx1Salir.Location = New System.Drawing.Point(517, 4)
+        Me.pnx1Salir.Name = "pnx1Salir"
+        Me.pnx1Salir.Size = New System.Drawing.Size(107, 40)
+        Me.pnx1Salir.TabIndex = 177
+        '
+        'lbl1Salir
+        '
+        Me.lbl1Salir.AutoSize = True
+        Me.lbl1Salir.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl1Salir.ForeColor = System.Drawing.Color.White
+        Me.lbl1Salir.Location = New System.Drawing.Point(48, 9)
+        Me.lbl1Salir.Name = "lbl1Salir"
+        Me.lbl1Salir.Size = New System.Drawing.Size(39, 19)
+        Me.lbl1Salir.TabIndex = 66
+        Me.lbl1Salir.Text = "Salir"
+        '
+        'pbx1Salir
+        '
+        Me.pbx1Salir.Image = Global.laFuente.My.Resources.Resources.cerrar
+        Me.pbx1Salir.Location = New System.Drawing.Point(2, 2)
+        Me.pbx1Salir.Name = "pbx1Salir"
+        Me.pbx1Salir.Size = New System.Drawing.Size(40, 33)
+        Me.pbx1Salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx1Salir.TabIndex = 65
+        Me.pbx1Salir.TabStop = False
+        '
+        'rgbInfoViaje
+        '
+        Me.rgbInfoViaje.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rgbInfoViaje.Controls.Add(Me.nm2Precio)
+        Me.rgbInfoViaje.Controls.Add(Me.btnProductosAgregados)
+        Me.rgbInfoViaje.Controls.Add(Me.btnAgregar)
+        Me.rgbInfoViaje.Controls.Add(Me.cmbTransporte)
+        Me.rgbInfoViaje.Controls.Add(Me.Label4)
+        Me.rgbInfoViaje.Controls.Add(Me.txtObservacion)
+        Me.rgbInfoViaje.Controls.Add(Me.lblCorrelativo)
+        Me.rgbInfoViaje.Controls.Add(Me.lblPordilleros)
+        Me.rgbInfoViaje.Controls.Add(Me.lblNoPordilleros)
+        Me.rgbInfoViaje.Controls.Add(Me.dtpFecha)
+        Me.rgbInfoViaje.Controls.Add(Me.cmbSucursalSalida)
+        Me.rgbInfoViaje.Controls.Add(Me.cmbTipoTransporte)
+        Me.rgbInfoViaje.Controls.Add(Me.cmbPiloto)
+        Me.rgbInfoViaje.Controls.Add(Me.lblPlaca)
+        Me.rgbInfoViaje.Controls.Add(Me.Label13)
+        Me.rgbInfoViaje.Controls.Add(Me.Label12)
+        Me.rgbInfoViaje.Controls.Add(Me.Label11)
+        Me.rgbInfoViaje.Controls.Add(Me.Label10)
+        Me.rgbInfoViaje.Controls.Add(Me.Label9)
+        Me.rgbInfoViaje.Controls.Add(Me.Label7)
+        Me.rgbInfoViaje.Controls.Add(Me.Label6)
+        Me.rgbInfoViaje.Controls.Add(Me.Label5)
+        Me.rgbInfoViaje.Controls.Add(Me.Label3)
+        Me.rgbInfoViaje.Controls.Add(Me.Label2)
+        Me.rgbInfoViaje.FooterImageIndex = -1
+        Me.rgbInfoViaje.FooterImageKey = ""
+        Me.rgbInfoViaje.HeaderImageIndex = -1
+        Me.rgbInfoViaje.HeaderImageKey = ""
+        Me.rgbInfoViaje.HeaderMargin = New System.Windows.Forms.Padding(0)
+        Me.rgbInfoViaje.HeaderText = "Informacion Viaje"
+        Me.rgbInfoViaje.Location = New System.Drawing.Point(12, 54)
+        Me.rgbInfoViaje.Name = "rgbInfoViaje"
+        Me.rgbInfoViaje.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        '
+        '
+        '
+        Me.rgbInfoViaje.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        Me.rgbInfoViaje.Size = New System.Drawing.Size(1078, 223)
+        Me.rgbInfoViaje.TabIndex = 108
+        Me.rgbInfoViaje.Text = "Informacion Viaje"
+        '
+        'nm2Precio
+        '
+        Me.nm2Precio.DecimalPlaces = 2
+        Me.nm2Precio.Location = New System.Drawing.Point(155, 192)
+        Me.nm2Precio.Maximum = New Decimal(New Integer() {100000, 0, 0, 0})
+        Me.nm2Precio.Name = "nm2Precio"
+        Me.nm2Precio.Size = New System.Drawing.Size(277, 20)
+        Me.nm2Precio.TabIndex = 179
+        Me.nm2Precio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'btnProductosAgregados
+        '
+        Me.btnProductosAgregados.BackColor = System.Drawing.Color.SteelBlue
+        Me.btnProductosAgregados.FlatAppearance.BorderSize = 0
+        Me.btnProductosAgregados.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnProductosAgregados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnProductosAgregados.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnProductosAgregados.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnProductosAgregados.ForeColor = System.Drawing.Color.Transparent
+        Me.btnProductosAgregados.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnProductosAgregados.Location = New System.Drawing.Point(898, 20)
+        Me.btnProductosAgregados.Name = "btnProductosAgregados"
+        Me.btnProductosAgregados.Size = New System.Drawing.Size(166, 65)
+        Me.btnProductosAgregados.TabIndex = 178
+        Me.btnProductosAgregados.Text = "Ver Productos" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Agregados"
+        Me.btnProductosAgregados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnProductosAgregados.UseVisualStyleBackColor = False
+        '
+        'btnAgregar
+        '
+        Me.btnAgregar.BackColor = System.Drawing.Color.SteelBlue
+        Me.btnAgregar.FlatAppearance.BorderSize = 0
+        Me.btnAgregar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnAgregar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAgregar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAgregar.ForeColor = System.Drawing.Color.Transparent
+        Me.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnAgregar.Location = New System.Drawing.Point(336, 64)
+        Me.btnAgregar.Name = "btnAgregar"
+        Me.btnAgregar.Size = New System.Drawing.Size(96, 29)
+        Me.btnAgregar.TabIndex = 177
+        Me.btnAgregar.Text = "Agregar"
+        Me.btnAgregar.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnAgregar.UseVisualStyleBackColor = False
+        '
+        'cmbTransporte
+        '
+        Me.cmbTransporte.FormattingEnabled = True
+        Me.cmbTransporte.Location = New System.Drawing.Point(155, 148)
+        Me.cmbTransporte.Name = "cmbTransporte"
+        Me.cmbTransporte.Size = New System.Drawing.Size(277, 21)
+        Me.cmbTransporte.TabIndex = 24
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(53, 146)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(92, 21)
+        Me.Label4.TabIndex = 23
+        Me.Label4.Text = "Transporte :"
+        '
+        'txtObservacion
+        '
+        Me.txtObservacion.Location = New System.Drawing.Point(568, 69)
+        Me.txtObservacion.Multiline = True
+        Me.txtObservacion.Name = "txtObservacion"
+        Me.txtObservacion.Size = New System.Drawing.Size(299, 109)
+        Me.txtObservacion.TabIndex = 22
+        '
+        'lblCorrelativo
+        '
+        Me.lblCorrelativo.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCorrelativo.Location = New System.Drawing.Point(568, 44)
+        Me.lblCorrelativo.Name = "lblCorrelativo"
+        Me.lblCorrelativo.Size = New System.Drawing.Size(299, 21)
+        Me.lblCorrelativo.TabIndex = 21
+        Me.lblCorrelativo.Text = "Correlativo"
+        '
+        'lblPordilleros
+        '
+        Me.lblPordilleros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblPordilleros.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPordilleros.Location = New System.Drawing.Point(155, 97)
+        Me.lblPordilleros.Name = "lblPordilleros"
+        Me.lblPordilleros.Size = New System.Drawing.Size(277, 23)
+        Me.lblPordilleros.TabIndex = 20
+        '
+        'lblNoPordilleros
+        '
+        Me.lblNoPordilleros.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNoPordilleros.Location = New System.Drawing.Point(151, 66)
+        Me.lblNoPordilleros.Name = "lblNoPordilleros"
+        Me.lblNoPordilleros.Size = New System.Drawing.Size(179, 21)
+        Me.lblNoPordilleros.TabIndex = 19
+        Me.lblNoPordilleros.Text = "#"
+        '
+        'dtpFecha
+        '
+        Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFecha.Location = New System.Drawing.Point(155, 14)
+        Me.dtpFecha.Name = "dtpFecha"
+        Me.dtpFecha.Size = New System.Drawing.Size(277, 20)
+        Me.dtpFecha.TabIndex = 18
+        '
+        'cmbSucursalSalida
+        '
+        Me.cmbSucursalSalida.FormattingEnabled = True
+        Me.cmbSucursalSalida.Location = New System.Drawing.Point(568, 20)
+        Me.cmbSucursalSalida.Name = "cmbSucursalSalida"
+        Me.cmbSucursalSalida.Size = New System.Drawing.Size(299, 21)
+        Me.cmbSucursalSalida.TabIndex = 17
+        '
+        'cmbTipoTransporte
+        '
+        Me.cmbTipoTransporte.FormattingEnabled = True
+        Me.cmbTipoTransporte.Location = New System.Drawing.Point(155, 123)
+        Me.cmbTipoTransporte.Name = "cmbTipoTransporte"
+        Me.cmbTipoTransporte.Size = New System.Drawing.Size(277, 21)
+        Me.cmbTipoTransporte.TabIndex = 16
+        '
+        'cmbPiloto
+        '
+        Me.cmbPiloto.FormattingEnabled = True
+        Me.cmbPiloto.Location = New System.Drawing.Point(155, 37)
+        Me.cmbPiloto.Name = "cmbPiloto"
+        Me.cmbPiloto.Size = New System.Drawing.Size(277, 21)
+        Me.cmbPiloto.TabIndex = 15
+        '
+        'lblPlaca
+        '
+        Me.lblPlaca.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPlaca.Location = New System.Drawing.Point(151, 168)
+        Me.lblPlaca.Name = "lblPlaca"
+        Me.lblPlaca.Size = New System.Drawing.Size(281, 21)
+        Me.lblPlaca.TabIndex = 14
+        Me.lblPlaca.Text = "Placa"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(88, 35)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(57, 21)
+        Me.Label13.TabIndex = 11
+        Me.Label13.Text = "Piloto :"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(25, 64)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(120, 21)
+        Me.Label12.TabIndex = 10
+        Me.Label12.Text = "No. Pordilleros :"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(53, 99)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(92, 21)
+        Me.Label11.TabIndex = 9
+        Me.Label11.Text = "Pordilleros :"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(34, 121)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(111, 21)
+        Me.Label10.TabIndex = 8
+        Me.Label10.Text = "Tipo Vehiculo :"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(92, 168)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(53, 21)
+        Me.Label9.TabIndex = 7
+        Me.Label9.Text = "Placa :"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(85, 189)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(60, 21)
+        Me.Label7.TabIndex = 5
+        Me.Label7.Text = "Precio :"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(440, 20)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(122, 21)
+        Me.Label6.TabIndex = 4
+        Me.Label6.Text = "Sucursal Salida :"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(468, 45)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(94, 21)
+        Me.Label5.TabIndex = 3
+        Me.Label5.Text = "Correlativo :"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(458, 69)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(104, 21)
+        Me.Label3.TabIndex = 1
+        Me.Label3.Text = "Observacion :"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(88, 12)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(57, 21)
+        Me.Label2.TabIndex = 0
+        Me.Label2.Text = "Fecha :"
+        '
+        'rgbClientes
+        '
+        Me.rgbClientes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rgbClientes.Controls.Add(Me.grdClientes)
+        Me.rgbClientes.FooterImageIndex = -1
+        Me.rgbClientes.FooterImageKey = ""
+        Me.rgbClientes.HeaderImageIndex = -1
+        Me.rgbClientes.HeaderImageKey = ""
+        Me.rgbClientes.HeaderMargin = New System.Windows.Forms.Padding(0)
+        Me.rgbClientes.HeaderText = "Clientes"
+        Me.rgbClientes.Location = New System.Drawing.Point(10, 283)
+        Me.rgbClientes.Name = "rgbClientes"
+        Me.rgbClientes.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        '
+        '
+        '
+        Me.rgbClientes.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        Me.rgbClientes.Size = New System.Drawing.Size(637, 356)
+        Me.rgbClientes.TabIndex = 109
+        Me.rgbClientes.Text = "Clientes"
+        '
+        'grdClientes
+        '
+        Me.grdClientes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grdClientes.Location = New System.Drawing.Point(10, 20)
+        '
+        'grdClientes
+        '
+        Me.grdClientes.MasterTemplate.AllowAddNewRow = False
+        Me.grdClientes.MasterTemplate.AllowColumnReorder = False
+        Me.grdClientes.Name = "grdClientes"
+        Me.grdClientes.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdClientes.ReadOnly = True
+        '
+        '
+        '
+        Me.grdClientes.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdClientes.Size = New System.Drawing.Size(617, 326)
+        Me.grdClientes.TabIndex = 0
+        Me.grdClientes.Text = "Clientes"
+        Me.grdClientes.ThemeName = "Office2007Black"
+        '
+        'rgbProductos
+        '
+        Me.rgbProductos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rgbProductos.Controls.Add(Me.grdProductos)
+        Me.rgbProductos.FooterImageIndex = -1
+        Me.rgbProductos.FooterImageKey = ""
+        Me.rgbProductos.HeaderImageIndex = -1
+        Me.rgbProductos.HeaderImageKey = ""
+        Me.rgbProductos.HeaderMargin = New System.Windows.Forms.Padding(0)
+        Me.rgbProductos.HeaderText = "Productos"
+        Me.rgbProductos.Location = New System.Drawing.Point(653, 283)
+        Me.rgbProductos.Name = "rgbProductos"
+        Me.rgbProductos.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        '
+        '
+        '
+        Me.rgbProductos.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        Me.rgbProductos.Size = New System.Drawing.Size(433, 356)
+        Me.rgbProductos.TabIndex = 110
+        Me.rgbProductos.Text = "Productos"
+        '
+        'grdProductos
+        '
+        Me.grdProductos.BackColor = System.Drawing.Color.FromArgb(CType(CType(191, Byte), Integer), CType(CType(219, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.grdProductos.Cursor = System.Windows.Forms.Cursors.Default
+        Me.grdProductos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grdProductos.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.grdProductos.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.grdProductos.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.grdProductos.Location = New System.Drawing.Point(10, 20)
+        '
+        'grdProductos
+        '
+        Me.grdProductos.MasterTemplate.AllowAddNewRow = False
+        Me.grdProductos.MasterTemplate.AllowColumnReorder = False
+        GridViewCommandColumn1.HeaderText = "Agregar"
+        GridViewCommandColumn1.Name = "cmdAgregar"
+        GridViewCommandColumn1.Width = 67
+        Me.grdProductos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCommandColumn1})
+        Me.grdProductos.Name = "grdProductos"
+        Me.grdProductos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdProductos.ReadOnly = True
+        Me.grdProductos.RightToLeft = System.Windows.Forms.RightToLeft.No
+        '
+        '
+        '
+        Me.grdProductos.RootElement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.grdProductos.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdProductos.Size = New System.Drawing.Size(413, 326)
+        Me.grdProductos.TabIndex = 1
+        Me.grdProductos.Text = "Clientes"
+        Me.grdProductos.ThemeName = "Office2007Black"
+        '
+        'frmDespachoFacturaAsignar
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.ClientSize = New System.Drawing.Size(1098, 651)
+        Me.Controls.Add(Me.rgbProductos)
+        Me.Controls.Add(Me.rgbClientes)
+        Me.Controls.Add(Me.rgbInfoViaje)
+        Me.Controls.Add(Me.pnlBarra)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Name = "frmDespachoFacturaAsignar"
+        '
+        '
+        '
+        Me.RootElement.ApplyShapeToControl = True
+        Me.Controls.SetChildIndex(Me.pnlBarra, 0)
+        Me.Controls.SetChildIndex(Me.rgbInfoViaje, 0)
+        Me.Controls.SetChildIndex(Me.rgbClientes, 0)
+        Me.Controls.SetChildIndex(Me.rgbProductos, 0)
+        CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlBarra.ResumeLayout(False)
+        Me.pnx0Guardar.ResumeLayout(False)
+        Me.pnx0Guardar.PerformLayout()
+        CType(Me.pbx0Guardar, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnx1Salir.ResumeLayout(False)
+        Me.pnx1Salir.PerformLayout()
+        CType(Me.pbx1Salir, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rgbInfoViaje, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.rgbInfoViaje.ResumeLayout(False)
+        Me.rgbInfoViaje.PerformLayout()
+        CType(Me.nm2Precio, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rgbClientes, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.rgbClientes.ResumeLayout(False)
+        CType(Me.grdClientes.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdClientes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rgbProductos, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.rgbProductos.ResumeLayout(False)
+        CType(Me.grdProductos.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdProductos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+
+    End Sub
+    Friend WithEvents pnlBarra As System.Windows.Forms.Panel
+    Friend WithEvents pnx1Salir As System.Windows.Forms.Panel
+    Friend WithEvents lbl1Salir As System.Windows.Forms.Label
+    Friend WithEvents pbx1Salir As System.Windows.Forms.PictureBox
+    Friend WithEvents pnx0Guardar As System.Windows.Forms.Panel
+    Friend WithEvents lbl0Guardar As System.Windows.Forms.Label
+    Friend WithEvents pbx0Guardar As System.Windows.Forms.PictureBox
+    Friend WithEvents rgbInfoViaje As Telerik.WinControls.UI.RadGroupBox
+    Friend WithEvents rgbClientes As Telerik.WinControls.UI.RadGroupBox
+    Friend WithEvents rgbProductos As Telerik.WinControls.UI.RadGroupBox
+    Friend WithEvents grdClientes As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents grdProductos As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents txtObservacion As System.Windows.Forms.TextBox
+    Friend WithEvents lblCorrelativo As System.Windows.Forms.Label
+    Friend WithEvents lblPordilleros As System.Windows.Forms.Label
+    Friend WithEvents lblNoPordilleros As System.Windows.Forms.Label
+    Friend WithEvents dtpFecha As System.Windows.Forms.DateTimePicker
+    Friend WithEvents cmbSucursalSalida As System.Windows.Forms.ComboBox
+    Friend WithEvents cmbTipoTransporte As System.Windows.Forms.ComboBox
+    Friend WithEvents cmbPiloto As System.Windows.Forms.ComboBox
+    Friend WithEvents lblPlaca As System.Windows.Forms.Label
+    Friend WithEvents cmbTransporte As System.Windows.Forms.ComboBox
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents btnAgregar As System.Windows.Forms.Button
+    Friend WithEvents btnProductosAgregados As System.Windows.Forms.Button
+    Friend WithEvents nm2Precio As System.Windows.Forms.NumericUpDown
+
+End Class

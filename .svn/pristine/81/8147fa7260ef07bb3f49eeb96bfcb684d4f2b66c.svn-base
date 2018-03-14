@@ -1,0 +1,204 @@
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class frmEditaCosto
+    Inherits laFuente.FrmBaseEspeciales
+
+    'Form invalida a Dispose para limpiar la lista de componentes.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        If disposing AndAlso components IsNot Nothing Then
+            components.Dispose()
+        End If
+        MyBase.Dispose(disposing)
+    End Sub
+
+    'Requerido por el Diseñador de Windows Forms
+    Private components As System.ComponentModel.IContainer
+
+    'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
+    'Se puede modificar usando el Diseñador de Windows Forms.  
+    'No lo modifique con el editor de código.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.pnlBarra = New System.Windows.Forms.Panel()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.rgbInformacion = New Telerik.WinControls.UI.RadGroupBox()
+        Me.lblCosto = New System.Windows.Forms.Label()
+        Me.lblECosto = New System.Windows.Forms.Label()
+        Me.btnAceptar = New System.Windows.Forms.Button()
+        Me.nm2CostoNuevo = New System.Windows.Forms.NumericUpDown()
+        Me.Label2 = New System.Windows.Forms.Label()
+        CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rgbInformacion, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.rgbInformacion.SuspendLayout()
+        CType(Me.nm2CostoNuevo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'lbTituloFrm
+        '
+        Me.lbTituloFrm.Size = New System.Drawing.Size(226, 32)
+        Me.lbTituloFrm.Text = "FrmBaseEspeciales"
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox4.Image = Global.laFuente.My.Resources.Resources.precios
+        Me.PictureBox4.Location = New System.Drawing.Point(33, 58)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(41, 37)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox4.TabIndex = 128
+        Me.PictureBox4.TabStop = False
+        '
+        'pnlBarra
+        '
+        Me.pnlBarra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlBarra.BackColor = System.Drawing.Color.SteelBlue
+        Me.pnlBarra.Location = New System.Drawing.Point(466, -3)
+        Me.pnlBarra.Name = "pnlBarra"
+        Me.pnlBarra.Size = New System.Drawing.Size(137, 51)
+        Me.pnlBarra.TabIndex = 130
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.Label9.ForeColor = System.Drawing.Color.Gray
+        Me.Label9.Location = New System.Drawing.Point(76, 64)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(120, 25)
+        Me.Label9.TabIndex = 129
+        Me.Label9.Text = "Editar Costo"
+        '
+        'rgbInformacion
+        '
+        Me.rgbInformacion.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rgbInformacion.Controls.Add(Me.lblCosto)
+        Me.rgbInformacion.Controls.Add(Me.lblECosto)
+        Me.rgbInformacion.Controls.Add(Me.btnAceptar)
+        Me.rgbInformacion.Controls.Add(Me.nm2CostoNuevo)
+        Me.rgbInformacion.Controls.Add(Me.Label2)
+        Me.rgbInformacion.FooterImageIndex = -1
+        Me.rgbInformacion.FooterImageKey = ""
+        Me.rgbInformacion.HeaderImageIndex = -1
+        Me.rgbInformacion.HeaderImageKey = ""
+        Me.rgbInformacion.HeaderMargin = New System.Windows.Forms.Padding(0)
+        Me.rgbInformacion.HeaderText = ""
+        Me.rgbInformacion.Location = New System.Drawing.Point(8, 75)
+        Me.rgbInformacion.Name = "rgbInformacion"
+        Me.rgbInformacion.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        '
+        '
+        '
+        Me.rgbInformacion.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        Me.rgbInformacion.Size = New System.Drawing.Size(587, 92)
+        Me.rgbInformacion.TabIndex = 127
+        '
+        'lblCosto
+        '
+        Me.lblCosto.AutoSize = True
+        Me.lblCosto.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblCosto.Location = New System.Drawing.Point(251, 61)
+        Me.lblCosto.Name = "lblCosto"
+        Me.lblCosto.Size = New System.Drawing.Size(53, 21)
+        Me.lblCosto.TabIndex = 21
+        Me.lblCosto.Text = "Costo"
+        '
+        'lblECosto
+        '
+        Me.lblECosto.AutoSize = True
+        Me.lblECosto.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblECosto.Location = New System.Drawing.Point(134, 61)
+        Me.lblECosto.Name = "lblECosto"
+        Me.lblECosto.Size = New System.Drawing.Size(111, 21)
+        Me.lblECosto.TabIndex = 20
+        Me.lblECosto.Text = "Costo Actual :"
+        '
+        'btnAceptar
+        '
+        Me.btnAceptar.BackColor = System.Drawing.Color.SteelBlue
+        Me.btnAceptar.FlatAppearance.BorderSize = 0
+        Me.btnAceptar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnAceptar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAceptar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAceptar.ForeColor = System.Drawing.Color.Transparent
+        Me.btnAceptar.Image = Global.laFuente.My.Resources.Resources.aceptarBlanco
+        Me.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnAceptar.Location = New System.Drawing.Point(458, 9)
+        Me.btnAceptar.Name = "btnAceptar"
+        Me.btnAceptar.Size = New System.Drawing.Size(70, 70)
+        Me.btnAceptar.TabIndex = 19
+        Me.btnAceptar.Text = "Aceptar"
+        Me.btnAceptar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.btnAceptar.UseVisualStyleBackColor = False
+        '
+        'nm2CostoNuevo
+        '
+        Me.nm2CostoNuevo.DecimalPlaces = 2
+        Me.nm2CostoNuevo.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.nm2CostoNuevo.Location = New System.Drawing.Point(251, 15)
+        Me.nm2CostoNuevo.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.nm2CostoNuevo.Name = "nm2CostoNuevo"
+        Me.nm2CostoNuevo.Size = New System.Drawing.Size(120, 29)
+        Me.nm2CostoNuevo.TabIndex = 1
+        Me.nm2CostoNuevo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(132, 17)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(113, 21)
+        Me.Label2.TabIndex = 0
+        Me.Label2.Text = "Costo Nuevo :"
+        '
+        'frmEditaCosto
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.ClientSize = New System.Drawing.Size(601, 172)
+        Me.Controls.Add(Me.PictureBox4)
+        Me.Controls.Add(Me.pnlBarra)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.rgbInformacion)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
+        Me.Name = "frmEditaCosto"
+        '
+        '
+        '
+        Me.RootElement.ApplyShapeToControl = True
+        Me.ShowItemToolTips = False
+        Me.Controls.SetChildIndex(Me.rgbInformacion, 0)
+        Me.Controls.SetChildIndex(Me.Label9, 0)
+        Me.Controls.SetChildIndex(Me.pnlBarra, 0)
+        Me.Controls.SetChildIndex(Me.PictureBox4, 0)
+        CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rgbInformacion, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.rgbInformacion.ResumeLayout(False)
+        Me.rgbInformacion.PerformLayout()
+        CType(Me.nm2CostoNuevo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
+    End Sub
+    Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
+    Friend WithEvents pnlBarra As System.Windows.Forms.Panel
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents rgbInformacion As Telerik.WinControls.UI.RadGroupBox
+    Friend WithEvents lblCosto As System.Windows.Forms.Label
+    Friend WithEvents lblECosto As System.Windows.Forms.Label
+    Friend WithEvents btnAceptar As System.Windows.Forms.Button
+    Friend WithEvents nm2CostoNuevo As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+
+End Class

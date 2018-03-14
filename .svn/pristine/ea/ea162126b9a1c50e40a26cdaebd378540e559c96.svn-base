@@ -1,0 +1,38 @@
+﻿Option Strict On
+
+Public Class frmDespachoFacturaBarraDerecha
+
+#Region "Variables"
+
+    Public alerta As New bl_Alertas
+    Private blPedidos As New bl_Pedidos
+    Private permiso As New clsPermisoUsuario
+    Private _bitCrearImprimpir As Boolean
+#End Region
+
+#Region "Eventos"
+    'LOAD
+    Private Sub frmDespachoFacturaBarraDerecha_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        izquierda = False
+        derecha = True
+        fnAjustarTamano()
+        pnl1.Focus()
+    End Sub
+
+    'VER FLETES
+    Private Sub fnPanel1() Handles Me.panel1
+        frmDespachoFacturaListaTransportes.Text = "Lista de Transportes"
+        frmDespachoFacturaListaTransportes.MdiParent = frmMenuPrincipal
+        frmDespachoFacturaListaTransportes.WindowState = FormWindowState.Maximized
+        If permiso.PermisoMantenimientoLista(frmDespachoFacturaListaTransportes, True) = True Then
+            fnFRMhijos_cerrar(frmDespachoFacturaListaTransportes)
+            Me.Hide()
+        End If
+    End Sub
+#End Region
+
+#Region "Funciones"
+
+#End Region
+
+End Class

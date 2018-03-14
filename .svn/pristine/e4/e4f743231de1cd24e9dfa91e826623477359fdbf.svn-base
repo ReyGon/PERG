@@ -1,0 +1,82 @@
+﻿Imports Telerik.WinControls.UI
+Imports System.Linq
+Imports System.IO
+Imports System.Data
+Imports System.Data.SqlClient
+Imports Telerik.WinControls
+
+Public Class frmEstadisticaVenta
+
+
+    Dim codigoCliente As Integer
+    Dim codigoSalida As Integer
+
+
+    Dim _codigoFactura As Integer
+
+    Public Property codigoFactura As Integer
+        Get
+            codigoFactura = _codigoFactura
+        End Get
+        Set(ByVal value As Integer)
+            _codigoFactura = value
+        End Set
+    End Property
+
+
+    Dim resultado As DataTable
+
+
+
+    Private Sub frmEstadisticaVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        mdlPublicVars.fnFormatoGridMovimientos(grdDatos)
+
+        fnLlenarGrid()
+
+    End Sub
+
+
+    Private Sub fnLlenarGrid()
+
+
+
+        Try
+
+            Dim conFac As tblFactura = (From x In ctx.tblFacturas Where x.IdFactura = codigoFactura Select x).First
+
+            codigoSalida = conFac.IdFactura
+
+            'Dim detallesp = (From x In ctx.spSalida_detalle(codigoSalida) Select x).ToList
+
+            'Dim y As spSalida_detalle_Result
+
+            'For Each y In detallesp
+            '    Dim fila As Object()
+            '    fila = {y.idSalidaDetalle, y.idArticulo, y.codigo1, _
+            '            y.nombre1, y.cantidad, y.precio, _
+            '            y.cantidad * y.precio, y.contado, y.comentario, _
+            '            "0", "", "0", "0", "0", "0", y.tipoInventario, y.tipoPrecio, y.clrEstado}
+            '    grdDatos.Rows.Add(fila)
+            'Next
+
+
+            'Dim articulo As Integer
+            'articulo = detalleSalida.idArticulo
+
+
+            'Dim cons As sp_PriceCalculos_Result = ctx.sp_PriceCalculos(, codClie).FirstOrDefault
+
+
+            Dim con = (From y In ctx.sp_salida_efectividadVenta(codigoSalida) Select y)
+
+
+            grdDatos.DataSource = con
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+
+End Class

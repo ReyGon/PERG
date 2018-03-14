@@ -1,0 +1,94 @@
+﻿Imports Telerik.WinControls.UI
+Imports System.Data.EntityClient
+Imports System.Linq
+Imports System.Windows.Forms
+
+Public Class frmSeleccion
+
+    Private _bitunidamedida As Boolean
+    Private _codigo As Integer
+
+    Public Property bitunidadmedida() As Boolean
+        Get
+            bitunidadmedida = _bitunidamedida
+        End Get
+        Set(value As Boolean)
+            _bitunidamedida = value
+        End Set
+    End Property
+
+    Public Property codigo As Integer
+        Get
+            codigo = _codigo
+        End Get
+        Set(value As Integer)
+            _codigo = value
+        End Set
+    End Property
+
+    Private Sub frmSeleccion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        mdlPublicVars.fnFormatoGridEspeciales(grdDatos)
+        mdlPublicVars.fnFormulario_quitaBarraTitulo(Me)
+        fnLlenarArticulos()
+    End Sub
+
+    Private Sub fnLlenarArticulos()
+        If bitunidadmedida = True Then
+
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim detalle = (From x In conexion.tblArticulo_UnidadMedida, y In conexion.tblUnidadMedidas Where x.idUnidadMedida = y.idunidadMedida And x.idArticulo = codigo Select Id = x.idUnidadMedida, UnidadMedida = y.nombre, Valor = x.valor)
+
+                Me.grdDatos.DataSource = mdlPublicVars.EntitiToDataTable(detalle)
+
+                conn.Close()
+            End Using
+
+        End If
+    End Sub
+
+    Private Sub fnconfiguracion()
+        Me.grdDatos.Columns("Id").IsVisible = True
+        Me.grdDatos.Columns("UnidadMedida").IsVisible = True
+        Me.grdDatos.Columns("Valor").IsVisible = True
+
+        Me.grdDatos.Columns("Id").Width = 50
+        Me.grdDatos.Columns("UnidadMedida").Width = 100
+        Me.grdDatos.Columns("Valor").Width = 75
+
+    End Sub
+
+    Private Sub fnAgregar()
+        Dim idunidad As Integer
+        Dim unidad As String
+        Dim valor As Decimal
+        Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdDatos)
+
+        idunidad = Me.grdDatos.Rows(fila).Cells("Id").Value
+        unidad = Me.grdDatos.Rows(fila).Cells("UnidadMedida").Value
+        valor = Me.grdDatos.Rows(fila).Cells("Valor").Value
+
+        mdlPublicVars.superSearchIdUnidadMedida = idunidad
+        mdlPublicVars.superSearchUnidadMedida = unidad
+        mdlPublicVars.superSearchUnidadMedidaValor = valor
+
+        Me.Close()
+    End Sub
+
+    Private Sub fnSalir() Handles Me.panel0
+        Me.Close()
+    End Sub
+
+    Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
+        fnAgregar()
+    End Sub
+
+    Private Sub grdDatos_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles grdDatos.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            fnAgregar()
+        End If
+    End Sub
+End Class

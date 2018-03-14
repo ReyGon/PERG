@@ -1,0 +1,418 @@
+﻿Imports System.Linq
+Imports System.IO
+Imports System.Data
+Imports System.Data.SqlClient
+Imports Telerik.WinControls
+Imports System.Transactions
+Imports System.Data.Objects.DataClasses
+Imports System.Data.EntityClient
+
+Public Class frmVentaPequeniaBarraDerecha
+
+    Public alerta As New bl_Alertas
+    Dim valida As New bl_Pedidos
+    Private permiso As New clsPermisoUsuario
+
+    ' Private _codigoPago As Integer
+
+
+    'Agregado para la venta pe
+    ' Public facturarVentaPequenia As New cls_FacturarVentaPequenia
+
+    Private _bitCrearImprimpir As Boolean
+    'Variables para guardar el total a pagar y descuento de la salida que se selecciona.
+    Dim totalPagar As Double = 0
+    Dim descuento As Double = 0
+
+    'Public Property codigoPago() As Integer
+    '    Get
+    '        codigoPago = _codigoPago
+    '    End Get
+    '    Set(value As Integer)
+    '        _codigoPago = value
+    '    End Set
+    'End Property
+
+
+    Private Sub frmVentaPequeniaBarraDerecha_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        izquierda = False
+        derecha = True
+        fnAjustarTamano()
+        pnl1.Focus()
+    End Sub
+
+
+    'FACTURAR
+    Private Sub fnPanel1() Handles Me.panel1
+
+        Try
+            frmVentaPequeniaLista.fnCambioFila()
+
+            If mdlPublicVars.superSearchFilasGrid > 0 Then
+
+                'Debemos de revisar si el pedido ya se reviso, y luego si el cliente tiene o no mas pedidos
+                Dim salida As tblSalida = (From x In ctx.tblSalidas Where x.idSalida = mdlPublicVars.superSearchId Select x).FirstOrDefault
+
+                If salida.anulado = True Or salida.facturado = True Then
+                    alerta.contenido = "Venta Facturada o Anulada "
+                    alerta.fnErrorContenido()
+                    Exit Sub
+                End If
+
+                If salida IsNot Nothing Then
+                    If salida.empacado = False Then
+                        salida.empacado = 1
+                        ctx.SaveChanges()
+                        mdlPublicVars.GuardarFacturacion(superSearchId)
+                        'facturarVentaPequenia.codSalida = mdlPublicVars.superSearchId
+                        'facturarVentaPequenia.fnFacturarSalida()
+                    End If
+
+                    'Else
+                    'facturarVentaPequenia.codSalida = mdlPublicVars.superSearchId
+                    'facturarVentaPequenia.fnFacturarSalida()
+
+                End If
+
+
+                If mdlPublicVars.bitImprimirFacturaVentaPequenia Then
+
+                End If
+
+
+                'Dim salida As tblSalida = (From x In ctx.tblSalidas Where x.idSalida = mdlPublicVars.superSearchId Select x).FirstOrDefault
+
+                'If salida.anulado = True Or salida.facturado = True Then
+                '    alerta.contenido = "Venta Facturada o Anulada "
+                '    alerta.fnErrorContenido()
+                '    Exit Sub
+                'End If
+
+
+                'If salida IsNot Nothing Then
+                '    'Si la salida ya esta revisada
+                '    If salida.empacado = True And salida.anulado = False Then
+                '        'Obtenemos el estado
+                '        Dim estado As List(Of sp_salida_Estado_Result) = ctx.sp_salida_Estado(mdlPublicVars.idEmpresa, salida.idSalida).ToList
+
+                '        For Each es As sp_salida_Estado_Result In estado
+                '            'If es.clrEnvio <> 1 Then
+                '            fnFacturar(salida)
+
+                '            'Else
+                '            '    'Realizar pagoe
+                '            '    If RadMessageBox.Show("No se puede facturar, ¿Desea realizar un pago?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                '            '        'Obtenemos el saldo del cliente
+                '            '        Dim cliente As tblCliente = (From x In ctx.tblClientes.AsEnumerable Where x.idCliente = mdlPublicVars.superSearchCodSurtir
+                '            '                                     Select x).FirstOrDefault
+
+                '            '        frmPagoNuevo.Text = "Pagos"
+                '            '        frmPagoNuevo.bitCliente = True
+                '            '        frmPagoNuevo.codigoCP = mdlPublicVars.superSearchCodSurtir
+                '            '        frmPagoNuevo.lblSaldo.Text = cliente.saldo
+                '            '        frmPagoNuevo.StartPosition = FormStartPosition.CenterScreen
+                '            '        frmPagoNuevo.ShowDialog()
+
+                '            '        'Obtenemos nuevamente el estado
+                '            '        Dim estado2 As List(Of sp_salida_Estado_Result) = ctx.sp_salida_Estado(mdlPublicVars.idEmpresa, salida.idSalida).ToList
+                '            '        For Each es2 As sp_salida_Estado_Result In estado2
+                '            '            If es2.clrEnvio <> 1 Then
+                '            '                fnFacturar(salida)
+                '            '            Else
+                '            '                RadMessageBox.Show("No se puede facturar", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                '            '            End If
+                '            '        Next
+                '            '    End If
+                '            'End If
+
+
+                '        Next
+                '    Else
+                '        If salida.anulado Then
+                '            alerta.contenido = "El pedido ya ha sido anulado"
+                '        Else
+                '            alerta.contenido = "El pedido no ha sido revisado"
+                '        End If
+                '        alerta.fnErrorContenido()
+                '    End If
+                'Else
+                '    alerta.contenido = "Error en la operacion"
+                '    alerta.fnErrorContenido()
+                'End If
+            End If
+
+        Catch ex As Exception
+            alerta.contenido = ex.ToString
+            alerta.fnErrorContenido()
+        End Try
+
+    End Sub
+
+
+    'REALIZAR PAGO
+    Private Sub fnPanel2() Handles Me.panel2
+        frmVentaPequeniaLista.fnCambioFila()
+
+        If mdlPublicVars.superSearchFilasGrid > 0 Then
+            'Obtenemos el saldo del cliente
+            Dim cliente As tblCliente = (From x In ctx.tblClientes.AsEnumerable Where x.idCliente = mdlPublicVars.superSearchCodSurtir
+                                         Select x).FirstOrDefault
+
+            frmPagoNuevo.Text = "Pagos"
+            frmPagoNuevo.bitCliente = True
+            frmPagoNuevo.codigoCP = mdlPublicVars.superSearchCodSurtir
+            frmPagoNuevo.lblSaldo.Text = cliente.saldo
+            frmPagoNuevo.StartPosition = FormStartPosition.CenterScreen
+            frmPagoNuevo.ShowDialog()
+        End If
+    End Sub
+
+    'AJUSTES
+    Private Sub fnPanel3() Handles Me.panel3
+        Try
+            frmVentaPequeniaLista.fnCambioFila()
+
+            If mdlPublicVars.superSearchFilasGrid > 0 Then
+                'Muestra la paqueteria de esa salida
+                Dim codigo As Integer = mdlPublicVars.superSearchId
+                Dim salida As tblSalida = (From x In ctx.tblSalidas.AsEnumerable Where x.idSalida = codigo Select x).FirstOrDefault
+
+                frmPedidosAjustesConceptos.Text = "Ajustes"
+                frmPedidosAjustesConceptos.StartPosition = FormStartPosition.CenterScreen
+                frmPedidosAjustesConceptos.BringToFront()
+                frmPedidosAjustesConceptos.codClie = salida.idCliente
+                frmPedidosAjustesConceptos.codSalida = codigo
+                frmPedidosAjustesConceptos.Focus()
+                permiso.PermisoDialogEspeciales(frmPedidosAjustesConceptos)
+                frmPedidosAjustesConceptos.Dispose()
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
+
+    'Cobrar la salida 
+    Private Sub fnCobrarSalida() Handles Me.panel4
+
+        Try
+            frmVentaPequeniaLista.fnCambioFila()
+            Dim codigoSalida As Integer
+
+
+            If mdlPublicVars.superSearchFilasGrid > 0 Then
+
+                Dim conexion As New dsi_pos_demoEntities
+                Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                    conn.Open()
+                    conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+
+                    'Debemos de revisar si el pedido ya se reviso, y luego si el cliente tiene o no mas pedidos
+                    Dim salida As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = mdlPublicVars.superSearchId Select x).FirstOrDefault
+
+                    If salida.anulado = True Or salida.facturado = True Then
+                        alerta.contenido = "Venta Facturada o Anulada "
+                        alerta.fnErrorContenido()
+                        Exit Sub
+                    End If
+                    conn.Close()
+                End Using
+
+                codigoSalida = superSearchId
+                ' frmPagoVentaPequenia.bitListaVentas = True
+                frmPagoVentaPequenia.Text = "Pagos"
+                frmPagoVentaPequenia.codigosalidaAFacturar = superSearchId 'enviamos el idsalida a cobrar
+                frmPagoVentaPequenia.StartPosition = FormStartPosition.CenterScreen
+                frmPagoVentaPequenia.ShowDialog()
+                frmPagoVentaPequenia.Dispose()
+
+
+            End If
+
+
+
+
+
+
+            If mdlPublicVars.bitCrearFacturaVentaPequenia = True Then
+                mdlPublicVars.GuardarFacturacion(codigoSalida)
+            End If
+
+
+
+
+
+            If mdlPublicVars.bitImprimirFacturaVentaPequenia = True Then
+
+                Dim fechaServer As DateTime = mdlPublicVars.fnFecha_horaServidor
+
+                Dim conexion As New dsi_pos_demoEntities
+                Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                    conn.Open()
+                    conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+
+                    For Each idFactura As Integer In mdlPublicVars.listaDeFacturas
+
+                        Dim factura As tblFactura = (From f In conexion.tblFacturas Where f.IdFactura = idFactura Select f).FirstOrDefault
+
+                        Dim impresion As tblImpresion = (From x In conexion.tblImpresions Where CType(x.descripcion, String) = CType(idFactura, String) And x.tblTipoImpresion.bitFactura = True Select x).FirstOrDefault
+
+                        If impresion IsNot Nothing Then
+                            If impresion.bitImpreso = False Then
+
+                                'no mostramos impresoras
+                                'seleccionar una impresora.
+                                ' frmImpresoras.Text = "Impresoras"
+                                'frmImpresoras.ShowDialog()
+                                'frmImpresoras.Dispose() 
+
+                                Dim r As New clsReporte
+                                r.tabla = mdlPublicVars.EntitiToDataTable(conexion.sp_ReporteFactura1("", impresion.descripcion, mdlPublicVars.idEmpresa))
+                                r.nombreParametro = "@filtro"
+                                r.reporte = impresion.tblTipoImpresion.reporte
+                                r.parametro = ""
+                                r.imprimirReporte()
+
+                                'If MessageBox.Show("Se imprimio correctamente !!!", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+                                impresion.bitImpreso = True
+                                impresion.usuarioImprime = mdlPublicVars.idUsuario
+                                impresion.fechaImpresion = fechaServer
+                                factura.bitImpreso = True
+
+                                'Seleccionamos el tipo de pagos para saber si pago la factura o es pago transito
+                                Dim pago As tblCaja = (From c In conexion.tblCajas Where c.codigo = superSearchCodigoPagoVentaPequenia Select c).FirstOrDefault
+
+                                If pago.tblTipoPago.calendarizada Then
+                                    factura.pagosTransito = factura.Monto
+                                    factura.pagado = False
+
+                                Else
+                                    factura.pagos = factura.Monto
+                                    factura.pagado = True
+                                End If
+
+                                conexion.SaveChanges()
+
+
+                                'Else
+
+                                ' alerta.contenido = "No existe Formato de Impresio"
+                                ' alerta.fnErrorContenido()
+                                'End If
+
+                            End If
+
+                        End If
+                    Next
+
+                    conn.Close()
+                    mdlPublicVars.listaDeFacturas.Clear() 'limpiamos los idFacturas que se imprimieron
+                    mdlPublicVars.bitCrearFacturaVentaPequenia = False
+                    mdlPublicVars.bitImprimirFacturaVentaPequenia = False
+                    superSearchCodigoPagoVentaPequenia = 0
+                End Using
+
+
+            End If
+
+
+        Catch ex As Exception
+
+        End Try
+
+
+    End Sub
+
+
+    'Funcion utilizada para realizar el proceso de facturacion
+
+    'Private Sub fnFacturar(ByVal salida As tblSalida)
+    '    Dim consulta = (From x In ctx.tblSalidas _
+    '                                                  Where x.idSalida = salida.idSalida And salida.facturado = False And x.anulado = False _
+    '                                                  Select Codigo = x.idSalida, Pagos = If(x.contado = True, "Contado", "Credito"), Fecha = x.fechaRegistro, Documento = x.documento, _
+    '                                                  DireccionFacturacion = x.direccionFacturacion, Vendedor = x.tblVendedor.nombre, Total = x.total, clrEstado = 0, Estado = "Revisado", Descripcion = "", Clave = salida.idCliente).FirstOrDefault
+
+    '    Dim codigo1 = consulta.Codigo
+    '    Dim pagos1 = consulta.Pagos
+    '    Dim fecha1 = consulta.Fecha
+    '    Dim documento1 = consulta.Documento
+    '    Dim vendedor1 = consulta.Vendedor
+    '    Dim total1 = consulta.Total
+    '    Dim direccion1 = consulta.DireccionFacturacion
+    '    Dim codigoCliente = consulta.Clave
+
+    '    Dim agregar As Integer = 0
+    '    'Verificamos si el cliente tiene mas facturas
+    '    'Dim nFacturas As Integer = From x In ctx.tblSalidas _
+    '    '                            Where x.facturado = False And x.empacado = True And x.idEmpresa = mdlPublicVars.idEmpresa And x.idCliente = salida.idCliente _
+    '    '                            And fnSalidaEstado(mdlPublicVars.idEmpresa, x.idSalida) <> 1 And x.anulado = False Select x
+
+    '    Dim consFacturas = (From x In ctx.tblSalidas
+    '                                Where x.facturado = False And x.empacado = True And x.idEmpresa = mdlPublicVars.idEmpresa And x.idCliente = salida.idCliente _
+    '                                 And x.anulado = False Select x.idSalida).ToList()
+
+    '    Dim nFacturas As Integer = 0
+    '    Dim xx
+    '    For Each xx In consFacturas
+    '        Dim estado As List(Of sp_salida_Estado_Result) = ctx.sp_salida_Estado(mdlPublicVars.idEmpresa, xx).ToList
+    '        For Each es As sp_salida_Estado_Result In estado
+    '            nFacturas = nFacturas + 1
+    '        Next
+    '    Next
+
+    '    If nFacturas > 1 Then
+    '        If RadMessageBox.Show("¿Tiene " & nFacturas & " Pedidos, desea elegir cuales facturar?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = vbYes Then
+    '            frmFactura.Text = "Factura"
+    '            frmFactura.MdiParent = frmMenuPrincipal
+    '            frmFactura.codigoCliente = codigoCliente
+    '            frmFactura.WindowState = FormWindowState.Maximized
+    '            permiso.PermisoFrmEspeciales(frmFactura, True)
+    '            Me.Hide()
+    '        Else
+    '            If RadMessageBox.Show("¿Desea facturar el pedido?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = vbYes Then
+    '                agregar = 1
+    '                nFacturas = 1
+    '            End If
+    '        End If
+    '    ElseIf nFacturas = 1 Then
+    '        If RadMessageBox.Show("¿Desea facturar el pedido?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = vbYes Then
+    '            agregar = 1
+    '            nFacturas = 1
+    '        End If
+    '    Else
+
+    '    End If
+
+    '    If nFacturas < 2 Then
+    '        If agregar = 1 Then
+    '            'Vaciamos la tabla con los codigos
+    '            mdlPublicVars.General_CodigoSalida.Rows.Clear()
+    '            mdlPublicVars.General_CodigoSalida.Rows.Add(codigo1, Format(fecha1, mdlPublicVars.formatoFecha), documento1, vendedor1, Format(total1, mdlPublicVars.formatoMoneda))
+    '            Dim total As Decimal = mdlPublicVars.fnTotalTablaFacturas
+
+    '            mdlPublicVars.GuardarFacturacion(total, If(pagos1.Equals("Contado"), True, False), salida.idCliente)
+    '        End If
+    '        frmFacturaImprimir.Text = "Facturar"
+
+    '        If pagos1 = "Contado" Then
+    '            frmFacturaImprimir.bitContado = True
+    '            frmFacturaImprimir.bitCredito = False
+    '        Else
+    '            frmFacturaImprimir.bitContado = False
+    '            frmFacturaImprimir.bitCredito = True
+    '        End If
+
+    '        frmFacturaImprimir.codClie = salida.idCliente
+    '        frmFacturaImprimir.dirFact = direccion1
+    '        frmFacturaImprimir.StartPosition = FormStartPosition.CenterScreen
+    '        frmFacturaImprimir.ShowDialog()
+    '        frmFacturaImprimir.Dispose()
+    '        'permiso.PermisoFrmEspeciales(frmFacturaImprimir, False)
+
+    '    End If
+
+    '    'llenanmos nuevament el listado
+    '    frmVentaPequeniaLista.frm_llenarLista()
+    'End Sub
+
+
+End Class

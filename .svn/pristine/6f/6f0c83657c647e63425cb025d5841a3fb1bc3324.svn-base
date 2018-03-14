@@ -1,0 +1,123 @@
+﻿Imports System.Linq
+
+Public Class frmKit
+
+#Region "Variables"
+    Public grdBase As Telerik.WinControls.UI.RadGridView
+    Public base2 As Integer = 0
+    Private categoriaSustituto As Integer = 0
+    Public filtro As String = ""
+#End Region
+
+#Region "LOAD"
+    Private Sub frmSustitu_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        mdlPublicVars.fnFormatoGridMovimientos(grdDatos)
+        txtFiltro.Text = filtro
+        fnLlenarGrid()
+        mdlPublicVars.fnGrid_iconos(grdDatos)
+        txtFiltro.Focus()
+    End Sub
+#End Region
+
+    'llena el lista en base al filtro.
+    Private Sub fnLlenarGrid()
+        Dim filtro As String = txtFiltro.Text
+        Dim kit = From p In (From x In ctx.tblInventarios _
+                   Where x.idTipoInventario = mdlPublicVars.General_idTipoInventario _
+                   And (x.tblArticulo.nombre1.Contains(filtro) Or CType(x.tblArticulo.codigo1, String).Contains(filtro)) And _
+                   x.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal And x.tblArticulo.empresa = mdlPublicVars.idEmpresa _
+                   And x.idArticulo <> base2 And Not x.tblArticulo.bitKit And Not x.tblArticulo.bitServicio
+                   Select chmAgregar = If((From y In ctx.tblArticulo_Kit Where y.articuloBase = base2 And y.articulo = x.tblArticulo.idArticulo Select y.cantidad).Count > 0, True, False),
+                   detalle = (From y In ctx.tblArticulo_Kit Where y.articuloBase = base2 And y.articulo = x.tblArticulo.idArticulo Select y.codigo).FirstOrDefault, ID = x.idArticulo, Codigo = x.tblArticulo.codigo1, Nombre = x.tblArticulo.nombre1,
+                   txmCantidad = (From y In ctx.tblArticulo_Kit Where y.articuloBase = base2 And y.articulo = x.tblArticulo.idArticulo Select y.cantidad).FirstOrDefault) _
+               Select p.chmAgregar, p.detalle, p.ID, p.Nombre, p.Codigo, txmCantidad = CType(If(p.txmCantidad Is Nothing, 0, p.txmCantidad), String)
+
+
+        grdDatos.DataSource = EntitiToDataTable(kit)
+        fnBuscarKits()
+        fnConfiguracion()
+    End Sub
+
+    'grid base de kits en productos.
+    Private Sub fnBuscarKits()
+        Dim index As Integer
+        Dim idSustituto As Integer
+        Dim detalle As Integer
+        Dim idBase As Integer
+        For index = 0 To Me.grdDatos.Rows.Count - 1
+            Dim contador As Integer
+            For contador = 0 To grdBase.Rows.Count - 1
+                idBase = Me.grdBase.Rows(contador).Cells("id").Value
+                idSustituto = Me.grdDatos.Rows(index).Cells("ID").Value
+                detalle = Me.grdBase.Rows(contador).Cells("iddetalle").Value
+                If idBase = idSustituto Then
+                    Me.grdDatos.Rows(index).Cells(0).Value = True
+                    Me.grdDatos.Rows(index).Cells("detalle").Value = detalle
+                End If
+            Next
+        Next
+
+    End Sub
+
+    Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
+        fnLlenarBase()
+        Me.Close()
+    End Sub
+
+    Private Sub fnConfiguracion()
+        Try
+            Me.grdDatos.Columns("ID").IsVisible = False
+            grdDatos.Columns("detalle").IsVisible = False
+            Me.grdDatos.Columns("chmAgregar").Width = 80 'agregar
+            Me.grdDatos.Columns("Codigo").Width = 120 'Codigo
+            Me.grdDatos.Columns("Nombre").Width = 300 'Nombre
+            Me.grdDatos.Columns("txmCantidad").Width = 150 'cantidad
+            Me.grdDatos.Columns("chmAgregar").ReadOnly = False
+            Me.grdDatos.Columns("txmCantidad").ReadOnly = False
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    'devuelve los 
+    Private Sub fnLlenarBase()
+        Dim detalle As Integer = 0
+        Dim cantidad As Integer = 0
+        Dim idArticulo As Integer = 0
+        grdBase.Rows.Clear()
+        For index As Integer = 0 To Me.grdDatos.Rows.Count - 1
+            detalle = grdDatos.Rows(index).Cells("detalle").Value
+            cantidad = CInt(grdDatos.Rows(index).Cells("txmCantidad").Value)
+            idArticulo = Me.grdDatos.Rows(index).Cells("id").Value
+            If grdDatos.Rows(index).Cells("chmAgregar").Value = True Then
+
+                Dim fila As String()
+
+                Dim art As tblArticulo = (From x In ctx.tblArticuloes.AsEnumerable Where x.idArticulo = idArticulo).FirstOrDefault
+                fila = {detalle, art.idArticulo, art.codigo1, art.nombre1, art.nombre2, 0, "", cantidad}
+                Me.grdBase.Rows.Add(fila)
+            ElseIf grdDatos.Rows(index).Cells("detalle").Value > 0 Then
+                Dim art As tblArticulo = (From x In ctx.tblArticuloes.AsEnumerable Where x.idArticulo = idArticulo).FirstOrDefault
+                Dim fila As String()
+                fila = {detalle, art.idArticulo, art.codigo1, art.nombre1, art.nombre2, 1, "", cantidad}
+                Me.grdBase.Rows.Add(fila)
+                Me.grdBase.Rows(Me.grdBase.RowCount - 1).IsVisible = False
+            End If
+        Next
+    End Sub
+
+    Private Sub txtFiltro_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtFiltro.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            fnLlenarGrid()
+            fnConfiguracion()
+        End If
+    End Sub
+
+    'SALIR
+    Private Sub fnSalir() Handles Me.panel0
+        Me.Close()
+    End Sub
+
+    Private Sub grdDatos_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles grdDatos.ValueChanged
+        mdlPublicVars.fngrd_contador(grdDatos, lblContador, txtFiltro, 0)
+    End Sub
+End Class

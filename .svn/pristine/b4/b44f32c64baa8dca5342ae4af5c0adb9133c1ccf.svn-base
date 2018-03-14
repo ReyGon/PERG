@@ -1,0 +1,45 @@
+﻿Public Class frmClientePequenioBarraIzquierda
+
+    Public frmAnterior As New Form
+    Private permiso As New clsPermisoUsuario
+
+    Private Sub frmClientePequenioBarraIzquierda_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        izquierda = True
+        derecha = False
+        fnAjustarTamano()
+        pnl1.Focus()
+    End Sub
+
+
+    Private Sub fnPanel1() Handles Me.panel1
+        Dim frm = frmClientePequenioLista
+        frm.Text = "Modulo de Clientes"
+        frm.MdiParent = frmMenuPrincipal
+        If permiso.PermisoMantenimientoLista(frmClientePequenioLista, True) = True Then
+            fnFRMhijos_cerrar(frm)
+            Me.Hide()
+        End If
+
+    End Sub
+
+
+    Private Sub fnPanel2() Handles Me.panel2
+        frmPagosLista.Dispose()
+        frmPagosLista.Text = "Modulo de Pagos"
+
+        'frmPagosLista.bitVentaPequenia = True 'para la venta pequeña motrisa
+
+        frmPagosLista.bitCliente = True
+        frmPagosLista.bitCompra = False
+        frmPagosLista.bitProveedor = False
+        frmPagosLista.bitVenta = False
+        frmPagosLista.MdiParent = frmMenuPrincipal
+
+        If permiso.PermisoMantenimientoLista(frmPagosLista, True) = True Then
+            fnFRMhijos_cerrar(frmPagosLista)
+            Me.Hide()
+        End If
+
+    End Sub
+
+End Class

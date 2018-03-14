@@ -1,0 +1,820 @@
+﻿Imports System.Windows.Forms
+Imports Telerik.WinControls.UI
+Imports System.Linq
+Imports System.IO
+Imports System.Data
+Imports System.Data.SqlClient
+Imports Telerik.WinControls
+Imports System.Data.EntityClient
+
+
+Public Class frmBuscarArticuloPendienteSurtir
+    Public salida As Integer = 0
+    Public cliente As Integer = 0
+    Public inventario As Integer = 0
+    Private permiso As New clsPermisoUsuario
+    Public grd As New RadGridView
+    Dim b As New clsBase
+
+    Private _bitProveedor As Boolean
+    Private _bitCliente As Boolean
+    Private _bitMovimientoInventario As Boolean
+    Private _bitDevolucionCliente As Boolean
+
+    Private _formSalida As frmSalidas
+
+    Public Property bitProveedor() As Boolean
+        Get
+            bitProveedor = _bitProveedor
+        End Get
+        Set(ByVal value As Boolean)
+            _bitProveedor = value
+        End Set
+    End Property
+
+    Public Property bitCliente() As Boolean
+        Get
+            bitCliente = _bitCliente
+        End Get
+        Set(ByVal value As Boolean)
+            _bitCliente = value
+        End Set
+    End Property
+
+    Public Property bitMovimientoInventario() As Boolean
+        Get
+            bitMovimientoInventario = _bitMovimientoInventario
+        End Get
+        Set(ByVal value As Boolean)
+            _bitMovimientoInventario = value
+        End Set
+    End Property
+
+    Public Property bitDevolucionCliente() As Boolean
+        Get
+            bitDevolucionCliente = _bitDevolucionCliente
+        End Get
+        Set(ByVal value As Boolean)
+            _bitDevolucionCliente = value
+        End Set
+    End Property
+
+    Public Property formSalida() As frmSalidas
+        Get
+            formSalida = _formSalida
+        End Get
+        Set(value As frmSalidas)
+            _formSalida = value
+        End Set
+    End Property
+
+    Private Sub frmBuscarArticuloPendienteSurtir_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
+        Try
+            mdlPublicVars.fnFormatoGridEspeciales(grdDocumento)
+            mdlPublicVars.fnFormatoGridEspeciales(grdPendientes)
+            mdlPublicVars.fnFormatoGridMovimientos(grdProductos1)
+            mdlPublicVars.fnFormatoGridMovimientos(grdProductos2)
+            mdlPublicVars.fnFormatoGridMovimientos(grdTipoVehiculo)
+            fnLlenaDocumento(grd)
+            fnLlenaPendientes()
+            fnLllenarcombo()
+            fnConfiguracion()
+        Catch ex As Exception
+            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub fnLlenaDocumento(ByVal grid As RadGridView)
+        Try
+            Me.grdDocumento.Rows.Clear()
+            Dim surtir As Integer = 0
+            Dim idSurtir As Integer = 0
+            If salida = 0 Then
+                Dim index = 0
+                For index = 0 To grid.Rows.Count - 1
+                    Dim articulo As String = CType(grid.Rows(index).Cells("txbProducto").Value, String)
+
+                    If articulo IsNot Nothing Then
+                        surtir = CType(grid.Rows(index).Cells("txmCantidadSurtir").Value, Integer)
+                        idSurtir = CType(grid.Rows(index).Cells("idSurtir").Value, Integer)
+                        If surtir > 0 And idSurtir = 0 Then
+                            Dim id As Integer = CType(grid.Rows(index).Cells("Id").Value, Integer)
+                            Dim codigo As String = CType(grid.Rows(index).Cells("txmCodigo").Value, String)
+                            Dim precio As Decimal = CType(grid.Rows(index).Cells("txbPrecio").Value, Decimal)
+
+                            Dim art As tblInventario = (From x In ctx.tblInventarios.AsEnumerable Where x.idArticulo = id And x.idTipoInventario = mdlPublicVars.General_idTipoInventario _
+                                                      Select x).FirstOrDefault
+
+                            Dim fila As Object()
+                            fila = {False, codigo, articulo, surtir, art.saldo, art.reserva, precio}
+                            grdDocumento.Rows.Add(fila)
+
+                        End If
+                    End If
+                Next
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub fnLlenaPendientes()
+        Try
+            'Obtenemos los articulos pendientes por surtir de ese documento
+
+            Dim consulta = ctx.sp_buscar_Pendientes(mdlPublicVars.idEmpresa, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, cliente)
+
+            Me.grdPendientes.DataSource = consulta 'EntitiToDataTable(consulta)
+            mdlPublicVars.fnGrid_iconos(grdPendientes)
+            fnConfiguracion()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'Funcion que configura el ancho de las columnas, y el formato
+    Private Sub fnConfiguracion()
+        Try
+            grdPendientes.Columns(1).IsVisible = False 'id
+            grdPendientes.Columns(12).IsVisible = False 'observacion
+            grdPendientes.Columns(13).IsVisible = False 'empaque
+            grdPendientes.Columns(15).IsVisible = False 'clrEstado
+            grdPendientes.Columns(16).IsVisible = False 'numero de articulo en catalogo
+            grdPendientes.Columns(17).IsVisible = False 'fecha ultima compra
+            grdPendientes.Columns(18).IsVisible = False 'marca
+            grdPendientes.Columns(19).IsVisible = False 'bitVentaMaxima
+            grdPendientes.Columns(20).IsVisible = False 'minimo
+            grdPendientes.Columns("TipoPrecio").IsVisible = False 'minimo
+            grdPendientes.Columns("Compatibilidad").IsVisible = False ' compatibilidad
+            grdPendientes.Columns("codSurtir").IsVisible = False 'codSurtir
+            grdPendientes.Columns("txmSurtir").IsVisible = False 'codSurtir
+
+            grdPendientes.Columns(0).Width = 60 ' agregar
+            grdPendientes.Columns(2).Width = 70 ' fecha
+            grdPendientes.Columns(3).Width = 70 ' codigo
+            grdPendientes.Columns(4).Width = 180 ' nombre
+            grdPendientes.Columns(5).Width = 70 ' cantidad
+            grdPendientes.Columns(7).Width = 70 ' existencia
+            grdPendientes.Columns(8).Width = 70 ' reserva
+            grdPendientes.Columns(9).Width = 70 ' transito
+            grdPendientes.Columns(10).Width = 50 ' costo
+            grdPendientes.Columns(11).Width = 70 ' precio
+            grdPendientes.Columns(12).Width = 70 ' cantidadmax
+            grdPendientes.Columns(13).Width = 50 ' observacion
+            grdPendientes.Columns(14).Width = 60 'unidadempaque
+            grdPendientes.Columns(15).Width = 70 'surtir
+
+            grdPendientes.Columns(0).ReadOnly = False
+            grdPendientes.Columns(1).ReadOnly = True
+            grdPendientes.Columns(2).ReadOnly = True
+            grdPendientes.Columns(3).ReadOnly = True
+            grdPendientes.Columns(4).ReadOnly = True
+            grdPendientes.Columns(5).ReadOnly = False
+            grdPendientes.Columns(6).ReadOnly = True
+            grdPendientes.Columns(7).ReadOnly = True
+            grdPendientes.Columns(8).ReadOnly = False
+            grdPendientes.Columns(9).ReadOnly = True
+            grdPendientes.Columns(10).ReadOnly = True
+            grdPendientes.Columns(11).ReadOnly = True
+            grdPendientes.Columns(12).ReadOnly = True
+
+            mdlPublicVars.fnGridTelerik_formatoMoneda(grdPendientes, "txbPrecio")
+            mdlPublicVars.fnGridTelerik_formatoMoneda(grdPendientes, "txmCosto")
+            mdlPublicVars.fnGridTelerik_formatoFecha(grdPendientes, "Fecha")
+
+            If bitProveedor = True Or bitMovimientoInventario = True Then
+                grdPendientes.Columns("Reserva").IsVisible = False
+                grdPendientes.Columns("clrEstado").IsVisible = False
+                grdPendientes.Columns("txbPrecio").IsVisible = False
+                grdPendientes.Columns("txmSurtir").IsVisible = False
+                grdPendientes.Columns("CantidadMax").IsVisible = False
+                grdPendientes.Columns.Move(8, 5)
+            ElseIf bitCliente = True Or bitDevolucionCliente = True Then
+                grdPendientes.Columns("txmCosto").IsVisible = False
+                grdPendientes.Columns("txbPrecio").IsVisible = True
+                grdPendientes.Columns("Transito").IsVisible = False
+            End If
+
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'configuarion de los grid
+    Private Sub fnConfiguracion2()
+        Try
+            If Me.grdProductos1.ColumnCount > 1 Then
+                grdProductos1.Columns(1).IsVisible = False 'id
+                grdProductos1.Columns(13).IsVisible = False 'observacion
+                grdProductos1.Columns(14).IsVisible = False 'empaque
+                grdProductos1.Columns(16).IsVisible = False 'clrEstado
+                grdProductos1.Columns(17).IsVisible = False 'numero de articulo en catalogo
+                grdProductos1.Columns(18).IsVisible = False 'fecha ultima compra
+                grdProductos1.Columns(19).IsVisible = False 'marca
+                grdProductos1.Columns(20).IsVisible = False 'bitVentaMaxima
+                grdProductos1.Columns(21).IsVisible = False 'minimo
+                grdProductos1.Columns("TipoPrecio").IsVisible = False 'minimo
+                grdProductos1.Columns("Compatibilidad").IsVisible = False ' compatibilidad
+
+                grdProductos1.Columns("numeroArt").IsVisible = False
+
+                ' grdProductos1.Columns("codSurtir").IsVisible = False 'codSurtir
+
+                grdProductos1.Columns("txmSurtir").IsVisible = False 'codSurtir
+                grdProductos1.Columns("CantidadMax").IsVisible = False
+                grdProductos1.Columns("UbicacionEstanteria").IsVisible = False
+                grdProductos1.Columns("Observacion").IsVisible = False
+                grdProductos1.Columns("UnidadEmpaque").IsVisible = False
+
+                ' mdlPublicVars.fnGridTelerik_formatoFecha(Me.grdProductos1, "Fecha")
+                grdProductos1.Columns(0).Width = 60 ' id
+                grdProductos1.Columns(2).Width = 40 ' codigo
+                grdProductos1.Columns(3).Width = 250 ' nombre
+                grdProductos1.Columns(4).Width = 70 'saldo
+                grdProductos1.Columns(5).Width = 70 ' cantidad
+                grdProductos1.Columns(6).Width = 50 ' existencia
+                grdProductos1.Columns(7).Width = 70 ' reserva
+                grdProductos1.Columns(8).Width = 70 ' transito
+                grdProductos1.Columns(9).Width = 50 ' costo
+                grdProductos1.Columns(10).Width = 70 ' precio
+                grdProductos1.Columns(11).Width = 50 ' cantidadmax
+                grdProductos1.Columns("Fecha").Width = 50 ' cantidadmax
+
+                ' grdProductos1.Columns(14).Width = 60 'unidadempaque
+
+                mdlPublicVars.fnGridTelerik_formatoMoneda(grdProductos1, "txbPrecio")
+                mdlPublicVars.fnGridTelerik_formatoMoneda(grdProductos1, "txmCosto")
+                mdlPublicVars.fnGridTelerik_formatoFecha(grdProductos1, "Fecha")
+
+                grdProductos1.Columns("txmCosto").IsVisible = False
+                grdProductos1.Columns("txbPrecio").IsVisible = True
+                grdProductos1.Columns("Transito").IsVisible = False
+                ' grdProductos1.Columns("txmCantidad").IsVisible = False
+                grdProductos1.Columns("txbPrecio").HeaderText = "Precio"
+                grdProductos1.Columns("CantidadMax").HeaderText = "Cant. Max"
+
+
+            End If
+
+            'configurar el grid2
+            If Me.grdProductos2.ColumnCount > 1 Then
+                grdProductos2.Columns(1).IsVisible = False 'id
+                grdProductos2.Columns(13).IsVisible = False 'observacion
+                grdProductos2.Columns(14).IsVisible = False 'empaque
+                grdProductos2.Columns(16).IsVisible = False 'clrEstado
+                grdProductos2.Columns(17).IsVisible = False 'numero de articulo en catalogo
+                grdProductos2.Columns(18).IsVisible = False 'fecha ultima compra
+                grdProductos2.Columns(19).IsVisible = False 'marca
+                grdProductos2.Columns(20).IsVisible = False 'bitVentaMaxima
+                grdProductos2.Columns(21).IsVisible = False 'minimo
+                grdProductos2.Columns("TipoPrecio").IsVisible = False 'minimo
+                grdProductos2.Columns("Compatibilidad").IsVisible = False ' compatibilidad
+
+                ' grdDatos.Columns("codSurtir").IsVisible = False 'codSurtir
+
+                grdProductos2.Columns("numeroArt").IsVisible = False
+
+                grdProductos2.Columns("txmSurtir").IsVisible = False 'codSurtir
+                grdProductos2.Columns("CantidadMax").IsVisible = False
+                grdProductos2.Columns("UbicacionEstanteria").IsVisible = False
+                grdProductos2.Columns("Observacion").IsVisible = False
+                grdProductos2.Columns("UnidadEmpaque").IsVisible = False
+
+                grdProductos2.Columns(0).Width = 60 ' agregar
+                grdProductos2.Columns(2).Width = 40 ' id
+                grdProductos2.Columns(3).Width = 250 ' nombre
+                grdProductos2.Columns(4).Width = 70 ' cantidad
+                grdProductos2.Columns(5).Width = 70 ' saldo
+                grdProductos2.Columns(6).Width = 70 ' existencia
+                grdProductos2.Columns(7).Width = 70 ' reserva
+                grdProductos2.Columns(8).Width = 70 ' transito
+                grdProductos2.Columns(9).Width = 50 ' costo
+                grdProductos2.Columns(10).Width = 70 ' precio
+                grdProductos2.Columns(11).Width = 70 ' cantidadmax
+                grdProductos2.Columns(12).Width = 50 ' observacion
+                grdProductos2.Columns(13).Width = 60 'unidadempaque
+                grdProductos2.Columns(14).Width = 70 'surtir
+                grdProductos2.Columns(15).Width = 70 'surtir
+                grdProductos2.Columns("Fecha").Width = 75 'surtir
+
+                mdlPublicVars.fnGridTelerik_formatoMoneda(grdProductos2, "txbPrecio")
+                mdlPublicVars.fnGridTelerik_formatoMoneda(grdProductos2, "txmCosto")
+                mdlPublicVars.fnGridTelerik_formatoFecha(grdProductos2, "Fecha")
+
+                grdProductos2.Columns("txmCosto").IsVisible = False
+                grdProductos2.Columns("txbPrecio").IsVisible = True
+                grdProductos2.Columns("Transito").IsVisible = False
+                ' grdProductos2.Columns("txmCantidad").IsVisible = False
+                grdProductos2.Columns("txbPrecio").HeaderText = "Precio"
+
+            End If
+        Catch ex As Exception
+
+        End Try
+       
+
+    End Sub
+
+
+    'Llenar combo
+    Private Sub fnLllenarcombo()
+
+        Try
+
+            Dim conexion As New dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+
+                Dim datos = (From x In conexion.tblListaFiltroFechas Where x.bitBusqueda = True Select x.orden, codigo = x.dias, x.nombre
+                             Order By orden Ascending)
+                With cmbTiempoNoComprado
+                    .DataSource = Nothing
+                    .ValueMember = "codigo"
+                    .DisplayMember = "nombre"
+                    .DataSource = datos
+                End With
+
+                If bitCliente = True Then
+                    Me.grdTipoVehiculo.Rows.Clear()
+                    'tipo de vehiculo con grid
+                    Dim tp = (From x In conexion.tblArticuloTipoVehiculoes Order By x.nombre _
+                             Select Agregar = If(((From y In conexion.tblCliente_clasificacionCompra _
+                                        Where x.codigo = y.tipoVehiculo And y.idCliente = cliente _
+                                        Select y.codigo).FirstOrDefault) > 0, True, False), _
+                                        IdDetalle = (From y In conexion.tblCliente_clasificacionCompra _
+                                        Where x.codigo = y.tipoVehiculo And y.idCliente = cliente _
+                                        Select y.codigo).FirstOrDefault,
+                                       Codigo = x.codigo, Nombre = x.nombre)
+
+                    Me.grdTipoVehiculo.Rows.Clear()
+                    Dim cont As Integer = 0
+                    Dim verd As Integer = 0
+                    Dim v
+                    For Each v In tp
+                        cont += 1
+                        Me.grdTipoVehiculo.Rows.Add(v.AGREGAR, v.CODIGO, v.NOMBRE)
+                        If v.AGREGAR = False Then
+                            verd += 1
+                        End If
+                    Next
+                End If
+
+                conn.Close()
+            End Using
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+
+
+    'llenar los grid del page2
+    Private Sub fnLlenarGrid()
+
+        Try
+            Dim fechaActual As DateTime = CType(mdlPublicVars.fnFecha_horaServidor, DateTime)
+            Dim diferenciaMes As DateTime = fechaActual.AddDays(-mdlPublicVars.Empresa_DiasUltimosProductos)
+
+            Dim fechaFiltro As DateTime = fechaActual.AddDays(-cmbTiempoNoComprado.SelectedValue)
+            Dim fechaBusqueda As String = Format(fechaFiltro, "dd/MM/yyyy hh:mm:ss")
+            Dim codigoTipoVehiculo As String = tbl.fnExtraerCadenaCodigosGridViewTelerik(grdTipoVehiculo, 1, 0)
+
+            Dim conexion As New dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+
+
+                grdProductos1.DataSource = Nothing
+                Dim consulta = conexion.sp_PendientesPorSurtir(mdlPublicVars.idEmpresa, fechaBusqueda.ToString, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, codigoTipoVehiculo, "", cliente, 1, True, False, "", 1)
+                grdProductos1.DataSource = consulta ' EntitiToDataTable(consulta)
+
+                grdProductos2.DataSource = Nothing
+                Dim consulta2 = conexion.sp_PendientesPorSurtir(mdlPublicVars.idEmpresa, fechaBusqueda.ToString, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, codigoTipoVehiculo, "", cliente, 2, True, False, "", 1)
+                grdProductos2.DataSource = consulta2
+
+
+                conn.Close()
+            End Using
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error")
+        End Try
+
+        fnConfiguracion2()
+        mdlPublicVars.fnGrid_iconos(grdProductos1)
+        mdlPublicVars.fnGrid_iconos(grdProductos2)
+
+    End Sub
+
+
+
+
+
+
+    Private Sub grdDocumento_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles grdDocumento.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) And Me.grdDocumento.Focused = True Then
+            fnAgregar_Productos()
+        End If
+        b.fnGrid_seleccionarEspacio(grdDocumento, 0, e, True)
+    End Sub
+
+    Private Sub grdPendientes_CellClick(sender As Object, e As GridViewCellEventArgs) Handles grdPendientes.CellClick
+
+
+
+    End Sub
+
+    Private Sub grdPendientes_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles grdPendientes.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) And Me.grdDocumento.Focused = True Then
+            fnAgregar_Productos()
+        End If
+        b.fnGrid_seleccionarEspacio(grdPendientes, 0, e, True)
+    End Sub
+
+    'AGREGAR PRECIO
+    Public Sub fnAgregarPrecio(ByVal especial As Boolean)
+        Try
+            Me.grdPendientes.Rows(Me.grdPendientes.CurrentRow.Index).Cells("txbPrecio").Value = CType(mdlPublicVars.superSearchPrecio, Decimal)
+            Me.grdPendientes.Rows(Me.grdPendientes.CurrentRow.Index).Cells("TipoPrecio").Value = CType(mdlPublicVars.superSearchTipoPrecio, Integer)
+            If especial = False Then
+                Me.grdPendientes.Rows(Me.grdPendientes.CurrentRow.Index).Cells("txmCantidad").Value = CType(mdlPublicVars.superSearchCantidad, Integer)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'Agregar productos del inventario principal
+    Private Sub grdProductos_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles grdPendientes.KeyPress
+        If Me.grdPendientes.Rows.Count > 0 Then
+            If Me.grdPendientes.CurrentRow.Index >= 0 Then
+                Dim col As Integer = Me.grdPendientes.CurrentColumn.Index
+                Dim nombre As String = Me.grdPendientes.Columns(col).Name
+                If e.KeyChar = ChrW(Keys.Enter) And Me.grdPendientes.Focused = True Then
+                    fnAgregar_Productos()
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub grdProductos_CellDoubleClick(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs) Handles grdPendientes.CellDoubleClick
+        Try
+            Dim estado As Integer = CType(Me.grdPendientes.Rows(e.RowIndex).Cells("clrEstado").Value, Integer)
+            If e.Column.Name = "txbPrecio" Then 'And (estado = 1 Or estado = 2)
+                frmBuscarArticuloPrecios.Text = "Precios"
+                frmBuscarArticuloPrecios.codigo = CType(Me.grdPendientes.Rows(Me.grdPendientes.CurrentRow.Index).Cells("ID").Value, Integer)
+                frmBuscarArticuloPrecios.bitPendientes = True
+                frmBuscarArticuloPrecios.StartPosition = FormStartPosition.CenterScreen
+                permiso.PermisoFrmEspeciales(frmBuscarArticuloPrecios, False)
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    'Funcion que se utiliza para agregar los productos en el grid 
+    Private Sub fnAgregar_Productos()
+        Dim index As Integer
+        Dim cont As Integer = 0
+        Dim id As Integer = 0
+        Dim cantidad As Integer = 0
+        Dim codigo As String = ""
+        Dim nombre As String = ""
+        Dim precio As Decimal = 0
+        Dim costo As Decimal = 0
+        Dim surtir As Integer = 0
+        Dim codSurtir As Integer = 0
+        Dim tipoPrecio As Integer = 0
+        Dim estado As Integer = 0
+        If salida > 0 Then
+            'Primero consultamos para saber si la salida no ha sido un despacho
+            Dim pedido As tblSalida = (From x In ctx.tblSalidas Where x.idSalida = salida Select x).FirstOrDefault
+
+            If pedido.despachar = True Then
+                alerta.contenido = "No se pueden agregar pendientes, el pedido ha sido DESPACHADO"
+                alerta.fnErrorContenido()
+                Exit Sub
+            End If
+        End If
+
+        mdlPublicVars.superSearchInventario = mdlPublicVars.General_idTipoInventario
+
+        If bitCliente = True And bitDevolucionCliente = False Then
+            If mdlPublicVars.superSearchInventario <> formSalida.cmbInventario.SelectedValue Then
+                RadMessageBox.Show("No se pueden agregar productos de diferente inventario", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                Exit Sub
+            End If
+        End If
+
+        For index = 0 To grdPendientes.Rows.Count - 1
+            'agrega = CType(grd.Rows(index).Cells(0).Value, Boolean)
+            ' If agrega = True Then
+            cantidad = grdPendientes.Rows(index).Cells("txmCantidad").Value
+
+            If cantidad > 0 Then
+                cont += 1
+                If cont = 1 Then
+                    If bitCliente = True And bitDevolucionCliente = False Then
+                        formSalida.fnRemoverFila()
+                    End If
+                End If
+                id = Me.grdPendientes.Rows(index).Cells("ID").Value
+                codigo = Me.grdPendientes.Rows(index).Cells("Codigo").Value
+                nombre = Me.grdPendientes.Rows(index).Cells("nombre").Value
+                surtir = Me.grdPendientes.Rows(index).Cells("Saldo").Value
+                codSurtir = Me.grdPendientes.Rows(index).Cells("codSurtir").Value
+                tipoPrecio = Me.grdPendientes.Rows(index).Cells("TipoPrecio").Value
+                estado = Me.grdPendientes.Rows(index).Cells("clrEstado").Value
+                Try
+                    precio = Me.grdPendientes.Rows(index).Cells("txbPrecio").Value
+                Catch ex As Exception
+                    precio = 0
+                End Try
+
+                mdlPublicVars.superSearchId = id
+                mdlPublicVars.superSearchCodigo = codigo
+                mdlPublicVars.superSearchNombre = nombre
+                mdlPublicVars.superSearchCantidad = cantidad
+                mdlPublicVars.superSearchSurtir = surtir
+                mdlPublicVars.superSearchCodSurtir = codSurtir
+                mdlPublicVars.superSearchTipoPrecio = tipoPrecio
+                mdlPublicVars.superSearchEstado = estado
+                Try
+                    costo = grdPendientes.Rows(index).Cells("txmCosto").Value
+                Catch ex As Exception
+                    costo = 0
+                End Try
+
+                If bitCliente = True And bitDevolucionCliente = False Then
+                    mdlPublicVars.superSearchPrecio = precio
+                    'Verificamos si la empresa valida la venta maxima por cliente
+                    If Empresa_ValidaVenta = True Then
+                        If fnCantidadMax(index) = False Then
+                            formSalida.fnAgregar_Pendientes()
+                        Else
+                            Me.grdPendientes.Rows(index).Cells("txmCantidad").BeginEdit()
+                            Exit For
+                        End If
+                    Else
+                        formSalida.fnAgregar_Pendientes()
+                    End If
+                End If
+                grdPendientes.Rows(index).Cells("txmCantidad").Value = 0
+
+            End If
+        Next
+
+        If cont > 0 Then
+            If bitCliente = True And bitDevolucionCliente = False Then
+                formSalida.fnNuevaFila()
+                formSalida.fnBloquearCombo()
+            End If
+        End If
+    End Sub
+
+    'Funcion utilizada para agregar los formatos al grid
+    Private Sub grdProductos_CellFormatting(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.CellFormattingEventArgs) Handles grdPendientes.CellFormatting
+        Try
+            'Cambia el color de la fuente(letra) en el grid
+            If Me.grdPendientes.Rows.Count > 0 Then
+                If e.CellElement.RowInfo.Cells("clrEstado").Value = 1 Then
+                    mdlPublicVars.GridColor_fila(e, Color.Green)
+                ElseIf e.CellElement.RowInfo.Cells("clrEstado").Value = 2 Then
+                    mdlPublicVars.GridColor_fila(e, Color.Red)
+                ElseIf e.CellElement.RowInfo.Cells("clrEstado").Value = 0 Then
+                    mdlPublicVars.GridColor_fila(e, Color.Black)
+                End If
+
+                Dim inicio As Integer = CType(Me.grdPendientes.Columns("Existencia").Index, Integer)
+                mdlPublicVars.GridColor_fila(e, Color.Blue, inicio)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'Evento que se maneja para poder ver los precios del producto
+    Private Sub grdProductos_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles grdPendientes.KeyDown
+        Try
+            If Me.grdPendientes.CurrentRow.Index >= 0 Then
+                Dim col As Integer = Me.grdPendientes.CurrentColumn.Index
+                Dim nombre As String = Me.grdPendientes.Columns(col).Name
+                If nombre = "txbPrecio" And e.KeyCode = Keys.F2 Then
+                    Dim estado As Integer = CType(Me.grdPendientes.Rows(Me.grdPendientes.CurrentRow.Index).Cells("clrEstado").Value, Integer)
+                    If (estado = 1 Or estado = 2) Then
+                        frmBuscarArticuloPrecios.Text = "Precios"
+                        frmBuscarArticuloPrecios.codigo = CType(Me.grdPendientes.Rows(Me.grdPendientes.CurrentRow.Index).Cells("ID").Value, Integer)
+                        frmBuscarArticuloPrecios.bitPrincipal = True
+                        frmBuscarArticuloPrecios.StartPosition = FormStartPosition.CenterScreen
+                        permiso.PermisoFrmEspeciales(frmBuscarArticuloPrecios, False)
+                    End If
+                End If
+            End If
+
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    'DOC SALIDA < DOCUMENTO >
+    Private Sub fnSalidaDocumento() Handles Me.panel0
+        Try
+
+            frmDocumentosSalida.txtTitulo.Text = "Pendiente por Surtir < DOCUMENTO >"
+            frmDocumentosSalida.grd = Me.grdDocumento
+            frmDocumentosSalida.Text = "Docs. de Salida"
+            frmDocumentosSalida.codigo = cliente 'codigo del clientes.
+            frmDocumentosSalida.bitCliente = True
+            frmDocumentosSalida.bitGenerico = True
+            permiso.PermisoFrmEspeciales(frmDocumentosSalida, False)
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    'DOC SALIDA < ACUMULADO >
+    Private Sub fnSalidaAcumulado() Handles Me.panel1
+        Try
+            frmDocumentosSalida.txtTitulo.Text = "Pendiente por Surtir < ACUMULADO >"
+            frmDocumentosSalida.grd = Me.grdPendientes
+            frmDocumentosSalida.Text = "Docs. de Salida"
+            frmDocumentosSalida.codigo = cliente 'codigo del clientes.
+            frmDocumentosSalida.bitCliente = True
+            frmDocumentosSalida.bitGenerico = True
+            permiso.PermisoFrmEspeciales(frmDocumentosSalida, False)
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    'SALIR
+    Private Sub fnSalir() Handles Me.panel2
+        Me.Close()
+    End Sub
+
+    'Funcion que utiliza para validar si la cantidad a comprar sobrepasa el limite de compra
+    Private Function fnCantidadMax(ByVal fila As Integer) As Boolean
+        Try
+            'Obtenemos la cantidad que comprara y la cantidad Max
+            Dim cantidad As Integer = Me.grdPendientes.Rows(fila).Cells("txmCantidad").Value
+            Dim limite As Integer = Me.grdPendientes.Rows(fila).Cells("CantidadMax").Value
+            Dim valida As Boolean = Me.grdPendientes.Rows(fila).Cells("bitVentaMaxima").Value
+            Dim saldo As Integer = Me.grdPendientes.Rows(fila).Cells("Existencia").Value
+            Dim minimo As Integer = Me.grdPendientes.Rows(fila).Cells("minimo").Value
+
+            'Si el saldo es menor que el minimo y bitVentaMaxima = true, se activa la restriccion
+            'Pero si la cantidadMaxima es igual a cero no se valida
+            If saldo < minimo And valida = True Then
+                If limite > 0 Then
+                    If cantidad > limite Then
+                        RadMessageBox.Show("Cantidad a vender sobrepasa la cantida maxima de venta", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                        Return True
+                        Exit Function
+                    End If
+                End If
+            End If
+
+            Return False
+        Catch ex As Exception
+        End Try
+    End Function
+
+    Private Sub btnBuscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBuscar.Click
+        fnAgregar_Productos()
+    End Sub
+
+
+    Private Sub btnBusqueda_Click(sender As Object, e As EventArgs) Handles btnBusqueda.Click
+        fnLlenarGrid()
+    End Sub
+
+    Private Sub grdProductos1_SelectionChanged(sender As Object, e As EventArgs) Handles grdProductos1.SelectionChanged
+        fnInformacion(grdProductos1)
+    End Sub
+
+
+    Private Sub grdProductos2_SelectionChanged(sender As Object, e As EventArgs) Handles grdProductos2.SelectionChanged
+        fnInformacion(grdProductos2)
+    End Sub
+
+    Private Sub grdPendientes_SelectionChanged(sender As Object, e As EventArgs) Handles grdPendientes.SelectionChanged
+        fnInformacion(grdPendientes)
+    End Sub
+
+
+    'iformacion del articulo
+    Private Sub fnInformacion(grd As Telerik.WinControls.UI.RadGridView)
+        Try
+            'Modificamos la observacion y el empaque
+            Dim observacion As String
+            Dim empaque As String
+            Dim marca As String
+            Dim compatibilidad As String
+            Dim ubicacion As String
+
+            Dim fila As Integer = CInt(mdlPublicVars.fnGrid_codigoFilaSeleccionada(grd))
+
+            Try
+                observacion = CType(grd.Rows(fila).Cells("Observacion").Value, String)
+            Catch ex As Exception
+                observacion = ""
+            End Try
+            Try
+                empaque = CType(grd.Rows(fila).Cells("UnidadEmpaque").Value, String)
+            Catch ex As Exception
+                empaque = ""
+            End Try
+
+            Try
+                marca = CType(grd.Rows(fila).Cells("Marca").Value, String)
+            Catch ex As Exception
+                marca = ""
+            End Try
+
+            Try
+                compatibilidad = CType(grd.Rows(fila).Cells("Compatibilidad").Value, String)
+            Catch ex As Exception
+                compatibilidad = ""
+            End Try
+
+            Try
+                ubicacion = CType(grd.Rows(fila).Cells("UbicacionEstanteria").Value, String)
+            Catch ex As Exception
+                ubicacion = ""
+            End Try
+
+            lblUbicacion.Text = ubicacion
+            lblObservacion.Text = observacion
+            lblMarca.Text = marca
+            lblCompatibilidad.Text = compatibilidad
+            If empaque <> "" Then
+
+                lblEmpaque.Text = empaque
+            Else
+                lblEmpaque.Text = ""
+            End If
+
+
+        Catch ex As Exception
+            RadMessageBox.Show(ex.ToString)
+        End Try
+    End Sub
+
+  
+    Private Sub chkTodosTipo_CheckedChanged(sender As Object, e As EventArgs) Handles chkTodosTipo.CheckedChanged
+        Try
+            'Llamamos a la funcion que activa o desactiva los filtros
+            mdlPublicVars.fnCheckbox_ActivaDesactivar(grdTipoVehiculo, chkTodosTipo.Checked)
+
+            If chkTodosTipo.Checked Then
+                lblContador.Text = Cstr2(grdTipoVehiculo.Rows.Count)
+            Else
+                lblContador.Text = "0"
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub grdPendientes_Click(sender As Object, e As EventArgs) Handles grdPendientes.Click
+        If Me.grdPendientes.CurrentColumn.Name = "chmEliminar" Then
+            Try
+
+                If RadMessageBox.Show("¿Desea dar de baja el Pendiente por Surtir?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+
+                    Dim codigo As Integer
+                    Dim fila As Integer = fnGrid_codigoFilaSeleccionada(Me.grdPendientes)
+
+                    codigo = Me.grdPendientes.Rows(fila).Cells("codSurtir").Value
+
+                    Dim conexion As dsi_pos_demoEntities
+                    Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                        conn.Open()
+                        conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                        Dim psurtir As tblSurtir = (From x In conexion.tblSurtirs Where x.codigo = codigo Select x).FirstOrDefault
+
+                        psurtir.Eliminar = True
+
+                        conexion.SaveChanges()
+
+                        conn.Close()
+                    End Using
+
+                    alerta.contenido = "Pendiente por Surtir Eliminado Satisfactoriamente!!!"
+                    alerta.fnErrorContenido()
+
+                    fnLlenaPendientes()
+
+                End If
+
+            Catch ex As Exception
+                alerta.fnError()
+            End Try
+
+        End If
+    End Sub
+End Class

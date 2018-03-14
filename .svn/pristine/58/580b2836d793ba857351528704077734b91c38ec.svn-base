@@ -1,0 +1,716 @@
+﻿Imports System.Linq
+Imports System.IO
+Imports System.Data
+Imports System.Data.SqlClient
+Imports Telerik.WinControls
+Imports System.Transactions
+
+Public Class frmProveedorDevolucion
+    Public bitEditarDevolucion As Boolean = False
+    Public codigoDev As Integer = 0
+    Private permiso As New clsPermisoUsuario
+
+    Private Sub frmProveedorDevolucion_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        fnNuevo()
+        mdlPublicVars.fnFormatoGridEspeciales(grdProductos)
+        mdlPublicVars.fnGrid_iconos(grdProductos)
+        Me.grdProductos.Columns("txmCantidad").HeaderText = "Cantidad Ajus/Dev"
+        dtpFechaRegistro.Value = mdlPublicVars.fnFecha_horaServidor
+        fnLlenarCombos()
+        fnCorrelativo()
+        If bitEditarDevolucion = True Then
+            fnLlenarDatos()
+        End If
+        'fnNuevaFila()
+        Me.grdProductos.AllowDeleteRow = False
+    End Sub
+
+    'Funcion utilizada para llenar los datos de una devolucion a proveedor
+    Private Sub fnLlenarDatos()
+        Try
+            lbl1Guardar.Text = "Modificar"
+
+            'Obtenemos el registro de la devolucion
+            Dim devolucion As tblDevolucionProveedor = (From x In ctx.tblDevolucionProveedors Where x.codigo = codigoDev _
+                                                        Select x).FirstOrDefault
+
+            txtCorrelativo.Text = devolucion.documento
+            txtObservacion.Text = devolucion.observacoin
+            chkAcreditado.Checked = devolucion.acreditado
+            cmbProveedor.SelectedValue = devolucion.proveedor
+            cmbCompras.SelectedValue = devolucion.entrada
+            cmbMovimientos.SelectedValue = devolucion
+            dtpFechaRegistro.Value = devolucion.fechaRegistro
+
+            If bitEditarDevolucion = True Then
+                fnLlenarDetalleCompra(devolucion.entrada)
+            End If
+
+            fnEstablecerDetalles(devolucion.codigo)
+            fnActualizar_Total()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'Funcion que se utiliza para establecer las cantidad cuando se quiere modificar una devolucion
+    Private Sub fnEstablecerDetalles(ByVal codDev As Integer)
+        Try
+            'Obtenemos el detalle de la devolucion
+            Dim lDetalles As List(Of tblDevolucionProveedorDetalle) = (From x In ctx.tblDevolucionProveedorDetalles Where x.devolucionProveedor = codDev _
+                                                                        Select x).ToList
+            Dim detalle As tblDevolucionProveedorDetalle
+
+            For Each detalle In lDetalles
+
+                If verRegistro = False Then
+                    'Obtenemos la fila donde se encuentra el detalle
+                    Dim fila As Integer = 0
+                    fila = fnObtieneFila(detalle.detalleEntrada)
+                    Me.grdProductos.Rows(fila).Cells("iddetalle").Value = detalle.codigo
+                    Me.grdProductos.Rows(fila).Cells("txmCantidad").Value = detalle.cantidad
+                Else
+                    'Creamos la fila para agregar al grid
+                    Dim fila As Object()
+                    fila = {detalle.codigo, detalle.detalleEntrada, detalle.articulo, detalle.tblEntradasDetalle.cantidad, detalle.tblArticulo.codigo1, detalle.tblArticulo.nombre1, detalle.cantidad, _
+                         detalle.costo, "0", "0"}
+                    Me.grdProductos.Rows.Add(fila)
+                End If
+            Next
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'Funcion utilizada para obtener la posicion de la fila, donde se encuentra el detalle de la compra,
+    'a la que se le va a realizar una devolucion
+    Private Function fnObtieneFila(ByVal codDet As Integer) As Integer
+        Try
+            'Recorremos el grid
+            Dim i As Integer = 0
+            Dim posicion As Integer = 0
+            Dim idDet As Integer = 0
+            For i = 0 To Me.grdProductos.RowCount - 1
+                idDet = Me.grdProductos.Rows(i).Cells("idDetalleEntrada").Value
+
+                If codDet = idDet Then
+                    posicion = i
+                    Return posicion
+                    Exit For
+                    Exit Function
+                End If
+            Next
+        Catch ex As Exception
+
+        End Try
+        Return 0
+    End Function
+
+    'Funcion utilizada para llenar los combos
+    Private Sub fnLlenarCombos()
+        Try
+            'Proveedores
+            Dim cons = (From x In ctx.tblProveedors Select Codigo = x.idProveedor, Nombre = x.negocio)
+
+            With cmbProveedor
+                .DataSource = Nothing
+                .ValueMember = "Codigo"
+                .DisplayMember = "Nombre"
+                .DataSource = cons
+            End With
+
+            'Seleccionamos los movimientos
+            Dim mo1 = (From x In ctx.tblTipoMovimientoes Where x.idTipoMovimiento = mdlPublicVars.Proveedor_DevolucionCodigoMovimiento _
+                                            Or x.idTipoMovimiento = mdlPublicVars.Proveedor_AjusteCodigoMovimiento _
+                                            Select Codigo = x.idTipoMovimiento, Nombre = x.nombre)
+
+            With Me.cmbMovimientos
+                .DataSource = Nothing
+                .ValueMember = "Codigo"
+                .DisplayMember = "Nombre"
+                .DataSource = mo1
+            End With
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'Funcion utilizada para llenar el como de compras
+    Private Sub fnLlenarCompras()
+        Try
+            Dim datos As New DataTable
+            datos.Columns.Add("Codigo")
+            datos.Columns.Add("Nombre")
+
+
+            datos.Rows.Add("0", "")
+
+            Dim codPro As Integer = CInt(cmbProveedor.SelectedValue)
+            'Mostramos las compras al proveedor
+            Dim fac = (From x In ctx.tblEntradas Where x.anulado = False And x.idProveedor = codPro _
+                       Group By Codigo = x.idEntrada, x.fechaRegistro, x.documento Into Group _
+                       Order By fechaRegistro Descending _
+                       Select Codigo, Nombre = fechaRegistro & "  Doc: " & documento)
+
+            Dim c
+            For Each c In fac
+                datos.Rows.Add(c.Codigo, c.Nombre)
+            Next
+
+            'Select Codigo = x.idEntrada, Nombre = x.fechaRegistro & "Doc :" & x.documento
+            With Me.cmbCompras
+                .DataSource = Nothing
+                .ValueMember = "Codigo"
+                .DisplayMember = "Nombre"
+                .DataSource = datos
+            End With
+
+        Catch ex As Exception
+
+        End Try
+
+
+    End Sub
+
+    'Funcion que se utiliza para remover la fila actual
+    Public Sub fnRemoverFila()
+        Dim filaActual As Integer = CType(Me.grdProductos.CurrentRow.Index, Integer)
+
+        If filaActual >= 0 Then
+            Dim index
+            Dim yaBorro As Boolean = False
+
+            For index = filaActual To Me.grdProductos.Rows.Count - 1
+                Dim codigoArt As Integer = CType(Me.grdProductos.Rows(filaActual).Cells("Id").Value, Integer)
+                If yaBorro = False Then
+                    'Si borrar es igual a false, elimina la fila
+                    Me.grdProductos.Rows.RemoveAt(filaActual)
+                    yaBorro = True
+                Else
+                    'Si estamos es una fila que no tiene datos la eliminamos
+                    If codigoArt = 0 Then
+                        Me.grdProductos.Rows.RemoveAt(filaActual)
+                    End If
+                End If
+            Next
+        End If
+    End Sub
+
+    'Funcion que se utiliza para agregar una nueva fila
+    Public Sub fnNuevaFila()
+        Me.grdProductos.Rows.AddNew()
+    End Sub
+
+    'Funcion utilizada para agregar un articulo
+    Public Sub fnAgregar_Articulos()
+        'agregar productos a grid.
+        Dim filas() As Object
+
+        'id, codigo,nombre,precio,cantidad
+        filas = {"0", mdlPublicVars.superSearchId, mdlPublicVars.superSearchCodigo, mdlPublicVars.superSearchNombre, "0", "0", "0"}
+        grdProductos.Rows.Add(filas)
+        grdProductos.Columns(4).IsCurrent = True
+        grdProductos.Rows(grdProductos.Rows.Count - 1).IsCurrent = True
+        fnActualizar_Total()
+    End Sub
+
+    'Funcion utilzada para actualizar el total 
+    Public Sub fnActualizar_Total()
+
+        Dim filas As Integer = 0
+        If bitEditarDevolucion = True Then
+            Dim index
+            For index = 0 To Me.grdProductos.Rows.Count - 1
+                Dim elimina As Integer = CType(Me.grdProductos.Rows(index).Cells("elimina").Value, Integer)
+                If elimina = 0 Then
+                    filas += 1
+                End If
+            Next
+        Else
+            filas = Me.grdProductos.Rows.Count
+        End If
+
+        Try
+            If Me.grdProductos.Rows.Count > 0 Then
+
+                Dim suma As Double = 0
+                Dim cantidad As Double = 0
+                Dim precio As Double = 0
+                Dim total As Double = 0
+                Dim contador As Integer = 0
+
+                Dim index
+                For index = 0 To Me.grdProductos.Rows.Count - 1
+
+                    cantidad = CType(Me.grdProductos.Rows(index).Cells("txmCantidad").Value, Double)
+                    precio = CType(Me.grdProductos.Rows(index).Cells("Costo").Value, Double)
+
+                    If (cantidad * precio) = 0 Then
+                        Me.grdProductos.Rows(index).Cells("Total").Value = "0"
+                        total = 0
+                    Else
+                        contador = contador + 1
+                        Me.grdProductos.Rows(index).Cells("Total").Value = Format(cantidad * precio, "###,###.##").ToString
+                        total = CType(Me.grdProductos.Rows(index).Cells("Total").Value, Double)
+                    End If
+
+                    suma = suma + total
+                Next
+
+                lblTotal.Text = Format(suma, mdlPublicVars.formatoMoneda)
+                If suma = 0 Then
+                    lblTotal.Text = 0
+                End If
+
+                'mostrar el recuento de productos devueltos.
+                lblRecuentoDevolver.Text = contador
+            Else
+                lblTotal.Text = 0
+                lblRecuentoDevolver.Text = 0
+            End If
+        Catch ex As Exception
+        End Try
+
+
+        'actualizar el total en recuento.
+        lblRecuento.Text = Me.grdProductos.Rows.Count
+
+
+
+    End Sub
+
+    'GUARDAR O MODIFICAR
+    Private Sub frm_Modificar() Handles Me.panel1
+        If fnErrores() = False Then
+            If bitEditarDevolucion = True Then
+                fnModificarDevolucion()
+            Else
+                fnGuardarDevolucion()
+            End If
+        End If
+    End Sub
+
+    'NUEVO
+    Private Sub frm_Nuevo() Handles Me.panel0
+        fnNuevo()
+    End Sub
+
+    'Funcion que se utiliza para cuando se quiere crear una nueva devolucion
+    Private Sub fnNuevo()
+        Me.grdProductos.Rows.Clear()
+        Me.grdProductos.AllowDeleteRow = True
+        cmbProveedor.Enabled = True
+        cmbCompras.Enabled = True
+        fnLlenarCombos()
+        txtObservacion.Text = ""
+        dtpFechaRegistro.Enabled = True
+        cmbCompras.SelectedValue = 0
+
+        If verRegistro = False Then
+            fnNuevaFila()
+            pnx0Nuevo.Visible = True
+            pnx1Guardar.Visible = True
+        Else
+            pnx0Nuevo.Visible = False
+            pnx1Guardar.Visible = False
+        End If
+
+        If bitEditarDevolucion = True Then
+            cmbProveedor.Enabled = False
+            cmbCompras.Enabled = False
+            cmbMovimientos.Enabled = False
+            dtpFechaRegistro.Enabled = False
+        End If
+
+    End Sub
+
+    'Funcion utilizada para obtener el numero de correlativo
+    Private Sub fnCorrelativo()
+        Try
+            'Obtenemos el correlativo
+            Dim correlativo As tblCorrelativo = (From x In ctx.tblCorrelativos Where x.idEmpresa = mdlPublicVars.idEmpresa _
+                                                 And x.idTipoMovimiento = mdlPublicVars.Proveedor_DevolucionCodigoMovimiento _
+                                                 Select x).FirstOrDefault
+
+            If correlativo IsNot Nothing Then
+                txtCorrelativo.Text = correlativo.correlativo + 1
+            Else
+                txtCorrelativo.Text = 1
+            End If
+
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'Evento utilizado para cuando se elije una compra
+    Private Sub cmbCompras_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbCompras.SelectedValueChanged
+        Try
+            Me.grdProductos.Rows.Clear()
+            Dim cod As Integer = CInt(cmbCompras.SelectedValue)
+
+            If cod > 0 Then
+                fnLlenarDetalleCompra(cod)
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'Funcion utlilizada para llenar los detalles de una compra
+    Private Sub fnLlenarDetalleCompra(ByVal codEntrada As Integer)
+        Try
+            If verRegistro = False Then
+
+                Me.grdProductos.Rows.Clear()
+                If cmbCompras.Items.Count <= 0 Then
+                    Exit Sub
+                End If
+
+                'Obtenemos la lista de detalles de la compra
+                Dim lDetalles As List(Of tblEntradasDetalle) = (From x In ctx.tblEntradasDetalles Where x.idEntrada = codEntrada _
+                                                                Select x).ToList
+
+                Dim detalle As tblEntradasDetalle
+
+                'Recorremos la lista obtenida
+                For Each detalle In lDetalles
+                    'Creamos la fila
+                    Dim fila As Object()
+                    fila = {"0", detalle.idEntradaDetalle, detalle.tblArticulo.idArticulo, detalle.cantidad, detalle.tblArticulo.codigo1, detalle.tblArticulo.nombre1, _
+                         "0", detalle.costoIVA, "0", "0"}
+
+                    'Añadimos la fila
+                    Me.grdProductos.Rows.Add(fila)
+                Next
+
+                'Actualizamos el total
+                fnActualizar_Total()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'Evento que llama a la funcion actualizar total cuando se termina de editar la cantidad
+    Private Sub grdProductos_CellEndEdit(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs) Handles grdProductos.CellEndEdit
+        Try
+            Dim cant As Integer = CInt(e.Value)
+            Dim cantCompra As Integer = Me.grdProductos.Rows(e.RowIndex).Cells("cantidadComprada").Value
+
+            If cant > cantCompra Then
+                RadMessageBox.Show("Cantidad mayor a la comprada, corregir!", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                Me.grdProductos.Rows(e.RowIndex).Cells(e.ColumnIndex).BeginEdit()
+            Else
+                fnActualizar_Total()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'Funcion utilizada para verificar si hay errores
+    Private Function fnErrores() As Boolean
+        'Si la devolucion es por facturas analizamos que se ingrese al menos un producto
+        If Me.grdProductos.Rows.Count < 1 Then
+            alerta.contenido = "Debe ingresar al menos un(1) producto"
+            alerta.fnErrorContenido()
+            Return True
+            Exit Function
+        End If
+
+        'Analizamos si la fila ha sido activado el chek solucion, que se le haya asignado un destino y un responsable
+        Dim index
+        For index = 0 To Me.grdProductos.Rows.Count - 1
+            Dim cantidad As Integer = CType(Me.grdProductos.Rows(index).Cells("txmCantidad").Value, Integer)
+
+            If cantidad < 0 Then
+                alerta.contenido = "Debe de ingresar una cantidad valida"
+                alerta.fnErrorContenido()
+
+                'Colocamos el foco en la cantidad que hace falta ingresar
+                Me.grdProductos.Rows(index).Cells("txmCantidad").IsSelected = True
+                Me.grdProductos.Rows(index).Cells("txmCantidad").BeginEdit()
+                Return True
+                Exit Function
+            End If
+        Next
+
+        Return False
+    End Function
+
+    'Funcion utilizada para modificar una devolucion
+    Private Sub fnModificarDevolucion()
+        Dim success As Boolean = True
+
+        Using transaction As New TransactionScope
+            Try
+                'Obtenemos la devolucion del proveedor a modificar
+                Dim devolucion As tblDevolucionProveedor = (From x In ctx.tblDevolucionProveedors Where x.codigo = codigoDev _
+                                                            Select x).FirstOrDefault
+                devolucion.monto = lblTotal.Text
+                devolucion.observacoin = txtObservacion.Text
+                ctx.SaveChanges()
+
+                'Recorremos el grid de productos
+                Dim i As Integer = 0
+                Dim costo As Decimal = 0
+                Dim cantidad As Integer = 0
+                Dim total As Decimal = 0
+                Dim idArt As Integer = 0
+                Dim elimina As Integer = 0
+                Dim idDetalle As Integer = 0
+                Dim detEntrada As Integer = 0
+
+                For i = 0 To Me.grdProductos.RowCount - 1
+                    idArt = Me.grdProductos.Rows(i).Cells("Id").Value
+                    cantidad = Me.grdProductos.Rows(i).Cells("txmCantidad").Value
+                    costo = Me.grdProductos.Rows(i).Cells("Costo").Value
+                    total = Me.grdProductos.Rows(i).Cells("Total").Value
+                    idDetalle = Me.grdProductos.Rows(i).Cells("iddetalle").Value
+                    detEntrada = Me.grdProductos.Rows(i).Cells("idDetalleEntrada").Value
+
+                    If cantidad <= 0 And idDetalle > 0 Then
+                        'Si la cantidad es igual a 0 y tiene detalle, entonces la eliminamos
+                        'Obtenemos el detalle de la devolucion a eliminar
+                        Dim detalle As tblDevolucionProveedorDetalle = (From x In ctx.tblDevolucionProveedorDetalles _
+                                                                        Where x.codigo = idDetalle Select x).FirstOrDefault
+
+                        ctx.DeleteObject(detalle)
+                        ctx.SaveChanges()
+                    ElseIf cantidad > 0 And idDetalle > 0 Then
+                        'Si la cantidad es mayor a cero y tiene detalle, modificamos el detalle
+                        Dim detalle As tblDevolucionProveedorDetalle = (From x In ctx.tblDevolucionProveedorDetalles _
+                                                                        Where x.codigo = idDetalle Select x).FirstOrDefault
+                        detalle.cantidad = cantidad
+                        detalle.costo = costo
+                        detalle.total = total
+                        detalle.detalleEntrada = detEntrada
+                        ctx.SaveChanges()
+                    ElseIf cantidad > 0 Then
+                        'Creamos el nuevo detalle
+                        Dim detalle As New tblDevolucionProveedorDetalle
+                        detalle.cantidad = cantidad
+                        detalle.costo = costo
+                        detalle.articulo = idArt
+                        detalle.total = total
+                        detalle.detalleEntrada = detEntrada
+                        detalle.devolucionProveedor = devolucion.codigo
+                        ctx.AddTotblDevolucionProveedorDetalles(detalle)
+                        ctx.SaveChanges()
+                    End If
+                Next
+
+            Catch ex As System.Data.EntityException
+                success = False
+            Catch ex As Exception
+                success = False
+                If ex.[GetType]() <> GetType(UpdateException) Then
+                    Console.WriteLine(("An error occured. " & "The operation cannot be retried.") + ex.Message)
+                    alerta.fnErrorGuardar()
+                    Exit Try
+                End If
+            End Try
+        End Using
+
+        If success = True Then
+            ctx.AcceptAllChanges()
+            alerta.fnGuardar()
+            fnNuevo()
+        Else
+            alerta.fnErrorGuardar()
+            Console.WriteLine("La operacion no pudo ser completada")
+        End If
+    End Sub
+
+    'Funcion utilizada para guardar una devolucion
+    Private Sub fnGuardarDevolucion()
+        Dim success As Boolean = True
+        Dim entrada As Integer = CInt(cmbCompras.SelectedValue)
+        Dim fechaServidor As DateTime = CType(mdlPublicVars.fnFecha_horaServidor, DateTime)
+        Dim hora As String = mdlPublicVars.fnHoraServidor
+        Dim proveedor As Integer = CInt(cmbProveedor.SelectedValue)
+        Dim tipoMov As Integer = CInt(cmbMovimientos.SelectedValue)
+
+        Using transaction As New TransactionScope
+            Try
+                ctx.Refresh(System.Data.Objects.RefreshMode.ClientWins, ctx.tblCorrelativos)
+                ctx.SaveChanges()
+                Dim numeroCorrelativo As String = ""
+                'Creamos la nueva devolucion
+                Dim devolucion As New tblDevolucionProveedor
+                Dim tMov As Integer = CInt(cmbMovimientos.SelectedValue)
+
+                'Guardamos el correlativo
+                Dim correlativo As tblCorrelativo = (From x In ctx.tblCorrelativos Where x.idTipoMovimiento = tMov _
+                                                     Select x).FirstOrDefault
+                If correlativo IsNot Nothing Then
+                    correlativo.correlativo += 1
+                    ctx.SaveChanges()
+
+                    'asignar el numero de correlativo.
+                    numeroCorrelativo = correlativo.serie & correlativo.correlativo
+                Else
+                    'crear registro de correlativo.
+                    Dim correlativoNuevo As New tblCorrelativo
+                    correlativoNuevo.correlativo = 1
+                    correlativoNuevo.serie = ""
+                    correlativoNuevo.inicio = 1
+                    correlativoNuevo.fin = 1000
+                    correlativoNuevo.porcentajeAviso = 20
+                    correlativoNuevo.idEmpresa = mdlPublicVars.idEmpresa
+                    correlativoNuevo.idTipoMovimiento = tMov
+                    ctx.AddTotblCorrelativos(correlativoNuevo)
+                    ctx.SaveChanges()
+
+                    'asignar el numero de correlativo.
+                    numeroCorrelativo = 1
+                End If
+
+                devolucion.acreditado = False
+                devolucion.documento = numeroCorrelativo
+                devolucion.entrada = entrada
+                devolucion.fechaRegistro = dtpFechaRegistro.Text & " " & hora
+                devolucion.fechaTransaccion = fechaServidor
+                devolucion.proveedor = proveedor
+                devolucion.usario = mdlPublicVars.idUsuario
+                devolucion.observacoin = txtObservacion.Text
+                devolucion.monto = lblTotal.Text
+                devolucion.fechaAcreditado = fechaServidor
+                devolucion.tipoMovimiento = tipoMov
+                devolucion.anulado = False
+                devolucion.tipoInventario = mdlPublicVars.General_idTipoInventario
+                'Guardamos el encabezado de la devolucion
+                ctx.AddTotblDevolucionProveedors(devolucion)
+                ctx.SaveChanges()
+                'DETALLE
+
+                'Recorremos el grid con articulos
+                Dim i As Integer = 0
+                Dim idArt As Integer = 0
+                Dim cant As Integer = 0
+                Dim costo As Decimal = 0
+                Dim total As Decimal = 0
+                Dim detEntrada As Integer = 0
+                Dim nDevoluciones As Integer = 0
+                Dim cantComprada As Integer = 0
+                Dim nomProd As String = ""
+                For i = 0 To Me.grdProductos.RowCount - 1
+                    idArt = Me.grdProductos.Rows(i).Cells("Id").Value
+                    cant = Me.grdProductos.Rows(i).Cells("txmCantidad").Value
+                    costo = Me.grdProductos.Rows(i).Cells("Costo").Value
+                    total = Me.grdProductos.Rows(i).Cells("Total").Value
+                    detEntrada = Me.grdProductos.Rows(i).Cells("idDetalleEntrada").Value
+                    cantComprada = Me.grdProductos.Rows(i).Cells("cantidadComprada").Value
+                    nomProd = Me.grdProductos.Rows(i).Cells("txbProducto").Value
+
+                    'Verificamos que la cantidad a devolver no sobrepase la suma de lo devuelto
+                    Try
+                        nDevoluciones = (From x In ctx.tblDevolucionProveedorDetalles _
+                                         Where x.articulo = idArt And x.tblDevolucionProveedor.acreditado = True And x.tblDevolucionProveedor.anulado = False _
+                                         Select x.cantidad).Sum
+                    Catch ex As Exception
+                        nDevoluciones = 0
+                    End Try
+
+                    If (nDevoluciones + cant) <= cantComprada Then
+
+                        If cant > 0 Then
+                            'Si la cantidad es mayor a cero entonces la agregamos al detalle
+                            Dim detalle As New tblDevolucionProveedorDetalle
+                            detalle.cantidad = cant
+                            detalle.articulo = idArt
+                            detalle.costo = costo
+                            detalle.devolucionProveedor = devolucion.codigo
+                            detalle.total = total
+                            detalle.detalleEntrada = detEntrada
+                            'Agregamos el detalle
+                            ctx.AddTotblDevolucionProveedorDetalles(detalle)
+                            ctx.SaveChanges()
+                        End If
+                    Else
+                        alerta.contenido = "Articulo : " & nomProd & vbCrLf _
+                                           & "Cantidad a devolver : " & cant & vbCrLf _
+                                           & "Disponible para devolver :" & cantComprada - nDevoluciones & vbCrLf _
+                                           & "Devolucion anterior:" & nDevoluciones & vbCrLf _
+                                           & "Compra: " & cantComprada
+                        success = False
+                        Exit Try
+                    End If
+                Next
+
+                transaction.Complete()
+            Catch ex As System.Data.EntityException
+                success = False
+            Catch ex As Exception
+                success = False
+                ' Handle errors and deadlocks here and retry if needed. 
+                ' Allow an UpdateException to pass through and 
+                ' retry, otherwise stop the execution. 
+                If ex.[GetType]() <> GetType(UpdateException) Then
+                    Console.WriteLine(("An error occured. " & "The operation cannot be retried.") + ex.Message)
+                    alerta.fnErrorGuardar()
+                    Exit Try
+                    ' If we get to this point, the operation will be retried. 
+                End If
+
+            End Try
+        End Using
+
+        If success = True Then
+            ctx.AcceptAllChanges()
+            alerta.fnGuardar()
+            fnNuevo()
+        Else
+            If alerta.contenido.Length > 0 Then
+                alerta.fnErrorContenido()
+            Else
+                alerta.fnErrorGuardar()
+            End If
+        End If
+    End Sub
+
+    Private Sub grdProductos_CellFormatting(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.CellFormattingEventArgs) Handles grdProductos.CellFormatting
+        Try
+            'Pintamos de colores las filas que tengan cantidad mayor a cero
+            If Me.grdProductos.Rows.Count > 0 Then
+                Dim cantidad As Integer = 0
+                Try
+                    cantidad = CInt(e.CellElement.RowInfo.Cells("txmCantidad").Value)
+                Catch ex As Exception
+                    cantidad = 0
+                End Try
+                If cantidad > 0 Then
+                    mdlPublicVars.GridColor_fila(e, Color.Green)
+                ElseIf cantidad <= 0 Then
+                    mdlPublicVars.GridColor_fila(e, Color.Black)
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub cmbProveedor_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbProveedor.SelectedValueChanged
+        Try
+            fnLlenarCompras()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    'Funcion utilizada para verificar si se han hecho otras devoluciones a la misma compra
+    Private Function fnErrores(ByVal codCompra As Integer) As Boolean
+        Try
+
+        Catch ex As Exception
+        End Try
+
+    End Function
+
+    Private Sub frmProveedorDevolucion_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
+        frmProveedorLista.frm_llenarLista()
+    End Sub
+End Class

@@ -1,0 +1,83 @@
+﻿Imports System.Linq
+Imports System.IO
+Imports System.Data
+Imports System.Data.SqlClient
+Imports Telerik.WinControls
+Imports System.Transactions
+Imports Telerik.WinControls.UI
+
+Public Class frmVerPago
+    Private _codigo As Integer
+
+    Public Property codigo As Integer
+        Get
+            codigo = _codigo
+        End Get
+        Set(ByVal value As Integer)
+            _codigo = value
+        End Set
+    End Property
+
+
+    Private Sub frmVerPago_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        fnLlenarDatos()
+    End Sub
+
+    'Funcion utilizada para llenar los datos
+    Private Sub fnLlenarDatos()
+        Try
+            'Obtenemos la informacion del pago
+            Dim pago As tblCaja = (From x In ctx.tblCajas Where x.codigo = codigo _
+                                   Select x).FirstOrDefault
+
+            If pago.cliente > 0 Then
+                lblCliente.Visible = True
+                lblProveedor.Visible = False
+                lblCP.Visible = True
+                lblCP.Text = pago.tblCliente.Negocio
+
+                'Obtenemos información del cierre de caja asociado
+                Dim cierreCaja As tblCierreCaja = (From x In ctx.tblCierreCajaDetalleCajas.AsEnumerable Where x.idCaja = pago.codigo Order By x.idCierreCaja Descending Select x.tblCierreCaja).FirstOrDefault
+
+                If cierreCaja IsNot Nothing Then
+                    lblBoletaCierre.Text = cierreCaja.documentoBoleta
+                    lblDocCierre.Text = cierreCaja.correlativo
+                    lblFechaCierre.Text = Format(cierreCaja.fechaConfirmado, mdlPublicVars.formatoFecha)
+                Else
+                    lblBoletaCierre.Text = ""
+                    lblDocCierre.Text = ""
+                    lblFechaCierre.Text = ""
+                End If
+
+            ElseIf pago.proveedor > 0 Then
+                lblCliente.Visible = False
+                lblProveedor.Visible = True
+                lblCP.Visible = True
+                lblCP.Text = pago.tblProveedor.negocio
+            End If
+
+            lblMonto.Text = Format(pago.monto, mdlPublicVars.formatoMoneda)
+            lblObservacion.Text = pago.observacion
+            lblCodigoPago.Text = codigo
+            lblDocumento.Text = pago.documento
+            lblTipoPago.Text = pago.tblTipoPago.nombre
+            lblFechaRegistro.Text = Format(pago.fecha, mdlPublicVars.formatoFecha)
+            lblTransito.Text = If(pago.transito = True, "SI", "NO")
+            lblConfirmado.Text = If(pago.confirmado = True, "SI", "NO")
+            lblFechaConfirmado.Text = Format(pago.fechaCobro, mdlPublicVars.formatoFecha)
+
+            lblFechaRechazo.Text = If(pago.bitRechazado, Format(pago.fechaRechazado, mdlPublicVars.formatoFecha), "")
+            lblUsuarioRechazo.Text = If(pago.bitRechazado, pago.tblUsuario1.nombre, "")
+            lblObservacionRechazo.Text = If(pago.bitRechazado, pago.observacionRechazado, "")
+            lblRechazado.Text = If(pago.bitRechazado, "SI", "NO")
+
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    'SALIR
+    Private Sub fnSalir() Handles Me.panel0
+        Me.Close()
+    End Sub
+
+End Class

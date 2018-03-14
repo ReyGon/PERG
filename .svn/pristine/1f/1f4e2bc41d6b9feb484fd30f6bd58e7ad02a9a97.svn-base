@@ -1,0 +1,343 @@
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class frmPagoVentaPequenia
+    Inherits laFuente.FrmBaseEspeciales
+
+    'Form invalida a Dispose para limpiar la lista de componentes.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        If disposing AndAlso components IsNot Nothing Then
+            components.Dispose()
+        End If
+        MyBase.Dispose(disposing)
+    End Sub
+
+    'Requerido por el Diseñador de Windows Forms
+    Private components As System.ComponentModel.IContainer
+
+    'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
+    'Se puede modificar usando el Diseñador de Windows Forms.  
+    'No lo modifique con el editor de código.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPagoVentaPequenia))
+        Me.pnlBarra = New System.Windows.Forms.Panel()
+        Me.pnx0Salir = New System.Windows.Forms.Panel()
+        Me.lbl0Salir = New System.Windows.Forms.Label()
+        Me.pbx0Salir = New System.Windows.Forms.PictureBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txtDocumento = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.cmbTipoPago = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.txtMontoRecibido = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.RadGroupBox1 = New Telerik.WinControls.UI.RadGroupBox()
+        Me.lblAcreditacion = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtDocumentoPago = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lblCambio = New System.Windows.Forms.Label()
+        Me.lblTotalVenta = New System.Windows.Forms.Label()
+        Me.btnAceptar = New System.Windows.Forms.Button()
+        CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlBarra.SuspendLayout()
+        Me.pnx0Salir.SuspendLayout()
+        CType(Me.pbx0Salir, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RadGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.RadGroupBox1.SuspendLayout()
+        CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'lbTituloFrm
+        '
+        Me.lbTituloFrm.Size = New System.Drawing.Size(226, 32)
+        Me.lbTituloFrm.Text = "FrmBaseEspeciales"
+        '
+        'pnlBarra
+        '
+        Me.pnlBarra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlBarra.BackColor = System.Drawing.Color.SteelBlue
+        Me.pnlBarra.Controls.Add(Me.pnx0Salir)
+        Me.pnlBarra.Location = New System.Drawing.Point(466, 0)
+        Me.pnlBarra.Name = "pnlBarra"
+        Me.pnlBarra.Size = New System.Drawing.Size(132, 48)
+        Me.pnlBarra.TabIndex = 106
+        '
+        'pnx0Salir
+        '
+        Me.pnx0Salir.BackColor = System.Drawing.Color.Navy
+        Me.pnx0Salir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnx0Salir.Controls.Add(Me.lbl0Salir)
+        Me.pnx0Salir.Controls.Add(Me.pbx0Salir)
+        Me.pnx0Salir.Location = New System.Drawing.Point(7, 4)
+        Me.pnx0Salir.Name = "pnx0Salir"
+        Me.pnx0Salir.Size = New System.Drawing.Size(107, 40)
+        Me.pnx0Salir.TabIndex = 177
+        '
+        'lbl0Salir
+        '
+        Me.lbl0Salir.AutoSize = True
+        Me.lbl0Salir.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl0Salir.ForeColor = System.Drawing.Color.White
+        Me.lbl0Salir.Location = New System.Drawing.Point(50, 9)
+        Me.lbl0Salir.Name = "lbl0Salir"
+        Me.lbl0Salir.Size = New System.Drawing.Size(39, 19)
+        Me.lbl0Salir.TabIndex = 66
+        Me.lbl0Salir.Text = "Salir"
+        '
+        'pbx0Salir
+        '
+        Me.pbx0Salir.Image = Global.laFuente.My.Resources.Resources.cerrar
+        Me.pbx0Salir.Location = New System.Drawing.Point(9, 2)
+        Me.pbx0Salir.Name = "pbx0Salir"
+        Me.pbx0Salir.Size = New System.Drawing.Size(40, 33)
+        Me.pbx0Salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx0Salir.TabIndex = 65
+        Me.pbx0Salir.TabStop = False
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Gray
+        Me.Label3.Location = New System.Drawing.Point(88, 15)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(122, 25)
+        Me.Label3.TabIndex = 109
+        Me.Label3.Text = "Documento:"
+        '
+        'txtDocumento
+        '
+        Me.txtDocumento.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtDocumento.Location = New System.Drawing.Point(216, 13)
+        Me.txtDocumento.Name = "txtDocumento"
+        Me.txtDocumento.Size = New System.Drawing.Size(284, 27)
+        Me.txtDocumento.TabIndex = 110
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Gray
+        Me.Label4.Location = New System.Drawing.Point(58, 53)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(152, 25)
+        Me.Label4.TabIndex = 111
+        Me.Label4.Text = "Forma de Pago:"
+        '
+        'cmbTipoPago
+        '
+        Me.cmbTipoPago.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbTipoPago.FormattingEnabled = True
+        Me.cmbTipoPago.Location = New System.Drawing.Point(216, 50)
+        Me.cmbTipoPago.Name = "cmbTipoPago"
+        Me.cmbTipoPago.Size = New System.Drawing.Size(284, 28)
+        Me.cmbTipoPago.TabIndex = 112
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Gray
+        Me.Label5.Location = New System.Drawing.Point(76, 177)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(133, 25)
+        Me.Label5.TabIndex = 113
+        Me.Label5.Text = "Total a Pagar:"
+        '
+        'txtMontoRecibido
+        '
+        Me.txtMontoRecibido.BackColor = System.Drawing.Color.AliceBlue
+        Me.txtMontoRecibido.Font = New System.Drawing.Font("Segoe UI Semibold", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtMontoRecibido.Location = New System.Drawing.Point(216, 216)
+        Me.txtMontoRecibido.Multiline = True
+        Me.txtMontoRecibido.Name = "txtMontoRecibido"
+        Me.txtMontoRecibido.Size = New System.Drawing.Size(284, 55)
+        Me.txtMontoRecibido.TabIndex = 116
+        Me.txtMontoRecibido.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.Gray
+        Me.Label6.Location = New System.Drawing.Point(50, 223)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(160, 25)
+        Me.Label6.TabIndex = 115
+        Me.Label6.Text = "Monto Recibido:"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.Gray
+        Me.Label7.Location = New System.Drawing.Point(125, 291)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(85, 25)
+        Me.Label7.TabIndex = 117
+        Me.Label7.Text = "Cambio:"
+        '
+        'RadGroupBox1
+        '
+        Me.RadGroupBox1.Controls.Add(Me.lblAcreditacion)
+        Me.RadGroupBox1.Controls.Add(Me.Label9)
+        Me.RadGroupBox1.Controls.Add(Me.txtDocumentoPago)
+        Me.RadGroupBox1.Controls.Add(Me.Label2)
+        Me.RadGroupBox1.Controls.Add(Me.lblCambio)
+        Me.RadGroupBox1.Controls.Add(Me.lblTotalVenta)
+        Me.RadGroupBox1.Controls.Add(Me.btnAceptar)
+        Me.RadGroupBox1.Controls.Add(Me.txtDocumento)
+        Me.RadGroupBox1.Controls.Add(Me.Label7)
+        Me.RadGroupBox1.Controls.Add(Me.txtMontoRecibido)
+        Me.RadGroupBox1.Controls.Add(Me.Label3)
+        Me.RadGroupBox1.Controls.Add(Me.Label6)
+        Me.RadGroupBox1.Controls.Add(Me.Label4)
+        Me.RadGroupBox1.Controls.Add(Me.cmbTipoPago)
+        Me.RadGroupBox1.Controls.Add(Me.Label5)
+        Me.RadGroupBox1.FooterImageIndex = -1
+        Me.RadGroupBox1.FooterImageKey = ""
+        Me.RadGroupBox1.HeaderImageIndex = -1
+        Me.RadGroupBox1.HeaderImageKey = ""
+        Me.RadGroupBox1.HeaderMargin = New System.Windows.Forms.Padding(0)
+        Me.RadGroupBox1.HeaderText = ""
+        Me.RadGroupBox1.Location = New System.Drawing.Point(12, 65)
+        Me.RadGroupBox1.Name = "RadGroupBox1"
+        Me.RadGroupBox1.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        '
+        '
+        '
+        Me.RadGroupBox1.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        Me.RadGroupBox1.Size = New System.Drawing.Size(568, 408)
+        Me.RadGroupBox1.TabIndex = 119
+        '
+        'lblAcreditacion
+        '
+        Me.lblAcreditacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblAcreditacion.Font = New System.Drawing.Font("Segoe UI Semibold", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.lblAcreditacion.Location = New System.Drawing.Point(216, 126)
+        Me.lblAcreditacion.Name = "lblAcreditacion"
+        Me.lblAcreditacion.Size = New System.Drawing.Size(284, 30)
+        Me.lblAcreditacion.TabIndex = 182
+        Me.lblAcreditacion.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.Gray
+        Me.Label9.Location = New System.Drawing.Point(58, 126)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(152, 25)
+        Me.Label9.TabIndex = 181
+        Me.Label9.Text = "Acreditaciones :"
+        '
+        'txtDocumentoPago
+        '
+        Me.txtDocumentoPago.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtDocumentoPago.Location = New System.Drawing.Point(216, 93)
+        Me.txtDocumentoPago.Name = "txtDocumentoPago"
+        Me.txtDocumentoPago.Size = New System.Drawing.Size(284, 27)
+        Me.txtDocumentoPago.TabIndex = 180
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Gray
+        Me.Label2.Location = New System.Drawing.Point(7, 95)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(205, 25)
+        Me.Label2.TabIndex = 179
+        Me.Label2.Text = "Documento de Pago :"
+        '
+        'lblCambio
+        '
+        Me.lblCambio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblCambio.Font = New System.Drawing.Font("Segoe UI Semibold", 20.0!, System.Drawing.FontStyle.Bold)
+        Me.lblCambio.Location = New System.Drawing.Point(216, 274)
+        Me.lblCambio.Name = "lblCambio"
+        Me.lblCambio.Size = New System.Drawing.Size(284, 51)
+        Me.lblCambio.TabIndex = 178
+        Me.lblCambio.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lblTotalVenta
+        '
+        Me.lblTotalVenta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblTotalVenta.Font = New System.Drawing.Font("Segoe UI Semibold", 20.0!, System.Drawing.FontStyle.Bold)
+        Me.lblTotalVenta.Location = New System.Drawing.Point(216, 160)
+        Me.lblTotalVenta.Name = "lblTotalVenta"
+        Me.lblTotalVenta.Size = New System.Drawing.Size(284, 51)
+        Me.lblTotalVenta.TabIndex = 177
+        Me.lblTotalVenta.Text = "Total"
+        Me.lblTotalVenta.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'btnAceptar
+        '
+        Me.btnAceptar.BackColor = System.Drawing.Color.SteelBlue
+        Me.btnAceptar.FlatAppearance.BorderSize = 0
+        Me.btnAceptar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnAceptar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAceptar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAceptar.ForeColor = System.Drawing.Color.Transparent
+        Me.btnAceptar.Image = Global.laFuente.My.Resources.Resources.aceptarBlanco
+        Me.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnAceptar.Location = New System.Drawing.Point(385, 329)
+        Me.btnAceptar.Name = "btnAceptar"
+        Me.btnAceptar.Size = New System.Drawing.Size(115, 56)
+        Me.btnAceptar.TabIndex = 176
+        Me.btnAceptar.Text = "Aceptar"
+        Me.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnAceptar.UseVisualStyleBackColor = False
+        '
+        'frmPagoVentaPequenia
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.ClientSize = New System.Drawing.Size(584, 485)
+        Me.Controls.Add(Me.RadGroupBox1)
+        Me.Controls.Add(Me.pnlBarra)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Name = "frmPagoVentaPequenia"
+        '
+        '
+        '
+        Me.RootElement.ApplyShapeToControl = True
+        Me.Controls.SetChildIndex(Me.pnlBarra, 0)
+        Me.Controls.SetChildIndex(Me.RadGroupBox1, 0)
+        CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlBarra.ResumeLayout(False)
+        Me.pnx0Salir.ResumeLayout(False)
+        Me.pnx0Salir.PerformLayout()
+        CType(Me.pbx0Salir, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RadGroupBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.RadGroupBox1.ResumeLayout(False)
+        Me.RadGroupBox1.PerformLayout()
+        CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+
+    End Sub
+    Friend WithEvents pnlBarra As System.Windows.Forms.Panel
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents txtDocumento As System.Windows.Forms.TextBox
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents cmbTipoPago As System.Windows.Forms.ComboBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents txtMontoRecibido As System.Windows.Forms.TextBox
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents RadGroupBox1 As Telerik.WinControls.UI.RadGroupBox
+    Friend WithEvents btnAceptar As System.Windows.Forms.Button
+    Friend WithEvents pnx0Salir As System.Windows.Forms.Panel
+    Friend WithEvents lbl0Salir As System.Windows.Forms.Label
+    Friend WithEvents pbx0Salir As System.Windows.Forms.PictureBox
+    Friend WithEvents lblTotalVenta As System.Windows.Forms.Label
+    Friend WithEvents lblCambio As System.Windows.Forms.Label
+    Friend WithEvents txtDocumentoPago As System.Windows.Forms.TextBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents lblAcreditacion As System.Windows.Forms.Label
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+
+End Class

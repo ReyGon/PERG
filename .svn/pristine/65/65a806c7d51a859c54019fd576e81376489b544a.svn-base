@@ -1,0 +1,50 @@
+﻿Imports System.Linq
+Imports Telerik.WinControls
+
+Public Class frmIngresaClave
+    Private acepto As Boolean
+
+    Private Sub frmIngresaClave_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Try
+            fnUsuario()
+        Catch ex As Exception
+            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+        End Try
+
+    End Sub
+
+    'Funcion utilizada para obtener los datos del usuario
+    Private Sub fnUsuario()
+        Try
+            Dim usuario As tblUsuario = (From x In ctx.tblUsuarios _
+                                          Where x.idUsuario = mdlPublicVars.idUsuario).FirstOrDefault
+
+            lblUsuario.Text = usuario.nombre
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
+        fnIngreso()
+    End Sub
+
+    'Funcion de ingreso
+    Private Sub fnIngreso()
+        acepto = True
+        mdlPublicVars.superSearchClave = txtClave.Text
+        Me.Close()
+    End Sub
+
+    Private Sub frmIngresaClave_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
+        If acepto = False Then
+            mdlPublicVars.superSearchClave = ""
+        End If
+    End Sub
+
+    Private Sub txtClave_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtClave.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            fnIngreso()
+        End If
+    End Sub
+
+End Class

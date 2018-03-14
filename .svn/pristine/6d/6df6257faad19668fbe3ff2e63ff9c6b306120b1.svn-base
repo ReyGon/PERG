@@ -1,0 +1,356 @@
+﻿Option Strict On
+
+Imports System.Data
+Imports System.Data.EntityClient
+Imports Telerik.WinControls
+Imports Telerik.WinControls.UI
+Imports System.Linq
+Imports System.Transactions
+
+Public Class frmDespachoFacturaAsignar
+
+#Region "Variables Privadas"
+    Private _idSalidaTransporte As Integer
+    Private _listaProductos As List(Of Tuple(Of Integer, Integer, Integer, String, String, String, Tuple(Of String, String)))
+    Private _listaEmpleados As List(Of Tuple(Of Integer, String))
+#End Region
+
+#Region "Propiedades"
+    Public Property idSalidaTransporte As Integer
+        Get
+            idSalidaTransporte = _idSalidaTransporte
+        End Get
+        Set(value As Integer)
+            _idSalidaTransporte = value
+        End Set
+    End Property
+
+    Public Property listaProductos As List(Of Tuple(Of Integer, Integer, Integer, String, String, String, Tuple(Of String, String)))
+        Get
+            listaProductos = _listaProductos
+        End Get
+        Set(value As List(Of Tuple(Of Integer, Integer, Integer, String, String, String, Tuple(Of String, String))))
+            _listaProductos = value
+        End Set
+    End Property
+
+    Public Property listaEmpleados As List(Of Tuple(Of Integer, String))
+        Get
+            listaEmpleados = _listaEmpleados
+        End Get
+        Set(value As List(Of Tuple(Of Integer, String)))
+            _listaEmpleados = value
+        End Set
+    End Property
+#End Region
+
+#Region "Eventos"
+    'LOAD
+    Private Sub frmDespachoFacturaAsignar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        mdlPublicVars.fnFormatoGridMovimientos(grdClientes)
+        mdlPublicVars.fnFormatoGridMovimientos(grdProductos)
+
+        mdlPublicVars.comboActivarFiltro(cmbPiloto)
+        mdlPublicVars.comboActivarFiltro(cmbSucursalSalida)
+        mdlPublicVars.comboActivarFiltro(cmbTipoTransporte)
+        mdlPublicVars.comboActivarFiltro(cmbTransporte)
+
+        fnLlenarCombos()
+        fnLlenarDatos()
+        fnLlenarVentas()
+
+        listaProductos = New List(Of Tuple(Of Integer, Integer, Integer, String, String, String, Tuple(Of String, String)))
+        listaEmpleados = New List(Of Tuple(Of Integer, String))
+    End Sub
+
+    'GUARDAR LA ASIGNACION
+    Private Sub fnGuardar_Click() Handles Me.panel0
+        If RadMessageBox.Show("¿Desea guardar el transporte?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim conexion As dsi_pos_demoEntities
+            Dim success As Boolean = True
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+                Using transaction As New TransactionScope
+                    Try
+                        '---- ENCABEZADO TRANSPORTE
+                        Dim salidaTransporteMedio As New tblSalidasTransportesMedio
+                        salidaTransporteMedio.idTransporte = CInt(cmbTransporte.SelectedValue)
+                        salidaTransporteMedio.idPiloto = CInt(cmbPiloto.SelectedValue)
+                        salidaTransporteMedio.idSucursalSalida = CInt(cmbSucursalSalida.SelectedValue)
+                        salidaTransporteMedio.idEmpresa = mdlPublicVars.idEmpresa
+                        salidaTransporteMedio.fechaTransporte = CDate(txtFecha.Text)
+                        salidaTransporteMedio.estado = 0
+                        salidaTransporteMedio.precio = CDec(nm2Precio.Value)
+                        salidaTransporteMedio.observacion = txtObservacion.Text
+                        salidaTransporteMedio.correlativo = CInt(lblCorrelativo.Text)
+
+                        conexion.AddTotblSalidasTransportesMedios(salidaTransporteMedio)
+                        conexion.SaveChanges()
+
+                        '---- DETALLE TRANSPORTE -> PRODUCTOS
+                        For Each dato As Tuple(Of Integer, Integer, Integer, String, String, String, Tuple(Of String, String)) In listaProductos
+                            Dim salidaTransporteMedioDetalle As New tblSalidasTransportesMediosDetalle
+                            salidaTransporteMedioDetalle.idSalidaTransporteMedio = salidaTransporteMedio.idSalidaTransporteMedio
+                            salidaTransporteMedioDetalle.idSalidaDetalle = dato.Item1
+                            salidaTransporteMedioDetalle.idSalidaTransporte = dato.Item2
+                            salidaTransporteMedioDetalle.cantidad = dato.Item3
+
+                            conexion.AddTotblSalidasTransportesMediosDetalles(salidaTransporteMedioDetalle)
+                            conexion.SaveChanges()
+                        Next
+
+                        '---- DETALLE TRANSPORTE -> EMPLEADOS
+                        For Each dato As Tuple(Of Integer, String) In listaEmpleados
+                            Dim salidaTransporteMedioEmpleado As New tblSalidasTransportesMediosEmpleado
+                            salidaTransporteMedioEmpleado.idSalidaTransporteMedio = salidaTransporteMedio.idSalidaTransporteMedio
+                            salidaTransporteMedioEmpleado.idEmpleado = dato.Item1
+
+                            conexion.AddTotblSalidasTransportesMediosEmpleados(salidaTransporteMedioEmpleado)
+                            conexion.SaveChanges()
+                        Next
+
+                        transaction.Complete()
+                    Catch ex As Exception
+                        success = False
+                    End Try
+                    conn.Close()
+                End Using
+            End Using
+
+            If success Then
+                alerta.fnGuardar()
+                If RadMessageBox.Show("¿Desea realizar otro viaje?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    fnNuevo()
+                Else
+                    Me.Close()
+                End If
+            Else
+                alerta.contenido = "Ocurrio un error"
+                alerta.fnErrorContenido()
+            End If
+        End If
+    End Sub
+
+    'SALIR DEL FORMULARIO
+    Private Sub fnSalir_Click() Handles Me.panel1
+        Me.Close()
+    End Sub
+
+    'CAMBIO DE FILA EN LA SALIDA
+    Private Sub grdClientes_SelectionChanged(sender As Object, e As EventArgs) Handles grdClientes.SelectionChanged
+        Dim filaActual As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdClientes)
+
+        If filaActual >= 0 Then
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+                Dim idSalida As Integer = CInt(Me.grdClientes.Rows(filaActual).Cells("idSalida").Value)
+                Dim datos As DataTable = EntitiToDataTable(From x In conexion.sp_despachoFacturaEnviarDetalle(mdlPublicVars.idEmpresa, idSalida))
+
+                Me.grdProductos.DataSource = datos
+                Me.grdProductos.Columns("idSalidaDetalle").IsVisible = False
+
+                Me.grdProductos.Columns("cmdAgregar").Width = 15
+                Me.grdProductos.Columns("Codigo").Width = 30
+                Me.grdProductos.Columns("Producto").Width = 50
+                Me.grdProductos.Columns("Cantidad").Width = 15
+
+                conn.Close()
+            End Using
+        End If
+    End Sub
+
+    'CLICK EN AGREGAR EN EL GRID DE PRODUCTOS
+    Private Sub grdProductos_CommandCellClick(sender As Object, e As EventArgs) Handles grdProductos.CommandCellClick
+        Dim celda As GridCommandCellElement = (TryCast(sender, GridCommandCellElement))
+        Dim fila As Integer = celda.RowIndex
+        Dim filaCliente As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdClientes)
+
+        If fila >= 0 Then
+            Dim idSalidaDetalle As Integer = CInt(Me.grdProductos.Rows(fila).Cells("idSalidaDetalle").Value)
+            Dim cantidadDisponible As Integer = CInt(Me.grdProductos.Rows(fila).Cells("Cantidad").Value)
+            Dim cantidadAgregada As Integer = (From x In listaProductos Where x.Item1 = idSalidaDetalle Select x.Item3).Sum()
+            Dim cantidad As Integer = 0
+            Dim valor As String = RadInputBox.Show("¿Ingresa la cantidad?", mdlPublicVars.nombreSistema)
+
+            If Not IsNumeric(valor) Then
+                cantidad = 0
+            Else
+                cantidad = CInt(valor)
+            End If
+
+            If cantidad > (cantidadDisponible - cantidadAgregada) Then
+                RadMessageBox.Show("El valor a agregar debe ser menor a la cantidad deseada, y ya tiene agregado " & cantidadAgregada & " unidades", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+            ElseIf cantidad <= 0 Then
+                RadMessageBox.Show("El valor a agregar debe ser mayor a cero", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+            Else
+                'Se agrega el producto
+                ' idSalidaDetalle, cantidad, cliente, documento, ubicacion, codigo, producto
+                listaProductos.Add(New Tuple(Of Integer, Integer, Integer, String, String, String, Tuple(Of String, String))(idSalidaDetalle, CInt(grdClientes.Rows(filaCliente).Cells("idSalidaTransporte").Value),
+                    cantidad, CStr2(grdClientes.Rows(filaCliente).Cells("Cliente").Value), CStr2(grdClientes.Rows(filaCliente).Cells("Documento").Value),
+                    CStr2(grdClientes.Rows(filaCliente).Cells("Ubicacion").Value), New Tuple(Of String, String)(CStr2(grdProductos.Rows(fila).Cells("Codigo").Value),
+                    CStr2(grdProductos.Rows(fila).Cells("Producto").Value))))
+
+                RadMessageBox.Show("Producto agregado exitosamente", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Info)
+            End If
+        End If
+    End Sub
+
+    'VER LOS PRODUCTOS AGREGADOS 
+    Private Sub btnProductosAgregados_Click(sender As Object, e As EventArgs) Handles btnProductosAgregados.Click
+        Dim form As New frmDespachoFacturaProductos
+        form.listaProductos = listaProductos
+        form.Text = "Productos agregados"
+        form.StartPosition = FormStartPosition.CenterScreen
+        form.WindowState = FormWindowState.Normal
+        form.ShowDialog()
+        form.Dispose()
+    End Sub
+
+    'AGREGAR PORDILLEROS
+    Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
+        Dim form As New frmDespachoFacturaPordilleros
+        form.listaEmpleados = listaEmpleados
+        form.Text = "Empleados agregados"
+        form.StartPosition = FormStartPosition.CenterScreen
+        form.WindowState = FormWindowState.Normal
+        form.ShowDialog()
+        form.Dispose()
+        listaEmpleados = mdlPublicVars.superSearchLista2
+
+        lblNoPordilleros.Text = Cstr2(listaEmpleados.Count)
+        lblPordilleros.Text = ""
+        For Each empleado As Tuple(Of Integer, String) In listaEmpleados
+            lblPordilleros.Text += empleado.Item2 & ", "
+        Next
+
+    End Sub
+
+#End Region
+
+#Region "Funciones"
+    'NUEVO PEDIDO
+    Private Sub fnNuevo()
+        listaProductos = New List(Of Tuple(Of Integer, Integer, Integer, String, String, String, Tuple(Of String, String)))
+        listaEmpleados = New List(Of Tuple(Of Integer, String))
+        txtObservacion.Text = ""
+        txtFecha.Text = ""
+        nm2Precio.Value = 0
+        lblPordilleros.Text = ""
+        lblNoPordilleros.Text = "#"
+    End Sub
+
+    'LLENAR COMBOS
+    Private Sub fnLlenarCombos()
+        Dim conexion As dsi_pos_demoEntities
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+            Dim empleados As IQueryable = (From x In conexion.tblEmpleadoes Select codigo = x.idEmpleado, nombre = x.nombre)
+            Dim tipostransportes As IQueryable = (From x In conexion.tblTiposTransportes Select codigo = x.idTipoTransporte, nombre = x.descripcion)
+            Dim sucursales As iqueryable = (From x In conexion.tblSucursales Select codigo = x.idSucursal, nombre = x.descripcion)
+
+            fnLlenarComboBox(empleados, cmbPiloto)
+            fnLlenarComboBox(tipostransportes, cmbTipoTransporte)
+            fnLlenarComboBox(sucursales, cmbSucursalSalida)
+
+            conn.Close()
+        End Using
+    End Sub
+
+    'LLENAR UN COMBOBOX CON DATASOURCE
+    Private Sub fnLlenarComboBox(datos As IQueryable, combo As ComboBox)
+        With combo
+            .DataSource = Nothing
+            .ValueMember = "codigo"
+            .DisplayMember = "nombre"
+            .DataSource = datos
+        End With
+    End Sub
+
+    'LLENAR DATOS
+    Private Sub fnLlenarDatos()
+        Dim conexion As dsi_pos_demoEntities
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+            Dim salidaTransporte As tblSalidasTransporte = (From x In conexion.tblSalidasTransportes Where x.idSalidaTransporte = mdlPublicVars.superSearchId
+                Select x).FirstOrDefault
+
+            Dim correlativo As Integer = (From x In conexion.tblSalidasTransportesMedios Select x, idSalidaTransporte).Count()
+
+            cmbTipoTransporte.SelectedValue = salidaTransporte.idTipoTransporte
+            cmbSucursalSalida.SelectedValue = salidaTransporte.idSucursal
+            nm2Precio.Value = CDec(salidaTransporte.precio)
+            lblCorrelativo.Text = CStr(correlativo + 1)
+
+            conn.Close()
+        End Using
+    End Sub
+
+    'CAMBIO TIPO TRANSPORTE
+    Private Sub cmbTipoVehiculo_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbTipoTransporte.SelectedValueChanged
+        Dim idTipoTransporte As Integer = CInt(cmbTipoTransporte.SelectedValue)
+
+        If idTipoTransporte > 0 Then
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim transportes As IQueryable = (From x In conexion.tblTransportes Where x.idTipoTransporte = idTipoTransporte Select codigo = x.idTransporte, nombre = x.descripcion)
+                fnLlenarComboBox(transportes, cmbTransporte)
+                conn.Close()
+            End Using
+        End If
+    End Sub
+
+    'CAMBIO DE TRANSPORTE
+    Private Sub cmbTransporte_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbTransporte.SelectedValueChanged
+        Dim idTransporte As Integer = CInt(cmbTransporte.SelectedValue)
+        lblPlaca.Text = ""
+        If idTransporte > 0 Then
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim transporte As tblTransporte = (From x In conexion.tblTransportes Where x.idTransporte = idTransporte Select x).FirstOrDefault()
+                lblPlaca.Text = transporte.placas
+
+                conn.Close()
+            End Using
+        End If
+    End Sub
+
+    'LLENAR VENTAS SIN ENVIAR
+    Private Sub fnLlenarVentas()
+        'Obtenemos las ventas que no se hayan enviado totalmente
+        Dim conexion As dsi_pos_demoEntities
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+            Dim datos As DataTable = EntitiToDataTable(From x In conexion.sp_despachoFacturaEnviar(mdlPublicVars.idEmpresa))
+            Me.grdClientes.DataSource = datos
+            mdlPublicVars.fnGridTelerik_formatoFecha(grdClientes, "Fecha")
+
+            If Me.grdClientes.ColumnCount > 0 Then
+                Me.grdClientes.Columns("idSalida").IsVisible = False
+                Me.grdClientes.Columns("idSalidaTransporte").IsVisible = False
+                Me.grdClientes.Columns("Cliente").Width = 20
+                Me.grdClientes.Columns("Documento").Width = 10
+                Me.grdClientes.Columns("Fecha").Width = 10
+                Me.grdClientes.Columns("Ubicacion").Width = 30
+                Me.grdClientes.Columns("Observacion").Width = 30
+            End If
+            conn.Close()
+        End Using
+    End Sub
+
+#End Region
+
+End Class

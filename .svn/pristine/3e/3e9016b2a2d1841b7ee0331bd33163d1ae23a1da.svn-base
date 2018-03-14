@@ -1,0 +1,121 @@
+﻿Imports System.Linq
+
+Public Class frmEmpresaTransporte
+
+    Private Sub frmTransporte_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+
+        Try
+            Dim iz As New frmProveedorBarraIzquierda
+            iz.frmAnterior = Me
+            frmBarraLateralBaseIzquierda = iz
+            ActivarBarraLateral = True
+
+        Catch ex As Exception
+        End Try
+        llenarGrid()
+    End Sub
+
+
+    'Private Sub fnGuardar() Handles Me.panel2
+
+    '    Dim m As New tblEnvio_Empresa
+
+    '    Try
+    '        m.nombre = txtNombreEmpresa.Text
+    '        ctx.AddTotblEnvio_Empresa(m)
+
+    '        ctx.SaveChanges()
+    '        alertas.fnGuardar()
+    '        fnNuevo()
+    '        Call llenarGrid()
+
+    '    Catch ex As System.Data.EntityException
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "!!!")
+    '    End Try
+
+    'End Sub
+
+
+    Private Sub fnNuevo() Handles Me.panel0
+        txtCodigo.Text = ""
+        txtNombre.Text = ""
+
+    End Sub
+
+
+
+    Private Sub llenarGrid()
+        Try
+            Dim consulta = (From x In ctx.tblEnvio_Empresa Select Codigo = x.codigo, Nombre = x.nombre, CodigoCredito = x.codigoCredito).ToList
+
+            grdDatos.DataSource = consulta
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub frm_grabaRegistro() Handles Me.grabaRegistro
+        Dim m As New tblEnvio_Empresa
+
+        Try
+            m.nombre = txtNombre.Text
+            m.codigoCredito = txtCodigoCredito.Text
+            ctx.AddTotblEnvio_Empresa(m)
+
+            ctx.SaveChanges()
+            alertas.fnGuardar()
+            fnNuevo()
+            Call llenarGrid()
+
+        Catch ex As System.Data.EntityException
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "!!!")
+        End Try
+    End Sub
+
+
+    Private Sub frm_modificaRegistro() Handles Me.modificaRegistro
+        Try
+
+            Dim m As tblEnvio_Empresa = (From e1 In ctx.tblEnvio_Empresa Where e1.codigo = Me.txtCodigo.Text Select e1).First()
+            m.nombre = txtNombre.Text
+            m.codigoCredito = txtCodigoCredito.Text
+            ctx.SaveChanges()
+
+            alertas.fnModificar()
+
+            Call llenarGrid()
+
+        Catch ex As Exception
+            alertas.fnErrorModificar()
+        End Try
+    End Sub
+
+
+    Private Sub frm_eliminaRegistro() Handles Me.eliminaRegistro
+
+        If MsgBox("Esta seguro de eliminar este registro", vbYesNo + vbInformation, "!!!") = vbNo Then
+            Exit Sub
+        End If
+
+        Try
+            'obtenemos el el dato de Surtir Categoria en base al Id ó codigo que está seleccionado...
+            Dim m As tblEnvio_Empresa = (From e1 In ctx.tblEnvio_Empresa Where e1.codigo = Me.txtCodigo.Text Select e1).First()
+
+            ctx.DeleteObject(m)
+            ctx.SaveChanges()
+
+            alertas.fnEliminar()
+
+            Call llenarGrid()
+
+        Catch ex As System.Data.EntityException
+        Catch ex As Exception
+            alertas.fnErrorEliminar()
+        End Try
+    End Sub
+
+
+End Class

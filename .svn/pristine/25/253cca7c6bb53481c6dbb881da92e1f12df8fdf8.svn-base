@@ -1,0 +1,196 @@
+﻿Imports System.Data.SqlClient
+Imports System.Linq
+Imports Telerik.WinControls
+Imports System.Transactions
+
+Public Class frmClientePequenio
+
+    Private Sub frmClientePequenio_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub pnx0Guardar_Click(sender As System.Object, e As System.EventArgs) Handles pnx0Guardar.Click, pbx0Guardar.Click, lbl0Guardar.Click
+        fnGuardar()
+    End Sub
+
+    Private Sub pnx1Salir_Click(sender As System.Object, e As System.EventArgs) Handles pnx1Salir.Click, pbx1Salir.Click, lbl1Salir.Click
+        mdlPublicVars.superSearchId = 0
+        Me.Close()
+    End Sub
+
+    Private Sub limpiarCampos()
+        txtNit.Text = ""
+        txtCliente.Text = ""
+        txtDireccion.Text = ""
+
+    End Sub
+
+
+
+    Private Sub txtDireccion_KeyPress(sender As System.Object, e As System.Windows.Forms.KeyPressEventArgs) Handles txtDireccion.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            fnGuardar()
+        End If
+    End Sub
+
+    Public Function fnGuardar()
+        Dim c As New tblCliente
+        Dim bitGuardado As Boolean = False
+
+        Dim success As Boolean = True
+
+
+        Using transaction As New TransactionScope
+
+            Try
+
+                'obtenemos la clave maxima para poder asignarsela al nuevo cliente
+                Dim claveMaxima As Integer = (From x In ctx.tblClientes Select CType(x.clave, Integer?)).Max + 1
+
+                c.habillitado = 1
+                c.clave = claveMaxima
+                c.Negocio = txtCliente.Text
+                c.Nombre1 = txtCliente.Text
+                c.Nombre2 = ""
+                c.nit1 = txtNit.Text
+                c.nit2 = ""
+                c.direccionEnvio1 = txtDireccion.Text
+                c.direccionEnvio2 = ""
+                c.telefono = Nothing
+                c.contacto = ""
+                c.email = ""
+                c.observacion = ""
+                c.limiteCredito = 0
+                c.porcentajeCredito = 0
+                c.diasCredito = 0
+                c.idMunicipio = mdlPublicVars.PuntoVentaPequeno_codigoMunicipio ' default. 1
+                c.georeferencia = ""
+                c.saldo = 0
+                c.pagos = 0
+                c.pagosTransito = 0
+                c.devoluciones = 0
+                c.idTipoPago = mdlPublicVars.PuntoVentaPequeno_tipoPago ' 3 Pago de contado por defecto
+                c.idVendedor = mdlPublicVars.idVendedor
+                c.idTipoNegocio = mdlPublicVars.PuntoVentaPequeno_tipoNegocio ' por defecto negocio local 1
+                c.idClasificacionNegocio = mdlPublicVars.PuntoVentaPequeno_ClasificacionNegocio 'Normal por defecto 2
+
+                c.casos = 0
+                c.direccionFactura1 = txtDireccion.Text
+                c.direccionFactura2 = ""
+                c.idEmpresa = mdlPublicVars.idEmpresa
+                c.bitMostrador = mdlPublicVars.PuntoVentaPequeno_bitMostrador
+
+                ctx.AddTotblClientes(c)
+                ctx.SaveChanges()
+
+                'Añadimos el tipo de impresion de Factura por defecto
+                Dim cft As New tblCliente_FacturaTipoImpresion
+                Dim codigoCliente = (From x In ctx.tblClientes Select x.idCliente).Max
+
+                cft.cliente = codigoCliente
+                cft.tipoImpresion = 18  'Factura por defecto
+                cft.bitPorcentajeManual = 0
+                cft.porcentaje = 0
+                ctx.AddTotblCliente_FacturaTipoImpresion(cft)
+
+                ctx.SaveChanges()
+
+
+                alerta.fnGuardar()
+                limpiarCampos()
+
+                mdlPublicVars.superSearchId = c.idCliente
+                mdlPublicVars.superSearchNombre = c.Negocio
+                mdlPublicVars.superSearchClave = c.clave
+                mdlPublicVars.superSearchGenerico1 = c.direccionFactura1
+                bitGuardado = True
+
+                'paso 8, completar la transaccion.
+                transaction.Complete()
+            Catch ex As System.Data.EntityException
+                success = False
+                bitGuardado = False
+            Catch ex As Exception
+                If ex.[GetType]() <> GetType(UpdateException) Then
+                    success = False
+                    Console.WriteLine(("An error occured. " & "The operation cannot be retried.") + ex.Message)
+                    alerta.fnErrorGuardar()
+                    Exit Try
+                    ' If we get to this point, the operation will be retried. 
+                End If
+            End Try
+        End Using
+
+
+
+        If success = True Then
+            ctx.AcceptAllChanges()
+            alerta.fnGuardar()
+        End If
+
+
+        If bitGuardado = True Then
+            Me.Close()
+        End If
+        Return 0
+
+
+    End Function
+
+End Class
+
+
+'Funcion guardar antes de agregar el tipo de impresion
+
+'Try
+'    'obtenemos la clave maxima para poder asignarsela al nuevo cliente
+'    Dim claveMaxima As Integer = (From x In ctx.tblClientes Select CType(x.clave, Integer?)).Max + 1
+
+'    c.habillitado = 1
+'    c.clave = claveMaxima
+'    c.Negocio = txtCliente.Text
+'    c.Nombre1 = txtCliente.Text
+'    c.Nombre2 = ""
+'    c.nit1 = txtNit.Text
+'    c.nit2 = ""
+'    c.direccionEnvio1 = txtDireccion.Text
+'    c.direccionEnvio2 = ""
+'    c.telefono = Nothing
+'    c.contacto = ""
+'    c.email = ""
+'    c.observacion = ""
+'    c.limiteCredito = 0
+'    c.porcentajeCredito = 0
+'    c.diasCredito = 0
+'    c.idMunicipio = mdlPublicVars.PuntoVentaPequeno_codigoMunicipio ' default. 1
+'    c.georeferencia = ""
+'    c.saldo = 0
+'    c.pagos = 0
+'    c.pagosTransito = 0
+'    c.devoluciones = 0
+'    c.idTipoPago = mdlPublicVars.PuntoVentaPequeno_tipoPago ' 3 Pago de contado por defecto
+'    c.idVendedor = mdlPublicVars.idVendedor
+'    c.idTipoNegocio = mdlPublicVars.PuntoVentaPequeno_tipoNegocio ' por defecto negocio local 1
+'    c.idClasificacionNegocio = mdlPublicVars.PuntoVentaPequeno_ClasificacionNegocio 'Normal por defecto 2
+
+'    c.casos = 0
+'    c.direccionFactura1 = txtDireccion.Text
+'    c.direccionFactura2 = ""
+'    c.idEmpresa = mdlPublicVars.idEmpresa
+'    c.bitMostrador = mdlPublicVars.PuntoVentaPequeno_bitMostrador
+
+'    ctx.AddTotblClientes(c)
+'    ctx.SaveChanges()
+'    alerta.fnGuardar()
+'    limpiarCampos()
+
+'    mdlPublicVars.superSearchId = c.idCliente
+'    mdlPublicVars.superSearchNombre = c.Negocio
+'    mdlPublicVars.superSearchClave = c.clave
+'    mdlPublicVars.superSearchGenerico1 = c.direccionFactura1
+'    bitGuardado = True
+
+'Catch ex As Exception
+'    RadMessageBox.Show("Error al Guardar", nombreSistema)
+'    bitGuardado = False
+'End Try

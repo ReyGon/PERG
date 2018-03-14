@@ -1,0 +1,203 @@
+﻿Option Strict On
+
+Imports System.Linq
+Imports System.IO
+Imports System.Data
+Imports System.Data.SqlClient
+Imports Telerik.WinControls
+Imports System.Transactions
+Imports System.Data.Objects.DataClasses
+Imports System.Data.EntityClient
+
+Public Class frmVentaPequeniaBarraDerecha
+
+    Public alerta As New bl_Alertas
+    Dim blPedidos As New bl_Pedidos
+    Private permiso As New clsPermisoUsuario
+    Private _bitCrearImprimpir As Boolean
+    'Variables para guardar el total a pagar y descuento de la salida que se selecciona.
+    Dim totalPagar As Double = 0
+    Dim descuento As Double = 0
+
+    'LOAD
+    Private Sub frmVentaPequeniaBarraDerecha_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        izquierda = False
+        derecha = True
+        fnAjustarTamano()
+        pnl1.Focus()
+    End Sub
+
+    'FACTURAR
+    Private Sub fnFacturar() Handles Me.panel1
+        Try
+            frmVentaPequeniaLista.fnCambioFila()
+            If mdlPublicVars.superSearchFilasGrid > 0 Then
+                Dim codigoSalida As Integer = 0
+                Dim fechaservidor As DateTime = CDate(mdlPublicVars.fnFecha_horaServidor)
+                Dim despacho As Boolean = False
+                Dim facturar As Boolean = False
+                Dim conexion As New dsi_pos_demoEntities
+
+                Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                    conn.Open()
+                    conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+                    Using transaction As New TransactionScope
+                        Try
+                            'Debemos de revisar si el pedido ya se reviso, y luego si el cliente tiene o no mas pedidos
+                            Dim salida As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = mdlPublicVars.superSearchId Select x).FirstOrDefault
+                            If salida.anulado Or salida.facturado Then
+                                alerta.contenido = "Venta Facturada o Anulada "
+                                alerta.fnErrorContenido()
+                                Exit Sub
+                            End If
+                            'YOEL
+                            'MODIFICAMOS LA SALIDA
+                            despacho = blPedidos.CambiacotizarAdespacho(salida.idSalida, CBool(salida.credito), CInt(salida.idCliente), conexion)
+                            If despacho Or salida.despachar Then
+                                'Empacar la salida
+                                salida.empacado = True
+                                salida.fechaFiltro = fechaservidor
+                                conexion.SaveChanges()
+
+                                'Consumir pagos de cliente
+                                blPedidos.fnConsumirPagos(CInt(salida.idCliente), conexion)
+                                codigoSalida = salida.idSalida
+                                facturar = True
+                            End If
+
+                            transaction.Complete()
+                        Catch ex As Exception
+                            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+                        End Try
+                    End Using
+                    conn.Close()
+                End Using
+
+                If facturar Then
+                    blPedidos.fnFacturarImprimir(codigoSalida)
+                    frmVentaPequeniaLista.frm_llenarLista()
+                End If
+            End If
+        Catch ex As Exception
+            alerta.contenido = ex.ToString
+            alerta.fnErrorContenido()
+        End Try
+
+    End Sub
+
+    'COBRAR SALIDA
+    Private Sub fnCobrarSalida() Handles Me.panel2
+        frmVentaPequeniaLista.fnCambioFila()
+        Dim codigoSalida As Integer = 0
+        Dim fechaservidor As DateTime = CDate(mdlPublicVars.fnFecha_horaServidor)
+        Dim despacho As Boolean = False
+        Dim facturar As Boolean = False
+        Dim conexion As New dsi_pos_demoEntities
+        If mdlPublicVars.superSearchFilasGrid > 0 Then
+
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+
+                'Obtenemos el saldo del cliente para realizar el cobro
+                Dim cliente As tblCliente
+                cliente = (From x In conexion.tblClientes.AsEnumerable Where x.idCliente = CInt(mdlPublicVars.superSearchCodSurtir)
+                                                 Select x).FirstOrDefault
+                frmPagoNuevo.Text = "Pagos"
+                frmPagoNuevo.bitCliente = True
+                frmPagoNuevo.codigoCP = cliente.idCliente
+                frmPagoNuevo.lblSaldo.Text = Format(cliente.saldo, mdlPublicVars.formatoMoneda)
+                frmPagoNuevo.StartPosition = FormStartPosition.CenterScreen
+                frmPagoNuevo.ShowDialog()
+
+                conn.Close()
+            End Using
+
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+                Using transaction As New TransactionScope
+                    Try
+                        'Debemos de revisar si el pedido ya se reviso, y luego si el cliente tiene o no mas pedidos
+                        Dim salida As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = mdlPublicVars.superSearchId Select x).FirstOrDefault
+                        If salida.anulado Or salida.empacado Or salida.facturado Then
+                            alerta.contenido = "Venta Facturada o Anulada "
+                            alerta.fnErrorContenido()
+                            Exit Sub
+                        End If
+
+                        'YOEL
+                        'MODIFICAMOS LA SALIDA
+                        despacho = blPedidos.CambiacotizarAdespacho(salida.idSalida, CBool(salida.credito), CInt(salida.idCliente), conexion)
+                        If despacho Or salida.despachar Then
+                            'Empacar la salida
+                            salida.empacado = True
+                            salida.fechaFiltro = fechaservidor
+                            conexion.SaveChanges()
+
+                            'Consumir pagos de cliente
+                            blPedidos.fnConsumirPagos(CInt(salida.idCliente), conexion)
+                            facturar = True
+                            codigoSalida = salida.idSalida
+                        End If
+
+                        transaction.Complete()
+                    Catch ex As Exception
+                        RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+                    End Try
+                End Using
+
+                conn.Close()
+            End Using
+
+            If facturar Then
+                blPedidos.fnFacturarImprimir(codigoSalida)
+                Me.Hide()
+                frmVentaPequeniaLista.frm_llenarLista()
+            End If
+        End If
+    End Sub
+
+    'REALIZAR PAGO
+    Private Sub fnRealizarPago() Handles Me.panel3
+        frmVentaPequeniaLista.fnCambioFila()
+
+        If mdlPublicVars.superSearchFilasGrid > 0 Then
+            'Obtenemos el saldo del cliente
+            Dim cliente As tblCliente = (From x In ctx.tblClientes.AsEnumerable Where x.idCliente = CInt(mdlPublicVars.superSearchCodSurtir)
+                                         Select x).FirstOrDefault
+
+            frmPagoNuevo.Text = "Pagos"
+            frmPagoNuevo.bitCliente = True
+            frmPagoNuevo.codigoCP = CInt(mdlPublicVars.superSearchCodSurtir)
+            frmPagoNuevo.lblSaldo.Text = Format(cliente.saldo, mdlPublicVars.nombreSistema)
+            frmPagoNuevo.StartPosition = FormStartPosition.CenterScreen
+            frmPagoNuevo.ShowDialog()
+        End If
+    End Sub
+
+    'AJUSTES
+    Private Sub fnAjustes() Handles Me.panel4
+        Try
+            frmVentaPequeniaLista.fnCambioFila()
+            If mdlPublicVars.superSearchFilasGrid > 0 Then
+                'Muestra la paqueteria de esa salida
+                Dim codigo As Integer = mdlPublicVars.superSearchId
+                Dim salida As tblSalida = (From x In ctx.tblSalidas.AsEnumerable Where x.idSalida = codigo Select x).FirstOrDefault
+
+                frmPedidosAjustesConceptos.Text = "Ajustes"
+                frmPedidosAjustesConceptos.StartPosition = FormStartPosition.CenterScreen
+                frmPedidosAjustesConceptos.BringToFront()
+                frmPedidosAjustesConceptos.codClie = CInt(salida.idCliente)
+                frmPedidosAjustesConceptos.codSalida = codigo
+                frmPedidosAjustesConceptos.Focus()
+                permiso.PermisoDialogEspeciales(frmPedidosAjustesConceptos)
+                frmPedidosAjustesConceptos.Dispose()
+            End If
+        Catch ex As Exception
+            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+        End Try
+    End Sub
+
+   
+End Class

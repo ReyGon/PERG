@@ -1,0 +1,206 @@
+﻿Option Strict On
+
+Imports System.Linq
+Imports System.IO
+Imports System.Data
+Imports System.Data.SqlClient
+Imports Telerik.WinControls
+Imports System.Transactions
+Imports System.Data.EntityClient
+
+Public Class frmPagoVentaPequenia
+
+    Private _codigosalidaAFacturar As Integer 'salida a cobrar
+    Private _totalVenta As Decimal
+    Private _acreditaciones As Decimal
+    Private idCliente As Integer
+
+    Public Property codigosalidaAFacturar() As Integer
+        Get
+            codigosalidaAFacturar = _codigosalidaAFacturar
+        End Get
+        Set(value As Integer)
+            _codigosalidaAFacturar = value
+        End Set
+    End Property
+
+    Public Property totalVenta() As Decimal
+        Get
+            totalVenta = _totalVenta
+        End Get
+        Set(value As Decimal)
+            _totalVenta = value
+        End Set
+    End Property
+
+    Public Property acreditaciones() As Decimal
+        Get
+            acreditaciones = _acreditaciones
+        End Get
+        Set(value As Decimal)
+            _acreditaciones = value
+        End Set
+    End Property
+
+
+    Private Sub frmPagoVentaPequenia_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        txtMontoRecibido.Enabled = True
+        llenarDatos()
+    End Sub
+
+    Private Sub llenarDatos()
+        Dim consulta As IQueryable = Nothing
+        'conexion nueva.
+        Dim conexion As New dsi_pos_demoEntities
+
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+            Try
+                consulta = (From x In conexion.tblTipoPagoes Where x.entrada = True And Not x.caja Select codigo = x.codigo, nombre = x.nombre)
+                With cmbTipoPago
+                    .DataSource = Nothing
+                    .ValueMember = "codigo"
+                    .DisplayMember = "nombre"
+                    .DataSource = consulta
+                End With
+                Dim salida As tblSalida = (From s In conexion.tblSalidas Where s.idSalida = codigosalidaAFacturar Select s).FirstOrDefault
+
+                totalVenta = CDec(salida.total)
+                acreditaciones = CDec(If(salida.tblCliente.saldo < 0, salida.tblCliente.saldo * -1, 0))
+                idCliente = CInt(salida.idCliente)
+                lblTotalVenta.Text = Format(totalVenta, mdlPublicVars.formatoMoneda)
+                lblAcreditacion.Text = Format(acreditaciones, mdlPublicVars.formatoMoneda)
+                txtDocumento.Text = salida.documento
+
+                If acreditaciones > totalVenta Then
+                    txtMontoRecibido.Enabled = False
+                End If
+            Catch ex As Exception
+                RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+            End Try
+
+            'liberar la conexion.
+            conn.Close()
+        End Using
+        Me.txtMontoRecibido.Focus()
+    End Sub
+
+
+    Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
+        If fnErrores() Then
+            RadMessageBox.Show("Monto recibido es menor a la venta", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+            Exit Sub
+        End If
+        Dim tipoPago As Integer
+        Dim fechaPago As DateTime = CDate(fnFecha_horaServidor())
+        Dim success As Boolean = True
+        Dim conexion As New dsi_pos_demoEntities
+
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+            'crear el encabezado de la transaccion
+            Using transaction As New TransactionScope
+                Try
+                    Dim pago As New tblCaja
+                    tipoPago = CInt(cmbTipoPago.SelectedValue)
+                    Dim pagoTipo As tblTipoPago = (From p In conexion.tblTipoPagoes Where p.codigo = tipoPago Select p).FirstOrDefault
+
+                    'seleccionamos la salida para obtener el idclietne
+                    Dim salida As tblSalida = (From s In conexion.tblSalidas Where s.idSalida = codigosalidaAFacturar Select s).FirstOrDefault
+
+                    pago.tipoPago = CInt(cmbTipoPago.SelectedValue)
+                    pago.empresa = mdlPublicVars.idEmpresa
+                    pago.fecha = fechaPago
+                    pago.fechaTransaccion = fechaPago
+                    pago.monto = totalVenta
+
+                    'salida que se paga
+                    pago.codigoSalida = codigosalidaAFacturar
+
+                    If pagoTipo.calendarizada Then
+                        pago.transito = True
+                        pago.confirmado = False
+                    Else
+                        pago.transito = False
+                        pago.confirmado = True
+                        pago.fechaCobro = fechaPago
+                    End If
+                    pago.documento = txtDocumentoPago.Text
+                    pago.usuario = mdlPublicVars.idUsuario
+                    pago.anulado = False
+                    pago.cliente = salida.idCliente
+                    pago.descripcion = cmbTipoPago.Text
+                    pago.bitRechazado = False
+                    pago.bitEntrada = True
+                    pago.bitSalida = False
+                    pago.codigoSalida = codigosalidaAFacturar
+
+                    conexion.AddTotblCajas(pago)
+                    conexion.SaveChanges()
+
+                    mdlPublicVars.superSearchCodigoPagoVentaPequenia = CShort(pago.codigo)
+                    'Actualizamos los pagos del cliente
+                    Dim cliente As tblCliente = (From c In conexion.tblClientes Where c.idCliente = idCliente Select c).FirstOrDefault
+                    If pagoTipo.calendarizada Then
+                        cliente.pagosTransito += totalVenta
+                    Else
+                        cliente.pagos += totalVenta
+                        cliente.saldo -= totalVenta
+                    End If
+                    cliente.fechaUltimoPago = fechaPago
+                    conexion.SaveChanges()
+                    transaction.Complete()
+                Catch ex As Exception
+                    success = False
+                End Try
+            End Using
+
+            If success = True Then
+                conexion.AcceptAllChanges()
+                alerta.fnGuardar()
+                mdlPublicVars.bitCrearFacturaVentaPequenia = True
+                Me.Close()
+            Else
+                alerta.fnErrorGuardar()
+            End If
+            conn.Close()
+        End Using
+    End Sub
+
+    Private Function fnErrores() As Boolean
+        totalVenta = Decimal.Round(CType(Replace(lblTotalVenta.Text, "Q", "").Trim, Decimal), 2)
+        Try
+            If acreditaciones < totalVenta Then
+                If txtMontoRecibido.Text.Trim.Length = 0 Then
+                    fnErrores = True
+                Else
+
+                    If (acreditaciones + CDec(txtMontoRecibido.Text)) < totalVenta Then
+                        fnErrores = True
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            alerta.fnError()
+            fnErrores = True
+        End Try
+    End Function
+
+    Private Sub fnSalida() Handles Me.panel0
+        Me.Close()
+    End Sub
+
+    Private Sub txtMontoRecibido_TextChanged(sender As Object, e As EventArgs) Handles txtMontoRecibido.TextChanged
+        Try
+            If Not txtMontoRecibido.Enabled Then
+                Me.lblCambio.Text = Format(0, mdlPublicVars.formatoMoneda)
+            Else
+                Me.lblCambio.Text = Format((CDbl(Me.txtMontoRecibido.Text) - totalVenta), mdlPublicVars.formatoMoneda)
+            End If
+        Catch ex As Exception
+            Me.lblCambio.Text = Format(0, mdlPublicVars.formatoMoneda)
+        End Try
+    End Sub
+End Class

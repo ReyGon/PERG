@@ -1,0 +1,70 @@
+﻿Imports Telerik.WinControls
+Imports System.Linq
+Public Class bl_Pedidos
+
+    Public Function VerificaCredito(ByVal cliente As tblCliente, ByVal clave As String, ByVal credito As Double) As Integer
+
+        Dim salidas As Double
+        Try
+            salidas = (From x In ctx.tblSalidas Where x.idCliente = cliente.idCliente And x.anulado = False _
+                       And x.empacado = False And x.despachar = True And x.credito = True _
+                       Select x.total).Sum
+        Catch ex As Exception
+            salidas = 0
+        End Try
+
+        'Obtenemos el credito disponible, sobregiro, y sobre pago programado
+        Dim creditoDisponible As Double = cliente.limiteCredito - (cliente.saldo) - salidas
+        Dim sobreGiro As Double = (cliente.porcentajeCredito / 100) * cliente.limiteCredito
+
+        If credito > (creditoDisponible) Then
+            If credito > (creditoDisponible + sobreGiro) Then
+                If credito >= (creditoDisponible + sobreGiro + cliente.pagosTransito) Then
+                    If RadMessageBox.Show("¿Debe realizar un pago programado, desea realizarlo?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                        frmPagoNuevo.bitCliente = True
+                        frmPagoNuevo.codigoCP = cliente.idCliente
+                        frmPagoNuevo.Text = "Modulo de Clientes"
+                        frmPagoNuevo.ShowDialog()
+                        frmPagoNuevo.Dispose()
+                        Return -2
+                    Else
+                        Return -1
+                    End If
+                Else
+                    If fnAutorizaCredito(clave) Then
+                        RadMessageBox.Show("Autorizacion correcta, despacho aceptado ", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Info)
+                        Return 0
+                    Else
+                        RadMessageBox.Show("Autorizacion incorreta, contraseña no valida", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+                        Return -1
+                    End If
+                End If
+
+            Else
+                If RadMessageBox.Show("¿La venta está en sobregiro, desea seguir con la venta?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    If fnAutorizaCredito(clave) Then
+                        RadMessageBox.Show("Autorizacion correcta, despacho aceptado ", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Info)
+                        Return 0
+                    Else
+                        RadMessageBox.Show("Autorizacion incorreta, contraseña no valida", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+                        Return -1
+                    End If
+                Else
+                    Return -1
+                End If
+            End If
+        Else
+            Return 0
+        End If
+    End Function
+
+    Public Function fnAutorizaCredito(ByVal passUsuario As String) As Boolean
+        'se pide el password para autorizar
+        Dim pass As String = InputBox("Ingrese contraseña de autorizacion:", "Autorizacion")
+        If (pass = passUsuario) Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+End Class

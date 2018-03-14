@@ -1,0 +1,715 @@
+
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class frmBaseLista
+    Inherits Telerik.WinControls.UI.RadForm
+
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
+
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
+
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBaseLista))
+        Dim FilterDescriptor2 As Telerik.WinControls.Data.FilterDescriptor = New Telerik.WinControls.Data.FilterDescriptor()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.contMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.OcultarFiltro = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MostrarFiltro = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tmrHora = New System.Windows.Forms.Timer(Me.components)
+        Me.RadToolStripItem6 = New Telerik.WinControls.UI.RadToolStripItem()
+        Me.txtFiltro = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.tlpContenedorMenu = New System.Windows.Forms.TableLayoutPanel()
+        Me.pnlTitulo = New System.Windows.Forms.Panel()
+        Me.pnx5QuitarFiltro = New System.Windows.Forms.Panel()
+        Me.pbx5QuitarFiltro = New System.Windows.Forms.PictureBox()
+        Me.lbl5QuitarFiltro = New System.Windows.Forms.Label()
+        Me.lblTitulo = New System.Windows.Forms.Label()
+        Me.pnx6Salir = New System.Windows.Forms.Panel()
+        Me.pbx6Salir = New System.Windows.Forms.PictureBox()
+        Me.lbl6Salir = New System.Windows.Forms.Label()
+        Me.pnx4Filtro = New System.Windows.Forms.Panel()
+        Me.pbx4Filtro = New System.Windows.Forms.PictureBox()
+        Me.lbl4Filtro = New System.Windows.Forms.Label()
+        Me.pnx3Imprimir = New System.Windows.Forms.Panel()
+        Me.pbx3Imprimir = New System.Windows.Forms.PictureBox()
+        Me.lbl3Imprimir = New System.Windows.Forms.Label()
+        Me.pnx2Eliminar = New System.Windows.Forms.Panel()
+        Me.pbx2Eliminar = New System.Windows.Forms.PictureBox()
+        Me.lbl2Eliminar = New System.Windows.Forms.Label()
+        Me.pnx1Modificar = New System.Windows.Forms.Panel()
+        Me.pbx1Modificar = New System.Windows.Forms.PictureBox()
+        Me.lbl1Modificar = New System.Windows.Forms.Label()
+        Me.pnx0Nuevo = New System.Windows.Forms.Panel()
+        Me.pbx0Nuevo = New System.Windows.Forms.PictureBox()
+        Me.lbl0Nuevo = New System.Windows.Forms.Label()
+        Me.pnlcontenedorF3 = New System.Windows.Forms.Panel()
+        Me.pnlOpciones = New System.Windows.Forms.Panel()
+        Me.lblOpciones = New System.Windows.Forms.Label()
+        Me.pnlListas = New System.Windows.Forms.Panel()
+        Me.lblListas = New System.Windows.Forms.Label()
+        Me.Office2007BlackTheme1 = New Telerik.WinControls.Themes.Office2007BlackTheme()
+        Me.rgbDatos = New Telerik.WinControls.UI.RadGroupBox()
+        Me.lblRegistros = New System.Windows.Forms.Label()
+        Me.grdDatos = New Telerik.WinControls.UI.RadGridView()
+        Me.RadDesktopAlert1 = New Telerik.WinControls.UI.RadDesktopAlert(Me.components)
+        Me.cmbFiltroFecha = New System.Windows.Forms.ComboBox()
+        Me.lblFiltroFecha = New System.Windows.Forms.Label()
+        Me.contMenu.SuspendLayout()
+        Me.tlpContenedorMenu.SuspendLayout()
+        Me.pnlTitulo.SuspendLayout()
+        Me.pnx5QuitarFiltro.SuspendLayout()
+        CType(Me.pbx5QuitarFiltro, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnx6Salir.SuspendLayout()
+        CType(Me.pbx6Salir, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnx4Filtro.SuspendLayout()
+        CType(Me.pbx4Filtro, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnx3Imprimir.SuspendLayout()
+        CType(Me.pbx3Imprimir, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnx2Eliminar.SuspendLayout()
+        CType(Me.pbx2Eliminar, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnx1Modificar.SuspendLayout()
+        CType(Me.pbx1Modificar, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnx0Nuevo.SuspendLayout()
+        CType(Me.pbx0Nuevo, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlcontenedorF3.SuspendLayout()
+        Me.pnlOpciones.SuspendLayout()
+        Me.pnlListas.SuspendLayout()
+        CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.rgbDatos.SuspendLayout()
+        CType(Me.grdDatos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdDatos.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'ImageList1
+        '
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "calendario.png")
+        Me.ImageList1.Images.SetKeyName(1, "eliminar.png")
+        Me.ImageList1.Images.SetKeyName(2, "guardar.png")
+        Me.ImageList1.Images.SetKeyName(3, "llave.png")
+        Me.ImageList1.Images.SetKeyName(4, "modificar1.png")
+        Me.ImageList1.Images.SetKeyName(5, "nuevo0.png")
+        Me.ImageList1.Images.SetKeyName(6, "ok2.png")
+        Me.ImageList1.Images.SetKeyName(7, "procesar.png")
+        Me.ImageList1.Images.SetKeyName(8, "reloj.png")
+        Me.ImageList1.Images.SetKeyName(9, "reportes.png")
+        Me.ImageList1.Images.SetKeyName(10, "salir1.png")
+        Me.ImageList1.Images.SetKeyName(11, "usuario.png")
+        '
+        'contMenu
+        '
+        Me.contMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OcultarFiltro, Me.MostrarFiltro})
+        Me.contMenu.Name = "contMenu"
+        Me.contMenu.Size = New System.Drawing.Size(146, 48)
+        '
+        'OcultarFiltro
+        '
+        Me.OcultarFiltro.Name = "OcultarFiltro"
+        Me.OcultarFiltro.Size = New System.Drawing.Size(145, 22)
+        Me.OcultarFiltro.Text = "Ocultar Filtro"
+        '
+        'MostrarFiltro
+        '
+        Me.MostrarFiltro.Name = "MostrarFiltro"
+        Me.MostrarFiltro.Size = New System.Drawing.Size(145, 22)
+        Me.MostrarFiltro.Text = "Mostrar Filtro"
+        '
+        'tmrHora
+        '
+        Me.tmrHora.Enabled = True
+        '
+        'RadToolStripItem6
+        '
+        Me.RadToolStripItem6.Key = "4"
+        Me.RadToolStripItem6.Name = "RadToolStripItem6"
+        Me.RadToolStripItem6.Text = "RadToolStripItem6"
+        '
+        'txtFiltro
+        '
+        Me.txtFiltro.Location = New System.Drawing.Point(419, 49)
+        Me.txtFiltro.Name = "txtFiltro"
+        Me.txtFiltro.Size = New System.Drawing.Size(283, 20)
+        Me.txtFiltro.TabIndex = 88
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.White
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.DimGray
+        Me.Label2.Location = New System.Drawing.Point(359, 47)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(54, 20)
+        Me.Label2.TabIndex = 89
+        Me.Label2.Text = "Filtro :"
+        '
+        'tlpContenedorMenu
+        '
+        Me.tlpContenedorMenu.BackColor = System.Drawing.Color.SteelBlue
+        Me.tlpContenedorMenu.ColumnCount = 2
+        Me.tlpContenedorMenu.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.95633!))
+        Me.tlpContenedorMenu.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.04367!))
+        Me.tlpContenedorMenu.Controls.Add(Me.pnlTitulo, 0, 0)
+        Me.tlpContenedorMenu.Controls.Add(Me.pnlcontenedorF3, 1, 0)
+        Me.tlpContenedorMenu.Dock = System.Windows.Forms.DockStyle.Top
+        Me.tlpContenedorMenu.Location = New System.Drawing.Point(0, 0)
+        Me.tlpContenedorMenu.Name = "tlpContenedorMenu"
+        Me.tlpContenedorMenu.RowCount = 1
+        Me.tlpContenedorMenu.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpContenedorMenu.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpContenedorMenu.Size = New System.Drawing.Size(1276, 43)
+        Me.tlpContenedorMenu.TabIndex = 90
+        '
+        'pnlTitulo
+        '
+        Me.pnlTitulo.BackColor = System.Drawing.Color.SteelBlue
+        Me.pnlTitulo.Controls.Add(Me.pnx5QuitarFiltro)
+        Me.pnlTitulo.Controls.Add(Me.lblTitulo)
+        Me.pnlTitulo.Controls.Add(Me.pnx6Salir)
+        Me.pnlTitulo.Controls.Add(Me.pnx4Filtro)
+        Me.pnlTitulo.Controls.Add(Me.pnx3Imprimir)
+        Me.pnlTitulo.Controls.Add(Me.pnx2Eliminar)
+        Me.pnlTitulo.Controls.Add(Me.pnx1Modificar)
+        Me.pnlTitulo.Controls.Add(Me.pnx0Nuevo)
+        Me.pnlTitulo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlTitulo.Location = New System.Drawing.Point(3, 3)
+        Me.pnlTitulo.Name = "pnlTitulo"
+        Me.pnlTitulo.Size = New System.Drawing.Size(1141, 37)
+        Me.pnlTitulo.TabIndex = 57
+        '
+        'pnx5QuitarFiltro
+        '
+        Me.pnx5QuitarFiltro.BackColor = System.Drawing.Color.Navy
+        Me.pnx5QuitarFiltro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnx5QuitarFiltro.Controls.Add(Me.pbx5QuitarFiltro)
+        Me.pnx5QuitarFiltro.Controls.Add(Me.lbl5QuitarFiltro)
+        Me.pnx5QuitarFiltro.Location = New System.Drawing.Point(906, 1)
+        Me.pnx5QuitarFiltro.Name = "pnx5QuitarFiltro"
+        Me.pnx5QuitarFiltro.Size = New System.Drawing.Size(112, 34)
+        Me.pnx5QuitarFiltro.TabIndex = 65
+        '
+        'pbx5QuitarFiltro
+        '
+        Me.pbx5QuitarFiltro.Image = Global.laFuente.My.Resources.Resources.quitarFiltro
+        Me.pbx5QuitarFiltro.Location = New System.Drawing.Point(1, 0)
+        Me.pbx5QuitarFiltro.Name = "pbx5QuitarFiltro"
+        Me.pbx5QuitarFiltro.Size = New System.Drawing.Size(28, 33)
+        Me.pbx5QuitarFiltro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx5QuitarFiltro.TabIndex = 57
+        Me.pbx5QuitarFiltro.TabStop = False
+        '
+        'lbl5QuitarFiltro
+        '
+        Me.lbl5QuitarFiltro.AutoSize = True
+        Me.lbl5QuitarFiltro.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl5QuitarFiltro.ForeColor = System.Drawing.Color.White
+        Me.lbl5QuitarFiltro.Location = New System.Drawing.Point(33, 10)
+        Me.lbl5QuitarFiltro.Name = "lbl5QuitarFiltro"
+        Me.lbl5QuitarFiltro.Size = New System.Drawing.Size(69, 13)
+        Me.lbl5QuitarFiltro.TabIndex = 58
+        Me.lbl5QuitarFiltro.Text = "Quitar Filtro"
+        Me.lbl5QuitarFiltro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblTitulo
+        '
+        Me.lblTitulo.AutoSize = True
+        Me.lblTitulo.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTitulo.ForeColor = System.Drawing.Color.White
+        Me.lblTitulo.Location = New System.Drawing.Point(59, 8)
+        Me.lblTitulo.Name = "lblTitulo"
+        Me.lblTitulo.Size = New System.Drawing.Size(200, 25)
+        Me.lblTitulo.TabIndex = 57
+        Me.lblTitulo.Text = "Titulo del Formulario"
+        Me.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'pnx6Salir
+        '
+        Me.pnx6Salir.BackColor = System.Drawing.Color.Navy
+        Me.pnx6Salir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnx6Salir.Controls.Add(Me.pbx6Salir)
+        Me.pnx6Salir.Controls.Add(Me.lbl6Salir)
+        Me.pnx6Salir.Location = New System.Drawing.Point(1020, 1)
+        Me.pnx6Salir.Name = "pnx6Salir"
+        Me.pnx6Salir.Size = New System.Drawing.Size(112, 34)
+        Me.pnx6Salir.TabIndex = 66
+        '
+        'pbx6Salir
+        '
+        Me.pbx6Salir.Image = Global.laFuente.My.Resources.Resources.cancel_Blanco
+        Me.pbx6Salir.Location = New System.Drawing.Point(3, 2)
+        Me.pbx6Salir.Name = "pbx6Salir"
+        Me.pbx6Salir.Size = New System.Drawing.Size(25, 27)
+        Me.pbx6Salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx6Salir.TabIndex = 57
+        Me.pbx6Salir.TabStop = False
+        '
+        'lbl6Salir
+        '
+        Me.lbl6Salir.AutoSize = True
+        Me.lbl6Salir.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl6Salir.ForeColor = System.Drawing.Color.White
+        Me.lbl6Salir.Location = New System.Drawing.Point(26, 10)
+        Me.lbl6Salir.Name = "lbl6Salir"
+        Me.lbl6Salir.Size = New System.Drawing.Size(59, 13)
+        Me.lbl6Salir.TabIndex = 58
+        Me.lbl6Salir.Text = "Salir (ESC)"
+        Me.lbl6Salir.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'pnx4Filtro
+        '
+        Me.pnx4Filtro.BackColor = System.Drawing.Color.Navy
+        Me.pnx4Filtro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnx4Filtro.Controls.Add(Me.pbx4Filtro)
+        Me.pnx4Filtro.Controls.Add(Me.lbl4Filtro)
+        Me.pnx4Filtro.Location = New System.Drawing.Point(791, 1)
+        Me.pnx4Filtro.Name = "pnx4Filtro"
+        Me.pnx4Filtro.Size = New System.Drawing.Size(112, 34)
+        Me.pnx4Filtro.TabIndex = 64
+        '
+        'pbx4Filtro
+        '
+        Me.pbx4Filtro.Image = Global.laFuente.My.Resources.Resources.filtroBlanco
+        Me.pbx4Filtro.Location = New System.Drawing.Point(1, -2)
+        Me.pbx4Filtro.Name = "pbx4Filtro"
+        Me.pbx4Filtro.Size = New System.Drawing.Size(28, 37)
+        Me.pbx4Filtro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx4Filtro.TabIndex = 57
+        Me.pbx4Filtro.TabStop = False
+        '
+        'lbl4Filtro
+        '
+        Me.lbl4Filtro.AutoSize = True
+        Me.lbl4Filtro.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl4Filtro.ForeColor = System.Drawing.Color.White
+        Me.lbl4Filtro.Location = New System.Drawing.Point(33, 10)
+        Me.lbl4Filtro.Name = "lbl4Filtro"
+        Me.lbl4Filtro.Size = New System.Drawing.Size(34, 13)
+        Me.lbl4Filtro.TabIndex = 58
+        Me.lbl4Filtro.Text = "Filtro"
+        Me.lbl4Filtro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'pnx3Imprimir
+        '
+        Me.pnx3Imprimir.BackColor = System.Drawing.Color.Navy
+        Me.pnx3Imprimir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnx3Imprimir.Controls.Add(Me.pbx3Imprimir)
+        Me.pnx3Imprimir.Controls.Add(Me.lbl3Imprimir)
+        Me.pnx3Imprimir.Location = New System.Drawing.Point(676, 1)
+        Me.pnx3Imprimir.Name = "pnx3Imprimir"
+        Me.pnx3Imprimir.Size = New System.Drawing.Size(112, 34)
+        Me.pnx3Imprimir.TabIndex = 63
+        '
+        'pbx3Imprimir
+        '
+        Me.pbx3Imprimir.Image = Global.laFuente.My.Resources.Resources.entrada_Blanco
+        Me.pbx3Imprimir.Location = New System.Drawing.Point(1, -1)
+        Me.pbx3Imprimir.Name = "pbx3Imprimir"
+        Me.pbx3Imprimir.Size = New System.Drawing.Size(28, 34)
+        Me.pbx3Imprimir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx3Imprimir.TabIndex = 57
+        Me.pbx3Imprimir.TabStop = False
+        '
+        'lbl3Imprimir
+        '
+        Me.lbl3Imprimir.AutoSize = True
+        Me.lbl3Imprimir.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl3Imprimir.ForeColor = System.Drawing.Color.White
+        Me.lbl3Imprimir.Location = New System.Drawing.Point(33, 10)
+        Me.lbl3Imprimir.Name = "lbl3Imprimir"
+        Me.lbl3Imprimir.Size = New System.Drawing.Size(66, 13)
+        Me.lbl3Imprimir.TabIndex = 58
+        Me.lbl3Imprimir.Text = "Docs Salida"
+        Me.lbl3Imprimir.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'pnx2Eliminar
+        '
+        Me.pnx2Eliminar.BackColor = System.Drawing.Color.Navy
+        Me.pnx2Eliminar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnx2Eliminar.Controls.Add(Me.pbx2Eliminar)
+        Me.pnx2Eliminar.Controls.Add(Me.lbl2Eliminar)
+        Me.pnx2Eliminar.Location = New System.Drawing.Point(561, 1)
+        Me.pnx2Eliminar.Name = "pnx2Eliminar"
+        Me.pnx2Eliminar.Size = New System.Drawing.Size(112, 34)
+        Me.pnx2Eliminar.TabIndex = 62
+        '
+        'pbx2Eliminar
+        '
+        Me.pbx2Eliminar.Image = Global.laFuente.My.Resources.Resources.delete
+        Me.pbx2Eliminar.Location = New System.Drawing.Point(1, -2)
+        Me.pbx2Eliminar.Name = "pbx2Eliminar"
+        Me.pbx2Eliminar.Size = New System.Drawing.Size(29, 34)
+        Me.pbx2Eliminar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx2Eliminar.TabIndex = 57
+        Me.pbx2Eliminar.TabStop = False
+        '
+        'lbl2Eliminar
+        '
+        Me.lbl2Eliminar.AutoSize = True
+        Me.lbl2Eliminar.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl2Eliminar.ForeColor = System.Drawing.Color.White
+        Me.lbl2Eliminar.Location = New System.Drawing.Point(34, 11)
+        Me.lbl2Eliminar.Name = "lbl2Eliminar"
+        Me.lbl2Eliminar.Size = New System.Drawing.Size(69, 13)
+        Me.lbl2Eliminar.TabIndex = 58
+        Me.lbl2Eliminar.Text = "Deshabilitar"
+        Me.lbl2Eliminar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'pnx1Modificar
+        '
+        Me.pnx1Modificar.BackColor = System.Drawing.Color.Navy
+        Me.pnx1Modificar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnx1Modificar.Controls.Add(Me.pbx1Modificar)
+        Me.pnx1Modificar.Controls.Add(Me.lbl1Modificar)
+        Me.pnx1Modificar.Location = New System.Drawing.Point(447, 1)
+        Me.pnx1Modificar.Name = "pnx1Modificar"
+        Me.pnx1Modificar.Size = New System.Drawing.Size(112, 34)
+        Me.pnx1Modificar.TabIndex = 61
+        '
+        'pbx1Modificar
+        '
+        Me.pbx1Modificar.Image = Global.laFuente.My.Resources.Resources.editar
+        Me.pbx1Modificar.Location = New System.Drawing.Point(2, -2)
+        Me.pbx1Modificar.Name = "pbx1Modificar"
+        Me.pbx1Modificar.Size = New System.Drawing.Size(31, 35)
+        Me.pbx1Modificar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx1Modificar.TabIndex = 59
+        Me.pbx1Modificar.TabStop = False
+        '
+        'lbl1Modificar
+        '
+        Me.lbl1Modificar.AutoSize = True
+        Me.lbl1Modificar.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl1Modificar.ForeColor = System.Drawing.Color.White
+        Me.lbl1Modificar.Location = New System.Drawing.Point(37, 11)
+        Me.lbl1Modificar.Name = "lbl1Modificar"
+        Me.lbl1Modificar.Size = New System.Drawing.Size(60, 13)
+        Me.lbl1Modificar.TabIndex = 60
+        Me.lbl1Modificar.Text = "Modificar "
+        Me.lbl1Modificar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'pnx0Nuevo
+        '
+        Me.pnx0Nuevo.BackColor = System.Drawing.Color.Navy
+        Me.pnx0Nuevo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnx0Nuevo.Controls.Add(Me.pbx0Nuevo)
+        Me.pnx0Nuevo.Controls.Add(Me.lbl0Nuevo)
+        Me.pnx0Nuevo.Location = New System.Drawing.Point(332, 1)
+        Me.pnx0Nuevo.Name = "pnx0Nuevo"
+        Me.pnx0Nuevo.Size = New System.Drawing.Size(112, 34)
+        Me.pnx0Nuevo.TabIndex = 60
+        '
+        'pbx0Nuevo
+        '
+        Me.pbx0Nuevo.Image = Global.laFuente.My.Resources.Resources.add
+        Me.pbx0Nuevo.Location = New System.Drawing.Point(0, -2)
+        Me.pbx0Nuevo.Name = "pbx0Nuevo"
+        Me.pbx0Nuevo.Size = New System.Drawing.Size(31, 35)
+        Me.pbx0Nuevo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx0Nuevo.TabIndex = 55
+        Me.pbx0Nuevo.TabStop = False
+        '
+        'lbl0Nuevo
+        '
+        Me.lbl0Nuevo.AutoSize = True
+        Me.lbl0Nuevo.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl0Nuevo.ForeColor = System.Drawing.Color.White
+        Me.lbl0Nuevo.Location = New System.Drawing.Point(35, 11)
+        Me.lbl0Nuevo.Name = "lbl0Nuevo"
+        Me.lbl0Nuevo.Size = New System.Drawing.Size(42, 13)
+        Me.lbl0Nuevo.TabIndex = 56
+        Me.lbl0Nuevo.Text = "Nuevo"
+        Me.lbl0Nuevo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'pnlcontenedorF3
+        '
+        Me.pnlcontenedorF3.BackColor = System.Drawing.Color.SteelBlue
+        Me.pnlcontenedorF3.Controls.Add(Me.pnlOpciones)
+        Me.pnlcontenedorF3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlcontenedorF3.Location = New System.Drawing.Point(1150, 3)
+        Me.pnlcontenedorF3.Name = "pnlcontenedorF3"
+        Me.pnlcontenedorF3.Size = New System.Drawing.Size(123, 37)
+        Me.pnlcontenedorF3.TabIndex = 2
+        '
+        'pnlOpciones
+        '
+        Me.pnlOpciones.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlOpciones.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.pnlOpciones.Controls.Add(Me.lblOpciones)
+        Me.pnlOpciones.Location = New System.Drawing.Point(51, 0)
+        Me.pnlOpciones.Name = "pnlOpciones"
+        Me.pnlOpciones.Size = New System.Drawing.Size(69, 38)
+        Me.pnlOpciones.TabIndex = 92
+        '
+        'lblOpciones
+        '
+        Me.lblOpciones.AutoSize = True
+        Me.lblOpciones.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOpciones.ForeColor = System.Drawing.Color.White
+        Me.lblOpciones.Location = New System.Drawing.Point(4, 4)
+        Me.lblOpciones.Name = "lblOpciones"
+        Me.lblOpciones.Size = New System.Drawing.Size(58, 30)
+        Me.lblOpciones.TabIndex = 57
+        Me.lblOpciones.Text = "F3" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Opciones"
+        Me.lblOpciones.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'pnlListas
+        '
+        Me.pnlListas.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.pnlListas.Controls.Add(Me.lblListas)
+        Me.pnlListas.Location = New System.Drawing.Point(-1, 2)
+        Me.pnlListas.Name = "pnlListas"
+        Me.pnlListas.Size = New System.Drawing.Size(57, 38)
+        Me.pnlListas.TabIndex = 91
+        '
+        'lblListas
+        '
+        Me.lblListas.AutoSize = True
+        Me.lblListas.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblListas.ForeColor = System.Drawing.Color.White
+        Me.lblListas.Location = New System.Drawing.Point(8, 3)
+        Me.lblListas.Name = "lblListas"
+        Me.lblListas.Size = New System.Drawing.Size(37, 30)
+        Me.lblListas.TabIndex = 57
+        Me.lblListas.Text = "F2" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Listas"
+        Me.lblListas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'rgbDatos
+        '
+        Me.rgbDatos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rgbDatos.BackColor = System.Drawing.Color.White
+        Me.rgbDatos.Controls.Add(Me.lblRegistros)
+        Me.rgbDatos.Controls.Add(Me.grdDatos)
+        Me.rgbDatos.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.rgbDatos.FooterImageIndex = -1
+        Me.rgbDatos.FooterImageKey = ""
+        Me.rgbDatos.ForeColor = System.Drawing.Color.DimGray
+        Me.rgbDatos.HeaderImage = Global.laFuente.My.Resources.Resources.listaDatos_gris
+        Me.rgbDatos.HeaderImageAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.rgbDatos.HeaderImageIndex = -1
+        Me.rgbDatos.HeaderImageKey = ""
+        Me.rgbDatos.HeaderMargin = New System.Windows.Forms.Padding(0)
+        Me.rgbDatos.HeaderText = ""
+        Me.rgbDatos.HeaderTextAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.rgbDatos.HeaderTextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.rgbDatos.ImageList = Me.ImageList1
+        Me.rgbDatos.Location = New System.Drawing.Point(10, 76)
+        Me.rgbDatos.Name = "rgbDatos"
+        Me.rgbDatos.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        '
+        '
+        '
+        Me.rgbDatos.RootElement.ForeColor = System.Drawing.Color.DimGray
+        Me.rgbDatos.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        Me.rgbDatos.Size = New System.Drawing.Size(1279, 454)
+        Me.rgbDatos.TabIndex = 87
+        '
+        'lblRegistros
+        '
+        Me.lblRegistros.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblRegistros.AutoSize = True
+        Me.lblRegistros.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRegistros.Location = New System.Drawing.Point(541, 428)
+        Me.lblRegistros.Name = "lblRegistros"
+        Me.lblRegistros.Size = New System.Drawing.Size(41, 20)
+        Me.lblRegistros.TabIndex = 59
+        Me.lblRegistros.Text = "N-M"
+        '
+        'grdDatos
+        '
+        Me.grdDatos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grdDatos.AutoScroll = True
+        Me.grdDatos.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.grdDatos.Cursor = System.Windows.Forms.Cursors.Default
+        Me.grdDatos.Font = New System.Drawing.Font("Arial", 11.25!)
+        Me.grdDatos.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.grdDatos.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.grdDatos.Location = New System.Drawing.Point(10, 23)
+        '
+        'grdDatos
+        '
+        Me.grdDatos.MasterTemplate.AllowAddNewRow = False
+        Me.grdDatos.MasterTemplate.AllowDeleteRow = False
+        Me.grdDatos.MasterTemplate.AllowEditRow = False
+        Me.grdDatos.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
+        Me.grdDatos.MasterTemplate.EnableAlternatingRowColor = True
+        Me.grdDatos.MasterTemplate.EnableGrouping = False
+        FilterDescriptor2.PropertyName = Nothing
+        Me.grdDatos.MasterTemplate.FilterDescriptors.AddRange(New Telerik.WinControls.Data.FilterDescriptor() {FilterDescriptor2})
+        Me.grdDatos.MasterTemplate.HorizontalScrollState = Telerik.WinControls.UI.ScrollState.AlwaysShow
+        Me.grdDatos.Name = "grdDatos"
+        Me.grdDatos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdDatos.ReadOnly = True
+        Me.grdDatos.RightToLeft = System.Windows.Forms.RightToLeft.No
+        '
+        '
+        '
+        Me.grdDatos.RootElement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.grdDatos.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdDatos.Size = New System.Drawing.Size(1259, 402)
+        Me.grdDatos.TabIndex = 58
+        Me.grdDatos.Text = "RadGridView1"
+        Me.grdDatos.ThemeName = "Office2007Black"
+        '
+        'RadDesktopAlert1
+        '
+        Me.RadDesktopAlert1.AutoCloseDelay = 2
+        Me.RadDesktopAlert1.ContentImage = Global.laFuente.My.Resources.Resources.ayuda2
+        Me.RadDesktopAlert1.PlaySound = False
+        Me.RadDesktopAlert1.PopupAnimation = True
+        Me.RadDesktopAlert1.PopupAnimationDirection = Telerik.WinControls.UI.RadDirection.Left
+        Me.RadDesktopAlert1.ScreenPosition = Telerik.WinControls.UI.AlertScreenPosition.TopRight
+        Me.RadDesktopAlert1.SoundToPlay = Nothing
+        Me.RadDesktopAlert1.ThemeName = Nothing
+        '
+        'cmbFiltroFecha
+        '
+        Me.cmbFiltroFecha.FormattingEnabled = True
+        Me.cmbFiltroFecha.Location = New System.Drawing.Point(782, 49)
+        Me.cmbFiltroFecha.Name = "cmbFiltroFecha"
+        Me.cmbFiltroFecha.Size = New System.Drawing.Size(192, 21)
+        Me.cmbFiltroFecha.TabIndex = 92
+        '
+        'lblFiltroFecha
+        '
+        Me.lblFiltroFecha.AutoSize = True
+        Me.lblFiltroFecha.BackColor = System.Drawing.Color.White
+        Me.lblFiltroFecha.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFiltroFecha.ForeColor = System.Drawing.Color.DimGray
+        Me.lblFiltroFecha.Location = New System.Drawing.Point(712, 47)
+        Me.lblFiltroFecha.Name = "lblFiltroFecha"
+        Me.lblFiltroFecha.Size = New System.Drawing.Size(64, 20)
+        Me.lblFiltroFecha.TabIndex = 93
+        Me.lblFiltroFecha.Text = "Fechas :"
+        Me.lblFiltroFecha.Visible = False
+        '
+        'frmBaseLista
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.White
+        Me.ClientSize = New System.Drawing.Size(1276, 529)
+        Me.Controls.Add(Me.cmbFiltroFecha)
+        Me.Controls.Add(Me.lblFiltroFecha)
+        Me.Controls.Add(Me.pnlListas)
+        Me.Controls.Add(Me.tlpContenedorMenu)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.txtFiltro)
+        Me.Controls.Add(Me.rgbDatos)
+        Me.ForeColor = System.Drawing.Color.Gray
+        Me.Name = "frmBaseLista"
+        '
+        '
+        '
+        Me.RootElement.ApplyShapeToControl = True
+        Me.RootElement.ForeColor = System.Drawing.Color.Gray
+        Me.Text = "FrmBaseT"
+        Me.contMenu.ResumeLayout(False)
+        Me.tlpContenedorMenu.ResumeLayout(False)
+        Me.pnlTitulo.ResumeLayout(False)
+        Me.pnlTitulo.PerformLayout()
+        Me.pnx5QuitarFiltro.ResumeLayout(False)
+        Me.pnx5QuitarFiltro.PerformLayout()
+        CType(Me.pbx5QuitarFiltro, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnx6Salir.ResumeLayout(False)
+        Me.pnx6Salir.PerformLayout()
+        CType(Me.pbx6Salir, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnx4Filtro.ResumeLayout(False)
+        Me.pnx4Filtro.PerformLayout()
+        CType(Me.pbx4Filtro, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnx3Imprimir.ResumeLayout(False)
+        Me.pnx3Imprimir.PerformLayout()
+        CType(Me.pbx3Imprimir, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnx2Eliminar.ResumeLayout(False)
+        Me.pnx2Eliminar.PerformLayout()
+        CType(Me.pbx2Eliminar, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnx1Modificar.ResumeLayout(False)
+        Me.pnx1Modificar.PerformLayout()
+        CType(Me.pbx1Modificar, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnx0Nuevo.ResumeLayout(False)
+        Me.pnx0Nuevo.PerformLayout()
+        CType(Me.pbx0Nuevo, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlcontenedorF3.ResumeLayout(False)
+        Me.pnlOpciones.ResumeLayout(False)
+        Me.pnlOpciones.PerformLayout()
+        Me.pnlListas.ResumeLayout(False)
+        Me.pnlListas.PerformLayout()
+        CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.rgbDatos.ResumeLayout(False)
+        Me.rgbDatos.PerformLayout()
+        CType(Me.grdDatos.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdDatos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
+    End Sub
+    Friend WithEvents contMenu As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents OcultarFiltro As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MostrarFiltro As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents tmrHora As System.Windows.Forms.Timer
+    Friend WithEvents RadToolStripItem6 As Telerik.WinControls.UI.RadToolStripItem
+    Friend WithEvents ImageList1 As System.Windows.Forms.ImageList
+    Public WithEvents RadDesktopAlert1 As Telerik.WinControls.UI.RadDesktopAlert
+    Public WithEvents rgbDatos As Telerik.WinControls.UI.RadGroupBox
+    Public WithEvents grdDatos As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents lblRegistros As System.Windows.Forms.Label
+    Friend WithEvents txtFiltro As System.Windows.Forms.TextBox
+    Public WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents tlpContenedorMenu As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents pnlTitulo As System.Windows.Forms.Panel
+    Friend WithEvents pnx6Salir As System.Windows.Forms.Panel
+    Friend WithEvents pbx6Salir As System.Windows.Forms.PictureBox
+    Friend WithEvents lbl6Salir As System.Windows.Forms.Label
+    Friend WithEvents pnx4Filtro As System.Windows.Forms.Panel
+    Friend WithEvents pbx4Filtro As System.Windows.Forms.PictureBox
+    Friend WithEvents lbl4Filtro As System.Windows.Forms.Label
+    Friend WithEvents pnx3Imprimir As System.Windows.Forms.Panel
+    Friend WithEvents pbx3Imprimir As System.Windows.Forms.PictureBox
+    Friend WithEvents lbl3Imprimir As System.Windows.Forms.Label
+    Friend WithEvents pnx2Eliminar As System.Windows.Forms.Panel
+    Friend WithEvents pbx2Eliminar As System.Windows.Forms.PictureBox
+    Friend WithEvents lbl2Eliminar As System.Windows.Forms.Label
+    Friend WithEvents pnx1Modificar As System.Windows.Forms.Panel
+    Friend WithEvents pbx1Modificar As System.Windows.Forms.PictureBox
+    Friend WithEvents lbl1Modificar As System.Windows.Forms.Label
+    Friend WithEvents pnx0Nuevo As System.Windows.Forms.Panel
+    Friend WithEvents pbx0Nuevo As System.Windows.Forms.PictureBox
+    Friend WithEvents pnlcontenedorF3 As System.Windows.Forms.Panel
+    Friend WithEvents lblTitulo As System.Windows.Forms.Label
+    Friend WithEvents pnlListas As System.Windows.Forms.Panel
+    Friend WithEvents lblListas As System.Windows.Forms.Label
+    Friend WithEvents lblOpciones As System.Windows.Forms.Label
+    Friend WithEvents Office2007BlackTheme1 As Telerik.WinControls.Themes.Office2007BlackTheme
+    Public WithEvents pnlOpciones As System.Windows.Forms.Panel
+    Friend WithEvents pnx5QuitarFiltro As System.Windows.Forms.Panel
+    Friend WithEvents pbx5QuitarFiltro As System.Windows.Forms.PictureBox
+    Friend WithEvents lbl5QuitarFiltro As System.Windows.Forms.Label
+    Friend WithEvents cmbFiltroFecha As System.Windows.Forms.ComboBox
+    Public WithEvents lblFiltroFecha As System.Windows.Forms.Label
+    Public WithEvents lbl0Nuevo As System.Windows.Forms.Label
+End Class
+

@@ -1,0 +1,677 @@
+﻿Imports System.Linq
+Imports System.IO
+Imports System.Data
+Imports System.Data.SqlClient
+Imports Telerik.WinControls
+Imports System.Transactions
+Imports Telerik.WinControls.UI
+Imports System.Data.Objects
+Imports System.Management
+Imports System.Data.Common
+Imports System.Data.EntityClient
+
+Public Class frmClienteEstadoCuenta
+    Dim permiso As New clsPermisoUsuario
+
+
+    Dim cambia As Boolean = False
+    Dim _cliente As Integer
+
+    Public Property cliente() As Integer
+        Get
+            cliente = _cliente
+        End Get
+        Set(ByVal value As Integer)
+            _cliente = value
+        End Set
+    End Property
+
+    Private Sub frmClienteEstadoCuenta_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        mdlPublicVars.fnFormatoGridMovimientos(Me.grdEstado1)
+        mdlPublicVars.fnFormatoGridMovimientos(Me.grdEstado2Ventas)
+        mdlPublicVars.fnFormatoGridMovimientos(Me.grdEstado2Depositos)
+
+        'mdlPublicVars.fnFormatoGridEspeciales(Me.grdEstado1)
+        'mdlPublicVars.fnFormatoGridEspeciales(Me.grdEstado2Ventas)
+        'mdlPublicVars.fnFormatoGridEspeciales(Me.grdEstado2Depositos)
+
+
+        mdlPublicVars.comboActivarFiltro(Me.cmbCliente)
+        'colocar la fecha.
+        Dim fechaServidor As DateTime = CType(mdlPublicVars.fnFecha_horaServidor, DateTime)
+        dtpFechaInicio.Text = fechaServidor.AddMonths(-1)
+        dtpFechaFin.Text = mdlPublicVars.fnFecha_horaServidor
+
+        fnLlenaCombo()
+        Try
+            fnRealizaEstadoCuenta()
+        Catch ex As Exception
+            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+        End Try
+        fnSumarios()
+    End Sub
+
+    ''Funcion utilizada para agregar los sumarios al grid
+    Private Sub fnSumarios()
+        Try
+
+            'Agregamos antes las filas de sumas
+            grdEstado2Ventas.MasterTemplate.ShowTotals = True
+            grdEstado2Depositos.MasterTemplate.ShowTotals = True
+            grdEstado1.MasterTemplate.ShowTotals = True
+
+            Dim summaryId As New GridViewSummaryItem("Fecha", mdlPublicVars.SimboloRecuento + "={0}", GridAggregateFunction.Count)
+            Dim summaryVentas As New GridViewSummaryItem("Ventas", mdlPublicVars.formatoMonedaGridTelerik, GridAggregateFunction.Sum)
+            Dim summarySaldos As New GridViewSummaryItem("Saldo", mdlPublicVars.formatoMonedaGridTelerik, GridAggregateFunction.Sum)
+
+            Dim summaryDepositos As New GridViewSummaryItem("Deposito", mdlPublicVars.formatoMonedaGridTelerik, GridAggregateFunction.Sum)
+            Dim summarySaldo As New GridViewSummaryItem("Saldo", mdlPublicVars.formatoMonedaGridTelerik, GridAggregateFunction.Sum)
+            Dim summaryCodigo As New GridViewSummaryItem("Codigo", mdlPublicVars.SimboloRecuento + "={0}", GridAggregateFunction.Count)
+
+            'agregar la fila de operaciones aritmeticas
+            Dim summaryRowItem As New GridViewSummaryRowItem(New GridViewSummaryItem() {summaryId, summaryVentas, summarySaldo})
+            grdEstado1.SummaryRowsTop.Add(summaryRowItem)
+
+            'grdestado2Ventas 
+            Dim summaryRowItemEstadoVentas2 As New GridViewSummaryRowItem(New GridViewSummaryItem() {summaryCodigo, summaryVentas, summarySaldo})
+            grdEstado2Ventas.SummaryRowsTop.Add(summaryRowItemEstadoVentas2)
+
+            'grdDespositos
+            Dim summaryRowItemEstado2Depositos As New GridViewSummaryRowItem(New GridViewSummaryItem() {summaryCodigo, summaryDepositos})
+            grdEstado2Depositos.SummaryRowsTop.Add(summaryRowItemEstado2Depositos)
+
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub fnRealizaEstadoCuenta()
+        fnLlenarEstado1()
+        fnLlenarEstado2()
+        grdEstado1.PerformLayout()
+        grdEstado1.ResumeLayout()
+        grdEstado2Depositos.PerformLayout()
+        grdEstado2Ventas.PerformLayout()
+
+
+    End Sub
+
+    'Funcion que se utiliza para llenar el combo de cliente
+    Private Sub fnLlenaCombo()
+        Try
+            Dim consulta = (From x In ctx.tblClientes Select Codigo = x.idCliente, Nombre = x.Negocio)
+
+            With Me.cmbCliente
+                .DataSource = Nothing
+                .ValueMember = "Codigo"
+                .DisplayMember = "Nombre"
+                .DataSource = consulta
+            End With
+
+            If cliente > 0 Then
+                cmbCliente.SelectedValue = cliente
+                Dim infoCliente As tblCliente = (From x In ctx.tblClientes.AsEnumerable Where x.idCliente = cliente Select x).FirstOrDefault
+                lblClave.Text = infoCliente.clave
+                lblDiasCredito.Text = infoCliente.diasCredito
+                lblLimiteCredito.Text = Format(infoCliente.limiteCredito, mdlPublicVars.formatoMoneda)
+            End If
+            cambia = True
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'Llena el grid del estado de cuenta 1
+    Private Sub fnLlenarEstado1()
+        'conexion nueva.
+        Dim conexion As New dsi_pos_demoEntities
+
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+
+            Try
+
+                grdEstado1.Rows.Clear()
+                Dim fechaInicial As DateTime = dtpFechaInicio.Text + " 00:00:00"
+                Dim fechafinal As DateTime = dtpFechaFin.Text + " 23:59:59"
+
+                'Obtenemos el saldo Inicial
+                Dim saldoInicial = conexion.sp_saldoInicial(cliente, fechaInicial)
+                For Each s As sp_saldoInicial_Result In saldoInicial
+                    lblSaldoInicialEstado1.Text = Format(s.SaldoInicial, mdlPublicVars.formatoMoneda)
+                    'lblTransitoInicial.Text = Format(s.SaldoInicial, mdlPublicVars.formatoMoneda)
+                Next
+
+                'Obtenemos el saldo pendiente
+                Dim saldoPendiente = conexion.sp_SaldoPendiente(cliente)
+                For Each s As sp_SaldoPendiente_Result In saldoPendiente
+                    lblSaldoVencido.Text = Format(s.SaldoVencido, mdlPublicVars.formatoMoneda)
+                    lblSaldoVencido2.Text = lblSaldoVencido.Text
+                Next
+
+                Dim pagos As Double
+                Try
+                    'Pagos en Transito
+                    pagos = (From c In conexion.tblCajas Where c.cliente = cliente And c.transito = True And c.confirmado = False _
+                                          And c.anulado = False Select c.monto).Sum
+                Catch ex As Exception
+                    'RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+                    pagos = 0
+                End Try
+
+                'lblPagoTransito1.Text = Format(pagos, mdlPublicVars.formatoMoneda)
+                lblPagoTransitoEstado1.Text = Format(pagos, mdlPublicVars.formatoMoneda)
+                lblPagoTransitoEstado2.Text = Format(pagos, mdlPublicVars.formatoMoneda)
+
+                'Llenar el grid de estado 1
+                Dim lFilas As List(Of sp_estadoCuentaCliente_Result) = conexion.sp_estadoCuentaCliente("", cliente, fechaInicial, fechafinal, mdlPublicVars.idEmpresa).ToList
+
+                For Each fila As sp_estadoCuentaCliente_Result In lFilas
+                    Dim registro As Object()
+                    registro = {fila.Codigo, Format(fila.Fecha, mdlPublicVars.formatoFecha), If(fila.Clasificacion IsNot Nothing, fila.Clasificacion, ""),
+                                fila.Tipo, fila.Documento, Format(fila.Ventas, mdlPublicVars.formatoMoneda), Format(fila.Deposito, mdlPublicVars.formatoMoneda),
+                                Format(fila.Saldo, mdlPublicVars.formatoMoneda), fila.EstadoCuenta}
+                    Me.grdEstado1.Rows.Add(registro)
+                Next
+            Catch ex As Exception
+                'RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+            End Try
+            conn.Close()
+        End Using
+
+        fnEstableceFinal_Estado1()
+    End Sub
+
+    'Establece el saldo inicial en el estado de cuenta 1
+    'Private Sub fnEstableceInicial_Estado1()
+    '    'conexion nueva.
+    '    Dim conexion As New dsi_pos_demoEntities
+
+    '    Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+    '        conn.Open()
+    '        conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+
+    '        Try
+    '            Dim fechaInicial As DateTime = dtpFechaInicio.Text + " 00:00:00"
+    '            'Realizamos la consulta para saber las ventas y pagos anteriores
+    '            Dim totalVentas As Decimal = 0
+
+    '            Try
+    '                '
+    '                totalVentas = (From x In conexion.tblFacturas Join y In conexion.tblSalida_Factura On x.IdFactura Equals y.factura _
+    '                          Where (x.anulado = False And y.tblSalida.idCliente = cliente And x.Fecha < fechaInicial) _
+    '                         Group By Ventas = x.Monto _
+    '                          Into Total = Sum(x.Monto) _
+    '                          Select Ventas).Sum
+
+    '            Catch ex As Exception
+    '                totalVentas = 0
+    '            End Try
+
+    '            Dim totalDepositos As Decimal
+    '            Try
+    '                totalDepositos = (From z In conexion.tblCajas Where z.cliente = cliente And z.anulado = False And z.fecha < fechaInicial _
+    '                                   Select z.monto).Sum
+
+    '            Catch ex As Exception
+    '                totalDepositos = 0
+    '            End Try
+
+    '            Dim totalDevoluciones As Decimal
+    '            Try
+    '                totalDevoluciones = (From x In conexion.tblDevolucionClientes Where x.cliente = cliente And x.acreditado = True _
+    '                                     And x.anulado = False And x.fechaTransaccion < fechaInicial _
+    '                                     Select x.monto).Sum
+    '            Catch ex As Exception
+    '                totalDevoluciones = 0
+    '            End Try
+
+    '            Dim saldoInicial = totalVentas - totalDepositos - totalDevoluciones
+    '            lblInicial1.Text = Format(saldoInicial, mdlPublicVars.formatoMoneda)
+    '        Catch ex As Exception
+    '        End Try
+
+    '        conn.Close()
+    '    End Using
+
+    'End Sub
+
+    'Establece el saldo final en el estado de cuenta 1
+
+    Private Sub fnEstableceFinal_Estado1()
+        Try
+            lblFinalEstado1Tran.Text = Format(CType(Me.grdEstado1.Rows(Me.grdEstado1.RowCount - 1).Cells("Saldo").Value, Decimal), mdlPublicVars.formatoMoneda)
+            If lblFinalEstado1Tran.Text.StartsWith("-") Then
+                lblSaldoFinalTransitoEstado1.Text = (-1 * Replace(lblFinalEstado1Tran.Text, "-Q", "")) - Replace(lblPagoTransitoEstado1.Text, "Q", "")
+            Else
+                lblSaldoFinalTransitoEstado1.Text = Replace(lblFinalEstado1Tran.Text, "Q", "") - Replace(lblPagoTransitoEstado1.Text, "Q", "")
+            End If
+        Catch ex As Exception
+            lblFinalEstado1Tran.Text = Format(CType(0, Decimal), mdlPublicVars.formatoMoneda)
+        End Try
+    End Sub
+
+    'Llena el grid del estado de cuenta 2
+    Private Sub fnLlenarEstado2()
+        'conexion nueva.
+        Dim conexion As New dsi_pos_demoEntities
+
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+
+            Try
+                Dim fechaInicial As DateTime = dtpFechaInicio.Text + " 00:00:00"
+                Dim fechaFinal As DateTime = dtpFechaFin.Text + " 23:59:59"
+                Dim fechaServer As DateTime = mdlPublicVars.fnFechaServidor
+                grdEstado2Ventas.DataSource = Nothing
+                grdEstado2Depositos.DataSource = Nothing
+
+                'Llenar el grid de estado 1 Ventas 
+
+                'Dim consulta = (From x In conexion.tblFacturas
+                '                Join df In conexion.tblSalidaDetalle_Factura On x.IdFactura Equals df.idFactura
+                '                Join d In conexion.tblSalidaDetalles On d.idSalidaDetalle Equals df.idSalidaDetalle
+                '                Join y In conexion.tblSalidas On y.idSalida Equals d.idSalida _
+                '               Where (d.anulado = False And y.anulado = False And d.kitSalidaDetalle Is Nothing _
+                '                      And y.idCliente = cliente And y.fechaDespachado >= fechaInicial And y.fechaDespachado <= fechaFinal) _
+                '               Group By Codigo = y.idSalida, Fecha = y.fechaDespachado, Documento = If(y.documento.Length > 0, y.documento + " ", " ") _
+                '               Into Ventas = Sum(d.cantidad * d.precio) _
+                '               Order By Fecha Ascending _
+                '               Select Codigo, Fecha, Tipo = "Venta", Documento, Ventas)
+
+                Dim consulta = (From s In conexion.tblSalidas
+                               Join d In conexion.tblSalidaDetalles On s.idSalida Equals d.idSalida
+                                Where (s.anulado = False And s.facturado = True And d.anulado = False And d.kitSalidaDetalle Is Nothing _
+                                     And s.idCliente = cliente And s.fechaDespachado >= fechaInicial And s.fechaDespachado <= fechaFinal) _
+                              Group By Codigo = s.idSalida, Fecha = s.fechaDespachado, Documento = If(s.documento.Length > 0, s.documento + " ", " "), _
+                              EstadoCuenta = If(s.total <= 0, 0, If(EntityFunctions.AddDays(s.fechaDespachado, s.tblCliente.diasCredito) < fechaServer And s.saldo > 0, 3, If(s.pagado > 0 And s.saldo > 0, 1, If(s.pagado = 0 And s.saldo > 0, 2, 0)))), _
+                              Pagado = s.pagado, Devoluciones = s.devoluciones, Saldo = s.saldo _
+                              Into Ventas = Sum(d.cantidad * d.precio) _
+                              Order By Fecha Ascending _
+                              Select Codigo, Fecha, Tipo = "Venta", Documento, Ventas, EstadoCuenta, Pagado, Devoluciones, Saldo)
+
+                Dim consulta2 = (From z In conexion.tblCajas Where z.cliente = cliente And z.anulado = False And z.confirmado = True And z.fecha >= fechaInicial And z.fecha <= fechaFinal _
+                               Select Codigo = z.codigo, Fecha = z.fecha, Tipo = z.tblTipoPago.nombre, Documento = z.documento, Deposito = z.monto Order By Fecha Ascending).Union( _
+                               From x In conexion.tblDevolucionClientes Where x.cliente = cliente And x.acreditado = True And x.anulado = False And x.fechaRegistro >= fechaInicial And x.fechaRegistro <= fechaFinal _
+                               Select Codigo = x.codigo, Fecha = x.fechaRegistro, Tipo = If(x.bitFactura = True, "Devolucion Por Factura", If(x.bitFacturaVarios, "Devolucion por Varios", "")), _
+                               Documento = x.documento, Deposito = x.monto Order By Fecha)
+
+
+                Me.grdEstado2Ventas.DataSource = mdlPublicVars.EntitiToDataTable(consulta)
+                Me.grdEstado2Depositos.DataSource = mdlPublicVars.EntitiToDataTable(consulta2)
+
+                fnConfiguracion()
+                'grdEstado2Ventas.PerformLayout()
+                'grdEstado2Depositos.PerformLayout()
+                fnEstableceSaldoPeriodo()
+                fnEstableceResultados()
+            Catch ex As Exception
+            End Try
+            conn.Close()
+        End Using
+
+    End Sub
+
+    'Configura los grid's
+    Private Sub fnConfiguracion()
+        Try
+
+            If Me.grdEstado1.Rows.Count > 0 Then
+                mdlPublicVars.fnGridTelerik_formatoFecha(Me.grdEstado1, "Fecha")
+                mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdEstado1, "Ventas")
+                mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdEstado1, "Deposito")
+                mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdEstado1, "Saldo")
+
+                Me.grdEstado1.Columns(0).TextAlignment = ContentAlignment.MiddleCenter
+                Me.grdEstado1.Columns(1).TextAlignment = ContentAlignment.MiddleCenter
+                Me.grdEstado1.Columns(2).TextAlignment = ContentAlignment.MiddleCenter
+
+                'Codigo,Fecha,Tipo,Documento,Ventas,Deposito,Saldo 
+                Me.grdEstado1.Columns("Codigo").IsVisible = False
+                Me.grdEstado1.Columns("EstadoCuenta").IsVisible = False
+                Me.grdEstado1.Columns("Fecha").Width = 60
+                Me.grdEstado1.Columns("Clasificacion").Width = 115
+                Me.grdEstado1.Columns("Tipo").Width = 150
+                Me.grdEstado1.Columns("Documento").Width = 80
+                Me.grdEstado1.Columns("Ventas").Width = 70
+                Me.grdEstado1.Columns("Deposito").Width = 70
+                Me.grdEstado1.Columns("Saldo").Width = 70
+
+
+            End If
+
+            If Me.grdEstado2Ventas.ColumnCount > 0 Then
+                mdlPublicVars.fnGridTelerik_formatoFecha(Me.grdEstado2Ventas, "Fecha")
+                mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdEstado2Ventas, "Ventas")
+                mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdEstado2Ventas, "Pagado")
+                mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdEstado2Ventas, "Devoluciones")
+                mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdEstado2Ventas, "Saldo")
+                Me.grdEstado2Ventas.Columns("EstadoCuenta").IsVisible = False
+                Me.grdEstado2Ventas.Columns("Pagado").IsVisible = False
+                Me.grdEstado2Ventas.Columns("Devoluciones").IsVisible = False
+                Me.grdEstado2Ventas.Columns(0).TextAlignment = ContentAlignment.MiddleCenter
+                Me.grdEstado2Ventas.Columns(1).TextAlignment = ContentAlignment.MiddleCenter
+                Me.grdEstado2Ventas.Columns(2).TextAlignment = ContentAlignment.MiddleCenter
+
+
+            End If
+
+            If Me.grdEstado2Depositos.ColumnCount > 0 Then
+                mdlPublicVars.fnGridTelerik_formatoFecha(Me.grdEstado2Depositos, "Fecha")
+                mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdEstado2Depositos, "Deposito")
+                'Codigo , Fecha , Tipo  , Documento , Deposito
+                Me.grdEstado2Depositos.Columns("Codigo").Width = 40
+                Me.grdEstado2Depositos.Columns("Fecha").Width = 60
+                Me.grdEstado2Depositos.Columns("Tipo").Width = 120
+                Me.grdEstado2Depositos.Columns("Documento").Width = 60
+                Me.grdEstado2Depositos.Columns("Deposito").Width = 70
+                Me.grdEstado2Depositos.Columns(0).TextAlignment = ContentAlignment.MiddleCenter
+                Me.grdEstado2Depositos.Columns(1).TextAlignment = ContentAlignment.MiddleCenter
+                Me.grdEstado2Depositos.Columns(2).TextAlignment = ContentAlignment.MiddleCenter
+            End If
+
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    'Establece los resultados del periodo en estaco de cuenta 2
+    Private Sub fnEstableceSaldoPeriodo()
+        Try
+            'Declaramos las variables de resultados
+            Dim ventas As Decimal = 0
+            Dim depositos As Decimal = 0
+            Dim saldo As Decimal = 0
+
+            Dim index
+            For index = 0 To Me.grdEstado2Ventas.Rows.Count - 1
+                Dim monto As Decimal = CType(Me.grdEstado2Ventas.Rows(index).Cells("Ventas").Value, Decimal)
+                ventas += monto
+            Next
+
+            For index = 0 To Me.grdEstado2Depositos.Rows.Count - 1
+                Dim monto As Decimal = CType(Me.grdEstado2Depositos.Rows(index).Cells("Deposito").Value, Decimal)
+                depositos += monto
+            Next
+
+            saldo = ventas - depositos
+            lblVentas.Text = Format(ventas, mdlPublicVars.formatoMoneda)
+            lblDepositos.Text = Format(depositos, mdlPublicVars.formatoMoneda)
+            lblSaldo.Text = Format(saldo, mdlPublicVars.formatoMoneda)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'Establece los resultados finales en el estado de cuenta 2
+    Private Sub fnEstableceResultados()
+        Try
+            lblSaldoAnterior.Text = lblSaldoInicialEstado1.Text
+
+            lblSaldoPeriodo.Text = lblSaldo.Text
+            lblSaldoFinal.Text = Format(CDec(lblSaldoAnterior.Text) + CDec(lblSaldoPeriodo.Text), mdlPublicVars.formatoMoneda)
+
+            lblFinalEstado1Tran.Text = lblSaldoFinal.Text
+
+            Dim saldoFinalEstado1Transito As Double = 0
+
+            'obtener saldo final estado1 en transito negativo y positivo.
+            If lblFinalEstado1Tran.Text.StartsWith("-") Then
+                saldoFinalEstado1Transito = Replace(lblFinalEstado1Tran.Text, "-Q", "") * -1
+            Else
+                saldoFinalEstado1Transito = Replace(lblFinalEstado1Tran.Text, "Q", "")
+            End If
+
+            'obtener pagos transito estado 1
+            Dim pagosTransitoEstado1 As Double = 0
+            If lblPagoTransitoEstado1.Text.StartsWith("-") Then
+                pagosTransitoEstado1 = CDec(Replace(lblPagoTransitoEstado1.Text, "-Q", "")) * -1
+            Else
+                pagosTransitoEstado1 = Replace(lblPagoTransitoEstado1.Text, "Q", "")
+            End If
+
+
+            'asignar resultado de operaciones.
+            lblSaldoFinalTransitoEstado1.Text = Format(saldoFinalEstado1Transito - pagosTransitoEstado1, mdlPublicVars.formatoMoneda)
+            lblSaldoFinalEstado1.Text = lblFinalEstado1Tran.Text
+
+            Dim saldoFinal As Double = 0
+            Dim pagostransitoEstado2 As Double = 0
+
+            If lblSaldoFinal.Text.StartsWith("-") Then
+                saldoFinal = CDec(Replace(lblSaldoFinal.Text, "-Q", "")) * -1
+            Else
+                saldoFinal = CDec(Replace(lblSaldoFinal.Text, "-Q", ""))
+            End If
+
+            If lblPagoTransitoEstado2.Text.StartsWith("-") Then
+                pagostransitoEstado2 = CDec(Replace(lblPagoTransitoEstado2.Text, "-Q", "")) * -1
+            Else
+                pagostransitoEstado2 = CDec(Replace(lblPagoTransitoEstado2.Text, "Q", ""))
+            End If
+
+            'Estado 2
+            lblSaldoTransitoEstado2.Text = Format(saldoFinal - pagostransitoEstado2, mdlPublicVars.formatoMoneda)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+    Private Sub cmbCliente_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbCliente.SelectedIndexChanged
+        'conexion nueva.
+        Dim conexion As New dsi_pos_demoEntities
+
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+
+            Try
+                If cambia = True And CInt(cmbCliente.SelectedValue) > 0 Then
+                    cliente = CType(cmbCliente.SelectedValue, Integer)
+                    Dim infoCliente As tblCliente = (From x In ctx.tblClientes.AsEnumerable Where x.idCliente = cliente Select x).FirstOrDefault
+                    lblClave.Text = infoCliente.clave
+                    lblDiasCredito.Text = infoCliente.diasCredito
+                    lblLimiteCredito.Text = Format(infoCliente.limiteCredito, mdlPublicVars.formatoMoneda)
+
+                End If
+            Catch ex As Exception
+            End Try
+            conn.Close()
+        End Using
+
+    End Sub
+
+
+
+    Private Sub grdEstado2Ventas_CellDoubleClick(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs) Handles grdEstado2Ventas.CellDoubleClick
+        Try
+
+            Dim codigo As Integer = e.Row.Cells("Codigo").Value
+            frmPedidoConcepto.Text = "Pedidos"
+            frmPedidoConcepto.codigo = codigo
+            frmPedidoConcepto.WindowState = FormWindowState.Normal
+            frmPedidoConcepto.StartPosition = FormStartPosition.CenterParent
+            frmPedidoConcepto.ShowDialog()
+            frmPedidoConcepto.Dispose()
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub grdEstado1_CellDoubleClick(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs) Handles grdEstado1.CellDoubleClick
+        Try
+            Dim tipo As String = e.Row.Cells("Tipo").Value
+            Dim codigo As Integer = e.Row.Cells("Codigo").Value
+
+
+            If tipo = "Venta" Then
+                frmPedidoConcepto.Text = "Pedidos"
+                frmPedidoConcepto.codigo = codigo
+                frmPedidoConcepto.WindowState = FormWindowState.Normal
+                frmPedidoConcepto.StartPosition = FormStartPosition.CenterScreen
+                frmPedidoConcepto.ShowDialog()
+                frmPedidoConcepto.Dispose()
+
+            ElseIf tipo = "Devolucion Por Factura" Or tipo = "Devolucion por Varios" Then
+                frmClienteDevolucion.Text = "Devolución de Cliente"
+                frmClienteDevolucion.bitModificar = True
+                frmClienteDevolucion.verRegistro = True
+                frmClienteDevolucion.WindowState = FormWindowState.Normal
+                frmClienteDevolucion.StartPosition = FormStartPosition.CenterScreen
+                frmClienteDevolucion.codigoReclamo = codigo
+                frmClienteDevolucion.ShowDialog()
+                frmClienteDevolucion.Dispose()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub grdEstado2Depositos_CellDoubleClick(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs) Handles grdEstado2Depositos.CellDoubleClick
+        Try
+            Dim tipo As String = e.Row.Cells("Tipo").Value
+            Dim codigo As Integer = e.Row.Cells("Codigo").Value
+            If tipo = "Devolucion Por Factura" Or tipo = "Devolucion por Varios" Then
+                frmClienteDevolucion.Text = "Devolución de Cliente"
+                frmClienteDevolucion.bitModificar = True
+                frmClienteDevolucion.verRegistro = True
+                frmClienteDevolucion.WindowState = FormWindowState.Normal
+                frmClienteDevolucion.StartPosition = FormStartPosition.CenterScreen
+                frmClienteDevolucion.codigoReclamo = codigo
+                frmClienteDevolucion.ShowDialog()
+                frmClienteDevolucion.Dispose()
+            ElseIf tipo = "Deposito" Then
+                'Obtenemos el codigo del pago
+                frmVerPago.Text = "Pago No.: " & codigo
+                frmVerPago.codigo = codigo
+                frmVerPago.StartPosition = FormStartPosition.CenterScreen
+                frmVerPago.ShowDialog()
+                frmVerPago.Dispose()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'PAGOS TRANSITO
+    Private Sub fnPagosTransito() Handles Me.panel0
+        Try
+            If cmbCliente.SelectedValue > 0 Then
+                frmPagosTranstio.Text = "Pagos Transito"
+                frmPagosTranstio.codigoCliente = cmbCliente.SelectedValue
+                frmPagosTranstio.StartPosition = FormStartPosition.CenterScreen
+                frmPagosTranstio.ShowDialog()
+                frmPagosTranstio.Dispose()
+            Else
+                alerta.contenido = "Seleccione un cliente"
+                alerta.fnErrorContenido()
+
+            End If
+        Catch ex As Exception
+            alerta.fnError()
+        End Try
+    End Sub
+
+    'REPORTE
+    Public Function fnReporte() Handles Me.panel1
+        Dim r As New clsReporte
+        Try
+            If rpvEstados.SelectedPage.Name = "pgEstado1" Then
+                r.reporte = "rptEstadoCuentaCliente1.rpt"
+                r.tabla = EntitiToDataTable(From x In ctx.sp_reporteEstadoCuentaCliente1("", cliente, dtpFechaInicio.Text, dtpFechaFin.Text & " 23:59:59", mdlPublicVars.idEmpresa))
+            ElseIf rpvEstados.SelectedPage.Name = "pgEstado2" Then
+                r.reporte = "rptEstadoCuentaCliente2.rpt"
+                r.tabla = EntitiToDataTable(From x In ctx.sp_reporteEstadoCuentaCliente2("", cliente, dtpFechaInicio.Text, dtpFechaFin.Text & " 23:59:59", mdlPublicVars.idEmpresa))
+            End If
+            r.nombreParametro = "filtro"
+            r.parametro = "Filtro del reporte:  "
+
+            frmDocumentosSalida.txtTitulo.Text = "Estado de Cuenta de " & dtpFechaInicio.Text & " Hasta " & dtpFechaFin.Text
+            frmDocumentosSalida.Text = "Docs. de Salida"
+            frmDocumentosSalida.bitCliente = True
+            frmDocumentosSalida.codigo = cliente
+            frmDocumentosSalida.reporteBase = r.DocumentoReporte()
+            permiso.PermisoFrmEspeciales(frmDocumentosSalida, False)
+
+        Catch ex As Exception
+            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+        End Try
+
+        Return 0
+    End Function
+
+    'SALIR
+    Private Sub fnSalir() Handles Me.panel3
+        Me.Close()
+    End Sub
+
+    'agregar boleta a cliente.
+    Private Sub fnBoleta() Handles Me.panel2
+        Try
+            If cmbCliente.SelectedValue > 0 Then
+
+                frmClienteBoleta.Text = "Agregar Boleta"
+                frmClienteBoleta.cliente = cmbCliente.SelectedValue
+                frmClienteBoleta.ShowDialog()
+                frmClienteBoleta.Dispose()
+
+                alerta.contenido = "Seleccione un cliente"
+                alerta.fnErrorContenido()
+            End If
+        Catch ex As Exception
+            alerta.fnError()
+        End Try
+    End Sub
+
+    Private Sub btnInfoCliente_Click(sender As System.Object, e As System.EventArgs) Handles btnInfoCliente.Click
+        fnRealizaEstadoCuenta()
+    End Sub
+
+    'Formato para las ventas
+    Private Sub grdEstado1_CellFormatting(sender As Object, e As CellFormattingEventArgs) Handles grdEstado1.CellFormatting
+        Try
+            If e.CellElement.RowInfo.Cells("EstadoCuenta").Value = 1 Then
+                mdlPublicVars.GridColor_fila(e, Color.Goldenrod)
+                'mdlPublicVars.GridColor_fila(e, Color.YellowGreen)
+            ElseIf e.CellElement.RowInfo.Cells("EstadoCuenta").Value = 2 Then
+                mdlPublicVars.GridColor_fila(e, Color.FromArgb(251, 105, 0))
+                'mdlPublicVars.GridColor_fila(e, Color.DarkOrange)
+            ElseIf e.CellElement.RowInfo.Cells("EstadoCuenta").Value = 3 Then
+                mdlPublicVars.GridColor_fila(e, Color.FromArgb(198, 24, 0))
+                'mdlPublicVars.GridColor_fila(e, Color.DarkRed)
+            Else
+                mdlPublicVars.GridColor_fila(e, Color.Black)
+            End If
+        Catch ex As Exception
+            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub grdEstado2_CellFormatting(sender As Object, e As CellFormattingEventArgs) Handles grdEstado2Ventas.CellFormatting
+        Try
+            'Rojo rgb(198, 24, 0)
+            'Naranja rgb(251, 105, 0)
+            'Amarillo rgb(255, 207, 0)
+
+            If e.CellElement.RowInfo.Cells("EstadoCuenta").Value = 1 Then
+                mdlPublicVars.GridColor_fila(e, Color.Goldenrod)
+                'mdlPublicVars.GridColor_fila(e, Color.YellowGreen)
+            ElseIf e.CellElement.RowInfo.Cells("EstadoCuenta").Value = 2 Then
+                mdlPublicVars.GridColor_fila(e, Color.FromArgb(251, 105, 0))
+                'mdlPublicVars.GridColor_fila(e, Color.DarkOrange)
+            ElseIf e.CellElement.RowInfo.Cells("EstadoCuenta").Value = 3 Then
+                mdlPublicVars.GridColor_fila(e, Color.FromArgb(198, 24, 0))
+                'mdlPublicVars.GridColor_fila(e, Color.DarkRed)
+            Else
+                mdlPublicVars.GridColor_fila(e, Color.Black)
+            End If
+        Catch ex As Exception
+            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+        End Try
+    End Sub
+
+End Class

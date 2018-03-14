@@ -1,0 +1,223 @@
+﻿Imports System.Transactions
+Imports System.Linq
+Imports Telerik.WinControls
+
+Public Class frmComprasBarraDerecha
+    Public alerta As New bl_Alertas
+    Private permiso As New clsPermisoUsuario
+
+    Private Sub frmComprasBarraDerecha_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        izquierda = False
+        derecha = True
+        fnAjustarTamano()
+        pnl4.Focus()
+    End Sub
+
+    'CONFIRMAR PREFORMA
+    Private Sub fnPanel1() Handles Me.panel1
+        Try
+            'Obtenemos el encabezado de la compra
+            Dim compra As tblEntrada = (From x In ctx.tblEntradas Where x.idEntrada = mdlPublicVars.superSearchId _
+                                        Select x).FirstOrDefault
+
+            If compra.anulado = True Then
+                alerta.contenido = "La compra ya a sido anulada"
+                alerta.fnErrorContenido()
+            ElseIf compra.compra = True Then
+                alerta.contenido = "La compra ya ha sido confirmada"
+                alerta.fnErrorContenido()
+            ElseIf compra.preforma = True And compra.transito = False Then
+                If RadMessageBox.Show("¿Desea pasar la PREFORMA a COMPRA?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    frmEntrada.Text = "Compras"
+                    frmEntrada.MdiParent = frmMenuPrincipal
+                    frmEntrada.codigo = compra.idEntrada
+                    frmEntrada.bitPreformaToEntrada = True
+                    frmEntrada.bitEditarEntrada = True
+                    permiso.PermisoFrmEspeciales(frmEntrada, True)
+                End If
+            End If
+            Me.Hide()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    'GUIAS
+    Private Sub fnPanel2() Handles Me.panel2
+        Try
+            If mdlPublicVars.superSearchFilasGrid > 0 Then
+                Dim codigo As Integer = mdlPublicVars.superSearchId
+                frmComprasGuia.Text = "Guias"
+                frmComprasGuia.Codigo = codigo
+                frmComprasGuia.StartPosition = FormStartPosition.CenterScreen
+                permiso.PermisoFrmEspeciales(frmComprasGuia, False)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+     
+    'PENDIENTES
+    Private Sub fnPanel3() Handles Me.panel3
+        Try
+            frmComprasPendientesConceptos.Text = "Pendientes por Recibir"
+            frmComprasPendientesConceptos.codEntrada = mdlPublicVars.superSearchId
+            frmComprasPendientesConceptos.StartPosition = FormStartPosition.CenterScreen
+            frmComprasPendientesConceptos.WindowState = FormWindowState.Normal
+            permiso.PermisoDialogEspeciales(frmComprasPendientesConceptos)
+            frmComprasPendientesConceptos.Dispose()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    'DEVOLUCIONES
+    Private Sub fnPanel4() Handles Me.panel4
+        Try
+            frmComprasDevolucionesConceptos.Text = "Devoluciones"
+            frmComprasDevolucionesConceptos.codEntrada = mdlPublicVars.superSearchId
+            frmComprasDevolucionesConceptos.StartPosition = FormStartPosition.CenterScreen
+            frmComprasDevolucionesConceptos.WindowState = FormWindowState.Normal
+            permiso.PermisoDialogEspeciales(frmComprasDevolucionesConceptos)
+            frmComprasDevolucionesConceptos.Dispose()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    'AJUSTES
+    Private Sub fnPanel5() Handles Me.panel5
+        Try
+            frmComprasAjustesConceptos.Text = "Ajustes"
+            frmComprasAjustesConceptos.codEntrada = mdlPublicVars.superSearchId
+            permiso.PermisoDialogEspeciales(frmComprasAjustesConceptos)
+            frmComprasAjustesConceptos.Dispose()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    'Funcion utilizada para pasar una preforma a compra
+    Private Sub fnPreformaToCompra(ByVal codigo As Integer)
+        Dim fechaServidor As DateTime = fnFecha_horaServidor()
+        Dim hora As String = mdlPublicVars.fnHoraServidor
+        Dim success As Boolean = True
+        Dim contado As Boolean = False
+        Dim codigoProveedor As Integer = 0
+        '-------------------Creamos el encabezado de la compra------------'
+        Using transaction As New TransactionScope
+            Try
+                'Obtenemos el registro de la compra
+                Dim compra As tblEntrada = (From x In ctx.tblEntradas Where x.idEntrada = codigo _
+                                            Select x).FirstOrDefault
+
+                compra.compra = True
+                compra.fechaCompra = fechaServidor
+                compra.usuarioCompra = mdlPublicVars.idUsuario
+
+                ctx.SaveChanges()
+
+                'Obtenemos el detalle de  nuestra compra
+                Dim lDetalles As List(Of tblEntradasDetalle) = (From x In ctx.tblEntradasDetalles Where x.idEntrada = codigo _
+                                                                Select x).ToList
+
+
+                Dim detalle As tblEntradasDetalle
+
+                'Recorremos la lista de detalles
+                For Each detalle In lDetalles
+                    'Aumentos las existencias, y entradas en el inventario
+                    Dim inventario As tblInventario = (From x In ctx.tblInventarios Where x.idArticulo = detalle.idArticulo And x.tblArticulo.empresa = mdlPublicVars.idEmpresa _
+                                                       And x.idTipoInventario = compra.idtipoInventario And x.IdAlmacen = compra.idalmacen _
+                                                       Select x).FirstOrDefault
+
+                    Dim producto As tblArticulo = (From x In ctx.tblArticuloes Where x.idArticulo = detalle.idArticulo).First
+
+                    Dim precios As Double = 0
+
+                    If inventario IsNot Nothing Then
+                        precios = (producto.costoIVA * inventario.saldo) + (detalle.costoIVA * detalle.cantidad)
+                        producto.costoIVA = precios / (inventario.saldo + detalle.cantidad)
+                        producto.costoSinIVA = producto.costoIVA / (1 + (mdlPublicVars.General_IVA / 100))
+                    Else
+                        precios = (detalle.costoIVA * detalle.cantidad)
+                        producto.costoIVA = precios / detalle.cantidad
+                        producto.costoSinIVA = producto.costoIVA / (1 + (mdlPublicVars.General_IVA / 100))
+                    End If
+
+                    ctx.SaveChanges()
+
+                    If inventario Is Nothing Then
+                        'crear el registro en inventario.
+                        Dim inveNuevo As New tblInventario
+
+                        inveNuevo.idInventario = compra.idtipoInventario
+                        inveNuevo.IdAlmacen = compra.idalmacen
+                        inveNuevo.entrada = detalle.cantidad
+                        inveNuevo.saldo = detalle.cantidad
+                        inveNuevo.salida = 0
+                        ctx.AddTotblInventarios(inveNuevo)
+                        ctx.SaveChanges()
+                    Else
+                        'Aumentamos entradas
+                        inventario.entrada = inventario.entrada + detalle.cantidad
+                        'Aumentamos saldo
+                        inventario.saldo = inventario.saldo + detalle.cantidad
+                        ctx.SaveChanges()
+                    End If
+                Next
+
+                'Si la compra fue al credito generamos cuenta por cobrar
+                If compra.contado Then
+                    contado = True
+                    codigoProveedor = compra.idProveedor
+                End If
+
+                'Aumentamos el saldo del proveedor y establecemos la ultima compra
+                Dim proveedor As tblProveedor = (From x In ctx.tblProveedors Where x.idProveedor = compra.idProveedor Select x).FirstOrDefault
+
+                If proveedor.saldoActual Is Nothing Then
+                    proveedor.saldoActual = compra.total
+                Else
+                    proveedor.saldoActual += compra.total
+                End If
+                proveedor.ultimaCompra = compra.fechaCompra
+
+                ctx.SaveChanges()
+                'paso 8, completar la transaccion.
+                transaction.Complete()
+            Catch ex As System.Data.EntityException
+                success = False
+            Catch ex As Exception
+                ' Handle errors and deadlocks here and retry if needed. 
+                ' Allow an UpdateException to pass through and 
+                ' retry, otherwise stop the execution. 
+                If ex.[GetType]() <> GetType(UpdateException) Then
+                    success = False
+                    Console.WriteLine(("An error occured. " & "The operation cannot be retried.") + ex.Message)
+                    alerta.fnErrorGuardar()
+                    Exit Try
+                    ' If we get to this point, the operation will be retried. 
+                End If
+            End Try
+        End Using
+
+        If success = True Then
+            ctx.AcceptAllChanges()
+            alerta.contenido = "Registro guardado correctamente"
+            alerta.fnGuardar()
+            If contado = True Then
+                If RadMessageBox.Show("Desea realizar un pago al proveedor", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = vbYes Then
+                    Dim prov As tblProveedor = (From x In ctx.tblProveedors Where x.idProveedor = codigoProveedor Select x).FirstOrDefault
+                    frmPagoNuevo.Text = "Pagos"
+                    frmPagoNuevo.bitProveedor = True
+                    frmPagoNuevo.codigoCP = prov.idProveedor
+                    frmPagoNuevo.lblSaldo.Text = prov.saldoActual
+                    frmPagoNuevo.StartPosition = FormStartPosition.CenterScreen
+                    permiso.PermisoFrmEspeciales(frmPagoNuevo, False)
+                End If
+
+            End If
+        Else
+            alerta.fnErrorGuardar()
+            Console.WriteLine("La operacion no pudo ser completada")
+        End If
+    End Sub
+
+End Class

@@ -1,0 +1,125 @@
+﻿Option Strict On
+
+Imports System.Linq
+Imports System.Data
+Imports Telerik.WinControls
+Imports System.Transactions
+Imports Telerik.WinControls.UI
+Imports System.Data.EntityClient
+
+Public Class frmDespachoFacturaLista
+
+#Region "Eventos"
+    'LOAD
+    Private Sub frmDespachoFacturaLista_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim iz As New frmVentaPequeniaBarraIzquierda
+        iz.frmAnterior = Me
+        frmBarraLateralBaseIzquierda = iz
+        ActivarBarraLateral = True
+
+        frmBarraLateralBaseDerecha = frmDespachoFacturaBarraDerecha
+        lbl0Nuevo.Text = "Nueva " & vbCrLf & " Asignacion"
+        Me.grdDatos.Font = New System.Drawing.Font("Arial", 7, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        fnLlenarLista()
+    End Sub
+
+    'LLENAR LISTA
+    Private Sub fnLlenarLista() Handles Me.llenarLista
+        fnLlenarGrid()
+    End Sub
+
+    'NUEVO REGISTRO ( Se realiza una nueva asignacion)
+    Private Sub fnNuevoRegistro() Handles Me.nuevoRegistro
+        Me.fnCambioFila()
+        If mdlPublicVars.superSearchFilasGrid > 0 Then
+            frmDespachoFacturaAsignar.idSalidaTransporte = mdlPublicVars.superSearchId
+            frmDespachoFacturaAsignar.Text = "Asignar Transporte"
+            frmDespachoFacturaAsignar.StartPosition = FormStartPosition.CenterScreen
+            frmDespachoFacturaAsignar.Show()
+        End If
+    End Sub
+
+    'VER REGISTRO
+    Private Sub fnVerRegistro() Handles Me.verRegistro
+
+    End Sub
+
+    'MODIFICAR REGISTRO
+    Private Sub fnModificarRegistro() Handles Me.modificaRegistro
+
+    End Sub
+
+    'ELIMINAR REGISTRO
+    Private Sub fnEliminarRegistro() Handles Me.eliminaRegistro
+
+    End Sub
+
+    'CAMBIO DE FILA
+    Public Sub fnCambioFila() Handles Me.cambiaFilaGrdDatos
+        Try
+            If Me.grdDatos.CurrentRow.Index >= 0 Then
+                Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdDatos)
+                mdlPublicVars.superSearchId = CType(Me.grdDatos.Rows(fila).Cells("ID").Value, Integer)
+                mdlPublicVars.superSearchFilasGrid = Me.grdDatos.Rows.Count
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
+#End Region
+
+#Region "Funciones"
+    'LLENAR LISTA
+    Private Sub fnLlenarGrid()
+        Try
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+                Dim filtro As String = txtFiltro.Text
+                Dim datos As DataTable = EntitiToDataTable(From x In conexion.sp_lista_despachosFactura(mdlPublicVars.idEmpresa, 30, filtro) Select x)
+
+                Me.grdDatos.DataSource = datos
+                fnConfiguracion()
+                conn.Close()
+            End Using
+        Catch ex As Exception
+            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+        End Try
+    End Sub
+
+    'CONFIGURAR ESTILOS EN EL GRID
+    Private Sub fnConfiguracion()
+        If Me.grdDatos.ColumnCount > 0 Then
+            For i As Integer = 0 To Me.grdDatos.ColumnCount - 1
+                Me.grdDatos.Columns(i).TextAlignment = ContentAlignment.MiddleCenter
+            Next
+
+            mdlPublicVars.fnGridTelerik_formatoFecha(Me.grdDatos, "FechaRegistro")
+            mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdDatos, "Total")
+
+            Me.grdDatos.Columns("ID").IsVisible = False
+
+            Me.grdDatos.Columns("FechaRegistro").Width = 6
+            Me.grdDatos.Columns("Documento").Width = 6
+            Me.grdDatos.Columns("Cliente").Width = 10
+            Me.grdDatos.Columns("Observacion").Width = 10
+            Me.grdDatos.Columns("Total").Width = 6
+            Me.grdDatos.Columns("Cantidad").Width = 6
+            Me.grdDatos.Columns("Contacto").Width = 8
+            Me.grdDatos.Columns("Sucursal").Width = 10
+            Me.grdDatos.Columns("Sector").Width = 14
+            Me.grdDatos.Columns("TipoVehiculo").Width = 8
+            Me.grdDatos.Columns("Direccion").Width = 10
+            Me.grdDatos.Columns("CodigoProd").Width = 6
+            Me.grdDatos.Columns("Producto").Width = 10
+            Me.grdDatos.Columns("ID").Width = 6
+            Me.grdDatos.Columns("CantVenta").Width = 6
+            Me.grdDatos.Columns("CantEnviada").Width = 6
+            Me.grdDatos.Columns("CantEnviar").Width = 6
+
+        End If
+    End Sub
+#End Region
+
+End Class

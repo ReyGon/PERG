@@ -1,0 +1,123 @@
+﻿Option Strict On
+
+Imports System.Linq
+Imports Telerik.WinControls
+Imports System.Transactions
+Imports System.Data.EntityClient
+
+Public Class frmPagoVentaPequenia
+
+#Region "Variables"
+
+    Private _idCliente As Integer
+
+#End Region
+
+#Region "Propiedades"
+    Public Property idCliente As Integer
+        Get
+            idCliente = _idCliente
+        End Get
+        Set(value As Integer)
+            _idCliente = value
+        End Set
+    End Property
+#End Region
+
+#Region "Eventos"
+    'INICO DEL FORMULARIO
+    Private Sub frmPagoVentaPequenia_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        mdlPublicVars.comboActivarFiltro(cmbTipoPago)
+
+        fnLlenarCombos()
+
+        If idCliente > 0 Then
+            cmbCliente.Enabled = False
+            fnLlenarDatos()
+        End If
+    End Sub
+
+    'CAMBIO EN EL MONTO RECIBIDO
+    Private Sub nm2MontoRecibido_ValueChanged(sender As Object, e As EventArgs) Handles nm2MontoRecibido.ValueChanged
+        Dim montoRecibido As Decimal = nm2MontoRecibido.Value
+        Dim totalPagar As Decimal = nm2TotalPagar.Value
+        nm2Cambio.Value = If(montoRecibido > totalPagar, montoRecibido - totalPagar, 0)
+    End Sub
+
+    'ACTIVO O DESACTIVA EL USO DE SALDO A FAVOR
+    Private Sub chkSaldoFavor_CheckedChanged(sender As Object, e As EventArgs) Handles chkSaldoFavor.CheckedChanged
+        If chkSaldoFavor.Checked Then
+            nm2TotalPagar.Value -= nm2SaldoFavor.Value
+        Else
+            nm2TotalPagar.Value += nm2SaldoFavor.Value
+        End If
+    End Sub
+
+    'SALIR DEL FORMULARIO
+    Private Sub fnSalir_Click() Handles Me.panel0
+        Me.Close()
+    End Sub
+
+#End Region
+
+#Region "Funciones"
+    'LLENAR LOS COMBOS DE SELECCION
+    Private Sub fnLlenarCombos()
+        Dim conexion As dsi_pos_demoEntities
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+            Dim clientes As IQueryable = (From x In conexion.tblClientes Select id = x.idCliente, valor = x.Negocio Order By valor Ascending)
+            Dim tiposmovimientos As iqueryable = (From x In conexion.tblTipoPagoes Where x.entrada Select id = x.codigo, valor = x.nombre Order By valor Ascending)
+
+            mdlPublicVars.llenarCombo(cmbCliente, clientes)
+            mdlPublicVars.llenarCombo(cmbTipoPago, tiposmovimientos)
+            conn.Close()
+        End Using
+    End Sub
+
+    'LLENAR DATOS DEL CLIENTE
+    Private Sub fnLlenarDatos()
+        'Obtenemos la informacion del cliente
+        Dim conexion As dsi_pos_demoEntities
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+            Dim cliente As tblCliente = (From x In conexion.tblClientes Where x.idCliente = idCliente Select x).FirstOrDefault
+            cmbCliente.SelectedValue = idCliente
+            If cliente.saldo < 0 Then
+                nm2SaldoFavor.Value = CDec(cliente.saldo * -1)
+            End If
+
+            Dim salidas As Decimal
+            Try
+                salidas = CDec((From x In conexion.tblSalidas Where x.idCliente = cliente.idCliente And x.anulado = False _
+                           And x.facturado = False And x.despachar = True _
+                           Select x.total).Sum)
+            Catch ex As Exception
+                salidas = 0
+            End Try
+
+            nm2TotalPagar.Value = CDec(If(cliente.saldo < 0, 0, cliente.saldo) + salidas)
+            conn.Close()
+        End Using
+    End Sub
+
+    'REALIZAR NUEVO PAGO
+    Private Sub fnNuevoPago()
+        txtDocumento.Text = ""
+        txtDocumento.Text = ""
+        chkSaldoFavor.Checked = False
+        nm2MontoRecibido.Value = 0
+        cmbCliente.Enabled = True
+    End Sub
+
+    'GUARDAR EL PAGO
+    Private Sub fnGuardarPago()
+
+    End Sub
+
+#End Region
+End Class

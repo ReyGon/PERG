@@ -1,0 +1,150 @@
+﻿Imports System.Linq
+Imports Telerik.WinControls
+
+Public Class frmDetalleVentasPagos
+
+#Region "Variables"
+    Private permiso As New clsPermisoUsuario
+
+    Private _cliente As Integer
+    Private _total As Decimal
+    Private _bitPagos As Boolean
+    Private _bitVentas As Boolean
+
+    Public Property cliente As Integer
+        Get
+            cliente = _cliente
+        End Get
+        Set(ByVal value As Integer)
+            _cliente = value
+        End Set
+    End Property
+
+    Public Property total As Decimal
+        Get
+            total = _total
+        End Get
+        Set(ByVal value As Decimal)
+            _total = value
+        End Set
+    End Property
+
+    Public Property bitPagos As Boolean
+        Get
+            bitPagos = _bitPagos
+        End Get
+        Set(ByVal value As Boolean)
+            _bitPagos = value
+        End Set
+    End Property
+
+    Public Property bitVentas As Boolean
+        Get
+            bitVentas = _bitVentas
+        End Get
+        Set(ByVal value As Boolean)
+            _bitVentas = value
+        End Set
+    End Property
+
+
+#End Region
+
+#Region "LOAD"
+    Private Sub frmDetalleVentasPagos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        mdlPublicVars.fnFormatoGridMovimientos(grdDatos)
+        lblTotal.Text = Format(total, mdlPublicVars.formatoMoneda)
+        fnLlenarGrid()
+    End Sub
+#End Region
+
+#Region "Funciones"
+    'Funcion utilizada para llenar el grid
+    Private Sub fnLlenarGrid()
+        If bitVentas Then
+            'Obtenemos todas las ventas despechadas realizadas al cliente
+            Dim salidas = (From x In ctx.tblSalidas Where x.idCliente = cliente _
+                           And Not x.anulado And x.despachar And Not x.facturado And x.saldo > 0 _
+                           Select codigo = x.idSalida, Fecha = x.fechaDespachado, Documento = x.documento, Total = x.total, Pagado = x.pagado, Saldo = x.saldo)
+            Me.grdDatos.DataSource = salidas
+             
+        ElseIf bitPagos Then
+            Dim pagos = (From x In ctx.tblCajas Where x.cliente = cliente _
+                         And Not x.confirmado And Not x.anulado
+                         Select x.codigo, Fecha = x.fecha, Documento = x.documento, Total = x.monto, Consumido = x.consumido, Disponible = x.afavor)
+            Me.grdDatos.DataSource = pagos
+            
+        End If
+
+        fnConfiguracion()
+    End Sub
+
+    'Funcion utilizada para configurar el grid
+    Private Sub fnConfiguracion()
+        If Me.grdDatos.ColumnCount > 0 Then
+            Me.grdDatos.Columns("codigo").IsVisible = False
+            mdlPublicVars.fnGridTelerik_formatoFecha(grdDatos, "Fecha")
+            mdlPublicVars.fnGridTelerik_formatoMoneda(grdDatos, "Total")
+
+            If bitVentas Then
+                mdlPublicVars.fnGridTelerik_formatoMoneda(grdDatos, "Pagado")
+                mdlPublicVars.fnGridTelerik_formatoMoneda(grdDatos, "Saldo")
+            Else
+                mdlPublicVars.fnGridTelerik_formatoMoneda(grdDatos, "Consumido")
+                mdlPublicVars.fnGridTelerik_formatoMoneda(grdDatos, "Disponible")
+            End If
+
+            Me.grdDatos.Columns("Fecha").Width = 20
+            Me.grdDatos.Columns("Documento").Width = 20
+            Me.grdDatos.Columns("Total").Width = 20
+
+            If bitVentas Then
+                Me.grdDatos.Columns("Pagado").Width = 20
+                Me.grdDatos.Columns("Saldo").Width = 20
+            Else
+                Me.grdDatos.Columns("Consumido").Width = 20
+                Me.grdDatos.Columns("Disponible").Width = 20
+            End If
+
+            For i As Integer = 0 To Me.grdDatos.ColumnCount - 1
+                Me.grdDatos.Columns(i).TextAlignment = ContentAlignment.MiddleCenter
+                Me.grdDatos.Columns(i).ReadOnly = True
+            Next
+        End If
+    End Sub
+#End Region
+
+#Region "Eventos"
+    'Doble clic en el grid
+    Private Sub grdDatos_CellDoubleClick(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs) Handles grdDatos.CellDoubleClick
+        If Me.grdDatos.RowCount > 0 Then
+
+            Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdDatos)
+            Dim codigo As Integer = CInt(Me.grdDatos.Rows(fila).Cells("codigo").Value)
+
+            If bitPagos Then
+                'Obtenemos el codigo del pago
+                frmVerPago.Text = "Pago No.: " & codigo
+                frmVerPago.codigo = codigo
+                frmVerPago.StartPosition = FormStartPosition.CenterScreen
+                frmVerPago.ShowDialog()
+                frmVerPago.Dispose()
+            ElseIf bitVentas Then
+                frmPedidoConcepto.Text = "Pedidos"
+                frmPedidoConcepto.codigo = codigo
+                frmPedidoConcepto.WindowState = FormWindowState.Normal
+                frmPedidoConcepto.StartPosition = FormStartPosition.CenterScreen
+                permiso.PermisoDialogEspeciales(frmPedidoConcepto)
+                frmPedidoConcepto.Dispose()
+            End If
+        End If
+    End Sub
+
+    'SALIR
+    Private Sub fnSalir() Handles Me.panel0
+        Me.Close()
+    End Sub
+
+#End Region
+
+End Class

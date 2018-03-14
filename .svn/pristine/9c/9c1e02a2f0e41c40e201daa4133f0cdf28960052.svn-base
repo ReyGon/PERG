@@ -1,0 +1,82 @@
+﻿Imports Telerik.WinControls
+Imports Telerik.WinControls.UI
+Imports System.Windows.Forms
+Imports System.Windows
+Imports System.Linq
+Imports System.Data.EntityClient
+
+Public Class frmBuscarCliente
+    Private Sub frmBuscarCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        mdlPublicVars.fnFormatoGridMovimientos(grdCliente)
+    End Sub
+
+    Private Sub fnConfiguracion()
+        ''para el tamanio de las columnas
+        Me.grdCliente.Columns(0).Width = 90
+        Me.grdCliente.Columns(1).Width = 150
+        Me.grdCliente.Columns(2).Width = 300
+        Me.grdCliente.Columns(3).Width = 300
+
+        For i As Integer = 0 To grdCliente.ColumnCount - 1
+            Me.grdCliente.Columns(i).IsVisible = True
+            Me.grdCliente.Columns(i).ReadOnly = False
+        Next
+    End Sub
+
+    Private Sub fnSalir() Handles Me.panel0
+        Me.Close()
+    End Sub
+
+    Private Sub fnBuscarCliente()
+        Dim filtro As String
+
+        filtro = Me.txtFiltro.Text
+
+        Dim conexion As dsi_pos_demoEntities
+        Using conn = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+            Dim cliente = (From x In conexion.tblClientes Where x.Nombre1.Contains(filtro) Or x.Negocio.Contains(filtro) Select Clave = x.idCliente, Nit = x.nit1, Nombre = x.Nombre1, Negocio = x.Negocio)
+
+            Me.grdCliente.DataSource = mdlPublicVars.EntitiToDataTable(cliente)
+
+            conn.close()
+        End Using
+        fnConfiguracion()
+    End Sub
+
+    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
+        fnBuscarCliente()
+    End Sub
+
+    Private Sub fnAgregar()
+        Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdCliente)
+        Dim errores As Boolean
+        If fila >= 0 Then
+            Dim codigo As Integer
+
+            codigo = Me.grdCliente.Rows(fila).Cells(0).Value
+
+            superSearchId = codigo
+        Else
+            errores = True
+        End If
+
+        If errores = False Then
+            Me.Close()
+        End If
+    End Sub
+
+    Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
+        fnAgregar()
+    End Sub
+
+    Private Sub txtFiltro_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtFiltro.KeyPress
+
+        If Asc(e.KeyChar) = Keys.Enter Then
+            fnBuscarCliente()
+        End If
+
+    End Sub
+End Class

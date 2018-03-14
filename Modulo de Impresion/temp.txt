@@ -1,0 +1,181 @@
+    Private Sub frmPruebas_Load(sender As Object, e As System.EventArgs) Handles Me.Load
+        'llenar las columans del grid de parametro en el grid para seleccionar los datos.
+        Dim index
+        For index = 0 To Me.grd.Columns.Count - 1
+
+            If grd.Columns(index).name.ToString.ToLower.Contains("nombre") Then
+                Me.grdDatos.Rows.Add(False, grd.Columns(index).name.ToString, 4000)
+            Else
+                Me.grdDatos.Rows.Add(False, grd.Columns(index).name.ToString, 2000)
+            End If
+        Next
+    End Sub
+
+
+    Public Sub fnReporte3()
+
+        Dim DsR As New dsReporte
+        DsR.Tables(0).Rows.Clear()
+
+
+        Dim inicioLeft As Integer = 75
+        Dim espacioLeft As Integer = 50
+
+        Dim TituloLeft As Integer = 75
+
+
+        'crear la tabla.
+        Dim Customer As New Data.DataTable
+
+        'crear las columnas, seleccionadas del grid.
+        Dim index
+        Dim contador As Integer = 0
+        For index = 0 To Me.grdDatos.Rows.Count - 1
+            If CType(Me.grdDatos.Rows(index).Cells(0).Value, Boolean) = True Then
+                contador = contador + 1
+                Me.grdDatos.Rows(index).Cells("Nombre").Value = "Column" & contador
+            End If
+        Next
+
+
+        'agregar valores de columnas seleccionadas.
+
+        Dim col
+        Dim col2
+        Dim countCol As Integer = 0
+        'recorrer las filas de datos.
+        For index = 0 To grd.Rows.Count - 1
+            countCol = 0
+
+            'crear la fila
+            Dim row As DataRow
+            row = DsR.Tables(0).NewRow()
+
+            'recorrer el grid de datos
+            For col = 0 To grd.Columns.Count - 1
+
+                'recorrer el grid de filas seleccionadas
+                For col2 = 0 To grdDatos.Rows.Count - 1
+
+                    If grd.Columns(col).name.ToString = grdDatos.Rows(col2).Cells(1).Value.ToString And CType(grdDatos.Rows(col2).Cells(0).Value, Boolean) = True Then
+
+                        row(grdDatos.Rows(col2).Cells("Nombre").Value.ToString) = Me.grd.Rows(index).Cells(col).value.ToString
+                        countCol = countCol + 1
+                    End If
+                Next
+
+
+            Next
+            DsR.Tables(0).Rows.Add(row)
+        Next
+
+
+
+        objRpt = New rptReporte
+
+        Dim columnNo As Integer = 0
+        Dim reportDocument As New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+        Dim paramFields As ParameterFields
+
+
+        Dim paramField As CrystalDecisions.Shared.ParameterField
+        Dim paramDiscreteValue As ParameterDiscreteValue
+
+        reportDocument = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+        paramFields = New ParameterFields()
+
+
+        'recorrer el grid donde estan el nombre de las columnas y generar los parametros.
+        contador = 0
+
+        For index = 0 To grdDatos.Rows.Count - 1
+
+            If CType(Me.grdDatos.Rows(index).Cells(0).Value, Boolean) = True Then
+                contador = contador + 1
+                paramField = New CrystalDecisions.Shared.ParameterField()
+                paramField.Name = "col" + contador.ToString
+                paramDiscreteValue = New ParameterDiscreteValue()
+                paramDiscreteValue.Value = grdDatos.Rows(index).Cells(1).Value
+                paramField.CurrentValues.Add(paramDiscreteValue)
+                paramFields.Add(paramField)
+
+
+                Dim detalle As CrystalDecisions.CrystalReports.Engine.FieldObject
+                detalle = CType(objRpt.ReportDefinition.ReportObjects.Item("Column" & contador.ToString), CrystalDecisions.CrystalReports.Engine.FieldObject)
+                detalle.Width = grdDatos.Rows(index).Cells(2).Value
+                detalle.Left = inicioLeft
+
+                Dim i As Integer = objRpt.ReportDefinition.ReportObjects.Count
+
+
+
+                Dim Encabezado As CrystalDecisions.CrystalReports.Engine.FieldObject
+                Encabezado = CType(objRpt.ReportDefinition.ReportObjects.Item("col" & contador.ToString), CrystalDecisions.CrystalReports.Engine.FieldObject)
+                Encabezado.Width = grdDatos.Rows(index).Cells(2).Value
+                Encabezado.Left = inicioLeft
+
+                inicioLeft = inicioLeft + grdDatos.Rows(index).Cells(2).Value + espacioLeft
+            End If
+
+        Next
+
+        'agregar los parametros que estan fuera del total
+        For index = contador + 1 To 10
+            paramField = New CrystalDecisions.Shared.ParameterField()
+            paramField.Name = "col" & index
+            paramDiscreteValue = New ParameterDiscreteValue()
+            paramDiscreteValue.Value = ""
+            paramField.CurrentValues.Add(paramDiscreteValue)
+            paramFields.Add(paramField)
+
+
+            'Dim detalle As CrystalDecisions.CrystalReports.Engine.FieldObject
+            'detalle = CType(objRpt.ReportDefinition.ReportObjects.Item("Column" & index), CrystalDecisions.CrystalReports.Engine.FieldObject)
+            'detalle.Width = grdDatos.Rows(index).Cells(2).Value
+            'detalle.Left = inicioLeft
+
+            'Dim Encabezado As CrystalDecisions.CrystalReports.Engine.FieldObject
+            'Encabezado = CType(objRpt.ReportDefinition.ReportObjects.Item("col" & index), CrystalDecisions.CrystalReports.Engine.FieldObject)
+            'Encabezado.Width = grdDatos.Rows(index).Cells(2).Value
+            'Encabezado.Left = inicioLeft
+
+            inicioLeft = inicioLeft + grdDatos.Rows(index).Cells(2).Value + espacioLeft
+
+        Next
+
+        'agregar filtro de titulo.
+        paramField = New CrystalDecisions.Shared.ParameterField()
+        paramField.Name = "Titulo"
+        paramDiscreteValue = New ParameterDiscreteValue()
+        paramDiscreteValue.Value = "Titulo del contrato"
+        paramField.CurrentValues.Add(paramDiscreteValue)
+        paramFields.Add(paramField)
+
+        'agregar los parametros.
+        CrystalReportViewer1.ParameterFieldInfo = paramFields
+
+
+        'agregar la columna para mostrar el titulo.
+        Customer.Columns.Add("Titulo")
+
+
+        Try
+
+            objRpt.SetDataSource(DsR)
+            'objRpt.Load("F:\VB PROYECTOS\PuntoVentas2012\puntoVentas2012_ver20\bin\Debug\rptReport.rpt")
+            CrystalReportViewer1.ReportSource = objRpt
+
+        Catch oleEx As OleDbException
+            MessageBox.Show(oleEx.Message)
+        Catch Ex As Exception
+            MessageBox.Show(Ex.Message)
+        End Try
+    End Sub
+
+    Private Sub grdDatos_ValueChanged(sender As System.Object, e As System.EventArgs) Handles grdDatos.ValueChanged
+        mdlPublicVars.fngrd_contador(grdDatos, lblContador, txtFoco, 0)
+    End Sub
+
+    Private Sub btnAgregar_Click(sender As System.Object, e As System.EventArgs) Handles btnAgregar.Click
+        fnReporte3()
+    End Sub

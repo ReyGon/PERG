@@ -1,0 +1,215 @@
+﻿Imports System.Linq
+Imports System.IO
+Imports System.Data
+Imports System.Data.SqlClient
+Imports Telerik.WinControls
+Imports System.Transactions
+
+
+Public Class frmPedidosBodega
+    Public bitNoEditable As Boolean = False
+
+    Private _idSalida As Integer
+    Public Property idSalida As Integer
+        Get
+            idSalida = _idSalida
+        End Get
+        Set(ByVal value As Integer)
+            _idSalida = value
+        End Set
+    End Property
+
+    Private Sub frmPedidosBodega_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Me.Focus()
+        fnLlenarCombos()
+        fnLlenar()
+    End Sub
+
+    Private Sub fnLlenar()
+        Try
+            Dim salida As tblSalida = (From x In ctx.tblSalidas Where x.idSalida = idSalida Select x).FirstOrDefault
+            lblCodigoSalida.Text = salida.idSalida
+            lblDocumento.Text = salida.documento
+            lblFecha.Text = salida.fechaRegistro
+            lblObservacion.Text = salida.observacion
+            lblTotal.Text = Format(salida.total, mdlPublicVars.formatoMoneda)
+            lblCliente.Text = salida.tblCliente.Negocio
+            lblVendedor.Text = salida.tblVendedor.nombre
+
+            'Consultamos el registro de bodega
+            Dim bodega As tblsalidaBodega = (From x In ctx.tblsalidaBodegas Where x.idsalida = idSalida Select x).FirstOrDefault
+            Dim sacado As Integer
+            Dim revisado As Integer
+            Dim empacado As Integer
+
+            If bodega.sacado Is Nothing Then
+                sacado = 0
+            Else
+                sacado = CType(bodega.sacado, Integer)
+            End If
+
+            If bodega.revisado Is Nothing Then
+                revisado = 0
+            Else
+                revisado = CType(bodega.revisado, Integer)
+            End If
+
+            If bodega.empacado Is Nothing Then
+                empacado = 0
+            Else
+                empacado = CType(bodega.empacado, Integer)
+            End If
+
+            cmbEmpacado.SelectedValue = empacado
+            cmbRevisado.SelectedValue = revisado
+            cmbSacado.SelectedValue = sacado
+            txtObservacion.Text = bodega.observacion
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub fnLlenarCombos()
+        Dim empleados As New DataTable
+        empleados.Columns.Add("Codigo")
+        empleados.Columns.Add("Nombre")
+
+        empleados.Rows.Add(0, "Ninguno")
+
+        Dim consulta As List(Of tblEmpleado) = (From x In ctx.tblEmpleadoes Where x.idpuesto = mdlPublicVars.Bodega_CodigoPuestoBodegero Select x).ToList
+        Dim empleado As tblEmpleado
+
+        For Each empleado In consulta
+            empleados.Rows.Add(empleado.idEmpleado, empleado.nombre)
+        Next
+
+        Dim empleados2 As New DataTable
+        empleados2.Columns.Add("Codigo")
+        empleados2.Columns.Add("Nombre")
+
+        empleados2.Rows.Add(0, "Ninguno")
+
+
+        For Each empleado In consulta
+            empleados2.Rows.Add(empleado.idEmpleado, empleado.nombre)
+        Next
+
+        Dim empleados3 As New DataTable
+        empleados3.Columns.Add("Codigo")
+        empleados3.Columns.Add("Nombre")
+
+        empleados3.Rows.Add(0, "Ninguno")
+
+
+        For Each empleado In consulta
+            empleados3.Rows.Add(empleado.idEmpleado, empleado.nombre)
+        Next
+
+        With cmbEmpacado
+            .DataSource = Nothing
+            .ValueMember = "Codigo"
+            .DisplayMember = "Nombre"
+            .DataSource = empleados
+        End With
+
+        With cmbSacado
+            .DataSource = Nothing
+            .ValueMember = "Codigo"
+            .DisplayMember = "Nombre"
+            .DataSource = empleados2
+        End With
+
+        With cmbRevisado
+            .DataSource = Nothing
+            .ValueMember = "Codigo"
+            .DisplayMember = "Nombre"
+            .DataSource = empleados3
+        End With
+
+    End Sub
+
+    Private Sub pbModificar_Click() Handles Me.panel0
+        Dim success As Boolean = True
+        Dim codigoSalida As Integer = CType(lblCodigoSalida.Text, Integer)
+        Using transaction As New TransactionScope
+
+            Try
+                Dim fecha As DateTime = fnFecha_horaServidor()
+                Dim sacado As Integer = Me.cmbSacado.SelectedValue
+                Dim revisado As Integer = Me.cmbRevisado.SelectedValue
+                Dim empacado As Integer = Me.cmbEmpacado.SelectedValue
+
+                'Obtenemos el registro de bodega a modificar
+                Dim bodega As tblsalidaBodega = (From x In ctx.tblsalidaBodegas Where x.idsalida = codigoSalida Select x).FirstOrDefault
+
+                'Modifica sacado
+                If sacado = 0 Then
+                    bodega.sacado = Nothing
+                    bodega.fechaSacado = Nothing
+                    ctx.SaveChanges()
+                Else
+                    bodega.sacado = sacado
+                    bodega.fechaSacado = fecha
+                    ctx.SaveChanges()
+                End If
+
+                'Modifica Revisado
+                If revisado = 0 Then
+                    bodega.revisado = Nothing
+                    bodega.fechaRevisado = Nothing
+                    ctx.SaveChanges()
+                Else
+                    bodega.revisado = revisado
+                    bodega.fechaRevisado = fecha
+                    ctx.SaveChanges()
+                End If
+
+                'Modifica empacado
+                If empacado = 0 Then
+                    bodega.empacado = Nothing
+                    bodega.fechaEmpacado = Nothing
+                    ctx.SaveChanges()
+                Else
+                    bodega.empacado = empacado
+                    bodega.fechaEmpacado = fecha
+                    ctx.SaveChanges()
+                End If
+
+                bodega.observacion = txtObservacion.Text
+                ctx.SaveChanges()
+                transaction.Complete()
+
+            Catch ex As System.Data.EntityException
+                success = False
+            Catch ex As Exception
+                success = False
+                ' Handle errors and deadlocks here and retry if needed. 
+                ' Allow an UpdateException to pass through and 
+                ' retry, otherwise stop the execution. 
+                If ex.[GetType]() <> GetType(UpdateException) Then
+                    alerta.fnErrorGuardar()
+                    Exit Try
+                    ' If we get to this point, the operation will be retried. 
+                End If
+
+            End Try
+        End Using
+
+        If success = True Then
+            ctx.AcceptAllChanges()
+            alerta.fnGuardar()
+            'fnLlenar()
+            Me.Close()
+        Else
+            alerta.fnErrorGuardar()
+            Console.WriteLine("La operacion no pudo ser completada")
+        End If
+    End Sub
+
+    'SALIR
+    Private Sub fnSalir() Handles Me.panel1
+        Me.Close()
+    End Sub
+End Class
