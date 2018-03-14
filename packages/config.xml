@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config_Table>
+<config>
+  <servidor>DSISISTEMASPC\SQLEXPRESS</servidor> 
+  <bd>dsi_pos_Motriza</bd>
+  <licencia>D:\VB PROYECTOS\PuntoVentas2012\posrepuestosest\Rep. Estrada\bin\Debug\lic.lic</licencia>
+</config>
+</config_Table>
