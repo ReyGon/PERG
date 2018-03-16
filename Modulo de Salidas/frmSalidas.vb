@@ -4087,11 +4087,21 @@ Public Class frmSalidas
 
             'si imprime guia colocar estado de impreso.
             If codigoSalidaContado > 0 Then
-                fnImprimir(codigoSalidaContado)
+                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    fnImprimirPiking(codigoSalidaContado)
+                End If
+                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    fnImprimirDespacho(codigoSalidaContado)
+                End If
             End If
 
             If codigoSalidaCredito > 0 Then
-                fnImprimir(codigoSalidaCredito)
+                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    fnImprimirPiking(codigoSalidaCredito)
+                End If
+                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    fnImprimirDespacho(codigoSalidaCredito)
+                End If
             End If
         Else
 
@@ -4816,7 +4826,12 @@ Public Class frmSalidas
 
             If CambiacotizarAdespacho(salida.idSalida, salida.credito, salida.idCliente) Then
                 'Mandar a imprimir el despacho
-                fnImprimir(salida.idSalida)
+                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    fnImprimirPiking(salida.idSalida)
+                End If
+                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    fnImprimirDespacho(salida.idSalida)
+                End If
                 fnNuevo()
                 Me.Close()
                 bitEditarSalida = False
@@ -4831,27 +4846,76 @@ Public Class frmSalidas
     End Sub
 
     'Funcion utilizada para imprimir el despacho
-    Private Sub fnImprimir(ByVal codSalida)
-        Dim c As New clsReporte
-        'conexion nueva.
-        Dim conexion As New dsi_pos_demoEntities
+    ''Private Sub fnImprimir(ByVal codSalida)
+    ''    Dim c As New clsReporte
+    ''    'conexion nueva.
+    ''    Dim conexion As New dsi_pos_demoEntities
 
+    ''    Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+    ''        conn.Open()
+    ''        conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+    ''        Try
+    ''            c.tabla = EntitiToDataTable(conexion.sp_reportePickingPedido("", codSalida))
+    ''        Catch ex As Exception
+    ''        End Try
+    ''        conn.Close()
+    ''    End Using
+
+    ''    c.nombreParametro = "@filtro"
+    ''    c.reporte = "ventas_Picking.rpt"
+    ''    c.parametro = ""
+    ''    c.verReporte()
+
+
+    ''End Sub
+
+    'Funcion utilizada para imprimir el despacho
+    Private Sub fnImprimirPiking(ByVal codSalida)
+        Dim c As New clsReporte
+        Dim tabla As DataTable
+
+        Dim conexion As New dsi_pos_demoEntities
         Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
             conn.Open()
-            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
-            Try
-                c.tabla = EntitiToDataTable(conexion.sp_reportePickingPedido("", codSalida))
-            Catch ex As Exception
-            End Try
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+            tabla = EntitiToDataTable(conexion.sp_reportePickingPedido("", codSalida))
             conn.Close()
         End Using
 
-        c.nombreParametro = "@filtro"
-        c.reporte = "ventas_Picking.rpt"
-        c.parametro = ""
-        c.verReporte()
+        Try
+            c.tabla = tabla
+            c.nombreParametro = "@filtro"
+            c.reporte = "ventas_Picking.rpt"
+            c.parametro = ""
+            c.verReporte()
+        Catch ex As Exception
+            alerta.contenido = ex.ToString
+            alerta.fnErrorContenido()
+        End Try
+    End Sub
 
+    Private Sub fnImprimirDespacho(ByVal codSalida)
+        Dim c As New clsReporte
+        Dim tabla As DataTable
 
+        Dim conexion As New dsi_pos_demoEntities
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+            tabla = EntitiToDataTable(conexion.sp_ReporteVenta("", True, codSalida))
+            conn.Close()
+        End Using
+
+        Try
+            c.tabla = tabla
+            c.nombreParametro = "@filtro"
+            c.reporte = "ventas_CotizacionLocal.rpt"
+            c.parametro = ""
+            c.verReporte()
+        Catch ex As Exception
+            alerta.contenido = ex.ToString
+            alerta.fnErrorContenido()
+        End Try
     End Sub
 
     'MODIFICAR

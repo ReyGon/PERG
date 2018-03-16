@@ -47,13 +47,25 @@ Public Class frmPedidosListaBarraDerecha
                                 fnSugerir(salida.idSalida, True)
                             End If
                         Else
-                            fnImprimir(salida.idSalida)
+
+                            If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                                fnImprimirPiking(salida.idSalida)
+                            End If
+                            If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                                fnImprimirDespacho(salida.idSalida)
+                            End If
+
                         End If
                     End If
                 ElseIf tipoSalida = "Reservado" Then
                     If RadMessageBox.Show("¿Desea pasar la reserva a despacho?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = vbYes Then
                         CambiaReservarAdespacho(salida.idSalida, salida.credito, salida.idCliente)
-                        fnImprimir(salida.idSalida)
+                        If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                            fnImprimirPiking(salida.idSalida)
+                        End If
+                        If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                            fnImprimirDespacho(salida.idSalida)
+                        End If
                     End If
                 Else
                     alerta.contenido = "El pedido ya ha sido " & tipoSalida & " no se puede Despachar"
@@ -937,7 +949,7 @@ Public Class frmPedidosListaBarraDerecha
     End Sub
 
     'Funcion utilizada para imprimir el despacho
-    Private Sub fnImprimir(ByVal codSalida)
+    Private Sub fnImprimirPiking(ByVal codSalida)
         Dim c As New clsReporte
         Dim tabla As DataTable
 
@@ -953,6 +965,30 @@ Public Class frmPedidosListaBarraDerecha
             c.tabla = tabla
             c.nombreParametro = "@filtro"
             c.reporte = "ventas_Picking.rpt"
+            c.parametro = ""
+            c.verReporte()
+        Catch ex As Exception
+            alerta.contenido = ex.ToString
+            alerta.fnErrorContenido()
+        End Try
+    End Sub
+
+    Private Sub fnImprimirDespacho(ByVal codSalida)
+        Dim c As New clsReporte
+        Dim tabla As DataTable
+
+        Dim conexion As New dsi_pos_demoEntities
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+            tabla = EntitiToDataTable(conexion.sp_ReporteVenta("", True, codSalida))
+            conn.Close()
+        End Using
+
+        Try
+            c.tabla = tabla
+            c.nombreParametro = "@filtro"
+            c.reporte = "ventas_CotizacionLocal.rpt"
             c.parametro = ""
             c.verReporte()
         Catch ex As Exception

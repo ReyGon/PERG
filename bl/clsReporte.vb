@@ -214,7 +214,8 @@ Public Class clsReporte
             If Me.subReporte <> "" Then
                 rptDocument.Subreports(Me.subReporte).SetDataSource(Me.tablaSubReporte)
             End If
-            rptDocument.PrintToPrinter(1, True, 1, 1)
+
+            rptDocument.PrintToPrinter(1, False, 1, 1)
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "!!!")
