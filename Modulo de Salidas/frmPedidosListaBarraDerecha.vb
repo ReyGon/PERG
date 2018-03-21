@@ -51,9 +51,9 @@ Public Class frmPedidosListaBarraDerecha
                             If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
                                 fnImprimirPiking(salida.idSalida)
                             End If
-                            If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                                fnImprimirDespacho(salida.idSalida)
-                            End If
+                            ''If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                            ''fnImprimirDespacho(salida.idSalida)
+                            ''End If
 
                         End If
                     End If
@@ -63,10 +63,10 @@ Public Class frmPedidosListaBarraDerecha
                         If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
                             fnImprimirPiking(salida.idSalida)
                         End If
-                        If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                            fnImprimirDespacho(salida.idSalida)
-                        End If
-                    End If
+                        ''If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                        ''fnImprimirDespacho(salida.idSalida)
+                        ''End If
+                End If
                 Else
                     alerta.contenido = "El pedido ya ha sido " & tipoSalida & " no se puede Despachar"
                     alerta.fnErrorContenido()

@@ -4090,18 +4090,18 @@ Public Class frmSalidas
                 If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
                     fnImprimirPiking(codigoSalidaContado)
                 End If
-                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                    fnImprimirDespacho(codigoSalidaContado)
-                End If
+                '' If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                ''fnImprimirDespacho(codigoSalidaContado)
+                ''End If
             End If
 
             If codigoSalidaCredito > 0 Then
                 If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
                     fnImprimirPiking(codigoSalidaCredito)
                 End If
-                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                    fnImprimirDespacho(codigoSalidaCredito)
-                End If
+                ''If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                '' fnImprimirDespacho(codigoSalidaCredito)
+                ''End If
             End If
         Else
 
@@ -4829,9 +4829,9 @@ Public Class frmSalidas
                 If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
                     fnImprimirPiking(salida.idSalida)
                 End If
-                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                    fnImprimirDespacho(salida.idSalida)
-                End If
+                '' If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                ''fnImprimirDespacho(salida.idSalida)
+                ''End If
                 fnNuevo()
                 Me.Close()
                 bitEditarSalida = False
