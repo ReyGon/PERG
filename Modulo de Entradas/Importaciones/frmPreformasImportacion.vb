@@ -49,38 +49,84 @@ Public Class frmPreformasImportacion
 
     Private Sub fnConfiguracion()
         Try
+
             Me.grdPreformasImportaciones.Columns("IdPreforma").IsVisible = False
             Me.grdPreformasImportaciones.Columns("chmElegir").Width = 50
             Me.grdPreformasImportaciones.Columns("Fecha").Width = 75
             Me.grdPreformasImportaciones.Columns("Proveedor").Width = 80
             Me.grdPreformasImportaciones.Columns("Documento").Width = 75
+            Me.grdPreformasImportaciones.Columns("chmElegir").ReadOnly = False
+            Me.grdPreformasImportaciones.Columns("Documento").ReadOnly = True
+
         Catch ex As Exception
 
         End Try
     End Sub
 
-    Private Sub fnGuardar() Handles Me.panel0
+    ''Private Sub fnGuardar() Handles Me.panel0
+    ''    Try
+
+    ''        Dim contador As Integer = 0
+
+    ''        Me.grdPreformasImportaciones.Select()
+    ''        Me.grdPreformasImportaciones.Focus()
+
+    ''        For index As Integer = 0 To Me.grdPreformasImportaciones.Rows.Count - 1
+    ''            If Me.grdPreformasImportaciones.Rows(index).Cells("chmElegir").Value = True Then
+    ''                contador += 1
+    ''            End If
+    ''        Next
+
+    ''        If contador > 1 Then
+    ''            RadMessageBox.Show("Solamente puede elegir una preforma de importacion", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+    ''            Exit Sub
+    ''        End If
+
+    ''        ''Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdPreformasImportaciones)
+
+    ''        ''If Me.grdPreformasImportaciones.Rows(fila).Cells("chmElegir").Value = True Then
+    ''        ''    mdlPublicVars.superSearchId = Me.grdPreformasImportaciones.Rows(fila).Cells("IdPreforma").Value
+    ''        ''End If
+
+    ''        For index As Integer = 0 To Me.grdPreformasImportaciones.Rows.Count - 1
+    ''            If Me.grdPreformasImportaciones.Rows(index).Cells("chmElegir").Value = True Then
+    ''                mdlPublicVars.superSearchId = Me.grdPreformasImportaciones.Rows(index).Cells("IdPreforma").Value
+    ''            End If
+    ''        Next
+
+
+    ''        Me.Close()
+    ''    Catch ex As Exception
+
+    ''    End Try
+    ''End Sub
+
+    Private Sub frmPreformasImportacion_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles grdPreformasImportaciones.Click
         Try
+            If Me.grdPreformasImportaciones.Rows.Count > 0 Then
 
-            Dim contador As Integer = 0
+                Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdPreformasImportaciones)
 
-            For index As Integer = 0 To Me.grdPreformasImportaciones.Rows.Count - 1
-                If Me.grdPreformasImportaciones.Rows(index).Cells("chmElegir").Value = True Then
-                    contador += 1
+                If Me.grdPreformasImportaciones.CurrentColumn.Name.Equals("chmElegir") Then
+                    Me.grdPreformasImportaciones.Rows(fila).Cells("chmElegir").Value = True
+
+                    If RadMessageBox.Show("¿Desea seleccionar esta preforma para la Invoice?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Forms.DialogResult.Yes Then
+                        mdlPublicVars.superSearchId = Me.grdPreformasImportaciones.Rows(fila).Cells("IdPreforma").Value
+                        Me.Close()
+                    Else
+                        mdlPublicVars.superSearchId = 0
+                        Me.grdPreformasImportaciones.Rows(fila).Cells("chmElegir").Value = False
+                        Exit Sub
+                    End If
                 End If
-            Next
-
-            If contador > 1 Then
-                RadMessageBox.Show("Solamente puede elegir una preforma de importacion", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
-                Exit Sub
             End If
+        Catch ex As Exception
 
-            Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdPreformasImportaciones)
+        End Try
+    End Sub
 
-            If Me.grdPreformasImportaciones.Rows(fila).Cells("chmElegir").Value = True Then
-                mdlPublicVars.superSearchId = Me.grdPreformasImportaciones.Rows(fila).Cells("IdPreforma").Value
-            End If
-
+    Private Sub fnSalir() Handles Me.panel0
+        Try
             Me.Close()
         Catch ex As Exception
 

@@ -154,7 +154,7 @@ Public Class frmInvoicesLista
         frmImportaciones.MdiParent = frmMenuPrincipal
         frmImportaciones.codigo = mdlPublicVars.superSearchId
         frmImportaciones.bitCrearTransito = True
-        frmImportaciones.ShowDialog()
+        frmImportaciones.Show()
 
     End Sub
 

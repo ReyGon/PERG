@@ -26,19 +26,14 @@ Partial Class frmPreformasImportacion
         Dim GridViewTextBoxColumn4 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPreformasImportacion))
         Me.pnlBarra = New System.Windows.Forms.Panel()
-        Me.pnx1Salir = New System.Windows.Forms.Panel()
-        Me.lbl1Salir = New System.Windows.Forms.Label()
-        Me.pbx1Salir = New System.Windows.Forms.PictureBox()
-        Me.pnx0Facturar = New System.Windows.Forms.Panel()
-        Me.lbl0Facturar = New System.Windows.Forms.Label()
-        Me.pbx0Facturar = New System.Windows.Forms.PictureBox()
+        Me.pnx0Salir = New System.Windows.Forms.Panel()
+        Me.lbl0Salir = New System.Windows.Forms.Label()
+        Me.pbx0Salir = New System.Windows.Forms.PictureBox()
         Me.grdPreformasImportaciones = New Telerik.WinControls.UI.RadGridView()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
-        Me.pnx1Salir.SuspendLayout()
-        CType(Me.pbx1Salir, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnx0Facturar.SuspendLayout()
-        CType(Me.pbx0Facturar, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnx0Salir.SuspendLayout()
+        CType(Me.pbx0Salir, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdPreformasImportaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdPreformasImportaciones.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,76 +49,43 @@ Partial Class frmPreformasImportacion
         Me.pnlBarra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlBarra.BackColor = System.Drawing.Color.SteelBlue
-        Me.pnlBarra.Controls.Add(Me.pnx1Salir)
-        Me.pnlBarra.Controls.Add(Me.pnx0Facturar)
+        Me.pnlBarra.Controls.Add(Me.pnx0Salir)
         Me.pnlBarra.Location = New System.Drawing.Point(466, 0)
         Me.pnlBarra.Name = "pnlBarra"
         Me.pnlBarra.Size = New System.Drawing.Size(408, 48)
         Me.pnlBarra.TabIndex = 156
         '
-        'pnx1Salir
+        'pnx0Salir
         '
-        Me.pnx1Salir.BackColor = System.Drawing.Color.Navy
-        Me.pnx1Salir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pnx1Salir.Controls.Add(Me.lbl1Salir)
-        Me.pnx1Salir.Controls.Add(Me.pbx1Salir)
-        Me.pnx1Salir.Location = New System.Drawing.Point(294, 4)
-        Me.pnx1Salir.Name = "pnx1Salir"
-        Me.pnx1Salir.Size = New System.Drawing.Size(107, 40)
-        Me.pnx1Salir.TabIndex = 117
+        Me.pnx0Salir.BackColor = System.Drawing.Color.Navy
+        Me.pnx0Salir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnx0Salir.Controls.Add(Me.lbl0Salir)
+        Me.pnx0Salir.Controls.Add(Me.pbx0Salir)
+        Me.pnx0Salir.Location = New System.Drawing.Point(294, 4)
+        Me.pnx0Salir.Name = "pnx0Salir"
+        Me.pnx0Salir.Size = New System.Drawing.Size(107, 40)
+        Me.pnx0Salir.TabIndex = 117
         '
-        'lbl1Salir
+        'lbl0Salir
         '
-        Me.lbl1Salir.AutoSize = True
-        Me.lbl1Salir.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl1Salir.ForeColor = System.Drawing.Color.White
-        Me.lbl1Salir.Location = New System.Drawing.Point(43, 9)
-        Me.lbl1Salir.Name = "lbl1Salir"
-        Me.lbl1Salir.Size = New System.Drawing.Size(39, 19)
-        Me.lbl1Salir.TabIndex = 72
-        Me.lbl1Salir.Text = "Salir"
+        Me.lbl0Salir.AutoSize = True
+        Me.lbl0Salir.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl0Salir.ForeColor = System.Drawing.Color.White
+        Me.lbl0Salir.Location = New System.Drawing.Point(43, 9)
+        Me.lbl0Salir.Name = "lbl0Salir"
+        Me.lbl0Salir.Size = New System.Drawing.Size(39, 19)
+        Me.lbl0Salir.TabIndex = 72
+        Me.lbl0Salir.Text = "Salir"
         '
-        'pbx1Salir
+        'pbx0Salir
         '
-        Me.pbx1Salir.Image = Global.laFuente.My.Resources.Resources.cerrar
-        Me.pbx1Salir.Location = New System.Drawing.Point(2, 2)
-        Me.pbx1Salir.Name = "pbx1Salir"
-        Me.pbx1Salir.Size = New System.Drawing.Size(40, 33)
-        Me.pbx1Salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbx1Salir.TabIndex = 71
-        Me.pbx1Salir.TabStop = False
-        '
-        'pnx0Facturar
-        '
-        Me.pnx0Facturar.BackColor = System.Drawing.Color.Navy
-        Me.pnx0Facturar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pnx0Facturar.Controls.Add(Me.lbl0Facturar)
-        Me.pnx0Facturar.Controls.Add(Me.pbx0Facturar)
-        Me.pnx0Facturar.Location = New System.Drawing.Point(181, 3)
-        Me.pnx0Facturar.Name = "pnx0Facturar"
-        Me.pnx0Facturar.Size = New System.Drawing.Size(107, 40)
-        Me.pnx0Facturar.TabIndex = 116
-        '
-        'lbl0Facturar
-        '
-        Me.lbl0Facturar.AutoSize = True
-        Me.lbl0Facturar.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl0Facturar.ForeColor = System.Drawing.Color.White
-        Me.lbl0Facturar.Location = New System.Drawing.Point(43, 9)
-        Me.lbl0Facturar.Name = "lbl0Facturar"
-        Me.lbl0Facturar.Size = New System.Drawing.Size(64, 19)
-        Me.lbl0Facturar.TabIndex = 72
-        Me.lbl0Facturar.Text = "Guardar"
-        '
-        'pbx0Facturar
-        '
-        Me.pbx0Facturar.Image = Global.laFuente.My.Resources.Resources.guardar_Blanco
-        Me.pbx0Facturar.Location = New System.Drawing.Point(2, 2)
-        Me.pbx0Facturar.Name = "pbx0Facturar"
-        Me.pbx0Facturar.Size = New System.Drawing.Size(40, 33)
-        Me.pbx0Facturar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbx0Facturar.TabIndex = 71
-        Me.pbx0Facturar.TabStop = False
+        Me.pbx0Salir.Image = Global.laFuente.My.Resources.Resources.cerrar
+        Me.pbx0Salir.Location = New System.Drawing.Point(2, 2)
+        Me.pbx0Salir.Name = "pbx0Salir"
+        Me.pbx0Salir.Size = New System.Drawing.Size(40, 33)
+        Me.pbx0Salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx0Salir.TabIndex = 71
+        Me.pbx0Salir.TabStop = False
         '
         'grdPreformasImportaciones
         '
@@ -183,12 +145,9 @@ Partial Class frmPreformasImportacion
         Me.Controls.SetChildIndex(Me.grdPreformasImportaciones, 0)
         CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlBarra.ResumeLayout(False)
-        Me.pnx1Salir.ResumeLayout(False)
-        Me.pnx1Salir.PerformLayout()
-        CType(Me.pbx1Salir, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnx0Facturar.ResumeLayout(False)
-        Me.pnx0Facturar.PerformLayout()
-        CType(Me.pbx0Facturar, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnx0Salir.ResumeLayout(False)
+        Me.pnx0Salir.PerformLayout()
+        CType(Me.pbx0Salir, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdPreformasImportaciones.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdPreformasImportaciones, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
@@ -196,12 +155,9 @@ Partial Class frmPreformasImportacion
 
     End Sub
     Friend WithEvents pnlBarra As System.Windows.Forms.Panel
-    Friend WithEvents pnx1Salir As System.Windows.Forms.Panel
-    Friend WithEvents lbl1Salir As System.Windows.Forms.Label
-    Friend WithEvents pbx1Salir As System.Windows.Forms.PictureBox
-    Friend WithEvents pnx0Facturar As System.Windows.Forms.Panel
-    Friend WithEvents lbl0Facturar As System.Windows.Forms.Label
-    Friend WithEvents pbx0Facturar As System.Windows.Forms.PictureBox
+    Friend WithEvents pnx0Salir As System.Windows.Forms.Panel
+    Friend WithEvents lbl0Salir As System.Windows.Forms.Label
+    Friend WithEvents pbx0Salir As System.Windows.Forms.PictureBox
     Friend WithEvents grdPreformasImportaciones As Telerik.WinControls.UI.RadGridView
 
 End Class
