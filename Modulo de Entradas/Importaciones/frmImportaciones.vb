@@ -1778,12 +1778,12 @@ Public Class frmImportaciones
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Try
-            frmImportar.Text = "Importar"
-            frmImportar.bitEntrada = True
-            frmImportar.ShowDialog()
+            frmImportarImportaciones.Text = "Importar"
+            frmImportarImportaciones.bitEntrada = True
+            frmImportarImportaciones.ShowDialog()
 
-            Dim tblR As DataTable = frmImportar.tblRetorno
-            frmImportar.Dispose()
+            Dim tblR As DataTable = frmImportarImportaciones.tblRetorno
+            frmImportarImportaciones.Dispose()
             If tblR.Rows.Count > 0 Then
 
                 'buscar fila con id en blanco.
@@ -1817,7 +1817,7 @@ Public Class frmImportaciones
 
                 'agregar los elementos restantes al grid.
                 For index = inicio To tblR.Rows.Count - 1
-                    Me.grdproductos.Rows.Add("", tblR.Rows(index).Item(0), tblR.Rows(index).Item(1), tblR.Rows(index).Item(2), tblR.Rows(index).Item(3), tblR.Rows(index).Item(4), tblR.Rows(index).Item(5), 0, 0, 0, 0, 0, tblR.Rows(index).Item(3) * tblR.Rows(index).Item(4), "0")
+                    Me.grdproductos.Rows.Add("", tblR.Rows(index).Item(0), tblR.Rows(index).Item(1), tblR.Rows(index).Item(2), tblR.Rows(index).Item(3), tblR.Rows(index).Item(4), tblR.Rows(index).Item(5), 0, 0, 0, 0, 0, tblR.Rows(index).Item(3) * tblR.Rows(index).Item(4), "0", 0, 0, 0, tblR.Rows(index).Item(7))
                 Next
 
 
@@ -1932,6 +1932,8 @@ Public Class frmImportaciones
                     nuevaCompra.IdPreformaInvoice = 0
                     nuevaCompra.nacionalizacion = False
                     nuevaCompra.Invoice = False
+                    nuevaCompra.IdInvoiceNacionalizacion = 0
+                    nuevaCompra.finalizada = 0
 
 
                     'Estados de la compra

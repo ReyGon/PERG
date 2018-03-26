@@ -36,6 +36,7 @@ Partial Class frmImportaciones
         Dim GridViewTextBoxColumn15 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn16 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn17 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn18 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim FilterDescriptor1 As Telerik.WinControls.Data.FilterDescriptor = New Telerik.WinControls.Data.FilterDescriptor()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmImportaciones))
         Me.pnlBarra = New System.Windows.Forms.Panel()
@@ -1033,7 +1034,9 @@ Partial Class frmImportaciones
         GridViewTextBoxColumn17.IsVisible = False
         GridViewTextBoxColumn17.Name = "TotalCompra"
         GridViewTextBoxColumn17.Width = 120
-        Me.grdproductos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4, GridViewTextBoxColumn5, GridViewTextBoxColumn6, GridViewTextBoxColumn7, GridViewTextBoxColumn8, GridViewTextBoxColumn9, GridViewTextBoxColumn10, GridViewTextBoxColumn11, GridViewTextBoxColumn12, GridViewTextBoxColumn13, GridViewTextBoxColumn14, GridViewTextBoxColumn15, GridViewTextBoxColumn16, GridViewTextBoxColumn17})
+        GridViewTextBoxColumn18.HeaderText = "Caja No."
+        GridViewTextBoxColumn18.Name = "cajano"
+        Me.grdproductos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4, GridViewTextBoxColumn5, GridViewTextBoxColumn6, GridViewTextBoxColumn7, GridViewTextBoxColumn8, GridViewTextBoxColumn9, GridViewTextBoxColumn10, GridViewTextBoxColumn11, GridViewTextBoxColumn12, GridViewTextBoxColumn13, GridViewTextBoxColumn14, GridViewTextBoxColumn15, GridViewTextBoxColumn16, GridViewTextBoxColumn17, GridViewTextBoxColumn18})
         Me.grdproductos.MasterTemplate.EnableAlternatingRowColor = True
         Me.grdproductos.MasterTemplate.EnableGrouping = False
         FilterDescriptor1.PropertyName = Nothing
@@ -1086,7 +1089,7 @@ Partial Class frmImportaciones
         Me.Label6.TabIndex = 177
         Me.Label6.Text = "Totales"
         '
-        'frmproformaimportacion
+        'frmImportaciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(1276, 679)
@@ -1103,7 +1106,7 @@ Partial Class frmImportaciones
         Me.Controls.Add(Me.RadGroupBox1)
         Me.Controls.Add(Me.pnlBarra)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "frmproformaimportacion"
+        Me.Name = "frmImportaciones"
         '
         '
         '

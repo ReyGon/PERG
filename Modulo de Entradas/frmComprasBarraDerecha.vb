@@ -57,12 +57,12 @@ Public Class frmComprasBarraDerecha
                     Dim entrada As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = codigo Select x).FirstOrDefault
 
                     If entrada.preforma = False And entrada.Invoice = True And entrada.compra = False And entrada.anulado = False Then
-                        ''frmNacionalizacion.Text = "Nacionalizacion Invoice"
-                        ''frmNacionalizacion.StartPosition = FormStartPosition.CenterScreen
-                        ''frmNacionalizacion.WindowState = FormWindowState.Normal
-                        ''frmNacionalizacion.idinvoice = codigo
-                        ''frmNacionalizacion.ShowDialog()
-                        ''frmNacionalizacion.Dispose()
+                        frmNacionalizacion.Text = "Nacionalizacion Invoice"
+                        frmNacionalizacion.StartPosition = FormStartPosition.CenterScreen
+                        frmNacionalizacion.WindowState = FormWindowState.Normal
+                        frmNacionalizacion.idinvoice = codigo
+                        frmNacionalizacion.ShowDialog()
+                        frmNacionalizacion.Dispose()
 
                         entrada.nacionalizacion = True
                         conexion.SaveChanges()
