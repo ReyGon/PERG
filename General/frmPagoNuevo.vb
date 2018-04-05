@@ -243,7 +243,7 @@ Public Class frmPagoNuevo
 
         Dim saldo As Double = 0
         Dim saldoActual As Double = 0
-        Dim enProceso As Decimal = CDbl(lblEnProceso.Text)
+        Dim enProceso As Decimal = CDbl(Replace(lblEnProceso.Text, "Q", " "))
         For index = 0 To Me.grdProductos.Rows.Count - 1
             If IsNumeric(Me.grdProductos.Rows(index).Cells("txmMonto").Value) Then
                 total = total + (CType(Me.grdProductos.Rows(index).Cells("txmMonto").Value, Double) * tipoCambio)

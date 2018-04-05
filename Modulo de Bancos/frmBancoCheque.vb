@@ -40,7 +40,7 @@ Public Class frmBancoCheque
         fnLlenaBeneficiarios(0)
 
         'Le asignamos el data source al grid
-        Dim cuenta = (From x In ctx.tblBanco_MovimientoConcepto Where x.bitCheque
+        Dim cuenta = (From x In ctx.tblBanco_MovimientoConcepto Where x.bitCredito
                       Select x.codigo, valor = x.nombre)
 
         Dim chequeConcepto As New GridViewComboBoxColumn()
@@ -244,7 +244,7 @@ Public Class frmBancoCheque
                 cheque.documento = numeroDocumento
                 cheque.fechaRegistro = dtpFechaRegistro.Text & " " & hora
                 cheque.nombre = cmbBeneficiario.Text
-                cheque.total = CDec(lblTotal.Text)
+                cheque.total = CDec(Replace(lblTotal.Text, "Q", " "))
                 cheque.usuarioRegistra = mdlPublicVars.idUsuario
                 ctx.AddTotblBanco_Cheque(cheque)
                 ctx.SaveChanges()

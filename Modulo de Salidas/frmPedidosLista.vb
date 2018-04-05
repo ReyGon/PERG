@@ -1213,7 +1213,7 @@ Public Class frmPedidosLista
         End Try
     End Sub
 
-    Private Sub grdDatos_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
+    Private Sub grdDatos_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles grdDatos.KeyDown
         Try
             If e.KeyCode = Keys.F4 Then
 

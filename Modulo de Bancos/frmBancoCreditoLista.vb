@@ -99,17 +99,17 @@ Public Class frmBancoCreditoLista
     Private Sub frm_eliminar() Handles Me.eliminaRegistro
         Try
             If Me.grdDatos.RowCount > 0 Then
-                Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdDatos)
-                Dim idCredito As Integer = Me.grdDatos.Rows(fila).Cells("codigo").Value
+
+                'Dim idCredito As Integer = Me.grdDatos.Rows(fila).Cells("codigo").Value
                 'Obtenemos informacion del credito
-                Dim credito As tblBanco_Creditos = (From x In ctx.tblBanco_Creditos.AsEnumerable Where x.codigo = idCredito Select x)
+                'Dim credito As tblBanco_Creditos = (From x In ctx.tblBanco_Creditos.AsEnumerable Where x.codigo = idCredito Select x)
 
-                If credito.bitAnulado Then
-                    RadMessageBox.Show("El crédito ya ha sido anulado", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Info)
-                ElseIf credito.bitConfirmado Then
-                    RadMessageBox.Show("El crédito ya ha sido confirmado", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Info)
-                ElseIf RadMessageBox.Show("¿Desea anular el crédito?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
-
+                'If credito.bitAnulado Then
+                'RadMessageBox.Show("El crédito ya ha sido anulado", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Info)
+                'ElseIf credito.bitConfirmado Then
+                '   RadMessageBox.Show("El crédito ya ha sido confirmado", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Info)
+                If RadMessageBox.Show("¿Desea anular el crédito?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdDatos)
                     fnAnula(grdDatos.Rows(fila).Cells("codigo").Value())
                     Call llenagrid()
                 End If

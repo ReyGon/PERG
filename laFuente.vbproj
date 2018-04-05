@@ -737,6 +737,12 @@
     <Compile Include="Modulo de Entradas\frmSugerir3.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modulo de Entradas\Importaciones\frmImportarImportaciones.Designer.vb">
+      <DependentUpon>frmImportarImportaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo de Entradas\Importaciones\frmImportarImportaciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modulo de Entradas\Importaciones\frmInvoicesLista.Designer.vb">
       <DependentUpon>frmInvoicesLista.vb</DependentUpon>
     </Compile>
@@ -2073,6 +2079,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Entradas\frmSugerir3.resx">
       <DependentUpon>frmSugerir3.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo de Entradas\Importaciones\frmImportarImportaciones.resx">
+      <DependentUpon>frmImportarImportaciones.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Entradas\Importaciones\frmInvoicesLista.resx">
       <DependentUpon>frmInvoicesLista.vb</DependentUpon>

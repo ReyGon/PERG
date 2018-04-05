@@ -77,7 +77,7 @@ Partial Class frmBancoCheque
         'pnlBarra
         '
         Me.pnlBarra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlBarra.BackColor = System.Drawing.Color.SteelBlue
         Me.pnlBarra.Controls.Add(Me.pnx1Salir)
         Me.pnlBarra.Controls.Add(Me.pnx0Guardar)
@@ -155,7 +155,7 @@ Partial Class frmBancoCheque
         'rgbInformacion
         '
         Me.rgbInformacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rgbInformacion.Controls.Add(Me.btnAgregarBeneficiario)
         Me.rgbInformacion.Controls.Add(Me.lblDocumento)
         Me.rgbInformacion.Controls.Add(Me.Label11)
@@ -211,7 +211,7 @@ Partial Class frmBancoCheque
         'lblDocumento
         '
         Me.lblDocumento.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDocumento.AutoSize = True
         Me.lblDocumento.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.lblDocumento.Location = New System.Drawing.Point(584, 61)
@@ -235,7 +235,7 @@ Partial Class frmBancoCheque
         'lblCorrelativo
         '
         Me.lblCorrelativo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblCorrelativo.AutoSize = True
         Me.lblCorrelativo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.lblCorrelativo.Location = New System.Drawing.Point(584, 89)
@@ -278,7 +278,7 @@ Partial Class frmBancoCheque
         'lblTotal
         '
         Me.lblTotal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblTotal.Font = New System.Drawing.Font("Segoe UI", 16.0!, System.Drawing.FontStyle.Bold)
         Me.lblTotal.Location = New System.Drawing.Point(584, 117)
@@ -423,8 +423,8 @@ Partial Class frmBancoCheque
         'rgbDetalles
         '
         Me.rgbDetalles.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rgbDetalles.Controls.Add(Me.grdDatos)
         Me.rgbDetalles.FooterImageIndex = -1
         Me.rgbDetalles.FooterImageKey = ""

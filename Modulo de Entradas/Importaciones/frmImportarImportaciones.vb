@@ -1,0 +1,413 @@
+﻿Imports System.Data.OleDb
+Imports System.Linq
+Imports System.Data.SqlClient
+Imports Telerik.WinControls
+
+Public Class frmImportarImportaciones
+
+
+    Public tblRetorno As New DataTable
+    Public tblCodigos As New DataTable
+
+    Private _bitEntrada As Boolean
+    Private _bitSalida As Boolean
+    Private _bitMovInventario As Boolean
+    Private _cliente As Integer
+    Private _bitImportacion As Boolean
+
+    Public Property bitEntrada As Boolean
+        Get
+            bitEntrada = _bitEntrada
+        End Get
+        Set(ByVal value As Boolean)
+            _bitEntrada = value
+        End Set
+    End Property
+
+    Public Property bitImportacion As Boolean
+        Get
+            bitImportacion = _bitImportacion
+        End Get
+        Set(ByVal value As Boolean)
+            _bitImportacion = value
+        End Set
+    End Property
+
+    Public Property bitSalida As Boolean
+        Get
+            bitSalida = _bitSalida
+        End Get
+        Set(ByVal value As Boolean)
+            _bitSalida = value
+        End Set
+    End Property
+
+    Public Property bitMovInventario As Boolean
+        Get
+            bitMovInventario = _bitMovInventario
+        End Get
+        Set(value As Boolean)
+            _bitMovInventario = value
+        End Set
+    End Property
+
+    Public Property cliente As Integer
+        Get
+            cliente = _cliente
+        End Get
+        Set(ByVal value As Integer)
+            _cliente = value
+        End Set
+    End Property
+
+    Private Sub btnImportar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImportar.Click
+        fnAbrirDocumento()
+    End Sub
+
+    Private Sub fnAbrirDocumento()
+        Try
+            Dim ruta As String = ""
+            Dim openFD As New OpenFileDialog()
+            With openFD
+                .Title = "Seleccionar archivos"
+                .Filter = "Archivos Excel(*.xls;*.xlsx)|*.xls;*.xlsx|Todos los archivos (*.*)|*.*"
+                .Multiselect = False
+                .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.Desktop
+                If .ShowDialog = Windows.Forms.DialogResult.OK Then
+                    txtUrl.Text = .FileName
+                End If
+            End With
+
+
+            Dim stConexion As String = ("Provider=Microsoft.ACE.OLEDB.12.0;" & ("Data Source=" & (txtUrl.Text.ToString & ";Extended Properties=""Excel 12.0 Xml;HDR=YES;IMEX=2"";")))
+
+            'Leer las hojas del libro de excel
+            Dim connExcel As New OleDbConnection(stConexion)
+            Dim cmdExcel As New OleDbCommand()
+            'Dim oda As New OleDbDataAdapter()
+            'Dim dt2 As New DataTable()
+            cmdExcel.Connection = connExcel
+
+            'obtener nombre de la primer hoja
+            connExcel.Open()
+            Dim dtExcelSchema As DataTable
+            dtExcelSchema = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, Nothing)
+
+            'recorrer y mostrar las hojas en un combox
+            cmbHojas.Items.Clear()
+            'cblhojas.items.clear()
+            For index As Integer = 0 To dtExcelSchema.Rows.Count - 1
+                cmbHojas.Items.Add(dtExcelSchema.Rows(index)("TABLE_NAME").ToString())
+                'cblhojas.items.add(dtExcelSchema.Rows(index)("TABLE_NAME").ToString())
+                'cblHojas.SetItemChecked(index, True)
+            Next
+
+            If dtExcelSchema.Rows.Count > 0 Then
+                cmbHojas.SelectedIndex = 0
+            End If
+
+            'Obtener el nombre de la primera Hoja.
+            'Dim SheetName As String = dtExcelSchema.Rows(0)("TABLE_NAME").ToString()
+
+            connExcel.Close()
+
+        Catch ex As Exception
+            alerta.contenido = ex.ToString
+            alerta.fnErrorContenido()
+        End Try
+
+    End Sub
+
+    Private Sub fnActualizar()
+        Dim Conexion As String = ("Provider=Microsoft.ACE.OLEDB.12.0;" & ("Data Source=" & (txtUrl.Text.ToString & ";Extended Properties=""Excel 12.0 Xml;HDR=YES;IMEX=2"";")))
+
+        Try
+
+            Dim cnConex As New OleDbConnection(Conexion)
+            Dim Cmd As New OleDbCommand("Select * from [" + cmbHojas.Text.ToString + "]")
+            Dim Ds As New DataSet
+            Dim Da As New OleDbDataAdapter
+            Dim Dt As New DataTable
+            cnConex.Open()
+            Cmd.Connection = cnConex
+            Da.SelectCommand = Cmd
+            Da.Fill(Ds)
+            Dt = Ds.Tables(0)
+
+            Dim codigoArchivo As String = ""
+            Dim cantidad As String = ""
+            Dim costo As String = ""
+            Dim Caja As String = ""
+
+            Dim codigoLista As String = ""
+            Dim precio As Double = 0
+            Dim tipoMov As String = ""
+            Dim idTipoMovimiento As Integer = 0
+            Dim fecha As String = Format(Now, "dd/MM/yyyy").ToString
+            '' Dim msj As String = ""
+            '' Dim bitError As Boolean = False
+
+            Me.tblRetorno.Rows.Clear()
+            Me.tblCodigos.Rows.Clear()
+            Me.grdProductos.Rows.Clear()
+
+            Dim index As Integer
+            For index = 0 To Ds.Tables(0).Rows.Count - 1
+                codigoArchivo = LTrim(RTrim(Ds.Tables(0).Rows(index).Item(0).ToString))
+                cantidad = LTrim(RTrim(Ds.Tables(0).Rows(index).Item(1).ToString))
+                Caja = LTrim(RTrim(Ds.Tables(0).Rows(index).Item(3).ToString))
+
+                If bitEntrada Then
+                    costo = LTrim(RTrim(Ds.Tables(0).Rows(index).Item(2).ToString))
+                End If
+
+                If bitMovInventario Then
+                    tipoMov = LTrim(RTrim(Ds.Tables(0).Rows(index).Item(2).ToString))
+                    ''msj = "Debe de Agregar Tipo de Movimiento"
+
+                    'Obtenemos el tipo de movimiento
+                    Dim tipoMovimiento As tblTipoMovimiento = (From x In ctx.tblTipoMovimientoes.AsEnumerable Where x.nombre.ToLower.Trim.Equals(tipoMov.ToLower.Trim)
+                                                               Select x).FirstOrDefault
+                    If tipoMovimiento Is Nothing Then
+                        ''MessageBox.Show("No Existe Tipo de Movimiento " & tipoMov, mdlPublicVars.nombreSistema)
+                        idTipoMovimiento = 0
+                    Else
+                        idTipoMovimiento = tipoMovimiento.idTipoMovimiento
+                    End If
+
+
+                End If
+
+                If codigoArchivo.Length > 0 Then
+                    ''buscar el codigo
+                    Dim art As tblArticulo = (From x In ctx.tblArticuloes Where x.codigo1 = codigoArchivo Select x).FirstOrDefault()
+
+                    If art IsNot Nothing Then
+                        If bitEntrada Then
+                            Me.grdProductos.Columns(2).HeaderText = "Costo"
+                            tblRetorno.Rows.Add(art.idArticulo, art.codigo1, art.nombre1, cantidad, costo, art.idUnidadMedida, "", Caja)
+                        ElseIf bitSalida Then
+
+                            Me.grdProductos.Columns(2).HeaderText = "Precio"
+                            tblRetorno.Rows.Add(art.idArticulo, art.codigo1, art.nombre1, cantidad)
+
+                        ElseIf bitMovInventario Then
+                            Me.grdProductos.Columns(2).HeaderText = "Tipo Movimiento"
+                            tblRetorno.Rows.Add(art.idArticulo, art.codigo1, art.nombre1, cantidad, art.costoIVA, idTipoMovimiento, tipoMov)
+                        End If
+
+                        tblCodigos.Rows.Add(art.idArticulo)
+                        ''Me.grdProductos.Rows.Add(codigoArchivo, cantidad, costo)
+                    Else
+                        If bitMovInventario Then
+                            Me.grdProductos.Rows.Add(codigoArchivo, cantidad, tipoMov, Caja)
+                        Else
+                            Me.grdProductos.Rows.Add(codigoArchivo, cantidad, costo, Caja)
+                        End If
+
+
+                    End If
+                End If
+            Next
+
+            If bitSalida Then
+                Dim precios As New DataTable
+                'llamar sp.
+                Using conn As New SqlConnection("Server=" & mdlPublicVars.servidor & ";Initial Catalog=" + mdlPublicVars.bd & ";user ID=" & mdlPublicVars.usuarioSistema & ";password=" & mdlPublicVars.claveSistema)
+                    Using comd As New SqlCommand("sp_Salida_precioImportacion", conn)
+                        Dim adp As New SqlClient.SqlDataAdapter
+                        comd.CommandType = CommandType.StoredProcedure
+                        comd.Parameters.AddWithValue("@param", tblCodigos)
+                        comd.Parameters.AddWithValue("@idcliente", cliente)
+                        conn.Open()
+                        adp.SelectCommand = comd
+                        adp.SelectCommand.CommandTimeout = 100000
+                        adp.Fill(precios)
+                        adp.Dispose()
+                        adp = Nothing
+                    End Using
+                End Using
+
+                'Actualizamos el precio de la tbl retorno
+                For i As Integer = 0 To tblRetorno.Rows.Count - 1
+                    tblRetorno.Rows(i).Item("Costo") = precios.Rows(i).Item("precio")
+                Next
+            End If
+
+            cnConex.Close()
+        Catch ex As Exception
+            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+            'alerta.contenido = "Error al abrir el archivo"
+            'alerta.fnErrorContenido()
+        End Try
+
+        fnTotales()
+
+    End Sub
+
+    Private Sub btnAgrega_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
+        fnActualizar()
+    End Sub
+
+    Private Sub frmImportar_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        mdlPublicVars.fnGrid_iconos(Me.grdProductos)
+        mdlPublicVars.fnFormatoGridMovimientos(grdProductos)
+        tblRetorno.Columns.Clear()
+        tblCodigos.Columns.Clear()
+        tblRetorno.Columns.Add("Id")
+        tblRetorno.Columns.Add("Codigo")
+        tblRetorno.Columns.Add("Nombre")
+        tblRetorno.Columns.Add("Cantidad")
+        tblRetorno.Columns.Add("Costo")
+        tblRetorno.Columns.Add("idTipoMovimiento")
+        tblRetorno.Columns.Add("Concepto")
+        tblRetorno.Columns.Add("Caja")
+
+        tblCodigos.Columns.Add("Id")
+
+        txtUrl.Text = ""
+        cmbHojas.Items.Clear()
+        cmbHojas.Text = ""
+        mdlPublicVars.comboActivarFiltroLista(cmbHojas)
+
+        Me.grdProductos.Rows.Clear()
+        tblRetorno.Rows.Clear()
+
+        lblContadorNo.Text = 0
+        lblContadoSi.Text = 0
+
+        If bitEntrada = True Then
+            Me.grdProductos.Columns("txmCosto").IsVisible = True
+        End If
+
+        If bitSalida = True Then
+            Me.grdProductos.Columns("txmCosto").IsVisible = False
+        End If
+
+        btnPendientesPedir.Visible = bitSalida
+    End Sub
+
+    Private Sub fnTotales()
+        Try
+            lblContadoSi.Text = tblRetorno.Rows.Count
+            lblContadorNo.Text = Me.grdProductos.Rows.Count
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub btnActualizar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnActualizar.Click
+        Try
+            Dim codigo As String
+            Dim cantidad As String
+            Dim costo As String
+            Dim unidadmedida As Integer
+
+            Dim index
+            For index = 0 To Me.grdProductos.Rows.Count - 1
+
+                codigo = CType(Me.grdProductos.Rows(index).Cells(0).Value, String)
+                cantidad = LTrim(RTrim(Me.grdProductos.Rows(index).Cells(1).Value))
+                costo = LTrim(RTrim(Me.grdProductos.Rows(index).Cells(2).Value))
+
+                If codigo.Length > 0 Then
+                    Dim art As tblArticulo = (From x In ctx.tblArticuloes Where x.codigo1 = codigo Select x).FirstOrDefault
+                    If art IsNot Nothing Then
+                        tblRetorno.Rows.Add(art.idArticulo, art.codigo1, art.nombre1, cantidad, costo)
+                        tblCodigos.Rows.Add(art.idArticulo)
+                        Me.grdProductos.Rows.RemoveAt(index)
+                    End If
+                End If
+
+
+            Next
+
+        Catch ex As Exception
+        End Try
+
+        fnTotales()
+
+    End Sub
+
+    'GUARDAR
+    Private Sub fnGuardar() Handles Me.panel0
+        Try
+            If Me.tblRetorno.Rows.Count > 0 Then
+                alerta.fnGuardar()
+
+                Me.Close()
+            Else
+                alerta.contenido = "No existen productos !!!"
+                alerta.fnErrorContenido()
+            End If
+
+
+        Catch ex As Exception
+            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+        End Try
+
+
+    End Sub
+
+    'PASAR A PENDIENTES POR SURTIR
+    Private Sub fnPendientesSurtir()
+        Dim fechaServer As DateTime = mdlPublicVars.fnFecha_horaServidor
+        For i As Integer = 0 To Me.grdProductos.RowCount - 1
+            'Agregamos el articulo a la tabla de pendientes por pedir
+            Dim pendiente As New tblPendientePorPedir
+            pendiente.cliente = cliente
+            pendiente.bitCreado = False
+            pendiente.anulado = False
+            pendiente.cantidad = CInt(Me.grdProductos.Rows(i).Cells("txmCantidad").Value)
+            pendiente.codigoArticulo = Me.grdProductos.Rows(i).Cells("txmCodigo").Value
+            pendiente.descripcion = ""
+            pendiente.fechaRegistro = fechaServer
+            pendiente.importancia = mdlPublicVars.General_ImportanciaDefault
+            pendiente.observacion = "Producto creado desde importación"
+            pendiente.saldo = CInt(Me.grdProductos.Rows(i).Cells("txmCantidad").Value)
+            pendiente.usuario = mdlPublicVars.idUsuario
+
+            ctx.AddTotblPendientePorPedirs(pendiente)
+            ctx.SaveChanges()
+        Next
+
+    End Sub
+
+
+    'SALIR
+    Private Sub fnCerrar() Handles Me.panel2
+        tblRetorno.Rows.Clear()
+        Me.Close()
+    End Sub
+
+    'DOC SALIDA
+    Private Sub fnDocSalida() Handles Me.panel1
+        frmDocumentosSalida.txtTitulo.Text = "Articulos no encontrados"
+        frmDocumentosSalida.grd = Me.grdProductos
+        frmDocumentosSalida.Text = "Docs. de Salida"
+        frmDocumentosSalida.codigo = 0
+        frmDocumentosSalida.bitCliente = False
+        frmDocumentosSalida.bitGenerico = True
+        frmDocumentosSalida.ShowDialog()
+        frmDocumentosSalida.Dispose()
+    End Sub
+
+
+    Private Sub btnPendientesPedir_Click(sender As System.Object, e As System.EventArgs) Handles btnPendientesPedir.Click
+        If grdProductos.RowCount > 0 Then
+            If RadMessageBox.Show("¿Desea pasar a pendiente por pedir los productos no encontrados?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                If bitSalida Then
+                    fnPendientesSurtir()
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub btnCopiarGrid_Click(sender As System.Object, e As System.EventArgs) Handles btnCopiarGrid.Click
+        If RadMessageBox.Show("¿Desea copiar el grid?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            mdlPublicVars.ConvertSelectedDataToString(grdProductos, False)
+            RadMessageBox.Show("Grid copiado al portapapeles", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Info)
+        End If
+    End Sub
+End Class
