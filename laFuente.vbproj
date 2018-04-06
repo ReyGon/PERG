@@ -707,6 +707,12 @@
     <Compile Include="Modulo de Entradas\frmComprasGuia.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modulo de Entradas\Importaciones\frmCargaSelectivaImportacion.Designer.vb">
+      <DependentUpon>frmCargaSelectivaImportacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo de Entradas\Importaciones\frmCargaSelectivaImportacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modulo de Entradas\Importaciones\frmCargasImportaciones.Designer.vb">
       <DependentUpon>frmCargasImportaciones.vb</DependentUpon>
     </Compile>
@@ -2064,6 +2070,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Entradas\frmComprasGuia.resx">
       <DependentUpon>frmComprasGuia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo de Entradas\Importaciones\frmCargaSelectivaImportacion.resx">
+      <DependentUpon>frmCargaSelectivaImportacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Entradas\Importaciones\frmCargasImportaciones.resx">
       <DependentUpon>frmCargasImportaciones.vb</DependentUpon>

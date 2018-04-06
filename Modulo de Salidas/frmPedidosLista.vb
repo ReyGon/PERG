@@ -1062,9 +1062,6 @@ Public Class frmPedidosLista
 
                         Dim estado
 
-                        '  Dim consulta As List(Of tblSalidaDetalle) = (From x In conexion.tblSalidaDetalles Where x.idSalida = codigo And x.anulado = False Select x).ToList
-
-                        'conexion nueva.
                         Dim conexion2 As New dsi_pos_demoEntities
 
                         Using conn2 As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)

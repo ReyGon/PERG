@@ -56,6 +56,12 @@ Public Class frmComprasBarraDerecha
 
                     Dim entrada As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = codigo Select x).FirstOrDefault
 
+                    If entrada.finalizada = True Then
+                        RadMessageBox.Show("¡La Invoice ya fue Nacionalizada, No se puede operar!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                        Exit Sub
+                        Me.Close()
+                    End If
+
                     If entrada.preforma = False And entrada.Invoice = True And entrada.compra = False And entrada.anulado = False Then
                         frmNacionalizacion.Text = "Nacionalizacion Invoice"
                         frmNacionalizacion.StartPosition = FormStartPosition.CenterScreen
@@ -64,13 +70,21 @@ Public Class frmComprasBarraDerecha
                         frmNacionalizacion.ShowDialog()
                         frmNacionalizacion.Dispose()
 
-                        entrada.nacionalizacion = True
+                        Dim nac As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = CInt(mdlPublicVars.superSearchId) Select x).FirstOrDefault
+
+                        nac.Nacionalizacion = True
+                        nac.finalizada = False
+                        nac.IdInvoiceNacionalizacion = codigo
                         conexion.SaveChanges()
 
                     Else
                         alerta.contenido = "No es una Invoice o la Invoice esta anulada"
                         alerta.fnErrorContenido()
                     End If
+
+                    entrada.IdInvoiceNacionalizacion = 0
+                    entrada.finalizada = True
+                    conexion.SaveChanges()
 
                     conn.Close()
                 End Using
@@ -80,6 +94,8 @@ Public Class frmComprasBarraDerecha
                 ''frmComprasGuia.Codigo = codigo
                 ''frmComprasGuia.StartPosition = FormStartPosition.CenterScreen
                 ''permiso.PermisoFrmEspeciales(frmComprasGuia, False)
+
+
             End If
         Catch ex As Exception
 

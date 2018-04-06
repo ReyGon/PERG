@@ -583,7 +583,8 @@ Public Class frmImportaciones
                     nuevaCompra.preformaimportacion = False
                     nuevaCompra.Invoice = True
                     nuevaCompra.IdPreformaInvoice = codigo
-                    nuevaCompra.nacionalizacion = False
+                    nuevaCompra.Nacionalizacion = False
+                    nuevaCompra.IdInvoiceNacionalizacion = 0
 
 
                     'Estados de la compra
@@ -616,6 +617,7 @@ Public Class frmImportaciones
                     Dim cantidad As Double = 0
                     Dim costo As Double = 0
                     Dim nombreArticulo As String = ""
+                    Dim nocaja As String = ""
                     Dim index As Integer = 0
                     'Recorremos el grid de productos 
                     For index = 0 To Me.grdproductos.Rows.Count - 1
@@ -624,7 +626,7 @@ Public Class frmImportaciones
                         cantidad = Me.grdproductos.Rows(index).Cells("txmCantidad").Value
                         costo = Me.grdproductos.Rows(index).Cells("txmCosto").Value
                         nombreArticulo = Me.grdproductos.Rows(index).Cells("txbProducto").Value
-
+                        nocaja = Me.grdproductos.Rows(index).Cells("cajano").Value
                         If nombreArticulo IsNot Nothing Then
                             Dim detalleEntrada As New tblEntradasDetalle
                             detalleEntrada.idEntrada = codigoCompra
@@ -637,6 +639,7 @@ Public Class frmImportaciones
                             detalleEntrada.costoSinIVA = costo / (1 + (mdlPublicVars.General_IVA / 100))
                             detalleEntrada.idunidadmedida = mdlPublicVars.UnidadMedidaDefault
                             detalleEntrada.valormedida = 1
+                            detalleEntrada.nocaja = nocaja
                             conexion.AddTotblEntradasDetalles(detalleEntrada)
                             conexion.SaveChanges()
 
@@ -650,6 +653,17 @@ Public Class frmImportaciones
                     Next
 
                     conexion.SaveChanges()
+
+                    Dim proveedor As tblProveedor = (From x In conexion.tblProveedors Where x.idProveedor = nuevaCompra.idProveedor Select x).FirstOrDefault
+
+                    If proveedor.saldoDolar Is Nothing Then
+                        proveedor.saldoDolar = nuevaCompra.total
+                    Else
+                        proveedor.saldoDolar += nuevaCompra.total
+                    End If
+
+                    conexion.SaveChanges()
+
                     'paso 8, completar la transaccion.
                     transaction.Complete()
                 Catch ex As System.Data.EntityException
@@ -1966,6 +1980,7 @@ Public Class frmImportaciones
                     Dim cantidad As Double = 0
                     Dim costo As Double = 0
                     Dim nombreArticulo As String = ""
+                    Dim nocaja As String = ""
                     Dim index As Integer = 0
                     'Recorremos el grid de productos 
                     For index = 0 To Me.grdproductos.Rows.Count - 1
@@ -1974,6 +1989,8 @@ Public Class frmImportaciones
                         cantidad = Me.grdproductos.Rows(index).Cells("txmCantidad").Value
                         costo = Me.grdproductos.Rows(index).Cells("txmCosto").Value
                         nombreArticulo = Me.grdproductos.Rows(index).Cells("txbProducto").Value
+                        nocaja = Me.grdproductos.Rows(index).Cells("cajano").Value
+
 
                         If nombreArticulo IsNot Nothing Then
                             Dim detalleEntrada As New tblEntradasDetalle
@@ -1987,6 +2004,7 @@ Public Class frmImportaciones
                             detalleEntrada.costoSinIVA = costo / (1 + (mdlPublicVars.General_IVA / 100))
                             detalleEntrada.idunidadmedida = mdlPublicVars.UnidadMedidaDefault
                             detalleEntrada.valormedida = 1
+                            detalleEntrada.nocaja = nocaja
                             conexion.AddTotblEntradasDetalles(detalleEntrada)
                             conexion.SaveChanges()
 

@@ -486,14 +486,27 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblReciboCaja_tblReciboCaja1" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblClientes" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSurtir_tblClientes" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblEntrada" Width="1.5" PointX="0.959161732792464" PointY="12.418202376187873" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblEntradasDetalle" Width="1.5" PointX="6.475888283213548" PointY="22.715153511015306" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblNacionalizacion" Width="1.5" PointX="7.7210990021569188" PointY="8.88150600012462" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblProveedorProcedencia" Width="1.5" PointX="4.6841939448771042" PointY="12.752593508340695" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblProveedor_tblProveedorProcedencia" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblPrecarga" Width="1.5" PointX="10.039723371174059" PointY="0.47049492619489086" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblPrecargaDetalle" Width="1.5" PointX="3.52648510389332" PointY="29.11179713770365" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_Articulo_PrecargaD" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_Precarga_PrecargaD" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_Usuario_Precarga" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblProveedor_cuenta" Width="1.5" PointX="5.6541749432935262" PointY="18.078184568359603" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblProveedor_cuenta_tblBanco" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblProveedor_cuenta_tblProveedor" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblEntradasDetalle" Width="1.5" PointX="5.2465789118998583" PointY="12.636569297237587" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblEntradasDetalle_tblArticulos" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblDevolucionProveedorDetalle_tblEntradasDetalle" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblPendientes_tblEntradasDetalle" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_UnidadMedida" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblEntrada" Width="1.5" PointX="11.894101459483665" PointY="14.774959109153114" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCajaEntradas_tblEntradas" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCtaPagar_tblEntradas" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblDevolucionProveedor_tblEntrada" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblDevolucionProveedorDetalle_tblEntradasDetalle" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_Invoice_Precarga" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblEntradas_tblProveedor" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblEntradas_tblTipoInventario" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblEntradas_tblTipoMovimiento" />
@@ -503,19 +516,6 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblEnvio_Entrada_tblEntradas" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblImpuesto_Entrada_tblEntrada" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblPagoProveedor_tblEntradas" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblPendientes_tblEntradasDetalle" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_UnidadMedida" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblProveedorProcedencia" Width="1.5" PointX="4.6841939448771042" PointY="12.752593508340695" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblProveedor_tblProveedorProcedencia" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblPrecarga" Width="1.5" PointX="10.039723371174059" PointY="0.47049492619489086" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblPrecargaDetalle" Width="1.5" PointX="3.52648510389332" PointY="29.11179713770365" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_Articulo_PrecargaD" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_Invoice_Precarga" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_Precarga_PrecargaD" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_Usuario_Precarga" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblProveedor_cuenta" Width="1.5" PointX="5.6541749432935262" PointY="18.078184568359603" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblProveedor_cuenta_tblBanco" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblProveedor_cuenta_tblProveedor" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

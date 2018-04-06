@@ -60,12 +60,13 @@ Public Class frmNacionalizacionesLista
                 conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
                 Dim consulta = (From x In conexion.tblEntradas Where (CType(x.fechaRegistro, String).Contains(filtro) Or (x.tblProveedor.negocio.Contains(filtro))) And x.idEmpresa = mdlPublicVars.idEmpresa And _
-                            (diasFiltro = -1 Or (diasFiltro >= 0 And x.fechaRegistro > fechaFiltro)) And x.nacionalizacion = True
+                            (diasFiltro = -1 Or (diasFiltro >= 0 And x.fechaRegistro > fechaFiltro)) And x.Nacionalizacion = True
                            Select Codigo = x.idEntrada, Fecha = x.fechaFiltro, Proveedor = x.tblProveedor.negocio, Correlativo = x.correlativo, _
                             Documento = x.serieDocumento & " - " & x.documento, Total = (From a In conexion.tblEntradasDetalles Where a.idEntrada = x.idEntrada Select a.costoIVA * a.cantidad).Sum,
                             chkAnulado = x.anulado, PreformaImportacion = x.preformaimportacion, _
-                            clrEstado = If(x.anulado = True, 0, If(x.nacionalizacion = True, 4, If(x.Invoice = True, 5, If(x.preformaimportacion = True, 1, 0)))), _
-                            Descripcion = If(x.anulado = True, "Anulado", If(x.nacionalizacion = True, "Nacionalizado", If(x.Invoice = True, "Invoice", If(x.preformaimportacion = True, "Preforma Invoice", "Ninguno"))))
+                            clrEstado = If(x.anulado = True, 0, If(x.Nacionalizacion = True, 4, If(x.Invoice = True, 5, If(x.preformaimportacion = True, 1, 0)))), _
+                            Descripcion = If(x.anulado = True, "Anulado", If(x.Nacionalizacion = True, "Nacionalizado", If(x.Invoice = True, "Invoice", If(x.preformaimportacion = True, "Preforma Invoice", "Ninguno")))), _
+                            chkFinalizado = x.finalizada
                             Order By Fecha Descending, Codigo Descending)
 
                 Me.grdDatos.DataSource = consulta

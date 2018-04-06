@@ -25,6 +25,7 @@ Partial Class frmCargasImportaciones
         Dim GridViewTextBoxColumn4 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn5 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn6 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn7 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCargasImportaciones))
         Me.pnlBarra = New System.Windows.Forms.Panel()
         Me.pnx1Salir = New System.Windows.Forms.Panel()
@@ -46,6 +47,7 @@ Partial Class frmCargasImportaciones
         Me.Label27 = New System.Windows.Forms.Label()
         Me.lblTotalCargas = New System.Windows.Forms.Label()
         Me.grdProductos = New Telerik.WinControls.UI.RadGridView()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
         Me.pnx1Salir.SuspendLayout()
@@ -168,6 +170,7 @@ Partial Class frmCargasImportaciones
         Me.RadGroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RadGroupBox1.Controls.Add(Me.Button1)
         Me.RadGroupBox1.Controls.Add(Me.Label4)
         Me.RadGroupBox1.Controls.Add(Me.txtFiltroArticulo)
         Me.RadGroupBox1.Controls.Add(Me.btnImportacion)
@@ -225,7 +228,7 @@ Partial Class frmCargasImportaciones
         Me.btnImportacion.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnImportacion.ForeColor = System.Drawing.Color.Transparent
         Me.btnImportacion.Image = Global.laFuente.My.Resources.Resources.import_blanco24
-        Me.btnImportacion.Location = New System.Drawing.Point(141, 37)
+        Me.btnImportacion.Location = New System.Drawing.Point(10, 37)
         Me.btnImportacion.Name = "btnImportacion"
         Me.btnImportacion.Size = New System.Drawing.Size(207, 31)
         Me.btnImportacion.TabIndex = 169
@@ -321,17 +324,19 @@ Partial Class frmCargasImportaciones
         GridViewTextBoxColumn1.HeaderText = "IdArticulo"
         GridViewTextBoxColumn1.IsVisible = False
         GridViewTextBoxColumn1.Name = "IdArticulo"
-        GridViewTextBoxColumn2.HeaderText = "Codigo"
-        GridViewTextBoxColumn2.Name = "Codigo"
-        GridViewTextBoxColumn3.HeaderText = "Producto"
-        GridViewTextBoxColumn3.Name = "Producto"
-        GridViewTextBoxColumn4.HeaderText = "Cantidad"
-        GridViewTextBoxColumn4.Name = "Cantidad"
-        GridViewTextBoxColumn5.HeaderText = "Costo"
-        GridViewTextBoxColumn5.Name = "Costo"
-        GridViewTextBoxColumn6.HeaderText = "Costo Total"
-        GridViewTextBoxColumn6.Name = "CostoTotal"
-        Me.grdProductos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4, GridViewTextBoxColumn5, GridViewTextBoxColumn6})
+        GridViewTextBoxColumn2.HeaderText = "No. Caja"
+        GridViewTextBoxColumn2.Name = "cajano"
+        GridViewTextBoxColumn3.HeaderText = "Codigo"
+        GridViewTextBoxColumn3.Name = "Codigo"
+        GridViewTextBoxColumn4.HeaderText = "Producto"
+        GridViewTextBoxColumn4.Name = "Producto"
+        GridViewTextBoxColumn5.HeaderText = "Cantidad"
+        GridViewTextBoxColumn5.Name = "Cantidad"
+        GridViewTextBoxColumn6.HeaderText = "Costo"
+        GridViewTextBoxColumn6.Name = "Costo"
+        GridViewTextBoxColumn7.HeaderText = "Costo Total"
+        GridViewTextBoxColumn7.Name = "CostoTotal"
+        Me.grdProductos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4, GridViewTextBoxColumn5, GridViewTextBoxColumn6, GridViewTextBoxColumn7})
         Me.grdProductos.MasterTemplate.EnableAlternatingRowColor = True
         Me.grdProductos.MasterTemplate.EnableGrouping = False
         Me.grdProductos.MasterTemplate.HorizontalScrollState = Telerik.WinControls.UI.ScrollState.AlwaysShow
@@ -347,6 +352,25 @@ Partial Class frmCargasImportaciones
         Me.grdProductos.TabIndex = 162
         Me.grdProductos.Text = "RadGridView1"
         Me.grdProductos.ThemeName = "Office2007Black"
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.SteelBlue
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue
+        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.Transparent
+        Me.Button1.Image = Global.laFuente.My.Resources.Resources.import_blanco24
+        Me.Button1.Location = New System.Drawing.Point(223, 37)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(157, 31)
+        Me.Button1.TabIndex = 172
+        Me.Button1.Text = "Selectiva"
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'frmCargasImportaciones
         '
@@ -405,5 +429,6 @@ Partial Class frmCargasImportaciones
     Friend WithEvents btnImportacion As System.Windows.Forms.Button
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents txtFiltroArticulo As System.Windows.Forms.TextBox
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 
 End Class
