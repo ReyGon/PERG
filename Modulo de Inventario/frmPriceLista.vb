@@ -167,22 +167,6 @@ Public Class frmPriceLista
 
         End Try
     End Sub
-
-    Private Sub frm_modificarClick() Handles Me.verRegistro
-        Try
-            fnCambioFila()
-            frmProductoPrecio.Text = "Precios"
-            frmProductoPrecio.StartPosition = FormStartPosition.CenterScreen
-            frmProductoPrecio.BringToFront()
-            frmProductoPrecio.verRegistro = True
-            frmProductoPrecio.Focus()
-            permiso.PermisoFrmEspeciales(frmProductoPrecio, False)
-        Catch ex As Exception
-
-        End Try
-
-    End Sub
-
     Private Sub fnCambioFila() Handles Me.cambiaFilaGrdDatos
         Try
             mdlPublicVars.superSearchId = grdDatos.Rows(mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdDatos)).Cells("ID").Value()
@@ -217,7 +201,35 @@ Public Class frmPriceLista
         alertas.fnErrorContenido()
     End Sub
 
-    
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Try
+            frm_modificar_articulo()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+    Private Sub frm_modificar_articulo()
+        fnCambioFila()
+        Try
+            If Me.grdDatos.Rows.Count = 0 Then
+                Exit Sub
+            End If
+            Dim permiso As New clsPermisoUsuario
+            frmProducto.seleccionDefault = True
+            frmProducto.codigoDefault = mdlPublicVars.superSearchId
+            frmProducto.InventarioPrincipal = mdlPublicVars.superSearchInventario
+            frmProducto.BodegaPrincipal = mdlPublicVars.superSearchBodega
+            frmProducto.NuevoIniciar = False
+            frmProducto.Text = "Modulo de Productos"
+            frmProducto.grdBase = grdDatos
+            permiso.PermisoDialogMantenimientoTelerik2(frmProducto)
+            frmProducto.Dispose()
+        Catch ex As Exception
+            alertas.fnError()
+        End Try
+    End Sub
 
 End Class
 
