@@ -1268,7 +1268,7 @@ Public Class frmProductoPrecio
             Dim codArt As Integer = CInt(cmbNombre1.SelectedValue)
             Dim lista = (From x In ctx.tblEntradasDetalles Where x.tblEntrada.anulado = False And x.idArticulo = codArt _
                         Select Fecha = x.tblEntrada.fechaRegistro, Proveedor = x.tblEntrada.tblProveedor.negocio, Cantidad = x.cantidad, Costo = x.costoIVA _
-                        Order By Fecha Descending Take mdlPublicVars.buscarArticulo_cantidadUltimasVentas)
+                        Order By Fecha Descending)
 
             Me.grdUltimasCompras.DataSource = lista
         Catch ex As Exception
