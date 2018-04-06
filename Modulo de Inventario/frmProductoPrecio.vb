@@ -29,7 +29,7 @@ Public Class frmProductoPrecio
         mdlPublicVars.fnGrid_iconos(grdOtrosPrecios)
         mdlPublicVars.fnGrid_iconos(grdOtrosPreciosSucursal)
         mdlPublicVars.fnGrid_iconos(grdPrecios)
-
+        mdlPublicVars.fnFormatoGridMovimientos(grdUltimasCompras)
         mdlPublicVars.comboActivarFiltro(cmbNombre1)
 
         lbl1Modificar.Text = "Guardar"
@@ -1266,7 +1266,7 @@ Public Class frmProductoPrecio
     Private Sub fnUltimasCompras()
         Try
             Dim codArt As Integer = CInt(cmbNombre1.SelectedValue)
-            Dim lista = (From x In ctx.tblEntradasDetalles Where x.tblEntrada.anulado = False And x.idArticulo = codArt _
+            Dim lista = (From x In ctx.tblEntradasDetalles Where x.tblEntrada.anulado = False And x.tblEntrada.compra = True And x.idArticulo = codArt _
                         Select Fecha = x.tblEntrada.fechaRegistro, Proveedor = x.tblEntrada.tblProveedor.negocio, Cantidad = x.cantidad, Costo = x.costoIVA _
                         Order By Fecha Descending)
 

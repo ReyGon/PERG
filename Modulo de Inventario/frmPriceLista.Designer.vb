@@ -37,7 +37,7 @@ Partial Class frmPriceLista
         '
         'pnlOpciones
         '
-        Me.pnlOpciones.Location = New System.Drawing.Point(-14, 0)
+        Me.pnlOpciones.Location = New System.Drawing.Point(-27, 0)
         '
         'Button2
         '
@@ -50,7 +50,7 @@ Partial Class frmPriceLista
         Me.Button2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.Transparent
         Me.Button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button2.Location = New System.Drawing.Point(794, 49)
+        Me.Button2.Location = New System.Drawing.Point(995, 49)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(143, 24)
         Me.Button2.TabIndex = 152

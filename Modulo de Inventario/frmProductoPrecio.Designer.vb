@@ -193,7 +193,7 @@ Partial Class frmProductoPrecio
         Me.rpv.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.rpv.Location = New System.Drawing.Point(7, 174)
         Me.rpv.Name = "rpv"
-        Me.rpv.SelectedPage = Me.pgPrecios
+        Me.rpv.SelectedPage = Me.pgUltimasCompras
         Me.rpv.Size = New System.Drawing.Size(1069, 515)
         Me.rpv.TabIndex = 88
         Me.rpv.Text = "Motriza"
@@ -414,7 +414,7 @@ Partial Class frmProductoPrecio
         Me.grdPreciosMotriza.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdPreciosMotriza.Location = New System.Drawing.Point(0, 12)
         '
-        'grdPreciosMotriza
+        '
         '
         Me.grdPreciosMotriza.MasterTemplate.AllowAddNewRow = False
         Me.grdPreciosMotriza.MasterTemplate.AllowColumnReorder = False
@@ -469,7 +469,7 @@ Partial Class frmProductoPrecio
         Me.grdOtrosPreciosSucursal.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdOtrosPreciosSucursal.Location = New System.Drawing.Point(0, 224)
         '
-        'grdOtrosPreciosSucursal
+        '
         '
         Me.grdOtrosPreciosSucursal.MasterTemplate.AllowAddNewRow = False
         GridViewTextBoxColumn22.HeaderText = "Codigo"
@@ -563,7 +563,7 @@ Partial Class frmProductoPrecio
         Me.grdSustitutos.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdSustitutos.Location = New System.Drawing.Point(1, 13)
         '
-        'grdSustitutos
+        '
         '
         Me.grdSustitutos.MasterTemplate.AllowAddNewRow = False
         Me.grdSustitutos.MasterTemplate.EnableGrouping = False
@@ -591,7 +591,7 @@ Partial Class frmProductoPrecio
         Me.grdPreciosSustitutos.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdPreciosSustitutos.Location = New System.Drawing.Point(3, 338)
         '
-        'grdPreciosSustitutos
+        '
         '
         Me.grdPreciosSustitutos.MasterTemplate.AllowAddNewRow = False
         GridViewTextBoxColumn31.HeaderText = "Codigo"
@@ -676,9 +676,12 @@ Partial Class frmProductoPrecio
         '
         'grdUltimasCompras
         '
+        Me.grdUltimasCompras.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grdUltimasCompras.Location = New System.Drawing.Point(20, 22)
         '
-        '
+        'grdUltimasCompras
         '
         Me.grdUltimasCompras.MasterTemplate.AllowAddNewRow = False
         Me.grdUltimasCompras.Name = "grdUltimasCompras"
@@ -688,7 +691,7 @@ Partial Class frmProductoPrecio
         '
         '
         Me.grdUltimasCompras.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdUltimasCompras.Size = New System.Drawing.Size(1011, 326)
+        Me.grdUltimasCompras.Size = New System.Drawing.Size(1011, 435)
         Me.grdUltimasCompras.TabIndex = 0
         Me.grdUltimasCompras.Text = "RadGridView1"
         Me.grdUltimasCompras.ThemeName = "Office2007Black"

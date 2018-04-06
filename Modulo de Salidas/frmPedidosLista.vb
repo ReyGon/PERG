@@ -1182,13 +1182,13 @@ Public Class frmPedidosLista
                 End Using
 
 
-                frmPagoNuevo.Text = "Pagos"
-                frmPagoNuevo.bitCliente = True
-                frmPagoNuevo.codigoCP = mdlPublicVars.superSearchCodSurtir
-                frmPagoNuevo.lblSaldo.Text = cliente.saldo
-                frmPagoNuevo.StartPosition = FormStartPosition.CenterScreen
-                permiso.PermisoDialogEspeciales(frmPagoNuevo)
-                frmPagoNuevo.Dispose()
+                frmPagoClientes.Text = "Pagos"
+                frmPagoClientes.bitCliente = True
+                frmPagoClientes.codigoCP = mdlPublicVars.superSearchCodSurtir
+                frmPagoClientes.lblSaldo.Text = cliente.saldo
+                frmPagoClientes.StartPosition = FormStartPosition.CenterScreen
+                permiso.PermisoDialogEspeciales(frmPagoClientes)
+                frmPagoClientes.Dispose()
             End If
         Catch ex As Exception
 
