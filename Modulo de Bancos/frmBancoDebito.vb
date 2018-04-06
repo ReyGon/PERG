@@ -48,7 +48,7 @@ Public Class frmBancoDebito
         fnLlenaBeneficiarios(0)
 
         'CONCEPTOS
-        Dim conceptos = (From x In ctx.tblBanco_MovimientoConcepto Where x.bitDebito
+        Dim conceptos = (From x In ctx.tblBanco_MovimientoConcepto Where x.bitCredito
                          Select x.codigo, x.nombre)
 
         With cmbConcepto

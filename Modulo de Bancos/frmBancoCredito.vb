@@ -173,7 +173,7 @@ Public Class frmBancoCredito
                 movimiento.correlativo = numeroCorrelativo
                 movimiento.documento = txtDocumento.Text
                 movimiento.fechaRegistro = dtpFechaRegistro.Text & " " & hora
-                movimiento.total = CDec(lblTotal.Text)
+                movimiento.total = CDec(Replace(lblTotal.Text, "Q", " "))
                 movimiento.usuarioRegistra = mdlPublicVars.idUsuario
                 movimiento.bitConfirmado = True
                 movimiento.fechaConfirmado = fechaServer

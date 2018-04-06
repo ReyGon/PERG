@@ -150,23 +150,23 @@ Public Class frmBancoCuentaLista
         'Obtenemos el encabezado de la cuenta
         Dim success As Boolean = True
 
-        Using transaction As New TransactionScope
-            Try
-                'Obtenemos el encabezado de la cuenta
-                Dim cuenta As tblBanco_Cuenta = (From x In ctx.tblBanco_Cuenta Where x.codigo = codigo Select x).FirstOrDefault
+        'Using transaction As New TransactionScope
+        Try
+            'Obtenemos el encabezado de la cuenta
+            Dim cuenta As tblBanco_Cuenta = (From x In ctx.tblBanco_Cuenta Where x.codigo = codigo Select x).FirstOrDefault
 
-                cuenta.habilitada = False
-                ctx.SaveChanges()
-            Catch ex As Exception
-                success = False
-            End Try
-        End Using
+            cuenta.habilitada = False
+            ctx.SaveChanges()
+        Catch ex As Exception
+            success = False
+        End Try
+        ' End Using
 
         If success Then
             ctx.AcceptAllChanges()
-            alertas.fnErrorGuardar()
+            'alertas.fnErrorGuardar()
         Else
-            alertas.fnErrorGuardar()
+            'alertas.fnErrorGuardar()
         End If
     End Sub
 

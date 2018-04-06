@@ -19,15 +19,15 @@ Partial Class frmPedidosBodega
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim GridViewTextBoxColumn5 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn3 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewTextBoxColumn6 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn1 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewCheckBoxColumn1 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn2 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn3 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewCheckBoxColumn2 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn4 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn5 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn3 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewTextBoxColumn6 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPedidosBodega))
         Me.pnlBarra = New System.Windows.Forms.Panel()
         Me.pnx1Salir = New System.Windows.Forms.Panel()
@@ -455,12 +455,12 @@ Partial Class frmPedidosBodega
         '
         'rgbDetalle
         '
+        Me.rgbDetalle.Controls.Add(Me.grdEmpacado)
+        Me.rgbDetalle.Controls.Add(Me.grdSacado)
         Me.rgbDetalle.Controls.Add(Me.Label9)
         Me.rgbDetalle.Controls.Add(Me.Label3)
         Me.rgbDetalle.Controls.Add(Me.Label2)
         Me.rgbDetalle.Controls.Add(Me.grdRevisado)
-        Me.rgbDetalle.Controls.Add(Me.grdEmpacado)
-        Me.rgbDetalle.Controls.Add(Me.grdSacado)
         Me.rgbDetalle.FooterImageIndex = -1
         Me.rgbDetalle.FooterImageKey = ""
         Me.rgbDetalle.HeaderImageIndex = -1
@@ -484,7 +484,7 @@ Partial Class frmPedidosBodega
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(717, 9)
+        Me.Label9.Location = New System.Drawing.Point(135, 9)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(63, 21)
         Me.Label9.TabIndex = 213
@@ -495,7 +495,7 @@ Partial Class frmPedidosBodega
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(420, 9)
+        Me.Label3.Location = New System.Drawing.Point(708, 9)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(86, 21)
         Me.Label3.TabIndex = 212
@@ -506,7 +506,7 @@ Partial Class frmPedidosBodega
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(124, 9)
+        Me.Label2.Location = New System.Drawing.Point(429, 9)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(76, 21)
         Me.Label2.TabIndex = 210
@@ -514,19 +514,19 @@ Partial Class frmPedidosBodega
         '
         'grdRevisado
         '
-        Me.grdRevisado.Location = New System.Drawing.Point(27, 29)
+        Me.grdRevisado.Location = New System.Drawing.Point(327, 34)
         '
         'grdRevisado
         '
         Me.grdRevisado.MasterTemplate.AllowAddNewRow = False
         Me.grdRevisado.MasterTemplate.AutoGenerateColumns = False
-        GridViewTextBoxColumn1.HeaderText = "Codigo"
-        GridViewTextBoxColumn1.Name = "Codigo"
-        GridViewCheckBoxColumn1.HeaderText = "Agregar"
-        GridViewCheckBoxColumn1.Name = "chkAgregar"
-        GridViewTextBoxColumn2.HeaderText = "Nombre"
-        GridViewTextBoxColumn2.Name = "Nombre"
-        Me.grdRevisado.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewCheckBoxColumn1, GridViewTextBoxColumn2})
+        GridViewTextBoxColumn5.HeaderText = "Codigo"
+        GridViewTextBoxColumn5.Name = "Codigo"
+        GridViewCheckBoxColumn3.HeaderText = "Agregar"
+        GridViewCheckBoxColumn3.Name = "chkAgregar"
+        GridViewTextBoxColumn6.HeaderText = "Nombre"
+        GridViewTextBoxColumn6.Name = "Nombre"
+        Me.grdRevisado.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn5, GridViewCheckBoxColumn3, GridViewTextBoxColumn6})
         Me.grdRevisado.MasterTemplate.EnableGrouping = False
         Me.grdRevisado.Name = "grdRevisado"
         Me.grdRevisado.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
@@ -542,20 +542,20 @@ Partial Class frmPedidosBodega
         '
         'grdEmpacado
         '
-        Me.grdEmpacado.Location = New System.Drawing.Point(318, 29)
+        Me.grdEmpacado.Location = New System.Drawing.Point(622, 34)
         '
         'grdEmpacado
         '
         Me.grdEmpacado.MasterTemplate.AllowAddNewRow = False
         Me.grdEmpacado.MasterTemplate.AutoGenerateColumns = False
-        GridViewTextBoxColumn3.HeaderText = "Codigo"
-        GridViewTextBoxColumn3.Name = "Codigo"
-        GridViewTextBoxColumn3.ReadOnly = True
-        GridViewCheckBoxColumn2.HeaderText = "Agregar"
-        GridViewCheckBoxColumn2.Name = "chkAgregar"
-        GridViewTextBoxColumn4.HeaderText = "Nombre"
-        GridViewTextBoxColumn4.Name = "Nombre"
-        Me.grdEmpacado.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn3, GridViewCheckBoxColumn2, GridViewTextBoxColumn4})
+        GridViewTextBoxColumn1.HeaderText = "Codigo"
+        GridViewTextBoxColumn1.Name = "Codigo"
+        GridViewTextBoxColumn1.ReadOnly = True
+        GridViewCheckBoxColumn1.HeaderText = "Agregar"
+        GridViewCheckBoxColumn1.Name = "chkAgregar"
+        GridViewTextBoxColumn2.HeaderText = "Nombre"
+        GridViewTextBoxColumn2.Name = "Nombre"
+        Me.grdEmpacado.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewCheckBoxColumn1, GridViewTextBoxColumn2})
         Me.grdEmpacado.MasterTemplate.EnableGrouping = False
         Me.grdEmpacado.Name = "grdEmpacado"
         Me.grdEmpacado.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
@@ -571,19 +571,19 @@ Partial Class frmPedidosBodega
         '
         'grdSacado
         '
-        Me.grdSacado.Location = New System.Drawing.Point(608, 29)
+        Me.grdSacado.Location = New System.Drawing.Point(28, 34)
         '
         'grdSacado
         '
         Me.grdSacado.MasterTemplate.AllowAddNewRow = False
         Me.grdSacado.MasterTemplate.AutoGenerateColumns = False
-        GridViewTextBoxColumn5.HeaderText = "Codigo"
-        GridViewTextBoxColumn5.Name = "Codigo"
-        GridViewCheckBoxColumn3.HeaderText = "Agregar"
-        GridViewCheckBoxColumn3.Name = "chkAgregar"
-        GridViewTextBoxColumn6.HeaderText = "Nombre"
-        GridViewTextBoxColumn6.Name = "Nombre"
-        Me.grdSacado.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn5, GridViewCheckBoxColumn3, GridViewTextBoxColumn6})
+        GridViewTextBoxColumn3.HeaderText = "Codigo"
+        GridViewTextBoxColumn3.Name = "Codigo"
+        GridViewCheckBoxColumn2.HeaderText = "Agregar"
+        GridViewCheckBoxColumn2.Name = "chkAgregar"
+        GridViewTextBoxColumn4.HeaderText = "Nombre"
+        GridViewTextBoxColumn4.Name = "Nombre"
+        Me.grdSacado.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn3, GridViewCheckBoxColumn2, GridViewTextBoxColumn4})
         Me.grdSacado.MasterTemplate.EnableGrouping = False
         Me.grdSacado.Name = "grdSacado"
         Me.grdSacado.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)

@@ -368,7 +368,7 @@ Public Class frmPagoProveedores
                     If((x.compra = True), CStr("Compra: " & x.serieDocumento & "-" & x.documento), _
                     If((x.compra = True And x.preformaimportacion = 1), CStr("Invoice: " & x.serieDocumento & "-" & x.documento), "S/D: "))))))
 
-                    ''If((x.preformaimportacion > 0 And x.transito = True And x.preformatotransito = True), CStr("Transito Invoice: " & x.serieDocumento & "-" & x.documento), _
+                ''If((x.preformaimportacion > 0 And x.transito = True And x.preformatotransito = True), CStr("Transito Invoice: " & x.serieDocumento & "-" & x.documento), _
 
                 With cmbDocumento
                     .DataSource = Nothing
@@ -971,111 +971,112 @@ Public Class frmPagoProveedores
                                 'Decidimos que hacer dependiendo del tipo pago
                                 'Si el pago es de una entrada (FACTURA)
                                 If bitEntrada = True Then
-                                    Dim factura As tblFactura = (From x In conexion.tblFacturas Where x.IdFactura = codigoES Select x).FirstOrDefault
+                                    'no Dim factura As tblFactura = (From x In conexion.tblFacturas Where x.IdFactura = codigoES Select x).FirstOrDefault
 
-                                    If pagoTipo.calendarizada = True Then
-                                        factura.pagosTransito += pago.monto
-                                    Else
-                                        If factura.contado = True Then
-                                            'Realizamos las transacciones correspondientes
-                                            factura.saldo -= pago.monto
-                                            factura.pagos += pago.monto
-                                            If factura.saldo = 0 Then
-                                                factura.pagado = 1
-                                            End If
-                                            conexion.SaveChanges()
-                                        Else
-                                            Dim montoPagar = pago.monto
+                                    'noIf pagoTipo.calendarizada = True Then
+                                    'nofactura.pagosTransito += pago.monto
+                                    'no  Else
+                                    'no   If factura.contado = True Then
+                                    'Realizamos las transacciones correspondientes
+                                    'nofactura.saldo -= pago.monto
+                                    'nofactura.pagos += pago.monto
+                                    'noIf factura.saldo = 0 Then
+                                    'nofactura.pagado = 1
+                                    'noEnd If
+                                    'no conexion.SaveChanges()
+                                    'noElse
+                                    'noDim montoPagar = pago.monto
 
-                                            Dim listaSalidas As List(Of tblSalida) = (From x In conexion.tblSalidas
-                                                                                      Where x.IdFactura = factura.IdFactura Select x).ToList
-                                            Dim salida As tblSalida
-                                            For Each salida In listaSalidas
-                                                Dim ctaCobrar As tblCtaCobrar = (From x In conexion.tblCtaCobrars
-                                                                                 Where x.idSalida = salida.idSalida Select x).FirstOrDefault
+                                    'no Dim listaSalidas As List(Of tblSalida) = (From x In conexion.tblSalidas
+                                    'no                                       Where x.IdFactura = factura.IdFactura Select x).ToList
+                                    'noDim salida As tblSalida
+                                    'noFor Each salida In listaSalidas
+                                    'noDim ctaCobrar As tblCtaCobrar = (From x In conexion.tblCtaCobrars
+                                    'no                              Where x.idSalida = salida.idSalida Select x).FirstOrDefault
 
-                                                If montoPagar > ctaCobrar.saldo Then
-                                                    montoPagar -= ctaCobrar.saldo
-                                                    ctaCobrar.saldo = 0
-                                                    ctaCobrar.cancelada = 1
-                                                Else
-                                                    ctaCobrar.saldo -= montoPagar
-                                                    montoPagar = 0
-                                                End If
-                                            Next
-                                            conexion.SaveChanges()
-                                        End If
-                                    End If
+                                    'noIf montoPagar > ctaCobrar.saldo Then
+                                    'nomontoPagar -= ctaCobrar.saldo
+                                    'noctaCobrar.saldo = 0
+                                    'noctaCobrar.cancelada = 1
+                                    'noElse
+                                    'no ctaCobrar.saldo -= montoPagar
+                                    'nomontoPagar = 0
+                                    'noEnd If
+                                    'no   Next
+                                    'noconexion.SaveChanges()
+                                    'noEnd If
+                                    'noEnd If
 
                                 ElseIf bitProveedor = True And cmbProveedor.SelectedValue > 0 Then
                                     Dim proveedor As tblProveedor = (From x In conexion.tblProveedors Where x.idProveedor = pago.proveedor Select x).FirstOrDefault
 
-                                    If proveedor.procedencia = 1 Then
-                                        If pagoTipo.calendarizada = True Then
-                                            proveedor.pagosTransito += pago.monto
-                                        Else
-                                            Dim montoPagar = pago.monto
-                                            proveedor.pagos += pago.monto
-                                            proveedor.saldoActual -= pago.monto
-                                            Dim listaCtaPagar As List(Of tblCtaPagar) = (From x In conexion.tblCtaPagars
-                                                                                         Where x.idProveedor = pago.proveedor And x.cancelada = 0 And x.anulado = False Select x Order By x.fecha Ascending).ToList
-                                            Dim ctaPagar As tblCtaPagar
+                                    'noIf proveedor.procedencia = 1 Then
+                                    If pagoTipo.calendarizada = True Then
+                                        proveedor.pagosTransito += pago.monto
+                                    Else
+                                        Dim montoPagar = pago.monto
+                                        proveedor.pagos += pago.monto
+                                        proveedor.saldoActual -= pago.monto
+                                        Dim listaCtaPagar As List(Of tblCtaPagar) = (From x In conexion.tblCtaPagars
+                                                                                     Where x.idProveedor = pago.proveedor And x.cancelada = 0 And x.anulado = False Select x Order By x.fecha Ascending).ToList
+                                        Dim ctaPagar As tblCtaPagar
 
-                                            For Each ctaPagar In listaCtaPagar
+                                        For Each ctaPagar In listaCtaPagar
 
-                                                If montoPagar > ctaPagar.saldo Then
-                                                    montoPagar -= ctaPagar.saldo
-                                                    ctaPagar.pagado = ctaPagar.monto
-                                                    ctaPagar.saldo = 0
-                                                    ctaPagar.cancelada = 1
-                                                Else
-                                                    ctaPagar.saldo -= montoPagar
-                                                    ctaPagar.pagado += montoPagar
-                                                    montoPagar = 0
-                                                End If
-                                            Next
-                                        End If
+                                            If montoPagar > ctaPagar.saldo Then
+                                                montoPagar -= ctaPagar.saldo
+                                                ctaPagar.pagado = ctaPagar.monto
+                                                ctaPagar.saldo = 0
+                                                ctaPagar.cancelada = 1
+                                            Else
+                                                ctaPagar.saldo -= montoPagar
+                                                ctaPagar.pagado += montoPagar
+                                                montoPagar = 0
+                                            End If
+                                        Next
+                                    End If
 
-                                        ''Descuento de la tabla de entradas para las cuentas por pagar Macora
+                                    ''Descuento de la tabla de entradas para las cuentas por pagar Macora
 
-                                        Dim filas As Integer = Me.grdProductos.Rows.Count - 1
-                                        Dim pagoprov As Double
-                                        Dim proveedorpago As Integer = Me.cmbProveedor.SelectedValue
+                                    Dim filas As Integer = Me.grdProductos.Rows.Count - 1
+                                    Dim pagoprov As Double
+                                    Dim proveedorpago As Integer = Me.cmbProveedor.SelectedValue
 
-                                        For fil As Integer = 0 To filas
-                                            Try
-                                                pagoprov = Me.grdProductos.Rows(fil).Cells("txmMonto").Value
-                                            Catch ex As Exception
-                                                pagoprov = 0
-                                            End Try
+                                    For fil As Integer = 0 To filas
+                                        Try
+                                            pagoprov = Me.grdProductos.Rows(fil).Cells("txmMonto").Value
+                                        Catch ex As Exception
+                                            pagoprov = 0
+                                        End Try
 
-                                            If pagoprov > 0 And cmbDocumento.SelectedValue = 0 Then
-                                                While pagoprov > 0
+                                        If pagoprov > 0 And cmbDocumento.SelectedValue = 0 Then
+                                            'noWhile pagoprov > 0
 
-                                                    Dim entradaspendientes As tblEntrada = (From x In conexion.tblEntradas Where x.idProveedor = proveedorpago And x.saldo > 0 And x.anulado = False Order By x.fechaRegistro Select x).Take(1).FirstOrDefault
+                                            'noDim entradaspendientes As tblEntrada = (From x In conexion.tblEntradas Where x.idProveedor = proveedorpago And x.saldo > 0 And x.anulado = False Order By x.fechaRegistro Select x).Take(1).FirstOrDefault
 
-                                                    If entradaspendientes Is Nothing Then
-                                                        Exit While
-                                                    End If
+                                            'noIf entradaspendientes Is Nothing Then
+                                            'noExit While
+                                            'noEnd If
 
-                                                    If pagoprov > entradaspendientes.saldo Then
+                                            'no    If pagoprov > entradaspendientes.saldo Then
 
-                                                        pagoprov -= entradaspendientes.saldo
-                                                        entradaspendientes.saldo = 0
-                                                        entradaspendientes.pagos = entradaspendientes.total
+                                            'nopagoprov -= entradaspendientes.saldo
+                                            'noentradaspendientes.saldo = 0
+                                            'noentradaspendientes.pagos = entradaspendientes.total
 
-                                                    ElseIf pagoprov <= entradaspendientes.saldo Then
+                                            'noElseIf pagoprov <= entradaspendientes.saldo Then
 
-                                                        entradaspendientes.saldo -= pagoprov
-                                                        entradaspendientes.pagos += pagoprov
-                                                        pagoprov = 0
+                                            'noentradaspendientes.saldo -= pagoprov
+                                            'noentradaspendientes.pagos += pagoprov
+                                            'nopagoprov = 0
 
-                                                    End If
+                                            'noEnd If
 
-                                                    conexion.SaveChanges()
+                                            'noconexion.SaveChanges()
 
-                                                End While
-                                            ElseIf pagoprov > 0 And cmbDocumento.SelectedValue > 0 Then
+                                            'noEnd While
+                                        ElseIf pagoprov > 0 And cmbDocumento.SelectedValue > 0 Then
+                                            If pagoTipo.calendarizada = False Then ' agregado
                                                 While pagoprov > 0
 
                                                     Dim docrelacion As Integer = Me.cmbDocumento.SelectedValue
@@ -1087,118 +1088,119 @@ Public Class frmPagoProveedores
                                                     pagoprov = 0
 
                                                 End While
-                                            ElseIf pagoprov > 0 And cmbDocumento.Visible = False Then
+                                            End If ' agregado 
+                                            'no ElseIf pagoprov > 0 And cmbDocumento.Visible = False Then
 
-                                                For Each empleado As Tuple(Of Integer, String, Decimal) In listaEntradas
-                                                    ''txtFacturas.Text += empleado.Item2 & ", "
-                                                    ''total += empleado.Item3
-                                                    ''txtTotalFacturas.Text = Format(total, formatoMoneda)
+                                            'no For Each empleado As Tuple(Of Integer, String, Decimal) In listaEntradas
+                                            ''txtFacturas.Text += empleado.Item2 & ", "
+                                            ''total += empleado.Item3
+                                            ''txtTotalFacturas.Text = Format(total, formatoMoneda)
 
-                                                    Dim ent As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = empleado.Item1 Select x).FirstOrDefault
+                                            'no Dim ent As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = empleado.Item1 Select x).FirstOrDefault
 
-                                                    ent.saldo -= empleado.Item3
-                                                    ent.pagos += empleado.Item3
+                                            'no ent.saldo -= empleado.Item3
+                                            'noent.pagos += empleado.Item3
 
-                                                    conexion.SaveChanges()
+                                            'noconexion.SaveChanges()
 
-                                                Next
+                                            'no  Next
 
-                                            End If
-
-                                        Next
-
-
-
-                                        ''Finalizacion del descuento de saldos para las cuentas por pagar de macora
-
-                                        'guardar los cambios
-                                        conexion.SaveChanges()
-
-                                        'Modificaciones
-                                        ' Sis es proveedore Extranjero e
-                                    ElseIf proveedor.procedencia = 2 Then
-
-                                        If pagoTipo.calendarizada = True Then
-
-                                            ''proveedor.pagosDolar += monto
-                                            proveedor.pagosTransitoDolar += monto
-                                            ''proveedor.saldoDolar -= monto
-                                            ''proveedor.pagos += monto
-                                            proveedor.pagosTransito += monto
-                                            ''proveedor.saldoActual -= monto
-
-
-                                            If Me.cmbDocumento.SelectedValue > 0 Then
-                                                Try
-
-                                                    Dim identrada As Integer = Me.cmbDocumento.SelectedValue
-                                                    Dim idproveedor As Integer = Me.cmbProveedor.SelectedValue
-
-                                                    Dim entradaspendientes As tblEntrada = (From x In conexion.tblEntradas Where x.idProveedor = idproveedor And x.saldo > 0 And x.anulado = False And x.idEntrada = identrada Select x).FirstOrDefault
-
-                                                    ''entradaspendientes.saldo -= monto
-                                                    ''entradaspendientes.pagos += monto
-                                                    monto = 0
-
-                                                    conexion.SaveChanges()
-
-                                                Catch ex As Exception
-
-                                                End Try
-                                            End If
-
-
-
-                                            proveedor.saldoActual -= monto
-
-                                        Else
-                                            Dim montoPagar = monto
-
-                                            If proveedor.pagosDolar Is Nothing Then
-                                                proveedor.pagosDolar = monto
-                                                proveedor.saldoDolar = monto
-                                            Else
-                                                proveedor.pagosDolar += monto
-                                                proveedor.saldoDolar -= monto
-                                            End If
-                                            proveedor.saldoActual -= monto * Convert.ToDecimal(nm5Cambio.Value).ToString
-
-
-                                            If Me.cmbDocumento.SelectedValue > 0 Then
-                                                Try
-
-                                                    Dim entradaspendientes As tblEntrada = (From x In conexion.tblEntradas Where x.idProveedor = CInt(Me.cmbProveedor.SelectedValue) And x.saldo > 0 And x.anulado = False And x.idEntrada = CInt(Me.cmbDocumento.SelectedValue) Select x).FirstOrDefault
-
-                                                    entradaspendientes.saldo -= monto
-                                                    entradaspendientes.pagos += monto
-                                                    monto = 0
-
-                                                Catch ex As Exception
-
-                                                End Try
-                                            End If
-
-
-                                            Dim listaCtaPagar As List(Of tblCtaPagar) = (From x In conexion.tblCtaPagars Where x.idProveedor = pago.proveedor And x.cancelada = 0 And x.anulado = False Select x Order By x.fecha Ascending).ToList
-                                            Dim ctaPagar As tblCtaPagar
-
-                                            For Each ctaPagar In listaCtaPagar
-
-                                                If montoPagar > ctaPagar.saldo Then
-                                                    montoPagar -= ctaPagar.saldo
-                                                    ctaPagar.pagado = ctaPagar.monto
-                                                    ctaPagar.saldo = 0
-                                                    ctaPagar.cancelada = 1
-                                                Else
-                                                    ctaPagar.saldo -= montoPagar
-                                                    ctaPagar.pagado += montoPagar
-                                                    montoPagar = 0
-                                                End If
-                                            Next
                                         End If
 
-                                        conexion.SaveChanges()    ' verificar si va aqui. inicialmente estaba aqui
-                                    End If
+                                    Next
+
+
+
+                                    ''Finalizacion del descuento de saldos para las cuentas por pagar de macora
+
+                                    'guardar los cambios
+                                    conexion.SaveChanges()
+
+                                    'Modificaciones
+                                    ' Sis es proveedore Extranjero e
+                                    'no ElseIf proveedor.procedencia = 2 Then
+
+                                    'noIf pagoTipo.calendarizada = True Then
+
+                                    ''proveedor.pagosDolar += monto
+                                    'noproveedor.pagosTransitoDolar += monto
+                                    ''proveedor.saldoDolar -= monto
+                                    ''proveedor.pagos += monto
+                                    'noproveedor.pagosTransito += monto
+                                    ''proveedor.saldoActual -= monto
+
+
+                                    'noIf Me.cmbDocumento.SelectedValue > 0 Then
+                                    'noTry
+
+                                    'noDim identrada As Integer = Me.cmbDocumento.SelectedValue
+                                    'noDim idproveedor As Integer = Me.cmbProveedor.SelectedValue
+
+                                    'noDim entradaspendientes As tblEntrada = (From x In conexion.tblEntradas Where x.idProveedor = idproveedor And x.saldo > 0 And x.anulado = False And x.idEntrada = identrada Select x).FirstOrDefault
+
+                                    ''entradaspendientes.saldo -= monto
+                                    ''entradaspendientes.pagos += monto
+                                    'nomonto = 0
+
+                                    'noconexion.SaveChanges()
+
+                                    'noCatch ex As Exception
+
+                                    'noEnd Try
+                                    'no         End If
+
+
+
+                                    'no    proveedor.saldoActual -= monto
+
+                                    'noElse
+                                    'no Dim montoPagar = monto
+
+                                    'no                                    If proveedor.pagosDolar Is Nothing Then
+                                    'noproveedor.pagosDolar = monto
+                                    'noproveedor.saldoDolar = monto
+                                    'noElse
+                                    'no proveedor.pagosDolar += monto
+                                    'noproveedor.saldoDolar -= monto
+                                    'noEnd If
+                                    'noproveedor.saldoActual -= monto * Convert.ToDecimal(nm5Cambio.Value).ToString
+
+
+                                    'noIf Me.cmbDocumento.SelectedValue > 0 Then
+                                    'noTry
+
+                                    'noDim entradaspendientes As tblEntrada = (From x In conexion.tblEntradas Where x.idProveedor = CInt(Me.cmbProveedor.SelectedValue) And x.saldo > 0 And x.anulado = False And x.idEntrada = CInt(Me.cmbDocumento.SelectedValue) Select x).FirstOrDefault
+
+                                    'noentradaspendientes.saldo -= monto
+                                    'noentradaspendientes.pagos += monto
+                                    'nomonto = 0
+
+                                    'noCatch ex As Exception
+
+                                    'noEnd Try
+                                    'noEnd If
+
+
+                                    'noDim listaCtaPagar As List(Of tblCtaPagar) = (From x In conexion.tblCtaPagars Where x.idProveedor = pago.proveedor And x.cancelada = 0 And x.anulado = False Select x Order By x.fecha Ascending).ToList
+                                    'noDim ctaPagar As tblCtaPagar
+
+                                    'noFor Each ctaPagar In listaCtaPagar
+
+                                    'no If montoPagar > ctaPagar.saldo Then
+                                    'nomontoPagar -= ctaPagar.saldo
+                                    'no'noctaPagar.pagado = ctaPagar.monto
+                                    'noctaPagar.saldo = 0
+                                    'noctaPagar.cancelada = 1
+                                    'noElse
+                                    'no ctaPagar.saldo -= montoPagar
+                                    'noctaPagar.pagado += montoPagar
+                                    'nomontoPagar = 0
+                                    'noEnd If
+                                    'noNext
+                                    'noEnd If
+
+                                    'noconexion.SaveChanges()    ' verificar si va aqui. inicialmente estaba aqui
+                                    'noEnd If
 
                                     conexion.SaveChanges() ' verificar si va aqui. inicialmente estaba aqui
 
@@ -1382,3 +1384,4 @@ Public Class frmPagoProveedores
     End Sub
 
 End Class
+
