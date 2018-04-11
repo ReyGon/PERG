@@ -44,20 +44,25 @@ Partial Class frmProductosBarraIzquierda
         Me.pnl5 = New System.Windows.Forms.Panel()
         Me.pbx5 = New System.Windows.Forms.PictureBox()
         Me.lbl5 = New System.Windows.Forms.Label()
+        Me.pnl7 = New System.Windows.Forms.Panel()
+        Me.pbx7 = New System.Windows.Forms.PictureBox()
+        Me.lbl7 = New System.Windows.Forms.Label()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbx1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbx2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl2.SuspendLayout()
         Me.pnl1.SuspendLayout()
-        CType(Me.radMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl6.SuspendLayout()
+        CType(Me.radMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl3.SuspendLayout()
         CType(Me.pbx3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl4.SuspendLayout()
         CType(Me.pbx4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl5.SuspendLayout()
         CType(Me.pbx5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnl7.SuspendLayout()
+        CType(Me.pbx7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -71,7 +76,7 @@ Partial Class frmProductosBarraIzquierda
         '
         'Label2
         '
-        Me.Label2.Location = New System.Drawing.Point(48, 615)
+        Me.Label2.Location = New System.Drawing.Point(48, 697)
         Me.Label2.Visible = False
         '
         'PictureBox2
@@ -80,7 +85,7 @@ Partial Class frmProductosBarraIzquierda
         '
         'PictureBox3
         '
-        Me.PictureBox3.Location = New System.Drawing.Point(14, 602)
+        Me.PictureBox3.Location = New System.Drawing.Point(14, 684)
         Me.PictureBox3.Visible = False
         '
         'pbx1
@@ -152,6 +157,11 @@ Partial Class frmProductosBarraIzquierda
         'pnl6
         '
         Me.pnl6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.pnl6.Controls.Add(Me.radMenu)
+        Me.pnl6.Location = New System.Drawing.Point(17, 498)
+        Me.pnl6.Name = "pnl6"
+        Me.pnl6.Size = New System.Drawing.Size(100, 77)
+        Me.pnl6.TabIndex = 60
         '
         'radMenu
         '
@@ -182,11 +192,6 @@ Partial Class frmProductosBarraIzquierda
         CType(Me.radMenu.GetChildAt(0).GetChildAt(3), Telerik.WinControls.Primitives.BorderPrimitive).InnerColor2 = System.Drawing.Color.SteelBlue
         CType(Me.radMenu.GetChildAt(0).GetChildAt(3), Telerik.WinControls.Primitives.BorderPrimitive).InnerColor3 = System.Drawing.Color.SteelBlue
         CType(Me.radMenu.GetChildAt(0).GetChildAt(3), Telerik.WinControls.Primitives.BorderPrimitive).InnerColor4 = System.Drawing.Color.SteelBlue
-        Me.pnl6.Controls.Add(Me.radMenu)
-        Me.pnl6.Location = New System.Drawing.Point(17, 498)
-        Me.pnl6.Name = "pnl6"
-        Me.pnl6.Size = New System.Drawing.Size(100, 77)
-        Me.pnl6.TabIndex = 60
         '
         'menus
         '
@@ -334,12 +339,46 @@ Partial Class frmProductosBarraIzquierda
         Me.lbl5.Text = "Productos " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "para Pedidos"
         Me.lbl5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'pnl7
+        '
+        Me.pnl7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.pnl7.Controls.Add(Me.pbx7)
+        Me.pnl7.Controls.Add(Me.lbl7)
+        Me.pnl7.Location = New System.Drawing.Point(19, 581)
+        Me.pnl7.Name = "pnl7"
+        Me.pnl7.Size = New System.Drawing.Size(99, 77)
+        Me.pnl7.TabIndex = 70
+        '
+        'pbx7
+        '
+        Me.pbx7.Image = Global.laFuente.My.Resources.Resources.detalle_Blanco
+        Me.pbx7.Location = New System.Drawing.Point(25, 7)
+        Me.pbx7.Name = "pbx7"
+        Me.pbx7.Size = New System.Drawing.Size(46, 39)
+        Me.pbx7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx7.TabIndex = 66
+        Me.pbx7.TabStop = False
+        '
+        'lbl7
+        '
+        Me.lbl7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbl7.AutoSize = True
+        Me.lbl7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl7.ForeColor = System.Drawing.Color.White
+        Me.lbl7.Location = New System.Drawing.Point(19, 49)
+        Me.lbl7.Name = "lbl7"
+        Me.lbl7.Size = New System.Drawing.Size(64, 26)
+        Me.lbl7.TabIndex = 65
+        Me.lbl7.Text = "Productos" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Promocion"
+        Me.lbl7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'frmProductosBarraIzquierda
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.BackColor = System.Drawing.Color.SteelBlue
-        Me.ClientSize = New System.Drawing.Size(135, 660)
+        Me.ClientSize = New System.Drawing.Size(135, 722)
         Me.ControlBox = False
+        Me.Controls.Add(Me.pnl7)
         Me.Controls.Add(Me.pnl5)
         Me.Controls.Add(Me.pnl4)
         Me.Controls.Add(Me.pnl3)
@@ -365,6 +404,7 @@ Partial Class frmProductosBarraIzquierda
         Me.Controls.SetChildIndex(Me.pnl3, 0)
         Me.Controls.SetChildIndex(Me.pnl4, 0)
         Me.Controls.SetChildIndex(Me.pnl5, 0)
+        Me.Controls.SetChildIndex(Me.pnl7, 0)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbx1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -373,8 +413,8 @@ Partial Class frmProductosBarraIzquierda
         Me.pnl2.PerformLayout()
         Me.pnl1.ResumeLayout(False)
         Me.pnl1.PerformLayout()
-        CType(Me.radMenu, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl6.ResumeLayout(False)
+        CType(Me.radMenu, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl3.ResumeLayout(False)
         Me.pnl3.PerformLayout()
         CType(Me.pbx3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -384,6 +424,9 @@ Partial Class frmProductosBarraIzquierda
         Me.pnl5.ResumeLayout(False)
         Me.pnl5.PerformLayout()
         CType(Me.pbx5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnl7.ResumeLayout(False)
+        Me.pnl7.PerformLayout()
+        CType(Me.pbx7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -414,5 +457,8 @@ Partial Class frmProductosBarraIzquierda
     Friend WithEvents pbx5 As System.Windows.Forms.PictureBox
     Public WithEvents lbl5 As System.Windows.Forms.Label
     Friend WithEvents radMenu As Telerik.WinControls.UI.RadMenu
+    Friend WithEvents pnl7 As System.Windows.Forms.Panel
+    Friend WithEvents pbx7 As System.Windows.Forms.PictureBox
+    Public WithEvents lbl7 As System.Windows.Forms.Label
 
 End Class

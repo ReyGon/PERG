@@ -205,12 +205,12 @@ Public Class frmVentaPequeniaLista
 
     Private Sub frm_nuevo() Handles Me.nuevoRegistro
         Try
-            Dim formPedido As New frmVentaPequenia
-            formPedido.Text = "Ventas"
-            formPedido.bitEditarBodega = False
-            formPedido.bitEditarSalida = False
-            formPedido.MdiParent = frmMenuPrincipal
-            permiso.PermisoFrmEspeciales(formPedido, False)
+
+            frmVentaPequenia.Text = "Ventas"
+            frmVentaPequenia.bitEditarBodega = False
+            frmVentaPequenia.bitEditarSalida = False
+            frmVentaPequenia.MdiParent = frmMenuPrincipal
+            permiso.PermisoFrmEspeciales(frmVentaPequenia, False)
 
         Catch ex As Exception
             alertas.fnError()

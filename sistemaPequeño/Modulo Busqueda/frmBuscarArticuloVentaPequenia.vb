@@ -528,6 +528,14 @@ Public Class frmBuscarArticuloVentaPequenia
     'FUNCION QUE LLENA EL GRID PRODUCTOS
     Private Sub fnLlenar_productos()
         Try
+
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+            
+
             pgbProgreso.Value = 10
             Me.grdProductos.DataSource = Nothing
 
@@ -550,23 +558,23 @@ Public Class frmBuscarArticuloVentaPequenia
 
             If bitMovimientoInventario = True Then
 
-                cons = ctx.sp_buscar_Articulo(mdlPublicVars.idEmpresa, txtFiltro.Text, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, codigoTipoVehiculo, codigomodeloVehiculo, codClie, 1, True, False, codigoMarcaRepuesto, ventaPequenia)
-                '    pgLiquidacion.Dispose()
-                pgbProgreso.Value = 30
-            Else
+                    cons = conexion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, txtFiltro.Text, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, codigoTipoVehiculo, codigomodeloVehiculo, codClie, 1, True, False, codigoMarcaRepuesto, ventaPequenia)
+                    '    pgLiquidacion.Dispose()
+                    pgbProgreso.Value = 30
+                Else
 
-                If bitConversion = True Then
-                    bitCliente = True
-                    bitProveedor = False
-                End If
+                    If bitConversion = True Then
+                        bitCliente = True
+                        bitProveedor = False
+                    End If
 
-                cons = ctx.sp_buscar_ArticuloUNIDAD(mdlPublicVars.idEmpresa, txtFiltro.Text, inven, bode, codigoTipoVehiculo, codigomodeloVehiculo, codClie, 1, bitCliente, bitProveedor, codigoMarcaRepuesto, ventaPequenia)
-                pgbProgreso.Value = 15
+                    cons = conexion.sp_buscar_ArticuloUNIDAD(mdlPublicVars.idEmpresa, txtFiltro.Text, inven, bode, codigoTipoVehiculo, codigomodeloVehiculo, codClie, 1, bitCliente, bitProveedor, codigoMarcaRepuesto, ventaPequenia)
+                    pgbProgreso.Value = 15
 
-                If bitConversion = True Then
-                    bitCliente = False
-                    bitProveedor = False
-                End If
+                    If bitConversion = True Then
+                        bitCliente = False
+                        bitProveedor = False
+                    End If
             End If
 
             grdProductos.DataSource = mdlPublicVars.EntitiToDataTable(cons)
@@ -577,7 +585,9 @@ Public Class frmBuscarArticuloVentaPequenia
             '  fnConfiguracion(grdLiquidacion)
             Me.grdProductos.PerformLayout()
             ' Me.grdLiquidacion.PerformLayout()
-            fnIngresados()
+                fnIngresados()
+                conn.Close()
+            End Using
         Catch ex As Exception
             RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
             grdProductos.DataSource = Nothing
