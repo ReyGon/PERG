@@ -41,7 +41,7 @@
             mdlPublicVars.superSearchId = 1
             Me.Close()
             If opcionRetorno = "pagoNuevo" Then
-                frmPagoNuevo.fnAgregarFecha()
+                frmPagoClientes.fnAgregarFecha()
 
             ElseIf opcionRetorno = "precioInicio" Then
                 frmProductoPrecio.fnAgregarFechaSucursal()

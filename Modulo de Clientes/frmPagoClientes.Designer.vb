@@ -19,12 +19,12 @@ Partial Class frmPagoClientes
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridViewTextBoxColumn1 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn2 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn3 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn4 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn5 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim FilterDescriptor1 As Telerik.WinControls.Data.FilterDescriptor = New Telerik.WinControls.Data.FilterDescriptor()
+        Dim GridViewTextBoxColumn6 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn7 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn8 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn9 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn10 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim FilterDescriptor2 As Telerik.WinControls.Data.FilterDescriptor = New Telerik.WinControls.Data.FilterDescriptor()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPagoClientes))
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -45,6 +45,7 @@ Partial Class frmPagoClientes
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.rgbEncabezado = New Telerik.WinControls.UI.RadGroupBox()
+        Me.btnBuscarCliente = New System.Windows.Forms.Button()
         Me.txtTotalFacturas = New System.Windows.Forms.TextBox()
         Me.lblTotalFacturas = New System.Windows.Forms.Label()
         Me.txtFacturas = New System.Windows.Forms.TextBox()
@@ -82,7 +83,6 @@ Partial Class frmPagoClientes
         Me.pnx0Facturar = New System.Windows.Forms.Panel()
         Me.lbl0Facturar = New System.Windows.Forms.Label()
         Me.pbx0Facturar = New System.Windows.Forms.PictureBox()
-        Me.btnBuscarCliente = New System.Windows.Forms.Button()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rgbDetalle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -174,30 +174,30 @@ Partial Class frmPagoClientes
         '
         Me.grdProductos.MasterTemplate.AllowAddNewRow = False
         Me.grdProductos.MasterTemplate.AutoGenerateColumns = False
-        GridViewTextBoxColumn1.HeaderText = "Cuenta"
-        GridViewTextBoxColumn1.Name = "Cuenta"
-        GridViewTextBoxColumn1.ReadOnly = True
-        GridViewTextBoxColumn1.Width = 163
-        GridViewTextBoxColumn2.HeaderText = "Documento"
-        GridViewTextBoxColumn2.Name = "txmDocumento"
-        GridViewTextBoxColumn2.Width = 126
-        GridViewTextBoxColumn3.HeaderText = "Monto"
-        GridViewTextBoxColumn3.Name = "txmMonto"
-        GridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleRight
-        GridViewTextBoxColumn3.Width = 103
-        GridViewTextBoxColumn4.HeaderText = "Fecha"
-        GridViewTextBoxColumn4.Name = "txbFecha"
-        GridViewTextBoxColumn4.ReadOnly = True
-        GridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn4.Width = 98
-        GridViewTextBoxColumn5.HeaderText = "Observación"
-        GridViewTextBoxColumn5.Name = "observacion"
-        GridViewTextBoxColumn5.Width = 265
-        Me.grdProductos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4, GridViewTextBoxColumn5})
+        GridViewTextBoxColumn6.HeaderText = "Cuenta"
+        GridViewTextBoxColumn6.Name = "Cuenta"
+        GridViewTextBoxColumn6.ReadOnly = True
+        GridViewTextBoxColumn6.Width = 163
+        GridViewTextBoxColumn7.HeaderText = "Documento"
+        GridViewTextBoxColumn7.Name = "txmDocumento"
+        GridViewTextBoxColumn7.Width = 126
+        GridViewTextBoxColumn8.HeaderText = "Monto"
+        GridViewTextBoxColumn8.Name = "txmMonto"
+        GridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleRight
+        GridViewTextBoxColumn8.Width = 103
+        GridViewTextBoxColumn9.HeaderText = "Fecha"
+        GridViewTextBoxColumn9.Name = "txbFecha"
+        GridViewTextBoxColumn9.ReadOnly = True
+        GridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn9.Width = 98
+        GridViewTextBoxColumn10.HeaderText = "Observación"
+        GridViewTextBoxColumn10.Name = "observacion"
+        GridViewTextBoxColumn10.Width = 265
+        Me.grdProductos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn6, GridViewTextBoxColumn7, GridViewTextBoxColumn8, GridViewTextBoxColumn9, GridViewTextBoxColumn10})
         Me.grdProductos.MasterTemplate.EnableAlternatingRowColor = True
         Me.grdProductos.MasterTemplate.EnableGrouping = False
-        FilterDescriptor1.PropertyName = Nothing
-        Me.grdProductos.MasterTemplate.FilterDescriptors.AddRange(New Telerik.WinControls.Data.FilterDescriptor() {FilterDescriptor1})
+        FilterDescriptor2.PropertyName = Nothing
+        Me.grdProductos.MasterTemplate.FilterDescriptors.AddRange(New Telerik.WinControls.Data.FilterDescriptor() {FilterDescriptor2})
         Me.grdProductos.MasterTemplate.HorizontalScrollState = Telerik.WinControls.UI.ScrollState.AlwaysShow
         Me.grdProductos.Name = "grdProductos"
         Me.grdProductos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
@@ -439,6 +439,24 @@ Partial Class frmPagoClientes
         Me.rgbEncabezado.Size = New System.Drawing.Size(643, 157)
         Me.rgbEncabezado.TabIndex = 116
         Me.rgbEncabezado.ThemeName = "Office2007Black"
+        '
+        'btnBuscarCliente
+        '
+        Me.btnBuscarCliente.BackColor = System.Drawing.Color.SteelBlue
+        Me.btnBuscarCliente.FlatAppearance.BorderSize = 0
+        Me.btnBuscarCliente.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnBuscarCliente.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnBuscarCliente.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.btnBuscarCliente.ForeColor = System.Drawing.Color.Transparent
+        Me.btnBuscarCliente.Location = New System.Drawing.Point(432, 53)
+        Me.btnBuscarCliente.Name = "btnBuscarCliente"
+        Me.btnBuscarCliente.Size = New System.Drawing.Size(122, 21)
+        Me.btnBuscarCliente.TabIndex = 230
+        Me.btnBuscarCliente.Text = "Buscar Cliente"
+        Me.btnBuscarCliente.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnBuscarCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnBuscarCliente.UseVisualStyleBackColor = False
         '
         'txtTotalFacturas
         '
@@ -833,24 +851,6 @@ Partial Class frmPagoClientes
         Me.pbx0Facturar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pbx0Facturar.TabIndex = 71
         Me.pbx0Facturar.TabStop = False
-        '
-        'btnBuscarCliente
-        '
-        Me.btnBuscarCliente.BackColor = System.Drawing.Color.SteelBlue
-        Me.btnBuscarCliente.FlatAppearance.BorderSize = 0
-        Me.btnBuscarCliente.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
-        Me.btnBuscarCliente.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.btnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBuscarCliente.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.btnBuscarCliente.ForeColor = System.Drawing.Color.Transparent
-        Me.btnBuscarCliente.Location = New System.Drawing.Point(432, 53)
-        Me.btnBuscarCliente.Name = "btnBuscarCliente"
-        Me.btnBuscarCliente.Size = New System.Drawing.Size(122, 21)
-        Me.btnBuscarCliente.TabIndex = 230
-        Me.btnBuscarCliente.Text = "Buscar Cliente"
-        Me.btnBuscarCliente.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnBuscarCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnBuscarCliente.UseVisualStyleBackColor = False
         '
         'frmPagoClientes
         '

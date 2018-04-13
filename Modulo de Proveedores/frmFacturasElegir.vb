@@ -9,7 +9,7 @@ Imports System.Linq
 Imports System.Transactions
 
 Public Class frmFacturasElegir
-
+    Private permiso As New clsPermisoUsuario
     Private _idproveedor As Integer
     Private _idcliente As Integer
 
@@ -67,6 +67,7 @@ Public Class frmFacturasElegir
     End Sub
 
     'CLIC EN ACEPTAR PARA AGREGAR EMPLEADOS
+
     Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
 
         If idproveedor > 0 Then
@@ -94,15 +95,7 @@ Public Class frmFacturasElegir
     End Sub
 
     'SALIR DEL FORMULARIO
-    Private Sub fnSalir_Click() Handles Me.panel0
-        Me.Close()
-    End Sub
-
-#End Region
-
-#Region "Funciones"
-    'LLENAR EL GRID CON LOS EMPLEADOS
-    Private Sub fnLlenarGrid()
+     Private Sub fnLlenarGrid()
         Try
             Dim conexion As dsi_pos_demoEntities
             Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
@@ -138,7 +131,9 @@ Public Class frmFacturasElegir
         Catch
 
         End Try
+
     End Sub
+
 
     Public Sub fnConfiguracion()
         Try
@@ -195,4 +190,21 @@ Public Class frmFacturasElegir
         End Try
     End Sub
 
+    Private Sub grdFacturas_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles grdFacturas.MouseDoubleClick
+        Try
+ 
+            Dim index As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdFacturas)
+            Dim salida As Integer = CInt(Me.grdFacturas.Rows(index).Cells("id").Value)
+            frmPedidoConcepto.Text = "Ventas"
+            frmPedidoConcepto.idSalida = salida
+            frmPedidoConcepto.WindowState = FormWindowState.Normal
+            frmPedidoConcepto.StartPosition = FormStartPosition.CenterScreen
+            permiso.PermisoDialogEspeciales(frmPedidoConcepto)
+            frmPedidoConcepto.Dispose()
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
 End Class

@@ -53,6 +53,39 @@ Public Class frmPagoProveedores
         End Set
     End Property
 
+    Private Sub frmPagoProveedores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+
+            ''Me.pnlGeneral.BackColor = Color.Gray
+            ''Me.pnlHora.BackColor = Color.Gray
+            ''Me.TableLayoutPanel1.BackColor = Color.Gray
+            ''Me.ContenedorMenu.BackColor = Color.Gray
+
+            Me.rbtFactuaVarias.Enabled = False
+            Me.rbtFacturaUnica.Enabled = False
+            Me.rbtFacturaUnica.Checked = True
+
+            Me.nm5Cambio.Value = 1
+
+            mdlPublicVars.fnFormatoGridEspeciales(Me.grdProductos)
+            mdlPublicVars.fnFormatoGridMovimientos(Me.grdProductos)
+            fnLlenarCombos()
+
+            lblTotal.Text = "0"
+            lblSaldoActual.Text = "0"
+            mdlPublicVars.fnGridTelerik_formatoMoneda(grdProductos, "txmMonto")
+            mdlPublicVars.comboActivarFiltro(cmbProveedor)
+
+            tipoCambio = nm5Cambio.Value
+
+            Me.rbtFacturaUnica.Checked = True
+
+            listaEntradas = New List(Of Tuple(Of Integer, String, Decimal))
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
     Private Sub fnLlenarCombos()
         Me.grdProductos.Rows.Clear()
         If bitModificar = False Then
@@ -122,126 +155,6 @@ Public Class frmPagoProveedores
         End Try
 
 
-    End Sub
-
-    Private Sub frmPagoProveedores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
-
-            ''Me.pnlGeneral.BackColor = Color.Gray
-            ''Me.pnlHora.BackColor = Color.Gray
-            ''Me.TableLayoutPanel1.BackColor = Color.Gray
-            ''Me.ContenedorMenu.BackColor = Color.Gray
-
-            Me.rbtFactuaVarias.Enabled = False
-            Me.rbtFacturaUnica.Enabled = False
-            Me.rbtFacturaUnica.Checked = True
-
-            Me.nm5Cambio.Value = 1
-
-            mdlPublicVars.fnFormatoGridEspeciales(Me.grdProductos)
-            mdlPublicVars.fnFormatoGridMovimientos(Me.grdProductos)
-            fnLlenarCombos()
-
-            lblTotal.Text = "0"
-            lblSaldoActual.Text = "0"
-            mdlPublicVars.fnGridTelerik_formatoMoneda(grdProductos, "txmMonto")
-            mdlPublicVars.comboActivarFiltro(cmbProveedor)
-
-            tipoCambio = nm5Cambio.Value
-
-            Me.rbtFacturaUnica.Checked = True
-
-            listaEntradas = New List(Of Tuple(Of Integer, String, Decimal))
-
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
-    Private Sub fnTotal()
-
-        Dim index
-        Dim total As Double = 0
-        Dim totalquetzal As Double = 0
-
-        Dim saldo As Double = 0
-        Dim saldoActual As Double = 0
-        Dim enProceso As Decimal = CDbl(lblEnProceso.Text)
-        For index = 0 To Me.grdProductos.Rows.Count - 1
-            If IsNumeric(Me.grdProductos.Rows(index).Cells("txmMonto").Value) Then
-                total = total + (CType(Me.grdProductos.Rows(index).Cells("txmMonto").Value, Double) * tipoCambio)
-                '  totalquetzal = totalquetzal + (CType(Me.grdProductos.Rows(index).Cells("txmMonto").Value, Double) * tipoCambio)
-                total = total
-            End If
-        Next
-
-        If IsNumeric(lblSaldo.Text) Then
-            saldo = lblSaldo.Text
-        Else
-            saldo = 0
-        End If
-
-        If total > 0 Then
-            saldoActual = saldo - total + enProceso
-        Else
-            saldoActual = saldo + Math.Abs(total) + enProceso
-        End If
-
-        'Mostrar resultados.
-        If total <> 0 Then
-            lblTotal.Text = Format(total, mdlPublicVars.formatoMoneda)
-        Else
-            lblTotal.Text = 0
-        End If
-
-        If saldoActual <> 0 Then
-            lblSaldoActual.Text = Format(saldoActual, mdlPublicVars.formatoMoneda)
-        Else
-            lblSaldoActual.Text = "0"
-        End If
-    End Sub
-
-    Private Sub fnTotalDolares()
-
-        Dim index
-        Dim total As Double = 0
-        Dim totalquetzal As Double = 0
-
-        Dim saldo As Double = 0
-        Dim saldoActual As Double = 0
-        Dim enProceso As Decimal = CDbl(lblEnProceso.Text)
-        For index = 0 To Me.grdProductos.Rows.Count - 1
-            If IsNumeric(Me.grdProductos.Rows(index).Cells("txmMonto").Value) Then
-                total = total + (CType(Me.grdProductos.Rows(index).Cells("txmMonto").Value, Double) * 1)
-                ''  totalquetzal = totalquetzal + (CType(Me.grdProductos.Rows(index).Cells("txmMonto").Value, Double) * tipoCambio)
-                total = total
-            End If
-        Next
-
-        If IsNumeric(Replace(lblSaldo.Text, "$", "")) Then
-            saldo = Replace(lblSaldo.Text, "$", "")
-        Else
-            saldo = 0
-        End If
-
-        If total > 0 Then
-            saldoActual = saldo - total + enProceso
-        Else
-            saldoActual = saldo + Math.Abs(total) + enProceso
-        End If
-
-        'Mostrar resultados.
-        If total <> 0 Then
-            lblTotal.Text = Format(total, mdlPublicVars.formatoMonedaDolar)
-        Else
-            lblTotal.Text = 0
-        End If
-
-        If saldoActual <> 0 Then
-            lblSaldoActual.Text = Format(saldoActual, mdlPublicVars.formatoMonedaDolar)
-        Else
-            lblSaldoActual.Text = "0"
-        End If
     End Sub
 
     Private Sub cmbProveedor_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbProveedor.SelectedValueChanged
@@ -346,6 +259,91 @@ Public Class frmPagoProveedores
         Catch ex As Exception
 
         End Try
+    End Sub
+    Private Sub fnTotal()
+
+        Dim index
+        Dim total As Double = 0
+        Dim totalquetzal As Double = 0
+
+        Dim saldo As Double = 0
+        Dim saldoActual As Double = 0
+        Dim enProceso As Decimal = CDbl(Replace(lblEnProceso.Text, "Q", " "))
+        For index = 0 To Me.grdProductos.Rows.Count - 1
+            If IsNumeric(Me.grdProductos.Rows(index).Cells("txmMonto").Value) Then
+                total = total + (CType(Me.grdProductos.Rows(index).Cells("txmMonto").Value, Double) * tipoCambio)
+                '  totalquetzal = totalquetzal + (CType(Me.grdProductos.Rows(index).Cells("txmMonto").Value, Double) * tipoCambio)
+                total = total
+            End If
+        Next
+
+        If IsNumeric(lblSaldo.Text) Then
+            saldo = lblSaldo.Text
+        Else
+            saldo = 0
+        End If
+
+        If total > 0 Then
+            saldoActual = saldo - total + enProceso
+        Else
+            saldoActual = saldo + Math.Abs(total) + enProceso
+        End If
+
+        'Mostrar resultados.
+        If total <> 0 Then
+            lblTotal.Text = Format(total, mdlPublicVars.formatoMoneda)
+        Else
+            lblTotal.Text = 0
+        End If
+
+        If saldoActual <> 0 Then
+            lblSaldoActual.Text = Format(saldoActual, mdlPublicVars.formatoMoneda)
+        Else
+            lblSaldoActual.Text = "0"
+        End If
+    End Sub
+
+    Private Sub fnTotalDolares()
+
+        Dim index
+        Dim total As Double = 0
+        Dim totalquetzal As Double = 0
+
+        Dim saldo As Double = 0
+        Dim saldoActual As Double = 0
+        Dim enProceso As Decimal = CDbl(lblEnProceso.Text)
+        For index = 0 To Me.grdProductos.Rows.Count - 1
+            If IsNumeric(Me.grdProductos.Rows(index).Cells("txmMonto").Value) Then
+                total = total + (CType(Me.grdProductos.Rows(index).Cells("txmMonto").Value, Double) * 1)
+                ''  totalquetzal = totalquetzal + (CType(Me.grdProductos.Rows(index).Cells("txmMonto").Value, Double) * tipoCambio)
+                total = total
+            End If
+        Next
+
+        If IsNumeric(Replace(lblSaldo.Text, "$", "")) Then
+            saldo = Replace(lblSaldo.Text, "$", "")
+        Else
+            saldo = 0
+        End If
+
+        If total > 0 Then
+            saldoActual = saldo - total + enProceso
+        Else
+            saldoActual = saldo + Math.Abs(total) + enProceso
+        End If
+
+        'Mostrar resultados.
+        If total <> 0 Then
+            lblTotal.Text = Format(total, mdlPublicVars.formatoMonedaDolar)
+        Else
+            lblTotal.Text = 0
+        End If
+
+        If saldoActual <> 0 Then
+            lblSaldoActual.Text = Format(saldoActual, mdlPublicVars.formatoMonedaDolar)
+        Else
+            lblSaldoActual.Text = "0"
+        End If
     End Sub
 
     Private Sub fnLlenaComboMovimientos()
@@ -530,7 +528,6 @@ Public Class frmPagoProveedores
             End If
         End If
     End Sub
-
 
     'GUARDAR
     Private Sub fnGuardar_Click() Handles Me.panel0
@@ -782,7 +779,7 @@ Public Class frmPagoProveedores
         Dim tipoPago As Integer = 0
         Dim totalEfectivo As Double = 0
         Dim totalTransito As Double = 0
-
+        Dim observacionpago As String
 
         'fecha y hora del servidor.
         Dim fecha As DateTime = CType(fnFecha_horaServidor(), DateTime)
@@ -793,7 +790,7 @@ Public Class frmPagoProveedores
         Dim success As Boolean = True
         Dim errContenido As String = ""
         Dim observacion As String = ""
-        Dim observacionpago As String
+
 
         If rbtFacturaUnica.Checked = True Then
 

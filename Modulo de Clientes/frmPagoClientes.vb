@@ -8,7 +8,7 @@ Imports System.Windows.Forms
 Imports System.Windows
 
 Public Class frmPagoClientes
-
+     
     Public anula As Boolean = False
     Public anularPago As Boolean = False
     Public modifica As Boolean = False
@@ -65,6 +65,8 @@ Public Class frmPagoClientes
             Me.rbtFacturaUnica.Enabled = False
             Me.rbtFacturaUnica.Checked = True
 
+
+
             mdlPublicVars.fnFormatoGridEspeciales(Me.grdProductos)
             mdlPublicVars.fnFormatoGridMovimientos(Me.grdProductos)
             fnLlenarCombos()
@@ -74,6 +76,8 @@ Public Class frmPagoClientes
             mdlPublicVars.fnGridTelerik_formatoMoneda(grdProductos, "txmMonto")
             mdlPublicVars.comboActivarFiltro(cmbClientes)
 
+
+
             Me.rbtFacturaUnica.Checked = True
 
             listaSalidas = New List(Of Tuple(Of Integer, String, Decimal))
@@ -82,7 +86,6 @@ Public Class frmPagoClientes
 
         End Try
     End Sub
-
     Private Sub fnLlenarCombos()
         Me.grdProductos.Rows.Clear()
         If bitModificar = False Then
@@ -195,6 +198,49 @@ Public Class frmPagoClientes
         End Try
     End Sub
 
+    Private Sub fnTotal()
+
+        Dim index
+        Dim total As Double = 0
+        Dim totalquetzal As Double = 0
+
+        Dim saldo As Double = 0
+        Dim saldoActual As Double = 0
+        Dim enProceso As Decimal = CDbl(Replace(lblEnProceso.Text, "Q", " "))
+        For index = 0 To Me.grdProductos.Rows.Count - 1
+            If IsNumeric(Me.grdProductos.Rows(index).Cells("txmMonto").Value) Then
+                total = total + (CType(Me.grdProductos.Rows(index).Cells("txmMonto").Value, Double))
+                '  totalquetzal = totalquetzal + (CType(Me.grdProductos.Rows(index).Cells("txmMonto").Value, Double) * tipoCambio)
+                total = total
+            End If
+        Next
+
+        If IsNumeric(lblSaldo.Text) Then
+            saldo = lblSaldo.Text
+        Else
+            saldo = 0
+        End If
+
+        If total > 0 Then
+            saldoActual = saldo - total + enProceso
+        Else
+            saldoActual = saldo + Math.Abs(total) + enProceso
+        End If
+
+        'Mostrar resultados.
+        If total <> 0 Then
+            lblTotal.Text = Format(total, mdlPublicVars.formatoMoneda)
+        Else
+            lblTotal.Text = 0
+        End If
+
+        If saldoActual <> 0 Then
+            lblSaldoActual.Text = Format(saldoActual, mdlPublicVars.formatoMoneda)
+        Else
+            lblSaldoActual.Text = "0"
+        End If
+    End Sub
+
     Private Sub fnLlenaComboMovimientos()
         Try
             Dim conexion As dsi_pos_demoEntities
@@ -204,7 +250,8 @@ Public Class frmPagoClientes
 
                 Dim cliente As Integer = Me.cmbClientes.SelectedValue()
 
-                Dim mov = (From x In conexion.tblSalidas Select Codigo = CInt(0), Nombre = "Ningun Documento").Union(From x In conexion.tblSalidas Where x.idCliente = cliente And x.saldo > 0 And x.anulado = False And (x.facturado = True Or x.despachar = True Or x.empacado = True) Order By x.idSalida Select Codigo = CInt(x.idSalida), Nombre = CStr("Doc: " & CStr(If(CStr(x.documento) Is Nothing, "S/D", CStr(x.documento)))))
+                Dim mov = (From x In conexion.tblSalidas Select Codigo = CInt(0), Nombre = "Ningun Documento").Union(From x In conexion.tblSalidas Where x.idCliente = cliente And
+                x.saldo > 0 And x.anulado = False And (x.facturado = True Or x.despachar = True Or x.empacado = True) Order By x.idSalida Select Codigo = CInt(x.idSalida), Nombre = CStr("Doc: " & CStr(If(CStr(x.documento) Is Nothing, "S/D", CStr(x.documento)))))
 
                 With cmbDocumento
                     .DataSource = Nothing
@@ -218,6 +265,7 @@ Public Class frmPagoClientes
         Catch ex As Exception
 
         End Try
+
         Me.cmbDocumento.SelectedValue = 0
     End Sub
 
@@ -242,49 +290,6 @@ Public Class frmPagoClientes
 
         End Try
     End Sub
-
-    Private Sub rbtFacturaUnica_CheckedChanged(sender As Object, e As EventArgs) Handles rbtFacturaUnica.CheckedChanged
-        Try
-
-            If Me.cmbClientes.SelectedValue = 0 And Me.grdProductos.Rows.Count = 1 Then
-                RadMessageBox.Show("Debe Seleccionar Un Proveedor Antes!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
-                Exit Sub
-            End If
-
-            If rbtFacturaUnica.Checked = True Then
-                Me.lblDocumento.Visible = True
-                Me.cmbDocumento.Visible = True
-                Me.lblPagos.Visible = True
-                Me.lblPago.Visible = True
-                Me.lblSal.Visible = True
-                Me.lblSaldos.Visible = True
-                Me.lblTotalFacturas.Visible = False
-                Me.txtTotalFacturas.Visible = False
-                Me.lblFacturas.Visible = False
-                Me.txtFacturas.Visible = False
-                Me.btnFacturas.Visible = False
-                Me.lblNumeroFacturas.Enabled = False
-                Me.txtNumeroFacturas.Enabled = False
-            Else
-                Me.lblDocumento.Visible = False
-                Me.cmbDocumento.Visible = False
-                Me.lblPagos.Visible = False
-                Me.lblPago.Visible = False
-                Me.lblSal.Visible = False
-                Me.lblSaldos.Visible = False
-                Me.lblTotalFacturas.Visible = True
-                Me.txtTotalFacturas.Visible = True
-                Me.lblFacturas.Visible = True
-                Me.txtFacturas.Visible = True
-                Me.btnFacturas.Visible = True
-                Me.lblNumeroFacturas.Enabled = True
-                Me.txtNumeroFacturas.Enabled = True
-            End If
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
     Private Sub grdProductos_CellEndEdit(sender As Object, e As GridViewCellEventArgs) Handles grdProductos.CellEndEdit
         Try
             If e.Column.Name = "observacion" Or e.Column.Name = "txmMonto" Then
@@ -324,7 +329,7 @@ Public Class frmPagoClientes
                             'antes de agregar una fila verificar si la ultima es vacia para que no agregue otra.
                             If Me.grdProductos.Rows(Me.grdProductos.Rows.Count - 1).Cells("txmTipoPago").Value = "0" Then
                             Else
-                                'Id, codigo,nombre,precio,cantidad
+                                'Id, codigo, nombre, precio, cantidad
                                 If bitModificar = False Then
                                     filas = {0, 0, "", "?", 0, ""}
                                     grdProductos.Rows.Add(filas)
@@ -373,49 +378,6 @@ Public Class frmPagoClientes
         End Try
     End Sub
 
-    Private Sub fnTotal()
-
-        Dim index
-        Dim total As Double = 0
-        Dim totalquetzal As Double = 0
-
-        Dim saldo As Double = 0
-        Dim saldoActual As Double = 0
-        Dim enProceso As Decimal = CDbl(lblEnProceso.Text)
-        For index = 0 To Me.grdProductos.Rows.Count - 1
-            If IsNumeric(Me.grdProductos.Rows(index).Cells("txmMonto").Value) Then
-                total = total + (CType(Me.grdProductos.Rows(index).Cells("txmMonto").Value, Double))
-                '  totalquetzal = totalquetzal + (CType(Me.grdProductos.Rows(index).Cells("txmMonto").Value, Double) * tipoCambio)
-                total = total
-            End If
-        Next
-
-        If IsNumeric(lblSaldo.Text) Then
-            saldo = lblSaldo.Text
-        Else
-            saldo = 0
-        End If
-
-        If total > 0 Then
-            saldoActual = saldo - total + enProceso
-        Else
-            saldoActual = saldo + Math.Abs(total) + enProceso
-        End If
-
-        'Mostrar resultados.
-        If total <> 0 Then
-            lblTotal.Text = Format(total, mdlPublicVars.formatoMoneda)
-        Else
-            lblTotal.Text = 0
-        End If
-
-        If saldoActual <> 0 Then
-            lblSaldoActual.Text = Format(saldoActual, mdlPublicVars.formatoMoneda)
-        Else
-            lblSaldoActual.Text = "0"
-        End If
-    End Sub
-
     Private Sub grdProductos_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles grdProductos.KeyDown
         Try
             If e.KeyCode = Keys.Delete Then
@@ -427,35 +389,11 @@ Public Class frmPagoClientes
         End Try
     End Sub
 
-    Private Sub btnFacturas_Click(sender As Object, e As EventArgs) Handles btnFacturas.Click
+    'GUARDAR
+    Private Sub fnGuardar_Click() Handles Me.panel0
         Try
-
-            mdlPublicVars.superSearchLista3 = Nothing
-
-            listaSalidas = New List(Of Tuple(Of Integer, String, Decimal))
-
-            Dim form As New frmFacturasElegir
-            form.listaSalidas = listaSalidas
-            form.Text = "Facturas Clientes"
-            form.StartPosition = FormStartPosition.CenterScreen
-            form.WindowState = FormWindowState.Normal
-            form.idcliente = Me.cmbClientes.SelectedValue
-            form.txtAcreditacionTotal.Text = Me.grdProductos.Rows(0).Cells("txmMonto").Value
-            form.ShowDialog()
-            form.Dispose()
-            listaSalidas = mdlPublicVars.superSearchLista3
-
-            txtNumeroFacturas.Text = CStr(listaSalidas.Count)
-            txtFacturas.Text = ""
-            Dim total As Decimal = 0
-
-            For Each empleado As Tuple(Of Integer, String, Decimal) In listaSalidas
-                txtFacturas.Text += empleado.Item2 & ", "
-                total += empleado.Item3
-                txtTotalFacturas.Text = Format(total, formatoMoneda)
-            Next
-
-        Catch
+            fnGuardar()
+        Catch ex As Exception
 
         End Try
     End Sub
@@ -584,15 +522,82 @@ Public Class frmPagoClientes
         Return errores
     End Function
 
-    'GUARDAR
-    Private Sub fnGuardar_Click() Handles Me.panel0
+    Private Sub rbtFacturaUnica_CheckedChanged(sender As Object, e As EventArgs) Handles rbtFacturaUnica.CheckedChanged
         Try
-            fnGuardar()
+
+            If Me.cmbClientes.SelectedValue = 0 And Me.grdProductos.Rows.Count = 1 Then
+                RadMessageBox.Show("Debe Seleccionar Un Proveedor Antes!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                Exit Sub
+            End If
+
+            If rbtFacturaUnica.Checked = True Then
+                Me.lblDocumento.Visible = True
+                Me.cmbDocumento.Visible = True
+                Me.lblPagos.Visible = True
+                Me.lblPago.Visible = True
+                Me.lblSal.Visible = True
+                Me.lblSaldos.Visible = True
+                Me.lblTotalFacturas.Visible = False
+                Me.txtTotalFacturas.Visible = False
+                Me.lblFacturas.Visible = False
+                Me.txtFacturas.Visible = False
+                Me.btnFacturas.Visible = False
+                Me.lblNumeroFacturas.Enabled = False
+                Me.txtNumeroFacturas.Enabled = False
+            Else
+                Me.lblDocumento.Visible = False
+                Me.cmbDocumento.Visible = False
+                Me.lblPagos.Visible = False
+                Me.lblPago.Visible = False
+                Me.lblSal.Visible = False
+                Me.lblSaldos.Visible = False
+                Me.lblTotalFacturas.Visible = True
+                Me.txtTotalFacturas.Visible = True
+                Me.lblFacturas.Visible = True
+                Me.txtFacturas.Visible = True
+                Me.btnFacturas.Visible = True
+                Me.lblNumeroFacturas.Enabled = True
+                Me.txtNumeroFacturas.Enabled = True
+            End If
         Catch ex As Exception
 
         End Try
     End Sub
 
+    Private Sub btnFacturas_Click(sender As Object, e As EventArgs) Handles btnFacturas.Click
+        Try
+
+            mdlPublicVars.superSearchLista3 = Nothing
+
+            listaSalidas = New List(Of Tuple(Of Integer, String, Decimal))
+
+            Dim form As New frmFacturasElegir
+            form.listaSalidas = listaSalidas
+            form.Text = "Facturas Clientes"
+            form.StartPosition = FormStartPosition.CenterScreen
+            form.WindowState = FormWindowState.Normal
+            form.idcliente = Me.cmbClientes.SelectedValue
+            form.txtAcreditacionTotal.Text = Me.grdProductos.Rows(0).Cells("txmMonto").Value
+            form.ShowDialog()
+            form.Dispose()
+            listaSalidas = mdlPublicVars.superSearchLista3
+
+            txtNumeroFacturas.Text = CStr(listaSalidas.Count)
+            txtFacturas.Text = ""
+            Dim total As Decimal = 0
+
+            For Each empleado As Tuple(Of Integer, String, Decimal) In listaSalidas
+                txtFacturas.Text += empleado.Item2 & ", "
+                total += empleado.Item3
+                txtTotalFacturas.Text = Format(total, formatoMoneda)
+            Next
+
+        Catch
+
+        End Try
+    End Sub
+
+    'Funcion utilizada para guardar el pago
     Private Sub fnGuardar()
         If fnErrores() = True Then
             Exit Sub
@@ -670,6 +675,7 @@ Public Class frmPagoClientes
                                 documento = Me.grdProductos.Rows(index).Cells("txmDocumento").Value
                                 monto = Me.grdProductos.Rows(index).Cells("txmMonto").Value
                                 observacion = Me.grdProductos.Rows(index).Cells("observacion").Value
+                                observacionpago = Me.grdProductos.Rows(index).Cells("observacion").Value 'linea codigo extra'
 
                                 Dim pago As New tblCaja ' para guardar pago 
 
@@ -795,6 +801,7 @@ Public Class frmPagoClientes
                                         pago.fechaCobro = dtpFechaInicio.Text & " " & fecha.ToLongTimeString
                                     End If
 
+
                                     conexion.AddTotblCajas(pago)
                                     conexion.SaveChanges()
 
@@ -909,7 +916,6 @@ Public Class frmPagoClientes
 
                                             ''End While
                                         ElseIf pagoclie > 0 And cmbDocumento.SelectedValue > 0 Then
-
                                             If pagoTipo.calendarizada = False Then
                                                 While pagoclie > 0
 
@@ -1284,4 +1290,34 @@ Public Class frmPagoClientes
 
         End Try
     End Sub
+
+    Private Sub fnSalir() Handles Me.panel4
+        Me.Close()
+    End Sub
+
+    Public Sub fnAgregarFecha()
+        Try
+            If mdlPublicVars.superSearchId = 1 Then
+                Me.grdProductos.Rows(Me.grdProductos.CurrentRow.Index).Cells("txbFecha").Value = mdlPublicVars.superSearchFecha.ToShortDateString
+                If Me.grdProductos.Rows(Me.grdProductos.Rows.Count - 1).Cells("txmTipoPago").Value = "0" Then
+                Else
+
+                    'agregar una fila vacia.
+                    Dim filas() As String
+                    'Id, codigo,nombre,precio,cantidad
+                    filas = {0, 0, "", "?", 0, ""}
+                    grdProductos.Rows.Add(filas)
+                    grdProductos.Columns(1).IsCurrent = True
+                    grdProductos.Rows(grdProductos.Rows.Count - 1).IsCurrent = True
+                    If Me.grdProductos.Rows.Count > 1 Then
+                        Me.grdProductos.AllowAddNewRow = False
+                    End If
+                End If
+            Else
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
 End Class

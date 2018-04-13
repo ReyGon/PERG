@@ -1,6 +1,4 @@
 ﻿Imports System.Linq
-''Imports System.IO
-''Imports System.Data
 Imports System.Data.SqlClient
 Imports Telerik.WinControls
 Imports System.Transactions
@@ -524,13 +522,13 @@ Public Class frmPagoNuevo
 
         Dim total
 
-        If nm5Cambio.Visible Then
+        If nm5Cambio.Visible Then ' pasos guardado 1
             total = CType(Me.lblTotal.Text, Double)
-        Else
+        Else 'paso guardado 2
 
-            total = CType(Me.lblTotal.Text, Double)
+            total = CType(Me.lblTotal.Text, Double) ' paso guardado 3
 
-        End If
+        End If 'paso 4 guardado
 
 
 
@@ -540,23 +538,24 @@ Public Class frmPagoNuevo
                 contenidoer = "Monto pagado es mayor al de entrada"
             End If
         End If
+        'paso guardado 5
 
-        If total <= 0 And bitSalida = True Then
+        If total <= 0 And bitSalida = True Then 'paso 6 guardado
             errores = True
             contenidoer = "Debe ingresar un pago"
-        End If
+        End If ' paso 7 guardado
 
-        If errores = True Then
-            alerta.contenido = contenidoer
-            alerta.fnErrorContenido()
-        End If
+        If errores = True Then 'paso 8 guardad0
+            alerta.contenido = contenidoer 'paso 9 guardar
+            alerta.fnErrorContenido() 'paso 10 guardar 
+        End If 'paso 11
 
-        Return errores
+        Return errores 'paso 12
     End Function
 
     'Funcion utilizada para guardar el pago
     Private Sub fnGuardar()
-        If fnErrores() = True Then
+        If fnErrores() = True Then 'paso 13
             Exit Sub
         End If
 
@@ -1591,9 +1590,9 @@ Public Class frmPagoNuevo
         End If
     End Sub
 
-    Private Sub grdProductos_CellFormatting(sender As Object, e As CellFormattingEventArgs) Handles grdProductos.CellFormatting
-        mdlPublicVars.GridColor_fila(2, e, Color.Blue)
-    End Sub
+    Private Sub grdProductos_CellFormatting(sender As Object, e As CellFormattingEventArgs) Handles grdProductos.CellFormatting '18 sigue
+        mdlPublicVars.GridColor_fila(2, e, Color.Blue) '19 sigue
+    End Sub '20 sigue para pasar al documento
 
   
     Private Sub nm5Cambio_ValueChanged(sender As Object, e As EventArgs) Handles nm5Cambio.ValueChanged
@@ -1629,3 +1628,4 @@ Public Class frmPagoNuevo
         End Try
     End Sub
 End Class
+
