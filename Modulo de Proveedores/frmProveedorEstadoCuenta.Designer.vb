@@ -116,7 +116,7 @@ Partial Class frmProveedorEstadoCuenta
         Me.rpvEstados.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rpvEstados.Location = New System.Drawing.Point(9, 193)
         Me.rpvEstados.Name = "rpvEstados"
-        Me.rpvEstados.SelectedPage = Me.pgEstado1
+        Me.rpvEstados.SelectedPage = Me.pgEstado2
         Me.rpvEstados.Size = New System.Drawing.Size(885, 424)
         Me.rpvEstados.TabIndex = 196
         Me.rpvEstados.Text = "Estado Cuenta 2"
@@ -529,7 +529,7 @@ Partial Class frmProveedorEstadoCuenta
         Me.grdEstado2Depositos.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdEstado2Depositos.Location = New System.Drawing.Point(444, 34)
         '
-        '
+        'grdEstado2Depositos
         '
         Me.grdEstado2Depositos.MasterTemplate.AllowAddNewRow = False
         Me.grdEstado2Depositos.MasterTemplate.AllowColumnReorder = False
@@ -561,7 +561,7 @@ Partial Class frmProveedorEstadoCuenta
         Me.grdEstado2Ventas.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdEstado2Ventas.Location = New System.Drawing.Point(5, 34)
         '
-        '
+        'grdEstado2Ventas
         '
         Me.grdEstado2Ventas.MasterTemplate.AllowAddNewRow = False
         Me.grdEstado2Ventas.MasterTemplate.AllowColumnReorder = False

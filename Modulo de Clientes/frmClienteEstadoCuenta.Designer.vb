@@ -955,7 +955,7 @@ Partial Class frmClienteEstadoCuenta
         Me.grdEstado2Ventas.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdEstado2Ventas.Location = New System.Drawing.Point(20, 41)
         '
-        '
+        'grdEstado2Ventas
         '
         Me.grdEstado2Ventas.MasterTemplate.AllowAddNewRow = False
         Me.grdEstado2Ventas.MasterTemplate.AllowColumnReorder = False
@@ -1197,7 +1197,7 @@ Partial Class frmClienteEstadoCuenta
         Me.grdEstado2Depositos.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdEstado2Depositos.Location = New System.Drawing.Point(16, 41)
         '
-        '
+        'grdEstado2Depositos
         '
         Me.grdEstado2Depositos.MasterTemplate.AllowAddNewRow = False
         Me.grdEstado2Depositos.MasterTemplate.AllowColumnReorder = False

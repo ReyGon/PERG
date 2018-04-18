@@ -1229,6 +1229,12 @@
       <DependentUpon>rptReporteEstadoFactura.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\Nuevos\rptReporteEstadoProveedor1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptReporteEstadoProveedor1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\Nuevos\ventas_DSI.vb">
       <DependentUpon>ventas_DSI.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2337,6 +2343,10 @@
     <EmbeddedResource Include="Reportes\Nuevos\rptReporteEstadoFactura.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptReporteEstadoFactura.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Nuevos\rptReporteEstadoProveedor1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptReporteEstadoProveedor1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Nuevos\ventas_DSI.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
