@@ -605,15 +605,15 @@ Public Class frmProveedorEstadoCuenta
     End Sub
 
     'REPORTE
-    Public Function fnReporte() Handles Me.panel1
+    Public Function fnReporte() Handles Me.panel0
         Dim r As New clsReporte
         Try
             If rpvEstados.SelectedPage.Name = "pgEstado1" Then
                 r.reporte = "rptEstadoCuentaProveedor1.rpt"
-                r.tabla = EntitiToDataTable((From x In ctx.sp_ReporteEstadoProveedor1("", proveedor, dtpFechaInicio.Text, dtpFechaFin.Text & " 23:59:59", mdlPublicVars.idEmpresa))
+                r.tabla = EntitiToDataTable(From x In ctx.sp_reporteEstadoCuentaProveedor1("", proveedor, dtpFechaInicio.Text, dtpFechaFin.Text & " 23:59:59", mdlPublicVars.idEmpresa))
             ElseIf rpvEstados.SelectedPage.Name = "pgEstado2" Then
                 r.reporte = "rptEstadoCuentaProveedor2.rpt"
-                r.tabla = EntitiToDataTable((From x In ctx.sp_reporteEstadoCuentaProveedor2("", proveedor, dtpFechaInicio.Text, dtpFechaFin.Text & " 23:59:59", mdlPublicVars.idEmpresa))
+                r.tabla = EntitiToDataTable(From x In ctx.sp_reporteEstadoCuentaProveedor2("", proveedor, dtpFechaInicio.Text, dtpFechaFin.Text & " 23:59:59", mdlPublicVars.idEmpresa))
             End If
             r.nombreParametro = "filtro"
             r.parametro = "Filtro del reporte:"
