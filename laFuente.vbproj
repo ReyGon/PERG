@@ -1187,6 +1187,12 @@
       <DependentUpon>nota_credito.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\Nuevos\ReporteEstadocuentaProveedor2.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteEstadocuentaProveedor2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\Nuevos\rptGastosImportacion.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2315,6 +2321,10 @@
     <EmbeddedResource Include="Reportes\Nuevos\nota_credito.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>nota_credito.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Nuevos\ReporteEstadocuentaProveedor2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteEstadocuentaProveedor2.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Nuevos\rptGastosImportacion.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

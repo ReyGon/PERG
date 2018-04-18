@@ -31,7 +31,7 @@ Public Class frmProductoLista
         End Try
         Me.grdDatos.ImageList = frmControles.ImageListAdministracion
         Me.grdDatos.Font = New System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        llenagrid()
+        ''llenagrid()
         Me.grdDatos.Focus()
     End Sub
 

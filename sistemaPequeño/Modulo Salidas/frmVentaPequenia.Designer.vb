@@ -259,7 +259,7 @@ Partial Class frmVentaPequenia
         Me.lbl2Reservar.ForeColor = System.Drawing.Color.White
         Me.lbl2Reservar.Location = New System.Drawing.Point(43, 9)
         Me.lbl2Reservar.Name = "lbl2Reservar"
-        Me.lbl2Reservar.Size = New System.Drawing.Size(69, 19)
+        Me.lbl2Reservar.Size = New System.Drawing.Size(68, 19)
         Me.lbl2Reservar.TabIndex = 70
         Me.lbl2Reservar.Text = "Reservar"
         '
@@ -292,7 +292,7 @@ Partial Class frmVentaPequenia
         Me.lbl4Transporte.ForeColor = System.Drawing.Color.White
         Me.lbl4Transporte.Location = New System.Drawing.Point(40, 11)
         Me.lbl4Transporte.Name = "lbl4Transporte"
-        Me.lbl4Transporte.Size = New System.Drawing.Size(67, 15)
+        Me.lbl4Transporte.Size = New System.Drawing.Size(68, 15)
         Me.lbl4Transporte.TabIndex = 70
         Me.lbl4Transporte.Text = "Transporte"
         '
@@ -627,7 +627,7 @@ Partial Class frmVentaPequenia
         Me.lbSaldoInicial.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbSaldoInicial.Location = New System.Drawing.Point(16, 20)
         Me.lbSaldoInicial.Name = "lbSaldoInicial"
-        Me.lbSaldoInicial.Size = New System.Drawing.Size(63, 25)
+        Me.lbSaldoInicial.Size = New System.Drawing.Size(65, 25)
         Me.lbSaldoInicial.TabIndex = 89
         Me.lbSaldoInicial.Text = "Total :"
         '
@@ -764,7 +764,7 @@ Partial Class frmVentaPequenia
         Me.Label32.ForeColor = System.Drawing.Color.DimGray
         Me.Label32.Location = New System.Drawing.Point(754, 44)
         Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(102, 25)
+        Me.Label32.Size = New System.Drawing.Size(103, 25)
         Me.Label32.TabIndex = 182
         Me.Label32.Text = "Recuento :"
         '
@@ -861,7 +861,7 @@ Partial Class frmVentaPequenia
         Me.Label23.ForeColor = System.Drawing.Color.DimGray
         Me.Label23.Location = New System.Drawing.Point(33, 15)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(129, 25)
+        Me.Label23.Size = New System.Drawing.Size(128, 25)
         Me.Label23.TabIndex = 168
         Me.Label23.Text = "Observación :"
         '
@@ -1416,10 +1416,12 @@ Partial Class frmVentaPequenia
         GridViewTextBoxColumn2.HeaderText = "Id"
         GridViewTextBoxColumn2.IsVisible = False
         GridViewTextBoxColumn2.Name = "Id"
+        GridViewTextBoxColumn3.FormatString = ""
         GridViewTextBoxColumn3.HeaderText = "Codigo"
         GridViewTextBoxColumn3.Name = "txmCodigo"
         GridViewTextBoxColumn3.ReadOnly = True
         GridViewTextBoxColumn3.Width = 100
+        GridViewTextBoxColumn4.FormatString = ""
         GridViewTextBoxColumn4.HeaderText = "Articulo"
         GridViewTextBoxColumn4.Name = "txbProducto"
         GridViewTextBoxColumn4.ReadOnly = True
@@ -1427,48 +1429,59 @@ Partial Class frmVentaPequenia
         GridViewTextBoxColumn5.HeaderText = "IdUnidadMedida"
         GridViewTextBoxColumn5.IsVisible = False
         GridViewTextBoxColumn5.Name = "IdUnidadMedida"
+        GridViewTextBoxColumn6.FormatString = ""
         GridViewTextBoxColumn6.HeaderText = "Unidad Medida"
         GridViewTextBoxColumn6.Name = "txbUnidadMedida"
         GridViewTextBoxColumn6.Width = 100
         GridViewTextBoxColumn7.HeaderText = "Valor"
         GridViewTextBoxColumn7.IsVisible = False
         GridViewTextBoxColumn7.Name = "ValorUnidadMedida"
+        GridViewDecimalColumn1.FormatString = ""
         GridViewDecimalColumn1.HeaderText = "Cantidad"
         GridViewDecimalColumn1.Name = "txmCantidad"
         GridViewDecimalColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight
         GridViewDecimalColumn1.Width = 87
+        GridViewTextBoxColumn8.FormatString = ""
         GridViewTextBoxColumn8.HeaderText = "Precio Original"
         GridViewTextBoxColumn8.Name = "txbPrecioBase"
         GridViewTextBoxColumn8.ReadOnly = True
         GridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleRight
         GridViewTextBoxColumn8.Width = 100
+        GridViewTextBoxColumn9.FormatString = ""
         GridViewTextBoxColumn9.HeaderText = "Descuento"
         GridViewTextBoxColumn9.Name = "txmDescuento"
         GridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleRight
+        GridViewDecimalColumn2.FormatString = ""
         GridViewDecimalColumn2.HeaderText = "Recargo"
         GridViewDecimalColumn2.Name = "txmRecargo"
         GridViewDecimalColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleRight
         GridViewDecimalColumn2.Width = 79
+        GridViewTextBoxColumn10.FormatString = ""
         GridViewTextBoxColumn10.HeaderText = "Precio"
         GridViewTextBoxColumn10.Name = "precio"
         GridViewTextBoxColumn10.ReadOnly = True
         GridViewTextBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleRight
         GridViewTextBoxColumn10.Width = 62
+        GridViewTextBoxColumn11.FormatString = ""
         GridViewTextBoxColumn11.HeaderText = "Total"
         GridViewTextBoxColumn11.Name = "Total"
         GridViewTextBoxColumn11.ReadOnly = True
         GridViewTextBoxColumn11.TextAlignment = System.Drawing.ContentAlignment.MiddleRight
         GridViewTextBoxColumn11.Width = 58
+        GridViewTextBoxColumn12.FormatString = ""
         GridViewTextBoxColumn12.HeaderText = "Observacion"
         GridViewTextBoxColumn12.Name = "txbObservacion"
         GridViewTextBoxColumn12.ReadOnly = True
         GridViewTextBoxColumn12.Width = 160
+        GridViewTextBoxColumn13.FormatString = ""
         GridViewTextBoxColumn13.HeaderText = "idajustecategoria"
         GridViewTextBoxColumn13.Name = "idajustecategoria"
+        GridViewTextBoxColumn14.FormatString = ""
         GridViewTextBoxColumn14.HeaderText = "Ajuste"
         GridViewTextBoxColumn14.Name = "txbAjuste"
         GridViewTextBoxColumn14.ReadOnly = True
         GridViewTextBoxColumn14.Width = 117
+        GridViewTextBoxColumn15.FormatString = ""
         GridViewTextBoxColumn15.HeaderText = "Can.Ajuste"
         GridViewTextBoxColumn15.Name = "txmCantidadAjuste"
         GridViewTextBoxColumn15.Width = 92
@@ -1528,7 +1541,7 @@ Partial Class frmVentaPequenia
         Me.chkReservado.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkReservado.Location = New System.Drawing.Point(455, 51)
         Me.chkReservado.Name = "chkReservado"
-        Me.chkReservado.Size = New System.Drawing.Size(102, 24)
+        Me.chkReservado.Size = New System.Drawing.Size(101, 24)
         Me.chkReservado.TabIndex = 210
         Me.chkReservado.Text = "Reservado"
         Me.chkReservado.UseVisualStyleBackColor = True

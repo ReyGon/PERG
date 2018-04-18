@@ -378,35 +378,6 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSustituto_tblTipoInventario" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_TipoMovimiento_TipoInventario" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblTransportes_tblTiposTransportes" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblArticulo" Width="1.5" PointX="10.274245132819864" PointY="29.472538589254274" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_Catalogo_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_CodigoBarra_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_Foto_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_Kit_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_Kit_tblArticulo1" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_MarcaVehiculo_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_ModeloVehiculo_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_Precio_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_tblArticuloImportancia" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_tblArticuloMarcaRepuesto" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_tblArticuloRepuesto" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_tblEmpresa" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_tblUnidadMedida" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_TipoNegocio_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_TipoVehiculo_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_UnidadMedida_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticuloAlmacen_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticuloPrecioCompetencia_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblDetalleMovimientoInventario_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblDevolucionDetalle_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblDevolucionProveedorDetalle_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblInventario_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblinventario_temp_tblarticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblPendientePorPedir_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblPrecioCompetencia_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticulos" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSurtir_tblArticulo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSustituto_tblArticulo" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblCaja" Width="1.5" PointX="6.6327203803848107" PointY="29.846319078396224" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCaja_tblBanco_Cuenta" />
         <AssociationConnector Association="dsi_pos_demoModel.fk_caja_salida" />
@@ -419,7 +390,6 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCajaSalidas_tblCaja" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCierreCajaDetalleCheque_tbCaja" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblUsuario" Width="1.5" PointX="10.063814709924074" PointY="14.959411166123772" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_tblUsuarios" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_Kit_tblUsuarios" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticuloPrecioCompetencia_tblUsuarios" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_PrecioUsuario" />
@@ -491,14 +461,12 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblProveedor_tblProveedorProcedencia" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblPrecarga" Width="1.5" PointX="10.039723371174059" PointY="0.47049492619489086" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblPrecargaDetalle" Width="1.5" PointX="3.52648510389332" PointY="29.11179713770365" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_Articulo_PrecargaD" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_Precarga_PrecargaD" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_Usuario_Precarga" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblProveedor_cuenta" Width="1.5" PointX="5.6541749432935262" PointY="18.078184568359603" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblProveedor_cuenta_tblBanco" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblProveedor_cuenta_tblProveedor" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblEntradasDetalle" Width="1.5" PointX="5.2465789118998583" PointY="12.636569297237587" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblEntradasDetalle_tblArticulos" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblDevolucionProveedorDetalle_tblEntradasDetalle" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblPendientes_tblEntradasDetalle" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_UnidadMedida" />
@@ -516,6 +484,38 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblEnvio_Entrada_tblEntradas" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblImpuesto_Entrada_tblEntrada" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblPagoProveedor_tblEntradas" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblArticulo" Width="1.5" PointX="5.906500392549904" PointY="18.310143360081195" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_Articulo_PrecargaD" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_Catalogo_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_CodigoBarra_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_Foto_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_Kit_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_Kit_tblArticulo1" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_MarcaVehiculo_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_ModeloVehiculo_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_Precio_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_tblArticuloImportancia" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_tblArticuloMarcaRepuesto" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_tblArticuloRepuesto" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_tblEmpresa" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_tblUnidadMedida" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_tblUsuarios" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_TipoNegocio_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_TipoVehiculo_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticulo_UnidadMedida_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticuloAlmacen_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticuloPrecioCompetencia_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblDetalleMovimientoInventario_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblDevolucionDetalle_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblDevolucionProveedorDetalle_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblEntradasDetalle_tblArticulos" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblInventario_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblinventario_temp_tblarticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblPendientePorPedir_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblPrecioCompetencia_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticulos" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSurtir_tblArticulo" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSustituto_tblArticulo" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

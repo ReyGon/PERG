@@ -981,7 +981,11 @@ Public Class frmVentaPequenia
             conn.Close()
         End Using
 
-        grdProductos.Rows.Add(filas)
+        Try
+            grdProductos.Rows.Add(filas)
+        Catch ex As Exception
+
+        End Try
 
         If surtir Then
             Me.grdProductos.Rows(Me.grdProductos.RowCount - 1).IsVisible = False
@@ -1123,26 +1127,31 @@ Public Class frmVentaPequenia
 
     'REMOVER LA FILA ACTUAL DEL GRID DE PRODUCTOS
     Public Sub fnRemoverFila()
-        Dim filaActual As Integer = CType(Me.grdProductos.CurrentRow.Index, Integer)
+        Try
+            Dim filaActual As Integer = CType(Me.grdProductos.CurrentRow.Index, Integer)
 
-        If filaActual >= 0 Then
-            Dim index As Integer = 0
-            Dim yaBorro As Boolean = False
+            If filaActual >= 0 Then
+                Dim index As Integer = 0
+                Dim yaBorro As Boolean = False
 
-            For index = filaActual To Me.grdProductos.Rows.Count - 1
-                Dim codigoArt As Integer = CType(Me.grdProductos.Rows(filaActual).Cells("Id").Value, Integer)
-                If yaBorro = False And codigo = 0 Then
-                    'Si borrar es igual a false, elimina la fila
-                    Me.grdProductos.Rows.RemoveAt(filaActual)
-                    yaBorro = True
-                Else
-                    'Si estamos es una fila que no tiene datos la eliminamos
-                    If codigoArt = 0 Then
+                For index = filaActual To Me.grdProductos.Rows.Count - 1
+                    Dim codigoArt As Integer = CType(Me.grdProductos.Rows(filaActual).Cells("Id").Value, Integer)
+                    If yaBorro = False And codigo = 0 Then
+                        'Si borrar es igual a false, elimina la fila
                         Me.grdProductos.Rows.RemoveAt(filaActual)
+                        yaBorro = True
+                    Else
+                        'Si estamos es una fila que no tiene datos la eliminamos
+                        If codigoArt = 0 Then
+                            Me.grdProductos.Rows.RemoveAt(filaActual)
+                        End If
                     End If
-                End If
-            Next
-        End If
+                Next
+            End If
+        Catch ex As Exception
+
+        End Try
+        
     End Sub
 
     'AGREGAR PENDIENTES POR SURTIR

@@ -9,6 +9,7 @@ Imports System.Data.EntityClient
 
 Public Class frmClientePequenioLista
     Public filtroActivo As Boolean
+    Private CargarGrid As Boolean = False
     Dim permiso As New clsPermisoUsuario
 
     Private Sub frmClientePequenioLista_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
@@ -25,9 +26,10 @@ Public Class frmClientePequenioLista
 
         End Try
         Me.grdDatos.Font = New System.Drawing.Font("Arial", 8, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ' llenagrid()
         fnLlenarCombo()
+        CargarGrid = True
         Me.cmbEstado.SelectedValue = 1
+        llenagrid()
     End Sub
 
     Private Sub fnLlenarCombo()
@@ -54,6 +56,10 @@ Public Class frmClientePequenioLista
             cmbEstado.ValueMember = "Codigo"
             cmbEstado.DisplayMember = "Descripcion"
 
+            Me.cmbEstado.SelectedValue = 1
+
+            CargarGrid = True
+
         Catch ex As Exception
 
         End Try
@@ -72,7 +78,7 @@ Public Class frmClientePequenioLista
                 Dim val As Boolean
 
                 Dim filtro As String = txtFiltro.Text
-                conexion.CommandTimeout = 9000
+                ''conexion.CommandTimeout = 9000
                 Dim companyInfo = conexion.sp_lista_clientes(mdlPublicVars.idEmpresa, filtro, validacion)
 
             Me.grdDatos.DataSource = companyInfo
@@ -82,7 +88,7 @@ Public Class frmClientePequenioLista
                 conn.Close()
             End Using
         Catch ex As Exception
-            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+            ''RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
         End Try
       
     End Sub
@@ -106,34 +112,35 @@ Public Class frmClientePequenioLista
                 Me.grdDatos.Columns("Clave").Width = 50
                 Me.grdDatos.Columns("Negocio").Width = 160
                 Me.grdDatos.Columns("Saldo").Width = 80
-                Me.grdDatos.Columns("Telefono").Width = 140
+                ''Me.grdDatos.Columns("Telefono").Width = 140
 
                 'Me.grdDatos.Columns("chkHabilitado").Width = 62
                 Me.grdDatos.Columns("chkHabilitado").IsVisible = False
 
-                'Me.grdDatos.Columns("Pais").Width = 70
+                Me.grdDatos.Columns("Pais").Width = 70
                 Me.grdDatos.Columns("Pais").IsVisible = False
 
                 'Me.grdDatos.Columns("Region").Width = 120
                 Me.grdDatos.Columns("Categoria").IsVisible = False
 
-                'Me.grdDatos.Columns("Departamento").Width = 90
+                Me.grdDatos.Columns("Departamento").Width = 90
                 Me.grdDatos.Columns("Departamento").IsVisible = False
 
                 'Me.grdDatos.Columns("Municipio").Width = 90
                 Me.grdDatos.Columns("Municipio").IsVisible = False
 
-                'Me.grdDatos.Columns("LimiteSaldo").Width = 80
-                Me.grdDatos.Columns("LimiteSaldo").IsVisible = False
-                'Me.grdDatos.Columns("FechaUltimaCompra").Width = 80
-                Me.grdDatos.Columns("FechaUltimaCompra").IsVisible = False
+                '' Me.grdDatos.Columns("SaldoVencido").Width = 80
+                Me.grdDatos.Columns("LimiteSaldo").Width = 80
+                Me.grdDatos.Columns("LimiteSaldo").IsVisible = True
+                Me.grdDatos.Columns("FechaUltimaCompra").Width = 80
+                Me.grdDatos.Columns("FechaUltimaCompra").IsVisible = True
                 'Me.grdDatos.Columns("Vendedor").Width = 95
                 Me.grdDatos.Columns("Vendedor").IsVisible = False
 
-                Me.grdDatos.Columns("clrEstadoCred").Width = 70
-                Me.grdDatos.Columns("DiasCred").Width = 60
-                Me.grdDatos.Columns("clrFrecCompra").Width = 70
-                Me.grdDatos.Columns("DiasCompra").Width = 60
+                ''Me.grdDatos.Columns("clrEstadoCred").Width = 70
+                ''Me.grdDatos.Columns("DiasCred").Width = 60
+                ''Me.grdDatos.Columns("clrFrecCompra").Width = 70
+                ''Me.grdDatos.Columns("DiasCompra").Width = 60
 
             Catch ex As Exception
                 RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
@@ -233,7 +240,9 @@ Public Class frmClientePequenioLista
 
     Private Sub cmbEstado_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbEstado.SelectedValueChanged
         Try
-            llenagrid()
+            If CargarGrid = True Then
+                llenagrid()
+            End If
         Catch ex As Exception
 
         End Try

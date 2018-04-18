@@ -85,7 +85,7 @@ Public Class frmMenu
             Else
                 Dim frm As Form = frmClientePequenioLista
                 frm.Text = "Modulo de Clientes"
-                frmClientePequenioLista.frm_llenarLista()
+                ''frmClientePequenioLista.frm_llenarLista()
                 frm.MdiParent = frmMenuPrincipal
                 permiso.PermisoFrmEspeciales(frm, True)
             End If

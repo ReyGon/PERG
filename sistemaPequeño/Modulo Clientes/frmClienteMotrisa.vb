@@ -829,12 +829,12 @@ Public Class frmClienteMotrisa
 
     'Carga el listado de clientes al cerrar el formulario
     Private Sub frmClientes_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
-        If Not verRegistro Then
-            If verRegistro = False Then
-                frmClientePequenioLista.frm_llenarLista()
+        ''If Not verRegistro Then
+        ''    If verRegistro = False Then
+        ''        frmClientePequenioLista.frm_llenarLista()
 
-            End If
-        End If
+        ''    End If
+        ''End If
     End Sub
 
 
