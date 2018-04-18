@@ -84,6 +84,20 @@ Public Class frmProductosBarraIzquierda
         End Try
     End Sub
 
+    Private Sub fnPanel7() Handles Me.panel7
+        Try
+            frmPromociones.Text = "Promociones Articulos"
+            frmPromociones.MdiParent = frmMenuPrincipal
+            frmPromociones.WindowState = FormWindowState.Maximized
+            If permiso.PermisoFrmEspeciales(frmPromociones, True) = True Then
+                fnFRMhijos_cerrar(frmPromociones)
+                Me.Hide()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
     Private Sub ItemMarcaVehiculo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             Dim frm = frmMarcaVehiculos

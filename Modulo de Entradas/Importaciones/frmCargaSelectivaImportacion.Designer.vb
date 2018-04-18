@@ -42,6 +42,8 @@ Partial Class frmCargaSelectivaImportacion
         Me.pbx0Facturar = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.RadGroupBox1 = New Telerik.WinControls.UI.RadGroupBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.lblContadorProductos = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.lblInvoice = New System.Windows.Forms.Label()
         Me.grdProductos = New Telerik.WinControls.UI.RadGridView()
@@ -50,8 +52,6 @@ Partial Class frmCargaSelectivaImportacion
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.RadGridView1 = New Telerik.WinControls.UI.RadGridView()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.lblContadorProductos = New System.Windows.Forms.Label()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
         Me.pnx1Salir.SuspendLayout()
@@ -186,6 +186,28 @@ Partial Class frmCargaSelectivaImportacion
         Me.RadGroupBox1.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
         Me.RadGroupBox1.Size = New System.Drawing.Size(570, 375)
         Me.RadGroupBox1.TabIndex = 201
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.DimGray
+        Me.Label7.Location = New System.Drawing.Point(412, 12)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(89, 19)
+        Me.Label7.TabIndex = 167
+        Me.Label7.Text = "# Productos"
+        '
+        'lblContadorProductos
+        '
+        Me.lblContadorProductos.AutoSize = True
+        Me.lblContadorProductos.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblContadorProductos.ForeColor = System.Drawing.Color.Black
+        Me.lblContadorProductos.Location = New System.Drawing.Point(507, 12)
+        Me.lblContadorProductos.Name = "lblContadorProductos"
+        Me.lblContadorProductos.Size = New System.Drawing.Size(17, 19)
+        Me.lblContadorProductos.TabIndex = 168
+        Me.lblContadorProductos.Text = "#"
         '
         'Label3
         '
@@ -363,28 +385,6 @@ Partial Class frmCargaSelectivaImportacion
         Me.RadGridView1.TabIndex = 162
         Me.RadGridView1.Text = "RadGridView1"
         Me.RadGridView1.ThemeName = "Office2007Black"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.DimGray
-        Me.Label7.Location = New System.Drawing.Point(412, 12)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(89, 19)
-        Me.Label7.TabIndex = 167
-        Me.Label7.Text = "# Productos"
-        '
-        'lblContadorProductos
-        '
-        Me.lblContadorProductos.AutoSize = True
-        Me.lblContadorProductos.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblContadorProductos.ForeColor = System.Drawing.Color.Black
-        Me.lblContadorProductos.Location = New System.Drawing.Point(507, 12)
-        Me.lblContadorProductos.Name = "lblContadorProductos"
-        Me.lblContadorProductos.Size = New System.Drawing.Size(17, 19)
-        Me.lblContadorProductos.TabIndex = 168
-        Me.lblContadorProductos.Text = "#"
         '
         'frmCargaSelectivaImportacion
         '
