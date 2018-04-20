@@ -538,6 +538,20 @@ Public Class frmPagoProveedores
         End Try
     End Sub
 
+    Private Sub fnEstadoCuenta() Handles Me.panel2
+        Try
+            frmProveedorEstadoCuenta.Text = "Estado de Cuenta"
+            frmProveedorEstadoCuenta.proveedor = CInt(Me.cmbProveedor.SelectedValue)
+            frmProveedorEstadoCuenta.StartPosition = FormStartPosition.CenterScreen
+            frmProveedorEstadoCuenta.BringToFront()
+            frmProveedorEstadoCuenta.Focus()
+            permiso.PermisoDialogEspeciales(frmProveedorEstadoCuenta)
+            frmProveedorEstadoCuenta.Dispose()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
     Private Function fnPagosProgramados() As Boolean
         Dim fechaPago As DateTime = Nothing
         Dim fechaLimite As DateTime = fnFecha_horaServidor()
