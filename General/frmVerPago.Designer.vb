@@ -28,6 +28,8 @@ Partial Class frmVerPago
         Me.lbl0Salir = New System.Windows.Forms.Label()
         Me.pbx0Salir = New System.Windows.Forms.PictureBox()
         Me.rgbInformacion = New Telerik.WinControls.UI.RadGroupBox()
+        Me.lblhoraregistro = New System.Windows.Forms.Label()
+        Me.lblTipoPago = New System.Windows.Forms.Label()
         Me.lblusuario = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.lblTransito = New System.Windows.Forms.Label()
@@ -45,7 +47,6 @@ Partial Class frmVerPago
         Me.Label7 = New System.Windows.Forms.Label()
         Me.lblFechaRegistro = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.lblTipoPago = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.lblDocumento = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -179,6 +180,8 @@ Partial Class frmVerPago
         '
         Me.rgbInformacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rgbInformacion.Controls.Add(Me.lblhoraregistro)
+        Me.rgbInformacion.Controls.Add(Me.lblTipoPago)
         Me.rgbInformacion.Controls.Add(Me.lblusuario)
         Me.rgbInformacion.Controls.Add(Me.Label21)
         Me.rgbInformacion.Controls.Add(Me.lblTransito)
@@ -196,7 +199,6 @@ Partial Class frmVerPago
         Me.rgbInformacion.Controls.Add(Me.Label7)
         Me.rgbInformacion.Controls.Add(Me.lblFechaRegistro)
         Me.rgbInformacion.Controls.Add(Me.Label4)
-        Me.rgbInformacion.Controls.Add(Me.lblTipoPago)
         Me.rgbInformacion.Controls.Add(Me.Label5)
         Me.rgbInformacion.Controls.Add(Me.lblDocumento)
         Me.rgbInformacion.Controls.Add(Me.Label3)
@@ -217,6 +219,28 @@ Partial Class frmVerPago
         Me.rgbInformacion.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
         Me.rgbInformacion.Size = New System.Drawing.Size(782, 232)
         Me.rgbInformacion.TabIndex = 129
+        '
+        'lblhoraregistro
+        '
+        Me.lblhoraregistro.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblhoraregistro.ForeColor = System.Drawing.Color.Black
+        Me.lblhoraregistro.Location = New System.Drawing.Point(256, 103)
+        Me.lblhoraregistro.Name = "lblhoraregistro"
+        Me.lblhoraregistro.Size = New System.Drawing.Size(94, 30)
+        Me.lblhoraregistro.TabIndex = 223
+        Me.lblhoraregistro.Text = "Hora Pago"
+        Me.lblhoraregistro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lblTipoPago
+        '
+        Me.lblTipoPago.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblTipoPago.ForeColor = System.Drawing.Color.Black
+        Me.lblTipoPago.Location = New System.Drawing.Point(156, 74)
+        Me.lblTipoPago.Name = "lblTipoPago"
+        Me.lblTipoPago.Size = New System.Drawing.Size(115, 30)
+        Me.lblTipoPago.TabIndex = 222
+        Me.lblTipoPago.Text = "Tipo Pago"
+        Me.lblTipoPago.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblusuario
         '
@@ -258,7 +282,7 @@ Partial Class frmVerPago
         Me.Label12.ForeColor = System.Drawing.Color.DimGray
         Me.Label12.Location = New System.Drawing.Point(345, 18)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(89, 25)
+        Me.Label12.Size = New System.Drawing.Size(91, 25)
         Me.Label12.TabIndex = 218
         Me.Label12.Text = "Transito :"
         '
@@ -302,7 +326,7 @@ Partial Class frmVerPago
         Me.Label9.ForeColor = System.Drawing.Color.DimGray
         Me.Label9.Location = New System.Drawing.Point(307, 137)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(129, 25)
+        Me.Label9.Size = New System.Drawing.Size(128, 25)
         Me.Label9.TabIndex = 214
         Me.Label9.Text = "Observación :"
         '
@@ -393,7 +417,7 @@ Partial Class frmVerPago
         Me.lblFechaRegistro.ForeColor = System.Drawing.Color.Black
         Me.lblFechaRegistro.Location = New System.Drawing.Point(156, 103)
         Me.lblFechaRegistro.Name = "lblFechaRegistro"
-        Me.lblFechaRegistro.Size = New System.Drawing.Size(146, 30)
+        Me.lblFechaRegistro.Size = New System.Drawing.Size(105, 30)
         Me.lblFechaRegistro.TabIndex = 206
         Me.lblFechaRegistro.Text = "Tipo Pago"
         Me.lblFechaRegistro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -405,20 +429,9 @@ Partial Class frmVerPago
         Me.Label4.ForeColor = System.Drawing.Color.DimGray
         Me.Label4.Location = New System.Drawing.Point(5, 103)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(147, 25)
+        Me.Label4.Size = New System.Drawing.Size(148, 25)
         Me.Label4.TabIndex = 205
         Me.Label4.Text = "Fecha Registro :"
-        '
-        'lblTipoPago
-        '
-        Me.lblTipoPago.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTipoPago.ForeColor = System.Drawing.Color.Black
-        Me.lblTipoPago.Location = New System.Drawing.Point(156, 73)
-        Me.lblTipoPago.Name = "lblTipoPago"
-        Me.lblTipoPago.Size = New System.Drawing.Size(162, 30)
-        Me.lblTipoPago.TabIndex = 204
-        Me.lblTipoPago.Text = "Tipo Pago"
-        Me.lblTipoPago.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label5
         '
@@ -427,7 +440,7 @@ Partial Class frmVerPago
         Me.Label5.ForeColor = System.Drawing.Color.DimGray
         Me.Label5.Location = New System.Drawing.Point(20, 73)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(132, 25)
+        Me.Label5.Size = New System.Drawing.Size(133, 25)
         Me.Label5.TabIndex = 203
         Me.Label5.Text = "Tipo de Pago :"
         '
@@ -471,7 +484,7 @@ Partial Class frmVerPago
         Me.Label10.ForeColor = System.Drawing.Color.DimGray
         Me.Label10.Location = New System.Drawing.Point(88, 18)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(64, 25)
+        Me.Label10.Size = New System.Drawing.Size(65, 25)
         Me.Label10.TabIndex = 199
         Me.Label10.Text = "Pago :"
         '
@@ -681,7 +694,7 @@ Partial Class frmVerPago
         Me.Label19.ForeColor = System.Drawing.Color.DimGray
         Me.Label19.Location = New System.Drawing.Point(26, 20)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(114, 25)
+        Me.Label19.Size = New System.Drawing.Size(115, 25)
         Me.Label19.TabIndex = 232
         Me.Label19.Text = "Rechazado :"
         '
@@ -703,7 +716,7 @@ Partial Class frmVerPago
         Me.Label18.ForeColor = System.Drawing.Color.DimGray
         Me.Label18.Location = New System.Drawing.Point(13, 95)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(129, 25)
+        Me.Label18.Size = New System.Drawing.Size(128, 25)
         Me.Label18.TabIndex = 230
         Me.Label18.Text = "Observación :"
         '
@@ -824,7 +837,6 @@ Partial Class frmVerPago
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents lblFechaRegistro As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents lblTipoPago As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents lblDocumento As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
@@ -861,5 +873,7 @@ Partial Class frmVerPago
     Friend WithEvents pnx1Imprimir As System.Windows.Forms.Panel
     Friend WithEvents lbl1Imprimir As System.Windows.Forms.Label
     Friend WithEvents pbx1Imprimir As System.Windows.Forms.PictureBox
+    Friend WithEvents lblTipoPago As System.Windows.Forms.Label
+    Friend WithEvents lblhoraregistro As System.Windows.Forms.Label
 
 End Class

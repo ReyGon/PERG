@@ -78,6 +78,7 @@ Public Class frmVerPago
             lblDocumento.Text = pago.documento
             lblTipoPago.Text = pago.tblTipoPago.nombre
             lblFechaRegistro.Text = Format(pago.fecha, mdlPublicVars.formatoFecha)
+            lblhoraregistro.Text = (pago.fecha.ToShortTimeString)
             lblTransito.Text = If(pago.transito = True, "SI", "NO")
             lblConfirmado.Text = If(pago.confirmado = True, "SI", "NO")
             lblFechaConfirmado.Text = Format(pago.fechaCobro, mdlPublicVars.formatoFecha)
