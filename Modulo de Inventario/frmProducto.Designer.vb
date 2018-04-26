@@ -370,7 +370,7 @@ Partial Class frmProducto
         Me.rpv.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.rpv.Location = New System.Drawing.Point(7, 144)
         Me.rpv.Name = "rpv"
-        Me.rpv.SelectedPage = Me.pageDatos
+        Me.rpv.SelectedPage = Me.pgCatalogo
         Me.rpv.Size = New System.Drawing.Size(994, 339)
         Me.rpv.TabIndex = 6
         Me.rpv.Text = "Historiales"
@@ -419,7 +419,7 @@ Partial Class frmProducto
         Me.chkServicio.AutoSize = True
         Me.chkServicio.Location = New System.Drawing.Point(190, 9)
         Me.chkServicio.Name = "chkServicio"
-        Me.chkServicio.Size = New System.Drawing.Size(91, 25)
+        Me.chkServicio.Size = New System.Drawing.Size(90, 25)
         Me.chkServicio.TabIndex = 166
         Me.chkServicio.Text = "Servicio"
         Me.chkServicio.UseVisualStyleBackColor = True
@@ -450,7 +450,7 @@ Partial Class frmProducto
         Me.chkTodosModelo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkTodosModelo.Location = New System.Drawing.Point(860, 9)
         Me.chkTodosModelo.Name = "chkTodosModelo"
-        Me.chkTodosModelo.Size = New System.Drawing.Size(58, 19)
+        Me.chkTodosModelo.Size = New System.Drawing.Size(59, 19)
         Me.chkTodosModelo.TabIndex = 163
         Me.chkTodosModelo.Text = "Todos"
         Me.chkTodosModelo.UseVisualStyleBackColor = True
@@ -461,7 +461,7 @@ Partial Class frmProducto
         Me.chkTodosVehiculo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkTodosVehiculo.Location = New System.Drawing.Point(588, 10)
         Me.chkTodosVehiculo.Name = "chkTodosVehiculo"
-        Me.chkTodosVehiculo.Size = New System.Drawing.Size(58, 19)
+        Me.chkTodosVehiculo.Size = New System.Drawing.Size(59, 19)
         Me.chkTodosVehiculo.TabIndex = 162
         Me.chkTodosVehiculo.Text = "Todos"
         Me.chkTodosVehiculo.UseVisualStyleBackColor = True
@@ -636,7 +636,7 @@ Partial Class frmProducto
         Me.lblGrid1.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
         Me.lblGrid1.Location = New System.Drawing.Point(380, 10)
         Me.lblGrid1.Name = "lblGrid1"
-        Me.lblGrid1.Size = New System.Drawing.Size(103, 20)
+        Me.lblGrid1.Size = New System.Drawing.Size(104, 20)
         Me.lblGrid1.TabIndex = 113
         Me.lblGrid1.Text = "Tipo Vehiculo"
         '
@@ -780,7 +780,7 @@ Partial Class frmProducto
         Me.grdFotos.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdFotos.Location = New System.Drawing.Point(248, 77)
         '
-        '
+        'grdFotos
         '
         Me.grdFotos.MasterTemplate.AllowAddNewRow = False
         GridViewTextBoxColumn7.HeaderText = "Codigo"
@@ -1007,7 +1007,7 @@ Partial Class frmProducto
         Me.grdCatalogos.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdCatalogos.Location = New System.Drawing.Point(13, 37)
         '
-        '
+        'grdCatalogos
         '
         Me.grdCatalogos.MasterTemplate.AllowAddNewRow = False
         GridViewTextBoxColumn11.HeaderText = "id"
@@ -1563,7 +1563,7 @@ Partial Class frmProducto
         Me.chkVentaMaxima.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.chkVentaMaxima.Location = New System.Drawing.Point(794, 221)
         Me.chkVentaMaxima.Name = "chkVentaMaxima"
-        Me.chkVentaMaxima.Size = New System.Drawing.Size(175, 23)
+        Me.chkVentaMaxima.Size = New System.Drawing.Size(176, 23)
         Me.chkVentaMaxima.TabIndex = 137
         Me.chkVentaMaxima.Text = "Activar Venta Maxima"
         Me.chkVentaMaxima.UseVisualStyleBackColor = True
@@ -1604,7 +1604,7 @@ Partial Class frmProducto
         Me.Label28.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label28.Location = New System.Drawing.Point(586, 126)
         Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(70, 19)
+        Me.Label28.Size = New System.Drawing.Size(71, 19)
         Me.Label28.TabIndex = 135
         Me.Label28.Text = "Transito :"
         '
@@ -1614,7 +1614,7 @@ Partial Class frmProducto
         Me.Label29.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label29.Location = New System.Drawing.Point(584, 152)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(71, 19)
+        Me.Label29.Size = New System.Drawing.Size(70, 19)
         Me.Label29.TabIndex = 134
         Me.Label29.Text = "Reserva :"
         '
@@ -1624,7 +1624,7 @@ Partial Class frmProducto
         Me.Label14.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label14.Location = New System.Drawing.Point(468, 219)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(188, 19)
+        Me.Label14.Size = New System.Drawing.Size(189, 19)
         Me.Label14.TabIndex = 131
         Me.Label14.Text = "Venta maxima por cliente :"
         '
@@ -1745,7 +1745,7 @@ Partial Class frmProducto
         Me.grdOtrosPrecios.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdOtrosPrecios.Location = New System.Drawing.Point(490, 103)
         '
-        'grdOtrosPrecios
+        '
         '
         Me.grdOtrosPrecios.MasterTemplate.AllowAddNewRow = False
         Me.grdOtrosPrecios.MasterTemplate.AutoGenerateColumns = False
@@ -1789,7 +1789,7 @@ Partial Class frmProducto
         Me.grdPrecios.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdPrecios.Location = New System.Drawing.Point(15, 103)
         '
-        'grdPrecios
+        '
         '
         Me.grdPrecios.MasterTemplate.AllowAddNewRow = False
         Me.grdPrecios.MasterTemplate.AllowColumnReorder = False
@@ -1903,7 +1903,7 @@ Partial Class frmProducto
         Me.Label26.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label26.Location = New System.Drawing.Point(777, 16)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(158, 19)
+        Me.Label26.Size = New System.Drawing.Size(159, 19)
         Me.Label26.TabIndex = 128
         Me.Label26.Text = "Venta Prom. por Mes :" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
@@ -2167,7 +2167,7 @@ Partial Class frmProducto
         Me.Label43.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label43.Location = New System.Drawing.Point(75, 57)
         Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(48, 17)
+        Me.Label43.Size = New System.Drawing.Size(49, 17)
         Me.Label43.TabIndex = 218
         Me.Label43.Text = "Valor :"
         '
@@ -2304,7 +2304,7 @@ Partial Class frmProducto
         Me.chkHabilitado.ForeColor = System.Drawing.Color.Black
         Me.chkHabilitado.Location = New System.Drawing.Point(219, 65)
         Me.chkHabilitado.Name = "chkHabilitado"
-        Me.chkHabilitado.Size = New System.Drawing.Size(111, 23)
+        Me.chkHabilitado.Size = New System.Drawing.Size(112, 23)
         Me.chkHabilitado.TabIndex = 110
         Me.chkHabilitado.Text = "HABILITADO"
         Me.chkHabilitado.UseVisualStyleBackColor = True
