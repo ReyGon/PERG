@@ -48,6 +48,9 @@ Public Module mdlPublicVars
     Public superSearchCodigo As String
     Public superSearchPrecio As Decimal
     Public superSearchCantidad As Double
+    Public superSearchPromocion As Double
+    Public superSearchCantidadPromocion As Double
+    Public superSearchCuotaPromocion As Double
     Public superSearchFecha As DateTime
     Public superSearchCosto As Decimal
     Public superSearchUnidadMedidaValor As Decimal
@@ -92,6 +95,9 @@ Public Module mdlPublicVars
     Public superSearchTotalCobro As Decimal
     Public superSearchGastosConfirmado As Boolean
 
+    Public superSearchModelos As String
+    Public superSearchMarcas As String
+    Public superSearchTipos As String
 
     ' el nit pa la venta pequenia
     Public superSearchNit As String
@@ -1878,6 +1884,8 @@ Public Module mdlPublicVars
                 mdlPublicVars.GridColor_fila(e, Color.Red)
             ElseIf e.CellElement.RowInfo.Cells("clrEstado").Value = 0 Then
                 mdlPublicVars.GridColor_fila(e, Color.Black)
+            ElseIf e.CellElement.RowInfo.Cells("clrEstado").Value = 3 Then
+                mdlPublicVars.GridColor_fila(e, Color.Blue)
             ElseIf e.CellElement.RowInfo.Cells("ingresado").Value IsNot Nothing Then
                 mdlPublicVars.GridColor_fila(e, Color.Yellow)
             End If

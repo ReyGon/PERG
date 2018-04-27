@@ -435,7 +435,7 @@ Public Class frmFacturaConcepto
                 r.nombreParametro = "@filtro"
                 r.reporte = impresion.tblTipoImpresion.reporte
                 r.parametro = ""
-                r.imprimirReporte()
+                r.verReporte()
 
                 If MessageBox.Show("Se imprimio correctamente !!!", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
                     impresion.bitImpreso = True

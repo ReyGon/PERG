@@ -735,11 +735,45 @@ Public Class frmBuscarArticulo
         End Try
     End Sub
 
+    Private Function fnPromociones(ByVal Id As Integer, ByVal Cantidad As Integer) As Integer
+        Try
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim cx As Integer
+                Dim cr As Integer
+
+                Dim a As tblArticulo = (From x In conexion.tblArticuloes Where x.idArticulo = Id Select x).FirstOrDefault
+
+                If a.bitPromocion = False Then
+                    Return 0
+                    Exit Function
+                End If
+
+                If Cantidad >= a.CuotaPromocion Then
+                    cx = Math.Floor(CDec(Cantidad / a.CuotaPromocion))
+                    mdlPublicVars.superSearchCuotaPromocion = a.CuotaPromocion
+                    mdlPublicVars.superSearchCantidadPromocion = cx
+                    cr = cx * a.CantidadPromocion
+                End If
+
+                conn.Close()
+
+                Return cr
+            End Using
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
     'Funcion que se utiliza para agregar los productos en el grid 
     Private Sub fnAgregar_Productos(ByRef grd As Telerik.WinControls.UI.RadGridView, ByVal liquidacion As Boolean)
         Dim cont As Integer = 0
         Dim id As Integer = 0
         Dim cantidad As Double = 0
+        Dim promocion As Integer
         Dim codigo As String = ""
         Dim nombre As String = ""
         Dim precio As Decimal = 0
@@ -748,6 +782,9 @@ Public Class frmBuscarArticulo
         Dim tipoPrecio As Integer = 0
         Dim estado As Integer = 0
         Dim saldo As Double = 0
+        mdlPublicVars.superSearchPromocion = 0
+        mdlPublicVars.superSearchCantidadPromocion = 0
+        mdlPublicVars.superSearchCuotaPromocion = 0
 
         If liquidacion = True Then
             mdlPublicVars.superSearchInventario = mdlPublicVars.General_InventarioLiquidacion
@@ -797,6 +834,18 @@ Public Class frmBuscarArticulo
                     Catch ex As Exception
                         cantidad = 0
                     End Try
+
+                    ''Validador de Promociones
+                    If bitCliente = True And bitDevolucionCliente = False Then
+
+                        promocion = fnPromociones(id, cantidad)
+
+                        If promocion > 0 Then
+                            cantidad += promocion
+                        End If
+
+                    End If
+                    ''Fin Validad de Promociones
 
                     surtir = fila.Cells("txmSurtir").Value
                     Dim art As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = id And x.tblTipoInventario.idTipoinventario = mdlPublicVars.General_idTipoInventario
@@ -849,6 +898,7 @@ Public Class frmBuscarArticulo
                         mdlPublicVars.superSearchNombre = nombre
                         mdlPublicVars.superSearchCantidad = cantidad
                         mdlPublicVars.superSearchTipoPrecio = tipoPrecio
+                        mdlPublicVars.superSearchPromocion = promocion
                         mdlPublicVars.superSearchEstado = estado
                         mdlPublicVars.superSearchIdUnidadMedida = mdlPublicVars.UnidadMedidaDefault
                         mdlPublicVars.superSearchUnidadMedida = "Unidad"
