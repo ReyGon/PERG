@@ -31,6 +31,7 @@ Public Class frmProductoPrecio
         mdlPublicVars.fnGrid_iconos(grdPrecios)
         mdlPublicVars.fnFormatoGridMovimientos(grdUltimasCompras)
         mdlPublicVars.comboActivarFiltro(cmbNombre1)
+        mdlPublicVars.comboActivarFiltro(cmbCodigo1)
 
         lbl1Modificar.Text = "Guardar"
 
@@ -50,6 +51,7 @@ Public Class frmProductoPrecio
         'Me.errores.SummaryMessage = "Faltan datos"
 
         fnLlenarCombo()
+        fnLlenarCombo2()
         llenagrid()
         fnConfiguracion()
         mdlPublicVars.fnSeleccionarDefault(grdDatos, mdlPublicVars.superSearchId, True)
@@ -75,6 +77,7 @@ Public Class frmProductoPrecio
             fnCalculaNormales()
             fnUltimasCompras()
             fnUltimasVentas()
+    
             'calcular los costos
             fnCalculaOtros()
         Catch ex As Exception
@@ -187,7 +190,7 @@ Public Class frmProductoPrecio
         Try
             'Realizamos la consulta
             Dim cons = (From x In ctx.tblArticuloes _
-                        Select Codigo = x.idArticulo, Nombre = x.nombre1 + " - " + x.codigo1)
+            Select Codigo = x.idArticulo, Nombre = x.nombre1 + " - " + x.codigo1)
 
             'Llenamos el combo1
             With Me.cmbNombre1
@@ -201,14 +204,32 @@ Public Class frmProductoPrecio
 
         End Try
     End Sub
+    'Funcion utilizada para llenar el combo
+    Private Sub fnLlenarCombo2()
+        Try
+            'Realizamos la consulta
+            Dim cons = (From x In ctx.tblArticuloes _
+                        Select Codigo = x.idArticulo, Nombre = x.codigo1)
 
+            'Llenamos el combo1
+            With Me.cmbCodigo1
+                .DataSource = Nothing
+                .ValueMember = "Codigo"
+                .DisplayMember = "Nombre"
+                .DataSource = cons
+            End With
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
     Private Sub frm_llenarLista() Handles Me.llenarLista
         llenagrid()
     End Sub
 
-    Private Sub frm_focoDatos() Handles Me.focoDatos
-        lblCodigo1.Focus()
-    End Sub
+    'Private Sub frm_focoDatos() Handles Me.focoDatos
+    '   lblCodigo1.Focus()
+    'End Sub
 
     'MODIFICAR
     Private Sub frm_modificaRegistro() Handles Me.modificaRegistro
@@ -468,11 +489,11 @@ Public Class frmProductoPrecio
                                 registro.tipoPrecio = tPrecio
 
                                 registro.preciosucursal = preciosucursal
-                                registro.habilitadoSucursal = activasucursal
-                                registro.bitCantidadSucursal = cantestasucursal
-                                registro.bitFechaSucursal = fechaestasucursal
-                                registro.cantidadMinimaSucursal = minimasucursal
-                                registro.porcentajeSucursal = porcensucursal.Substring(0, porcensucursal.Length - 2)
+                                registro.habilitadosucursal = activasucursal
+                                registro.bitcantidadsucursal = cantestasucursal
+                                registro.bitfechasucursal = fechaestasucursal
+                                registro.cantidadminimasucursal = minimasucursal
+                                registro.porcentajesucursal = porcensucursal.Substring(0, porcensucursal.Length - 2)
 
                                 finicisucursal = Nothing
                                 ffinsucursal = Nothing
@@ -505,12 +526,12 @@ Public Class frmProductoPrecio
                                 registro.tipoPrecio = tPrecio
 
                                 registro.preciosucursal = preciosucursal
-                                registro.habilitadoSucursal = activasucursal
-                                registro.bitCantidadSucursal = cantestasucursal
-                                registro.bitFechaSucursal = fechaestasucursal
-                                registro.bitPermitePerdidaSucursal = perdidasucursal
-                                registro.cantidadMinimaSucursal = minimasucursal
-                                registro.porcentajeSucursal = porcensucursal.Substring(0, porcen.Length - 2)
+                                registro.habilitadosucursal = activasucursal
+                                registro.bitcantidadsucursal = cantestasucursal
+                                registro.bitfechasucursal = fechaestasucursal
+                                registro.bitpermiteperdidasucursal = perdidasucursal
+                                registro.cantidadminimasucursal = minimasucursal
+                                registro.porcentajesucursal = porcensucursal.Substring(0, porcen.Length - 2)
 
 
                                 If fechaEsta = True Then
@@ -1239,6 +1260,20 @@ Public Class frmProductoPrecio
         End Try
     End Sub
 
+    'Evento que se utiliza para manejar el cambio de articulo
+    Private Sub cmbCodigo1_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbCodigo1.SelectedValueChanged
+        Try
+            'Obtenemos el id del articulo
+            Dim codArt As Integer = CType(cmbCodigo1.SelectedValue, Integer)
+            fnBuscaArticulo(codArt)
+            fnUltimasVentas()
+            fnUltimasCompras()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
     'Funcion utilizada para posicionarse en el grid de articulos segun el codigo del producto
     Private Sub fnBuscaArticulo(ByVal codArt As Integer)
         Try
@@ -1277,6 +1312,21 @@ Public Class frmProductoPrecio
         End Try
     End Sub
 
+    'Funcion utilizada para llenar las ultimas compras del producto
+    'Private Sub fnUltimasCompras2()
+    '    Try
+    ' Dim codArt As Integer = CInt(cmbCodigo1.SelectedValue)
+    'Dim lista = (From x In ctx.tblEntradasDetalles Where x.tblEntrada.anulado = False And x.tblEntrada.compra = True And x.idArticulo = codArt _
+    '          Select Fecha = x.tblEntrada.fechaRegistro, Proveedor = x.tblEntrada.tblProveedor.negocio, Cantidad = x.cantidad, Costo = x.costoIVA _
+    '            Order By Fecha Descending)
+    'Order By Fecha Descending Take mdlPublicVars.buscarArticulo_cantidadUltimasVentas)
+
+    '       Me.grdUltimasCompras.DataSource = lista
+    '   Catch ex As Exception
+
+    '   End Try
+    ' End Sub
+
     'Funcion utilizada para llenar los precios de la competencia
     Private Sub fnPreciosCompetencia()
         Try
@@ -1291,6 +1341,22 @@ Public Class frmProductoPrecio
         Catch ex As Exception
         End Try
     End Sub
+
+    'Funcion utilizada para llenar los precios de la competencia
+    'Private Sub fnPreciosCompetencia2()
+    'Try
+    'Obtenemos los precios de la competencia en base a el articulo
+    ' Dim codArt As Integer = CInt(cmbCodigo1.SelectedValue)
+
+    'Dim cons = (From x In ctx.tblPrecioCompetencias Where x.articulo = codArt _
+    '         Select Fecha = x.fechaRegistro, Cliente = x.tblCliente.Negocio, Precio = x.precio, Observacion = x.observacion _
+    '      Order By Fecha Descending)
+
+    '    Me.grdPreciosCompe.DataSource = cons
+    '  Catch ex As Exception
+    '  End Try
+    ' End Sub
+
 
     Private Sub frmProductoPrecio_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
         frmPriceLista.frm_llenarLista()
@@ -1362,4 +1428,6 @@ Public Class frmProductoPrecio
             RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
         End Try
     End Sub
+
+
 End Class

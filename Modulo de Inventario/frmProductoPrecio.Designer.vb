@@ -123,7 +123,6 @@ Partial Class frmProductoPrecio
         Me.lblImportancia = New System.Windows.Forms.Label()
         Me.lblMinimo = New System.Windows.Forms.Label()
         Me.lblExistencia = New System.Windows.Forms.Label()
-        Me.lblCodigo1 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.grdOtrosPrecios2 = New Telerik.WinControls.UI.RadGridView()
         Me.lblCostoProm = New System.Windows.Forms.Label()
@@ -132,6 +131,7 @@ Partial Class frmProductoPrecio
         Me.btnActualizarCosto = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtPrecioPublicoMotriza = New System.Windows.Forms.TextBox()
+        Me.cmbCodigo1 = New System.Windows.Forms.ComboBox()
         CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rpv, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -193,7 +193,7 @@ Partial Class frmProductoPrecio
         Me.rpv.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.rpv.Location = New System.Drawing.Point(7, 174)
         Me.rpv.Name = "rpv"
-        Me.rpv.SelectedPage = Me.pgUltimasCompras
+        Me.rpv.SelectedPage = Me.RadPageViewPage4
         Me.rpv.Size = New System.Drawing.Size(1069, 515)
         Me.rpv.TabIndex = 88
         Me.rpv.Text = "Motriza"
@@ -681,7 +681,7 @@ Partial Class frmProductoPrecio
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grdUltimasCompras.Location = New System.Drawing.Point(20, 22)
         '
-        'grdUltimasCompras
+        '
         '
         Me.grdUltimasCompras.MasterTemplate.AllowAddNewRow = False
         Me.grdUltimasCompras.Name = "grdUltimasCompras"
@@ -979,7 +979,7 @@ Partial Class frmProductoPrecio
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label15.Location = New System.Drawing.Point(31, 111)
+        Me.Label15.Location = New System.Drawing.Point(30, 116)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(96, 15)
         Me.Label15.TabIndex = 117
@@ -988,7 +988,7 @@ Partial Class frmProductoPrecio
         'txtPrecioPublico
         '
         Me.txtPrecioPublico.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPrecioPublico.Location = New System.Drawing.Point(132, 106)
+        Me.txtPrecioPublico.Location = New System.Drawing.Point(132, 111)
         Me.txtPrecioPublico.Name = "txtPrecioPublico"
         Me.txtPrecioPublico.Size = New System.Drawing.Size(95, 25)
         Me.txtPrecioPublico.TabIndex = 115
@@ -1098,17 +1098,6 @@ Partial Class frmProductoPrecio
         Me.lblExistencia.TabIndex = 167
         Me.lblExistencia.Text = "0.0"
         '
-        'lblCodigo1
-        '
-        Me.lblCodigo1.AutoSize = True
-        Me.lblCodigo1.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.lblCodigo1.ForeColor = System.Drawing.Color.Black
-        Me.lblCodigo1.Location = New System.Drawing.Point(131, 84)
-        Me.lblCodigo1.Name = "lblCodigo1"
-        Me.lblCodigo1.Size = New System.Drawing.Size(58, 20)
-        Me.lblCodigo1.TabIndex = 169
-        Me.lblCodigo1.Text = "Codigo"
-        '
         'Label13
         '
         Me.Label13.AutoSize = True
@@ -1211,7 +1200,7 @@ Partial Class frmProductoPrecio
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label9.Location = New System.Drawing.Point(22, 142)
+        Me.Label9.Location = New System.Drawing.Point(20, 152)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(107, 15)
         Me.Label9.TabIndex = 177
@@ -1220,16 +1209,25 @@ Partial Class frmProductoPrecio
         'txtPrecioPublicoMotriza
         '
         Me.txtPrecioPublicoMotriza.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPrecioPublicoMotriza.Location = New System.Drawing.Point(132, 137)
+        Me.txtPrecioPublicoMotriza.Location = New System.Drawing.Point(132, 142)
         Me.txtPrecioPublicoMotriza.Name = "txtPrecioPublicoMotriza"
         Me.txtPrecioPublicoMotriza.Size = New System.Drawing.Size(95, 25)
         Me.txtPrecioPublicoMotriza.TabIndex = 176
         Me.txtPrecioPublicoMotriza.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'cmbCodigo1
+        '
+        Me.cmbCodigo1.FormattingEnabled = True
+        Me.cmbCodigo1.Location = New System.Drawing.Point(132, 86)
+        Me.cmbCodigo1.Name = "cmbCodigo1"
+        Me.cmbCodigo1.Size = New System.Drawing.Size(95, 21)
+        Me.cmbCodigo1.TabIndex = 178
+        '
         'frmProductoPrecio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(1077, 692)
+        Me.Controls.Add(Me.cmbCodigo1)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.txtPrecioPublicoMotriza)
         Me.Controls.Add(Me.btnActualizarCosto)
@@ -1238,7 +1236,6 @@ Partial Class frmProductoPrecio
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.grdOtrosPrecios2)
         Me.Controls.Add(Me.Label13)
-        Me.Controls.Add(Me.lblCodigo1)
         Me.Controls.Add(Me.lblExistencia)
         Me.Controls.Add(Me.lblMinimo)
         Me.Controls.Add(Me.lblImportancia)
@@ -1273,7 +1270,6 @@ Partial Class frmProductoPrecio
         Me.Controls.SetChildIndex(Me.lblImportancia, 0)
         Me.Controls.SetChildIndex(Me.lblMinimo, 0)
         Me.Controls.SetChildIndex(Me.lblExistencia, 0)
-        Me.Controls.SetChildIndex(Me.lblCodigo1, 0)
         Me.Controls.SetChildIndex(Me.Label13, 0)
         Me.Controls.SetChildIndex(Me.grdOtrosPrecios2, 0)
         Me.Controls.SetChildIndex(Me.Label3, 0)
@@ -1282,6 +1278,7 @@ Partial Class frmProductoPrecio
         Me.Controls.SetChildIndex(Me.btnActualizarCosto, 0)
         Me.Controls.SetChildIndex(Me.txtPrecioPublicoMotriza, 0)
         Me.Controls.SetChildIndex(Me.Label9, 0)
+        Me.Controls.SetChildIndex(Me.cmbCodigo1, 0)
         CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rpv, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1335,12 +1332,10 @@ Partial Class frmProductoPrecio
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents RadPageViewPage4 As Telerik.WinControls.UI.RadPageViewPage
-    Friend WithEvents grdPrecios As Telerik.WinControls.UI.RadGridView
     Friend WithEvents grdOtrosPrecios As Telerik.WinControls.UI.RadGridView
     Friend WithEvents lblImportancia As System.Windows.Forms.Label
     Friend WithEvents lblMinimo As System.Windows.Forms.Label
     Friend WithEvents lblExistencia As System.Windows.Forms.Label
-    Friend WithEvents lblCodigo1 As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents grdOtrosPrecios2 As Telerik.WinControls.UI.RadGridView
     Friend WithEvents grdSustitutos As Telerik.WinControls.UI.RadGridView
@@ -1379,5 +1374,7 @@ Partial Class frmProductoPrecio
     Friend WithEvents grdPreciosMotriza As Telerik.WinControls.UI.RadGridView
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents txtPrecioPublicoMotriza As System.Windows.Forms.TextBox
+    Friend WithEvents grdPrecios As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents cmbCodigo1 As System.Windows.Forms.ComboBox
 
 End Class

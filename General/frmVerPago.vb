@@ -73,11 +73,12 @@ Public Class frmVerPago
 
             lblMonto.Text = Format(pago.monto, mdlPublicVars.formatoMoneda)
             lblusuario.Text = pago.tblUsuario1.nombre
-            lblObservacion.Text = pago.observacion
+            lblObservacion.Text = pago.observacionpago
             lblCodigoPago.Text = codigo
             lblDocumento.Text = pago.documento
             lblTipoPago.Text = pago.tblTipoPago.nombre
             lblFechaRegistro.Text = Format(pago.fecha, mdlPublicVars.formatoFecha)
+            lblhoraregistro.Text = (pago.fecha.ToShortTimeString)
             lblTransito.Text = If(pago.transito = True, "SI", "NO")
             lblConfirmado.Text = If(pago.confirmado = True, "SI", "NO")
             lblFechaConfirmado.Text = Format(pago.fechaCobro, mdlPublicVars.formatoFecha)
