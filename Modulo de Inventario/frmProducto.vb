@@ -26,6 +26,7 @@ Public Class frmProducto
         ' mdlPublicVars.fnCrearCarpeta(mdlPublicVars.General_CarpetaImagenes)
         'mdlPublicVars.fnCrearCarpeta(mdlPublicVars.BuscarArticulo_CarpetaCatalogo)
         mdlPublicVars.fnFormatoGridEspeciales(grdSustitutos)
+
         mdlPublicVars.fnFormatoGridMovimientos(grdTipoVehiculo)
         mdlPublicVars.fnFormatoGridMovimientos(grdModeloVehiculo)
         mdlPublicVars.fnFormatoGridEspeciales(grdFotos)
@@ -229,6 +230,7 @@ Public Class frmProducto
             .DisplayMember = "Nombre"
             .DataSource = importancia
         End With
+
 
         'Try
         '    'Tabla para el combo de catalogos
@@ -937,7 +939,7 @@ Public Class frmProducto
         nm0VentaMaxima.Value = 0
         nm2PrecioMedida.Value = 0
         nm5Valor.Value = 0
-        End Sub
+    End Sub
 
     'VERIFICA PENDIENTES POR PEDIR
     Private Sub fnVerificaPendientePedir(codArt As String, idArticulo As Integer)
@@ -2533,7 +2535,4 @@ Public Class frmProducto
         End If
     End Sub
 
-    Private Sub pageDatos_Paint(sender As Object, e As PaintEventArgs) Handles pageDatos.Paint
-
-    End Sub
 End Class
