@@ -1535,6 +1535,7 @@ Public Module mdlPublicVars
                     Dim numeroDeItems As Integer = mdlPublicVars.numeroDeItemsDeFactura
                     Dim idFactura As Integer 'Variable que nos va a a permitir capturar el idfactura para insertar al detallesalida
                     Dim montoFactura As Double = 0.0
+                    Dim descuentofactura As Double = 0.0
 
                     'Consultamos la salida para obtener los datos de la misma
                     Dim salida As tblSalida = (From z In conexion.tblSalidas Where z.idSalida = idSalida Select z).FirstOrDefault
@@ -1632,10 +1633,12 @@ Public Module mdlPublicVars
                             'Actualizamos el monto de la factura anterior 
                             Dim factura As tblFactura = (From f In conexion.tblFacturas Where f.IdFactura = idFactura Select f).FirstOrDefault
                             factura.Monto = montoFactura
+                            factura.descuento = descuentofactura
                             conexion.SaveChanges()
 
                             'reiniciamos el montofactura
                             montoFactura = 0.0
+                            descuentofactura = 0.0
                             idFactura = NewFactura2.IdFactura 'aisgmaos a la variable el nuevo idfactura creada
 
                             'si es venta pequenia agregamos la factura a la lista para imprimir
@@ -1649,7 +1652,8 @@ Public Module mdlPublicVars
                             sf2.factura = idFactura
                             conexion.AddTotblSalida_Factura(sf2)
                             conexion.SaveChanges()
-                            montoFactura += detalle.cantidad * detalle.precio
+                            montoFactura += (detalle.cantidad * detalle.precio) - (detalle.promocion * detalle.precio)
+                            descuentofactura += (detalle.promocion * detalle.precio)
 
                             'creamos registro en tblsalidaDetalleFactura
                             Dim sdf2 As New tblSalidaDetalle_Factura
@@ -1672,7 +1676,8 @@ Public Module mdlPublicVars
 
                             'sumar los que no esten anulados.
                             If detalle.anulado = False Then
-                                montoFactura += detalle.cantidad * detalle.precio
+                                montoFactura += (detalle.cantidad * detalle.precio) - (detalle.promocion * detalle.precio)
+                                descuentofactura += (detalle.promocion * detalle.precio)
 
                                 'Actualizamos la fechaUltimacompraarticulo
                                 Dim articulo As tblArticulo = (From a In conexion.tblArticuloes Where a.idArticulo = idArticulo Select a).FirstOrDefault
@@ -1704,6 +1709,7 @@ Public Module mdlPublicVars
                         If detallesSalida.Count = longitud Then
                             Dim factura As tblFactura = (From f In conexion.tblFacturas Where f.IdFactura = idFactura Select f).FirstOrDefault
                             factura.Monto = montoFactura
+                            factura.descuento = descuentofactura
                             conexion.SaveChanges()
 
                         End If

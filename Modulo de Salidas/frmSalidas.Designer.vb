@@ -172,6 +172,8 @@ Partial Class frmSalidas
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.lblDescPromociones = New System.Windows.Forms.Label()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
         Me.pnx8Guias.SuspendLayout()
@@ -1190,6 +1192,8 @@ Partial Class frmSalidas
         '
         Me.rgbTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rgbTotal.BackColor = System.Drawing.Color.Transparent
+        Me.rgbTotal.Controls.Add(Me.Label25)
+        Me.rgbTotal.Controls.Add(Me.lblDescPromociones)
         Me.rgbTotal.Controls.Add(Me.lbAjuste)
         Me.rgbTotal.Controls.Add(Me.lblSaldoAjuste)
         Me.rgbTotal.Controls.Add(Me.Label12)
@@ -1220,7 +1224,7 @@ Partial Class frmSalidas
         '
         Me.lbAjuste.AutoSize = True
         Me.lbAjuste.BackColor = System.Drawing.Color.Transparent
-        Me.lbAjuste.Location = New System.Drawing.Point(39, 92)
+        Me.lbAjuste.Location = New System.Drawing.Point(39, 71)
         Me.lbAjuste.Name = "lbAjuste"
         Me.lbAjuste.Size = New System.Drawing.Size(45, 13)
         Me.lbAjuste.TabIndex = 91
@@ -1233,7 +1237,7 @@ Partial Class frmSalidas
         Me.lblSaldoAjuste.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblSaldoAjuste.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSaldoAjuste.ForeColor = System.Drawing.Color.Black
-        Me.lblSaldoAjuste.Location = New System.Drawing.Point(91, 81)
+        Me.lblSaldoAjuste.Location = New System.Drawing.Point(91, 60)
         Me.lblSaldoAjuste.Name = "lblSaldoAjuste"
         Me.lblSaldoAjuste.Size = New System.Drawing.Size(202, 29)
         Me.lblSaldoAjuste.TabIndex = 90
@@ -1244,7 +1248,7 @@ Partial Class frmSalidas
         '
         Me.Label12.AutoSize = True
         Me.Label12.BackColor = System.Drawing.Color.Transparent
-        Me.Label12.Location = New System.Drawing.Point(86, 188)
+        Me.Label12.Location = New System.Drawing.Point(86, 207)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(69, 13)
         Me.Label12.TabIndex = 78
@@ -1255,7 +1259,7 @@ Partial Class frmSalidas
         Me.txtCreditoDisponible.BackColor = System.Drawing.Color.White
         Me.txtCreditoDisponible.Enabled = False
         Me.txtCreditoDisponible.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtCreditoDisponible.Location = New System.Drawing.Point(157, 185)
+        Me.txtCreditoDisponible.Location = New System.Drawing.Point(157, 204)
         Me.txtCreditoDisponible.Name = "txtCreditoDisponible"
         Me.txtCreditoDisponible.Size = New System.Drawing.Size(89, 25)
         Me.txtCreditoDisponible.TabIndex = 79
@@ -1264,7 +1268,7 @@ Partial Class frmSalidas
         '
         Me.lbSaldoInicial.AutoSize = True
         Me.lbSaldoInicial.BackColor = System.Drawing.Color.Transparent
-        Me.lbSaldoInicial.Location = New System.Drawing.Point(9, 57)
+        Me.lbSaldoInicial.Location = New System.Drawing.Point(9, 36)
         Me.lbSaldoInicial.Name = "lbSaldoInicial"
         Me.lbSaldoInicial.Size = New System.Drawing.Size(75, 13)
         Me.lbSaldoInicial.TabIndex = 89
@@ -1277,7 +1281,7 @@ Partial Class frmSalidas
         Me.lblSaldoInicial.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblSaldoInicial.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSaldoInicial.ForeColor = System.Drawing.Color.Black
-        Me.lblSaldoInicial.Location = New System.Drawing.Point(91, 43)
+        Me.lblSaldoInicial.Location = New System.Drawing.Point(91, 22)
         Me.lblSaldoInicial.Name = "lblSaldoInicial"
         Me.lblSaldoInicial.Size = New System.Drawing.Size(202, 29)
         Me.lblSaldoInicial.TabIndex = 87
@@ -1288,7 +1292,7 @@ Partial Class frmSalidas
         '
         Me.Label11.AutoSize = True
         Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Location = New System.Drawing.Point(14, 135)
+        Me.Label11.Location = New System.Drawing.Point(14, 160)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(70, 13)
         Me.Label11.TabIndex = 86
@@ -1301,7 +1305,7 @@ Partial Class frmSalidas
         Me.lblSaldoFinal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblSaldoFinal.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSaldoFinal.ForeColor = System.Drawing.Color.Black
-        Me.lblSaldoFinal.Location = New System.Drawing.Point(91, 124)
+        Me.lblSaldoFinal.Location = New System.Drawing.Point(91, 149)
         Me.lblSaldoFinal.Name = "lblSaldoFinal"
         Me.lblSaldoFinal.Size = New System.Drawing.Size(202, 36)
         Me.lblSaldoFinal.TabIndex = 80
@@ -1864,7 +1868,7 @@ Partial Class frmSalidas
         '
         Me.Label30.AutoSize = True
         Me.Label30.BackColor = System.Drawing.Color.Transparent
-        Me.Label30.Location = New System.Drawing.Point(58, 37)
+        Me.Label30.Location = New System.Drawing.Point(57, 38)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(51, 13)
         Me.Label30.TabIndex = 111
@@ -1874,11 +1878,11 @@ Partial Class frmSalidas
         '
         Me.Label29.AutoSize = True
         Me.Label29.BackColor = System.Drawing.Color.Transparent
-        Me.Label29.Location = New System.Drawing.Point(58, 58)
+        Me.Label29.Location = New System.Drawing.Point(29, 60)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(51, 13)
+        Me.Label29.Size = New System.Drawing.Size(79, 13)
         Me.Label29.TabIndex = 110
-        Me.Label29.Text = "Ofertas :"
+        Me.Label29.Text = "Promociones :"
         '
         'Label28
         '
@@ -1889,6 +1893,30 @@ Partial Class frmSalidas
         Me.Label28.Size = New System.Drawing.Size(96, 13)
         Me.Label28.TabIndex = 109
         Me.Label28.Text = "Pendiente Surtir :"
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.BackColor = System.Drawing.Color.Transparent
+        Me.Label25.Location = New System.Drawing.Point(8, 107)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(79, 26)
+        Me.Label25.TabIndex = 93
+        Me.Label25.Text = "Descuento" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Promociones :"
+        '
+        'lblDescPromociones
+        '
+        Me.lblDescPromociones.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblDescPromociones.BackColor = System.Drawing.Color.Transparent
+        Me.lblDescPromociones.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblDescPromociones.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDescPromociones.ForeColor = System.Drawing.Color.Black
+        Me.lblDescPromociones.Location = New System.Drawing.Point(90, 104)
+        Me.lblDescPromociones.Name = "lblDescPromociones"
+        Me.lblDescPromociones.Size = New System.Drawing.Size(202, 29)
+        Me.lblDescPromociones.TabIndex = 92
+        Me.lblDescPromociones.Text = "0"
+        Me.lblDescPromociones.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'frmSalidas
         '
@@ -2125,5 +2153,7 @@ Partial Class frmSalidas
     Friend WithEvents lblFondoSugeridos As System.Windows.Forms.Label
     Friend WithEvents Label33 As System.Windows.Forms.Label
     Friend WithEvents lblConteoSugeridos As System.Windows.Forms.Label
+    Friend WithEvents Label25 As System.Windows.Forms.Label
+    Friend WithEvents lblDescPromociones As System.Windows.Forms.Label
 
 End Class

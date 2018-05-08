@@ -265,13 +265,22 @@ Public Class frmDetallePendienteNuevo
 
 
                 ElseIf bitOferta Then
-                    Dim ofertas = conexion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, fechaBusqueda.ToString, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, codigoTipoVehiculo, "", cliente, 6, True, False, "", venta)
+                    Me.grdDatos.DataSource = Nothing
+
+                    Dim prom As Boolean = (From x In conexion.tblClientes Where x.idCliente = cliente Select x.bitPromociones).FirstOrDefault
+
+                    Dim ofertas
+
+                    If prom = True Then
+                        ofertas = conexion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, "", mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, codigoTipoVehiculo, "", cliente, 12, True, False, "", venta)
+                    Else
+                        ofertas = conexion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, fechabusqueda.ToString, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, codigoTipoVehiculo, "", cliente, 12, True, False, "", venta)
+                    End If
 
                     grdDatos.DataSource = ofertas
 
-
-                    Dim ofertas2 = conexion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, fechaBusqueda.ToString, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, codigoTipoVehiculo, "", cliente, 11, True, False, "", venta)
-                    grdDatos2.DataSource = ofertas2
+                    ''Dim ofertas2 = conexion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, fechabusqueda.ToString, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, codigoTipoVehiculo, "", cliente, 12, True, False, "", venta)
+                    ''grdDatos2.DataSource = ofertas2
 
                 ElseIf bitPedir Then
 
@@ -555,7 +564,8 @@ Public Class frmDetallePendienteNuevo
                 Me.grdDatos.Columns(12).Width = 60 'unidadempaque
                 Me.grdDatos.Columns(13).Width = 70 'surtir
                 Me.grdDatos.Columns(14).Width = 70 'surtir
-
+                Me.grdDatos.Columns(23).Width = 60
+                Me.grdDatos.Columns(24).Width = 60
 
 
                 mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdDatos, "txbPrecio")
@@ -568,47 +578,47 @@ Public Class frmDetallePendienteNuevo
                 'Me.grdDatos.Columns("Fecha").IsVisible = False
                 Me.grdDatos.Columns("txbPrecio").HeaderText = "Precio"
 
-                'configurar el grid2
-                Me.grdDatos2.Columns("id").IsVisible = False
-                ' Me.grdDatos2.Columns("Saldo").IsVisible = False 'saldo
-                Me.grdDatos2.Columns(11).IsVisible = False 'observacion
-                Me.grdDatos2.Columns(12).IsVisible = False 'empaque
-                Me.grdDatos2.Columns(14).IsVisible = False 'clrEstado
-                Me.grdDatos2.Columns(15).IsVisible = False 'numero de articulo en catalogo
-                Me.grdDatos2.Columns(16).IsVisible = False 'fecha ultima compra
-                Me.grdDatos2.Columns(17).IsVisible = False 'marca
-                Me.grdDatos2.Columns(18).IsVisible = False 'bitVentaMaxima
-                Me.grdDatos2.Columns(19).IsVisible = False 'minimo
-                Me.grdDatos2.Columns("TipoPrecio").IsVisible = False 'minimo
-                Me.grdDatos2.Columns("Compatibilidad").IsVisible = False 'compatibilidad
-                Me.grdDatos2.Columns("txmSurtir").IsVisible = False 'codSurtir
-                Me.grdDatos2.Columns("UbicacionEstanteria").IsVisible = False
-                Me.grdDatos2.Columns("CantidadMax").IsVisible = False
+                ' '' ''configurar el grid2
+                '' ''Me.grdDatos2.Columns("id").IsVisible = False
+                ' '' '' Me.grdDatos2.Columns("Saldo").IsVisible = False 'saldo
+                '' ''Me.grdDatos2.Columns(11).IsVisible = False 'observacion
+                '' ''Me.grdDatos2.Columns(12).IsVisible = False 'empaque
+                '' ''Me.grdDatos2.Columns(14).IsVisible = False 'clrEstado
+                '' ''Me.grdDatos2.Columns(15).IsVisible = False 'numero de articulo en catalogo
+                '' ''Me.grdDatos2.Columns(16).IsVisible = False 'fecha ultima compra
+                '' ''Me.grdDatos2.Columns(17).IsVisible = False 'marca
+                '' ''Me.grdDatos2.Columns(18).IsVisible = False 'bitVentaMaxima
+                '' ''Me.grdDatos2.Columns(19).IsVisible = False 'minimo
+                '' ''Me.grdDatos2.Columns("TipoPrecio").IsVisible = False 'minimo
+                '' ''Me.grdDatos2.Columns("Compatibilidad").IsVisible = False 'compatibilidad
+                '' ''Me.grdDatos2.Columns("txmSurtir").IsVisible = False 'codSurtir
+                '' ''Me.grdDatos2.Columns("UbicacionEstanteria").IsVisible = False
+                '' ''Me.grdDatos2.Columns("CantidadMax").IsVisible = False
 
-                Me.grdDatos2.Columns(2).Width = 40 ' codigo
-                Me.grdDatos2.Columns(3).Width = 250 ' nombre
-                Me.grdDatos2.Columns(4).Width = 180 ' nombre
-                Me.grdDatos2.Columns(5).Width = 70 ' cantidad
-                Me.grdDatos2.Columns(6).Width = 70 ' existencia
-                Me.grdDatos2.Columns(7).Width = 70 ' reserva
-                Me.grdDatos2.Columns(8).Width = 70 ' transito
-                Me.grdDatos2.Columns(9).Width = 50 ' costo
-                Me.grdDatos2.Columns(10).Width = 70 ' precio
-                Me.grdDatos2.Columns(11).Width = 70 ' cantidadmax
-                Me.grdDatos2.Columns(12).Width = 50 ' observacion
-                Me.grdDatos2.Columns(13).Width = 60 'unidadempaque
-                Me.grdDatos2.Columns(14).Width = 70 'surtir
+                '' ''Me.grdDatos2.Columns(2).Width = 40 ' codigo
+                '' ''Me.grdDatos2.Columns(3).Width = 250 ' nombre
+                '' ''Me.grdDatos2.Columns(4).Width = 180 ' nombre
+                '' ''Me.grdDatos2.Columns(5).Width = 70 ' cantidad
+                '' ''Me.grdDatos2.Columns(6).Width = 70 ' existencia
+                '' ''Me.grdDatos2.Columns(7).Width = 70 ' reserva
+                '' ''Me.grdDatos2.Columns(8).Width = 70 ' transito
+                '' ''Me.grdDatos2.Columns(9).Width = 50 ' costo
+                '' ''Me.grdDatos2.Columns(10).Width = 70 ' precio
+                '' ''Me.grdDatos2.Columns(11).Width = 70 ' cantidadmax
+                '' ''Me.grdDatos2.Columns(12).Width = 50 ' observacion
+                '' ''Me.grdDatos2.Columns(13).Width = 60 'unidadempaque
+                '' ''Me.grdDatos2.Columns(14).Width = 70 'surtir
 
 
-                mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdDatos2, "txbPrecio")
-                mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdDatos2, "txmCosto")
+                '' ''mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdDatos2, "txbPrecio")
+                '' ''mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdDatos2, "txmCosto")
 
-                Me.grdDatos2.Columns("txmCosto").IsVisible = False
-                Me.grdDatos2.Columns("txbPrecio").IsVisible = True
-                Me.grdDatos2.Columns("Transito").IsVisible = False
-                'Me.grdDatos2.Columns("txmCantidad").IsVisible = False
-                'Me.grdDatos2.Columns("Fecha").IsVisible = False
-                Me.grdDatos2.Columns("txbPrecio").HeaderText = "Precio"
+                '' ''Me.grdDatos2.Columns("txmCosto").IsVisible = False
+                '' ''Me.grdDatos2.Columns("txbPrecio").IsVisible = True
+                '' ''Me.grdDatos2.Columns("Transito").IsVisible = False
+                ' '' ''Me.grdDatos2.Columns("txmCantidad").IsVisible = False
+                ' '' ''Me.grdDatos2.Columns("Fecha").IsVisible = False
+                '' ''Me.grdDatos2.Columns("txbPrecio").HeaderText = "Precio"
 
             ElseIf bitPedir Then
                 Me.grdDatos.Columns("codigo").IsVisible = False
@@ -790,6 +800,40 @@ Public Class frmDetallePendienteNuevo
         fnIngresoCantidad(grdDatos, e)
     End Sub
 
+    Private Function fnPromociones(ByVal Id As Integer, ByVal Cantidad As Integer) As Integer
+        Try
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim cx As Integer
+                Dim cr As Integer
+
+                Dim a As tblArticulo = (From x In conexion.tblArticuloes Where x.idArticulo = Id Select x).FirstOrDefault
+
+                If a.bitPromocion = False Then
+                    Return 0
+                    Exit Function
+                End If
+
+                If Cantidad >= a.CuotaPromocion Then
+                    cx = Math.Floor(CDec(Cantidad / a.CuotaPromocion))
+                    mdlPublicVars.superSearchCuotaPromocion = a.CuotaPromocion
+                    mdlPublicVars.superSearchCantidadPromocion = cx
+                    cr = cx * a.CantidadPromocion
+                End If
+
+                conn.Close()
+
+                Return cr
+            End Using
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
+
     'Funcion ingreso de cantidad
     Private Sub fnIngresoCantidad(grid As RadGridView, e As KeyEventArgs)
         Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grid)
@@ -843,6 +887,7 @@ Public Class frmDetallePendienteNuevo
         Dim estado As Integer = 0
         Dim saldo As Double = 0
         Dim codigoSurtir As Integer
+        Dim promocion As Integer = 0
 
         If liquidacion = True Then
             mdlPublicVars.superSearchInventario = mdlPublicVars.General_InventarioLiquidacion
@@ -878,6 +923,20 @@ Public Class frmDetallePendienteNuevo
             End Try
 
             surtir = grd.Rows(index).Cells("txmSurtir").Value
+
+
+
+            ''Validador de Promociones
+            If bitOferta = True Then
+
+                promocion = fnPromociones(id, cantidad)
+
+                If promocion > 0 Then
+                    cantidad += promocion
+                End If
+
+            End If
+            ''Fin Validad de Promociones
 
             Dim art As tblInventario
 
@@ -926,6 +985,7 @@ Public Class frmDetallePendienteNuevo
                 mdlPublicVars.superSearchCodigo = codigo
                 mdlPublicVars.superSearchNombre = nombre
                 mdlPublicVars.superSearchCantidad = cantidad
+                mdlPublicVars.superSearchPromocion = promocion
                 mdlPublicVars.superSearchTipoPrecio = tipoPrecio
                 mdlPublicVars.superSearchEstado = estado
                 mdlPublicVars.superSearchPrecio = precio

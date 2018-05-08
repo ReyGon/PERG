@@ -392,7 +392,7 @@ Public Class frmSalidas
                     fila = {y.idSalidaDetalle, y.idArticulo, y.codigo1, _
                             y.nombre1, y.cantidad, y.precio, _
                             y.cantidad * y.precio, y.contado, y.comentario, _
-                            "0", "", "0", "0", "0", "0", y.tipoInventario, y.tipoPrecio, y.clrEstado, "0", "0", "0", "0"}
+                            "0", "", "0", "0", "0", "0", y.tipoInventario, y.tipoPrecio, y.clrEstado, "0", "0", "0", "0", y.promocion, y.cuotapromo, y.cantprom}
                     grdProductos.Rows.Add(fila)
                 Next
 
@@ -1164,10 +1164,29 @@ Public Class frmSalidas
 
         End Try
 
+        ''fnDescuentoPromociones()
         fnActualizar_Total()
 
     End Sub
 
+    Private Sub fnDescuentoPromociones()
+        Try
+            Dim desc As Decimal = 0
+
+            For i As Integer = 0 To Me.grdProductos.Rows.Count - 1
+                If Me.grdProductos.Rows(i).Cells("Promocion").Value > 0 Then
+
+                    desc += Me.grdProductos.Rows(i).Cells("Promocion").Value * Me.grdProductos.Rows(i).Cells("txbPrecio").Value
+
+                End If
+            Next
+
+            Me.lblDescPromociones.Text = Format(desc, formatoMoneda)
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
     'Funcion que se utiliza para agregar articulos
     Public Sub fnAgregar_ArticulosGestion(ByVal surtir As Boolean)
@@ -1179,7 +1198,7 @@ Public Class frmSalidas
             filas = {"0", mdlPublicVars.superSearchId, mdlPublicVars.superSearchCodigo, mdlPublicVars.superSearchNombre, mdlPublicVars.superSearchCantidad,
                      Format(mdlPublicVars.superSearchPrecio, mdlPublicVars.formatoMoneda), "0", False, "", 0, "", 0, 0, 0,
                      mdlPublicVars.superSearchSurtir, mdlPublicVars.superSearchInventario, mdlPublicVars.superSearchTipoPrecio, mdlPublicVars.superSearchEstado, mdlPublicVars.superSearchCodigoSurtir, mdlPublicVars.superSearchBitSurtir,
-                     mdlPublicVars.superSearchBitNuevo, mdlPublicVars.superSearchBitOferta}
+                     mdlPublicVars.superSearchBitNuevo, mdlPublicVars.superSearchBitOferta, mdlPublicVars.superSearchPromocion, mdlPublicVars.superSearchCuotaPromocion, mdlPublicVars.superSearchCantidadPromocion}
             grdProductos.Rows.Add(filas)
 
             If surtir = True Then
@@ -1190,6 +1209,7 @@ Public Class frmSalidas
         Catch ex As Exception
 
         End Try
+
 
         fnActualizar_Total()
 
@@ -1270,6 +1290,8 @@ Public Class frmSalidas
 
     'Funcion utilizada para calcular el total de la venta
     Public Sub fnActualizar_Total()
+
+        fnDescuentoPromociones()
         Dim index
 
         Try
@@ -1287,6 +1309,7 @@ Public Class frmSalidas
                 Dim totalVenta As Double = 0
                 Dim ajustePositivo As Decimal = 0
                 Dim ajusteNegativo As Decimal = 0
+                Dim descuentopromociones As Decimal = 0
                 Dim nombre As String = ""
                 Dim numeroProductos As Integer = 0
 
@@ -1359,12 +1382,29 @@ Public Class frmSalidas
 
                     suma = sumaContado + sumaCredito + suma
 
+                    Try
+                        descuentopromociones = Replace(Me.lblDescPromociones.Text, "Q", "")
+                    Catch ex As Exception
+                        descuentopromociones = 0
+                    End Try
+
+                    Me.lblDescPromociones.Text = Format(descuentopromociones, formatoMoneda)
+
                     'mostrar total menos descuentos.
-                    txtContado.Text = Format(sumaContado, mdlPublicVars.formatoMoneda)
-                    txtCredito.Text = Format(sumaCredito, mdlPublicVars.formatoMoneda)
+                    If sumaContado > 0 Then
+                        txtContado.Text = Format(sumaContado - descuentopromociones, mdlPublicVars.formatoMoneda)
+                    Else
+                        txtContado.Text = Format(sumaContado, mdlPublicVars.formatoMoneda)
+                    End If
+                    If sumaCredito > 0 Then
+                        txtCredito.Text = Format(sumaCredito - descuentopromociones, mdlPublicVars.formatoMoneda)
+                    Else
+                        txtCredito.Text = Format(sumaCredito, mdlPublicVars.formatoMoneda)
+                    End If
+
                     lblSaldoInicial.Text = Format(sumaContado + sumaCredito, mdlPublicVars.formatoMoneda)
 
-                    lblSaldoFinal.Text = Format(sumaContado + sumaCredito + ajustePositivo - ajusteNegativo, mdlPublicVars.formatoMoneda)
+                    lblSaldoFinal.Text = Format(sumaContado + sumaCredito + ajustePositivo - ajusteNegativo - descuentopromociones, mdlPublicVars.formatoMoneda)
 
                     Dim saldoAjuste As Double = (sumaContado + sumaCredito + ajustePositivo - ajusteNegativo) - (sumaContado + sumaCredito)
 
@@ -1750,8 +1790,6 @@ Public Class frmSalidas
                             salidaCredito.observacion = txtObservacion.Text
 
                             salidaCredito.direccionFacturacion = txtDireccionFacturacion.Text
-                            ' salidaCredito.direccionFacturacion = cmbDireccionFacturacion.Text
-
 
                             salidaCredito.direccionEnvio = cmbDirEnvios.Text
 
@@ -1764,7 +1802,7 @@ Public Class frmSalidas
                             salidaCredito.fechaAnulado = Nothing
                             salidaCredito.idMunicipio = If(CInt(cmbDirEnvios.SelectedValue) = 0, mdlPublicVars.General_MunicipioLocal, CInt(cmbDirEnvios.SelectedValue))
 
-                            salidaCredito.descuento = 0
+                            salidaCredito.descuento = Replace(Me.lblDescPromociones.Text, "Q", "")
                             salidaCredito.subtotal = totalCredito
                             salidaCredito.total = totalCredito
 
@@ -1825,7 +1863,7 @@ Public Class frmSalidas
                             salida.anulado = False
                             salida.fechaAnulado = Nothing
 
-                            salida.descuento = 0
+                            salida.descuento = Replace(Me.lblDescPromociones.Text, "Q", "")
                             salida.subtotal = totalContado
                             salida.total = totalContado
                             salida.pagado = 0
@@ -1947,9 +1985,9 @@ Public Class frmSalidas
                                         detalle.agregarTransporte = 1
                                         detalle.idunidadmedida = mdlPublicVars.UnidadMedidaDefault
                                         detalle.valormedida = 1
-                                        detalle.bitSurtir = bitsurtir
-                                        detalle.bitNuevo = bitNuevo
-                                        detalle.bitOferta = bitOferta
+                                        detalle.bitsurtir = bitsurtir
+                                        detalle.bitnuevo = bitNuevo
+                                        detalle.bitoferta = bitOferta
                                         detalle.codigosurtir = codigoSurtir
                                         detalle.promocion = promocion
                                         detalle.cuotapromo = cuotapromocion
@@ -2069,7 +2107,7 @@ Public Class frmSalidas
                                         Next
                                         ''Fin Erick Surtir
                                     End If
-                                    End If
+                                End If
                             Next
                         Else
                             RadMessageBox.Show("No se puede realizar una cotizacion, con precio 0", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
@@ -2080,15 +2118,17 @@ Public Class frmSalidas
                         'actualizar el total del pedido en el encabezado
                         If totalCredito > 0 Then
                             Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaCredito And x.anulado = False Select x.cantidad * x.precio).Sum
-                            salidaCredito.total = totalSalida
-                            salidaCredito.subtotal = totalSalida
+                            Dim totaldesc As Double = (From x In conexion.tblSalidaDetalles Where x.idSalida = codigoSalidaCredito And x.anulado = False And x.promocion > 0 Select x.cantidad * x.precio).Sum
+                            salidaCredito.total = totalSalida - totaldesc
+                            salidaCredito.subtotal = totalSalida - totaldesc
                         End If
 
                         If totalContado > 0 Then
                             Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaContado And x.anulado = False Select x.cantidad * x.precio).Sum
+                            Dim totaldesc As Double = (From x In conexion.tblSalidaDetalles Where x.idSalida = codigoSalidaContado And x.anulado = False And x.promocion > 0 Select x.promocion * x.precio).Sum
                             Dim sContado As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = codigoSalidaContado Select x).FirstOrDefault
-                            sContado.total = totalSalida
-                            sContado.subtotal = totalSalida
+                            sContado.total = totalSalida - totaldesc
+                            sContado.subtotal = totalSalida - totaldesc
                         End If
 
                         conexion.SaveChanges()
@@ -2544,7 +2584,7 @@ Public Class frmSalidas
                             salidaCredito.anulado = False
                             salidaCredito.fechaAnulado = Nothing
                             salidaCredito.idMunicipio = If(CInt(cmbDirEnvios.SelectedValue) = 0, mdlPublicVars.General_MunicipioLocal, CInt(cmbDirEnvios.SelectedValue))
-                            salidaCredito.descuento = 0
+                            salidaCredito.descuento = Replace(Me.lblDescPromociones.Text, "Q", "")
                             salidaCredito.subtotal = totalCredito
                             salidaCredito.total = totalCredito
                             'salidaCredito.direccionFacturacion = cmbDireccionFacturacion.Text
@@ -2638,7 +2678,7 @@ Public Class frmSalidas
                             salida.direccionFacturacion = txtDireccionFacturacion.Text
                             salida.direccionEnvio = cmbDirEnvios.Text
 
-                            salida.descuento = 0
+                            salida.descuento = Replace(Me.lblDescPromociones.Text, "Q", "")
                             salida.subtotal = totalContado
                             salida.total = totalContado
                             salida.pagado = 0
@@ -2759,9 +2799,9 @@ Public Class frmSalidas
                                     detalle.comentario = observacion
                                     detalle.precioFactura = precio
                                     detalle.agregarTransporte = True
-                                    detalle.bitSurtir = bitsurtir
-                                    detalle.bitNuevo = bitNuevo
-                                    detalle.bitOferta = bitOferta
+                                    detalle.bitsurtir = bitsurtir
+                                    detalle.bitnuevo = bitNuevo
+                                    detalle.bitoferta = bitOferta
                                     detalle.codigosurtir = codigoSurtir
                                     detalle.idunidadmedida = mdlPublicVars.UnidadMedidaDefault
                                     detalle.valormedida = 1
@@ -2949,19 +2989,34 @@ Public Class frmSalidas
                         End If  ' fin de comprara si se crea alguna slida
 
 
-                        'actualizar el total del pedido en el encabezado
                         If totalCredito > 0 Then
                             Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaCredito And x.anulado = False Select x.cantidad * x.precio).Sum
-                            salidaCredito.total = totalSalida
-                            salidaCredito.subtotal = totalSalida
+                            Dim totaldesc As Double = (From x In conexion.tblSalidaDetalles Where x.idSalida = codigoSalidaCredito And x.anulado = False And x.promocion > 0 Select x.cantidad * x.precio).Sum
+                            salidaCredito.total = totalSalida - totaldesc
+                            salidaCredito.subtotal = totalSalida - totaldesc
                         End If
 
                         If totalContado > 0 Then
                             Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaContado And x.anulado = False Select x.cantidad * x.precio).Sum
+                            Dim totaldesc As Double = (From x In conexion.tblSalidaDetalles Where x.idSalida = codigoSalidaContado And x.anulado = False And x.promocion > 0 Select x.promocion * x.precio).Sum
                             Dim sContado As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = codigoSalidaContado Select x).FirstOrDefault
-                            sContado.total = totalSalida
-                            sContado.subtotal = totalSalida
+                            sContado.total = totalSalida - totaldesc
+                            sContado.subtotal = totalSalida - totaldesc
                         End If
+
+                        ' ''actualizar el total del pedido en el encabezado
+                        ''If totalCredito > 0 Then
+                        ''    Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaCredito And x.anulado = False Select x.cantidad * x.precio).Sum
+                        ''    salidaCredito.total = totalSalida
+                        ''    salidaCredito.subtotal = totalSalida
+                        ''End If
+
+                        ''If totalContado > 0 Then
+                        ''    Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaContado And x.anulado = False Select x.cantidad * x.precio).Sum
+                        ''    Dim sContado As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = codigoSalidaContado Select x).FirstOrDefault
+                        ''    sContado.total = totalSalida
+                        ''    sContado.subtotal = totalSalida
+                        ''End If
 
 
                         'paso 8, completar la transaccion.
@@ -3524,7 +3579,7 @@ Public Class frmSalidas
                             salidaCredito.direccionFacturacion = txtDireccionFacturacion.Text
                             salidaCredito.direccionEnvio = cmbDirEnvios.Text
 
-                            salidaCredito.descuento = 0
+                            salidaCredito.descuento = Replace(Me.lblDescPromociones.Text, "Q", "")
                             salidaCredito.subtotal = totalCredito
                             salidaCredito.total = totalCredito
                             salidaCredito.pagado = 0
@@ -3614,7 +3669,7 @@ Public Class frmSalidas
                             salida.anulado = False
                             salida.fechaAnulado = Nothing
                             salida.idMunicipio = If(CInt(cmbDirEnvios.SelectedValue) = 0, mdlPublicVars.General_MunicipioLocal, CInt(cmbDirEnvios.SelectedValue))
-                            salida.descuento = 0
+                            salida.descuento = Replace(Me.lblDescPromociones.Text, "Q", "")
                             salida.subtotal = totalContado
                             salida.total = totalContado
                             salida.pagado = 0
@@ -3765,9 +3820,9 @@ Public Class frmSalidas
                                     detalle.agregarTransporte = True
                                     detalle.idunidadmedida = mdlPublicVars.UnidadMedidaDefault
                                     detalle.valormedida = 1
-                                    detalle.bitSurtir = bitsurtir
-                                    detalle.bitNuevo = bitNuevo
-                                    detalle.bitOferta = bitOferta
+                                    detalle.bitsurtir = bitsurtir
+                                    detalle.bitnuevo = bitNuevo
+                                    detalle.bitoferta = bitOferta
                                     detalle.codigosurtir = codigoSurtir
                                     detalle.tipobodega = mdlPublicVars.General_idAlmacenPrincipal
                                     detalle.promocion = promocion
@@ -3978,7 +4033,7 @@ Public Class frmSalidas
                                     Dim cantidadDescontar As Integer = cantidad
                                     'Recorremos la lista de pendientes
                                     For Each pendiente As tblSurtir In lPendientes
-                                      
+
                                         Dim det As tblSalidaDetalle = (From x In conexion.tblSalidaDetalles Where x.idArticulo = idarticulo And x.idSalida = idsalidaimp Select x).FirstOrDefault
 
                                         If cantidadDescontar > pendiente.saldo Then
@@ -4009,19 +4064,36 @@ Public Class frmSalidas
                         conexion.SaveChanges()
 
                         'actualizar el total del pedido en el encabezado
+                        ''If totalCredito > 0 Then
+                        ''    Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaCredito And x.anulado = False Select x.cantidad * x.precio).Sum
+                        ''    salidaCredito.total = totalSalida
+                        ''    salidaCredito.subtotal = totalSalida
+                        ''    conexion.SaveChanges()
+
+                        ''End If
+
+                        ''If totalContado > 0 Then
+                        ''    Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaContado And x.anulado = False Select x.cantidad * x.precio).Sum
+                        ''    Dim sContado As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = codigoSalidaContado Select x).FirstOrDefault
+                        ''    sContado.total = totalSalida
+                        ''    sContado.subtotal = totalSalida
+                        ''    conexion.SaveChanges()
+                        ''End If
+
                         If totalCredito > 0 Then
                             Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaCredito And x.anulado = False Select x.cantidad * x.precio).Sum
-                            salidaCredito.total = totalSalida
-                            salidaCredito.subtotal = totalSalida
+                            Dim totaldesc As Double = (From x In conexion.tblSalidaDetalles Where x.idSalida = codigoSalidaCredito And x.anulado = False And x.promocion > 0 Select x.cantidad * x.precio).Sum
+                            salidaCredito.total = totalSalida - totaldesc
+                            salidaCredito.subtotal = totalSalida - totaldesc
                             conexion.SaveChanges()
-
                         End If
 
                         If totalContado > 0 Then
                             Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaContado And x.anulado = False Select x.cantidad * x.precio).Sum
+                            Dim totaldesc As Double = (From x In conexion.tblSalidaDetalles Where x.idSalida = codigoSalidaContado And x.anulado = False And x.promocion > 0 Select x.promocion * x.precio).Sum
                             Dim sContado As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = codigoSalidaContado Select x).FirstOrDefault
-                            sContado.total = totalSalida
-                            sContado.subtotal = totalSalida
+                            sContado.total = totalSalida - totaldesc
+                            sContado.subtotal = totalSalida - totaldesc
                             conexion.SaveChanges()
                         End If
 
@@ -5152,6 +5224,7 @@ Public Class frmSalidas
                 If e.KeyCode = Keys.Delete And grdProductos.RowCount = 0 Then
                     grdProductos.Rows.AddNew()
                 End If
+
                 fnActualizar_Total()
             End If
 
@@ -5298,6 +5371,7 @@ Public Class frmSalidas
                 cmbCliente.Enabled = True
             End If
             fnBloquearCombo()
+
             fnActualizar_Total()
         Catch ex As Exception
 
@@ -6038,6 +6112,7 @@ Public Class frmSalidas
 
                         conn.Close()
                     End Using
+
 
                     fnActualizar_Total()
                     Me.grdProductos.Rows.AddNew()

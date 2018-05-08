@@ -20,8 +20,9 @@ Public Class frmPromociones
         Try
             mdlPublicVars.fnFormatoGridEspeciales(grdProductos)
             mdlPublicVars.fnFormatoGridMovimientos(grdProductos)
-
+            fnFiltros()
             fnLlenaGrid()
+            fnBloquear()
             mdlPublicVars.fnGrid_iconos(grdProductos)
         Catch ex As Exception
 
@@ -39,10 +40,12 @@ Public Class frmPromociones
 
                 Dim consulta As Object
 
-                consulta = (From a In conexion.tblArticuloes Where a.Habilitado = True
-                              Select Id = a.idArticulo, Codigo = a.codigo1, Producto = a.nombre1, chmFechaEstado = If(a.bitFecha = False, False, True), txbFechaI = a.FechaInicio, txbFechaF = a.FechaFin,
-                              chmCantEstado = If(a.bitCantidad = False, False, True), CantMin = a.CantidadMinima, Cuota = a.CuotaPromocion, Cantidad = a.CantidadPromocion,
-                              chmActivado = If(a.bitPromocion = False, False, True)).ToList
+                ''consulta = (From a In conexion.tblArticuloes Where a.Habilitado = True
+                ''              Select Id = a.idArticulo, Codigo = a.codigo1, Producto = a.nombre1, chmFechaEstado = If(a.bitFecha = False, False, True), txbFechaI = a.FechaInicio, txbFechaF = a.FechaFin,
+                ''              chmCantEstado = If(a.bitCantidad = False, False, True), CantMin = a.CantidadMinima, Cuota = a.CuotaPromocion, Cantidad = a.CantidadPromocion,
+                ''              chmActivado = If(a.bitPromocion = False, False, True)).ToList
+
+                consulta = conexion.sp_ListadoArticulosPromociones(Tipos, Modelos, Marcas)
 
                 Me.grdProductos.DataSource = consulta
 
@@ -59,17 +62,15 @@ Public Class frmPromociones
 
             Me.grdProductos.Columns("Id").IsVisible = False
             Me.grdProductos.Columns("Codigo").Width = 80
-            Me.grdProductos.Columns("Producto").Width = 120
-            Me.grdProductos.Columns("txbFechaI").Width = 75
-            Me.grdProductos.Columns("txbFechaF").Width = 75
-            Me.grdProductos.Columns("chmFechaEstado").Width = 80
-            Me.grdProductos.Columns("CantMin").Width = 75
-            Me.grdProductos.Columns("chmCantEstado").Width = 75
-            Me.grdProductos.Columns("Cuota").Width = 75
-            Me.grdProductos.Columns("Cantidad").Width = 75
-            Me.grdProductos.Columns("chmActivado").Width = 75
-
-            Me.grdProductos.Columns("Cantidad").ReadOnly = False
+            Me.grdProductos.Columns("Producto").Width = 180
+            Me.grdProductos.Columns("FechaInicio").Width = 75
+            Me.grdProductos.Columns("FechaFin").Width = 75
+            Me.grdProductos.Columns("chmFechaEstado").Width = 50
+            Me.grdProductos.Columns("ExisMin").Width = 50
+            Me.grdProductos.Columns("chmCantEstado").Width = 50
+            Me.grdProductos.Columns("CuotaProm").Width = 50
+            Me.grdProductos.Columns("CantidadProm").Width = 50
+            Me.grdProductos.Columns("chmPromocion").Width = 50
 
         Catch ex As Exception
 
@@ -97,13 +98,24 @@ Public Class frmPromociones
                     Me.txtCodigo.Text = a.codigo1
                     Me.txtProducto.Text = a.nombre1
                     Me.chkFechaEstado.Checked = CBool(a.bitFecha)
-                    Me.dtpFechaInicio.Value = If(a.FechaInicio Is Nothing, Nothing, CDate(a.FechaInicio))
-                    Me.dtpFechaFin.Value = If(a.FechaFin Is Nothing, Nothing, CDate(a.FechaFin))
+                    Try
+                        Me.dtpFechaInicio.Value = If(a.FechaInicio Is Nothing, Nothing, CDate(a.FechaInicio))
+
+                    Catch ex As Exception
+
+                    End Try
+                    Try
+                        Me.dtpFechaFin.Value = If(a.FechaFin Is Nothing, Nothing, CDate(a.FechaFin))
+                    Catch ex As Exception
+
+                    End Try
                     Me.chkExistenciaEstado.Checked = CBool(a.bitCantidad)
                     Me.txtExistenciaMinima.Text = CStr(a.CantidadMinima)
                     Me.chkActivado.Checked = CBool(a.bitPromocion)
                     Me.txtCuotaPromocion.Text = CStr(a.CuotaPromocion)
                     Me.txtCantidadPromocion.Text = CStr(a.CantidadPromocion)
+
+                    
 
                     conn.Close()
                 End Using
@@ -176,6 +188,7 @@ Public Class frmPromociones
     Private Sub fnSalir() Handles Me.panel1
         Try
             Me.Close()
+            frmMenu.Show()
         Catch ex As Exception
 
         End Try
@@ -231,20 +244,76 @@ Public Class frmPromociones
 
             If e.KeyCode = Keys.F8 Then
                 Try
-                    frmFiltrosInventarios.Text = "Filtros Categorias"
-                    frmFiltrosInventarios.StartPosition = FormStartPosition.CenterScreen
-                    frmFiltrosInventarios.WindowState = FormWindowState.Normal
-                    frmFiltrosInventarios.BringToFront()
-                    frmFiltrosInventarios.Focus()
-                    permiso.PermisoFrmEspeciales(frmFiltrosInventarios, False)
-
-                    Modelos = mdlPublicVars.superSearchModelos
-                    Tipos = mdlPublicVars.superSearchTipos
-                    Marcas = mdlPublicVars.superSearchMarcas
+                    fnFiltros()
+                    fnLlenaGrid()
                 Catch ex As Exception
 
                 End Try
             End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub fnFiltros()
+        Try
+            frmFiltrosInventarios.Text = "Filtros Categorias"
+            frmFiltrosInventarios.StartPosition = FormStartPosition.CenterScreen
+            frmFiltrosInventarios.WindowState = FormWindowState.Normal
+            frmFiltrosInventarios.ShowDialog()
+            frmFiltrosInventarios.Dispose()
+
+            Modelos = mdlPublicVars.superSearchModelos
+            Tipos = mdlPublicVars.superSearchTipos
+            Marcas = mdlPublicVars.superSearchMarcas
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub chkExistenciaEstado_CheckedChanged(sender As Object, e As EventArgs) Handles chkExistenciaEstado.CheckedChanged
+        Try
+            If Me.chkExistenciaEstado.Checked = True Then
+                Me.txtExistenciaMinima.Enabled = True
+            Else
+                Me.txtExistenciaMinima.Enabled = False
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub chkFechaEstado_CheckedChanged(sender As Object, e As EventArgs) Handles chkFechaEstado.CheckedChanged
+        Try
+            If Me.chkFechaEstado.Checked = True Then
+                Me.dtpFechaInicio.Enabled = True
+                Me.dtpFechaFin.Enabled = True
+            Else
+                Me.dtpFechaInicio.Enabled = False
+                Me.dtpFechaFin.Enabled = False
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub chkActivado_CheckedChanged(sender As Object, e As EventArgs) Handles chkActivado.CheckedChanged
+        If Me.chkActivado.Checked = True Then
+            Me.txtCuotaPromocion.Enabled = True
+            Me.txtCantidadPromocion.Enabled = True
+        Else
+            Me.txtCuotaPromocion.Enabled = False
+            Me.txtCantidadPromocion.Enabled = False
+        End If
+    End Sub
+
+    Private Sub fnBloquear()
+        Try
+            Me.txtCuotaPromocion.Enabled = False
+            Me.txtCantidadPromocion.Enabled = False
+            Me.dtpFechaInicio.Enabled = False
+            Me.dtpFechaFin.Enabled = False
+            Me.txtExistenciaMinima.Enabled = False
         Catch ex As Exception
 
         End Try

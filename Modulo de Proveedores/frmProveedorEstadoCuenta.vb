@@ -609,19 +609,19 @@ Public Class frmProveedorEstadoCuenta
         Dim r As New clsReporte
         Try
             If rpvEstados.SelectedPage.Name = "pgEstado1" Then
-<<<<<<< HEAD
+                ''<<<<<<< HEAD
                 r.reporte = "rptEstadoCuentaProveedor1.rpt"
                 r.tabla = EntitiToDataTable((From x In ctx.sp_reporteEstadoCuentaProveedor1("", proveedor, dtpFechaInicio.Text, dtpFechaFin.Text & " 23:59:59", mdlPublicVars.idEmpresa)))
             ElseIf rpvEstados.SelectedPage.Name = "pgEstado2" Then
                 r.reporte = "rptEstadoCuentaProveedor2.rpt"
                 r.tabla = EntitiToDataTable((From x In ctx.sp_reporteEstadoCuentaProveedor2("", proveedor, dtpFechaInicio.Text, dtpFechaFin.Text & " 23:59:59", mdlPublicVars.idEmpresa)))
-=======
+                ''=======
                 r.reporte = "rptReporteEstadoProveedor1.rpt"
                 r.tabla = EntitiToDataTable(From x In ctx.sp_reporteEstadoCuentaProveedor1("", proveedor, dtpFechaInicio.Text, dtpFechaFin.Text & " 23:59:59", mdlPublicVars.idEmpresa))
             ElseIf rpvEstados.SelectedPage.Name = "pgEstado2" Then
                 r.reporte = "ReporteEstadocuentaProveedor2.rpt"
                 r.tabla = EntitiToDataTable(From x In ctx.sp_reporteEstadoCuentaProveedor2("", proveedor, dtpFechaInicio.Text, dtpFechaFin.Text & " 23:59:59", mdlPublicVars.idEmpresa))
->>>>>>> f008ef5ece8114ac1f6a394e4b1b0e144a350d89
+                ''>>>>>>> f008ef5ece8114ac1f6a394e4b1b0e144a350d89
             End If
             r.nombreParametro = "filtro"
             r.parametro = "Filtro del reporte:"

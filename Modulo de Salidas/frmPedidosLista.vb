@@ -690,9 +690,18 @@ Public Class frmPedidosLista
                                                             Dim sal As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = idSalida Select x).FirstOrDefault
 
                                                             If sal.credito = True Then
-                                                                reportetipo = "factura_FacturaSinDescCR.rpt"
+                                                                If sal.descuento > 0 Then
+                                                                    reportetipo = "factura_FacturaConDescCR.rpt"
+                                                                Else
+                                                                    reportetipo = "factura_FacturaSinDescCR.rpt"
+                                                                End If
                                                             ElseIf sal.contado = True Then
-                                                                reportetipo = "factura_FacturaSinDesc.rpt"
+                                                                If sal.descuento > 0 Then
+                                                                    reportetipo = "factura_FacturaConDesc.rpt"
+                                                                Else
+                                                                    reportetipo = "factura_FacturaSinDesc.rpt"
+                                                                End If
+
                                                             End If
 
                                                             Dim r As New clsReporte
@@ -702,7 +711,7 @@ Public Class frmPedidosLista
                                                             r.reporte = reportetipo
                                                             r.parametro = ""
                                                             ''r.verReporte()
-                                                            r.imprimirReporte()
+                                                            r.verReporte()
 
                                                             ''frmImpresionFacturas.Text = "Impresion Facturas"
                                                             ''frmImpresionFacturas.StartPosition = FormStartPosition.CenterScreen

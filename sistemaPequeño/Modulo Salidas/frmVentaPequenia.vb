@@ -1176,6 +1176,8 @@ Public Class frmVentaPequenia
             Me.grdProductos.Rows(Me.grdProductos.CurrentRow.Index).Cells("txbPrecioBase").Value = Format(CType(mdlPublicVars.superSearchPrecio, Decimal), mdlPublicVars.formatoMoneda)
             Me.grdProductos.Rows(Me.grdProductos.CurrentRow.Index).Cells("TipoPrecio").Value = CType(mdlPublicVars.superSearchTipoPrecio, Integer)
 
+
+
             'validar que la salida no este en estado de despacho.
             If bitEditarBodega = True And codigo > 0 Then
                 Dim s As tblSalida
