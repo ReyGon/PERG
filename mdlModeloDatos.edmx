@@ -8086,19 +8086,6 @@
         </Function>
         <Function Name="sp_calcularMáximo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_calcularminimo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="sp_cargarProductosCompra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="empresa" Type="int" Mode="In" />
-          <Parameter Name="inventarioPrincipal" Type="int" Mode="In" />
-          <Parameter Name="almacenPrincipal" Type="int" Mode="In" />
-          <Parameter Name="tipoVehiculo" Type="varchar" Mode="In" />
-          <Parameter Name="modeloVehiculo" Type="varchar" Mode="In" />
-          <Parameter Name="cliente" Type="int" Mode="In" />
-          <Parameter Name="opcion" Type="int" Mode="In" />
-          <Parameter Name="bitCliente" Type="bit" Mode="In" />
-          <Parameter Name="bitProveedor" Type="bit" Mode="In" />
-          <Parameter Name="marcasRepuestos" Type="varchar" Mode="In" />
-          <Parameter Name="ventas" Type="int" Mode="In" />
-        </Function>
         <Function Name="sp_cargarProductoscompra2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="empresa" Type="int" Mode="In" />
           <Parameter Name="inventarioPrincipal" Type="int" Mode="In" />
@@ -8139,6 +8126,12 @@
         </Function>
         <Function Name="sp_consultaArticuloProveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idProveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_ConsultafacturasCompras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idproveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_ConsultafacturasVentas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idcliente" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_ConsumePagosClientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idEmpresa" Type="int" Mode="In" />
@@ -11808,6 +11801,12 @@
             <Parameter Name="filtro" Mode="In" Type="String" />
             <Parameter Name="factura" Mode="In" Type="Int32" />
             <Parameter Name="empresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ConsultafacturasCompras" ReturnType="Collection(dsi_pos_demoModel.sp_ConsultafacturasCompras_Result)">
+            <Parameter Name="idproveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ConsultafacturasVentas" ReturnType="Collection(dsi_pos_demoModel.sp_ConsultafacturasVentas_Result)">
+            <Parameter Name="idcliente" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="dtproperty">
@@ -20844,6 +20843,20 @@
           <Property Type="String" Name="estanteria" Nullable="true" MaxLength="100" />
           <Property Type="Decimal" Name="descuento" Nullable="true" Precision="18" Scale="2" />
         </ComplexType>
+        <ComplexType Name="sp_ConsultafacturasCompras_Result">
+          <Property Type="DateTime" Name="fechaCompra" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Column1" Nullable="true" MaxLength="101" />
+          <Property Type="Decimal" Name="saldo" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="total" Nullable="false" Precision="18" Scale="5" />
+        </ComplexType>
+        <ComplexType Name="sp_ConsultafacturasVentas_Result">
+          <Property Type="String" Name="FechaFactura" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Remision" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Facturas" Nullable="true" />
+          <Property Type="Decimal" Name="Saldo" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="TotalVenta" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="String" Name="Negocio" Nullable="false" MaxLength="100" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -23510,39 +23523,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_calcularMáximo" FunctionName="mdlModeloDatos.Store.sp_calcularMáximo" />
           <FunctionImportMapping FunctionImportName="sp_calcularminimo" FunctionName="mdlModeloDatos.Store.sp_calcularminimo" />
-          <FunctionImportMapping FunctionImportName="sp_cargarProductosCompra" FunctionName="mdlModeloDatos.Store.sp_cargarProductosCompra">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_cargarProductosCompra_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="txmCantidad" ColumnName="txmCantidad" />
-                <ScalarProperty Name="Sugerida" ColumnName="Sugerida" />
-                <ScalarProperty Name="Minimo" ColumnName="Minimo" />
-                <ScalarProperty Name="Maximo" ColumnName="Maximo" />
-                <ScalarProperty Name="Existencia" ColumnName="Existencia" />
-                <ScalarProperty Name="Reserva" ColumnName="Reserva" />
-                <ScalarProperty Name="Transito" ColumnName="Transito" />
-                <ScalarProperty Name="txmCosto" ColumnName="txmCosto" />
-                <ScalarProperty Name="txbPrecio" ColumnName="txbPrecio" />
-                <ScalarProperty Name="cantidadmax" ColumnName="cantidadmax" />
-                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
-                <ScalarProperty Name="UnidadEmpaque" ColumnName="UnidadEmpaque" />
-                <ScalarProperty Name="txmsurtir" ColumnName="txmsurtir" />
-                <ScalarProperty Name="clrEstado" ColumnName="clrEstado" />
-                <ScalarProperty Name="numeroArt" ColumnName="numeroArt" />
-                <ScalarProperty Name="ultimacompra" ColumnName="ultimacompra" />
-                <ScalarProperty Name="marca" ColumnName="marca" />
-                <ScalarProperty Name="bitventamaxima" ColumnName="bitventamaxima" />
-                <ScalarProperty Name="minimo2" ColumnName="minimo2" />
-                <ScalarProperty Name="tipoprecio" ColumnName="tipoprecio" />
-                <ScalarProperty Name="compatibilidad" ColumnName="compatibilidad" />
-                <ScalarProperty Name="ubicacionestanteria" ColumnName="ubicacionestanteria" />
-                <ScalarProperty Name="FrecuenciaFecha" ColumnName="FrecuenciaFecha" />
-                <ScalarProperty Name="FrecuenciaCompra" ColumnName="FrecuenciaCompra" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_cargarProductoscompra2" FunctionName="mdlModeloDatos.Store.sp_cargarProductoscompra2">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_cargarProductoscompra2_Result">
@@ -26236,6 +26216,28 @@
                 <ScalarProperty Name="orden" ColumnName="orden" />
                 <ScalarProperty Name="estanteria" ColumnName="estanteria" />
                 <ScalarProperty Name="descuento" ColumnName="descuento" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ConsultafacturasCompras" FunctionName="mdlModeloDatos.Store.sp_ConsultafacturasCompras">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_ConsultafacturasCompras_Result">
+                <ScalarProperty Name="fechaCompra" ColumnName="fechaCompra" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ConsultafacturasVentas" FunctionName="mdlModeloDatos.Store.sp_ConsultafacturasVentas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_ConsultafacturasVentas_Result">
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="Remision" ColumnName="Remision" />
+                <ScalarProperty Name="Facturas" ColumnName="Facturas" />
+                <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+                <ScalarProperty Name="TotalVenta" ColumnName="TotalVenta" />
+                <ScalarProperty Name="Negocio" ColumnName="Negocio" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
