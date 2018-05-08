@@ -97,6 +97,7 @@ Public Class frmFacturasElegir
     'SALIR DEL FORMULARIO
      Private Sub fnLlenarGrid()
         Try
+            Dim dt As New DataTable
             Dim conexion As dsi_pos_demoEntities
             Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
                 conn.Open()
@@ -105,22 +106,27 @@ Public Class frmFacturasElegir
 
                 If idproveedor > 0 Then
 
-                    Dim entradas As List(Of tblEntrada) = (From x In conexion.tblEntradas.AsEnumerable Where x.idProveedor = idproveedor Where x.saldo > 0 Select x Order By x.fechaRegistro Descending).ToList()
+                    dt = EntitiToDataTable(conexion.sp_ConsultafacturasCompras)
 
-                    For Each entrada As tblEntrada In entradas
-                        elegir = If((From x In listaEntradas Where x.Item1 = entrada.idEntrada Select x).Count() > 0, True, False)
-                        Me.grdFacturas.Rows.Add({elegir, entrada.idEntrada, CStr(entrada.serieDocumento + "-" + entrada.documento), entrada.saldo, 0, entrada.fechaRegistro.ToShortDateString})
-                    Next
+
+                    ' Dim entradas As List(Of tblEntrada) = (From x In conexion.tblEntradas.AsEnumerable Where x.idProveedor = idproveedor Where x.saldo > 0 Select x Order By x.fechaRegistro Descending).ToList()
+
+                    'For Each entrada As tblEntrada In entradas
+                    'elegir = If((From x In listaEntradas Where x.Item1 = entrada.idEntrada Select x).Count() > 0, True, False)
+                    'Me.grdFacturas.Rows.Add({elegir, entrada.idEntrada, CStr(entrada.serieDocumento + "-" + entrada.documento), entrada.saldo, 0, entrada.fechaRegistro.ToShortDateString})
+                    'Next
                     conn.Close()
 
                 ElseIf idcliente > 0 Then
 
-                    Dim salidas As List(Of tblSalida) = (From x In conexion.tblSalidas Where x.idCliente = idcliente Where x.saldo > 0 And (x.facturado = True Or x.despachar = True Or x.empacado = True) And x.anulado = False Select x Order By x.fechaRegistro Descending).ToList
+                    dt = EntitiToDataTable(conexion.sp_ConsultafacturasVentas, "", idcliente, mdlPublicVars.idEmpresa)
 
-                    For Each salida As tblSalida In salidas
-                        elegir = If((From x In listaSalidas Where x.Item1 = salida.idSalida Select x).Count() > 0, True, False)
-                        Me.grdFacturas.Rows.Add({elegir, salida.idSalida, CStr(salida.documento), salida.saldo, 0, salida.fechaRegistro.ToShortDateString})
-                    Next
+                    ' Dim salidas As List(Of tblSalida) = (From x In conexion.tblSalidas Where x.idCliente = idcliente Where x.saldo > 0 And (x.facturado = True Or x.despachar = True Or x.empacado = True) And x.anulado = False Select x Order By x.fechaRegistro Descending).ToList
+
+                    'For Each salida As tblSalida In salidas
+                    'elegir = If((From x In listaSalidas Where x.Item1 = salida.idSalida Select x).Count() > 0, True, False)
+                    'Me.grdFacturas.Rows.Add({elegir, salida.idSalida, CStr(salida.documento), salida.saldo, 0, salida.fechaRegistro.ToShortDateString})
+                    'Next
                     conn.Close()
 
                 End If

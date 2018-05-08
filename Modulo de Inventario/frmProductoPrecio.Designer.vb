@@ -88,7 +88,6 @@ Partial Class frmProductoPrecio
         Me.txtPrecioPublicoMotriza = New System.Windows.Forms.TextBox()
         Me.cmbCodigo1 = New System.Windows.Forms.ComboBox()
         Me.Pgclasificacion = New Telerik.WinControls.UI.RadPageViewPage()
-<<<<<<< HEAD
         Me.ButtonGuardar = New System.Windows.Forms.Button()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.txtCodigoM1 = New System.Windows.Forms.TextBox()
@@ -97,13 +96,6 @@ Partial Class frmProductoPrecio
         Me.txtProductoM1 = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.txtProductoM2 = New System.Windows.Forms.TextBox()
-=======
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.txtProductoco = New System.Windows.Forms.TextBox()
-        Me.txtProductomo1 = New System.Windows.Forms.TextBox()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.txtProducto2 = New System.Windows.Forms.TextBox()
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.Label21 = New System.Windows.Forms.Label()
         Me.grdModeloVehiculo = New Telerik.WinControls.UI.RadGridView()
         Me.chkUnidadMedida = New System.Windows.Forms.CheckBox()
@@ -115,11 +107,7 @@ Partial Class frmProductoPrecio
         Me.lblRecuentoModelo = New System.Windows.Forms.Label()
         Me.lblRecuentoTipoVehiculo = New System.Windows.Forms.Label()
         Me.grdTipoVehiculo = New Telerik.WinControls.UI.RadGridView()
-<<<<<<< HEAD
         Me.txtObs = New System.Windows.Forms.TextBox()
-=======
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.Label5 = New System.Windows.Forms.Label()
         Me.cmbMarcaRepuesto = New System.Windows.Forms.ComboBox()
         Me.lblGrid2 = New System.Windows.Forms.Label()
@@ -230,11 +218,7 @@ Partial Class frmProductoPrecio
         '
         Me.rgbDatos.RootElement.ForeColor = System.Drawing.Color.DimGray
         Me.rgbDatos.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-<<<<<<< HEAD
         Me.rgbDatos.Size = New System.Drawing.Size(27, 0)
-=======
-        Me.rgbDatos.Size = New System.Drawing.Size(0, 0)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.rgbDatos.Visible = False
         '
         'Label15
@@ -267,7 +251,6 @@ Partial Class frmProductoPrecio
         Me.lblProductos.Size = New System.Drawing.Size(249, 29)
         Me.lblProductos.TabIndex = 120
         Me.lblProductos.Text = "Informacion General"
-<<<<<<< HEAD
         '
         'label02
         '
@@ -455,192 +438,6 @@ Partial Class frmProductoPrecio
         Me.Pgclasificacion.Controls.Add(Me.txtProductoM1)
         Me.Pgclasificacion.Controls.Add(Me.Label12)
         Me.Pgclasificacion.Controls.Add(Me.txtProductoM2)
-=======
-        '
-        'label02
-        '
-        Me.label02.AutoSize = True
-        Me.label02.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.label02.Location = New System.Drawing.Point(76, 88)
-        Me.label02.Name = "label02"
-        Me.label02.Size = New System.Drawing.Size(51, 15)
-        Me.label02.TabIndex = 116
-        Me.label02.Text = "Codigo :"
-        '
-        'txtCodigo
-        '
-        Me.txtCodigo.BackColor = System.Drawing.SystemColors.InactiveCaption
-        Me.txtCodigo.Enabled = False
-        Me.txtCodigo.Location = New System.Drawing.Point(132, 62)
-        Me.txtCodigo.Name = "txtCodigo"
-        Me.txtCodigo.Size = New System.Drawing.Size(85, 20)
-        Me.txtCodigo.TabIndex = 114
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.BackColor = System.Drawing.Color.Transparent
-        Me.Label17.Location = New System.Drawing.Point(105, 66)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(24, 13)
-        Me.Label17.TabIndex = 115
-        Me.Label17.Text = "ID :"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label2.Location = New System.Drawing.Point(494, 123)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(75, 13)
-        Me.Label2.TabIndex = 122
-        Me.Label2.Text = "Importancia :"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label14.Location = New System.Drawing.Point(334, 150)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(64, 13)
-        Me.Label14.TabIndex = 124
-        Me.Label14.Text = "Existencia :"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label18.Location = New System.Drawing.Point(344, 124)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(54, 13)
-        Me.Label18.TabIndex = 126
-        Me.Label18.Text = "Minimo :"
-        '
-        'lblImportancia
-        '
-        Me.lblImportancia.AutoSize = True
-        Me.lblImportancia.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.lblImportancia.ForeColor = System.Drawing.Color.Black
-        Me.lblImportancia.Location = New System.Drawing.Point(572, 119)
-        Me.lblImportancia.Name = "lblImportancia"
-        Me.lblImportancia.Size = New System.Drawing.Size(94, 20)
-        Me.lblImportancia.TabIndex = 166
-        Me.lblImportancia.Text = "Importancia"
-        '
-        'lblMinimo
-        '
-        Me.lblMinimo.AutoSize = True
-        Me.lblMinimo.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.lblMinimo.ForeColor = System.Drawing.Color.Black
-        Me.lblMinimo.Location = New System.Drawing.Point(411, 119)
-        Me.lblMinimo.Name = "lblMinimo"
-        Me.lblMinimo.Size = New System.Drawing.Size(31, 20)
-        Me.lblMinimo.TabIndex = 166
-        Me.lblMinimo.Text = "0.0"
-        '
-        'lblExistencia
-        '
-        Me.lblExistencia.AutoSize = True
-        Me.lblExistencia.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.lblExistencia.ForeColor = System.Drawing.Color.Black
-        Me.lblExistencia.Location = New System.Drawing.Point(411, 148)
-        Me.lblExistencia.Name = "lblExistencia"
-        Me.lblExistencia.Size = New System.Drawing.Size(31, 20)
-        Me.lblExistencia.TabIndex = 167
-        Me.lblExistencia.Text = "0.0"
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label13.Location = New System.Drawing.Point(334, 99)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(78, 15)
-        Me.Label13.TabIndex = 170
-        Me.Label13.Text = "Descripcion :"
-        '
-        'lblCostoProm
-        '
-        Me.lblCostoProm.AutoSize = True
-        Me.lblCostoProm.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.lblCostoProm.ForeColor = System.Drawing.Color.Black
-        Me.lblCostoProm.Location = New System.Drawing.Point(571, 145)
-        Me.lblCostoProm.Name = "lblCostoProm"
-        Me.lblCostoProm.Size = New System.Drawing.Size(49, 20)
-        Me.lblCostoProm.TabIndex = 173
-        Me.lblCostoProm.Text = "Costo"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label3.Location = New System.Drawing.Point(472, 150)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(97, 13)
-        Me.Label3.TabIndex = 172
-        Me.Label3.Text = "Costo Promedio :"
-        '
-        'cmbNombre1
-        '
-        Me.cmbNombre1.FormattingEnabled = True
-        Me.cmbNombre1.Location = New System.Drawing.Point(415, 95)
-        Me.cmbNombre1.Name = "cmbNombre1"
-        Me.cmbNombre1.Size = New System.Drawing.Size(372, 21)
-        Me.cmbNombre1.TabIndex = 174
-        '
-        'btnActualizarCosto
-        '
-        Me.btnActualizarCosto.BackColor = System.Drawing.Color.SteelBlue
-        Me.btnActualizarCosto.FlatAppearance.BorderSize = 0
-        Me.btnActualizarCosto.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
-        Me.btnActualizarCosto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.btnActualizarCosto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnActualizarCosto.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnActualizarCosto.ForeColor = System.Drawing.Color.Transparent
-        Me.btnActualizarCosto.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnActualizarCosto.Location = New System.Drawing.Point(691, 122)
-        Me.btnActualizarCosto.Name = "btnActualizarCosto"
-        Me.btnActualizarCosto.Size = New System.Drawing.Size(95, 46)
-        Me.btnActualizarCosto.TabIndex = 175
-        Me.btnActualizarCosto.Text = "Actualizar " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Costo"
-        Me.btnActualizarCosto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnActualizarCosto.UseVisualStyleBackColor = False
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label9.Location = New System.Drawing.Point(20, 152)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(107, 15)
-        Me.Label9.TabIndex = 177
-        Me.Label9.Text = "Precio P. Motriza :"
-        '
-        'txtPrecioPublicoMotriza
-        '
-        Me.txtPrecioPublicoMotriza.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPrecioPublicoMotriza.Location = New System.Drawing.Point(132, 142)
-        Me.txtPrecioPublicoMotriza.Name = "txtPrecioPublicoMotriza"
-        Me.txtPrecioPublicoMotriza.Size = New System.Drawing.Size(95, 25)
-        Me.txtPrecioPublicoMotriza.TabIndex = 176
-        Me.txtPrecioPublicoMotriza.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'cmbCodigo1
-        '
-        Me.cmbCodigo1.FormattingEnabled = True
-        Me.cmbCodigo1.Location = New System.Drawing.Point(132, 86)
-        Me.cmbCodigo1.Name = "cmbCodigo1"
-        Me.cmbCodigo1.Size = New System.Drawing.Size(95, 21)
-        Me.cmbCodigo1.TabIndex = 178
-        '
-        'Pgclasificacion
-        '
-        Me.Pgclasificacion.Controls.Add(Me.Label19)
-        Me.Pgclasificacion.Controls.Add(Me.txtProductoco)
-        Me.Pgclasificacion.Controls.Add(Me.txtProductomo1)
-        Me.Pgclasificacion.Controls.Add(Me.Label12)
-        Me.Pgclasificacion.Controls.Add(Me.txtProducto2)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.Pgclasificacion.Controls.Add(Me.Label21)
         Me.Pgclasificacion.Controls.Add(Me.grdModeloVehiculo)
         Me.Pgclasificacion.Controls.Add(Me.chkUnidadMedida)
@@ -652,11 +449,7 @@ Partial Class frmProductoPrecio
         Me.Pgclasificacion.Controls.Add(Me.lblRecuentoModelo)
         Me.Pgclasificacion.Controls.Add(Me.lblRecuentoTipoVehiculo)
         Me.Pgclasificacion.Controls.Add(Me.grdTipoVehiculo)
-<<<<<<< HEAD
         Me.Pgclasificacion.Controls.Add(Me.txtObs)
-=======
-        Me.Pgclasificacion.Controls.Add(Me.TextBox1)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.Pgclasificacion.Controls.Add(Me.Label5)
         Me.Pgclasificacion.Controls.Add(Me.cmbMarcaRepuesto)
         Me.Pgclasificacion.Controls.Add(Me.lblGrid2)
@@ -666,7 +459,6 @@ Partial Class frmProductoPrecio
         Me.Pgclasificacion.Controls.Add(Me.cmbImportancia)
         Me.Pgclasificacion.Location = New System.Drawing.Point(10, 44)
         Me.Pgclasificacion.Name = "Pgclasificacion"
-<<<<<<< HEAD
         Me.Pgclasificacion.Size = New System.Drawing.Size(1023, 439)
         Me.Pgclasificacion.Text = "Clasificación"
         '
@@ -708,11 +500,6 @@ Partial Class frmProductoPrecio
         Me.txtCodigoM1.Size = New System.Drawing.Size(169, 22)
         Me.txtCodigoM1.TabIndex = 193
         '
-=======
-        Me.Pgclasificacion.Size = New System.Drawing.Size(1061, 439)
-        Me.Pgclasificacion.Text = "Clasificación"
-        '
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         'Label19
         '
         Me.Label19.AutoSize = True
@@ -723,7 +510,6 @@ Partial Class frmProductoPrecio
         Me.Label19.TabIndex = 192
         Me.Label19.Text = "Codigo 2 :"
         '
-<<<<<<< HEAD
         'txtCodigoM2
         '
         Me.txtCodigoM2.Font = New System.Drawing.Font("Segoe UI", 8.0!)
@@ -739,23 +525,6 @@ Partial Class frmProductoPrecio
         Me.txtProductoM1.Name = "txtProductoM1"
         Me.txtProductoM1.Size = New System.Drawing.Size(454, 22)
         Me.txtProductoM1.TabIndex = 187
-=======
-        'txtProductoco
-        '
-        Me.txtProductoco.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.txtProductoco.Location = New System.Drawing.Point(86, 35)
-        Me.txtProductoco.Name = "txtProductoco"
-        Me.txtProductoco.Size = New System.Drawing.Size(169, 22)
-        Me.txtProductoco.TabIndex = 188
-        '
-        'txtProductomo1
-        '
-        Me.txtProductomo1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.txtProductomo1.Location = New System.Drawing.Point(329, 9)
-        Me.txtProductomo1.Name = "txtProductomo1"
-        Me.txtProductomo1.Size = New System.Drawing.Size(454, 22)
-        Me.txtProductomo1.TabIndex = 187
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         '
         'Label12
         '
@@ -767,7 +536,6 @@ Partial Class frmProductoPrecio
         Me.Label12.TabIndex = 191
         Me.Label12.Text = "Nombre 1 :"
         '
-<<<<<<< HEAD
         'txtProductoM2
         '
         Me.txtProductoM2.Font = New System.Drawing.Font("Segoe UI", 8.0!)
@@ -775,15 +543,6 @@ Partial Class frmProductoPrecio
         Me.txtProductoM2.Name = "txtProductoM2"
         Me.txtProductoM2.Size = New System.Drawing.Size(454, 22)
         Me.txtProductoM2.TabIndex = 189
-=======
-        'txtProducto2
-        '
-        Me.txtProducto2.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.txtProducto2.Location = New System.Drawing.Point(329, 35)
-        Me.txtProducto2.Name = "txtProducto2"
-        Me.txtProducto2.Size = New System.Drawing.Size(454, 22)
-        Me.txtProducto2.TabIndex = 189
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         '
         'Label21
         '
@@ -802,11 +561,7 @@ Partial Class frmProductoPrecio
         Me.grdModeloVehiculo.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.grdModeloVehiculo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.grdModeloVehiculo.ImeMode = System.Windows.Forms.ImeMode.NoControl
-<<<<<<< HEAD
         Me.grdModeloVehiculo.Location = New System.Drawing.Point(695, 111)
-=======
-        Me.grdModeloVehiculo.Location = New System.Drawing.Point(712, 111)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         '
         'grdModeloVehiculo
         '
@@ -836,11 +591,7 @@ Partial Class frmProductoPrecio
         '
         Me.grdModeloVehiculo.RootElement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.grdModeloVehiculo.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-<<<<<<< HEAD
         Me.grdModeloVehiculo.Size = New System.Drawing.Size(298, 320)
-=======
-        Me.grdModeloVehiculo.Size = New System.Drawing.Size(287, 320)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.grdModeloVehiculo.TabIndex = 177
         Me.grdModeloVehiculo.Text = "RadGridView3"
         Me.grdModeloVehiculo.ThemeName = "Office2007Black"
@@ -965,7 +716,6 @@ Partial Class frmProductoPrecio
         Me.grdTipoVehiculo.Text = "RadGridView2"
         Me.grdTipoVehiculo.ThemeName = "Office2007Black"
         '
-<<<<<<< HEAD
         'txtObs
         '
         Me.txtObs.Font = New System.Drawing.Font("Segoe UI", 8.0!)
@@ -974,16 +724,6 @@ Partial Class frmProductoPrecio
         Me.txtObs.Name = "txtObs"
         Me.txtObs.Size = New System.Drawing.Size(276, 30)
         Me.txtObs.TabIndex = 172
-=======
-        'TextBox1
-        '
-        Me.TextBox1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.TextBox1.Location = New System.Drawing.Point(58, 406)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(276, 30)
-        Me.TextBox1.TabIndex = 172
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         '
         'Label5
         '
@@ -1167,11 +907,7 @@ Partial Class frmProductoPrecio
         Me.PgPreciosSustitutos.Controls.Add(Me.grdPreciosSustitutos)
         Me.PgPreciosSustitutos.Location = New System.Drawing.Point(10, 44)
         Me.PgPreciosSustitutos.Name = "PgPreciosSustitutos"
-<<<<<<< HEAD
         Me.PgPreciosSustitutos.Size = New System.Drawing.Size(1061, 439)
-=======
-        Me.PgPreciosSustitutos.Size = New System.Drawing.Size(1035, 439)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.PgPreciosSustitutos.Text = "Precios Sustitutos"
         '
         'grdSustitutos
@@ -1196,11 +932,7 @@ Partial Class frmProductoPrecio
         '
         Me.grdSustitutos.RootElement.ForeColor = System.Drawing.Color.Gray
         Me.grdSustitutos.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-<<<<<<< HEAD
         Me.grdSustitutos.Size = New System.Drawing.Size(1061, 439)
-=======
-        Me.grdSustitutos.Size = New System.Drawing.Size(1035, 439)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.grdSustitutos.TabIndex = 168
         Me.grdSustitutos.ThemeName = "Office2007Black"
         '
@@ -1286,11 +1018,7 @@ Partial Class frmProductoPrecio
         '
         Me.grdPreciosSustitutos.RootElement.ForeColor = System.Drawing.Color.Gray
         Me.grdPreciosSustitutos.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-<<<<<<< HEAD
         Me.grdPreciosSustitutos.Size = New System.Drawing.Size(1010, 13)
-=======
-        Me.grdPreciosSustitutos.Size = New System.Drawing.Size(984, 13)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.grdPreciosSustitutos.TabIndex = 167
         Me.grdPreciosSustitutos.ThemeName = "Office2007Black"
         Me.grdPreciosSustitutos.Visible = False
@@ -1300,11 +1028,7 @@ Partial Class frmProductoPrecio
         Me.pgUltimasCompras.Controls.Add(Me.grdUltimasCompras)
         Me.pgUltimasCompras.Location = New System.Drawing.Point(10, 44)
         Me.pgUltimasCompras.Name = "pgUltimasCompras"
-<<<<<<< HEAD
         Me.pgUltimasCompras.Size = New System.Drawing.Size(1061, 439)
-=======
-        Me.pgUltimasCompras.Size = New System.Drawing.Size(1095, 513)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.pgUltimasCompras.Text = "Ultimas Compras"
         '
         'grdUltimasCompras
@@ -1322,11 +1046,7 @@ Partial Class frmProductoPrecio
         '
         '
         Me.grdUltimasCompras.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-<<<<<<< HEAD
         Me.grdUltimasCompras.Size = New System.Drawing.Size(1061, 439)
-=======
-        Me.grdUltimasCompras.Size = New System.Drawing.Size(1095, 513)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.grdUltimasCompras.TabIndex = 0
         Me.grdUltimasCompras.Text = "RadGridView1"
         Me.grdUltimasCompras.ThemeName = "Office2007Black"
@@ -1375,11 +1095,7 @@ Partial Class frmProductoPrecio
         Me.PgPrimsa.Controls.Add(Me.grdPrecios)
         Me.PgPrimsa.Location = New System.Drawing.Point(10, 44)
         Me.PgPrimsa.Name = "PgPrimsa"
-<<<<<<< HEAD
-        Me.PgPrimsa.Size = New System.Drawing.Size(996, 439)
-=======
-        Me.PgPrimsa.Size = New System.Drawing.Size(1061, 439)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
+        Me.PgPrimsa.Size = New System.Drawing.Size(1023, 439)
         Me.PgPrimsa.Text = "Primsa"
         '
         'grdOtrosPrecios
@@ -1464,11 +1180,7 @@ Partial Class frmProductoPrecio
         '
         Me.grdOtrosPrecios.RootElement.ForeColor = System.Drawing.Color.Gray
         Me.grdOtrosPrecios.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-<<<<<<< HEAD
-        Me.grdOtrosPrecios.Size = New System.Drawing.Size(1004, 212)
-=======
-        Me.grdOtrosPrecios.Size = New System.Drawing.Size(1069, 212)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
+        Me.grdOtrosPrecios.Size = New System.Drawing.Size(1031, 212)
         Me.grdOtrosPrecios.TabIndex = 166
         Me.grdOtrosPrecios.ThemeName = "Office2007Black"
         '
@@ -1489,11 +1201,7 @@ Partial Class frmProductoPrecio
         Me.txtObservacion.Location = New System.Drawing.Point(716, 47)
         Me.txtObservacion.Multiline = True
         Me.txtObservacion.Name = "txtObservacion"
-<<<<<<< HEAD
         Me.txtObservacion.Size = New System.Drawing.Size(280, 160)
-=======
-        Me.txtObservacion.Size = New System.Drawing.Size(376, 160)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.txtObservacion.TabIndex = 168
         '
         'grdPrecios
@@ -1547,11 +1255,7 @@ Partial Class frmProductoPrecio
         '
         Me.grdPrecios.RootElement.ForeColor = System.Drawing.Color.Gray
         Me.grdPrecios.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-<<<<<<< HEAD
-        Me.grdPrecios.Size = New System.Drawing.Size(612, 217)
-=======
-        Me.grdPrecios.Size = New System.Drawing.Size(677, 217)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
+        Me.grdPrecios.Size = New System.Drawing.Size(639, 217)
         Me.grdPrecios.TabIndex = 165
         Me.grdPrecios.ThemeName = "Office2007Black"
         '
@@ -1569,13 +1273,8 @@ Partial Class frmProductoPrecio
         Me.rpv.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.rpv.Location = New System.Drawing.Point(7, 174)
         Me.rpv.Name = "rpv"
-<<<<<<< HEAD
         Me.rpv.SelectedPage = Me.Pgclasificacion
         Me.rpv.Size = New System.Drawing.Size(1044, 494)
-=======
-        Me.rpv.SelectedPage = Me.PgPrimsa
-        Me.rpv.Size = New System.Drawing.Size(1082, 494)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.rpv.TabIndex = 88
         Me.rpv.Text = "Motriza"
         CType(Me.rpv.GetChildAt(0), Telerik.WinControls.UI.RadPageViewStripElement).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll
@@ -1590,11 +1289,7 @@ Partial Class frmProductoPrecio
         Me.grdOtrosPrecios2.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.grdOtrosPrecios2.ForeColor = System.Drawing.Color.Gray
         Me.grdOtrosPrecios2.ImeMode = System.Windows.Forms.ImeMode.NoControl
-<<<<<<< HEAD
         Me.grdOtrosPrecios2.Location = New System.Drawing.Point(792, 55)
-=======
-        Me.grdOtrosPrecios2.Location = New System.Drawing.Point(808, 53)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         '
         'grdOtrosPrecios2
         '
@@ -1621,11 +1316,7 @@ Partial Class frmProductoPrecio
         '
         Me.grdOtrosPrecios2.RootElement.ForeColor = System.Drawing.Color.Gray
         Me.grdOtrosPrecios2.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-<<<<<<< HEAD
         Me.grdOtrosPrecios2.Size = New System.Drawing.Size(260, 95)
-=======
-        Me.grdOtrosPrecios2.Size = New System.Drawing.Size(281, 95)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.grdOtrosPrecios2.TabIndex = 179
         Me.grdOtrosPrecios2.ThemeName = "Office2007Black"
         '
@@ -1991,11 +1682,7 @@ Partial Class frmProductoPrecio
         Me.Button3.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button3.ForeColor = System.Drawing.Color.Transparent
         Me.Button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-<<<<<<< HEAD
         Me.Button3.Location = New System.Drawing.Point(685, 55)
-=======
-        Me.Button3.Location = New System.Drawing.Point(685, 59)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(101, 24)
         Me.Button3.TabIndex = 180
@@ -2006,11 +1693,7 @@ Partial Class frmProductoPrecio
         'frmProductoPrecio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-<<<<<<< HEAD
         Me.ClientSize = New System.Drawing.Size(1055, 665)
-=======
-        Me.ClientSize = New System.Drawing.Size(1028, 665)
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.grdOtrosPrecios2)
         Me.Controls.Add(Me.cmbCodigo1)
@@ -2144,11 +1827,7 @@ Partial Class frmProductoPrecio
     Friend WithEvents lblRecuentoTipoVehiculo As System.Windows.Forms.Label
     Friend WithEvents grdTipoVehiculo As Telerik.WinControls.UI.RadGridView
     Friend WithEvents grdModeloVehiculo As Telerik.WinControls.UI.RadGridView
-<<<<<<< HEAD
     Friend WithEvents txtObs As System.Windows.Forms.TextBox
-=======
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents cmbMarcaRepuesto As System.Windows.Forms.ComboBox
     Friend WithEvents lblGrid2 As System.Windows.Forms.Label
@@ -2210,7 +1889,6 @@ Partial Class frmProductoPrecio
     Friend WithEvents cmbArticulo As System.Windows.Forms.ComboBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Button3 As System.Windows.Forms.Button
-<<<<<<< HEAD
     Friend WithEvents txtProductoM1 As System.Windows.Forms.TextBox
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents txtProductoM2 As System.Windows.Forms.TextBox
@@ -2220,13 +1898,5 @@ Partial Class frmProductoPrecio
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents txtCodigoM2 As System.Windows.Forms.TextBox
     Friend WithEvents ButtonGuardar As System.Windows.Forms.Button
-=======
-    Friend WithEvents Label19 As System.Windows.Forms.Label
-    Friend WithEvents txtProductoco As System.Windows.Forms.TextBox
-    Friend WithEvents txtProductomo1 As System.Windows.Forms.TextBox
-    Friend WithEvents Label12 As System.Windows.Forms.Label
-    Friend WithEvents txtProducto2 As System.Windows.Forms.TextBox
-    Friend WithEvents Label21 As System.Windows.Forms.Label
->>>>>>> d4ffa52f496609d5d9ba73dac46cb771dea599d8
 
 End Class
