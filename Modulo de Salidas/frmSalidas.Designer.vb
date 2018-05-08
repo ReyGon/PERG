@@ -119,6 +119,8 @@ Partial Class frmSalidas
         Me.chkReservado = New System.Windows.Forms.CheckBox()
         Me.chkCotizado = New System.Windows.Forms.CheckBox()
         Me.rgbTotal = New Telerik.WinControls.UI.RadGroupBox()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.lblDescPromociones = New System.Windows.Forms.Label()
         Me.lbAjuste = New System.Windows.Forms.Label()
         Me.lblSaldoAjuste = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -172,8 +174,6 @@ Partial Class frmSalidas
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
-        Me.Label25 = New System.Windows.Forms.Label()
-        Me.lblDescPromociones = New System.Windows.Forms.Label()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
         Me.pnx8Guias.SuspendLayout()
@@ -626,6 +626,7 @@ Partial Class frmSalidas
         GridViewTextBoxColumn12.IsVisible = False
         GridViewTextBoxColumn12.Name = "idsurtir"
         GridViewTextBoxColumn13.HeaderText = "cantidadSurtir"
+        GridViewTextBoxColumn13.IsVisible = False
         GridViewTextBoxColumn13.Name = "txmCantidadSurtir"
         GridViewTextBoxColumn13.Width = 83
         GridViewTextBoxColumn14.HeaderText = "idInventario"
@@ -638,6 +639,7 @@ Partial Class frmSalidas
         GridViewTextBoxColumn16.IsVisible = False
         GridViewTextBoxColumn16.Name = "clrEstado"
         GridViewTextBoxColumn17.HeaderText = "codigoSurtir"
+        GridViewTextBoxColumn17.IsVisible = False
         GridViewTextBoxColumn17.Name = "codigoSurtir"
         GridViewTextBoxColumn18.HeaderText = "bitSurtir"
         GridViewTextBoxColumn18.IsVisible = False
@@ -649,10 +651,13 @@ Partial Class frmSalidas
         GridViewTextBoxColumn20.IsVisible = False
         GridViewTextBoxColumn20.Name = "bitOfertas"
         GridViewTextBoxColumn21.HeaderText = "Promocion"
+        GridViewTextBoxColumn21.IsVisible = False
         GridViewTextBoxColumn21.Name = "Promocion"
         GridViewTextBoxColumn22.HeaderText = "CuotaPromocion"
+        GridViewTextBoxColumn22.IsVisible = False
         GridViewTextBoxColumn22.Name = "CuotaPromocion"
         GridViewTextBoxColumn23.HeaderText = "CantidadPromocion"
+        GridViewTextBoxColumn23.IsVisible = False
         GridViewTextBoxColumn23.Name = "CantidadPromocion"
         Me.grdProductos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4, GridViewDecimalColumn1, GridViewTextBoxColumn5, GridViewTextBoxColumn6, GridViewCheckBoxColumn1, GridViewTextBoxColumn7, GridViewTextBoxColumn8, GridViewTextBoxColumn9, GridViewTextBoxColumn10, GridViewTextBoxColumn11, GridViewTextBoxColumn12, GridViewTextBoxColumn13, GridViewTextBoxColumn14, GridViewTextBoxColumn15, GridViewTextBoxColumn16, GridViewTextBoxColumn17, GridViewTextBoxColumn18, GridViewTextBoxColumn19, GridViewTextBoxColumn20, GridViewTextBoxColumn21, GridViewTextBoxColumn22, GridViewTextBoxColumn23})
         Me.grdProductos.MasterTemplate.EnableAlternatingRowColor = True
@@ -1219,6 +1224,30 @@ Partial Class frmSalidas
         Me.rgbTotal.Size = New System.Drawing.Size(301, 236)
         Me.rgbTotal.TabIndex = 79
         Me.rgbTotal.ThemeName = "radGroupBoxAzul"
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.BackColor = System.Drawing.Color.Transparent
+        Me.Label25.Location = New System.Drawing.Point(8, 107)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(79, 26)
+        Me.Label25.TabIndex = 93
+        Me.Label25.Text = "Descuento" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Promociones :"
+        '
+        'lblDescPromociones
+        '
+        Me.lblDescPromociones.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblDescPromociones.BackColor = System.Drawing.Color.Transparent
+        Me.lblDescPromociones.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblDescPromociones.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDescPromociones.ForeColor = System.Drawing.Color.Black
+        Me.lblDescPromociones.Location = New System.Drawing.Point(90, 104)
+        Me.lblDescPromociones.Name = "lblDescPromociones"
+        Me.lblDescPromociones.Size = New System.Drawing.Size(202, 29)
+        Me.lblDescPromociones.TabIndex = 92
+        Me.lblDescPromociones.Text = "0"
+        Me.lblDescPromociones.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'lbAjuste
         '
@@ -1893,30 +1922,6 @@ Partial Class frmSalidas
         Me.Label28.Size = New System.Drawing.Size(96, 13)
         Me.Label28.TabIndex = 109
         Me.Label28.Text = "Pendiente Surtir :"
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.BackColor = System.Drawing.Color.Transparent
-        Me.Label25.Location = New System.Drawing.Point(8, 107)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(79, 26)
-        Me.Label25.TabIndex = 93
-        Me.Label25.Text = "Descuento" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Promociones :"
-        '
-        'lblDescPromociones
-        '
-        Me.lblDescPromociones.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblDescPromociones.BackColor = System.Drawing.Color.Transparent
-        Me.lblDescPromociones.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblDescPromociones.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDescPromociones.ForeColor = System.Drawing.Color.Black
-        Me.lblDescPromociones.Location = New System.Drawing.Point(90, 104)
-        Me.lblDescPromociones.Name = "lblDescPromociones"
-        Me.lblDescPromociones.Size = New System.Drawing.Size(202, 29)
-        Me.lblDescPromociones.TabIndex = 92
-        Me.lblDescPromociones.Text = "0"
-        Me.lblDescPromociones.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'frmSalidas
         '

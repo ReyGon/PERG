@@ -164,6 +164,7 @@ Partial Class frmClientes
         Me.chkMostrador = New System.Windows.Forms.CheckBox()
         Me.Label40 = New System.Windows.Forms.Label()
         Me.dtpFechaNac = New System.Windows.Forms.DateTimePicker()
+        Me.chkPromociones = New System.Windows.Forms.CheckBox()
         CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rpv, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -534,7 +535,7 @@ Partial Class frmClientes
         Me.grdTelefono.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdTelefono.Location = New System.Drawing.Point(197, 5)
         '
-        '
+        'grdTelefono
         '
         Me.grdTelefono.MasterTemplate.AllowAddNewRow = False
         GridViewTextBoxColumn1.HeaderText = "codigo"
@@ -672,7 +673,7 @@ Partial Class frmClientes
         Me.grdDirecciones.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdDirecciones.Location = New System.Drawing.Point(14, 108)
         '
-        '
+        'grdDirecciones
         '
         Me.grdDirecciones.MasterTemplate.AllowAddNewRow = False
         GridViewTextBoxColumn5.HeaderText = "codigo"
@@ -1136,7 +1137,7 @@ Partial Class frmClientes
         '
         Me.grdClasificacion.Location = New System.Drawing.Point(16, 68)
         '
-        '
+        'grdClasificacion
         '
         Me.grdClasificacion.MasterTemplate.AllowAddNewRow = False
         Me.grdClasificacion.MasterTemplate.AutoGenerateColumns = False
@@ -1204,7 +1205,7 @@ Partial Class frmClientes
         '
         Me.grdModelos.Location = New System.Drawing.Point(253, 68)
         '
-        '
+        'grdModelos
         '
         Me.grdModelos.MasterTemplate.AllowAddNewRow = False
         Me.grdModelos.MasterTemplate.AutoGenerateColumns = False
@@ -1296,7 +1297,7 @@ Partial Class frmClientes
         '
         Me.grdPrecios.Location = New System.Drawing.Point(21, 24)
         '
-        '
+        'grdPrecios
         '
         Me.grdPrecios.MasterTemplate.AllowAddNewRow = False
         Me.grdPrecios.MasterTemplate.AutoGenerateColumns = False
@@ -1359,7 +1360,7 @@ Partial Class frmClientes
         Me.grdFormatoImpresion.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdFormatoImpresion.Location = New System.Drawing.Point(313, 3)
         '
-        '
+        'grdFormatoImpresion
         '
         Me.grdFormatoImpresion.MasterTemplate.AllowAddNewRow = False
         GridViewTextBoxColumn23.HeaderText = "idDetalle"
@@ -1671,10 +1672,22 @@ Partial Class frmClientes
         Me.dtpFechaNac.Size = New System.Drawing.Size(84, 20)
         Me.dtpFechaNac.TabIndex = 181
         '
+        'chkPromociones
+        '
+        Me.chkPromociones.AutoSize = True
+        Me.chkPromociones.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.chkPromociones.Location = New System.Drawing.Point(710, 111)
+        Me.chkPromociones.Name = "chkPromociones"
+        Me.chkPromociones.Size = New System.Drawing.Size(106, 17)
+        Me.chkPromociones.TabIndex = 183
+        Me.chkPromociones.Text = "PROMOCIONES"
+        Me.chkPromociones.UseVisualStyleBackColor = True
+        '
         'frmClientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(1008, 430)
+        Me.Controls.Add(Me.chkPromociones)
         Me.Controls.Add(Me.Label40)
         Me.Controls.Add(Me.dtpFechaNac)
         Me.Controls.Add(Me.botonInfoCliente)
@@ -1710,6 +1723,7 @@ Partial Class frmClientes
         Me.Controls.SetChildIndex(Me.botonInfoCliente, 0)
         Me.Controls.SetChildIndex(Me.dtpFechaNac, 0)
         Me.Controls.SetChildIndex(Me.Label40, 0)
+        Me.Controls.SetChildIndex(Me.chkPromociones, 0)
         CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rpv, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1871,5 +1885,6 @@ Partial Class frmClientes
     Friend WithEvents cmbCategoriaCliente As System.Windows.Forms.ComboBox
     Friend WithEvents Label40 As System.Windows.Forms.Label
     Friend WithEvents dtpFechaNac As System.Windows.Forms.DateTimePicker
+    Friend WithEvents chkPromociones As System.Windows.Forms.CheckBox
 
 End Class

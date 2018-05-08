@@ -139,7 +139,7 @@ Partial Class frmProductoPrecio
         Me.grdOtrosPrecios2 = New Telerik.WinControls.UI.RadGridView()
         Me.RadGroupBox3 = New Telerik.WinControls.UI.RadGroupBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.panel1 = New System.Windows.Forms.Panel()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
@@ -1358,11 +1358,11 @@ Partial Class frmProductoPrecio
         '
         'Panel1
         '
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(101, 3)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(721, 87)
-        Me.Panel1.TabIndex = 0
+        Me.panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.panel1.Location = New System.Drawing.Point(101, 3)
+        Me.panel1.Name = "Panel1"
+        Me.panel1.Size = New System.Drawing.Size(721, 87)
+        Me.panel1.TabIndex = 0
         '
         'Label28
         '

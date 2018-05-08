@@ -106,8 +106,12 @@ Public Class frmFacturasElegir
 
                 If idproveedor > 0 Then
 
+<<<<<<< HEAD
                     'dt = EntitiToDataTable(conexion.sp_ConsultafacturasCompras(idproveedor))
 
+=======
+                    dt = EntitiToDataTable(conexion.sp_ConsultafacturasCompras(idproveedor))
+>>>>>>> 59ee5d728561fb7f66cc058ca213210ca6a295fa
 
 
                     ' Dim entradas As List(Of tblEntrada) = (From x In conexion.tblEntradas.AsEnumerable Where x.idProveedor = idproveedor Where x.saldo > 0 Select x Order By x.fechaRegistro Descending).ToList()

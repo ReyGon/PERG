@@ -83,6 +83,7 @@ Public Class frmClientes
                     Me.txtDireccion.Text = cliente.direccionEnvio1
                     Me.cmbCategoriaCliente.SelectedValue = cliente.idcategoria
                     Me.dtpFechaNac.Value = CDate(cliente.fechanac).ToShortDateString
+                    Me.chkPromociones.Checked = cliente.bitPromociones
                 End If
 
                 conn.Close()
@@ -478,6 +479,7 @@ Public Class frmClientes
                 m.direccionEnvio1 = txtDirEnvio1.Text
                 m.direccionEnvio2 = txtDirEnvio2.Text
                 m.idcategoria = Me.cmbCategoriaCliente.SelectedValue
+                m.bitPromociones = Me.chkPromociones.Checked
                 'm.competencias = nm0Competencias.Value
                 'm.motos = nm0Motos.Value
 
@@ -678,6 +680,7 @@ Public Class frmClientes
                     m.direccionEnvio1 = Me.txtDireccion.Text
                     m.idcategoria = Me.cmbCategoriaCliente.SelectedValue
                     m.fechanac = dtpFechaNac.Value.ToShortDateString
+                    m.bitPromociones = Me.chkPromociones.Checked
                     'm.competencias = nm0Competencias.Value
                     'm.motos = nm0Motos.Value
 
@@ -1393,5 +1396,9 @@ Public Class frmClientes
 
     Private Sub txtDirEnvio1_Leave(sender As Object, e As EventArgs) Handles txtDirEnvio1.Leave
         Me.txtDireccion.Text = Me.txtDirEnvio1.Text
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles chkPromociones.CheckedChanged
+
     End Sub
 End Class
