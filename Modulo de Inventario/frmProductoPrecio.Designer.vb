@@ -19,17 +19,15 @@ Partial Class frmProductoPrecio
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim GridViewCheckBoxColumn1 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn1 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn2 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn3 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn2 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn4 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn1 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn5 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn6 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn2 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewCheckBoxColumn3 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn7 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn4 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn8 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn9 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn10 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
@@ -37,80 +35,38 @@ Partial Class frmProductoPrecio
         Dim GridViewTextBoxColumn12 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn13 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn14 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn3 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn15 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn16 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn4 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewCheckBoxColumn5 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn17 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn6 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn18 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn19 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn20 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn21 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn22 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn23 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn7 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn24 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn25 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn5 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewTextBoxColumn26 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn27 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn6 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewCheckBoxColumn7 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewTextBoxColumn28 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewCheckBoxColumn8 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewCheckBoxColumn9 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewTextBoxColumn26 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn10 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewTextBoxColumn27 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn28 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn29 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn30 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn31 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn32 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn33 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn34 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn9 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn35 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn36 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn10 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewCheckBoxColumn11 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn37 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn12 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewTextBoxColumn38 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn39 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn40 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn41 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn42 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmProductoPrecio))
-        Me.rpv = New Telerik.WinControls.UI.RadPageView()
-        Me.pgPrecios = New Telerik.WinControls.UI.RadPageViewPage()
-        Me.grdOtrosPrecios = New Telerik.WinControls.UI.RadGridView()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.txtObservacion = New System.Windows.Forms.TextBox()
-        Me.grdPrecios = New Telerik.WinControls.UI.RadGridView()
-        Me.pgMotriza = New Telerik.WinControls.UI.RadPageViewPage()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.grdPreciosMotriza = New Telerik.WinControls.UI.RadGridView()
-        Me.grdOtrosPreciosSucursal = New Telerik.WinControls.UI.RadGridView()
-        Me.RadPageViewPage2 = New Telerik.WinControls.UI.RadPageViewPage()
-        Me.grdSustitutos = New Telerik.WinControls.UI.RadGridView()
-        Me.grdPreciosSustitutos = New Telerik.WinControls.UI.RadGridView()
-        Me.pgUltimasCompras = New Telerik.WinControls.UI.RadPageViewPage()
-        Me.grdUltimasCompras = New Telerik.WinControls.UI.RadGridView()
-        Me.pgUltimasVentas = New Telerik.WinControls.UI.RadPageViewPage()
-        Me.grdUltimasVentas = New Telerik.WinControls.UI.RadGridView()
-        Me.pageCompetencia = New Telerik.WinControls.UI.RadPageViewPage()
-        Me.btnPrecioCompetencia = New System.Windows.Forms.Button()
-        Me.grdPreciosCompe = New Telerik.WinControls.UI.RadGridView()
-        Me.RadPageViewPage4 = New Telerik.WinControls.UI.RadPageViewPage()
-        Me.RadPageViewPage3 = New Telerik.WinControls.UI.RadPageViewPage()
-        Me.lblVentaCompetencia = New System.Windows.Forms.Label()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.lblVentaMensua = New System.Windows.Forms.Label()
-        Me.lblVentaPromedio = New System.Windows.Forms.Label()
-        Me.lblCosto = New System.Windows.Forms.Label()
-        Me.lblCostoLocal = New System.Windows.Forms.Label()
-        Me.lblCostoImportacion = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label26 = New System.Windows.Forms.Label()
-        Me.Label27 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.txtPrecioPublico = New System.Windows.Forms.TextBox()
         Me.lblProductos = New System.Windows.Forms.Label()
@@ -124,7 +80,6 @@ Partial Class frmProductoPrecio
         Me.lblMinimo = New System.Windows.Forms.Label()
         Me.lblExistencia = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.grdOtrosPrecios2 = New Telerik.WinControls.UI.RadGridView()
         Me.lblCostoProm = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.cmbNombre1 = New System.Windows.Forms.ComboBox()
@@ -132,21 +87,100 @@ Partial Class frmProductoPrecio
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtPrecioPublicoMotriza = New System.Windows.Forms.TextBox()
         Me.cmbCodigo1 = New System.Windows.Forms.ComboBox()
+        Me.Pgclasificacion = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.ButtonGuardar = New System.Windows.Forms.Button()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.txtCodigoM1 = New System.Windows.Forms.TextBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.txtCodigoM2 = New System.Windows.Forms.TextBox()
+        Me.txtProductoM1 = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.txtProductoM2 = New System.Windows.Forms.TextBox()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.grdModeloVehiculo = New Telerik.WinControls.UI.RadGridView()
+        Me.chkUnidadMedida = New System.Windows.Forms.CheckBox()
+        Me.chkServicio = New System.Windows.Forms.CheckBox()
+        Me.chkProducto = New System.Windows.Forms.CheckBox()
+        Me.chkKit = New System.Windows.Forms.CheckBox()
+        Me.chkTodosModelo = New System.Windows.Forms.CheckBox()
+        Me.chkTodosVehiculo = New System.Windows.Forms.CheckBox()
+        Me.lblRecuentoModelo = New System.Windows.Forms.Label()
+        Me.lblRecuentoTipoVehiculo = New System.Windows.Forms.Label()
+        Me.grdTipoVehiculo = New Telerik.WinControls.UI.RadGridView()
+        Me.txtObs = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.cmbMarcaRepuesto = New System.Windows.Forms.ComboBox()
+        Me.lblGrid2 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.cmbTipoRepuesto = New System.Windows.Forms.ComboBox()
+        Me.lblGrid1 = New System.Windows.Forms.Label()
+        Me.cmbImportancia = New System.Windows.Forms.ComboBox()
+        Me.PgBodega = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.grdFotos = New Telerik.WinControls.UI.RadGridView()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.pctFoto = New System.Windows.Forms.PictureBox()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.txtUbicacionEstanteria = New System.Windows.Forms.TextBox()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.txtUbicacionCajas = New System.Windows.Forms.TextBox()
+        Me.PgPreciosSustitutos = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.grdSustitutos = New Telerik.WinControls.UI.RadGridView()
+        Me.grdPreciosSustitutos = New Telerik.WinControls.UI.RadGridView()
+        Me.pgUltimasCompras = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.grdUltimasCompras = New Telerik.WinControls.UI.RadGridView()
+        Me.pgUltimasVentas = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.grdUltimasVentas = New Telerik.WinControls.UI.RadGridView()
+        Me.PgPrimsa = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.grdOtrosPrecios = New Telerik.WinControls.UI.RadGridView()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtObservacion = New System.Windows.Forms.TextBox()
+        Me.grdPrecios = New Telerik.WinControls.UI.RadGridView()
+        Me.rpv = New Telerik.WinControls.UI.RadPageView()
+        Me.grdOtrosPrecios2 = New Telerik.WinControls.UI.RadGridView()
+        Me.RadGroupBox3 = New Telerik.WinControls.UI.RadGroupBox()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
+        Me.ComboBox4 = New System.Windows.Forms.ComboBox()
+        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.rgbInformacion = New Telerik.WinControls.UI.RadGroupBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.PgKardex = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
+        Me.rgbArticulo = New Telerik.WinControls.UI.RadGroupBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.lblCodigo = New System.Windows.Forms.Label()
+        Me.cmbArticulo = New System.Windows.Forms.ComboBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Button3 = New System.Windows.Forms.Button()
         CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.rpv, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.rpv.SuspendLayout()
-        Me.pgPrecios.SuspendLayout()
-        CType(Me.grdOtrosPrecios, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.grdOtrosPrecios.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.grdPrecios, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.grdPrecios.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pgMotriza.SuspendLayout()
-        CType(Me.grdPreciosMotriza, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.grdPreciosMotriza.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.grdOtrosPreciosSucursal, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.grdOtrosPreciosSucursal.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.RadPageViewPage2.SuspendLayout()
+        Me.Pgclasificacion.SuspendLayout()
+        CType(Me.grdModeloVehiculo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdModeloVehiculo.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdTipoVehiculo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdTipoVehiculo.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PgBodega.SuspendLayout()
+        CType(Me.grdFotos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdFotos.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pctFoto, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PgPreciosSustitutos.SuspendLayout()
         CType(Me.grdSustitutos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdSustitutos.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdPreciosSustitutos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -157,823 +191,35 @@ Partial Class frmProductoPrecio
         Me.pgUltimasVentas.SuspendLayout()
         CType(Me.grdUltimasVentas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdUltimasVentas.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pageCompetencia.SuspendLayout()
-        CType(Me.grdPreciosCompe, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.grdPreciosCompe.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.RadPageViewPage3.SuspendLayout()
+        Me.PgPrimsa.SuspendLayout()
+        CType(Me.grdOtrosPrecios, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdOtrosPrecios.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdPrecios, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdPrecios.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rpv, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.rpv.SuspendLayout()
         CType(Me.grdOtrosPrecios2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdOtrosPrecios2.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RadGroupBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rgbInformacion, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PgKardex.SuspendLayout()
+        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rgbArticulo, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.rgbArticulo.SuspendLayout()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'rgbDatos
         '
-        Me.rgbDatos.Location = New System.Drawing.Point(7, 540)
+        Me.rgbDatos.Location = New System.Drawing.Point(7, 733)
         '
         '
         '
         Me.rgbDatos.RootElement.ForeColor = System.Drawing.Color.DimGray
         Me.rgbDatos.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        Me.rgbDatos.Size = New System.Drawing.Size(1070, 150)
+        Me.rgbDatos.Size = New System.Drawing.Size(27, 0)
         Me.rgbDatos.Visible = False
-        '
-        'rpv
-        '
-        Me.rpv.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.rpv.BackColor = System.Drawing.Color.White
-        Me.rpv.Controls.Add(Me.pgPrecios)
-        Me.rpv.Controls.Add(Me.pgMotriza)
-        Me.rpv.Controls.Add(Me.RadPageViewPage2)
-        Me.rpv.Controls.Add(Me.pgUltimasCompras)
-        Me.rpv.Controls.Add(Me.pgUltimasVentas)
-        Me.rpv.Controls.Add(Me.pageCompetencia)
-        Me.rpv.Controls.Add(Me.RadPageViewPage4)
-        Me.rpv.Controls.Add(Me.RadPageViewPage3)
-        Me.rpv.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.rpv.Location = New System.Drawing.Point(7, 174)
-        Me.rpv.Name = "rpv"
-        Me.rpv.SelectedPage = Me.RadPageViewPage4
-        Me.rpv.Size = New System.Drawing.Size(1069, 515)
-        Me.rpv.TabIndex = 88
-        Me.rpv.Text = "Motriza"
-        CType(Me.rpv.GetChildAt(0), Telerik.WinControls.UI.RadPageViewStripElement).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll
-        '
-        'pgPrecios
-        '
-        Me.pgPrecios.Controls.Add(Me.grdOtrosPrecios)
-        Me.pgPrecios.Controls.Add(Me.Label1)
-        Me.pgPrecios.Controls.Add(Me.txtObservacion)
-        Me.pgPrecios.Controls.Add(Me.grdPrecios)
-        Me.pgPrecios.Location = New System.Drawing.Point(10, 44)
-        Me.pgPrecios.Name = "pgPrecios"
-        Me.pgPrecios.Size = New System.Drawing.Size(1048, 460)
-        Me.pgPrecios.Text = "Primsa"
-        '
-        'grdOtrosPrecios
-        '
-        Me.grdOtrosPrecios.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grdOtrosPrecios.BackColor = System.Drawing.Color.White
-        Me.grdOtrosPrecios.Cursor = System.Windows.Forms.Cursors.Default
-        Me.grdOtrosPrecios.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.grdOtrosPrecios.ForeColor = System.Drawing.Color.Gray
-        Me.grdOtrosPrecios.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.grdOtrosPrecios.Location = New System.Drawing.Point(0, 224)
-        '
-        'grdOtrosPrecios
-        '
-        Me.grdOtrosPrecios.MasterTemplate.AllowAddNewRow = False
-        GridViewTextBoxColumn1.HeaderText = "Codigo"
-        GridViewTextBoxColumn1.IsVisible = False
-        GridViewTextBoxColumn1.Name = "codigo"
-        GridViewTextBoxColumn2.HeaderText = "codPrecio"
-        GridViewTextBoxColumn2.IsVisible = False
-        GridViewTextBoxColumn2.Name = "codPrecio"
-        GridViewTextBoxColumn3.HeaderText = "Tipo Precio"
-        GridViewTextBoxColumn3.Name = "tipoPrecio"
-        GridViewTextBoxColumn3.ReadOnly = True
-        GridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn3.Width = 87
-        GridViewTextBoxColumn4.HeaderText = "Precio Base"
-        GridViewTextBoxColumn4.Name = "txmPrecio"
-        GridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn4.Width = 77
-        GridViewCheckBoxColumn1.HeaderText = "Activar"
-        GridViewCheckBoxColumn1.MinWidth = 20
-        GridViewCheckBoxColumn1.Name = "chmActiva"
-        GridViewCheckBoxColumn1.Width = 62
-        GridViewTextBoxColumn5.HeaderText = "Margen Utilidad"
-        GridViewTextBoxColumn5.Name = "MargenUtilidad"
-        GridViewTextBoxColumn5.ReadOnly = True
-        GridViewTextBoxColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn5.Width = 100
-        GridViewTextBoxColumn6.HeaderText = "Precio"
-        GridViewTextBoxColumn6.IsVisible = False
-        GridViewTextBoxColumn6.Name = "precio"
-        GridViewTextBoxColumn6.ReadOnly = True
-        GridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn6.Width = 73
-        GridViewCheckBoxColumn2.HeaderText = "Perdida"
-        GridViewCheckBoxColumn2.MinWidth = 20
-        GridViewCheckBoxColumn2.Name = "chmPerdida"
-        GridViewCheckBoxColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewCheckBoxColumn2.Width = 88
-        GridViewCheckBoxColumn3.HeaderText = "Cant. Estado"
-        GridViewCheckBoxColumn3.MinWidth = 20
-        GridViewCheckBoxColumn3.Name = "chmCantEstado"
-        GridViewCheckBoxColumn3.Width = 91
-        GridViewTextBoxColumn7.HeaderText = "Minima"
-        GridViewTextBoxColumn7.Name = "txmMinima"
-        GridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn7.Width = 72
-        GridViewCheckBoxColumn4.HeaderText = "Fecha Estado"
-        GridViewCheckBoxColumn4.MinWidth = 20
-        GridViewCheckBoxColumn4.Name = "chmFechaEstado"
-        GridViewCheckBoxColumn4.Width = 100
-        GridViewTextBoxColumn8.HeaderText = "Fecha Inicio"
-        GridViewTextBoxColumn8.Name = "txbFechaInicio"
-        GridViewTextBoxColumn8.ReadOnly = True
-        GridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn8.Width = 109
-        GridViewTextBoxColumn9.HeaderText = "Fecha Final"
-        GridViewTextBoxColumn9.Name = "txbFechaFinal"
-        GridViewTextBoxColumn9.ReadOnly = True
-        GridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn9.Width = 109
-        Me.grdOtrosPrecios.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4, GridViewCheckBoxColumn1, GridViewTextBoxColumn5, GridViewTextBoxColumn6, GridViewCheckBoxColumn2, GridViewCheckBoxColumn3, GridViewTextBoxColumn7, GridViewCheckBoxColumn4, GridViewTextBoxColumn8, GridViewTextBoxColumn9})
-        Me.grdOtrosPrecios.MasterTemplate.EnableGrouping = False
-        Me.grdOtrosPrecios.Name = "grdOtrosPrecios"
-        Me.grdOtrosPrecios.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdOtrosPrecios.RightToLeft = System.Windows.Forms.RightToLeft.No
-        '
-        '
-        '
-        Me.grdOtrosPrecios.RootElement.ForeColor = System.Drawing.Color.Gray
-        Me.grdOtrosPrecios.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdOtrosPrecios.Size = New System.Drawing.Size(1047, 238)
-        Me.grdOtrosPrecios.TabIndex = 166
-        Me.grdOtrosPrecios.ThemeName = "Office2007Black"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(661, 23)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(129, 21)
-        Me.Label1.TabIndex = 183
-        Me.Label1.Text = "Observaciones :"
-        '
-        'txtObservacion
-        '
-        Me.txtObservacion.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtObservacion.Location = New System.Drawing.Point(662, 58)
-        Me.txtObservacion.Multiline = True
-        Me.txtObservacion.Name = "txtObservacion"
-        Me.txtObservacion.Size = New System.Drawing.Size(386, 160)
-        Me.txtObservacion.TabIndex = 168
-        '
-        'grdPrecios
-        '
-        Me.grdPrecios.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grdPrecios.BackColor = System.Drawing.Color.White
-        Me.grdPrecios.Cursor = System.Windows.Forms.Cursors.Default
-        Me.grdPrecios.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.grdPrecios.ForeColor = System.Drawing.Color.Gray
-        Me.grdPrecios.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.grdPrecios.Location = New System.Drawing.Point(0, 12)
-        '
-        'grdPrecios
-        '
-        Me.grdPrecios.MasterTemplate.AllowAddNewRow = False
-        Me.grdPrecios.MasterTemplate.AllowColumnReorder = False
-        GridViewTextBoxColumn10.HeaderText = "Codigo"
-        GridViewTextBoxColumn10.IsVisible = False
-        GridViewTextBoxColumn10.Name = "codigo"
-        GridViewTextBoxColumn11.HeaderText = "codigoTipo"
-        GridViewTextBoxColumn11.IsVisible = False
-        GridViewTextBoxColumn11.Name = "codTipoNegocio"
-        GridViewTextBoxColumn12.HeaderText = "Tipo de Negocio"
-        GridViewTextBoxColumn12.Name = "tipoNegocio"
-        GridViewTextBoxColumn12.ReadOnly = True
-        GridViewTextBoxColumn12.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn12.Width = 176
-        GridViewTextBoxColumn13.HeaderText = "Descuento"
-        GridViewTextBoxColumn13.Name = "txmDescuento"
-        GridViewTextBoxColumn13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn13.Width = 110
-        GridViewTextBoxColumn14.HeaderText = "Precio Normal"
-        GridViewTextBoxColumn14.Name = "precioNormal"
-        GridViewTextBoxColumn14.ReadOnly = True
-        GridViewTextBoxColumn14.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn14.Width = 102
-        GridViewTextBoxColumn15.HeaderText = "Margen Utilidad"
-        GridViewTextBoxColumn15.Name = "utilidad"
-        GridViewTextBoxColumn15.ReadOnly = True
-        GridViewTextBoxColumn15.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn15.Width = 97
-        Me.grdPrecios.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn10, GridViewTextBoxColumn11, GridViewTextBoxColumn12, GridViewTextBoxColumn13, GridViewTextBoxColumn14, GridViewTextBoxColumn15})
-        Me.grdPrecios.MasterTemplate.EnableGrouping = False
-        Me.grdPrecios.Name = "grdPrecios"
-        Me.grdPrecios.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdPrecios.RightToLeft = System.Windows.Forms.RightToLeft.No
-        '
-        '
-        '
-        Me.grdPrecios.RootElement.ForeColor = System.Drawing.Color.Gray
-        Me.grdPrecios.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdPrecios.Size = New System.Drawing.Size(655, 206)
-        Me.grdPrecios.TabIndex = 165
-        Me.grdPrecios.ThemeName = "Office2007Black"
-        '
-        'pgMotriza
-        '
-        Me.pgMotriza.Controls.Add(Me.Label4)
-        Me.pgMotriza.Controls.Add(Me.TextBox1)
-        Me.pgMotriza.Controls.Add(Me.grdPreciosMotriza)
-        Me.pgMotriza.Controls.Add(Me.grdOtrosPreciosSucursal)
-        Me.pgMotriza.Location = New System.Drawing.Point(10, 44)
-        Me.pgMotriza.Name = "pgMotriza"
-        Me.pgMotriza.Size = New System.Drawing.Size(1048, 460)
-        Me.pgMotriza.Text = "Motriza"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(660, 23)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(129, 21)
-        Me.Label4.TabIndex = 186
-        Me.Label4.Text = "Observaciones :"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(661, 58)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(384, 160)
-        Me.TextBox1.TabIndex = 185
-        '
-        'grdPreciosMotriza
-        '
-        Me.grdPreciosMotriza.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grdPreciosMotriza.BackColor = System.Drawing.Color.White
-        Me.grdPreciosMotriza.Cursor = System.Windows.Forms.Cursors.Default
-        Me.grdPreciosMotriza.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.grdPreciosMotriza.ForeColor = System.Drawing.Color.Gray
-        Me.grdPreciosMotriza.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.grdPreciosMotriza.Location = New System.Drawing.Point(0, 12)
-        '
-        '
-        '
-        Me.grdPreciosMotriza.MasterTemplate.AllowAddNewRow = False
-        Me.grdPreciosMotriza.MasterTemplate.AllowColumnReorder = False
-        GridViewTextBoxColumn16.HeaderText = "Codigo"
-        GridViewTextBoxColumn16.IsVisible = False
-        GridViewTextBoxColumn16.Name = "codigo"
-        GridViewTextBoxColumn17.HeaderText = "codigoTipo"
-        GridViewTextBoxColumn17.IsVisible = False
-        GridViewTextBoxColumn17.Name = "codTipoNegocio"
-        GridViewTextBoxColumn18.HeaderText = "Tipo de Negocio"
-        GridViewTextBoxColumn18.Name = "tipoNegocio"
-        GridViewTextBoxColumn18.ReadOnly = True
-        GridViewTextBoxColumn18.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn18.Width = 176
-        GridViewTextBoxColumn19.HeaderText = "Descuento"
-        GridViewTextBoxColumn19.Name = "txmDescuento"
-        GridViewTextBoxColumn19.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn19.Width = 110
-        GridViewTextBoxColumn20.HeaderText = "Precio Normal"
-        GridViewTextBoxColumn20.Name = "precioNormal"
-        GridViewTextBoxColumn20.ReadOnly = True
-        GridViewTextBoxColumn20.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn20.Width = 102
-        GridViewTextBoxColumn21.HeaderText = "Margen Utilidad"
-        GridViewTextBoxColumn21.Name = "utilidad"
-        GridViewTextBoxColumn21.ReadOnly = True
-        GridViewTextBoxColumn21.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn21.Width = 97
-        Me.grdPreciosMotriza.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn16, GridViewTextBoxColumn17, GridViewTextBoxColumn18, GridViewTextBoxColumn19, GridViewTextBoxColumn20, GridViewTextBoxColumn21})
-        Me.grdPreciosMotriza.MasterTemplate.EnableGrouping = False
-        Me.grdPreciosMotriza.Name = "grdPreciosMotriza"
-        Me.grdPreciosMotriza.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdPreciosMotriza.RightToLeft = System.Windows.Forms.RightToLeft.No
-        '
-        '
-        '
-        Me.grdPreciosMotriza.RootElement.ForeColor = System.Drawing.Color.Gray
-        Me.grdPreciosMotriza.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdPreciosMotriza.Size = New System.Drawing.Size(654, 206)
-        Me.grdPreciosMotriza.TabIndex = 184
-        Me.grdPreciosMotriza.ThemeName = "Office2007Black"
-        '
-        'grdOtrosPreciosSucursal
-        '
-        Me.grdOtrosPreciosSucursal.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grdOtrosPreciosSucursal.BackColor = System.Drawing.Color.White
-        Me.grdOtrosPreciosSucursal.Cursor = System.Windows.Forms.Cursors.Default
-        Me.grdOtrosPreciosSucursal.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.grdOtrosPreciosSucursal.ForeColor = System.Drawing.Color.Gray
-        Me.grdOtrosPreciosSucursal.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.grdOtrosPreciosSucursal.Location = New System.Drawing.Point(0, 224)
-        '
-        '
-        '
-        Me.grdOtrosPreciosSucursal.MasterTemplate.AllowAddNewRow = False
-        GridViewTextBoxColumn22.HeaderText = "Codigo"
-        GridViewTextBoxColumn22.IsVisible = False
-        GridViewTextBoxColumn22.Name = "codigo"
-        GridViewTextBoxColumn23.HeaderText = "codPrecio"
-        GridViewTextBoxColumn23.IsVisible = False
-        GridViewTextBoxColumn23.Name = "codPrecio"
-        GridViewTextBoxColumn24.HeaderText = "Tipo Precio"
-        GridViewTextBoxColumn24.Name = "tipoPrecio"
-        GridViewTextBoxColumn24.ReadOnly = True
-        GridViewTextBoxColumn24.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn24.Width = 87
-        GridViewTextBoxColumn25.HeaderText = "Precio Sucursal"
-        GridViewTextBoxColumn25.Name = "txmPreciosucursal"
-        GridViewTextBoxColumn25.Width = 125
-        GridViewCheckBoxColumn5.HeaderText = "Activar"
-        GridViewCheckBoxColumn5.MinWidth = 20
-        GridViewCheckBoxColumn5.Name = "chmActiva"
-        GridViewCheckBoxColumn5.Width = 62
-        GridViewTextBoxColumn26.HeaderText = "Margen Utilidad"
-        GridViewTextBoxColumn26.Name = "MargenUtilidad"
-        GridViewTextBoxColumn26.ReadOnly = True
-        GridViewTextBoxColumn26.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn26.Width = 100
-        GridViewTextBoxColumn27.HeaderText = "Precio"
-        GridViewTextBoxColumn27.IsVisible = False
-        GridViewTextBoxColumn27.Name = "precio"
-        GridViewTextBoxColumn27.ReadOnly = True
-        GridViewTextBoxColumn27.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn27.Width = 73
-        GridViewCheckBoxColumn6.HeaderText = "Perdida"
-        GridViewCheckBoxColumn6.MinWidth = 20
-        GridViewCheckBoxColumn6.Name = "chmPerdida"
-        GridViewCheckBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewCheckBoxColumn6.Width = 88
-        GridViewCheckBoxColumn7.HeaderText = "Cant. Estado"
-        GridViewCheckBoxColumn7.MinWidth = 20
-        GridViewCheckBoxColumn7.Name = "chmCantEstado"
-        GridViewCheckBoxColumn7.Width = 100
-        GridViewTextBoxColumn28.HeaderText = "Minima"
-        GridViewTextBoxColumn28.Name = "txmMinima"
-        GridViewTextBoxColumn28.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn28.Width = 72
-        GridViewCheckBoxColumn8.HeaderText = "Fecha Estado"
-        GridViewCheckBoxColumn8.MinWidth = 20
-        GridViewCheckBoxColumn8.Name = "chmFechaEstado"
-        GridViewCheckBoxColumn8.Width = 110
-        GridViewTextBoxColumn29.HeaderText = "Fecha Inicio"
-        GridViewTextBoxColumn29.Name = "txbFechaInicio"
-        GridViewTextBoxColumn29.ReadOnly = True
-        GridViewTextBoxColumn29.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn29.Width = 115
-        GridViewTextBoxColumn30.HeaderText = "Fecha Final"
-        GridViewTextBoxColumn30.Name = "txbFechaFinal"
-        GridViewTextBoxColumn30.ReadOnly = True
-        GridViewTextBoxColumn30.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn30.Width = 115
-        Me.grdOtrosPreciosSucursal.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn22, GridViewTextBoxColumn23, GridViewTextBoxColumn24, GridViewTextBoxColumn25, GridViewCheckBoxColumn5, GridViewTextBoxColumn26, GridViewTextBoxColumn27, GridViewCheckBoxColumn6, GridViewCheckBoxColumn7, GridViewTextBoxColumn28, GridViewCheckBoxColumn8, GridViewTextBoxColumn29, GridViewTextBoxColumn30})
-        Me.grdOtrosPreciosSucursal.MasterTemplate.EnableGrouping = False
-        Me.grdOtrosPreciosSucursal.Name = "grdOtrosPreciosSucursal"
-        Me.grdOtrosPreciosSucursal.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdOtrosPreciosSucursal.RightToLeft = System.Windows.Forms.RightToLeft.No
-        '
-        '
-        '
-        Me.grdOtrosPreciosSucursal.RootElement.ForeColor = System.Drawing.Color.Gray
-        Me.grdOtrosPreciosSucursal.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdOtrosPreciosSucursal.Size = New System.Drawing.Size(1047, 233)
-        Me.grdOtrosPreciosSucursal.TabIndex = 168
-        Me.grdOtrosPreciosSucursal.ThemeName = "Office2007Black"
-        '
-        'RadPageViewPage2
-        '
-        Me.RadPageViewPage2.Controls.Add(Me.grdSustitutos)
-        Me.RadPageViewPage2.Controls.Add(Me.grdPreciosSustitutos)
-        Me.RadPageViewPage2.Location = New System.Drawing.Point(10, 44)
-        Me.RadPageViewPage2.Name = "RadPageViewPage2"
-        Me.RadPageViewPage2.Size = New System.Drawing.Size(1048, 460)
-        Me.RadPageViewPage2.Text = "Precios Sustitutos"
-        '
-        'grdSustitutos
-        '
-        Me.grdSustitutos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grdSustitutos.BackColor = System.Drawing.Color.White
-        Me.grdSustitutos.Cursor = System.Windows.Forms.Cursors.Default
-        Me.grdSustitutos.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.grdSustitutos.ForeColor = System.Drawing.Color.Gray
-        Me.grdSustitutos.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.grdSustitutos.Location = New System.Drawing.Point(1, 13)
-        '
-        '
-        '
-        Me.grdSustitutos.MasterTemplate.AllowAddNewRow = False
-        Me.grdSustitutos.MasterTemplate.EnableGrouping = False
-        Me.grdSustitutos.Name = "grdSustitutos"
-        Me.grdSustitutos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdSustitutos.RightToLeft = System.Windows.Forms.RightToLeft.No
-        '
-        '
-        '
-        Me.grdSustitutos.RootElement.ForeColor = System.Drawing.Color.Gray
-        Me.grdSustitutos.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdSustitutos.Size = New System.Drawing.Size(1044, 428)
-        Me.grdSustitutos.TabIndex = 168
-        Me.grdSustitutos.ThemeName = "Office2007Black"
-        '
-        'grdPreciosSustitutos
-        '
-        Me.grdPreciosSustitutos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grdPreciosSustitutos.BackColor = System.Drawing.Color.White
-        Me.grdPreciosSustitutos.Cursor = System.Windows.Forms.Cursors.Default
-        Me.grdPreciosSustitutos.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.grdPreciosSustitutos.ForeColor = System.Drawing.Color.Gray
-        Me.grdPreciosSustitutos.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.grdPreciosSustitutos.Location = New System.Drawing.Point(3, 338)
-        '
-        '
-        '
-        Me.grdPreciosSustitutos.MasterTemplate.AllowAddNewRow = False
-        GridViewTextBoxColumn31.HeaderText = "Codigo"
-        GridViewTextBoxColumn31.IsVisible = False
-        GridViewTextBoxColumn31.Name = "codigo"
-        GridViewTextBoxColumn32.HeaderText = "codPrecio"
-        GridViewTextBoxColumn32.IsVisible = False
-        GridViewTextBoxColumn32.Name = "codPrecio"
-        GridViewTextBoxColumn33.HeaderText = "Tipo Precio"
-        GridViewTextBoxColumn33.Name = "tipoPrecio"
-        GridViewTextBoxColumn33.ReadOnly = True
-        GridViewTextBoxColumn33.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn33.Width = 87
-        GridViewTextBoxColumn34.HeaderText = "Precio Base"
-        GridViewTextBoxColumn34.Name = "txmPrecio"
-        GridViewTextBoxColumn34.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn34.Width = 77
-        GridViewCheckBoxColumn9.HeaderText = "Activar"
-        GridViewCheckBoxColumn9.MinWidth = 20
-        GridViewCheckBoxColumn9.Name = "chmActiva"
-        GridViewCheckBoxColumn9.Width = 62
-        GridViewTextBoxColumn35.HeaderText = "Margen Utilidad"
-        GridViewTextBoxColumn35.Name = "MargenUtilidad"
-        GridViewTextBoxColumn35.ReadOnly = True
-        GridViewTextBoxColumn35.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn35.Width = 100
-        GridViewTextBoxColumn36.HeaderText = "Precio"
-        GridViewTextBoxColumn36.IsVisible = False
-        GridViewTextBoxColumn36.Name = "precio"
-        GridViewTextBoxColumn36.ReadOnly = True
-        GridViewTextBoxColumn36.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn36.Width = 73
-        GridViewCheckBoxColumn10.HeaderText = "Perdida"
-        GridViewCheckBoxColumn10.MinWidth = 20
-        GridViewCheckBoxColumn10.Name = "chmPerdida"
-        GridViewCheckBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewCheckBoxColumn10.Width = 88
-        GridViewCheckBoxColumn11.HeaderText = "Cant. Estado"
-        GridViewCheckBoxColumn11.MinWidth = 20
-        GridViewCheckBoxColumn11.Name = "chmCantEstado"
-        GridViewCheckBoxColumn11.Width = 91
-        GridViewTextBoxColumn37.HeaderText = "Minima"
-        GridViewTextBoxColumn37.Name = "txmMinima"
-        GridViewTextBoxColumn37.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn37.Width = 72
-        GridViewCheckBoxColumn12.HeaderText = "Fecha Estado"
-        GridViewCheckBoxColumn12.MinWidth = 20
-        GridViewCheckBoxColumn12.Name = "chmFechaEstado"
-        GridViewCheckBoxColumn12.Width = 100
-        GridViewTextBoxColumn38.HeaderText = "Fecha Inicio"
-        GridViewTextBoxColumn38.Name = "txbFechaInicio"
-        GridViewTextBoxColumn38.ReadOnly = True
-        GridViewTextBoxColumn38.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn38.Width = 109
-        GridViewTextBoxColumn39.HeaderText = "Fecha Final"
-        GridViewTextBoxColumn39.Name = "txbFechaFinal"
-        GridViewTextBoxColumn39.ReadOnly = True
-        GridViewTextBoxColumn39.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn39.Width = 109
-        Me.grdPreciosSustitutos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn31, GridViewTextBoxColumn32, GridViewTextBoxColumn33, GridViewTextBoxColumn34, GridViewCheckBoxColumn9, GridViewTextBoxColumn35, GridViewTextBoxColumn36, GridViewCheckBoxColumn10, GridViewCheckBoxColumn11, GridViewTextBoxColumn37, GridViewCheckBoxColumn12, GridViewTextBoxColumn38, GridViewTextBoxColumn39})
-        Me.grdPreciosSustitutos.MasterTemplate.EnableGrouping = False
-        Me.grdPreciosSustitutos.Name = "grdPreciosSustitutos"
-        Me.grdPreciosSustitutos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdPreciosSustitutos.RightToLeft = System.Windows.Forms.RightToLeft.No
-        '
-        '
-        '
-        Me.grdPreciosSustitutos.RootElement.ForeColor = System.Drawing.Color.Gray
-        Me.grdPreciosSustitutos.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdPreciosSustitutos.Size = New System.Drawing.Size(1044, 119)
-        Me.grdPreciosSustitutos.TabIndex = 167
-        Me.grdPreciosSustitutos.ThemeName = "Office2007Black"
-        Me.grdPreciosSustitutos.Visible = False
-        '
-        'pgUltimasCompras
-        '
-        Me.pgUltimasCompras.Controls.Add(Me.grdUltimasCompras)
-        Me.pgUltimasCompras.Location = New System.Drawing.Point(10, 44)
-        Me.pgUltimasCompras.Name = "pgUltimasCompras"
-        Me.pgUltimasCompras.Size = New System.Drawing.Size(1048, 460)
-        Me.pgUltimasCompras.Text = "Ultimas Compras"
-        '
-        'grdUltimasCompras
-        '
-        Me.grdUltimasCompras.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grdUltimasCompras.Location = New System.Drawing.Point(20, 22)
-        '
-        '
-        '
-        Me.grdUltimasCompras.MasterTemplate.AllowAddNewRow = False
-        Me.grdUltimasCompras.Name = "grdUltimasCompras"
-        Me.grdUltimasCompras.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdUltimasCompras.ReadOnly = True
-        '
-        '
-        '
-        Me.grdUltimasCompras.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdUltimasCompras.Size = New System.Drawing.Size(1011, 435)
-        Me.grdUltimasCompras.TabIndex = 0
-        Me.grdUltimasCompras.Text = "RadGridView1"
-        Me.grdUltimasCompras.ThemeName = "Office2007Black"
-        '
-        'pgUltimasVentas
-        '
-        Me.pgUltimasVentas.Controls.Add(Me.grdUltimasVentas)
-        Me.pgUltimasVentas.Location = New System.Drawing.Point(10, 44)
-        Me.pgUltimasVentas.Name = "pgUltimasVentas"
-        Me.pgUltimasVentas.Size = New System.Drawing.Size(1048, 460)
-        Me.pgUltimasVentas.Text = "Ultimas Ventas"
-        '
-        'grdUltimasVentas
-        '
-        Me.grdUltimasVentas.BackColor = System.Drawing.Color.FromArgb(CType(CType(233, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(249, Byte), Integer))
-        Me.grdUltimasVentas.Cursor = System.Windows.Forms.Cursors.Default
-        Me.grdUltimasVentas.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.grdUltimasVentas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.grdUltimasVentas.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.grdUltimasVentas.Location = New System.Drawing.Point(19, 12)
-        '
-        '
-        '
-        Me.grdUltimasVentas.MasterTemplate.AllowAddNewRow = False
-        Me.grdUltimasVentas.MasterTemplate.EnableGrouping = False
-        Me.grdUltimasVentas.Name = "grdUltimasVentas"
-        Me.grdUltimasVentas.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdUltimasVentas.ReadOnly = True
-        Me.grdUltimasVentas.RightToLeft = System.Windows.Forms.RightToLeft.No
-        '
-        '
-        '
-        Me.grdUltimasVentas.RootElement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.grdUltimasVentas.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdUltimasVentas.Size = New System.Drawing.Size(1011, 326)
-        Me.grdUltimasVentas.TabIndex = 1
-        Me.grdUltimasVentas.Text = "RadGridView1"
-        Me.grdUltimasVentas.ThemeName = "Office2007Black"
-        '
-        'pageCompetencia
-        '
-        Me.pageCompetencia.Controls.Add(Me.btnPrecioCompetencia)
-        Me.pageCompetencia.Controls.Add(Me.grdPreciosCompe)
-        Me.pageCompetencia.Location = New System.Drawing.Point(10, 44)
-        Me.pageCompetencia.Name = "pageCompetencia"
-        Me.pageCompetencia.Size = New System.Drawing.Size(1048, 460)
-        Me.pageCompetencia.Text = "Precio de Competencia"
-        '
-        'btnPrecioCompetencia
-        '
-        Me.btnPrecioCompetencia.BackColor = System.Drawing.Color.SteelBlue
-        Me.btnPrecioCompetencia.FlatAppearance.BorderSize = 0
-        Me.btnPrecioCompetencia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
-        Me.btnPrecioCompetencia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.btnPrecioCompetencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnPrecioCompetencia.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnPrecioCompetencia.ForeColor = System.Drawing.Color.Transparent
-        Me.btnPrecioCompetencia.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnPrecioCompetencia.Location = New System.Drawing.Point(24, 3)
-        Me.btnPrecioCompetencia.Name = "btnPrecioCompetencia"
-        Me.btnPrecioCompetencia.Size = New System.Drawing.Size(99, 46)
-        Me.btnPrecioCompetencia.TabIndex = 176
-        Me.btnPrecioCompetencia.Text = "Precio Competencia"
-        Me.btnPrecioCompetencia.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnPrecioCompetencia.UseVisualStyleBackColor = False
-        '
-        'grdPreciosCompe
-        '
-        Me.grdPreciosCompe.BackColor = System.Drawing.Color.FromArgb(CType(CType(233, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(249, Byte), Integer))
-        Me.grdPreciosCompe.Cursor = System.Windows.Forms.Cursors.Default
-        Me.grdPreciosCompe.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.grdPreciosCompe.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.grdPreciosCompe.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.grdPreciosCompe.Location = New System.Drawing.Point(19, 53)
-        '
-        '
-        '
-        Me.grdPreciosCompe.MasterTemplate.AllowAddNewRow = False
-        Me.grdPreciosCompe.MasterTemplate.EnableGrouping = False
-        Me.grdPreciosCompe.Name = "grdPreciosCompe"
-        Me.grdPreciosCompe.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdPreciosCompe.ReadOnly = True
-        Me.grdPreciosCompe.RightToLeft = System.Windows.Forms.RightToLeft.No
-        '
-        '
-        '
-        Me.grdPreciosCompe.RootElement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.grdPreciosCompe.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdPreciosCompe.Size = New System.Drawing.Size(1011, 285)
-        Me.grdPreciosCompe.TabIndex = 2
-        Me.grdPreciosCompe.Text = "RadGridView1"
-        Me.grdPreciosCompe.ThemeName = "Office2007Black"
-        '
-        'RadPageViewPage4
-        '
-        Me.RadPageViewPage4.Location = New System.Drawing.Point(10, 44)
-        Me.RadPageViewPage4.Name = "RadPageViewPage4"
-        Me.RadPageViewPage4.Size = New System.Drawing.Size(1048, 460)
-        Me.RadPageViewPage4.Text = "Ventas Art. Vrs. Sustitutos"
-        '
-        'RadPageViewPage3
-        '
-        Me.RadPageViewPage3.Controls.Add(Me.lblVentaCompetencia)
-        Me.RadPageViewPage3.Controls.Add(Me.Label22)
-        Me.RadPageViewPage3.Controls.Add(Me.lblVentaMensua)
-        Me.RadPageViewPage3.Controls.Add(Me.lblVentaPromedio)
-        Me.RadPageViewPage3.Controls.Add(Me.lblCosto)
-        Me.RadPageViewPage3.Controls.Add(Me.lblCostoLocal)
-        Me.RadPageViewPage3.Controls.Add(Me.lblCostoImportacion)
-        Me.RadPageViewPage3.Controls.Add(Me.Label11)
-        Me.RadPageViewPage3.Controls.Add(Me.Label8)
-        Me.RadPageViewPage3.Controls.Add(Me.Label7)
-        Me.RadPageViewPage3.Controls.Add(Me.Label6)
-        Me.RadPageViewPage3.Controls.Add(Me.Label5)
-        Me.RadPageViewPage3.Controls.Add(Me.Label26)
-        Me.RadPageViewPage3.Controls.Add(Me.Label27)
-        Me.RadPageViewPage3.Location = New System.Drawing.Point(10, 44)
-        Me.RadPageViewPage3.Name = "RadPageViewPage3"
-        Me.RadPageViewPage3.Size = New System.Drawing.Size(1048, 460)
-        Me.RadPageViewPage3.Text = "Ventas Vrs. Existencias"
-        '
-        'lblVentaCompetencia
-        '
-        Me.lblVentaCompetencia.AutoSize = True
-        Me.lblVentaCompetencia.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.lblVentaCompetencia.ForeColor = System.Drawing.Color.Black
-        Me.lblVentaCompetencia.Location = New System.Drawing.Point(360, 81)
-        Me.lblVentaCompetencia.Name = "lblVentaCompetencia"
-        Me.lblVentaCompetencia.Size = New System.Drawing.Size(31, 20)
-        Me.lblVentaCompetencia.TabIndex = 181
-        Me.lblVentaCompetencia.Text = "0.0"
-        Me.lblVentaCompetencia.Visible = False
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label22.Location = New System.Drawing.Point(240, 85)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(114, 13)
-        Me.Label22.TabIndex = 180
-        Me.Label22.Text = "Venta Competencia :"
-        Me.Label22.Visible = False
-        '
-        'lblVentaMensua
-        '
-        Me.lblVentaMensua.AutoSize = True
-        Me.lblVentaMensua.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.lblVentaMensua.ForeColor = System.Drawing.Color.Black
-        Me.lblVentaMensua.Location = New System.Drawing.Point(360, 60)
-        Me.lblVentaMensua.Name = "lblVentaMensua"
-        Me.lblVentaMensua.Size = New System.Drawing.Size(31, 20)
-        Me.lblVentaMensua.TabIndex = 179
-        Me.lblVentaMensua.Text = "0.0"
-        Me.lblVentaMensua.Visible = False
-        '
-        'lblVentaPromedio
-        '
-        Me.lblVentaPromedio.AutoSize = True
-        Me.lblVentaPromedio.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.lblVentaPromedio.ForeColor = System.Drawing.Color.Black
-        Me.lblVentaPromedio.Location = New System.Drawing.Point(360, 35)
-        Me.lblVentaPromedio.Name = "lblVentaPromedio"
-        Me.lblVentaPromedio.Size = New System.Drawing.Size(31, 20)
-        Me.lblVentaPromedio.TabIndex = 178
-        Me.lblVentaPromedio.Text = "0.0"
-        Me.lblVentaPromedio.Visible = False
-        '
-        'lblCosto
-        '
-        Me.lblCosto.AutoSize = True
-        Me.lblCosto.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.lblCosto.ForeColor = System.Drawing.Color.Black
-        Me.lblCosto.Location = New System.Drawing.Point(110, 75)
-        Me.lblCosto.Name = "lblCosto"
-        Me.lblCosto.Size = New System.Drawing.Size(31, 20)
-        Me.lblCosto.TabIndex = 177
-        Me.lblCosto.Text = "0.0"
-        Me.lblCosto.Visible = False
-        '
-        'lblCostoLocal
-        '
-        Me.lblCostoLocal.AutoSize = True
-        Me.lblCostoLocal.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.lblCostoLocal.ForeColor = System.Drawing.Color.Black
-        Me.lblCostoLocal.Location = New System.Drawing.Point(110, 55)
-        Me.lblCostoLocal.Name = "lblCostoLocal"
-        Me.lblCostoLocal.Size = New System.Drawing.Size(31, 20)
-        Me.lblCostoLocal.TabIndex = 176
-        Me.lblCostoLocal.Text = "0.0"
-        Me.lblCostoLocal.Visible = False
-        '
-        'lblCostoImportacion
-        '
-        Me.lblCostoImportacion.AutoSize = True
-        Me.lblCostoImportacion.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.lblCostoImportacion.ForeColor = System.Drawing.Color.Black
-        Me.lblCostoImportacion.Location = New System.Drawing.Point(109, 35)
-        Me.lblCostoImportacion.Name = "lblCostoImportacion"
-        Me.lblCostoImportacion.Size = New System.Drawing.Size(31, 20)
-        Me.lblCostoImportacion.TabIndex = 175
-        Me.lblCostoImportacion.Text = "0.0"
-        Me.lblCostoImportacion.Visible = False
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label11.ForeColor = System.Drawing.Color.Black
-        Me.Label11.Location = New System.Drawing.Point(225, 9)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(186, 21)
-        Me.Label11.TabIndex = 174
-        Me.Label11.Text = "Información de Precios"
-        Me.Label11.Visible = False
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label8.Location = New System.Drawing.Point(40, 80)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(64, 13)
-        Me.Label8.TabIndex = 173
-        Me.Label8.Text = "Promedio :"
-        Me.Label8.Visible = False
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label7.Location = New System.Drawing.Point(63, 60)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(40, 13)
-        Me.Label7.TabIndex = 172
-        Me.Label7.Text = "Local :"
-        Me.Label7.Visible = False
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label6.Location = New System.Drawing.Point(27, 40)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(76, 13)
-        Me.Label6.TabIndex = 171
-        Me.Label6.Text = "Importación :"
-        Me.Label6.Visible = False
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(19, 9)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(158, 21)
-        Me.Label5.TabIndex = 170
-        Me.Label5.Text = "Información Costos"
-        Me.Label5.Visible = False
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label26.Location = New System.Drawing.Point(257, 39)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(97, 13)
-        Me.Label26.TabIndex = 168
-        Me.Label26.Text = "Venta Promedio :"
-        Me.Label26.Visible = False
-        '
-        'Label27
-        '
-        Me.Label27.AutoSize = True
-        Me.Label27.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label27.Location = New System.Drawing.Point(263, 63)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(91, 13)
-        Me.Label27.TabIndex = 169
-        Me.Label27.Text = "Venta Mensual :"
-        Me.Label27.Visible = False
         '
         'Label15
         '
@@ -1108,47 +354,6 @@ Partial Class frmProductoPrecio
         Me.Label13.TabIndex = 170
         Me.Label13.Text = "Descripcion :"
         '
-        'grdOtrosPrecios2
-        '
-        Me.grdOtrosPrecios2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grdOtrosPrecios2.BackColor = System.Drawing.Color.White
-        Me.grdOtrosPrecios2.Cursor = System.Windows.Forms.Cursors.Default
-        Me.grdOtrosPrecios2.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.grdOtrosPrecios2.ForeColor = System.Drawing.Color.Gray
-        Me.grdOtrosPrecios2.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.grdOtrosPrecios2.Location = New System.Drawing.Point(793, 48)
-        '
-        'grdOtrosPrecios2
-        '
-        Me.grdOtrosPrecios2.MasterTemplate.AllowAddNewRow = False
-        Me.grdOtrosPrecios2.MasterTemplate.AllowColumnReorder = False
-        GridViewTextBoxColumn40.HeaderText = "codPrecio"
-        GridViewTextBoxColumn40.IsVisible = False
-        GridViewTextBoxColumn40.Name = "codPrecio"
-        GridViewTextBoxColumn41.HeaderText = "Tipo Precio"
-        GridViewTextBoxColumn41.Name = "tipoPrecio"
-        GridViewTextBoxColumn41.ReadOnly = True
-        GridViewTextBoxColumn41.Width = 133
-        GridViewTextBoxColumn42.HeaderText = "Precio"
-        GridViewTextBoxColumn42.Name = "txmPrecio"
-        GridViewTextBoxColumn42.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn42.Width = 99
-        Me.grdOtrosPrecios2.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn40, GridViewTextBoxColumn41, GridViewTextBoxColumn42})
-        Me.grdOtrosPrecios2.MasterTemplate.EnableGrouping = False
-        Me.grdOtrosPrecios2.Name = "grdOtrosPrecios2"
-        Me.grdOtrosPrecios2.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdOtrosPrecios2.RightToLeft = System.Windows.Forms.RightToLeft.No
-        '
-        '
-        '
-        Me.grdOtrosPrecios2.RootElement.ForeColor = System.Drawing.Color.Gray
-        Me.grdOtrosPrecios2.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdOtrosPrecios2.Size = New System.Drawing.Size(276, 121)
-        Me.grdOtrosPrecios2.TabIndex = 166
-        Me.grdOtrosPrecios2.ThemeName = "Office2007Black"
-        '
         'lblCostoProm
         '
         Me.lblCostoProm.AutoSize = True
@@ -1223,10 +428,1274 @@ Partial Class frmProductoPrecio
         Me.cmbCodigo1.Size = New System.Drawing.Size(95, 21)
         Me.cmbCodigo1.TabIndex = 178
         '
+        'Pgclasificacion
+        '
+        Me.Pgclasificacion.Controls.Add(Me.ButtonGuardar)
+        Me.Pgclasificacion.Controls.Add(Me.Label23)
+        Me.Pgclasificacion.Controls.Add(Me.txtCodigoM1)
+        Me.Pgclasificacion.Controls.Add(Me.Label19)
+        Me.Pgclasificacion.Controls.Add(Me.txtCodigoM2)
+        Me.Pgclasificacion.Controls.Add(Me.txtProductoM1)
+        Me.Pgclasificacion.Controls.Add(Me.Label12)
+        Me.Pgclasificacion.Controls.Add(Me.txtProductoM2)
+        Me.Pgclasificacion.Controls.Add(Me.Label21)
+        Me.Pgclasificacion.Controls.Add(Me.grdModeloVehiculo)
+        Me.Pgclasificacion.Controls.Add(Me.chkUnidadMedida)
+        Me.Pgclasificacion.Controls.Add(Me.chkServicio)
+        Me.Pgclasificacion.Controls.Add(Me.chkProducto)
+        Me.Pgclasificacion.Controls.Add(Me.chkKit)
+        Me.Pgclasificacion.Controls.Add(Me.chkTodosModelo)
+        Me.Pgclasificacion.Controls.Add(Me.chkTodosVehiculo)
+        Me.Pgclasificacion.Controls.Add(Me.lblRecuentoModelo)
+        Me.Pgclasificacion.Controls.Add(Me.lblRecuentoTipoVehiculo)
+        Me.Pgclasificacion.Controls.Add(Me.grdTipoVehiculo)
+        Me.Pgclasificacion.Controls.Add(Me.txtObs)
+        Me.Pgclasificacion.Controls.Add(Me.Label5)
+        Me.Pgclasificacion.Controls.Add(Me.cmbMarcaRepuesto)
+        Me.Pgclasificacion.Controls.Add(Me.lblGrid2)
+        Me.Pgclasificacion.Controls.Add(Me.Label6)
+        Me.Pgclasificacion.Controls.Add(Me.cmbTipoRepuesto)
+        Me.Pgclasificacion.Controls.Add(Me.lblGrid1)
+        Me.Pgclasificacion.Controls.Add(Me.cmbImportancia)
+        Me.Pgclasificacion.Location = New System.Drawing.Point(10, 44)
+        Me.Pgclasificacion.Name = "Pgclasificacion"
+        Me.Pgclasificacion.Size = New System.Drawing.Size(1023, 439)
+        Me.Pgclasificacion.Text = "Clasificación"
+        '
+        'ButtonGuardar
+        '
+        Me.ButtonGuardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ButtonGuardar.BackColor = System.Drawing.Color.SteelBlue
+        Me.ButtonGuardar.FlatAppearance.BorderSize = 0
+        Me.ButtonGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
+        Me.ButtonGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.ButtonGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonGuardar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonGuardar.ForeColor = System.Drawing.Color.Transparent
+        Me.ButtonGuardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.ButtonGuardar.Location = New System.Drawing.Point(825, 5)
+        Me.ButtonGuardar.Name = "ButtonGuardar"
+        Me.ButtonGuardar.Size = New System.Drawing.Size(101, 24)
+        Me.ButtonGuardar.TabIndex = 195
+        Me.ButtonGuardar.Text = "Guardar"
+        Me.ButtonGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonGuardar.UseVisualStyleBackColor = False
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label23.Location = New System.Drawing.Point(22, 13)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(60, 13)
+        Me.Label23.TabIndex = 194
+        Me.Label23.Text = "Codigo 1 :"
+        '
+        'txtCodigoM1
+        '
+        Me.txtCodigoM1.Enabled = False
+        Me.txtCodigoM1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtCodigoM1.Location = New System.Drawing.Point(86, 9)
+        Me.txtCodigoM1.Name = "txtCodigoM1"
+        Me.txtCodigoM1.Size = New System.Drawing.Size(169, 22)
+        Me.txtCodigoM1.TabIndex = 193
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label19.Location = New System.Drawing.Point(22, 39)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(60, 13)
+        Me.Label19.TabIndex = 192
+        Me.Label19.Text = "Codigo 2 :"
+        '
+        'txtCodigoM2
+        '
+        Me.txtCodigoM2.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtCodigoM2.Location = New System.Drawing.Point(86, 35)
+        Me.txtCodigoM2.Name = "txtCodigoM2"
+        Me.txtCodigoM2.Size = New System.Drawing.Size(169, 22)
+        Me.txtCodigoM2.TabIndex = 188
+        '
+        'txtProductoM1
+        '
+        Me.txtProductoM1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtProductoM1.Location = New System.Drawing.Point(329, 9)
+        Me.txtProductoM1.Name = "txtProductoM1"
+        Me.txtProductoM1.Size = New System.Drawing.Size(454, 22)
+        Me.txtProductoM1.TabIndex = 187
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label12.Location = New System.Drawing.Point(261, 13)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(65, 13)
+        Me.Label12.TabIndex = 191
+        Me.Label12.Text = "Nombre 1 :"
+        '
+        'txtProductoM2
+        '
+        Me.txtProductoM2.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtProductoM2.Location = New System.Drawing.Point(329, 35)
+        Me.txtProductoM2.Name = "txtProductoM2"
+        Me.txtProductoM2.Size = New System.Drawing.Size(454, 22)
+        Me.txtProductoM2.TabIndex = 189
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label21.Location = New System.Drawing.Point(261, 39)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(65, 13)
+        Me.Label21.TabIndex = 190
+        Me.Label21.Text = "Nombre 2 :"
+        '
+        'grdModeloVehiculo
+        '
+        Me.grdModeloVehiculo.BackColor = System.Drawing.Color.White
+        Me.grdModeloVehiculo.Cursor = System.Windows.Forms.Cursors.Default
+        Me.grdModeloVehiculo.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.grdModeloVehiculo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.grdModeloVehiculo.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.grdModeloVehiculo.Location = New System.Drawing.Point(695, 111)
+        '
+        'grdModeloVehiculo
+        '
+        Me.grdModeloVehiculo.MasterTemplate.AllowAddNewRow = False
+        GridViewCheckBoxColumn1.HeaderText = "Agregar"
+        GridViewCheckBoxColumn1.MinWidth = 20
+        GridViewCheckBoxColumn1.Name = "Agregar"
+        GridViewCheckBoxColumn1.Width = 40
+        GridViewTextBoxColumn1.HeaderText = "Id"
+        GridViewTextBoxColumn1.IsVisible = False
+        GridViewTextBoxColumn1.Name = "Id"
+        GridViewTextBoxColumn2.HeaderText = "Codigo"
+        GridViewTextBoxColumn2.IsVisible = False
+        GridViewTextBoxColumn2.Name = "Codigo"
+        GridViewTextBoxColumn3.HeaderText = "Nombre"
+        GridViewTextBoxColumn3.Name = "Nombre"
+        GridViewTextBoxColumn3.ReadOnly = True
+        GridViewTextBoxColumn3.Width = 152
+        Me.grdModeloVehiculo.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn1, GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3})
+        Me.grdModeloVehiculo.MasterTemplate.EnableGrouping = False
+        Me.grdModeloVehiculo.Name = "grdModeloVehiculo"
+        Me.grdModeloVehiculo.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdModeloVehiculo.ReadOnly = True
+        Me.grdModeloVehiculo.RightToLeft = System.Windows.Forms.RightToLeft.No
+        '
+        '
+        '
+        Me.grdModeloVehiculo.RootElement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.grdModeloVehiculo.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdModeloVehiculo.Size = New System.Drawing.Size(298, 320)
+        Me.grdModeloVehiculo.TabIndex = 177
+        Me.grdModeloVehiculo.Text = "RadGridView3"
+        Me.grdModeloVehiculo.ThemeName = "Office2007Black"
+        '
+        'chkUnidadMedida
+        '
+        Me.chkUnidadMedida.AutoSize = True
+        Me.chkUnidadMedida.Location = New System.Drawing.Point(149, 176)
+        Me.chkUnidadMedida.Name = "chkUnidadMedida"
+        Me.chkUnidadMedida.Size = New System.Drawing.Size(147, 25)
+        Me.chkUnidadMedida.TabIndex = 186
+        Me.chkUnidadMedida.Text = "Unidad Medida"
+        Me.chkUnidadMedida.UseVisualStyleBackColor = True
+        '
+        'chkServicio
+        '
+        Me.chkServicio.AutoSize = True
+        Me.chkServicio.Location = New System.Drawing.Point(146, 128)
+        Me.chkServicio.Name = "chkServicio"
+        Me.chkServicio.Size = New System.Drawing.Size(90, 25)
+        Me.chkServicio.TabIndex = 185
+        Me.chkServicio.Text = "Servicio"
+        Me.chkServicio.UseVisualStyleBackColor = True
+        '
+        'chkProducto
+        '
+        Me.chkProducto.AutoSize = True
+        Me.chkProducto.Location = New System.Drawing.Point(35, 176)
+        Me.chkProducto.Name = "chkProducto"
+        Me.chkProducto.Size = New System.Drawing.Size(99, 25)
+        Me.chkProducto.TabIndex = 184
+        Me.chkProducto.Text = "Producto"
+        Me.chkProducto.UseVisualStyleBackColor = True
+        '
+        'chkKit
+        '
+        Me.chkKit.AutoSize = True
+        Me.chkKit.Location = New System.Drawing.Point(35, 128)
+        Me.chkKit.Name = "chkKit"
+        Me.chkKit.Size = New System.Drawing.Size(50, 25)
+        Me.chkKit.TabIndex = 183
+        Me.chkKit.Text = "Kit"
+        Me.chkKit.UseVisualStyleBackColor = True
+        '
+        'chkTodosModelo
+        '
+        Me.chkTodosModelo.AutoSize = True
+        Me.chkTodosModelo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkTodosModelo.Location = New System.Drawing.Point(854, 81)
+        Me.chkTodosModelo.Name = "chkTodosModelo"
+        Me.chkTodosModelo.Size = New System.Drawing.Size(59, 19)
+        Me.chkTodosModelo.TabIndex = 182
+        Me.chkTodosModelo.Text = "Todos"
+        Me.chkTodosModelo.UseVisualStyleBackColor = True
+        '
+        'chkTodosVehiculo
+        '
+        Me.chkTodosVehiculo.AutoSize = True
+        Me.chkTodosVehiculo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkTodosVehiculo.Location = New System.Drawing.Point(543, 79)
+        Me.chkTodosVehiculo.Name = "chkTodosVehiculo"
+        Me.chkTodosVehiculo.Size = New System.Drawing.Size(59, 19)
+        Me.chkTodosVehiculo.TabIndex = 181
+        Me.chkTodosVehiculo.Text = "Todos"
+        Me.chkTodosVehiculo.UseVisualStyleBackColor = True
+        '
+        'lblRecuentoModelo
+        '
+        Me.lblRecuentoModelo.AutoSize = True
+        Me.lblRecuentoModelo.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRecuentoModelo.Location = New System.Drawing.Point(970, 80)
+        Me.lblRecuentoModelo.Name = "lblRecuentoModelo"
+        Me.lblRecuentoModelo.Size = New System.Drawing.Size(17, 19)
+        Me.lblRecuentoModelo.TabIndex = 180
+        Me.lblRecuentoModelo.Text = "0"
+        '
+        'lblRecuentoTipoVehiculo
+        '
+        Me.lblRecuentoTipoVehiculo.AutoSize = True
+        Me.lblRecuentoTipoVehiculo.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRecuentoTipoVehiculo.Location = New System.Drawing.Point(655, 80)
+        Me.lblRecuentoTipoVehiculo.Name = "lblRecuentoTipoVehiculo"
+        Me.lblRecuentoTipoVehiculo.Size = New System.Drawing.Size(17, 19)
+        Me.lblRecuentoTipoVehiculo.TabIndex = 179
+        Me.lblRecuentoTipoVehiculo.Text = "0"
+        '
+        'grdTipoVehiculo
+        '
+        Me.grdTipoVehiculo.Location = New System.Drawing.Point(400, 111)
+        '
+        'grdTipoVehiculo
+        '
+        Me.grdTipoVehiculo.MasterTemplate.AllowAddNewRow = False
+        Me.grdTipoVehiculo.MasterTemplate.AutoGenerateColumns = False
+        GridViewCheckBoxColumn2.FormatString = ""
+        GridViewCheckBoxColumn2.HeaderText = "Agregar"
+        GridViewCheckBoxColumn2.Name = "Agregar"
+        GridViewCheckBoxColumn2.Width = 48
+        GridViewTextBoxColumn4.HeaderText = "Id"
+        GridViewTextBoxColumn4.IsVisible = False
+        GridViewTextBoxColumn4.Name = "Id"
+        GridViewTextBoxColumn5.FormatString = ""
+        GridViewTextBoxColumn5.HeaderText = "Codigo"
+        GridViewTextBoxColumn5.IsVisible = False
+        GridViewTextBoxColumn5.Name = "Codigo"
+        GridViewTextBoxColumn5.ReadOnly = True
+        GridViewTextBoxColumn6.FormatString = ""
+        GridViewTextBoxColumn6.HeaderText = "Nombre"
+        GridViewTextBoxColumn6.Name = "Nombre"
+        GridViewTextBoxColumn6.ReadOnly = True
+        GridViewTextBoxColumn6.Width = 225
+        Me.grdTipoVehiculo.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn2, GridViewTextBoxColumn4, GridViewTextBoxColumn5, GridViewTextBoxColumn6})
+        Me.grdTipoVehiculo.MasterTemplate.EnableGrouping = False
+        Me.grdTipoVehiculo.Name = "grdTipoVehiculo"
+        Me.grdTipoVehiculo.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        '
+        '
+        '
+        Me.grdTipoVehiculo.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdTipoVehiculo.Size = New System.Drawing.Size(289, 320)
+        Me.grdTipoVehiculo.TabIndex = 178
+        Me.grdTipoVehiculo.Text = "RadGridView2"
+        Me.grdTipoVehiculo.ThemeName = "Office2007Black"
+        '
+        'txtObs
+        '
+        Me.txtObs.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtObs.Location = New System.Drawing.Point(58, 406)
+        Me.txtObs.Multiline = True
+        Me.txtObs.Name = "txtObs"
+        Me.txtObs.Size = New System.Drawing.Size(276, 30)
+        Me.txtObs.TabIndex = 172
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label5.Location = New System.Drawing.Point(146, 375)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(77, 13)
+        Me.Label5.TabIndex = 173
+        Me.Label5.Text = "Observacion :"
+        '
+        'cmbMarcaRepuesto
+        '
+        Me.cmbMarcaRepuesto.FormattingEnabled = True
+        Me.cmbMarcaRepuesto.Location = New System.Drawing.Point(150, 269)
+        Me.cmbMarcaRepuesto.Name = "cmbMarcaRepuesto"
+        Me.cmbMarcaRepuesto.Size = New System.Drawing.Size(184, 21)
+        Me.cmbMarcaRepuesto.TabIndex = 170
+        '
+        'lblGrid2
+        '
+        Me.lblGrid2.AutoSize = True
+        Me.lblGrid2.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.lblGrid2.Location = New System.Drawing.Point(727, 78)
+        Me.lblGrid2.Name = "lblGrid2"
+        Me.lblGrid2.Size = New System.Drawing.Size(69, 20)
+        Me.lblGrid2.TabIndex = 176
+        Me.lblGrid2.Text = "Modelos"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label6.Location = New System.Drawing.Point(44, 332)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(75, 13)
+        Me.Label6.TabIndex = 174
+        Me.Label6.Text = "Importancia :"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'cmbTipoRepuesto
+        '
+        Me.cmbTipoRepuesto.FormattingEnabled = True
+        Me.cmbTipoRepuesto.Location = New System.Drawing.Point(150, 220)
+        Me.cmbTipoRepuesto.Name = "cmbTipoRepuesto"
+        Me.cmbTipoRepuesto.Size = New System.Drawing.Size(184, 21)
+        Me.cmbTipoRepuesto.TabIndex = 169
+        '
+        'lblGrid1
+        '
+        Me.lblGrid1.AutoSize = True
+        Me.lblGrid1.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.lblGrid1.Location = New System.Drawing.Point(405, 76)
+        Me.lblGrid1.Name = "lblGrid1"
+        Me.lblGrid1.Size = New System.Drawing.Size(104, 20)
+        Me.lblGrid1.TabIndex = 175
+        Me.lblGrid1.Text = "Tipo Vehiculo"
+        '
+        'cmbImportancia
+        '
+        Me.cmbImportancia.FormattingEnabled = True
+        Me.cmbImportancia.Location = New System.Drawing.Point(151, 323)
+        Me.cmbImportancia.Name = "cmbImportancia"
+        Me.cmbImportancia.Size = New System.Drawing.Size(183, 21)
+        Me.cmbImportancia.TabIndex = 171
+        '
+        'PgBodega
+        '
+        Me.PgBodega.Controls.Add(Me.grdFotos)
+        Me.PgBodega.Controls.Add(Me.Label4)
+        Me.PgBodega.Controls.Add(Me.pctFoto)
+        Me.PgBodega.Controls.Add(Me.Label30)
+        Me.PgBodega.Controls.Add(Me.txtUbicacionEstanteria)
+        Me.PgBodega.Controls.Add(Me.Label31)
+        Me.PgBodega.Controls.Add(Me.txtUbicacionCajas)
+        Me.PgBodega.Location = New System.Drawing.Point(10, 44)
+        Me.PgBodega.Name = "PgBodega"
+        Me.PgBodega.Size = New System.Drawing.Size(1061, 439)
+        Me.PgBodega.Text = "Fotos"
+        '
+        'grdFotos
+        '
+        Me.grdFotos.BackColor = System.Drawing.Color.White
+        Me.grdFotos.Cursor = System.Windows.Forms.Cursors.Default
+        Me.grdFotos.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.grdFotos.ForeColor = System.Drawing.Color.Gray
+        Me.grdFotos.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.grdFotos.Location = New System.Drawing.Point(33, 50)
+        '
+        '
+        '
+        Me.grdFotos.MasterTemplate.AllowAddNewRow = False
+        GridViewTextBoxColumn7.HeaderText = "Codigo"
+        GridViewTextBoxColumn7.Name = "codigo"
+        GridViewTextBoxColumn7.Width = 95
+        GridViewTextBoxColumn8.HeaderText = "Direccion"
+        GridViewTextBoxColumn8.IsVisible = False
+        GridViewTextBoxColumn8.Name = "direccion"
+        GridViewTextBoxColumn8.Width = 254
+        GridViewTextBoxColumn9.HeaderText = "elimina"
+        GridViewTextBoxColumn9.IsVisible = False
+        GridViewTextBoxColumn9.Name = "elimina"
+        GridViewTextBoxColumn10.HeaderText = "Nombre"
+        GridViewTextBoxColumn10.Name = "nombre"
+        GridViewTextBoxColumn10.Width = 217
+        Me.grdFotos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn7, GridViewTextBoxColumn8, GridViewTextBoxColumn9, GridViewTextBoxColumn10})
+        Me.grdFotos.MasterTemplate.EnableGrouping = False
+        Me.grdFotos.Name = "grdFotos"
+        Me.grdFotos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdFotos.ReadOnly = True
+        Me.grdFotos.RightToLeft = System.Windows.Forms.RightToLeft.No
+        '
+        '
+        '
+        Me.grdFotos.RootElement.ForeColor = System.Drawing.Color.Gray
+        Me.grdFotos.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdFotos.Size = New System.Drawing.Size(449, 375)
+        Me.grdFotos.TabIndex = 156
+        Me.grdFotos.Text = "RadGridView1"
+        Me.grdFotos.ThemeName = "Office2007Black"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.Label4.Location = New System.Drawing.Point(742, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(62, 20)
+        Me.Label4.TabIndex = 155
+        Me.Label4.Text = "Imagen"
+        '
+        'pctFoto
+        '
+        Me.pctFoto.Location = New System.Drawing.Point(493, 20)
+        Me.pctFoto.Name = "pctFoto"
+        Me.pctFoto.Size = New System.Drawing.Size(506, 405)
+        Me.pctFoto.TabIndex = 154
+        Me.pctFoto.TabStop = False
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label30.Location = New System.Drawing.Point(66, 18)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(64, 26)
+        Me.Label30.TabIndex = 152
+        Me.Label30.Text = "Ubicación " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Estanteria :"
+        Me.Label30.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtUbicacionEstanteria
+        '
+        Me.txtUbicacionEstanteria.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtUbicacionEstanteria.Location = New System.Drawing.Point(138, 22)
+        Me.txtUbicacionEstanteria.Name = "txtUbicacionEstanteria"
+        Me.txtUbicacionEstanteria.Size = New System.Drawing.Size(66, 22)
+        Me.txtUbicacionEstanteria.TabIndex = 149
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label31.Location = New System.Drawing.Point(310, 18)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(58, 26)
+        Me.Label31.TabIndex = 153
+        Me.Label31.Text = "Ubicación" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Cajas :"
+        Me.Label31.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtUbicacionCajas
+        '
+        Me.txtUbicacionCajas.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtUbicacionCajas.Location = New System.Drawing.Point(376, 22)
+        Me.txtUbicacionCajas.Name = "txtUbicacionCajas"
+        Me.txtUbicacionCajas.Size = New System.Drawing.Size(66, 22)
+        Me.txtUbicacionCajas.TabIndex = 150
+        '
+        'PgPreciosSustitutos
+        '
+        Me.PgPreciosSustitutos.Controls.Add(Me.grdSustitutos)
+        Me.PgPreciosSustitutos.Controls.Add(Me.grdPreciosSustitutos)
+        Me.PgPreciosSustitutos.Location = New System.Drawing.Point(10, 44)
+        Me.PgPreciosSustitutos.Name = "PgPreciosSustitutos"
+        Me.PgPreciosSustitutos.Size = New System.Drawing.Size(1061, 439)
+        Me.PgPreciosSustitutos.Text = "Precios Sustitutos"
+        '
+        'grdSustitutos
+        '
+        Me.grdSustitutos.BackColor = System.Drawing.Color.White
+        Me.grdSustitutos.Cursor = System.Windows.Forms.Cursors.Default
+        Me.grdSustitutos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grdSustitutos.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.grdSustitutos.ForeColor = System.Drawing.Color.Gray
+        Me.grdSustitutos.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.grdSustitutos.Location = New System.Drawing.Point(0, 0)
+        '
+        '
+        '
+        Me.grdSustitutos.MasterTemplate.AllowAddNewRow = False
+        Me.grdSustitutos.MasterTemplate.EnableGrouping = False
+        Me.grdSustitutos.Name = "grdSustitutos"
+        Me.grdSustitutos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdSustitutos.RightToLeft = System.Windows.Forms.RightToLeft.No
+        '
+        '
+        '
+        Me.grdSustitutos.RootElement.ForeColor = System.Drawing.Color.Gray
+        Me.grdSustitutos.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdSustitutos.Size = New System.Drawing.Size(1061, 439)
+        Me.grdSustitutos.TabIndex = 168
+        Me.grdSustitutos.ThemeName = "Office2007Black"
+        '
+        'grdPreciosSustitutos
+        '
+        Me.grdPreciosSustitutos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grdPreciosSustitutos.BackColor = System.Drawing.Color.White
+        Me.grdPreciosSustitutos.Cursor = System.Windows.Forms.Cursors.Default
+        Me.grdPreciosSustitutos.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.grdPreciosSustitutos.ForeColor = System.Drawing.Color.Gray
+        Me.grdPreciosSustitutos.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.grdPreciosSustitutos.Location = New System.Drawing.Point(3, 338)
+        '
+        '
+        '
+        Me.grdPreciosSustitutos.MasterTemplate.AllowAddNewRow = False
+        GridViewTextBoxColumn11.HeaderText = "Codigo"
+        GridViewTextBoxColumn11.IsVisible = False
+        GridViewTextBoxColumn11.Name = "codigo"
+        GridViewTextBoxColumn12.HeaderText = "codPrecio"
+        GridViewTextBoxColumn12.IsVisible = False
+        GridViewTextBoxColumn12.Name = "codPrecio"
+        GridViewTextBoxColumn13.HeaderText = "Tipo Precio"
+        GridViewTextBoxColumn13.Name = "tipoPrecio"
+        GridViewTextBoxColumn13.ReadOnly = True
+        GridViewTextBoxColumn13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn13.Width = 87
+        GridViewTextBoxColumn14.HeaderText = "Precio Base"
+        GridViewTextBoxColumn14.Name = "txmPrecio"
+        GridViewTextBoxColumn14.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn14.Width = 77
+        GridViewCheckBoxColumn3.HeaderText = "Activar"
+        GridViewCheckBoxColumn3.MinWidth = 20
+        GridViewCheckBoxColumn3.Name = "chmActiva"
+        GridViewCheckBoxColumn3.Width = 62
+        GridViewTextBoxColumn15.HeaderText = "Margen Utilidad"
+        GridViewTextBoxColumn15.Name = "MargenUtilidad"
+        GridViewTextBoxColumn15.ReadOnly = True
+        GridViewTextBoxColumn15.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn15.Width = 100
+        GridViewTextBoxColumn16.HeaderText = "Precio"
+        GridViewTextBoxColumn16.IsVisible = False
+        GridViewTextBoxColumn16.Name = "precio"
+        GridViewTextBoxColumn16.ReadOnly = True
+        GridViewTextBoxColumn16.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn16.Width = 73
+        GridViewCheckBoxColumn4.HeaderText = "Perdida"
+        GridViewCheckBoxColumn4.MinWidth = 20
+        GridViewCheckBoxColumn4.Name = "chmPerdida"
+        GridViewCheckBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewCheckBoxColumn4.Width = 88
+        GridViewCheckBoxColumn5.HeaderText = "Cant. Estado"
+        GridViewCheckBoxColumn5.MinWidth = 20
+        GridViewCheckBoxColumn5.Name = "chmCantEstado"
+        GridViewCheckBoxColumn5.Width = 91
+        GridViewTextBoxColumn17.HeaderText = "Minima"
+        GridViewTextBoxColumn17.Name = "txmMinima"
+        GridViewTextBoxColumn17.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn17.Width = 72
+        GridViewCheckBoxColumn6.HeaderText = "Fecha Estado"
+        GridViewCheckBoxColumn6.MinWidth = 20
+        GridViewCheckBoxColumn6.Name = "chmFechaEstado"
+        GridViewCheckBoxColumn6.Width = 100
+        GridViewTextBoxColumn18.HeaderText = "Fecha Inicio"
+        GridViewTextBoxColumn18.Name = "txbFechaInicio"
+        GridViewTextBoxColumn18.ReadOnly = True
+        GridViewTextBoxColumn18.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn18.Width = 109
+        GridViewTextBoxColumn19.HeaderText = "Fecha Final"
+        GridViewTextBoxColumn19.Name = "txbFechaFinal"
+        GridViewTextBoxColumn19.ReadOnly = True
+        GridViewTextBoxColumn19.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn19.Width = 109
+        Me.grdPreciosSustitutos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn11, GridViewTextBoxColumn12, GridViewTextBoxColumn13, GridViewTextBoxColumn14, GridViewCheckBoxColumn3, GridViewTextBoxColumn15, GridViewTextBoxColumn16, GridViewCheckBoxColumn4, GridViewCheckBoxColumn5, GridViewTextBoxColumn17, GridViewCheckBoxColumn6, GridViewTextBoxColumn18, GridViewTextBoxColumn19})
+        Me.grdPreciosSustitutos.MasterTemplate.EnableGrouping = False
+        Me.grdPreciosSustitutos.Name = "grdPreciosSustitutos"
+        Me.grdPreciosSustitutos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdPreciosSustitutos.RightToLeft = System.Windows.Forms.RightToLeft.No
+        '
+        '
+        '
+        Me.grdPreciosSustitutos.RootElement.ForeColor = System.Drawing.Color.Gray
+        Me.grdPreciosSustitutos.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdPreciosSustitutos.Size = New System.Drawing.Size(1010, 13)
+        Me.grdPreciosSustitutos.TabIndex = 167
+        Me.grdPreciosSustitutos.ThemeName = "Office2007Black"
+        Me.grdPreciosSustitutos.Visible = False
+        '
+        'pgUltimasCompras
+        '
+        Me.pgUltimasCompras.Controls.Add(Me.grdUltimasCompras)
+        Me.pgUltimasCompras.Location = New System.Drawing.Point(10, 44)
+        Me.pgUltimasCompras.Name = "pgUltimasCompras"
+        Me.pgUltimasCompras.Size = New System.Drawing.Size(1061, 439)
+        Me.pgUltimasCompras.Text = "Ultimas Compras"
+        '
+        'grdUltimasCompras
+        '
+        Me.grdUltimasCompras.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grdUltimasCompras.Location = New System.Drawing.Point(0, 0)
+        '
+        '
+        '
+        Me.grdUltimasCompras.MasterTemplate.AllowAddNewRow = False
+        Me.grdUltimasCompras.Name = "grdUltimasCompras"
+        Me.grdUltimasCompras.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdUltimasCompras.ReadOnly = True
+        '
+        '
+        '
+        Me.grdUltimasCompras.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdUltimasCompras.Size = New System.Drawing.Size(1061, 439)
+        Me.grdUltimasCompras.TabIndex = 0
+        Me.grdUltimasCompras.Text = "RadGridView1"
+        Me.grdUltimasCompras.ThemeName = "Office2007Black"
+        '
+        'pgUltimasVentas
+        '
+        Me.pgUltimasVentas.Controls.Add(Me.grdUltimasVentas)
+        Me.pgUltimasVentas.Location = New System.Drawing.Point(10, 44)
+        Me.pgUltimasVentas.Name = "pgUltimasVentas"
+        Me.pgUltimasVentas.Size = New System.Drawing.Size(1061, 439)
+        Me.pgUltimasVentas.Text = "Ultimas Ventas"
+        '
+        'grdUltimasVentas
+        '
+        Me.grdUltimasVentas.BackColor = System.Drawing.Color.FromArgb(CType(CType(233, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(249, Byte), Integer))
+        Me.grdUltimasVentas.Cursor = System.Windows.Forms.Cursors.Default
+        Me.grdUltimasVentas.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grdUltimasVentas.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.grdUltimasVentas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.grdUltimasVentas.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.grdUltimasVentas.Location = New System.Drawing.Point(0, 0)
+        '
+        '
+        '
+        Me.grdUltimasVentas.MasterTemplate.AllowAddNewRow = False
+        Me.grdUltimasVentas.MasterTemplate.EnableGrouping = False
+        Me.grdUltimasVentas.Name = "grdUltimasVentas"
+        Me.grdUltimasVentas.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdUltimasVentas.ReadOnly = True
+        Me.grdUltimasVentas.RightToLeft = System.Windows.Forms.RightToLeft.No
+        '
+        '
+        '
+        Me.grdUltimasVentas.RootElement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.grdUltimasVentas.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdUltimasVentas.Size = New System.Drawing.Size(1061, 439)
+        Me.grdUltimasVentas.TabIndex = 1
+        Me.grdUltimasVentas.Text = "RadGridView1"
+        Me.grdUltimasVentas.ThemeName = "Office2007Black"
+        '
+        'PgPrimsa
+        '
+        Me.PgPrimsa.Controls.Add(Me.grdOtrosPrecios)
+        Me.PgPrimsa.Controls.Add(Me.Label1)
+        Me.PgPrimsa.Controls.Add(Me.txtObservacion)
+        Me.PgPrimsa.Controls.Add(Me.grdPrecios)
+        Me.PgPrimsa.Location = New System.Drawing.Point(10, 44)
+        Me.PgPrimsa.Name = "PgPrimsa"
+        Me.PgPrimsa.Size = New System.Drawing.Size(996, 439)
+        Me.PgPrimsa.Text = "Primsa"
+        '
+        'grdOtrosPrecios
+        '
+        Me.grdOtrosPrecios.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grdOtrosPrecios.BackColor = System.Drawing.Color.White
+        Me.grdOtrosPrecios.Cursor = System.Windows.Forms.Cursors.Default
+        Me.grdOtrosPrecios.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.grdOtrosPrecios.ForeColor = System.Drawing.Color.Gray
+        Me.grdOtrosPrecios.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.grdOtrosPrecios.Location = New System.Drawing.Point(0, 224)
+        '
+        'grdOtrosPrecios
+        '
+        Me.grdOtrosPrecios.MasterTemplate.AllowAddNewRow = False
+        GridViewTextBoxColumn20.HeaderText = "Codigo"
+        GridViewTextBoxColumn20.IsVisible = False
+        GridViewTextBoxColumn20.Name = "codigo"
+        GridViewTextBoxColumn21.HeaderText = "codPrecio"
+        GridViewTextBoxColumn21.IsVisible = False
+        GridViewTextBoxColumn21.Name = "codPrecio"
+        GridViewTextBoxColumn22.HeaderText = "Tipo Precio"
+        GridViewTextBoxColumn22.Name = "tipoPrecio"
+        GridViewTextBoxColumn22.ReadOnly = True
+        GridViewTextBoxColumn22.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn22.Width = 87
+        GridViewTextBoxColumn23.HeaderText = "Precio Base"
+        GridViewTextBoxColumn23.Name = "txmPrecio"
+        GridViewTextBoxColumn23.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn23.Width = 77
+        GridViewCheckBoxColumn7.HeaderText = "Activar"
+        GridViewCheckBoxColumn7.MinWidth = 20
+        GridViewCheckBoxColumn7.Name = "chmActiva"
+        GridViewCheckBoxColumn7.Width = 62
+        GridViewTextBoxColumn24.HeaderText = "Margen Utilidad"
+        GridViewTextBoxColumn24.Name = "MargenUtilidad"
+        GridViewTextBoxColumn24.ReadOnly = True
+        GridViewTextBoxColumn24.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn24.Width = 100
+        GridViewTextBoxColumn25.HeaderText = "Precio"
+        GridViewTextBoxColumn25.IsVisible = False
+        GridViewTextBoxColumn25.Name = "precio"
+        GridViewTextBoxColumn25.ReadOnly = True
+        GridViewTextBoxColumn25.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn25.Width = 73
+        GridViewCheckBoxColumn8.HeaderText = "Perdida"
+        GridViewCheckBoxColumn8.MinWidth = 20
+        GridViewCheckBoxColumn8.Name = "chmPerdida"
+        GridViewCheckBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewCheckBoxColumn8.Width = 88
+        GridViewCheckBoxColumn9.HeaderText = "Cant. Estado"
+        GridViewCheckBoxColumn9.MinWidth = 20
+        GridViewCheckBoxColumn9.Name = "chmCantEstado"
+        GridViewCheckBoxColumn9.Width = 91
+        GridViewTextBoxColumn26.HeaderText = "Minima"
+        GridViewTextBoxColumn26.Name = "txmMinima"
+        GridViewTextBoxColumn26.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn26.Width = 72
+        GridViewCheckBoxColumn10.HeaderText = "Fecha Estado"
+        GridViewCheckBoxColumn10.MinWidth = 20
+        GridViewCheckBoxColumn10.Name = "chmFechaEstado"
+        GridViewCheckBoxColumn10.Width = 100
+        GridViewTextBoxColumn27.HeaderText = "Fecha Inicio"
+        GridViewTextBoxColumn27.Name = "txbFechaInicio"
+        GridViewTextBoxColumn27.ReadOnly = True
+        GridViewTextBoxColumn27.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn27.Width = 109
+        GridViewTextBoxColumn28.HeaderText = "Fecha Final"
+        GridViewTextBoxColumn28.Name = "txbFechaFinal"
+        GridViewTextBoxColumn28.ReadOnly = True
+        GridViewTextBoxColumn28.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn28.Width = 109
+        Me.grdOtrosPrecios.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn20, GridViewTextBoxColumn21, GridViewTextBoxColumn22, GridViewTextBoxColumn23, GridViewCheckBoxColumn7, GridViewTextBoxColumn24, GridViewTextBoxColumn25, GridViewCheckBoxColumn8, GridViewCheckBoxColumn9, GridViewTextBoxColumn26, GridViewCheckBoxColumn10, GridViewTextBoxColumn27, GridViewTextBoxColumn28})
+        Me.grdOtrosPrecios.MasterTemplate.EnableGrouping = False
+        Me.grdOtrosPrecios.Name = "grdOtrosPrecios"
+        Me.grdOtrosPrecios.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdOtrosPrecios.RightToLeft = System.Windows.Forms.RightToLeft.No
+        '
+        '
+        '
+        Me.grdOtrosPrecios.RootElement.ForeColor = System.Drawing.Color.Gray
+        Me.grdOtrosPrecios.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdOtrosPrecios.Size = New System.Drawing.Size(1004, 212)
+        Me.grdOtrosPrecios.TabIndex = 166
+        Me.grdOtrosPrecios.ThemeName = "Office2007Black"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.Location = New System.Drawing.Point(712, 17)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(129, 21)
+        Me.Label1.TabIndex = 183
+        Me.Label1.Text = "Observaciones :"
+        '
+        'txtObservacion
+        '
+        Me.txtObservacion.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtObservacion.Location = New System.Drawing.Point(716, 47)
+        Me.txtObservacion.Multiline = True
+        Me.txtObservacion.Name = "txtObservacion"
+        Me.txtObservacion.Size = New System.Drawing.Size(280, 160)
+        Me.txtObservacion.TabIndex = 168
+        '
+        'grdPrecios
+        '
+        Me.grdPrecios.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grdPrecios.BackColor = System.Drawing.Color.White
+        Me.grdPrecios.Cursor = System.Windows.Forms.Cursors.Default
+        Me.grdPrecios.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.grdPrecios.ForeColor = System.Drawing.Color.Gray
+        Me.grdPrecios.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.grdPrecios.Location = New System.Drawing.Point(0, 12)
+        '
+        'grdPrecios
+        '
+        Me.grdPrecios.MasterTemplate.AllowAddNewRow = False
+        Me.grdPrecios.MasterTemplate.AllowColumnReorder = False
+        GridViewTextBoxColumn29.HeaderText = "Codigo"
+        GridViewTextBoxColumn29.IsVisible = False
+        GridViewTextBoxColumn29.Name = "codigo"
+        GridViewTextBoxColumn30.HeaderText = "codigoTipo"
+        GridViewTextBoxColumn30.IsVisible = False
+        GridViewTextBoxColumn30.Name = "codTipoNegocio"
+        GridViewTextBoxColumn31.HeaderText = "Tipo de Negocio"
+        GridViewTextBoxColumn31.Name = "tipoNegocio"
+        GridViewTextBoxColumn31.ReadOnly = True
+        GridViewTextBoxColumn31.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn31.Width = 176
+        GridViewTextBoxColumn32.HeaderText = "Descuento"
+        GridViewTextBoxColumn32.Name = "txmDescuento"
+        GridViewTextBoxColumn32.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn32.Width = 110
+        GridViewTextBoxColumn33.HeaderText = "Precio Normal"
+        GridViewTextBoxColumn33.Name = "precioNormal"
+        GridViewTextBoxColumn33.ReadOnly = True
+        GridViewTextBoxColumn33.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn33.Width = 102
+        GridViewTextBoxColumn34.HeaderText = "Margen Utilidad"
+        GridViewTextBoxColumn34.Name = "utilidad"
+        GridViewTextBoxColumn34.ReadOnly = True
+        GridViewTextBoxColumn34.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn34.Width = 97
+        Me.grdPrecios.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn29, GridViewTextBoxColumn30, GridViewTextBoxColumn31, GridViewTextBoxColumn32, GridViewTextBoxColumn33, GridViewTextBoxColumn34})
+        Me.grdPrecios.MasterTemplate.EnableGrouping = False
+        Me.grdPrecios.Name = "grdPrecios"
+        Me.grdPrecios.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdPrecios.RightToLeft = System.Windows.Forms.RightToLeft.No
+        '
+        '
+        '
+        Me.grdPrecios.RootElement.ForeColor = System.Drawing.Color.Gray
+        Me.grdPrecios.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdPrecios.Size = New System.Drawing.Size(612, 217)
+        Me.grdPrecios.TabIndex = 165
+        Me.grdPrecios.ThemeName = "Office2007Black"
+        '
+        'rpv
+        '
+        Me.rpv.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rpv.BackColor = System.Drawing.Color.White
+        Me.rpv.Controls.Add(Me.PgPrimsa)
+        Me.rpv.Controls.Add(Me.pgUltimasVentas)
+        Me.rpv.Controls.Add(Me.pgUltimasCompras)
+        Me.rpv.Controls.Add(Me.PgPreciosSustitutos)
+        Me.rpv.Controls.Add(Me.PgBodega)
+        Me.rpv.Controls.Add(Me.Pgclasificacion)
+        Me.rpv.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.rpv.Location = New System.Drawing.Point(7, 174)
+        Me.rpv.Name = "rpv"
+        Me.rpv.SelectedPage = Me.Pgclasificacion
+        Me.rpv.Size = New System.Drawing.Size(1044, 494)
+        Me.rpv.TabIndex = 88
+        Me.rpv.Text = "Motriza"
+        CType(Me.rpv.GetChildAt(0), Telerik.WinControls.UI.RadPageViewStripElement).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll
+        '
+        'grdOtrosPrecios2
+        '
+        Me.grdOtrosPrecios2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grdOtrosPrecios2.BackColor = System.Drawing.Color.White
+        Me.grdOtrosPrecios2.Cursor = System.Windows.Forms.Cursors.Default
+        Me.grdOtrosPrecios2.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.grdOtrosPrecios2.ForeColor = System.Drawing.Color.Gray
+        Me.grdOtrosPrecios2.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.grdOtrosPrecios2.Location = New System.Drawing.Point(792, 55)
+        '
+        'grdOtrosPrecios2
+        '
+        Me.grdOtrosPrecios2.MasterTemplate.AllowAddNewRow = False
+        Me.grdOtrosPrecios2.MasterTemplate.AllowColumnReorder = False
+        GridViewTextBoxColumn35.HeaderText = "codPrecio"
+        GridViewTextBoxColumn35.IsVisible = False
+        GridViewTextBoxColumn35.Name = "codPrecio"
+        GridViewTextBoxColumn36.HeaderText = "Tipo Precio"
+        GridViewTextBoxColumn36.Name = "tipoPrecio"
+        GridViewTextBoxColumn36.ReadOnly = True
+        GridViewTextBoxColumn36.Width = 133
+        GridViewTextBoxColumn37.HeaderText = "Precio"
+        GridViewTextBoxColumn37.Name = "txmPrecio"
+        GridViewTextBoxColumn37.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn37.Width = 99
+        Me.grdOtrosPrecios2.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn35, GridViewTextBoxColumn36, GridViewTextBoxColumn37})
+        Me.grdOtrosPrecios2.MasterTemplate.EnableGrouping = False
+        Me.grdOtrosPrecios2.Name = "grdOtrosPrecios2"
+        Me.grdOtrosPrecios2.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdOtrosPrecios2.RightToLeft = System.Windows.Forms.RightToLeft.No
+        '
+        '
+        '
+        Me.grdOtrosPrecios2.RootElement.ForeColor = System.Drawing.Color.Gray
+        Me.grdOtrosPrecios2.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdOtrosPrecios2.Size = New System.Drawing.Size(260, 95)
+        Me.grdOtrosPrecios2.TabIndex = 179
+        Me.grdOtrosPrecios2.ThemeName = "Office2007Black"
+        '
+        'RadGroupBox3
+        '
+        Me.RadGroupBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RadGroupBox3.FooterImageIndex = -1
+        Me.RadGroupBox3.FooterImageKey = ""
+        Me.RadGroupBox3.FooterText = ""
+        Me.RadGroupBox3.FooterVisibility = Telerik.WinControls.ElementVisibility.Visible
+        Me.RadGroupBox3.HeaderImageIndex = -1
+        Me.RadGroupBox3.HeaderImageKey = ""
+        Me.RadGroupBox3.HeaderMargin = New System.Windows.Forms.Padding(0)
+        Me.RadGroupBox3.HeaderText = ""
+        Me.RadGroupBox3.Location = New System.Drawing.Point(68, 104)
+        Me.RadGroupBox3.Name = "RadGroupBox3"
+        Me.RadGroupBox3.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        '
+        '
+        '
+        Me.RadGroupBox3.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        Me.RadGroupBox3.Size = New System.Drawing.Size(944, 123)
+        Me.RadGroupBox3.TabIndex = 197
+        '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.ColumnCount = 3
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 727.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(10, 20)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 1
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(924, 93)
+        Me.TableLayoutPanel2.TabIndex = 0
+        '
+        'Panel1
+        '
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel1.Location = New System.Drawing.Point(101, 3)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(721, 87)
+        Me.Panel1.TabIndex = 0
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(184, 14)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(20, 13)
+        Me.Label28.TabIndex = 4
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Location = New System.Drawing.Point(42, 14)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(43, 13)
+        Me.Label27.TabIndex = 3
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(13, 35)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(74, 13)
+        Me.Label26.TabIndex = 5
+        '
+        'DateTimePicker2
+        '
+        Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimePicker2.Location = New System.Drawing.Point(208, 10)
+        Me.DateTimePicker2.Name = "DateTimePicker2"
+        Me.DateTimePicker2.Size = New System.Drawing.Size(83, 20)
+        Me.DateTimePicker2.TabIndex = 2
+        '
+        'ComboBox4
+        '
+        Me.ComboBox4.FormattingEnabled = True
+        Me.ComboBox4.Location = New System.Drawing.Point(91, 35)
+        Me.ComboBox4.Name = "ComboBox4"
+        Me.ComboBox4.Size = New System.Drawing.Size(200, 21)
+        Me.ComboBox4.TabIndex = 1
+        '
+        'DateTimePicker1
+        '
+        Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimePicker1.Location = New System.Drawing.Point(91, 9)
+        Me.DateTimePicker1.Name = "DateTimePicker1"
+        Me.DateTimePicker1.Size = New System.Drawing.Size(83, 20)
+        Me.DateTimePicker1.TabIndex = 0
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(37, 62)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(49, 13)
+        Me.Label25.TabIndex = 76
+        '
+        'ComboBox3
+        '
+        Me.ComboBox3.FormattingEnabled = True
+        Me.ComboBox3.Location = New System.Drawing.Point(91, 60)
+        Me.ComboBox3.Name = "ComboBox3"
+        Me.ComboBox3.Size = New System.Drawing.Size(200, 21)
+        Me.ComboBox3.TabIndex = 75
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(301, 42)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(65, 13)
+        Me.Label22.TabIndex = 78
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(372, 39)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(200, 21)
+        Me.ComboBox2.TabIndex = 77
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(296, 68)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(73, 13)
+        Me.Label20.TabIndex = 80
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(372, 64)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(200, 20)
+        Me.TextBox2.TabIndex = 81
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(303, 18)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(65, 13)
+        Me.Label10.TabIndex = 125
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(372, 15)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(200, 21)
+        Me.ComboBox1.TabIndex = 124
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.SteelBlue
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
+        Me.Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.ForeColor = System.Drawing.Color.Transparent
+        Me.Button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Button2.Location = New System.Drawing.Point(648, 14)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(70, 69)
+        Me.Button2.TabIndex = 185
+        Me.Button2.Text = "Ajustar Articulo"
+        Me.Button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.Button2.UseVisualStyleBackColor = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.SteelBlue
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
+        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.Transparent
+        Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
+        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Button1.Location = New System.Drawing.Point(578, 14)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(64, 70)
+        Me.Button1.TabIndex = 126
+        Me.Button1.Text = "Buscar"
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.Label29.ForeColor = System.Drawing.Color.Gray
+        Me.Label29.Location = New System.Drawing.Point(134, 95)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(0, 25)
+        Me.Label29.TabIndex = 198
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox4.Image = CType(resources.GetObject("PictureBox4.Image"), System.Drawing.Image)
+        Me.PictureBox4.Location = New System.Drawing.Point(91, 81)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(41, 37)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox4.TabIndex = 199
+        Me.PictureBox4.TabStop = False
+        '
+        'rgbInformacion
+        '
+        Me.rgbInformacion.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rgbInformacion.FooterImageIndex = -1
+        Me.rgbInformacion.FooterImageKey = ""
+        Me.rgbInformacion.FooterText = ""
+        Me.rgbInformacion.FooterVisibility = Telerik.WinControls.ElementVisibility.Visible
+        Me.rgbInformacion.HeaderImageIndex = -1
+        Me.rgbInformacion.HeaderImageKey = ""
+        Me.rgbInformacion.HeaderMargin = New System.Windows.Forms.Padding(0)
+        Me.rgbInformacion.HeaderText = ""
+        Me.rgbInformacion.Location = New System.Drawing.Point(68, 242)
+        Me.rgbInformacion.Name = "rgbInformacion"
+        Me.rgbInformacion.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        '
+        '
+        '
+        Me.rgbInformacion.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        Me.rgbInformacion.Size = New System.Drawing.Size(944, 259)
+        Me.rgbInformacion.TabIndex = 200
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Bold)
+        Me.Label8.ForeColor = System.Drawing.Color.Gray
+        Me.Label8.Location = New System.Drawing.Point(133, 231)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(0, 25)
+        Me.Label8.TabIndex = 201
+        '
+        'PgKardex
+        '
+        Me.PgKardex.Controls.Add(Me.Label8)
+        Me.PgKardex.Controls.Add(Me.rgbInformacion)
+        Me.PgKardex.Controls.Add(Me.PictureBox4)
+        Me.PgKardex.Controls.Add(Me.Label29)
+        Me.PgKardex.Controls.Add(Me.RadGroupBox3)
+        Me.PgKardex.Controls.Add(Me.Label16)
+        Me.PgKardex.Controls.Add(Me.PictureBox7)
+        Me.PgKardex.Controls.Add(Me.rgbArticulo)
+        Me.PgKardex.Location = New System.Drawing.Point(10, 44)
+        Me.PgKardex.Name = "PgKardex"
+        Me.PgKardex.Size = New System.Drawing.Size(1095, 513)
+        Me.PgKardex.Text = "Kardex"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.BackColor = System.Drawing.Color.Transparent
+        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.ForeColor = System.Drawing.Color.DimGray
+        Me.Label16.Location = New System.Drawing.Point(132, 10)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(101, 29)
+        Me.Label16.TabIndex = 196
+        Me.Label16.Text = "Artículo"
+        '
+        'PictureBox7
+        '
+        Me.PictureBox7.Image = CType(resources.GetObject("PictureBox7.Image"), System.Drawing.Image)
+        Me.PictureBox7.Location = New System.Drawing.Point(90, 5)
+        Me.PictureBox7.Name = "PictureBox7"
+        Me.PictureBox7.Size = New System.Drawing.Size(41, 37)
+        Me.PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox7.TabIndex = 195
+        Me.PictureBox7.TabStop = False
+        '
+        'rgbArticulo
+        '
+        Me.rgbArticulo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rgbArticulo.Controls.Add(Me.Label11)
+        Me.rgbArticulo.Controls.Add(Me.lblCodigo)
+        Me.rgbArticulo.Controls.Add(Me.cmbArticulo)
+        Me.rgbArticulo.Controls.Add(Me.Label7)
+        Me.rgbArticulo.FooterImageIndex = -1
+        Me.rgbArticulo.FooterImageKey = ""
+        Me.rgbArticulo.HeaderImageIndex = -1
+        Me.rgbArticulo.HeaderImageKey = ""
+        Me.rgbArticulo.HeaderMargin = New System.Windows.Forms.Padding(0)
+        Me.rgbArticulo.HeaderText = ""
+        Me.rgbArticulo.Location = New System.Drawing.Point(68, 27)
+        Me.rgbArticulo.Name = "rgbArticulo"
+        Me.rgbArticulo.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        '
+        '
+        '
+        Me.rgbArticulo.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        Me.rgbArticulo.Size = New System.Drawing.Size(943, 53)
+        Me.rgbArticulo.TabIndex = 194
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.DimGray
+        Me.Label11.Location = New System.Drawing.Point(27, 18)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(83, 25)
+        Me.Label11.TabIndex = 177
+        Me.Label11.Text = "Codigo :"
+        '
+        'lblCodigo
+        '
+        Me.lblCodigo.AutoSize = True
+        Me.lblCodigo.Font = New System.Drawing.Font("Segoe UI", 15.0!, System.Drawing.FontStyle.Bold)
+        Me.lblCodigo.ForeColor = System.Drawing.Color.Black
+        Me.lblCodigo.Location = New System.Drawing.Point(114, 15)
+        Me.lblCodigo.Name = "lblCodigo"
+        Me.lblCodigo.Size = New System.Drawing.Size(63, 28)
+        Me.lblCodigo.TabIndex = 178
+        Me.lblCodigo.Text = "Clave"
+        '
+        'cmbArticulo
+        '
+        Me.cmbArticulo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbArticulo.FormattingEnabled = True
+        Me.cmbArticulo.Location = New System.Drawing.Point(467, 19)
+        Me.cmbArticulo.Name = "cmbArticulo"
+        Me.cmbArticulo.Size = New System.Drawing.Size(463, 21)
+        Me.cmbArticulo.TabIndex = 176
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.DimGray
+        Me.Label7.Location = New System.Drawing.Point(361, 16)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(100, 25)
+        Me.Label7.TabIndex = 168
+        Me.Label7.Text = "Producto :"
+        '
+        'Button3
+        '
+        Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button3.BackColor = System.Drawing.Color.SteelBlue
+        Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
+        Me.Button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.ForeColor = System.Drawing.Color.Transparent
+        Me.Button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Button3.Location = New System.Drawing.Point(685, 55)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(101, 24)
+        Me.Button3.TabIndex = 180
+        Me.Button3.Text = "Kardex"
+        Me.Button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.Button3.UseVisualStyleBackColor = False
+        '
         'frmProductoPrecio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(1077, 692)
+        Me.ClientSize = New System.Drawing.Size(1055, 665)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.grdOtrosPrecios2)
         Me.Controls.Add(Me.cmbCodigo1)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.txtPrecioPublicoMotriza)
@@ -1234,7 +1703,6 @@ Partial Class frmProductoPrecio
         Me.Controls.Add(Me.cmbNombre1)
         Me.Controls.Add(Me.lblCostoProm)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.grdOtrosPrecios2)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.lblExistencia)
         Me.Controls.Add(Me.lblMinimo)
@@ -1256,7 +1724,6 @@ Partial Class frmProductoPrecio
         '
         Me.RootElement.ApplyShapeToControl = True
         Me.RootElement.ForeColor = System.Drawing.Color.Gray
-        Me.Controls.SetChildIndex(Me.rgbDatos, 0)
         Me.Controls.SetChildIndex(Me.txtPrecioPublico, 0)
         Me.Controls.SetChildIndex(Me.Label15, 0)
         Me.Controls.SetChildIndex(Me.rpv, 0)
@@ -1271,7 +1738,6 @@ Partial Class frmProductoPrecio
         Me.Controls.SetChildIndex(Me.lblMinimo, 0)
         Me.Controls.SetChildIndex(Me.lblExistencia, 0)
         Me.Controls.SetChildIndex(Me.Label13, 0)
-        Me.Controls.SetChildIndex(Me.grdOtrosPrecios2, 0)
         Me.Controls.SetChildIndex(Me.Label3, 0)
         Me.Controls.SetChildIndex(Me.lblCostoProm, 0)
         Me.Controls.SetChildIndex(Me.cmbNombre1, 0)
@@ -1279,23 +1745,23 @@ Partial Class frmProductoPrecio
         Me.Controls.SetChildIndex(Me.txtPrecioPublicoMotriza, 0)
         Me.Controls.SetChildIndex(Me.Label9, 0)
         Me.Controls.SetChildIndex(Me.cmbCodigo1, 0)
+        Me.Controls.SetChildIndex(Me.grdOtrosPrecios2, 0)
+        Me.Controls.SetChildIndex(Me.rgbDatos, 0)
+        Me.Controls.SetChildIndex(Me.Button3, 0)
         CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.rpv, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.rpv.ResumeLayout(False)
-        Me.pgPrecios.ResumeLayout(False)
-        Me.pgPrecios.PerformLayout()
-        CType(Me.grdOtrosPrecios.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.grdOtrosPrecios, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.grdPrecios.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.grdPrecios, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pgMotriza.ResumeLayout(False)
-        Me.pgMotriza.PerformLayout()
-        CType(Me.grdPreciosMotriza.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.grdPreciosMotriza, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.grdOtrosPreciosSucursal.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.grdOtrosPreciosSucursal, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.RadPageViewPage2.ResumeLayout(False)
+        Me.Pgclasificacion.ResumeLayout(False)
+        Me.Pgclasificacion.PerformLayout()
+        CType(Me.grdModeloVehiculo.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdModeloVehiculo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdTipoVehiculo.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdTipoVehiculo, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PgBodega.ResumeLayout(False)
+        Me.PgBodega.PerformLayout()
+        CType(Me.grdFotos.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdFotos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pctFoto, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PgPreciosSustitutos.ResumeLayout(False)
         CType(Me.grdSustitutos.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdSustitutos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdPreciosSustitutos.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1306,75 +1772,131 @@ Partial Class frmProductoPrecio
         Me.pgUltimasVentas.ResumeLayout(False)
         CType(Me.grdUltimasVentas.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdUltimasVentas, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pageCompetencia.ResumeLayout(False)
-        CType(Me.grdPreciosCompe.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.grdPreciosCompe, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.RadPageViewPage3.ResumeLayout(False)
-        Me.RadPageViewPage3.PerformLayout()
+        Me.PgPrimsa.ResumeLayout(False)
+        Me.PgPrimsa.PerformLayout()
+        CType(Me.grdOtrosPrecios.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdOtrosPrecios, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdPrecios.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdPrecios, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rpv, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.rpv.ResumeLayout(False)
         CType(Me.grdOtrosPrecios2.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdOtrosPrecios2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RadGroupBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rgbInformacion, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PgKardex.ResumeLayout(False)
+        Me.PgKardex.PerformLayout()
+        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rgbArticulo, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.rgbArticulo.ResumeLayout(False)
+        Me.rgbArticulo.PerformLayout()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents rpv As Telerik.WinControls.UI.RadPageView
-    Friend WithEvents pgPrecios As Telerik.WinControls.UI.RadPageViewPage
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents txtPrecioPublico As System.Windows.Forms.TextBox
     Friend WithEvents lblProductos As System.Windows.Forms.Label
     Friend WithEvents label02 As System.Windows.Forms.Label
     Friend WithEvents txtCodigo As System.Windows.Forms.TextBox
     Friend WithEvents Label17 As System.Windows.Forms.Label
-    Friend WithEvents RadPageViewPage2 As Telerik.WinControls.UI.RadPageViewPage
-    Friend WithEvents RadPageViewPage3 As Telerik.WinControls.UI.RadPageViewPage
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents Label18 As System.Windows.Forms.Label
-    Friend WithEvents RadPageViewPage4 As Telerik.WinControls.UI.RadPageViewPage
-    Friend WithEvents grdOtrosPrecios As Telerik.WinControls.UI.RadGridView
     Friend WithEvents lblImportancia As System.Windows.Forms.Label
     Friend WithEvents lblMinimo As System.Windows.Forms.Label
     Friend WithEvents lblExistencia As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents grdOtrosPrecios2 As Telerik.WinControls.UI.RadGridView
-    Friend WithEvents grdSustitutos As Telerik.WinControls.UI.RadGridView
-    Friend WithEvents grdPreciosSustitutos As Telerik.WinControls.UI.RadGridView
     Friend WithEvents lblCostoProm As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents cmbNombre1 As System.Windows.Forms.ComboBox
-    Friend WithEvents pgUltimasCompras As Telerik.WinControls.UI.RadPageViewPage
-    Friend WithEvents grdUltimasCompras As Telerik.WinControls.UI.RadGridView
-    Friend WithEvents pageCompetencia As Telerik.WinControls.UI.RadPageViewPage
-    Friend WithEvents grdPreciosCompe As Telerik.WinControls.UI.RadGridView
-    Friend WithEvents txtObservacion As System.Windows.Forms.TextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents lblVentaCompetencia As System.Windows.Forms.Label
-    Friend WithEvents Label22 As System.Windows.Forms.Label
-    Friend WithEvents lblVentaMensua As System.Windows.Forms.Label
-    Friend WithEvents lblVentaPromedio As System.Windows.Forms.Label
-    Friend WithEvents lblCosto As System.Windows.Forms.Label
-    Friend WithEvents lblCostoLocal As System.Windows.Forms.Label
-    Friend WithEvents lblCostoImportacion As System.Windows.Forms.Label
-    Friend WithEvents Label11 As System.Windows.Forms.Label
-    Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents Label26 As System.Windows.Forms.Label
-    Friend WithEvents Label27 As System.Windows.Forms.Label
     Friend WithEvents btnActualizarCosto As System.Windows.Forms.Button
-    Friend WithEvents pgUltimasVentas As Telerik.WinControls.UI.RadPageViewPage
-    Friend WithEvents grdUltimasVentas As Telerik.WinControls.UI.RadGridView
-    Friend WithEvents btnPrecioCompetencia As System.Windows.Forms.Button
-    Friend WithEvents pgMotriza As Telerik.WinControls.UI.RadPageViewPage
-    Friend WithEvents grdOtrosPreciosSucursal As Telerik.WinControls.UI.RadGridView
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents grdPreciosMotriza As Telerik.WinControls.UI.RadGridView
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents txtPrecioPublicoMotriza As System.Windows.Forms.TextBox
-    Friend WithEvents grdPrecios As Telerik.WinControls.UI.RadGridView
     Friend WithEvents cmbCodigo1 As System.Windows.Forms.ComboBox
+    Friend WithEvents Pgclasificacion As Telerik.WinControls.UI.RadPageViewPage
+    Friend WithEvents chkUnidadMedida As System.Windows.Forms.CheckBox
+    Friend WithEvents chkServicio As System.Windows.Forms.CheckBox
+    Friend WithEvents chkProducto As System.Windows.Forms.CheckBox
+    Friend WithEvents chkKit As System.Windows.Forms.CheckBox
+    Friend WithEvents chkTodosModelo As System.Windows.Forms.CheckBox
+    Friend WithEvents chkTodosVehiculo As System.Windows.Forms.CheckBox
+    Friend WithEvents lblRecuentoModelo As System.Windows.Forms.Label
+    Friend WithEvents lblRecuentoTipoVehiculo As System.Windows.Forms.Label
+    Friend WithEvents grdTipoVehiculo As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents grdModeloVehiculo As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents txtObs As System.Windows.Forms.TextBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents cmbMarcaRepuesto As System.Windows.Forms.ComboBox
+    Friend WithEvents lblGrid2 As System.Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents cmbTipoRepuesto As System.Windows.Forms.ComboBox
+    Friend WithEvents lblGrid1 As System.Windows.Forms.Label
+    Friend WithEvents cmbImportancia As System.Windows.Forms.ComboBox
+    Friend WithEvents PgBodega As Telerik.WinControls.UI.RadPageViewPage
+    Friend WithEvents grdFotos As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents pctFoto As System.Windows.Forms.PictureBox
+    Friend WithEvents Label30 As System.Windows.Forms.Label
+    Friend WithEvents txtUbicacionEstanteria As System.Windows.Forms.TextBox
+    Friend WithEvents Label31 As System.Windows.Forms.Label
+    Friend WithEvents txtUbicacionCajas As System.Windows.Forms.TextBox
+    Friend WithEvents PgPreciosSustitutos As Telerik.WinControls.UI.RadPageViewPage
+    Friend WithEvents grdSustitutos As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents grdPreciosSustitutos As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents pgUltimasCompras As Telerik.WinControls.UI.RadPageViewPage
+    Friend WithEvents grdUltimasCompras As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents pgUltimasVentas As Telerik.WinControls.UI.RadPageViewPage
+    Friend WithEvents grdUltimasVentas As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents PgPrimsa As Telerik.WinControls.UI.RadPageViewPage
+    Friend WithEvents grdOtrosPrecios As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents txtObservacion As System.Windows.Forms.TextBox
+    Friend WithEvents grdPrecios As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents rpv As Telerik.WinControls.UI.RadPageView
+    Friend WithEvents grdOtrosPrecios2 As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents RadGroupBox3 As Telerik.WinControls.UI.RadGroupBox
+    Friend WithEvents TableLayoutPanel2 As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents Label28 As System.Windows.Forms.Label
+    Friend WithEvents Label27 As System.Windows.Forms.Label
+    Friend WithEvents Label26 As System.Windows.Forms.Label
+    Friend WithEvents DateTimePicker2 As System.Windows.Forms.DateTimePicker
+    Friend WithEvents ComboBox4 As System.Windows.Forms.ComboBox
+    Friend WithEvents DateTimePicker1 As System.Windows.Forms.DateTimePicker
+    Friend WithEvents Label25 As System.Windows.Forms.Label
+    Friend WithEvents ComboBox3 As System.Windows.Forms.ComboBox
+    Friend WithEvents Label22 As System.Windows.Forms.Label
+    Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
+    Friend WithEvents Label20 As System.Windows.Forms.Label
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents Label29 As System.Windows.Forms.Label
+    Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
+    Friend WithEvents rgbInformacion As Telerik.WinControls.UI.RadGroupBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents PgKardex As Telerik.WinControls.UI.RadPageViewPage
+    Friend WithEvents Label16 As System.Windows.Forms.Label
+    Friend WithEvents PictureBox7 As System.Windows.Forms.PictureBox
+    Friend WithEvents rgbArticulo As Telerik.WinControls.UI.RadGroupBox
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents lblCodigo As System.Windows.Forms.Label
+    Friend WithEvents cmbArticulo As System.Windows.Forms.ComboBox
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents Button3 As System.Windows.Forms.Button
+    Friend WithEvents txtProductoM1 As System.Windows.Forms.TextBox
+    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents txtProductoM2 As System.Windows.Forms.TextBox
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents Label23 As System.Windows.Forms.Label
+    Friend WithEvents txtCodigoM1 As System.Windows.Forms.TextBox
+    Friend WithEvents Label19 As System.Windows.Forms.Label
+    Friend WithEvents txtCodigoM2 As System.Windows.Forms.TextBox
+    Friend WithEvents ButtonGuardar As System.Windows.Forms.Button
 
 End Class

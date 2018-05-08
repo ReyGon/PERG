@@ -1,0 +1,70 @@
+USE [dsi_pos_demo]
+GO
+
+/****** Object:  Table [dbo].[tblCierreCaja]    Script Date: 09/11/2013 09:09:35 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[tblCierreCaja](
+	[codigo] [int] IDENTITY(1,1) NOT NULL,
+	[fechaRegistro] [datetime] NULL,
+	[desde] [datetime] NULL,
+	[hasta] [datetime] NULL,
+	[usuario] [int] NULL,
+	[entrada] [decimal](18, 2) NULL,
+	[salida] [decimal](18, 2) NULL,
+	[total] [decimal](18, 2) NULL,
+	[documentoBoleta] [varchar](50) NULL,
+	[cuenta] [int] NULL,
+	[correlativo] [int] NULL,
+	[bitAnulado] [bit] NULL,
+	[fechaAnulado] [datetime] NULL,
+	[usuarioAnulado] [int] NULL,
+	[bitConfirmado] [bit] NULL,
+	[fechaConfirmado] [datetime] NULL,
+	[usuarioConfirmado] [int] NULL,
+ CONSTRAINT [PK_tblCierreCaja] PRIMARY KEY CLUSTERED 
+(
+	[codigo] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[tblCierreCaja]  WITH CHECK ADD  CONSTRAINT [FK_tblCierreCaja_tblBanco_Cuenta] FOREIGN KEY([cuenta])
+REFERENCES [dbo].[tblBanco_Cuenta] ([codigo])
+GO
+
+ALTER TABLE [dbo].[tblCierreCaja] CHECK CONSTRAINT [FK_tblCierreCaja_tblBanco_Cuenta]
+GO
+
+ALTER TABLE [dbo].[tblCierreCaja]  WITH CHECK ADD  CONSTRAINT [FK_tblCierreCaja_tblUsuarioAnulo] FOREIGN KEY([usuarioAnulado])
+REFERENCES [dbo].[tblUsuarios] ([idUsuario])
+GO
+
+ALTER TABLE [dbo].[tblCierreCaja] CHECK CONSTRAINT [FK_tblCierreCaja_tblUsuarioAnulo]
+GO
+
+ALTER TABLE [dbo].[tblCierreCaja]  WITH CHECK ADD  CONSTRAINT [FK_tblCierreCaja_tblUsuarioConfirmo] FOREIGN KEY([usuarioConfirmado])
+REFERENCES [dbo].[tblUsuarios] ([idUsuario])
+GO
+
+ALTER TABLE [dbo].[tblCierreCaja] CHECK CONSTRAINT [FK_tblCierreCaja_tblUsuarioConfirmo]
+GO
+
+ALTER TABLE [dbo].[tblCierreCaja]  WITH CHECK ADD  CONSTRAINT [FK_tblCierreCaja_tblUsuarioRegistro] FOREIGN KEY([usuario])
+REFERENCES [dbo].[tblUsuarios] ([idUsuario])
+GO
+
+ALTER TABLE [dbo].[tblCierreCaja] CHECK CONSTRAINT [FK_tblCierreCaja_tblUsuarioRegistro]
+GO
+

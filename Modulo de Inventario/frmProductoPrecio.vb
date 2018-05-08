@@ -1,7 +1,6 @@
 ﻿Imports System.Linq
 Imports System.Transactions
 Imports Telerik.WinControls
-
 Imports Telerik.WinControls.UI
 Imports System.IO
 Imports System.Data
@@ -11,27 +10,47 @@ Imports System.Data.Objects.DataClasses
 Imports System.Data.EntityClient
 
 Public Class frmProductoPrecio
-
+    Public grdBase As RadGridView = Nothing
     Dim alerta As New bl_Alertas
     Dim permiso As New clsPermisoUsuario
+    Public nuevoProducto As Boolean = False
+    Public codigoProductoNuevo As String = ""
+    Public nombreProductoNuevo As String = ""
+    Public importanciaProductoNuevo As Integer = 0
+    Public idPendientePedir As Integer = 0
+    Public posicion As Integer = 0
+    Public bitNuevoEntrada As Boolean = False
+    Public bitNuevoPendiente As Boolean = False
 
     Private Sub frmProductoPrecio_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         mdlPublicVars.fnFormatoGridEspeciales(grdOtrosPrecios)
-        mdlPublicVars.fnFormatoGridEspeciales(grdOtrosPreciosSucursal)
+        'mdlPublicVars.fnFormatoGridEspeciales(grdOtrosPreciosSucursal)
         mdlPublicVars.fnFormatoGridEspeciales(grdPrecios)
+        mdlPublicVars.fnFormatoGridMovimientos(grdTipoVehiculo)
+        mdlPublicVars.fnFormatoGridMovimientos(grdModeloVehiculo)
         mdlPublicVars.fnFormatoGridEspeciales(grdSustitutos)
         mdlPublicVars.fnFormatoGridEspeciales(grdPreciosSustitutos)
         mdlPublicVars.fnFormatoGridEspeciales(grdUltimasCompras)
-        mdlPublicVars.fnFormatoGridEspeciales(grdPreciosCompe)
+        mdlPublicVars.fnFormatoGridMovimientos(grdTipoVehiculo)
+        mdlPublicVars.fnFormatoGridMovimientos(grdModeloVehiculo)
+
+        'mdlPublicVars.fnFormatoGridEspeciales(grdPreciosCompe)
         mdlPublicVars.fnFormatoGridEspeciales(grdUltimasVentas)
-        mdlPublicVars.fnFormatoGridEspeciales(grdPreciosMotriza)
-        mdlPublicVars.fnGrid_iconos(grdPreciosMotriza)
+        'mdlPublicVars.fnFormatoGridEspeciales(grdPreciosMotriza)
+        'mdlPublicVars.fnGrid_iconos(grdPreciosMotriza)
         mdlPublicVars.fnGrid_iconos(grdOtrosPrecios)
-        mdlPublicVars.fnGrid_iconos(grdOtrosPreciosSucursal)
+        'mdlPublicVars.fnGrid_iconos(grdOtrosPreciosSucursal)
         mdlPublicVars.fnGrid_iconos(grdPrecios)
         mdlPublicVars.fnFormatoGridMovimientos(grdUltimasCompras)
         mdlPublicVars.comboActivarFiltro(cmbNombre1)
         mdlPublicVars.comboActivarFiltro(cmbCodigo1)
+
+        mdlPublicVars.comboActivarFiltro(cmbImportancia)
+        mdlPublicVars.comboActivarFiltro(cmbMarcaRepuesto)
+        mdlPublicVars.comboActivarFiltro(cmbTipoRepuesto)
+
+        mdlPublicVars.fnFormatoGridEspeciales(Me.grdFotos)
+        mdlPublicVars.fnFormatoGridMovimientos(Me.grdFotos)
 
         lbl1Modificar.Text = "Guardar"
 
@@ -52,11 +71,28 @@ Public Class frmProductoPrecio
 
         fnLlenarCombo()
         fnLlenarCombo2()
+
         llenagrid()
+
+
         fnConfiguracion()
         mdlPublicVars.fnSeleccionarDefault(grdDatos, mdlPublicVars.superSearchId, True)
-        Call frm_txtcodigo()
+        mdlPublicVars.fnSeleccionarDefault(grdDatos, codigoDefault, seleccionDefault)
 
+
+        pctFoto.SizeMode = PictureBoxSizeMode.StretchImage
+        pctFoto.BorderStyle = BorderStyle.Fixed3D
+
+        lbl1Modificar.Text = "Guardar"
+        Me.grdModeloVehiculo.Font = New System.Drawing.Font("Arial", 8, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+
+        chkKit.Enabled = NuevoIniciar
+        chkProducto.Enabled = NuevoIniciar
+        chkServicio.Enabled = NuevoIniciar
+
+        chkUnidadMedida.Enabled = NuevoIniciar
+        chkProducto.Checked = True
+        fnLlenar_Listas()
 
         Me.grdDatos.Visible = False
         lblRegistros.Visible = False
@@ -68,28 +104,90 @@ Public Class frmProductoPrecio
 
             Dim consulta = From x In ctx.tblArticuloes Order By x.codigo1 Where x.empresa = mdlPublicVars.idEmpresa _
                            Select Codigo = x.idArticulo, Codigo1 = x.codigo1, Nombre1 = x.nombre1 + " - " + x.codigo1, _
+                           Codigo2 = x.codigo2, _
+                           Nombre2 = x.nombre2,
+                           Obser = x.Observacion,
                            Existencia = (From i In ctx.tblInventarios Where x.idArticulo = i.idArticulo Select i.saldo).FirstOrDefault, _
+                           marcarepuesto = x.tblArticuloMarcaRepuesto.nombre,
+                           tiporepuesto = x.tblArticuloRepuesto.nombre,
                            Importacia = x.tblArticuloImportancia.nombre, Minimo = x.minimo, PrecioPublico = x.precioPublico, PrecioPublicoMotriza = x.preciopublicosucursal, Importancia = x.tblArticuloImportancia.nombre, _
-                           CostoLocal = x.costoIVA, CostoImportacion = 0, Costo = (x.costoIVA + 0), Observacion = x.observacionPrecio Order By Codigo
+                           CostoLocal = x.costoIVA, CostoImportacion = 0, Costo = (x.costoIVA + 0), Observaciones = x.observacionPrecio
+                           Order By Codigo
 
             Me.grdDatos.DataSource = consulta
             fnLlenaPrecios()
             fnCalculaNormales()
             fnUltimasCompras()
             fnUltimasVentas()
-    
+
+           
+
             'calcular los costos
             fnCalculaOtros()
         Catch ex As Exception
+
         End Try
 
     End Sub
 
+    Private Sub llenagrid2()
+        Try
+            Dim consulta2 = From x In ctx.tblInventarios Where _
+               x.tblArticulo.empresa = mdlPublicVars.idEmpresa And x.idTipoInventario = InventarioPrincipal _
+                              And x.IdAlmacen = BodegaPrincipal _
+                              Select Codigo = x.tblArticulo.idArticulo, Productomod = x.tblArticulo.nombre1,
+                              Codigo2 = x.tblArticulo.codigo2, _
+                               Nombre2 = x.tblArticulo.nombre2,
+                              Observacion = x.tblArticulo.Observacion, TipoRepuesto = x.tblArticulo.tblArticuloRepuesto.nombre, _
+                                MarcaRepuesto = x.tblArticulo.tblArticuloMarcaRepuesto.nombre, Importancia = x.tblArticulo.tblArticuloImportancia.nombre,
+                                chkNoEstanteria = x.tblArticulo.bitNoEstanteria, _
+                                chkNoFoto = x.tblArticulo.bitNoFotos, chkProducto = x.tblArticulo.bitProducto,
+                                chkServicio = x.tblArticulo.bitServicio, chkKit = x.tblArticulo.bitKit, _
+                                CostoKit = x.tblArticulo.costoIVA, chkUnidadMedida = x.tblArticulo.bitUnidadMedida
+
+
+            Me.grdDatos.DataSource = consulta2
+
+            fnClasificacion()
+
+
+            'Verificamos si esta activo el filtro entonces mostramos solo productos del grid filtrado
+            If frmProductoLista.filtroActivo Then
+                Dim lFiltro = (From x As GridViewRowInfo In grdBase.Rows Join y As GridViewRowInfo In grdDatos.Rows
+                                    On x.Cells("ID").Value Equals y.Cells("Codigo").Value _
+                                    Select Codigo = y.Cells("Codigo").Value, Observacion = y.Cells("Observacion").Value,
+                                    Productomod = y.Cells("Nombre1").Value, TipoRepuesto = y.Cells("TipoRepuesto").Value,
+                                    MarcaRepuesto = y.Cells("MarcaRepuesto").Value,
+                                    Importancia = y.Cells("Importancia").Value,
+                                    chkNoEstanteria = y.Cells("chkNoEstanteria").Value, chkNofoto = y.Cells("chkNoFoto").Value,
+                                    chkProducto = y.Cells("chkProducto").Value, chkServicio = y.Cells("chkServicio").Value, chkKit = y.Cells("chkKit").Value,
+                                    CostoKit = y.Cells("CostoKit").Value, chkUnidadMedida = y.Cells("bitUnidadMedida").Value
+                                    ).ToList
+
+                Me.grdDatos.DataSource = lFiltro
+            End If
+
+            If pctFoto.Image IsNot Nothing Then
+                pctFoto.Image = Nothing
+            End If
+            Me.grdFotos.Rows.Clear()
+            If Me.grdDatos.Rows.Count > 0 Then
+                fnLlenarFotos(Me.grdDatos.Rows(Me.grdDatos.CurrentRow.Index).Cells("Codigo").Value)
+                fnFoto()
+            End If
+
+
+        Catch ex As Exception
+            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+        End Try
+    End Sub
+
+
     'Aplica configuraciones de formato a los grid, textbox, label...
     Private Sub fnConfiguracion()
         Try
-            Dim costo As Decimal = lblCosto.Text
-            lblCosto.Text = Format(costo, mdlPublicVars.formatoMoneda)
+            'Dim costo As Decimal = lblCosto.Text
+            'lblCosto.Text = Format(costo, mdlPublicVars.formatoMoneda)
 
             'Configuramos el grid de sustitutos
             If Me.grdSustitutos.Rows.Count > 0 Then
@@ -157,19 +255,19 @@ Public Class frmProductoPrecio
             End If
 
 
-            If Me.grdPreciosCompe.RowCount > 0 Then
-                mdlPublicVars.fnGridTelerik_formatoFecha(Me.grdPreciosCompe, "Fecha")
-                mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdPreciosCompe, "Precio")
+            '   If Me.grdPreciosCompe.RowCount > 0 Then
+            'mdlPublicVars.fnGridTelerik_formatoFecha(Me.grdPreciosCompe, "Fecha")
+            'mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdPreciosCompe, "Precio")
 
-                For i As Integer = 0 To Me.grdPreciosCompe.ColumnCount - 1
-                    Me.grdPreciosCompe.Columns(i).TextAlignment = ContentAlignment.MiddleCenter
-                Next
+            'For i As Integer = 0 To Me.grdPreciosCompe.ColumnCount - 1
+            'Me.grdPreciosCompe.Columns(i).TextAlignment = ContentAlignment.MiddleCenter
+            'Next
 
-                Me.grdPreciosCompe.Columns(0).Width = 15
-                Me.grdPreciosCompe.Columns(1).Width = 35
-                Me.grdPreciosCompe.Columns(2).Width = 15
-                Me.grdPreciosCompe.Columns(3).Width = 35
-            End If
+            'Me.grdPreciosCompe.Columns(0).Width = 15
+            'Me.grdPreciosCompe.Columns(1).Width = 35
+            'Me.grdPreciosCompe.Columns(2).Width = 15
+            'Me.grdPreciosCompe.Columns(3).Width = 35
+            'End If
         Catch ex As Exception
         End Try
     End Sub
@@ -200,6 +298,17 @@ Public Class frmProductoPrecio
                 .DataSource = cons
             End With
 
+            Dim cons2 = (From x In ctx.tblArticuloes _
+                       Select Codigo = x.idArticulo, Nombre = x.codigo1)
+
+            'Llenamos el combo1
+            With Me.cmbCodigo1
+                .DataSource = Nothing
+                .ValueMember = "Codigo"
+                .DisplayMember = "Nombre"
+                .DataSource = cons2
+            End With
+
         Catch ex As Exception
 
         End Try
@@ -208,23 +317,43 @@ Public Class frmProductoPrecio
     Private Sub fnLlenarCombo2()
         Try
             'Realizamos la consulta
-            Dim cons = (From x In ctx.tblArticuloes _
-                        Select Codigo = x.idArticulo, Nombre = x.codigo1)
 
-            'Llenamos el combo1
-            With Me.cmbCodigo1
+            Dim tipoRepuesto = From x In ctx.tblArticuloRepuestoes Select Codigo = x.codigo, Nombre = x.nombre Order By Nombre
+
+            With Me.cmbTipoRepuesto
                 .DataSource = Nothing
                 .ValueMember = "Codigo"
                 .DisplayMember = "Nombre"
-                .DataSource = cons
+                .DataSource = tipoRepuesto
+            End With
+
+            Dim marcaRepuesto = From x In ctx.tblArticuloMarcaRepuestoes Select Codigo = x.codigo, Nombre = x.nombre Order By Nombre
+
+            With Me.cmbMarcaRepuesto
+                .DataSource = Nothing
+                .ValueMember = "Codigo"
+                .DisplayMember = "Nombre"
+                .DataSource = marcaRepuesto
+            End With
+
+
+            Dim importancia = From x In ctx.tblArticuloImportancias Select Codigo = x.codigo, Nombre = x.nombre Order By Nombre
+
+            With Me.cmbImportancia
+                .DataSource = Nothing
+                .ValueMember = "Codigo"
+                .DisplayMember = "Nombre"
+                .DataSource = importancia
             End With
 
         Catch ex As Exception
 
         End Try
     End Sub
+
     Private Sub frm_llenarLista() Handles Me.llenarLista
         llenagrid()
+        llenagrid2()
     End Sub
 
     'Private Sub frm_focoDatos() Handles Me.focoDatos
@@ -276,8 +405,8 @@ Public Class frmProductoPrecio
                     For i = 0 To Me.grdPrecios.Rows.Count - 1
                         Dim desc As String = CType(Me.grdPrecios.Rows(i).Cells("txmDescuento").Value, String)
                         descuento = desc.Substring(0, desc.LastIndexOf("%"))
-                        Dim desc2 As String = CType(Me.grdPreciosMotriza.Rows(i).Cells("txmDescuento").Value, String)
-                        descuentosucursal = desc2.Substring(0, desc2.LastIndexOf("%"))
+                        '  Dim desc2 As String = CType(Me.grdPreciosMotriza.Rows(i).Cells("txmDescuento").Value, String)
+                        ' descuentosucursal = desc2.Substring(0, desc2.LastIndexOf("%"))
 
 
                         utilidad = CType(Me.grdPrecios.Rows(i).Cells("utilidad").Value, String)
@@ -435,9 +564,9 @@ Public Class frmProductoPrecio
                             codigo = CType(Me.grdOtrosPrecios.Rows(i).Cells("codigo").Value, Integer)
                             tPrecio = CType(Me.grdOtrosPrecios.Rows(i).Cells("codPrecio").Value, Integer)
                             precio = CType(Me.grdOtrosPrecios.Rows(i).Cells("txmPrecio").Value, Decimal)
-                            activasucursal = CType(Me.grdOtrosPreciosSucursal.Rows(i).Cells("chmActiva").Value, Boolean)
+                            'activasucursal = CType(Me.grdOtrosPreciosSucursal.Rows(i).Cells("chmActiva").Value, Boolean)
                             Try
-                                preciosucursal = CType(Me.grdOtrosPreciosSucursal.Rows(i).Cells("txmPreciosucursal").Value, Decimal)
+                                'preciosucursal = CType(Me.grdOtrosPreciosSucursal.Rows(i).Cells("txmPreciosucursal").Value, Decimal)
                             Catch ex As Exception
 
                             End Try
@@ -635,15 +764,11 @@ Public Class frmProductoPrecio
                                 Else
                                     registro.fechaInicio = Nothing
                                     registro.fechaFin = Nothing
-
-
                                 End If
                                 ctx.AddTotblArticulo_Precio(registro)
                                 ctx.SaveChanges()
                             End If
                         Next
-
-
 
                     End If
 
@@ -750,8 +875,6 @@ Public Class frmProductoPrecio
                 End Try
 
 
-
-
             End Using
 
             If success = True Then
@@ -772,7 +895,7 @@ Public Class frmProductoPrecio
     Private Sub fnLlenaPrecios()
         Try
             Me.grdPrecios.Rows.Clear()
-            Me.grdPreciosMotriza.Rows.Clear()
+            'Me.grdPreciosMotriza.Rows.Clear()
             'Obtenemos los tipos de negocios
             Dim listaNegocios As List(Of tblClienteTipoNegocio) = (From x In ctx.tblClienteTipoNegocios Select x Order By x.porcentaje Descending).ToList
             Dim negocio As tblClienteTipoNegocio
@@ -801,7 +924,7 @@ Public Class frmProductoPrecio
 
                 'Agregamos la fila al grid
                 Me.grdPrecios.Rows.Add(fila)
-                Me.grdPreciosMotriza.Rows.Add(filas)
+                'Me.grdPreciosMotriza.Rows.Add(filas)
 
             Next
         Catch ex As Exception
@@ -825,13 +948,13 @@ Public Class frmProductoPrecio
                     pPub2 = CDec(txtPrecioPublicoMotriza.Text)
                 End If
 
-                Dim cProm As Decimal = CDec(lblCosto.Text)
+                'Dim cProm As Decimal = CDec(lblCosto.Text)
 
                 'Recorremos el grid
                 Dim index
                 For index = 0 To Me.grdPrecios.Rows.Count - 1
                     Dim desc As String = CType(Me.grdPrecios.Rows(index).Cells("txmDescuento").Value, String)
-                    Dim descsucursal As String = CType(Me.grdPreciosMotriza.Rows(index).Cells("txmDescuento").Value, String)
+                    '   Dim descsucursal As String = CType(Me.grdPreciosMotriza.Rows(index).Cells("txmDescuento").Value, String)
                     Dim descuento As Decimal = 0
                     Dim descuentosucursal As Decimal = 0
 
@@ -841,11 +964,11 @@ Public Class frmProductoPrecio
                         descuento = CType(desc, Decimal) / 100
                     End If
 
-                    If descsucursal.Contains("%") Then
-                        descuentosucursal = CType(descsucursal.Substring(0, descsucursal.LastIndexOf("%")), Decimal) / 100
-                    Else
-                        descuentosucursal = CType(descsucursal, Decimal) / 100
-                    End If
+                    'If descsucursal.Contains("%") Then
+                    'descuentosucursal = CType(descsucursal.Substring(0, descsucursal.LastIndexOf("%")), Decimal) / 100
+                    ' Else
+                    ' descuentosucursal = CType(descsucursal, Decimal) / 100
+                    ' End If
 
 
                     Dim pNor As Decimal = 0
@@ -856,24 +979,24 @@ Public Class frmProductoPrecio
                     'Realizamos las operaciones
                     pNor = pPub - (pPub * (descuento))
                     If pNor > 0 Then
-                        utili = (1 - (cProm / pNor))
+                        ' utili = (1 - (cProm / pNor))
                     End If
 
                     'Realizamos las operaciones
                     pNorSucursal = pPub2 - (pPub2 * (descuentosucursal))
                     If pNorSucursal > 0 Then
-                        utiliSucursal = (1 - (cProm / pNorSucursal))
+                        ' utiliSucursal = (1 - (cProm / pNorSucursal))
                     End If
 
                     'Modificamos el grid
                     Me.grdPrecios.Rows(index).Cells("precioNormal").Value = Format(pNor, mdlPublicVars.formatoMoneda)
-                    Me.grdPreciosMotriza.Rows(index).Cells("precioNormal").Value = Format(pNorSucursal, mdlPublicVars.formatoMoneda)
+                    'Me.grdPreciosMotriza.Rows(index).Cells("precioNormal").Value = Format(pNorSucursal, mdlPublicVars.formatoMoneda)
 
                     Me.grdPrecios.Rows(index).Cells("utilidad").Value = Format(utili, mdlPublicVars.formatoPorcentaje)
-                    Me.grdPreciosMotriza.Rows(index).Cells("Utilidad").Value = Format(utiliSucursal, mdlPublicVars.formatoPorcentaje)
+                    'Me.grdPreciosMotriza.Rows(index).Cells("Utilidad").Value = Format(utiliSucursal, mdlPublicVars.formatoPorcentaje)
 
                     Me.grdPrecios.Rows(index).Cells("txmDescuento").Value = Format(descuento, mdlPublicVars.formatoPorcentaje)
-                    Me.grdPreciosMotriza.Rows(index).Cells("txmDescuento").Value = Format(descuentosucursal, mdlPublicVars.formatoPorcentaje)
+                    'Me.grdPreciosMotriza.Rows(index).Cells("txmDescuento").Value = Format(descuentosucursal, mdlPublicVars.formatoPorcentaje)
 
                 Next
             End If
@@ -912,7 +1035,7 @@ Public Class frmProductoPrecio
         Try
             Me.grdOtrosPrecios.Rows.Clear()
             Me.grdOtrosPrecios2.Rows.Clear()
-            Me.grdOtrosPreciosSucursal.Rows.Clear()
+            'Me.grdOtrosPreciosSucursal.Rows.Clear()
             Dim noempresa As Integer
             'Obtenemos los otros precios
             Dim listaPrecio As List(Of tblArticuloTipoPrecio) = (From x In ctx.tblArticuloTipoPrecios Where x.bitEspecial = False).ToList
@@ -962,7 +1085,7 @@ Public Class frmProductoPrecio
                     'Agregamos la fila al grid
                     Me.grdOtrosPrecios.Rows.Add(fila)
                     Me.grdOtrosPrecios2.Rows.Add(fila2)
-                    Me.grdOtrosPreciosSucursal.Rows.Add(filasucursal)
+                    'Me.grdOtrosPreciosSucursal.Rows.Add(filasucursal)
 
 
                 Else
@@ -1000,20 +1123,20 @@ Public Class frmProductoPrecio
 
                 Dim precioBase As Decimal = 0
                 Dim utilidad As Decimal = 0
-                Dim costoPromedio As Double = lblCosto.Text
+                '   Dim costoPromedio As Double = lblCosto.Text
 
                 For index = 0 To Me.grdOtrosPrecios.Rows.Count - 1
                     precioBase = CType(Me.grdOtrosPrecios.Rows(index).Cells("txmPrecio").Value, Decimal)
 
                     Try
-                        utilidad = 1 - (costoPromedio / precioBase)
+                        '                        utilidad = 1 - (costoPromedio / precioBase)
                     Catch ex As Exception
                         utilidad = 0
                     End Try
 
                     If mdlPublicVars.empresa = "PRIMSA" Then
                         Me.grdOtrosPrecios.Rows(index).Cells("MargenUtilidad").Value = Format(utilidad, mdlPublicVars.formatoPorcentaje).ToString
-                        Me.grdOtrosPreciosSucursal.Rows(index).Cells("MargenUtilidad").Value = Format(utilidad, mdlPublicVars.formatoPorcentaje).ToString
+                        '        Me.grdOtrosPreciosSucursal.Rows(index).Cells("MargenUtilidad").Value = Format(utilidad, mdlPublicVars.formatoPorcentaje).ToString
 
                         'Me.grdOtrosPrecios.Rows(index).Cells("txmPrecio").Value = Format(precioBase, mdlPublicVars.formatoMoneda)
                     Else
@@ -1097,25 +1220,25 @@ Public Class frmProductoPrecio
         End If
     End Sub
 
-    Private Sub fnFechasSucursal()
-        Dim fil = Me.grdOtrosPreciosSucursal.CurrentRow.Index
-        Dim col = Me.grdOtrosPreciosSucursal.CurrentColumn.Index
+    'Private Sub fnFechasSucursal()
+    'Dim fil = Me.grdOtrosPreciosSucursal.CurrentRow.Index
+    'Dim col = Me.grdOtrosPreciosSucursal.CurrentColumn.Index
 
-        Dim acFecha As Boolean = CType(Me.grdOtrosPreciosSucursal.Rows(fil).Cells("chmFechaEstado").Value, Boolean)
+    'Dim acFecha As Boolean = CType(Me.grdOtrosPreciosSucursal.Rows(fil).Cells("chmFechaEstado").Value, Boolean)
 
-        If acFecha = True And col > 10 Then
-            frmFecha.Text = "Fecha"
-            If col = 11 Then
-                frmFecha.opcionRetorno = "precioInicio"
-                frmFecha.bitgrid1 = False
-            ElseIf col = 12 Then
-                frmFecha.opcionRetorno = "precioFinal"
-                frmFecha.bitgrid1 = False
-            End If
-            frmFecha.StartPosition = FormStartPosition.CenterScreen
-            frmFecha.ShowDialog()
-        End If
-    End Sub
+    'If acFecha = True And col > 10 Then
+    'frmFecha.Text = "Fecha"
+    'If col = 11 Then
+    '    frmFecha.opcionRetorno = "precioInicio"
+    '   frmFecha.bitgrid1 = False
+    '  ElseIf col = 12 Then
+    ' frmFecha.opcionRetorno = "precioFinal"
+    'frmFecha.bitgrid1 = False
+    'End If
+    'frmFecha.StartPosition = FormStartPosition.CenterScreen
+    'frmFecha.ShowDialog()
+    'End If
+    'End Sub
     'Funcion para agregar la fecha seleecionada
     Public Sub fnAgregarFecha()
         Try
@@ -1129,32 +1252,32 @@ Public Class frmProductoPrecio
         End Try
     End Sub
 
-    Public Sub fnAgregarFechaSucursal()
-        Try
-            If mdlPublicVars.superSearchId = 1 Then
-                Me.grdOtrosPreciosSucursal.Rows(Me.grdOtrosPreciosSucursal.CurrentRow.Index).Cells("txbFechaInicio").Value = mdlPublicVars.superSearchFecha.ToShortDateString
-            ElseIf mdlPublicVars.superSearchId = 2 Then
-                Me.grdOtrosPreciosSucursal.Rows(Me.grdOtrosPreciosSucursal.CurrentRow.Index).Cells("txbFechaFinal").Value = mdlPublicVars.superSearchFecha.ToShortDateString
-            End If
-        Catch ex As Exception
+    'Public Sub fnAgregarFechaSucursal()
+    ' Try
+    '    If mdlPublicVars.superSearchId = 1 Then
+    '       Me.grdOtrosPreciosSucursal.Rows(Me.grdOtrosPreciosSucursal.CurrentRow.Index).Cells("txbFechaInicio").Value = mdlPublicVars.superSearchFecha.ToShortDateString
+    '  ElseIf mdlPublicVars.superSearchId = 2 Then
+    '     Me.grdOtrosPreciosSucursal.Rows(Me.grdOtrosPreciosSucursal.CurrentRow.Index).Cells("txbFechaFinal").Value = mdlPublicVars.superSearchFecha.ToShortDateString
+    'End If
+    '    Catch ex As Exception
+    '
+    '   End Try
+    'End Sub
 
-        End Try
-    End Sub
+    '  Private Sub lblCosto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblCosto.TextChanged
+    '   Try
+    '     fnLlenaPrecios()
+    '   fnCalculaNormales()
+    '  fnLlenaOtrosPrecios()
+    ' fnCalculaOtros()
+    ' fnConfiguracion()
+    'lblCostoProm.Text = lblCosto.Text
+    '  Catch ex As Exception
 
-    Private Sub lblCosto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblCosto.TextChanged
-        Try
-            fnLlenaPrecios()
-            fnCalculaNormales()
-            fnLlenaOtrosPrecios()
-            fnCalculaOtros()
-            fnConfiguracion()
-            lblCostoProm.Text = lblCosto.Text
-        Catch ex As Exception
+    ' End Try
+    ' End Sub
 
-        End Try
-    End Sub
-
-    Private Sub grdOtrosPrecios2_CellEndEdit(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs) Handles grdOtrosPrecios2.CellEndEdit
+    Private Sub grdOtrosPrecios2_CellEndEdit(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs)
         Try
             'Recorremos el grid de precios.
             Dim i
@@ -1255,6 +1378,7 @@ Public Class frmProductoPrecio
             fnBuscaArticulo(codArt)
             fnUltimasVentas()
             fnUltimasCompras()
+            fnClasificacion()
         Catch ex As Exception
 
         End Try
@@ -1268,11 +1392,36 @@ Public Class frmProductoPrecio
             fnBuscaArticulo(codArt)
             fnUltimasVentas()
             fnUltimasCompras()
+            fnClasificacion()
         Catch ex As Exception
 
         End Try
     End Sub
 
+    Private Sub fnClasificacion()
+        Try
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim id As Integer = Me.cmbNombre1.SelectedValue
+
+                Dim a As tblArticulo = (From x In conexion.tblArticuloes Where x.idArticulo = id Select x).FirstOrDefault
+
+                Me.txtCodigoM1.Text = a.codigo1
+                Me.txtCodigoM2.Text = a.codigo2
+                Me.txtProductoM1.Text = a.nombre1
+                Me.txtProductoM2.Text = a.nombre2
+                Me.txtObs.Text = a.Observacion
+
+
+                conn.Close()
+            End Using
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
     'Funcion utilizada para posicionarse en el grid de articulos segun el codigo del producto
     Private Sub fnBuscaArticulo(ByVal codArt As Integer)
@@ -1337,7 +1486,7 @@ Public Class frmProductoPrecio
                         Select Fecha = x.fechaRegistro, Cliente = x.tblCliente.Negocio, Precio = x.precio, Observacion = x.observacion _
                         Order By Fecha Descending)
 
-            Me.grdPreciosCompe.DataSource = cons
+            'Me.grdPreciosCompe.DataSource = cons
         Catch ex As Exception
         End Try
     End Sub
@@ -1385,34 +1534,31 @@ Public Class frmProductoPrecio
     End Sub
 
 
-    Private Sub btnPrecioCompetencia_Click(sender As Object, e As EventArgs) Handles btnPrecioCompetencia.Click
-        Try
-            frmBuscarArticuloPrecioCompetencia.Text = "Precios Competencia"
-            frmBuscarArticuloPrecioCompetencia.codigoArticulo = CType(txtCodigo.Text, Integer)
-            frmBuscarArticuloPrecioCompetencia.bitBloquearCombo = False
-            frmBuscarArticuloPrecioCompetencia.StartPosition = FormStartPosition.CenterScreen
-            permiso.PermisoDialogEspeciales(frmBuscarArticuloPrecioCompetencia)
-            frmBuscarArticuloPrecioCompetencia.Dispose()
-            fnPreciosCompetencia()
-        Catch ex As Exception
-            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
-        End Try
-    End Sub
+    ' Private Sub btnPrecioCompetencia_Click(sender As Object, e As EventArgs) Handles btnPrecioCompetencia.Click
+    '    Try
+    '   frmBuscarArticuloPrecioCompetencia.Text = "Precios Competencia"
+    '   frmBuscarArticuloPrecioCompetencia.codigoArticulo = CType(txtCodigo.Text, Integer)
+    '  frmBuscarArticuloPrecioCompetencia.bitBloquearCombo = False
+    ' frmBuscarArticuloPrecioCompetencia.StartPosition = FormStartPosition.CenterScreen
+    ' permiso.PermisoDialogEspeciales(frmBuscarArticuloPrecioCompetencia)
+    ' frmBuscarArticuloPrecioCompetencia.Dispose()
+    'fnPreciosCompetencia()
+    ' Catch ex As Exception
+    ' RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+    '  End Try
+    'End Sub
 
-    Private Sub grdOtrosPreciosSucursal_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub grdOtrosPreciosSucursal_KeyDown(sender As Object, e As KeyEventArgs)
-        Try
-            'Si presionamos la tecla F2
-            If e.KeyCode = Keys.F2 Then
-                fnFechasSucursal()
-            End If
-        Catch ex As Exception
-
-        End Try
-    End Sub
+  
+    ' Private Sub grdOtrosPreciosSucursal_KeyDown(sender As Object, e As KeyEventArgs)
+    '  Try
+    'Si presionamos la tecla F2
+    '   If e.KeyCode = Keys.F2 Then
+    '     fnFechasSucursal()
+    '  End If
+    '  Catch ex As Exception
+    '
+    ' End Try
+    ' End Sub
 
     'Funcion utilizada para cuando se cambia de producto
     Private Sub frm_txtcodigo() Handles txtCodigo.TextChanged
@@ -1429,5 +1575,1111 @@ Public Class frmProductoPrecio
         End Try
     End Sub
 
+    Private Sub frm_focoDatos() Handles MyBase.focoDatos
+        cmbCodigo1.Focus()
+    End Sub
+
+    'Funcion que se utiliza para poder crear un nuevo campo
+    Private Sub frm_nuevoRegistro() Handles MyBase.nuevoRegistro
+        limpiaCampos()
+        cmbCodigo1.Focus()
+        If pctFoto.Image IsNot Nothing Then
+            pctFoto.Image = Nothing
+        End If
+        If verRegistro = True Then
+            'se manda de parametro el formulario y el estado a deshabilitado.
+            base.FnDeshabilitarHabilitarCampos(Me, False)
+        End If
+    End Sub
+
+    Private Sub frm_cmbCodigo1() Handles txtCodigo.TextChanged
+        fnLlenar_Listas()
+        'llenar lista de modelo, marcas, tipo de vehiculo.
+        fngrd_contador(grdTipoVehiculo, lblRecuentoTipoVehiculo)
+        fngrd_contador(grdModeloVehiculo, lblRecuentoModelo)
+
+        'llenar clasificacion de compra del cliente.
+        If NuevoIniciar = False Then
+            Try
+                'Llenamos las ubicaciones
+                Dim ubicaciones As tblArticuloAlmacen = (From x In ctx.tblArticuloAlmacens Where x.articulo = txtCodigo.Text).FirstOrDefault
+                If ubicaciones Is Nothing Then
+                    txtUbicacionCajas.Text = ""
+                    txtUbicacionEstanteria.Text = ""
+                Else
+                    txtUbicacionCajas.Text = ubicaciones.ubicacionCajas
+                    txtUbicacionEstanteria.Text = ubicaciones.ubicacionEstanteria
+                End If
+
+                'Liberamos las fotos
+                If pctFoto.Image IsNot Nothing Then
+                    pctFoto.Image = Nothing
+                End If
+
+                'Llenamos el grid de fotos
+                fnLlenarFotos(CType(txtCodigo.Text, Integer))
+
+                If Me.grdFotos.Rows.Count > 0 Then
+                    fnFoto()
+                End If
+
+                ''If chkKit.Checked = True Then
+                ''    lblCostoKit.Visible = True
+                ''Else
+                ''    lblCostoKit.Visible = False
+                ''End If
+
+                'Llenamos los codigos de barra
+
+            Catch ex As Exception
+
+            End Try
+        Else
+        End If
+    End Sub
+
+    'Funcion utilizada para cargar las fotos
+    Private Sub fnCargarFoto(ByRef pct As PictureBox, ByVal direccion As String)
+        Try
+            'Vaciamos la imagen
+            If pct.Image IsNot Nothing Then
+                pct.Image = Nothing
+            End If
+
+            If direccion IsNot Nothing Then
+                If direccion.Length > 0 Then
+                    Dim stream As New System.IO.StreamReader(direccion)
+                    pct.Image = Image.FromStream(stream.BaseStream)
+                    stream.Dispose()
+                    pct.SizeMode = PictureBoxSizeMode.StretchImage
+                    pct.BorderStyle = BorderStyle.Fixed3D
+                End If
+            End If
+        Catch ex As Exception
+            alertas.contenido = "Ocurrio un error al intentar abrir la imagen"
+            alertas.fnErrorContenido()
+        End Try
+    End Sub
+
+    'GUARDAR
+    Private Sub frm_grabaRegistro() Handles MyBase.grabaRegistro
+        If IsNumeric(txtCodigo.Text) Then
+            fnModificarProducto()
+        Else
+            fnGuardarProducto()
+        End If
+    End Sub
+
+
+
+    'MODIFICAR
+    Private Sub frm_modificaRegistro2() Handles MyBase.modificaRegistro
+        If IsNumeric(txtCodigo.Text) Then
+            fnModificarProducto()
+        Else
+            fnGuardarProducto()
+        End If
+    End Sub
+
+    'Funcion utilizada para modificar un producto
+    Private Sub fnModificarProducto()
+
+        Dim conexion As dsi_pos_demoEntities
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+            Dim codigo As Integer = 0
+            Dim success As Boolean = True
+            Dim fecha As DateTime = mdlPublicVars.fnFecha_horaServidor
+
+            'crear el encabezado de la transaccion
+            Using transaction As New TransactionScope
+
+                'inicio de excepcion
+                Try
+                    ''Modificaciones de Kits y Unidades de Medida
+                    If chkKit.Checked = True Then
+
+                        '---- Si es kit guardamos el kit
+                        fnGuardaKit()
+
+                    ElseIf chkUnidadMedida.Checked = True Then
+
+                    End If
+
+                    '---si es unidad medida guardamos la unidad
+                    Dim val As Boolean
+
+
+                    ctx.SaveChanges()
+                    ''Fin de modificaciones de Kits y Unidades de Medida
+
+                    Dim m As tblArticulo = (From x In ctx.tblArticuloes Where x.idArticulo = txtCodigo.Text Select x).FirstOrDefault
+
+                    'recuento de numero de transacciones en salida, entrada.
+                    Dim noSalidas As Integer = (From x In ctx.tblSalidaDetalles Where x.idArticulo = m.idArticulo).Count + (From x In ctx.tblEntradasDetalles Where x.idArticulo = m.idArticulo).Count
+
+                    If m.codigo1.Equals(cmbCodigo1.Text) Then
+                        'no hay problemas
+                    ElseIf noSalidas > 0 Then
+                        'asignar el contenido del error.
+                        alertas.contenido = "No puede cambiar el codigo del producto porque ya tiene registros"
+                        'muestra el error.
+                        alertas.fnErrorContenido()
+                        Exit Sub
+                    End If
+
+
+                    m.idArticuloImportancia = cmbImportancia.SelectedValue
+                    m.idArticuloMarcaRepuesto = cmbMarcaRepuesto.SelectedValue
+                    m.idArticuloRepuesto = cmbTipoRepuesto.SelectedValue
+
+                    m.idUsuario = mdlPublicVars.idUsuario
+                    m.nombre1 = cmbNombre1.Text 'antes combo
+
+                    m.nombre1 = cmbNombre1.Text
+                    m.codigo1 = cmbCodigo1.Text
+
+
+
+                    m.Observacion = txtObservacion.Text
+
+
+
+                    codigo = m.idArticulo
+
+                    If m.bitKit Then
+                        m.costoSinIVA = m.costoIVA / (1 + (mdlPublicVars.General_IVA / 100))
+                    End If
+                    ctx.SaveChanges()
+                    'Guardamos las ubicaciones en el alamacen
+                    'guarda la ubicacion en el almacen
+
+
+                    Dim inv As tblInventario = (From x In ctx.tblInventarios Where x.idArticulo = txtCodigo.Text).FirstOrDefault
+                    inv.idTipoInventario = 1 'Me.cmbInventario.SelectedValue
+                    inv.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal
+
+                    ctx.SaveChanges()
+
+
+                    Dim ub As tblArticuloAlmacen = (From x In ctx.tblArticuloAlmacens Where x.articulo = txtCodigo.Text).FirstOrDefault
+
+                    If ub Is Nothing Then
+                        Dim nuevaUbicacion As New tblArticuloAlmacen
+                        nuevaUbicacion.articulo = m.idArticulo
+                        nuevaUbicacion.almacen = mdlPublicVars.General_idAlmacenPrincipal
+                        nuevaUbicacion.ubicacionCajas = txtUbicacionCajas.Text
+                        nuevaUbicacion.ubicacionEstanteria = txtUbicacionEstanteria.Text
+                        ctx.AddTotblArticuloAlmacens(nuevaUbicacion)
+                        ctx.SaveChanges()
+                    Else
+                        ub.almacen = mdlPublicVars.General_idAlmacenPrincipal
+                        ub.articulo = m.idArticulo
+                        ub.ubicacionCajas = txtUbicacionCajas.Text
+                        ub.ubicacionEstanteria = txtUbicacionEstanteria.Text
+                        ctx.SaveChanges()
+                    End If
+
+                    Dim estado As Boolean = False
+                    Dim cod As Integer
+                    Dim i As Integer
+                    Dim id As Integer
+                    Dim grd As Telerik.WinControls.UI.RadGridView
+
+
+                    'AGREGAR TIPO DE VEHICULO.
+                    grd = Me.grdTipoVehiculo
+                    For i = 0 To grd.Rows.Count - 1
+                        estado = grd.Rows(i).Cells("Agregar").Value
+                        cod = grd.Rows(i).Cells("Codigo").Value
+                        'si estado = true y existe, no hacer nada
+                        If estado = True Then
+                            If CType(grd.Rows(i).Cells("Id").Value, Integer) > 0 Then
+
+                            Else
+                                Dim tv As New tblArticulo_TipoVehiculo
+                                tv.articuloTipoVehiculo = cod
+                                tv.articulo = m.idArticulo
+                                ctx.AddTotblArticulo_TipoVehiculo(tv)
+                                ctx.SaveChanges()
+                            End If
+                        Else ' si estado = falso
+
+                            If CType(grd.Rows(i).Cells("Id").Value, Integer) > 0 Then
+                                'eliminar el registro.
+                                id = grd.Rows(i).Cells("Id").Value
+                                Dim tv As tblArticulo_TipoVehiculo = (From x In ctx.tblArticulo_TipoVehiculo Where x.codigo = id Select x).FirstOrDefault
+                                If tv Is Nothing Then
+                                Else
+                                    ctx.DeleteObject(tv)
+                                    ctx.SaveChanges()
+                                End If
+                            End If
+                        End If
+                    Next
+
+                    'AGREGAR MODELO DE VEHICULO
+                    grd = Me.grdModeloVehiculo
+                    For i = 0 To grd.Rows.Count - 1
+                        estado = grd.Rows(i).Cells("Agregar").Value
+                        cod = grd.Rows(i).Cells("Codigo").Value
+                        'si estado = true y existe, no hacer nada
+                        If estado = True Then
+                            If CType(grd.Rows(i).Cells("Id").Value, Integer) > 0 Then
+                            Else
+                                Dim tv As New tblArticulo_ModeloVehiculo
+                                tv.articuloModeloVehiculo = cod
+                                tv.articulo = m.idArticulo
+                                ctx.AddTotblArticulo_ModeloVehiculo(tv)
+                                ctx.SaveChanges()
+                            End If
+                        Else ' si estado = falso
+                            If CType(grd.Rows(i).Cells("Id").Value, Integer) > 0 Then
+                                'eliminar el registro.
+                                id = grd.Rows(i).Cells("Id").Value
+                                Dim tv As tblArticulo_ModeloVehiculo = (From x In ctx.tblArticulo_ModeloVehiculo Where x.codigo = id Select x).FirstOrDefault
+                                If tv IsNot Nothing Then
+                                    ctx.DeleteObject(tv)
+                                    ctx.SaveChanges()
+                                End If
+                            End If
+                        End If
+                    Next
+
+                    '---- SUSTITUTOS -----
+                    fnGuardaSustitutos()
+
+                    'completar la transaccion.
+                    success = True
+                    transaction.Complete()
+                Catch ex As System.Data.EntityException
+                    success = False
+                Catch ex As Exception
+                    success = False
+                    ' Handle errors and deadlocks here and retry if needed. 
+                    ' Allow an UpdateException to pass through and 
+                    ' retry, otherwise stop the execution. 
+                    If ex.[GetType]() <> GetType(UpdateException) Then
+                        Console.WriteLine(("An error occured. " & "The operation cannot be retried.") + ex.Message)
+                        alertas.fnErrorGuardar()
+                        Exit Try
+                        ' If we get to this point, the operation will be retried. 
+                    End If
+                End Try
+            End Using
+
+            If success = True Then
+                ctx.AcceptAllChanges()
+                alertas.fnModificar()
+                'Vaciamos el picture box
+                If pctFoto.Image IsNot Nothing Then
+                    pctFoto.Image = Nothing
+                End If
+
+                'Guardamos las imagenes
+                If Me.grdFotos.Rows.Count > 0 Then
+                    For i As Integer = 0 To Me.grdFotos.Rows.Count - 1
+                        fnGuardar_foto(codigo, i)
+                    Next
+                End If
+
+                Call llenagrid()
+                Call llenagrid2()
+            Else
+                alertas.fnErrorGuardar()
+                Console.WriteLine("La operacion no pudo ser completada")
+            End If
+
+            conn.Close()
+        End Using
+
+        'Funcion utilizada para guardar un producto
+    End Sub
+
+    Private Sub fnGuardarProducto()
+        'Verificamos que no falten los campos requeridos
+        If fnRequeridos.Length > 0 Then
+            alertas.contenido = fnRequeridos()
+            alertas.fnErrorContenido()
+            Exit Sub
+        End If
+
+        'Verificamos si aun no existe el codigo
+        If fnVerificaCodigo(cmbCodigo1.Text) = True Then
+            RadMessageBox.Show("El codigo " & cmbcodigo1.Text & " ya existe !!!", nombreSistema)
+
+            If RadMessageBox.Show("Desea Habilitarlo?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                Dim conexion As dsi_pos_demoEntities
+                Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                    conn.Open()
+                    conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                    Dim articulo As tblArticulo = (From x In conexion.tblArticuloes Where x.codigo1 = cmbCodigo1.Text And x.empresa = mdlPublicVars.idEmpresa Select x).FirstOrDefault
+
+                    articulo.Habilitado = True
+
+                    conexion.SaveChanges()
+
+                    conn.Close()
+                End Using
+            End If
+
+            Exit Sub
+        End If
+
+        Dim codigoArticulo As String = ""
+        Dim codigo As Integer = 0
+        Dim success As Boolean = True
+        Dim fecha As DateTime = mdlPublicVars.fnFecha_horaServidor
+        Dim m As New tblArticulo
+        'crear el encabezado de la transaccion
+        Using transaction As New TransactionScope
+
+            'inicio de excepcion
+            Try
+                m.Habilitado = True
+                m.idArticuloImportancia = cmbImportancia.SelectedValue
+                m.idArticuloMarcaRepuesto = cmbMarcaRepuesto.SelectedValue
+                m.idArticuloRepuesto = cmbTipoRepuesto.SelectedValue
+                m.empresa = mdlPublicVars.idEmpresa
+                m.idUsuario = mdlPublicVars.idUsuario
+                m.nombre1 = cmbNombre1.Text
+
+                m.codigo1 = cmbCodigo1.Text
+                m.costoIVA = 0
+                m.costoSinIVA = 0
+                m.Observacion = txtObservacion.Text
+
+                m.fechaCrea = fecha
+                m.preciopublicosucursal = 0
+
+                m.bitProducto = chkProducto.Checked
+                m.bitServicio = chkServicio.Checked
+                m.bitKit = chkKit.Checked
+                m.bitUnidadMedida = chkUnidadMedida.Checked
+                m.UltimoPrecio = False
+
+
+
+                m.idUnidadMedida = mdlPublicVars.UnidadMedidaDefault
+
+
+                m.ultimoprecio = False
+
+                If (Not chkProducto.Checked And Not chkServicio.Checked And Not chkKit.Checked And Not chkUnidadMedida.Checked) Then
+                    m.bitProducto = True
+                End If
+
+                If m.bitKit Then
+                    m.costoSinIVA = m.costoIVA / (1 + (mdlPublicVars.General_IVA / 100))
+                End If
+
+                ctx.AddTotblArticuloes(m)
+                ctx.SaveChanges()
+                codigo = m.idArticulo
+                codigoArticulo = m.codigo1
+                'guarda la ubicacion en el almacen
+                Dim ub As New tblArticuloAlmacen
+                ub.almacen = mdlPublicVars.General_idAlmacenPrincipal
+                ub.articulo = m.idArticulo
+                ub.ubicacionCajas = txtUbicacionCajas.Text
+                ub.ubicacionEstanteria = txtUbicacionEstanteria.Text
+                ctx.AddTotblArticuloAlmacens(ub)
+                ctx.SaveChanges()
+
+                'crear registro de inventario.
+                Dim inv As New tblInventario
+                inv.idArticulo = m.idArticulo
+                inv.entrada = 0
+                inv.salida = 0
+                inv.saldo = 0
+                inv.reserva = 0
+                inv.idTipoInventario = 1 'Me.cmbInventario.SelectedValue
+                inv.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal
+                inv.transito = 0
+                ctx.AddTotblInventarios(inv)
+                ctx.SaveChanges()
+                'agregar tipo de vehiculo.
+                Dim i
+                Dim valor As Boolean = False
+                Dim cod As Integer = 0
+
+                For i = 0 To Me.grdTipoVehiculo.Rows.Count - 1
+                    valor = Me.grdTipoVehiculo.Rows(i).Cells(0).Value
+
+                    If valor = True Then 'agregar el tipo de vehiculo
+                        cod = Me.grdTipoVehiculo.Rows(i).Cells(2).Value
+                        Dim tv As New tblArticulo_TipoVehiculo
+                        tv.articulo = m.idArticulo
+                        tv.articuloTipoVehiculo = cod
+                        ctx.AddTotblArticulo_TipoVehiculo(tv)
+                        ctx.SaveChanges()
+                    End If
+                Next
+
+                'modelo de vehiculo
+                For i = 0 To Me.grdModeloVehiculo.Rows.Count - 1
+                    valor = Me.grdModeloVehiculo.Rows(i).Cells(0).Value
+
+                    If valor = True Then 'agregar el tipo de vehiculo
+                        cod = Me.grdModeloVehiculo.Rows(i).Cells(2).Value
+                        Dim tv As New tblArticulo_ModeloVehiculo
+                        tv.articulo = m.idArticulo
+                        tv.articuloModeloVehiculo = cod
+                        ctx.AddTotblArticulo_ModeloVehiculo(tv)
+                        ctx.SaveChanges()
+                    End If
+                Next
+
+
+
+
+                alertas.fnGuardar()
+
+                'completar la transaccion.
+                success = True
+                transaction.Complete()
+
+            Catch ex As System.Data.EntityException
+                success = False
+            Catch ex As Exception
+                success = False
+                ' Handle errors and deadlocks here and retry if needed. 
+                ' Allow an UpdateException to pass through and 
+                ' retry, otherwise stop the execution. 
+                If ex.[GetType]() <> GetType(UpdateException) Then
+                    Console.WriteLine(("An error occured. " & "The operation cannot be retried.") + ex.Message)
+                    alertas.fnErrorGuardar()
+                    Exit Try
+                    ' If we get to this point, the operation will be retried. 
+                End If
+            End Try
+        End Using
+
+        If success = True Then
+            ctx.AcceptAllChanges()
+            alertas.fnGuardar()
+
+            Me.Close()
+        Else
+            Call llenagrid()
+            NuevoIniciar = False
+            If RadMessageBox.Show("¿Desea guardar otro registro", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = vbYes Then
+            Else
+                Me.Close()
+            End If
+        End If
+        alertas.fnErrorGuardar()
+        Console.WriteLine("La operacion no pudo ser completada")
+    End Sub
+
+    'Funcion utilizada para guardar una foto
+    Private Sub fnGuardar_foto(ByVal codigo As Integer, ByVal fila As String)
+        Dim success As Boolean = True
+
+
+        Using transaction As New TransactionScope
+            Try
+                'Obtenemos el codigo de la imagen
+                Dim idFoto As Integer = CType(Me.grdFotos.Rows(fila).Cells("codigo").Value, Integer)
+                Dim direccion As String = CType(Me.grdFotos.Rows(fila).Cells("direccion").Value, String)
+                Dim elimina As Integer = CType(Me.grdFotos.Rows(fila).Cells("elimina").Value, Integer)
+
+                'Si elimin
+                If idFoto > 0 Then
+                    'Creamos la nueva imagen
+                    Dim foto As New tblArticulo_Foto
+
+                    foto.articulo = codigo
+                    ctx.AddTotblArticulo_Foto(foto)
+                    ctx.SaveChanges()
+                    Dim codFoto As Integer = foto.codigo
+                    'guardar la imagen.
+                    Dim Ruta As String = Path.Combine(mdlPublicVars.General_CarpetaImagenes, codFoto & ".jpg")
+                    Dim stream As New System.IO.StreamReader(direccion)
+                    Dim imagen As Image = Image.FromStream(stream.BaseStream)
+                    stream.Dispose()
+                    Dim bmap As Bitmap = New Bitmap(imagen)
+                    bmap.Save(Ruta, imagen.RawFormat)
+                    bmap.Dispose()
+                    ctx.SaveChanges()
+                End If
+                transaction.Complete()
+            Catch ex As System.Data.EntityException
+                success = False
+            Catch ex As Exception
+                success = False
+                ' Handle errors and deadlocks here and retry if needed. 
+                ' Allow an UpdateException to pass through and 
+                ' retry, otherwise stop the execution. 
+                If ex.[GetType]() <> GetType(UpdateException) Then
+                    Console.WriteLine(("An error occured. " & "The operation cannot be retried.") + ex.Message)
+                    alertas.fnErrorGuardar()
+                    Exit Try
+                    ' If we get to this point, the operation will be retried. 
+                End If
+
+            End Try
+        End Using
+
+        If success = True Then
+            ctx.AcceptAllChanges()
+        Else
+
+        End If
+    End Sub
+
+    'Llena el grid de fotos
+    Private Sub fnLlenarFotos(ByVal codigo As Integer)
+        Try
+            Me.grdFotos.Rows.Clear()
+            'Obtenemos las fotos del articulo
+            Dim fotos As List(Of tblArticulo_Foto) = (From x In ctx.tblArticulo_Foto Where x.articulo = codigo Select x).ToList
+            Dim foto As tblArticulo_Foto
+            Dim i As Integer = 0
+            For Each foto In fotos
+                i += 1
+                Dim fila As String()
+                Dim ruta As String = Path.Combine(mdlPublicVars.General_CarpetaImagenes, foto.codigo & ".jpg")
+                fila = {foto.codigo, ruta, "0", "Imagen " & i}
+                Me.grdFotos.Rows.Add(fila)
+            Next
+        Catch ex As Exception
+        End Try
+
+    End Sub
+
+    'Funcion que se utlizara para saber si todos los campos requeridos estan llenos
+    Private Function fnRequeridos() As String
+        'Variables que se utiliran para el control
+        Dim errores As String = ""
+
+        'Creamos el arreglo que contenera los errores
+        Dim coleccion As New ArrayList
+        Dim objeto As String = "Producto"
+
+        'Verificamos que tenga nombre y codigo
+        If cmbNombre1.Text = 0 Then
+            coleccion.Add("Nombre de " & objeto)
+        End If
+
+
+        If cmbCodigo1.Text = 0 Then
+            coleccion.Add("Codigo de " & objeto)
+        End If
+
+        If (cmbImportancia.Text.Length = 0) Then
+            coleccion.Add("Importancia de " & objeto)
+        End If
+
+        If (cmbMarcaRepuesto.Text.Length = 0) Then
+            coleccion.Add("Marca de " & objeto)
+        End If
+
+        If (cmbTipoRepuesto.Text.Length = 0) Then
+            coleccion.Add("Tipo de " & objeto)
+        End If
+
+        Dim cont
+        For cont = 0 To coleccion.Count - 1
+            errores += "Falta " & coleccion.Item(cont) & vbCrLf
+        Next
+
+
+        Return errores
+    End Function
+
+    'Coloca la foto
+    Private Sub fnFoto()
+        Try
+
+            'Seleccionamos la direccion
+            Dim direccion As String = CType(Me.grdFotos.Rows(Me.grdFotos.CurrentRow.Index).Cells("direccion").Value, String)
+            fnCargarFoto(pctFoto, direccion)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub grdFotos_Click(sender As Object, e As EventArgs) Handles grdFotos.Click
+        Try
+            fnFoto()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+    Private Sub grdDirecciones_UserAddedRow(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.GridViewRowEventArgs) Handles grdFotos.UserAddedRow
+        If grdFotos.RowCount > 0 Then
+            fnFoto()
+        End If
+    End Sub
+
+    Private Sub fnLlenar_Listas()
+        Dim id As Integer
+
+        If NuevoIniciar = True Then
+            id = 0
+        Else
+            Try
+                id = txtCodigo.Text
+            Catch ex As Exception
+                id = 0
+            End Try
+
+        End If
+        'tipo de vehiculo con grid
+        Dim tp = (From x In ctx.tblArticuloTipoVehiculoes Order By x.nombre
+                 Select Agregar = If(((From y In ctx.tblArticulo_TipoVehiculo _
+                            Where x.codigo = y.articuloTipoVehiculo And y.articulo = id _
+                            Select y.codigo).FirstOrDefault) > 0, True, False), _
+                            IdDetalle = ((From y In ctx.tblArticulo_TipoVehiculo _
+                            Where x.codigo = y.articuloTipoVehiculo And y.articulo = id _
+                            Select y.codigo).FirstOrDefault),
+                           Codigo = x.codigo, Nombre = x.nombre)
+
+
+
+        Me.grdTipoVehiculo.Rows.Clear()
+        Dim v
+        For Each v In tp
+            Me.grdTipoVehiculo.Rows.Add(v.AGREGAR, v.iddetalle, v.CODIGO, v.NOMBRE)
+        Next
+
+
+        'modelo de vehiculo con grid
+        Dim mv = (From x In ctx.tblArticuloModeloVehiculoes Order By x.nombre
+                 Select Agregar = If(((From y In ctx.tblArticulo_ModeloVehiculo _
+                            Where x.codigo = y.articuloModeloVehiculo And y.articulo = id _
+                            Select y.codigo).FirstOrDefault) > 0, True, False), _
+                            IdDetalle = ((From y In ctx.tblArticulo_ModeloVehiculo _
+                            Where x.codigo = y.articuloModeloVehiculo And y.articulo = id _
+                            Select y.codigo).FirstOrDefault),
+                           Codigo = x.codigo, Nombre = x.nombre)
+
+        Me.grdModeloVehiculo.Rows.Clear()
+        Dim v2
+        For Each v2 In mv
+            Me.grdModeloVehiculo.Rows.Add(v2.AGREGAR, v2.iddetalle, v2.CODIGO, v2.NOMBRE)
+        Next
+
+    End Sub
+
+   
+
+    'Funcion utilizada para guardar kit de un producto
+    Public Sub fnGuardaKit()
+        Dim codArt As Integer = CInt(txtCodigo.Text)
+
+        'Guardamos todos los detalles de kit
+        Dim elimina As Integer = 0
+        Dim idDetalle As Integer = 0
+        Dim idArticulo As Integer = 0
+        Dim cantidad As Decimal = 0
+        Dim codArticuloUnidadMedida As String
+        Dim fechaServer As DateTime = mdlPublicVars.fnFecha_horaServidor
+            If elimina = 1 Then
+                '-- Elimina el articulo del kit
+                'Obtenemos el articulo de la lista
+                Dim detalle As tblArticulo_Kit = (From x In ctx.tblArticulo_Kit Where x.codigo = idDetalle Select x).FirstOrDefault
+
+                'Eliminamos el objeto del contexto
+                ctx.DeleteObject(detalle)
+                ctx.SaveChanges()
+            ElseIf idDetalle > 0 Then
+                '-- Modificamos el articulo del kit
+                'Obtenemos el articulo para poder modificarlo
+                Dim detalle As tblArticulo_Kit = (From x In ctx.tblArticulo_Kit Where x.codigo = idDetalle Select x).FirstOrDefault
+
+                detalle.cantidad = cantidad
+                detalle.idArticulo_UnidadMedida = codArticuloUnidadMedida
+                ctx.SaveChanges()
+            Else
+                '-- Agregamos el articulo al kit
+
+                'Creamos un nuevo objeto del tipo tblArticulo_Kit
+                Dim articulo As New tblArticulo_Kit
+                articulo.cantidad = cantidad
+                articulo.articuloBase = codArt
+                articulo.articulo = idArticulo
+                articulo.fecha = fechaServer
+                articulo.usuario = mdlPublicVars.idUsuario
+                If codArticuloUnidadMedida > 0 Then
+                    articulo.idArticulo_UnidadMedida = codArticuloUnidadMedida
+                End If
+
+
+                ctx.AddTotblArticulo_Kit(articulo)
+                ctx.SaveChanges()
+            End If
+    End Sub
+
+    'Funcion utilizada para guardar sustitutos
+    Public Sub fnGuardaSustitutos()
+        Dim id As Integer = CType(txtCodigo.Text, Integer)
+
+        Dim categoria = (From x In ctx.tblSustitutoes _
+                       Where x.idarticulo = id And x.idempresa = mdlPublicVars.idEmpresa And x.idAlmacen = mdlPublicVars.General_idAlmacenPrincipal _
+                       And x.idTipoInventario = mdlPublicVars.General_idTipoInventario _
+                       Select x)
+
+        Dim contador As Integer = 0
+        Dim valor As New tblSustituto
+        For Each valor In categoria
+            contador = contador + 1
+        Next
+
+        If contador > 0 Then
+            Dim idCategoria As Integer = CType(valor.idSustitutoCategoria, Integer)
+            'Eliminamos toda la categoria de sustitutos anteriores
+            Dim listaSustitutos As List(Of tblSustituto) = (From x In ctx.tblSustitutoes Where x.idSustitutoCategoria = idCategoria Select x).ToList
+            Dim sust As New tblSustituto
+            For Each sust In listaSustitutos
+                ctx.DeleteObject(sust)
+                ctx.SaveChanges()
+            Next
+        End If
+
+        'Si el grid de sustitutos es mayor a cero
+        If Me.grdSustitutos.RowCount > 0 Then
+            Dim sustitutos As Integer = 0
+            For i As Integer = 0 To Me.grdSustitutos.RowCount - 1
+                If Me.grdSustitutos.Rows(i).IsVisible = True Then
+                    sustitutos += 1
+                End If
+            Next
+
+            If sustitutos >= 1 Then
+
+                'Si sustitutos es mayor o igual 1, se crean los sustitutos
+                'Creamos la nueva categoria de sutitutos
+                Dim categoriaNueva As New tblSustitutoCategoria
+                ctx.AddTotblSustitutoCategorias(categoriaNueva)
+                ctx.SaveChanges()
+                Dim cat As Integer = CType(categoriaNueva.idSustitutoCategoria, Integer)
+
+                'Guardamos el articulo base
+                Dim sustitutoBase As New tblSustituto
+                sustitutoBase.idarticulo = id
+                sustitutoBase.idSustitutoCategoria = cat
+                sustitutoBase.idAlmacen = mdlPublicVars.General_idAlmacenPrincipal
+                sustitutoBase.idempresa = mdlPublicVars.idEmpresa
+                sustitutoBase.idTipoInventario = mdlPublicVars.General_idTipoInventario
+                ctx.AddTotblSustitutoes(sustitutoBase)
+                ctx.SaveChanges()
+                'Guardamos todos los sutitutos
+                Dim elimina As Integer = 0
+                For contador = 0 To Me.grdSustitutos.Rows.Count - 1
+                    elimina = grdSustitutos.Rows(contador).Cells("elimina").Value
+
+                    If elimina = 0 Then
+                        Dim sustituto As New tblSustituto
+                        Dim idArticulo As Integer = CType(Me.grdSustitutos.Rows(contador).Cells("id").Value, Integer)
+                        sustituto.idarticulo = idArticulo
+                        sustituto.idSustitutoCategoria = cat
+                        sustituto.idAlmacen = mdlPublicVars.General_idAlmacenPrincipal
+                        sustituto.idempresa = mdlPublicVars.idEmpresa
+                        sustituto.idTipoInventario = mdlPublicVars.General_idTipoInventario
+                        ctx.AddTotblSustitutoes(sustituto)
+                        ctx.SaveChanges()
+                    End If
+                Next
+            End If
+        End If
+    End Sub
+
+   
+
+    Public Sub llenarGridSustitutos()
+        Try
+            Dim articulo As Integer = CType(txtCodigo.Text, Integer)
+
+            Dim categoria = (From x In ctx.tblSustitutoes _
+                           Where x.idarticulo = articulo And x.idempresa = mdlPublicVars.idEmpresa And x.idAlmacen = mdlPublicVars.General_idAlmacenPrincipal _
+                           And x.idTipoInventario = mdlPublicVars.General_idTipoInventario _
+                           Select x).ToList
+
+            Dim listaCategoria As List(Of tblSustituto) = categoria
+
+            Dim contador As Integer = 0
+            Dim valor As New tblSustituto
+            For Each valor In listaCategoria
+                contador = contador + 1
+            Next
+
+            If contador > 0 Then
+                Dim categoriaSustituto As Integer = CType(valor.idSustitutoCategoria, Integer)
+                Dim sustitutos As List(Of tblSustituto) = (From x In ctx.tblSustitutoes Join y In ctx.tblArticuloes On x.idarticulo Equals y.idArticulo _
+                                Where x.idAlmacen = mdlPublicVars.General_idAlmacenPrincipal And x.idTipoInventario = mdlPublicVars.General_idTipoInventario _
+                                And x.idempresa = mdlPublicVars.idEmpresa And x.idSustitutoCategoria = categoriaSustituto And x.idarticulo <> articulo _
+                                Select x).ToList
+                Dim arti As New tblSustituto
+                For Each arti In sustitutos
+                    Dim fila As String()
+                    fila = {arti.idSustituto, arti.idarticulo, arti.tblArticulo.codigo1, arti.tblArticulo.codigo2, arti.tblArticulo.nombre1, arti.tblArticulo.nombre2, "0", arti.tblArticulo.tblArticuloMarcaRepuesto.nombre}
+                    Me.grdSustitutos.Rows.Add(fila)
+                Next
+
+            Else
+                Me.grdSustitutos.DataSource = Nothing
+
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'Funcion utilizada para llenar el grid con los detalles de kit
+    Private Sub fnLlenarGridKit()
+
+        Dim conexion As dsi_pos_demoEntities
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+            Dim codigoArt As Integer = CInt(txtCodigo.Text)
+            Dim lDetalleKit As List(Of tblArticulo_Kit) = (From x In conexion.tblArticulo_Kit Where x.articuloBase = codigoArt Select x).ToList
+            Dim idArticuloUnidadMedida As Integer
+            Dim unidadmedida As String
+            Dim unidadesmedida As Decimal
+
+            For Each detalle As tblArticulo_Kit In lDetalleKit
+                Dim fila As String()
+
+                If IsNothing(detalle.idArticulo_UnidadMedida) Then
+                    idArticuloUnidadMedida = Nothing
+                    unidadmedida = "Unidad"
+                    unidadesmedida = 1.0
+                Else
+                    idArticuloUnidadMedida = detalle.idArticulo_UnidadMedida
+                    unidadmedida = detalle.tblArticulo_UnidadMedida.tblUnidadMedida.nombre
+                    unidadesmedida = detalle.tblArticulo_UnidadMedida.valor
+                End If
+
+
+                ''iddetalle,id,codigo1,nombre1,nombre2,elimina,marca,cantidad
+                'fila = {detalle.codigo, detalle.tblArticulo1.idArticulo, detalle.tblArticulo1.codigo1, detalle.tblArticulo1.nombre1,
+                '"0", detalle.tblArticulo1.tblArticuloMarcaRepuesto.nombre, Format(detalle.cantidad, mdlPublicVars.formatoNumero), Format(detalle.tblArticulo1.costoIVA * unidadesmedida, mdlPublicVars.formatoNumero), idArticuloUnidadMedida, unidadmedida, Format(unidadesmedida, mdlPublicVars.formatoNumero)}
+                'Me.grdKit.Rows.Add(fila)
+
+            Next
+
+            conn.Close()
+        End Using
+
+    End Sub
+
+    Public Sub llenarGridInventarios()
+        Dim id As Integer = txtCodigo.Text
+        Try
+            Dim inventario As List(Of tblTipoInventario) = (From x In ctx.tblTipoInventarios Select x).ToList
+
+            Dim tipo As New tblTipoInventario
+            For Each tipo In inventario
+                Dim saldo As tblInventario = (From x In ctx.tblInventarios Where x.idTipoInventario = tipo.idTipoinventario And x.tblArticulo.empresa = mdlPublicVars.idEmpresa _
+                             And x.IdAlmacen = General_idAlmacenPrincipal And x.idArticulo = id Select x).FirstOrDefault
+
+                Dim saldoInventario As Integer
+                If saldo Is Nothing Then
+                    saldoInventario = 0
+                Else
+                    saldoInventario = saldo.saldo
+                End If
+                Dim fila As String()
+                fila = {tipo.idTipoinventario, tipo.nombre, saldoInventario}
+            Next
+
+        Catch ex As Exception
+
+        End Try
+
+
+    End Sub
+
+
+
+    Public Sub fnPendienteSurtir()
+        Dim codigo As Integer = txtCodigo.Text
+        Dim pendiente = (From x In ctx.tblSurtirs Where x.articulo = codigo And x.saldo > 0 _
+                                      Select x.cantidad).Sum
+        Dim surtir As Integer
+        If pendiente Is Nothing Then
+            surtir = 0
+        Else
+            surtir = pendiente
+        End If
+    End Sub
+
+    'Funcion que verifica si el codigo del producto no existe aun
+    Private Function fnVerificaCodigo(ByVal codigo As String) As Boolean
+        Try
+            'Realizamos la consulta
+            Dim consulta As tblArticulo = (From x In ctx.tblArticuloes Where x.codigo1 = codigo And x.empresa = mdlPublicVars.idEmpresa Select x).FirstOrDefault
+
+            If consulta Is Nothing Then
+                Return False
+            Else
+                Return True
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Function
+
+    Private Sub grdTipoVehiculo_ValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles grdTipoVehiculo.ValueChanged
+        fngrd_contador(grdTipoVehiculo, lblRecuentoTipoVehiculo)
+    End Sub
+
+    Private Sub grdModeloVehiculo_ValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles grdModeloVehiculo.ValueChanged
+        fngrd_contador(grdModeloVehiculo, lblRecuentoModelo)
+    End Sub
+
+    Private Sub grdDirecciones_SelectionChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles grdFotos.SelectionChanged
+        Try
+            fnFoto()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub fngrd_contador(ByVal grd As Telerik.WinControls.UI.RadGridView, ByVal lbl As Label)
+
+        Try
+            Dim indice As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grd)
+            cmbNombre1.Focus()
+            cmbNombre1.Select()
+
+            Dim index
+            Dim contador As Integer = 0
+            Dim estado As Boolean
+            For index = 0 To grd.Rows.Count - 1
+                estado = grd.Rows(index).Cells(0).Value
+                If estado = True Then
+                    contador = contador + 1
+                End If
+
+            Next
+            lbl.Text = contador.ToString
+
+            grd.Focus()
+            'grd.Rows(indice).Cells(0).IsSelected = True
+            'End If
+        Catch ex As Exception
+            alertas.contenido = ex.ToString
+            alertas.fnErrorContenido()
+        End Try
+
+    End Sub
+
+    Private Sub chkKit_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkKit.CheckedChanged
+        If chkKit.Checked Then
+            chkServicio.Checked = False
+            chkProducto.Checked = False
+            chkUnidadMedida.Checked = False
+        End If
+    End Sub
+
+
+    ''LA VALIDACION DE SI ES UNIDAD DE MEDIDA O NO
+    Private Sub chkUnidadMedida_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUnidadMedida.CheckedChanged
+        If chkUnidadMedida.Checked Then
+            chkServicio.Checked = False
+            chkKit.Checked = False
+            chkProducto.Checked = False
+        End If
+    End Sub
+
+    Private Sub chkProducto_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkProducto.CheckedChanged
+        If chkProducto.Checked Then
+            chkServicio.Checked = False
+            chkUnidadMedida.Checked = False
+            chkKit.Checked = False
+        End If
+    End Sub
+
+    Private Sub chkServicio_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkServicio.CheckedChanged
+        If chkServicio.Checked Then
+            chkKit.Checked = False
+            chkProducto.Checked = False
+            chkUnidadMedida.Checked = False
+        End If
+    End Sub
+
+
+    'Despliega Combo
+    Private Sub cmbTipoRepuesto_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles cmbTipoRepuesto.KeyDown
+        If e.KeyCode = Keys.F2 Then
+            cmbTipoRepuesto.AllowDrop = True
+            cmbTipoRepuesto.DroppedDown = True
+        End If
+    End Sub
+
+    'Funcion utilizada para activar todos los elementos de un grid
+    Private Sub fnActivaTodos(ByRef grd As Telerik.WinControls.UI.RadGridView, ByVal estado As Boolean)
+        Try
+            'Recorremos el grid
+            Dim i
+            For i = 0 To grd.Rows.Count - 1
+                grd.Rows(i).Cells(0).Value = estado
+            Next
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub chkTodosVehiculo_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkTodosVehiculo.CheckedChanged
+        fnActivaTodos(grdTipoVehiculo, chkTodosVehiculo.Checked)
+        fngrd_contador(grdTipoVehiculo, lblRecuentoTipoVehiculo)
+    End Sub
+
+    Private Sub chkTodosModelo_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkTodosModelo.CheckedChanged
+        fnActivaTodos(grdModeloVehiculo, chkTodosModelo.Checked)
+        fngrd_contador(grdModeloVehiculo, lblRecuentoModelo)
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        If mdlPublicVars.superSearchFilasGrid > 0 Then
+            Dim idArticulo As Integer = mdlPublicVars.superSearchId
+            frmProductoKardex.Text = "Kardex"
+            frmProductoKardex.StartPosition = FormStartPosition.CenterScreen
+            frmProductoKardex.articulo = idArticulo
+            permiso.PermisoDialogEspeciales(frmProductoKardex)
+            frmProductoKardex.Dispose()
+        End If
+    End Sub
+
+
+    Private Sub ButtonGuardar_Click(sender As Object, e As EventArgs) Handles ButtonGuardar.Click
+        Try
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim id As Integer = Me.cmbNombre1.SelectedValue
+
+                Dim a As tblArticulo = (From x In conexion.tblArticuloes Where x.idArticulo = id Select x).FirstOrDefault
+
+                a.codigo2 = Me.txtCodigoM2.Text
+                a.nombre1 = Me.txtProductoM1.Text
+                a.nombre2 = Me.txtProductoM2.Text
+                a.Observacion = Me.txtObs.Text
+
+                conexion.SaveChanges()
+                Call llenagrid()
+
+                conn.Close()
+            End Using
+
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
 End Class
