@@ -685,6 +685,8 @@ Public Class frmPedidosLista
 
                                                             Dim reportetipo As String = ""
 
+                                                            ''Dim conpromo As Integer = (From x In conexion.tbl)
+
                                                             Dim sal As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = idSalida Select x).FirstOrDefault
 
                                                             If sal.credito = True Then

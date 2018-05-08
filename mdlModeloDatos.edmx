@@ -3623,6 +3623,9 @@
           <Property Name="bitsurtir" Type="bit" />
           <Property Name="bitnuevo" Type="bit" />
           <Property Name="bitoferta" Type="bit" />
+          <Property Name="promocion" Type="int" />
+          <Property Name="cuotapromo" Type="int" />
+          <Property Name="cantprom" Type="int" />
         </EntityType>
         <EntityType Name="tblSalidaDetalle_Factura">
           <Key>
@@ -9254,7 +9257,6 @@
           <EntitySet Name="tblSalida_Factura" EntityType="dsi_pos_demoModel.tblSalida_Factura" />
           <EntitySet Name="tblsalidaBodegas" EntityType="dsi_pos_demoModel.tblsalidaBodega" />
           <EntitySet Name="tblsalidabodega_detalle" EntityType="dsi_pos_demoModel.tblsalidabodega_detalle" />
-          <EntitySet Name="tblSalidaDetalles" EntityType="dsi_pos_demoModel.tblSalidaDetalle" />
           <EntitySet Name="tblSalidaDetalle_Factura" EntityType="dsi_pos_demoModel.tblSalidaDetalle_Factura" />
           <EntitySet Name="tblSalidasTransportes" EntityType="dsi_pos_demoModel.tblSalidasTransporte" />
           <EntitySet Name="tblSalidasTransportesMedios" EntityType="dsi_pos_demoModel.tblSalidasTransportesMedio" />
@@ -9287,14 +9289,6 @@
           <AssociationSet Name="FK_tblAjuste_tblAjusteCategoria" Association="dsi_pos_demoModel.FK_tblAjuste_tblAjusteCategoria">
             <End Role="tblAjusteCategoria" EntitySet="tblAjusteCategorias" />
             <End Role="tblAjuste" EntitySet="tblAjustes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblAjuste_tblSalidaDetalle" Association="dsi_pos_demoModel.FK_tblAjuste_tblSalidaDetalle">
-            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
-            <End Role="tblAjuste" EntitySet="tblAjustes" />
-          </AssociationSet>
-          <AssociationSet Name="fk_idbodega_venta" Association="dsi_pos_demoModel.fk_idbodega_venta">
-            <End Role="tblAlmacen" EntitySet="tblAlmacens" />
-            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
           </AssociationSet>
           <AssociationSet Name="FK_tblAlmacen_tblEmpresa" Association="dsi_pos_demoModel.FK_tblAlmacen_tblEmpresa">
             <End Role="tblEmpresa" EntitySet="tblEmpresas" />
@@ -9383,10 +9377,6 @@
           <AssociationSet Name="FK_tblEmpresa_tblArticuloTipoPrecio1" Association="dsi_pos_demoModel.FK_tblEmpresa_tblArticuloTipoPrecio1">
             <End Role="tblArticuloTipoPrecio" EntitySet="tblArticuloTipoPrecios" />
             <End Role="tblEmpresa" EntitySet="tblEmpresas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidaDetalle_tblArticuloTipoPrecio" Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticuloTipoPrecio">
-            <End Role="tblArticuloTipoPrecio" EntitySet="tblArticuloTipoPrecios" />
-            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
           </AssociationSet>
           <AssociationSet Name="FK_tblTipoPrecio_Rango_tblArticuloTipoPrecio" Association="dsi_pos_demoModel.FK_tblTipoPrecio_Rango_tblArticuloTipoPrecio">
             <End Role="tblArticuloTipoPrecio" EntitySet="tblArticuloTipoPrecios" />
@@ -9848,10 +9838,6 @@
             <End Role="tblTipoMovimiento" EntitySet="tblTipoMovimientoes" />
             <End Role="tblMovimientoInventarioDetalle" EntitySet="tblMovimientoInventarioDetalles" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblMovimientoInventarioDetalle_tblSalidaDetalle" Association="dsi_pos_demoModel.FK_tblMovimientoInventarioDetalle_tblSalidaDetalle">
-            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
-            <End Role="tblMovimientoInventarioDetalle" EntitySet="tblMovimientoInventarioDetalles" />
-          </AssociationSet>
           <AssociationSet Name="FK_UnidadMedidaMovInventario" Association="dsi_pos_demoModel.FK_UnidadMedidaMovInventario">
             <End Role="tblUnidadMedida" EntitySet="tblUnidadMedidas" />
             <End Role="tblMovimientoInventarioDetalle" EntitySet="tblMovimientoInventarioDetalles" />
@@ -9964,37 +9950,9 @@
             <End Role="tblSalida" EntitySet="tblSalidas" />
             <End Role="tblsalidaBodega" EntitySet="tblsalidaBodegas" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblSalidaDetalle_tblSalida" Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalida">
-            <End Role="tblSalida" EntitySet="tblSalidas" />
-            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblSalidasTransportes_tblSalida" Association="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSalida">
             <End Role="tblSalida" EntitySet="tblSalidas" />
             <End Role="tblSalidasTransporte" EntitySet="tblSalidasTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tblSalida__idSal__1B3EDD4F" Association="dsi_pos_demoModel.FK__tblSalida__idSal__1B3EDD4F">
-            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
-            <End Role="tblSalidaDetalle_Factura" EntitySet="tblSalidaDetalle_Factura" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidaDetalle_tblSalidaDetalle" Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalidaDetalle">
-            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
-            <End Role="tblSalidaDetalle1" EntitySet="tblSalidaDetalles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidaDetalle_tblTipoInventario" Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblTipoInventario">
-            <End Role="tblTipoInventario" EntitySet="tblTipoInventarios" />
-            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMediosDetalles_SDetalle" Association="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_SDetalle">
-            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
-            <End Role="tblSalidasTransportesMediosDetalle" EntitySet="tblSalidasTransportesMediosDetalles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSurtir_tblSalidaDetalle" Association="dsi_pos_demoModel.FK_tblSurtir_tblSalidaDetalle">
-            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
-            <End Role="tblSurtir" EntitySet="tblSurtirs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UnidadMedidaVenta" Association="dsi_pos_demoModel.FK_UnidadMedidaVenta">
-            <End Role="tblUnidadMedida" EntitySet="tblUnidadMedidas" />
-            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
           </AssociationSet>
           <AssociationSet Name="FK_tblSalidasTransportes_tblSectores" Association="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSectores">
             <End Role="tblSectore" EntitySet="tblSectores" />
@@ -10172,20 +10130,6 @@
             <Parameter Name="filtro7" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_bodega_lista" ReturnType="Collection(dsi_pos_demoModel.sp_bodega_lista_Result)" />
-          <FunctionImport Name="sp_buscar_Articulo" ReturnType="Collection(dsi_pos_demoModel.sp_buscar_Articulo_Result)">
-            <Parameter Name="empresa" Mode="In" Type="Int32" />
-            <Parameter Name="filtro" Mode="In" Type="String" />
-            <Parameter Name="inventarioPrincipal" Mode="In" Type="Int32" />
-            <Parameter Name="almacenPrincipal" Mode="In" Type="Int32" />
-            <Parameter Name="tipoVehiculo" Mode="In" Type="String" />
-            <Parameter Name="modeloVehiculo" Mode="In" Type="String" />
-            <Parameter Name="cliente" Mode="In" Type="Int32" />
-            <Parameter Name="opcion" Mode="In" Type="Int32" />
-            <Parameter Name="bitCliente" Mode="In" Type="Boolean" />
-            <Parameter Name="bitProveedor" Mode="In" Type="Boolean" />
-            <Parameter Name="marcasRepuestos" Mode="In" Type="String" />
-            <Parameter Name="ventas" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_buscar_Articulo1" ReturnType="Collection(dsi_pos_demoModel.sp_buscar_Articulo1_Result)">
             <Parameter Name="empresa" Mode="In" Type="Int32" />
             <Parameter Name="filtro" Mode="In" Type="String" />
@@ -11769,10 +11713,6 @@
             <End Role="tblArticulo" EntitySet="tblArticuloes" />
             <End Role="tblPrecioCompetencia" EntitySet="tblPrecioCompetencias" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblSalidaDetalle_tblArticulos" Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticulos">
-            <End Role="tblArticulo" EntitySet="tblArticuloes" />
-            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblSurtir_tblArticulo" Association="dsi_pos_demoModel.FK_tblSurtir_tblArticulo">
             <End Role="tblArticulo" EntitySet="tblArticuloes" />
             <End Role="tblSurtir" EntitySet="tblSurtirs" />
@@ -11794,6 +11734,69 @@
             <Parameter Name="desde" Mode="In" Type="DateTime" />
             <Parameter Name="hasta" Mode="In" Type="DateTime" />
             <Parameter Name="empresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tblSalidaDetalles" EntityType="dsi_pos_demoModel.tblSalidaDetalle" />
+          <AssociationSet Name="FK_tblAjuste_tblSalidaDetalle" Association="dsi_pos_demoModel.FK_tblAjuste_tblSalidaDetalle">
+            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
+            <End Role="tblAjuste" EntitySet="tblAjustes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idbodega_venta" Association="dsi_pos_demoModel.fk_idbodega_venta">
+            <End Role="tblAlmacen" EntitySet="tblAlmacens" />
+            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSalidaDetalle_tblArticulos" Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticulos">
+            <End Role="tblArticulo" EntitySet="tblArticuloes" />
+            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSalidaDetalle_tblArticuloTipoPrecio" Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticuloTipoPrecio">
+            <End Role="tblArticuloTipoPrecio" EntitySet="tblArticuloTipoPrecios" />
+            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMovimientoInventarioDetalle_tblSalidaDetalle" Association="dsi_pos_demoModel.FK_tblMovimientoInventarioDetalle_tblSalidaDetalle">
+            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
+            <End Role="tblMovimientoInventarioDetalle" EntitySet="tblMovimientoInventarioDetalles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSalidaDetalle_tblSalida" Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalida">
+            <End Role="tblSalida" EntitySet="tblSalidas" />
+            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSalida__idSal__1B3EDD4F" Association="dsi_pos_demoModel.FK__tblSalida__idSal__1B3EDD4F">
+            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
+            <End Role="tblSalidaDetalle_Factura" EntitySet="tblSalidaDetalle_Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSalidaDetalle_tblSalidaDetalle" Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalidaDetalle">
+            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
+            <End Role="tblSalidaDetalle1" EntitySet="tblSalidaDetalles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSalidaDetalle_tblTipoInventario" Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblTipoInventario">
+            <End Role="tblTipoInventario" EntitySet="tblTipoInventarios" />
+            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSalidasTransportesMediosDetalles_SDetalle" Association="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_SDetalle">
+            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
+            <End Role="tblSalidasTransportesMediosDetalle" EntitySet="tblSalidasTransportesMediosDetalles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSurtir_tblSalidaDetalle" Association="dsi_pos_demoModel.FK_tblSurtir_tblSalidaDetalle">
+            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
+            <End Role="tblSurtir" EntitySet="tblSurtirs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UnidadMedidaVenta" Association="dsi_pos_demoModel.FK_UnidadMedidaVenta">
+            <End Role="tblUnidadMedida" EntitySet="tblUnidadMedidas" />
+            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
+          </AssociationSet>
+          <FunctionImport Name="sp_buscar_Articulo" ReturnType="Collection(dsi_pos_demoModel.sp_buscar_Articulo_Result)">
+            <Parameter Name="empresa" Mode="In" Type="Int32" />
+            <Parameter Name="filtro" Mode="In" Type="String" />
+            <Parameter Name="inventarioPrincipal" Mode="In" Type="Int32" />
+            <Parameter Name="almacenPrincipal" Mode="In" Type="Int32" />
+            <Parameter Name="tipoVehiculo" Mode="In" Type="String" />
+            <Parameter Name="modeloVehiculo" Mode="In" Type="String" />
+            <Parameter Name="cliente" Mode="In" Type="Int32" />
+            <Parameter Name="opcion" Mode="In" Type="Int32" />
+            <Parameter Name="bitCliente" Mode="In" Type="Boolean" />
+            <Parameter Name="bitProveedor" Mode="In" Type="Boolean" />
+            <Parameter Name="marcasRepuestos" Mode="In" Type="String" />
+            <Parameter Name="ventas" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="dtproperty">
@@ -11969,13 +11972,13 @@
           <Property Type="Int32" Name="codigo" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="nombre" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Type="Int32" Name="empresa" />
-          <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.fk_idbodega_venta" FromRole="tblAlmacen" ToRole="tblSalidaDetalle" />
           <NavigationProperty Name="tblEmpresa" Relationship="dsi_pos_demoModel.FK_tblAlmacen_tblEmpresa" FromRole="tblAlmacen" ToRole="tblEmpresa" />
           <NavigationProperty Name="tblArticuloAlmacens" Relationship="dsi_pos_demoModel.FK_tblArticuloAlmacen_tblAlmacen" FromRole="tblAlmacen" ToRole="tblArticuloAlmacen" />
           <NavigationProperty Name="tblInventarios" Relationship="dsi_pos_demoModel.FK_tblInventario_tblAlmacen" FromRole="tblAlmacen" ToRole="tblInventario" />
           <NavigationProperty Name="tblMovimientoInventarios" Relationship="dsi_pos_demoModel.FK_tblMovimientoInventario_tblAlmacen" FromRole="tblAlmacen" ToRole="tblMovimientoInventario" />
           <NavigationProperty Name="tblSalidas" Relationship="dsi_pos_demoModel.FK_tblSalida_tblAlmacen" FromRole="tblAlmacen" ToRole="tblSalida" />
           <NavigationProperty Name="tblSustitutoes" Relationship="dsi_pos_demoModel.FK_tblSustituto_tblAlmacen" FromRole="tblAlmacen" ToRole="tblSustituto" />
+          <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.fk_idbodega_venta" FromRole="tblAlmacen" ToRole="tblSalidaDetalle" />
         </EntityType>
         <EntityType Name="tblArticulo_Catalogo">
           <Key>
@@ -12207,9 +12210,9 @@
           <NavigationProperty Name="tblCliente_Precio" Relationship="dsi_pos_demoModel.FK_tblCliente_Precio_tblArticuloTipoPrecio" FromRole="tblArticuloTipoPrecio" ToRole="tblCliente_Precio" />
           <NavigationProperty Name="tblEmpresas" Relationship="dsi_pos_demoModel.FK_tblEmpresa_tblArticuloTipoPrecio" FromRole="tblArticuloTipoPrecio" ToRole="tblEmpresa" />
           <NavigationProperty Name="tblEmpresas1" Relationship="dsi_pos_demoModel.FK_tblEmpresa_tblArticuloTipoPrecio1" FromRole="tblArticuloTipoPrecio" ToRole="tblEmpresa" />
-          <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticuloTipoPrecio" FromRole="tblArticuloTipoPrecio" ToRole="tblSalidaDetalle" />
           <NavigationProperty Name="tblTipoPrecio_Rango" Relationship="dsi_pos_demoModel.FK_tblTipoPrecio_Rango_tblArticuloTipoPrecio" FromRole="tblArticuloTipoPrecio" ToRole="tblTipoPrecio_Rango" />
           <NavigationProperty Name="tblUsuarios" Relationship="dsi_pos_demoModel.FK_PrecioUsuario" FromRole="tblArticuloTipoPrecio" ToRole="tblUsuario" />
+          <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticuloTipoPrecio" FromRole="tblArticuloTipoPrecio" ToRole="tblSalidaDetalle" />
         </EntityType>
         <EntityType Name="tblArticuloTipoVehiculo">
           <Key>
@@ -13523,9 +13526,9 @@
           <Property Type="Decimal" Name="valormedida" Precision="18" Scale="2" />
           <NavigationProperty Name="tblMovimientoInventario" Relationship="dsi_pos_demoModel.FK_tblDetalleMovimientoInventario_tblMovimientoInventario" FromRole="tblMovimientoInventarioDetalle" ToRole="tblMovimientoInventario" />
           <NavigationProperty Name="tblTipoMovimiento" Relationship="dsi_pos_demoModel.FK_tblDetalleMovimientoInventario_tblTipoMovimiento" FromRole="tblMovimientoInventarioDetalle" ToRole="tblTipoMovimiento" />
-          <NavigationProperty Name="tblSalidaDetalle" Relationship="dsi_pos_demoModel.FK_tblMovimientoInventarioDetalle_tblSalidaDetalle" FromRole="tblMovimientoInventarioDetalle" ToRole="tblSalidaDetalle" />
           <NavigationProperty Name="tblUnidadMedida" Relationship="dsi_pos_demoModel.FK_UnidadMedidaMovInventario" FromRole="tblMovimientoInventarioDetalle" ToRole="tblUnidadMedida" />
           <NavigationProperty Name="tblArticulo" Relationship="dsi_pos_demoModel.FK_tblDetalleMovimientoInventario_tblArticulo" FromRole="tblMovimientoInventarioDetalle" ToRole="tblArticulo" />
+          <NavigationProperty Name="tblSalidaDetalle" Relationship="dsi_pos_demoModel.FK_tblMovimientoInventarioDetalle_tblSalidaDetalle" FromRole="tblMovimientoInventarioDetalle" ToRole="tblSalidaDetalle" />
         </EntityType>
         <EntityType Name="tblMunicipio">
           <Key>
@@ -14000,13 +14003,13 @@
           <NavigationProperty Name="tblTipoMovimiento" Relationship="dsi_pos_demoModel.FK_tblSalida_tblTipoMovimiento" FromRole="tblSalida" ToRole="tblTipoMovimiento" />
           <NavigationProperty Name="tblVendedor" Relationship="dsi_pos_demoModel.FK_tblSalida_tblVendedor" FromRole="tblSalida" ToRole="tblVendedor" />
           <NavigationProperty Name="tblsalidaBodegas" Relationship="dsi_pos_demoModel.FK_tblsalidaBodega_tblSalida" FromRole="tblSalida" ToRole="tblsalidaBodega" />
-          <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalida" FromRole="tblSalida" ToRole="tblSalidaDetalle" />
           <NavigationProperty Name="tblSalidasTransportes" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSalida" FromRole="tblSalida" ToRole="tblSalidasTransporte" />
           <NavigationProperty Name="tblCajas" Relationship="dsi_pos_demoModel.fk_caja_salida" FromRole="tblSalida" ToRole="tblCaja" />
           <NavigationProperty Name="tblCajas1" Relationship="dsi_pos_demoModel.FK_tblCaja_tblSalida" FromRole="tblSalida" ToRole="tblCaja" />
           <NavigationProperty Name="tblUsuario" Relationship="dsi_pos_demoModel.FK_tblSalida_tblUsuarios" FromRole="tblSalida" ToRole="tblUsuario" />
           <NavigationProperty Name="tblUsuario1" Relationship="dsi_pos_demoModel.FK_tblSalida_tblUsuarios1" FromRole="tblSalida" ToRole="tblUsuario" />
           <NavigationProperty Name="tblCliente" Relationship="dsi_pos_demoModel.FK_tblSalida_tblClientes" FromRole="tblSalida" ToRole="tblCliente" />
+          <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalida" FromRole="tblSalida" ToRole="tblSalidaDetalle" />
           </EntityType>
         <EntityType Name="tblSalida_Factura">
           <Key>
@@ -14047,47 +14050,6 @@
           <Property Type="Boolean" Name="sacado" />
           <Property Type="Boolean" Name="revisado" />
           <Property Type="Boolean" Name="empacado" />
-        </EntityType>
-        <EntityType Name="tblSalidaDetalle">
-          <Key>
-            <PropertyRef Name="idSalidaDetalle" />
-          </Key>
-          <Property Type="Int32" Name="idSalidaDetalle" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idSalida" Nullable="false" />
-          <Property Type="Int32" Name="idArticulo" Nullable="false" />
-          <Property Type="Decimal" Name="cantidad" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="precio" Nullable="false" Precision="18" Scale="5" />
-          <Property Type="String" Name="comentario" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="costo" Precision="18" Scale="5" />
-          <Property Type="Boolean" Name="anulado" />
-          <Property Type="Int32" Name="tipoInventario" />
-          <Property Type="Int32" Name="tipoPrecio" />
-          <Property Type="Int32" Name="kitSalidaDetalle" />
-          <Property Type="Decimal" Name="precioFactura" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="otrosCostos" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="precioOriginal" Precision="18" Scale="5" />
-          <Property Type="Boolean" Name="agregarTransporte" />
-          <Property Type="Int32" Name="idunidadmedida" />
-          <Property Type="Decimal" Name="valormedida" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="tipobodega" />
-          <Property Type="Int32" Name="codigoSucursal" />
-          <Property Type="Int32" Name="codigosurtir" />
-          <Property Type="Boolean" Name="bitsurtir" />
-          <Property Type="Boolean" Name="bitnuevo" />
-          <Property Type="Boolean" Name="bitoferta" />
-          <NavigationProperty Name="tblAjustes" Relationship="dsi_pos_demoModel.FK_tblAjuste_tblSalidaDetalle" FromRole="tblSalidaDetalle" ToRole="tblAjuste" />
-          <NavigationProperty Name="tblAlmacen" Relationship="dsi_pos_demoModel.fk_idbodega_venta" FromRole="tblSalidaDetalle" ToRole="tblAlmacen" />
-          <NavigationProperty Name="tblArticuloTipoPrecio" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticuloTipoPrecio" FromRole="tblSalidaDetalle" ToRole="tblArticuloTipoPrecio" />
-          <NavigationProperty Name="tblMovimientoInventarioDetalles" Relationship="dsi_pos_demoModel.FK_tblMovimientoInventarioDetalle_tblSalidaDetalle" FromRole="tblSalidaDetalle" ToRole="tblMovimientoInventarioDetalle" />
-          <NavigationProperty Name="tblSalida" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalida" FromRole="tblSalidaDetalle" ToRole="tblSalida" />
-          <NavigationProperty Name="tblSalidaDetalle_Factura" Relationship="dsi_pos_demoModel.FK__tblSalida__idSal__1B3EDD4F" FromRole="tblSalidaDetalle" ToRole="tblSalidaDetalle_Factura" />
-          <NavigationProperty Name="tblSalidaDetalle1" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalidaDetalle" FromRole="tblSalidaDetalle" ToRole="tblSalidaDetalle1" />
-          <NavigationProperty Name="tblSalidaDetalle2" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalidaDetalle" FromRole="tblSalidaDetalle1" ToRole="tblSalidaDetalle" />
-          <NavigationProperty Name="tblTipoInventario" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblTipoInventario" FromRole="tblSalidaDetalle" ToRole="tblTipoInventario" />
-          <NavigationProperty Name="tblSalidasTransportesMediosDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_SDetalle" FromRole="tblSalidaDetalle" ToRole="tblSalidasTransportesMediosDetalle" />
-          <NavigationProperty Name="tblSurtirs" Relationship="dsi_pos_demoModel.FK_tblSurtir_tblSalidaDetalle" FromRole="tblSalidaDetalle" ToRole="tblSurtir" />
-          <NavigationProperty Name="tblUnidadMedida" Relationship="dsi_pos_demoModel.FK_UnidadMedidaVenta" FromRole="tblSalidaDetalle" ToRole="tblUnidadMedida" />
-          <NavigationProperty Name="tblArticulo" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticulos" FromRole="tblSalidaDetalle" ToRole="tblArticulo" />
         </EntityType>
         <EntityType Name="tblSalidaDetalle_Factura">
           <Key>
@@ -14173,9 +14135,9 @@
           <Property Type="Decimal" Name="cantidad" Precision="18" Scale="2" />
           <Property Type="Int32" Name="idSalidaTransporte" />
           <Property Type="Boolean" Name="reenviado" />
-          <NavigationProperty Name="tblSalidaDetalle" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_SDetalle" FromRole="tblSalidasTransportesMediosDetalle" ToRole="tblSalidaDetalle" />
           <NavigationProperty Name="tblSalidasTransporte" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_Salidas" FromRole="tblSalidasTransportesMediosDetalle" ToRole="tblSalidasTransporte" />
           <NavigationProperty Name="tblSalidasTransportesMedio" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_Transporte" FromRole="tblSalidasTransportesMediosDetalle" ToRole="tblSalidasTransportesMedio" />
+          <NavigationProperty Name="tblSalidaDetalle" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_SDetalle" FromRole="tblSalidasTransportesMediosDetalle" ToRole="tblSalidaDetalle" />
         </EntityType>
         <EntityType Name="tblSalidasTransportesMediosEmpleado">
           <Key>
@@ -14243,11 +14205,11 @@
           <Property Type="Boolean" Name="anulado" />
           <Property Type="Boolean" Name="Eliminar" />
           <NavigationProperty Name="tblPendientePorPedirs" Relationship="dsi_pos_demoModel.FK_tblPendientePorPedir_tblSurtir" FromRole="tblSurtir" ToRole="tblPendientePorPedir" />
-          <NavigationProperty Name="tblSalidaDetalle" Relationship="dsi_pos_demoModel.FK_tblSurtir_tblSalidaDetalle" FromRole="tblSurtir" ToRole="tblSalidaDetalle" />
           <NavigationProperty Name="tblVendedor" Relationship="dsi_pos_demoModel.FK_tblSurtir_tblVendedor" FromRole="tblSurtir" ToRole="tblVendedor" />
           <NavigationProperty Name="tblUsuario" Relationship="dsi_pos_demoModel.FK_tblSurtir_tblUsuarios" FromRole="tblSurtir" ToRole="tblUsuario" />
           <NavigationProperty Name="tblCliente" Relationship="dsi_pos_demoModel.FK_tblSurtir_tblClientes" FromRole="tblSurtir" ToRole="tblCliente" />
           <NavigationProperty Name="tblArticulo" Relationship="dsi_pos_demoModel.FK_tblSurtir_tblArticulo" FromRole="tblSurtir" ToRole="tblArticulo" />
+          <NavigationProperty Name="tblSalidaDetalle" Relationship="dsi_pos_demoModel.FK_tblSurtir_tblSalidaDetalle" FromRole="tblSurtir" ToRole="tblSalidaDetalle" />
         </EntityType>
         <EntityType Name="tblSustituto">
           <Key>
@@ -14327,10 +14289,10 @@
           <NavigationProperty Name="tblMovimientoInventarios" Relationship="dsi_pos_demoModel.FK_tblMovimientoInventario_tblTipoInventario" FromRole="tblTipoInventario" ToRole="tblMovimientoInventario" />
           <NavigationProperty Name="tblMovimientoInventarios1" Relationship="dsi_pos_demoModel.FK_tblMovimientoInventario_tblTipoInventario1" FromRole="tblTipoInventario" ToRole="tblMovimientoInventario" />
           <NavigationProperty Name="tblSalidas" Relationship="dsi_pos_demoModel.FK_tblSalida_tblTipoInventario" FromRole="tblTipoInventario" ToRole="tblSalida" />
-          <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblTipoInventario" FromRole="tblTipoInventario" ToRole="tblSalidaDetalle" />
           <NavigationProperty Name="tblSustitutoes" Relationship="dsi_pos_demoModel.FK_tblSustituto_tblTipoInventario" FromRole="tblTipoInventario" ToRole="tblSustituto" />
           <NavigationProperty Name="tblTipoMovimientoes" Relationship="dsi_pos_demoModel.FK_TipoMovimiento_TipoInventario" FromRole="tblTipoInventario" ToRole="tblTipoMovimiento" />
           <NavigationProperty Name="tblEntradas" Relationship="dsi_pos_demoModel.FK_tblEntradas_tblTipoInventario" FromRole="tblTipoInventario" ToRole="tblEntrada" />
+          <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblTipoInventario" FromRole="tblTipoInventario" ToRole="tblSalidaDetalle" />
         </EntityType>
         <EntityType Name="tblTipoMovimiento">
           <Key>
@@ -14460,9 +14422,9 @@
           <Property Type="String" Name="nombre" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tblArticulo_UnidadMedida" Relationship="dsi_pos_demoModel.FK_tblArticulo_UnidadMedida_tblUnidadMedida" FromRole="tblUnidadMedida" ToRole="tblArticulo_UnidadMedida" />
           <NavigationProperty Name="tblMovimientoInventarioDetalles" Relationship="dsi_pos_demoModel.FK_UnidadMedidaMovInventario" FromRole="tblUnidadMedida" ToRole="tblMovimientoInventarioDetalle" />
-          <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.FK_UnidadMedidaVenta" FromRole="tblUnidadMedida" ToRole="tblSalidaDetalle" />
           <NavigationProperty Name="tblEntradasDetalles" Relationship="dsi_pos_demoModel.FK_UnidadMedida" FromRole="tblUnidadMedida" ToRole="tblEntradasDetalle" />
           <NavigationProperty Name="tblArticuloes" Relationship="dsi_pos_demoModel.FK_tblArticulo_tblUnidadMedida" FromRole="tblUnidadMedida" ToRole="tblArticulo" />
+          <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.FK_UnidadMedidaVenta" FromRole="tblUnidadMedida" ToRole="tblSalidaDetalle" />
         </EntityType>
         <EntityType Name="tblusuarioEmpresa">
           <Key>
@@ -14548,30 +14510,6 @@
             </Principal>
             <Dependent Role="tblAjuste">
               <PropertyRef Name="idAjusteCategoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblAjuste_tblSalidaDetalle">
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblAjuste" Role="tblAjuste" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidaDetalle">
-              <PropertyRef Name="idSalidaDetalle" />
-            </Principal>
-            <Dependent Role="tblAjuste">
-              <PropertyRef Name="idsalidadetalle" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_idbodega_venta">
-          <End Type="dsi_pos_demoModel.tblAlmacen" Role="tblAlmacen" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblAlmacen">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="tblSalidaDetalle">
-              <PropertyRef Name="tipobodega" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -14836,18 +14774,6 @@
             </Principal>
             <Dependent Role="tblEmpresa">
               <PropertyRef Name="codigoPrecioNormal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidaDetalle_tblArticuloTipoPrecio">
-          <End Type="dsi_pos_demoModel.tblArticuloTipoPrecio" Role="tblArticuloTipoPrecio" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblArticuloTipoPrecio">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="tblSalidaDetalle">
-              <PropertyRef Name="tipoPrecio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -16231,18 +16157,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblMovimientoInventarioDetalle_tblSalidaDetalle">
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblMovimientoInventarioDetalle" Role="tblMovimientoInventarioDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidaDetalle">
-              <PropertyRef Name="idSalidaDetalle" />
-            </Principal>
-            <Dependent Role="tblMovimientoInventarioDetalle">
-              <PropertyRef Name="salidaDetalle" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UnidadMedidaMovInventario">
           <End Type="dsi_pos_demoModel.tblUnidadMedida" Role="tblUnidadMedida" Multiplicity="0..1" />
           <End Type="dsi_pos_demoModel.tblMovimientoInventarioDetalle" Role="tblMovimientoInventarioDetalle" Multiplicity="*" />
@@ -16579,18 +16493,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblSalidaDetalle_tblSalida">
-          <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="1" />
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalida">
-              <PropertyRef Name="idSalida" />
-            </Principal>
-            <Dependent Role="tblSalidaDetalle">
-              <PropertyRef Name="idSalida" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblSalidasTransportes_tblSalida">
           <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="0..1" />
           <End Type="dsi_pos_demoModel.tblSalidasTransporte" Role="tblSalidasTransporte" Multiplicity="*" />
@@ -16600,78 +16502,6 @@
             </Principal>
             <Dependent Role="tblSalidasTransporte">
               <PropertyRef Name="idSalida" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tblSalida__idSal__1B3EDD4F">
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle_Factura" Role="tblSalidaDetalle_Factura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidaDetalle">
-              <PropertyRef Name="idSalidaDetalle" />
-            </Principal>
-            <Dependent Role="tblSalidaDetalle_Factura">
-              <PropertyRef Name="idSalidaDetalle" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidaDetalle_tblSalidaDetalle">
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidaDetalle">
-              <PropertyRef Name="idSalidaDetalle" />
-            </Principal>
-            <Dependent Role="tblSalidaDetalle1">
-              <PropertyRef Name="kitSalidaDetalle" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidaDetalle_tblTipoInventario">
-          <End Type="dsi_pos_demoModel.tblTipoInventario" Role="tblTipoInventario" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblTipoInventario">
-              <PropertyRef Name="idTipoinventario" />
-            </Principal>
-            <Dependent Role="tblSalidaDetalle">
-              <PropertyRef Name="tipoInventario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMediosDetalles_SDetalle">
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMediosDetalle" Role="tblSalidasTransportesMediosDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidaDetalle">
-              <PropertyRef Name="idSalidaDetalle" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMediosDetalle">
-              <PropertyRef Name="idSalidaDetalle" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSurtir_tblSalidaDetalle">
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSurtir" Role="tblSurtir" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidaDetalle">
-              <PropertyRef Name="idSalidaDetalle" />
-            </Principal>
-            <Dependent Role="tblSurtir">
-              <PropertyRef Name="salidaDetalle" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UnidadMedidaVenta">
-          <End Type="dsi_pos_demoModel.tblUnidadMedida" Role="tblUnidadMedida" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblUnidadMedida">
-              <PropertyRef Name="idunidadMedida" />
-            </Principal>
-            <Dependent Role="tblSalidaDetalle">
-              <PropertyRef Name="idunidadmedida" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -16926,30 +16756,6 @@
           <Property Type="String" Name="txbEmpacado" Nullable="false" />
           <Property Type="String" Name="txmObservacion" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="Errores" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="sp_buscar_Articulo_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="txmCantidad" Nullable="false" MaxLength="1" />
-          <Property Type="Decimal" Name="Existencia" Nullable="true" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="Reserva" Nullable="true" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="Transito" Nullable="true" Precision="18" Scale="5" />
-          <Property Type="String" Name="txmCosto" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="txbPrecio" Nullable="true" Precision="18" Scale="5" />
-          <Property Type="Int32" Name="CantidadMax" Nullable="true" />
-          <Property Type="String" Name="Observacion" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="UnidadEmpaque" Nullable="true" />
-          <Property Type="String" Name="txmSurtir" Nullable="true" MaxLength="5" />
-          <Property Type="Int32" Name="clrEstado" Nullable="false" />
-          <Property Type="String" Name="numeroArt" Nullable="true" MaxLength="5" />
-          <Property Type="DateTime" Name="UltimaCompra" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Marca" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="bitVentaMaxima" Nullable="true" />
-          <Property Type="Int32" Name="minimo" Nullable="false" />
-          <Property Type="Int32" Name="TipoPrecio" Nullable="true" />
-          <Property Type="String" Name="Compatibilidad" Nullable="true" />
-          <Property Type="String" Name="UbicacionEstanteria" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="sp_buscar_Articulo1_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -20382,9 +20188,9 @@
           <NavigationProperty Name="tblInventario_temp" Relationship="dsi_pos_demoModel.FK_tblinventario_temp_tblarticulo" FromRole="tblArticulo" ToRole="tblInventario_temp" />
           <NavigationProperty Name="tblPendientePorPedirs" Relationship="dsi_pos_demoModel.FK_tblPendientePorPedir_tblArticulo" FromRole="tblArticulo" ToRole="tblPendientePorPedir" />
           <NavigationProperty Name="tblPrecioCompetencias" Relationship="dsi_pos_demoModel.FK_tblPrecioCompetencia_tblArticulo" FromRole="tblArticulo" ToRole="tblPrecioCompetencia" />
-          <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticulos" FromRole="tblArticulo" ToRole="tblSalidaDetalle" />
           <NavigationProperty Name="tblSurtirs" Relationship="dsi_pos_demoModel.FK_tblSurtir_tblArticulo" FromRole="tblArticulo" ToRole="tblSurtir" />
           <NavigationProperty Name="tblSustitutoes" Relationship="dsi_pos_demoModel.FK_tblSustituto_tblArticulo" FromRole="tblArticulo" ToRole="tblSustituto" />
+          <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticulos" FromRole="tblArticulo" ToRole="tblSalidaDetalle" />
         </EntityType>
         <Association Name="FK_Articulo_PrecargaD">
           <End Type="dsi_pos_demoModel.tblArticulo" Role="tblArticulo" Multiplicity="1" />
@@ -20722,18 +20528,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblSalidaDetalle_tblArticulos">
-          <End Type="dsi_pos_demoModel.tblArticulo" Role="tblArticulo" Multiplicity="1" />
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblArticulo">
-              <PropertyRef Name="idArticulo" />
-            </Principal>
-            <Dependent Role="tblSalidaDetalle">
-              <PropertyRef Name="idArticulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblSurtir_tblArticulo">
           <End Type="dsi_pos_demoModel.tblArticulo" Role="tblArticulo" Multiplicity="0..1" />
           <End Type="dsi_pos_demoModel.tblSurtir" Role="tblSurtir" Multiplicity="*" />
@@ -20805,6 +20599,218 @@
           <Property Type="DateTime" Name="Desde" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="Hasta" Nullable="true" Precision="23" />
           <Property Type="Decimal" Name="SaldoVencido" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <EntityType Name="tblSalidaDetalle">
+          <Key>
+            <PropertyRef Name="idSalidaDetalle" />
+          </Key>
+          <Property Type="Int32" Name="idSalidaDetalle" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="idSalida" Nullable="false" />
+          <Property Type="Int32" Name="idArticulo" Nullable="false" />
+          <Property Type="Decimal" Name="cantidad" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="precio" Nullable="false" Precision="18" Scale="5" />
+          <Property Type="String" Name="comentario" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="costo" Precision="18" Scale="5" />
+          <Property Type="Boolean" Name="anulado" />
+          <Property Type="Int32" Name="tipoInventario" />
+          <Property Type="Int32" Name="tipoPrecio" />
+          <Property Type="Int32" Name="kitSalidaDetalle" />
+          <Property Type="Decimal" Name="precioFactura" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="otrosCostos" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="precioOriginal" Precision="18" Scale="5" />
+          <Property Type="Boolean" Name="agregarTransporte" />
+          <Property Type="Int32" Name="idunidadmedida" />
+          <Property Type="Decimal" Name="valormedida" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="tipobodega" />
+          <Property Type="Int32" Name="codigoSucursal" />
+          <Property Type="Int32" Name="codigosurtir" />
+          <Property Type="Boolean" Name="bitsurtir" />
+          <Property Type="Boolean" Name="bitnuevo" />
+          <Property Type="Boolean" Name="bitoferta" />
+          <Property Type="Int32" Name="promocion" />
+          <Property Type="Int32" Name="cuotapromo" />
+          <Property Type="Int32" Name="cantprom" />
+          <NavigationProperty Name="tblAjustes" Relationship="dsi_pos_demoModel.FK_tblAjuste_tblSalidaDetalle" FromRole="tblSalidaDetalle" ToRole="tblAjuste" />
+          <NavigationProperty Name="tblAlmacen" Relationship="dsi_pos_demoModel.fk_idbodega_venta" FromRole="tblSalidaDetalle" ToRole="tblAlmacen" />
+          <NavigationProperty Name="tblArticulo" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticulos" FromRole="tblSalidaDetalle" ToRole="tblArticulo" />
+          <NavigationProperty Name="tblArticuloTipoPrecio" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticuloTipoPrecio" FromRole="tblSalidaDetalle" ToRole="tblArticuloTipoPrecio" />
+          <NavigationProperty Name="tblMovimientoInventarioDetalles" Relationship="dsi_pos_demoModel.FK_tblMovimientoInventarioDetalle_tblSalidaDetalle" FromRole="tblSalidaDetalle" ToRole="tblMovimientoInventarioDetalle" />
+          <NavigationProperty Name="tblSalida" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalida" FromRole="tblSalidaDetalle" ToRole="tblSalida" />
+          <NavigationProperty Name="tblSalidaDetalle_Factura" Relationship="dsi_pos_demoModel.FK__tblSalida__idSal__1B3EDD4F" FromRole="tblSalidaDetalle" ToRole="tblSalidaDetalle_Factura" />
+          <NavigationProperty Name="tblSalidaDetalle1" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalidaDetalle" FromRole="tblSalidaDetalle" ToRole="tblSalidaDetalle1" />
+          <NavigationProperty Name="tblSalidaDetalle2" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalidaDetalle" FromRole="tblSalidaDetalle1" ToRole="tblSalidaDetalle" />
+          <NavigationProperty Name="tblTipoInventario" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblTipoInventario" FromRole="tblSalidaDetalle" ToRole="tblTipoInventario" />
+          <NavigationProperty Name="tblSalidasTransportesMediosDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_SDetalle" FromRole="tblSalidaDetalle" ToRole="tblSalidasTransportesMediosDetalle" />
+          <NavigationProperty Name="tblSurtirs" Relationship="dsi_pos_demoModel.FK_tblSurtir_tblSalidaDetalle" FromRole="tblSalidaDetalle" ToRole="tblSurtir" />
+          <NavigationProperty Name="tblUnidadMedida" Relationship="dsi_pos_demoModel.FK_UnidadMedidaVenta" FromRole="tblSalidaDetalle" ToRole="tblUnidadMedida" />
+        </EntityType>
+        <Association Name="FK_tblAjuste_tblSalidaDetalle">
+          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblAjuste" Role="tblAjuste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSalidaDetalle">
+              <PropertyRef Name="idSalidaDetalle" />
+            </Principal>
+            <Dependent Role="tblAjuste">
+              <PropertyRef Name="idsalidadetalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idbodega_venta">
+          <End Type="dsi_pos_demoModel.tblAlmacen" Role="tblAlmacen" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAlmacen">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="tblSalidaDetalle">
+              <PropertyRef Name="tipobodega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSalidaDetalle_tblArticulos">
+          <End Type="dsi_pos_demoModel.tblArticulo" Role="tblArticulo" Multiplicity="1" />
+          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblArticulo">
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="tblSalidaDetalle">
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSalidaDetalle_tblArticuloTipoPrecio">
+          <End Type="dsi_pos_demoModel.tblArticuloTipoPrecio" Role="tblArticuloTipoPrecio" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblArticuloTipoPrecio">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="tblSalidaDetalle">
+              <PropertyRef Name="tipoPrecio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMovimientoInventarioDetalle_tblSalidaDetalle">
+          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblMovimientoInventarioDetalle" Role="tblMovimientoInventarioDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSalidaDetalle">
+              <PropertyRef Name="idSalidaDetalle" />
+            </Principal>
+            <Dependent Role="tblMovimientoInventarioDetalle">
+              <PropertyRef Name="salidaDetalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSalidaDetalle_tblSalida">
+          <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="1" />
+          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSalida">
+              <PropertyRef Name="idSalida" />
+            </Principal>
+            <Dependent Role="tblSalidaDetalle">
+              <PropertyRef Name="idSalida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSalida__idSal__1B3EDD4F">
+          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblSalidaDetalle_Factura" Role="tblSalidaDetalle_Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSalidaDetalle">
+              <PropertyRef Name="idSalidaDetalle" />
+            </Principal>
+            <Dependent Role="tblSalidaDetalle_Factura">
+              <PropertyRef Name="idSalidaDetalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSalidaDetalle_tblSalidaDetalle">
+          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSalidaDetalle">
+              <PropertyRef Name="idSalidaDetalle" />
+            </Principal>
+            <Dependent Role="tblSalidaDetalle1">
+              <PropertyRef Name="kitSalidaDetalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSalidaDetalle_tblTipoInventario">
+          <End Type="dsi_pos_demoModel.tblTipoInventario" Role="tblTipoInventario" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTipoInventario">
+              <PropertyRef Name="idTipoinventario" />
+            </Principal>
+            <Dependent Role="tblSalidaDetalle">
+              <PropertyRef Name="tipoInventario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSalidasTransportesMediosDetalles_SDetalle">
+          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblSalidasTransportesMediosDetalle" Role="tblSalidasTransportesMediosDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSalidaDetalle">
+              <PropertyRef Name="idSalidaDetalle" />
+            </Principal>
+            <Dependent Role="tblSalidasTransportesMediosDetalle">
+              <PropertyRef Name="idSalidaDetalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSurtir_tblSalidaDetalle">
+          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblSurtir" Role="tblSurtir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSalidaDetalle">
+              <PropertyRef Name="idSalidaDetalle" />
+            </Principal>
+            <Dependent Role="tblSurtir">
+              <PropertyRef Name="salidaDetalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UnidadMedidaVenta">
+          <End Type="dsi_pos_demoModel.tblUnidadMedida" Role="tblUnidadMedida" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUnidadMedida">
+              <PropertyRef Name="idunidadMedida" />
+            </Principal>
+            <Dependent Role="tblSalidaDetalle">
+              <PropertyRef Name="idunidadmedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_buscar_Articulo_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="txmCantidad" Nullable="false" MaxLength="1" />
+          <Property Type="Decimal" Name="Existencia" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="Reserva" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="Transito" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="String" Name="txmCosto" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="txbPrecio" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Int32" Name="CantidadMax" Nullable="true" />
+          <Property Type="String" Name="Observacion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="UnidadEmpaque" Nullable="true" />
+          <Property Type="String" Name="txmSurtir" Nullable="true" MaxLength="5" />
+          <Property Type="Int32" Name="clrEstado" Nullable="false" />
+          <Property Type="String" Name="numeroArt" Nullable="true" MaxLength="5" />
+          <Property Type="DateTime" Name="UltimaCompra" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Marca" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="bitVentaMaxima" Nullable="true" />
+          <Property Type="Int32" Name="minimo" Nullable="false" />
+          <Property Type="Int32" Name="TipoPrecio" Nullable="true" />
+          <Property Type="String" Name="Compatibilidad" Nullable="true" />
+          <Property Type="String" Name="UbicacionEstanteria" Nullable="false" MaxLength="50" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -22824,35 +22830,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblSalidaDetalles">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSalidaDetalle">
-              <MappingFragment StoreEntitySet="tblSalidaDetalle">
-                <ScalarProperty Name="bitoferta" ColumnName="bitoferta" />
-                <ScalarProperty Name="bitnuevo" ColumnName="bitnuevo" />
-                <ScalarProperty Name="bitsurtir" ColumnName="bitsurtir" />
-                <ScalarProperty Name="codigosurtir" ColumnName="codigosurtir" />
-                <ScalarProperty Name="codigoSucursal" ColumnName="codigoSucursal" />
-                <ScalarProperty Name="tipobodega" ColumnName="tipobodega" />
-                <ScalarProperty Name="valormedida" ColumnName="valormedida" />
-                <ScalarProperty Name="idunidadmedida" ColumnName="idunidadmedida" />
-                <ScalarProperty Name="agregarTransporte" ColumnName="agregarTransporte" />
-                <ScalarProperty Name="precioOriginal" ColumnName="precioOriginal" />
-                <ScalarProperty Name="otrosCostos" ColumnName="otrosCostos" />
-                <ScalarProperty Name="precioFactura" ColumnName="precioFactura" />
-                <ScalarProperty Name="kitSalidaDetalle" ColumnName="kitSalidaDetalle" />
-                <ScalarProperty Name="tipoPrecio" ColumnName="tipoPrecio" />
-                <ScalarProperty Name="tipoInventario" ColumnName="tipoInventario" />
-                <ScalarProperty Name="anulado" ColumnName="anulado" />
-                <ScalarProperty Name="costo" ColumnName="costo" />
-                <ScalarProperty Name="comentario" ColumnName="comentario" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
-                <ScalarProperty Name="idSalida" ColumnName="idSalida" />
-                <ScalarProperty Name="idSalidaDetalle" ColumnName="idSalidaDetalle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblSalidaDetalle_Factura">
             <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSalidaDetalle_Factura">
               <MappingFragment StoreEntitySet="tblSalidaDetalle_Factura">
@@ -23336,34 +23313,6 @@
                 <ScalarProperty Name="txbEmpacado" ColumnName="txbEmpacado" />
                 <ScalarProperty Name="txmObservacion" ColumnName="txmObservacion" />
                 <ScalarProperty Name="Errores" ColumnName="Errores" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_buscar_Articulo" FunctionName="mdlModeloDatos.Store.sp_buscar_Articulo">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_buscar_Articulo_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="txmCantidad" ColumnName="txmCantidad" />
-                <ScalarProperty Name="Existencia" ColumnName="Existencia" />
-                <ScalarProperty Name="Reserva" ColumnName="Reserva" />
-                <ScalarProperty Name="Transito" ColumnName="Transito" />
-                <ScalarProperty Name="txmCosto" ColumnName="txmCosto" />
-                <ScalarProperty Name="txbPrecio" ColumnName="txbPrecio" />
-                <ScalarProperty Name="CantidadMax" ColumnName="CantidadMax" />
-                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
-                <ScalarProperty Name="UnidadEmpaque" ColumnName="UnidadEmpaque" />
-                <ScalarProperty Name="txmSurtir" ColumnName="txmSurtir" />
-                <ScalarProperty Name="clrEstado" ColumnName="clrEstado" />
-                <ScalarProperty Name="numeroArt" ColumnName="numeroArt" />
-                <ScalarProperty Name="UltimaCompra" ColumnName="UltimaCompra" />
-                <ScalarProperty Name="Marca" ColumnName="Marca" />
-                <ScalarProperty Name="bitVentaMaxima" ColumnName="bitVentaMaxima" />
-                <ScalarProperty Name="minimo" ColumnName="minimo" />
-                <ScalarProperty Name="TipoPrecio" ColumnName="TipoPrecio" />
-                <ScalarProperty Name="Compatibilidad" ColumnName="Compatibilidad" />
-                <ScalarProperty Name="UbicacionEstanteria" ColumnName="UbicacionEstanteria" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -26170,6 +26119,66 @@
                 <ScalarProperty Name="Desde" ColumnName="Desde" />
                 <ScalarProperty Name="Hasta" ColumnName="Hasta" />
                 <ScalarProperty Name="SaldoVencido" ColumnName="SaldoVencido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblSalidaDetalles">
+            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSalidaDetalle">
+              <MappingFragment StoreEntitySet="tblSalidaDetalle">
+                <ScalarProperty Name="cantprom" ColumnName="cantprom" />
+                <ScalarProperty Name="cuotapromo" ColumnName="cuotapromo" />
+                <ScalarProperty Name="promocion" ColumnName="promocion" />
+                <ScalarProperty Name="bitoferta" ColumnName="bitoferta" />
+                <ScalarProperty Name="bitnuevo" ColumnName="bitnuevo" />
+                <ScalarProperty Name="bitsurtir" ColumnName="bitsurtir" />
+                <ScalarProperty Name="codigosurtir" ColumnName="codigosurtir" />
+                <ScalarProperty Name="codigoSucursal" ColumnName="codigoSucursal" />
+                <ScalarProperty Name="tipobodega" ColumnName="tipobodega" />
+                <ScalarProperty Name="valormedida" ColumnName="valormedida" />
+                <ScalarProperty Name="idunidadmedida" ColumnName="idunidadmedida" />
+                <ScalarProperty Name="agregarTransporte" ColumnName="agregarTransporte" />
+                <ScalarProperty Name="precioOriginal" ColumnName="precioOriginal" />
+                <ScalarProperty Name="otrosCostos" ColumnName="otrosCostos" />
+                <ScalarProperty Name="precioFactura" ColumnName="precioFactura" />
+                <ScalarProperty Name="kitSalidaDetalle" ColumnName="kitSalidaDetalle" />
+                <ScalarProperty Name="tipoPrecio" ColumnName="tipoPrecio" />
+                <ScalarProperty Name="tipoInventario" ColumnName="tipoInventario" />
+                <ScalarProperty Name="anulado" ColumnName="anulado" />
+                <ScalarProperty Name="costo" ColumnName="costo" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+                <ScalarProperty Name="idSalida" ColumnName="idSalida" />
+                <ScalarProperty Name="idSalidaDetalle" ColumnName="idSalidaDetalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_buscar_Articulo" FunctionName="mdlModeloDatos.Store.sp_buscar_Articulo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_buscar_Articulo_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="txmCantidad" ColumnName="txmCantidad" />
+                <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+                <ScalarProperty Name="Reserva" ColumnName="Reserva" />
+                <ScalarProperty Name="Transito" ColumnName="Transito" />
+                <ScalarProperty Name="txmCosto" ColumnName="txmCosto" />
+                <ScalarProperty Name="txbPrecio" ColumnName="txbPrecio" />
+                <ScalarProperty Name="CantidadMax" ColumnName="CantidadMax" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+                <ScalarProperty Name="UnidadEmpaque" ColumnName="UnidadEmpaque" />
+                <ScalarProperty Name="txmSurtir" ColumnName="txmSurtir" />
+                <ScalarProperty Name="clrEstado" ColumnName="clrEstado" />
+                <ScalarProperty Name="numeroArt" ColumnName="numeroArt" />
+                <ScalarProperty Name="UltimaCompra" ColumnName="UltimaCompra" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="bitVentaMaxima" ColumnName="bitVentaMaxima" />
+                <ScalarProperty Name="minimo" ColumnName="minimo" />
+                <ScalarProperty Name="TipoPrecio" ColumnName="TipoPrecio" />
+                <ScalarProperty Name="Compatibilidad" ColumnName="Compatibilidad" />
+                <ScalarProperty Name="UbicacionEstanteria" ColumnName="UbicacionEstanteria" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

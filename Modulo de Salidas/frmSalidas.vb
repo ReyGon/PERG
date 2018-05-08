@@ -1148,7 +1148,7 @@ Public Class frmSalidas
             filas = {"0", mdlPublicVars.superSearchId, mdlPublicVars.superSearchCodigo, mdlPublicVars.superSearchNombre, mdlPublicVars.superSearchCantidad,
                      Format(mdlPublicVars.superSearchPrecio, mdlPublicVars.formatoMoneda), "0", False, "", 0, "", 0, 0, 0,
                      mdlPublicVars.superSearchSurtir, mdlPublicVars.superSearchInventario, mdlPublicVars.superSearchTipoPrecio, mdlPublicVars.superSearchEstado, mdlPublicVars.superSearchCodigoSurtir, mdlPublicVars.superSearchBitSurtir,
-                     mdlPublicVars.superSearchBitNuevo, mdlPublicVars.superSearchBitOferta}
+                     mdlPublicVars.superSearchBitNuevo, mdlPublicVars.superSearchBitOferta, mdlPublicVars.superSearchPromocion, mdlPublicVars.superSearchCuotaPromocion, mdlPublicVars.superSearchCantidadPromocion}
             Try
                 grdProductos.Rows.Add(filas)
             Catch ex As Exception
@@ -1866,6 +1866,10 @@ Public Class frmSalidas
                             Dim bitNuevo As Integer
                             Dim bitOferta As Integer
                             Dim codigoSurtir As Integer
+                            Dim promocion As Double
+                            Dim cantidadpromocion As Double
+                            Dim cuotapromocion As Double
+
                             For index = 0 To Me.grdProductos.Rows.Count - 1
 
                                 'validar si es numerico el ID de articulo.
@@ -1903,6 +1907,10 @@ Public Class frmSalidas
                                         bitNuevo = Me.grdProductos.Rows(index).Cells("bitNuevo").Value
                                         bitOferta = Me.grdProductos.Rows(index).Cells("bitOfertas").Value
                                         codigoSurtir = Me.grdProductos.Rows(index).Cells("CodigoSurtir").Value
+                                        promocion = Me.grdProductos.Rows(index).Cells("Promocion").Value
+                                        cantidadpromocion = Me.grdProductos.Rows(index).Cells("CantidadPromocion").Value
+                                        cuotapromocion = Me.grdProductos.Rows(index).Cells("CuotaPromocion").Value
+
                                         If rbnContado.Checked = True Then
                                             contado = True
                                         Else
@@ -1938,11 +1946,14 @@ Public Class frmSalidas
                                         detalle.precioFactura = precio
                                         detalle.agregarTransporte = 1
                                         detalle.idunidadmedida = mdlPublicVars.UnidadMedidaDefault
-                                        detalle.valormedida = True
+                                        detalle.valormedida = 1
                                         detalle.bitSurtir = bitsurtir
                                         detalle.bitNuevo = bitNuevo
                                         detalle.bitOferta = bitOferta
                                         detalle.codigosurtir = codigoSurtir
+                                        detalle.promocion = promocion
+                                        detalle.cuotapromo = cuotapromocion
+                                        detalle.cantprom = cantidadpromocion
                                         conexion.AddTotblSalidaDetalles(detalle)
                                         conexion.SaveChanges()
 
@@ -2693,6 +2704,9 @@ Public Class frmSalidas
                             Dim bitNuevo As Integer
                             Dim bitOferta As Integer
                             Dim codigoSurtir As Integer
+                            Dim promocion As Double
+                            Dim cantidadpromocion As Double
+                            Dim cuotapromocion As Double
 
                             For index = 0 To Me.grdProductos.Rows.Count - 1
 
@@ -2713,6 +2727,9 @@ Public Class frmSalidas
                                     idInventario = Me.grdProductos.Rows(index).Cells("idInventario").Value
                                     tipoPrecio = Me.grdProductos.Rows(index).Cells("tipoPrecio").Value
                                     observacion = Me.grdProductos.Rows(index).Cells("txbObservacion").Value
+                                    promocion = Me.grdProductos.Rows(index).Cells("Promocion").Value
+                                    cantidadpromocion = Me.grdProductos.Rows(index).Cells("CantidadPromocion").Value
+                                    cuotapromocion = Me.grdProductos.Rows(index).Cells("CuotaPromocion").Value
 
                                     If rbnContado.Checked = True Then
                                         contado = True
@@ -2748,6 +2765,9 @@ Public Class frmSalidas
                                     detalle.codigosurtir = codigoSurtir
                                     detalle.idunidadmedida = mdlPublicVars.UnidadMedidaDefault
                                     detalle.valormedida = 1
+                                    detalle.promocion = promocion
+                                    detalle.cantprom = cantidadpromocion
+                                    detalle.cuotapromo = cuotapromocion
                                     'Crear el objeto
                                     conexion.AddTotblSalidaDetalles(detalle)
                                     conexion.SaveChanges()
@@ -3672,6 +3692,9 @@ Public Class frmSalidas
                             Dim bitNuevo As Integer
                             Dim bitOferta As Integer
                             Dim codigoSurtir As Integer
+                            Dim promocion As Double
+                            Dim cuotapromocion As Double
+                            Dim cantidadpromocion As Double
 
                             'crear registro de salida bodega.
                             If codigoSalidaContado > 0 Then
@@ -3707,6 +3730,9 @@ Public Class frmSalidas
                                     bitNuevo = Me.grdProductos.Rows(index).Cells("bitNuevo").Value
                                     bitOferta = Me.grdProductos.Rows(index).Cells("bitOfertas").Value
                                     codigoSurtir = Me.grdProductos.Rows(index).Cells("CodigoSurtir").Value
+                                    promocion = Me.grdProductos.Rows(index).Cells("Promocion").Value
+                                    cantidadpromocion = Me.grdProductos.Rows(index).Cells("CantidadPromocion").Value
+                                    cuotapromocion = Me.grdProductos.Rows(index).Cells("CuotaPromocion").Value
 
                                     Dim articulo As tblArticulo = (From x In conexion.tblArticuloes Where x.idArticulo = idarticulo Select x).First
 
@@ -3744,6 +3770,9 @@ Public Class frmSalidas
                                     detalle.bitOferta = bitOferta
                                     detalle.codigosurtir = codigoSurtir
                                     detalle.tipobodega = mdlPublicVars.General_idAlmacenPrincipal
+                                    detalle.promocion = promocion
+                                    detalle.cuotapromo = cuotapromocion
+                                    detalle.cantprom = cantidadpromocion
 
                                     conexion.AddTotblSalidaDetalles(detalle)
                                     conexion.SaveChanges()

@@ -953,10 +953,22 @@
     <Compile Include="Modulo de Inventario\frmProductoPreciosCompeLista.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modulo de Inventario\frmPromociones.Designer.vb">
+    <Compile Include="Modulo de Inventario\Promociones\frmFiltrosInventarios.Designer.vb">
+      <DependentUpon>frmFiltrosInventarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo de Inventario\Promociones\frmFiltrosInventarios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo de Inventario\Promociones\frmPromociones.Designer.vb">
       <DependentUpon>frmPromociones.vb</DependentUpon>
     </Compile>
-    <Compile Include="Modulo de Inventario\frmPromociones.vb">
+    <Compile Include="Modulo de Inventario\Promociones\frmPromociones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo de Inventario\Promociones\frmPromocionesInformacion.Designer.vb">
+      <DependentUpon>frmPromocionesInformacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo de Inventario\Promociones\frmPromocionesInformacion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modulo de Inventario\frmReporteInventario.Designer.vb">
@@ -1180,6 +1192,18 @@
     </Compile>
     <Compile Include="Modulos Dinamicos\frmReportesDinamicos.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Nuevos\factura_FacturaConDesc.vb">
+      <DependentUpon>factura_FacturaConDesc.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\Nuevos\factura_FacturaConDescCR.vb">
+      <DependentUpon>factura_FacturaConDescCR.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reportes\Nuevos\factura_FacturaSinDescCR.vb">
       <DependentUpon>factura_FacturaSinDescCR.rpt</DependentUpon>
@@ -2209,8 +2233,14 @@
     <EmbeddedResource Include="Modulo de Inventario\frmProductoPreciosCompeLista.resx">
       <DependentUpon>frmProductoPreciosCompeLista.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modulo de Inventario\frmPromociones.resx">
+    <EmbeddedResource Include="Modulo de Inventario\Promociones\frmFiltrosInventarios.resx">
+      <DependentUpon>frmFiltrosInventarios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo de Inventario\Promociones\frmPromociones.resx">
       <DependentUpon>frmPromociones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo de Inventario\Promociones\frmPromocionesInformacion.resx">
+      <DependentUpon>frmPromocionesInformacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Inventario\frmReporteInventario.resx">
       <DependentUpon>frmReporteInventario.vb</DependentUpon>
@@ -2322,6 +2352,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos Dinamicos\frmReportesDinamicos.resx">
       <DependentUpon>frmReportesDinamicos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Nuevos\factura_FacturaConDesc.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>factura_FacturaConDesc.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Nuevos\factura_FacturaConDescCR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>factura_FacturaConDescCR.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Nuevos\factura_FacturaSinDescCR.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
