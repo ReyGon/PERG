@@ -106,7 +106,8 @@ Public Class frmFacturasElegir
 
                 If idproveedor > 0 Then
 
-                    dt = EntitiToDataTable(conexion.sp_ConsultafacturasCompras)
+                    'dt = EntitiToDataTable(conexion.sp_ConsultafacturasCompras(idproveedor))
+
 
 
                     ' Dim entradas As List(Of tblEntrada) = (From x In conexion.tblEntradas.AsEnumerable Where x.idProveedor = idproveedor Where x.saldo > 0 Select x Order By x.fechaRegistro Descending).ToList()
@@ -119,7 +120,7 @@ Public Class frmFacturasElegir
 
                 ElseIf idcliente > 0 Then
 
-                    dt = EntitiToDataTable(conexion.sp_ConsultafacturasVentas, "", idcliente, mdlPublicVars.idEmpresa)
+                    dt = EntitiToDataTable(conexion.sp_ConsultafacturasVentas(idcliente))
 
                     ' Dim salidas As List(Of tblSalida) = (From x In conexion.tblSalidas Where x.idCliente = idcliente Where x.saldo > 0 And (x.facturado = True Or x.despachar = True Or x.empacado = True) And x.anulado = False Select x Order By x.fechaRegistro Descending).ToList
 
