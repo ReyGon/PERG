@@ -207,9 +207,7 @@ Partial Class frmPromociones
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(1200, 23)
         Me.Label9.TabIndex = 246
-        Me.Label9.Text = "F2 -> Permite visualizar ultimas Compras;   F3-> Permite visualizar ultimas Venta" & _
-    "s;   F4-> Permite visualizar modulo Pricing;   F6-> Permite visualizar modulo Ar" & _
-    "ticulos"
+        Me.Label9.Text = "F6-> Permite visualizar modulo Articulos;   F8-> Filtros"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'txtCantidadPromocion

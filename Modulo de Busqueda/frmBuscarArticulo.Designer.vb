@@ -112,6 +112,8 @@ Partial Class frmBuscarArticulo
         Me.Label5 = New System.Windows.Forms.Label()
         Me.lblEmpaque = New System.Windows.Forms.Label()
         Me.rgbObservacion = New Telerik.WinControls.UI.RadGroupBox()
+        Me.lblTransito = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.lblUbicacion = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.lblCompatibilidad = New System.Windows.Forms.Label()
@@ -119,9 +121,6 @@ Partial Class frmBuscarArticulo
         Me.lblMarca = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.pnlBarra2 = New System.Windows.Forms.Panel()
-        Me.btnAgregar = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.lblTransito = New System.Windows.Forms.Label()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
         Me.pnxEoferta.SuspendLayout()
@@ -167,7 +166,6 @@ Partial Class frmBuscarArticulo
         Me.pgPrincipal.SuspendLayout()
         CType(Me.grdProductos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdProductos.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.grdProductos.SuspendLayout()
         Me.pgLiquidacion.SuspendLayout()
         CType(Me.grdLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdLiquidacion.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -576,9 +574,9 @@ Partial Class frmBuscarArticulo
         Me.lbl5Competencia.ForeColor = System.Drawing.Color.White
         Me.lbl5Competencia.Location = New System.Drawing.Point(-3, 30)
         Me.lbl5Competencia.Name = "lbl5Competencia"
-        Me.lbl5Competencia.Size = New System.Drawing.Size(74, 13)
+        Me.lbl5Competencia.Size = New System.Drawing.Size(75, 13)
         Me.lbl5Competencia.TabIndex = 90
-        Me.lbl5Competencia.Text = "Precios Com."
+        Me.lbl5Competencia.Text = "Promociones"
         '
         'pnx4Ventas
         '
@@ -927,7 +925,6 @@ Partial Class frmBuscarArticulo
         '
         Me.grdProductos.AutoScroll = True
         Me.grdProductos.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.grdProductos.Controls.Add(Me.btnAgregar)
         Me.grdProductos.Cursor = System.Windows.Forms.Cursors.Default
         Me.grdProductos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grdProductos.Font = New System.Drawing.Font("Arial", 9.0!)
@@ -969,7 +966,7 @@ Partial Class frmBuscarArticulo
         Me.pgLiquidacion.Controls.Add(Me.grdLiquidacion)
         Me.pgLiquidacion.Location = New System.Drawing.Point(10, 43)
         Me.pgLiquidacion.Name = "pgLiquidacion"
-        Me.pgLiquidacion.Size = New System.Drawing.Size(1108, 261)
+        Me.pgLiquidacion.Size = New System.Drawing.Size(1110, 261)
         Me.pgLiquidacion.Text = "Liquidación"
         '
         'grdLiquidacion
@@ -983,7 +980,7 @@ Partial Class frmBuscarArticulo
         Me.grdLiquidacion.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdLiquidacion.Location = New System.Drawing.Point(0, 0)
         '
-        '
+        'grdLiquidacion
         '
         Me.grdLiquidacion.MasterTemplate.AllowAddNewRow = False
         Me.grdLiquidacion.MasterTemplate.AllowColumnReorder = False
@@ -1007,7 +1004,7 @@ Partial Class frmBuscarArticulo
         '
         Me.grdLiquidacion.RootElement.ForeColor = System.Drawing.Color.Black
         Me.grdLiquidacion.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdLiquidacion.Size = New System.Drawing.Size(1108, 261)
+        Me.grdLiquidacion.Size = New System.Drawing.Size(1110, 261)
         Me.grdLiquidacion.TabIndex = 134
         Me.grdLiquidacion.Text = "RadGridView1"
         Me.grdLiquidacion.ThemeName = "Office2007Black"
@@ -1264,6 +1261,31 @@ Partial Class frmBuscarArticulo
         Me.rgbObservacion.Size = New System.Drawing.Size(1151, 85)
         Me.rgbObservacion.TabIndex = 172
         '
+        'lblTransito
+        '
+        Me.lblTransito.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblTransito.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblTransito.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTransito.ForeColor = System.Drawing.Color.Black
+        Me.lblTransito.Location = New System.Drawing.Point(1039, 44)
+        Me.lblTransito.Name = "lblTransito"
+        Me.lblTransito.Size = New System.Drawing.Size(106, 33)
+        Me.lblTransito.TabIndex = 179
+        Me.lblTransito.Text = "Transito"
+        Me.lblTransito.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label2
+        '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.DimGray
+        Me.Label2.Location = New System.Drawing.Point(1053, 11)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(81, 25)
+        Me.Label2.TabIndex = 178
+        Me.Label2.Text = "Transito"
+        '
         'lblUbicacion
         '
         Me.lblUbicacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -1347,52 +1369,6 @@ Partial Class frmBuscarArticulo
         Me.pnlBarra2.Name = "pnlBarra2"
         Me.pnlBarra2.Size = New System.Drawing.Size(710, 51)
         Me.pnlBarra2.TabIndex = 173
-        '
-        'btnAgregar
-        '
-        Me.btnAgregar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAgregar.BackColor = System.Drawing.Color.SteelBlue
-        Me.btnAgregar.FlatAppearance.BorderSize = 0
-        Me.btnAgregar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
-        Me.btnAgregar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAgregar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAgregar.ForeColor = System.Drawing.Color.Transparent
-        Me.btnAgregar.Image = Global.laFuente.My.Resources.Resources.agregar_Blanco
-        Me.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.btnAgregar.Location = New System.Drawing.Point(237, 115)
-        Me.btnAgregar.Name = "btnAgregar"
-        Me.btnAgregar.Size = New System.Drawing.Size(121, 85)
-        Me.btnAgregar.TabIndex = 127
-        Me.btnAgregar.Text = "Agregar"
-        Me.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.btnAgregar.UseVisualStyleBackColor = False
-        Me.btnAgregar.Visible = False
-        '
-        'Label2
-        '
-        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.DimGray
-        Me.Label2.Location = New System.Drawing.Point(1053, 11)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(81, 25)
-        Me.Label2.TabIndex = 178
-        Me.Label2.Text = "Transito"
-        '
-        'lblTransito
-        '
-        Me.lblTransito.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblTransito.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lblTransito.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTransito.ForeColor = System.Drawing.Color.Black
-        Me.lblTransito.Location = New System.Drawing.Point(1039, 44)
-        Me.lblTransito.Name = "lblTransito"
-        Me.lblTransito.Size = New System.Drawing.Size(106, 33)
-        Me.lblTransito.TabIndex = 179
-        Me.lblTransito.Text = "Transito"
-        Me.lblTransito.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmBuscarArticulo
         '
@@ -1478,7 +1454,6 @@ Partial Class frmBuscarArticulo
         Me.pgPrincipal.ResumeLayout(False)
         CType(Me.grdProductos.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdProductos, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.grdProductos.ResumeLayout(False)
         Me.pgLiquidacion.ResumeLayout(False)
         CType(Me.grdLiquidacion.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdLiquidacion, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1558,7 +1533,6 @@ Partial Class frmBuscarArticulo
     Friend WithEvents chkTodosMarca As System.Windows.Forms.CheckBox
     Friend WithEvents grdMarca As Telerik.WinControls.UI.RadGridView
     Friend WithEvents lblEMarca As System.Windows.Forms.Label
-    Friend WithEvents btnAgregar As System.Windows.Forms.Button
     Friend WithEvents lblCompatibilidad As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents rgbSustitutos As Telerik.WinControls.UI.RadGroupBox

@@ -19,6 +19,7 @@ Public Class frmBuscarArticulo
     Private _OpcionRetorno As String
     Private _idInventario As Integer
     Private _idBodega As Integer
+    Private bitProm As Boolean = False
 
     Private _bitProveedor As Boolean
     Private _bitProformaImportacion As Boolean
@@ -238,7 +239,7 @@ Public Class frmBuscarArticulo
                 fnLlenar_productos()
             End If
             txtFiltro.Text = ""
-
+            bitProm = False
         Catch ex As Exception
             txtFiltro.Text = ""
         End Try
@@ -405,11 +406,13 @@ Public Class frmBuscarArticulo
     'AGREGAR PRECIO
     Public Sub fnAgregarPrecio(ByVal especial As Boolean)
         Try
-            Me.grdProductos.Rows(Me.grdProductos.CurrentRow.Index).Cells("txbPrecio").Value = CType(mdlPublicVars.superSearchPrecio, Decimal)
-            Me.grdProductos.Rows(Me.grdProductos.CurrentRow.Index).Cells("TipoPrecio").Value = CType(mdlPublicVars.superSearchTipoPrecio, Integer)
-            If especial = False Then
-                Me.grdProductos.Rows(Me.grdProductos.CurrentRow.Index).Cells("txmCantidad").Value = CType(mdlPublicVars.superSearchCantidad, Integer)
-            End If
+
+                Me.grdProductos.Rows(Me.grdProductos.CurrentRow.Index).Cells("txbPrecio").Value = CType(mdlPublicVars.superSearchPrecio, Decimal)
+                Me.grdProductos.Rows(Me.grdProductos.CurrentRow.Index).Cells("TipoPrecio").Value = CType(mdlPublicVars.superSearchTipoPrecio, Integer)
+                If especial = False Then
+                    Me.grdProductos.Rows(Me.grdProductos.CurrentRow.Index).Cells("txmCantidad").Value = CType(mdlPublicVars.superSearchCantidad, Integer)
+                End If
+           
         Catch ex As Exception
             RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
         End Try
@@ -572,6 +575,7 @@ Public Class frmBuscarArticulo
             Dim codigoMarcaRepuesto As String = tbl.fnExtraerCadenaCodigosGridViewTelerik(grdMarca, 1, 0)
             Dim cons = Nothing
             Dim cons2 = Nothing
+            Dim cons3 = Nothing
             Dim buscar As Boolean = False
 
             If txtFiltro.Text.Trim.Length >= 0 And codigoTipoVehiculo.IndexOf(",") <= 0 Then
@@ -580,22 +584,32 @@ Public Class frmBuscarArticulo
                 buscar = True
             End If
 
+            Dim coneccion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                coneccion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
             If buscar Then
                 If bitMovimientoInventario = True Then
-                    cons = ctx.sp_buscar_Articulo(mdlPublicVars.idEmpresa, txtFiltro.Text, idInventario, idBodega, codigoTipoVehiculo, codigomodeloVehiculo, codClie, 1, True, False, codigoMarcaRepuesto, venta)
+                        cons = coneccion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, txtFiltro.Text, idInventario, idBodega, codigoTipoVehiculo, codigomodeloVehiculo, codClie, 1, True, False, codigoMarcaRepuesto, venta)
                     pgLiquidacion.Dispose()
                     pgbProgreso.Value = 30
                 Else
-                    cons = ctx.sp_buscar_Articulo(mdlPublicVars.idEmpresa, txtFiltro.Text, idInventario, idBodega, codigoTipoVehiculo, codigomodeloVehiculo, codClie, 1, bitCliente, bitProveedor, codigoMarcaRepuesto, venta)
+                        cons = coneccion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, txtFiltro.Text, idInventario, idBodega, codigoTipoVehiculo, codigomodeloVehiculo, codClie, 1, bitCliente, bitProveedor, codigoMarcaRepuesto, venta)
                     pgbProgreso.Value = 15
                     If Not bitProveedor Then
-                        cons2 = ctx.sp_buscar_Articulo(mdlPublicVars.idEmpresa, txtFiltro.Text, mdlPublicVars.General_InventarioLiquidacion, mdlPublicVars.General_idAlmacenPrincipal, codigoTipoVehiculo, codigomodeloVehiculo, codClie, 1, bitCliente, bitProveedor, codigoMarcaRepuesto, venta)
+                            cons2 = coneccion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, txtFiltro.Text, mdlPublicVars.General_InventarioLiquidacion, mdlPublicVars.General_idAlmacenPrincipal, codigoTipoVehiculo, codigomodeloVehiculo, codClie, 1, bitCliente, bitProveedor, codigoMarcaRepuesto, venta)
                         pgbProgreso.Value = 15
                     End If
+
+                     
                 End If
             Else
                 RadMessageBox.Show("Debe ingresar al menos una palabra para filtrar", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
-            End If
+                End If
+
+                conn.Close()
+            End Using
 
             Dim filtrovalidacion As String
             Dim tablavalidacion As New DataTable
@@ -723,6 +737,15 @@ Public Class frmBuscarArticulo
                     grd.Columns("txmCosto").IsVisible = False
                     grd.Columns("txbPrecio").IsVisible = True
                     grd.Columns("Transito").IsVisible = False
+
+                    Try
+                        grd.Columns(23).IsVisible = True
+                        grd.Columns(24).IsVisible = True
+                        grd.Columns(23).Width = 50
+                        grd.Columns(24).Width = 50
+                    Catch ex As Exception
+
+                    End Try
                 ElseIf OpcionRetorno = "consulta" Then
                     grd.Columns("txmCosto").IsVisible = False
                     grd.Columns("clrEstado").IsVisible = False
@@ -734,39 +757,6 @@ Public Class frmBuscarArticulo
             RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
         End Try
     End Sub
-
-    Private Function fnPromociones(ByVal Id As Integer, ByVal Cantidad As Integer) As Integer
-        Try
-            Dim conexion As dsi_pos_demoEntities
-            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
-                conn.Open()
-                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
-
-                Dim cx As Integer
-                Dim cr As Integer
-
-                Dim a As tblArticulo = (From x In conexion.tblArticuloes Where x.idArticulo = Id Select x).FirstOrDefault
-
-                If a.bitPromocion = False Then
-                    Return 0
-                    Exit Function
-                End If
-
-                If Cantidad >= a.CuotaPromocion Then
-                    cx = Math.Floor(CDec(Cantidad / a.CuotaPromocion))
-                    mdlPublicVars.superSearchCuotaPromocion = a.CuotaPromocion
-                    mdlPublicVars.superSearchCantidadPromocion = cx
-                    cr = cx * a.CantidadPromocion
-                End If
-
-                conn.Close()
-
-                Return cr
-            End Using
-        Catch ex As Exception
-            Return 0
-        End Try
-    End Function
 
     'Funcion que se utiliza para agregar los productos en el grid 
     Private Sub fnAgregar_Productos(ByRef grd As Telerik.WinControls.UI.RadGridView, ByVal liquidacion As Boolean)
@@ -834,18 +824,6 @@ Public Class frmBuscarArticulo
                     Catch ex As Exception
                         cantidad = 0
                     End Try
-
-                    ''Validador de Promociones
-                    If bitCliente = True And bitDevolucionCliente = False Then
-
-                        promocion = fnPromociones(id, cantidad)
-
-                        If promocion > 0 Then
-                            cantidad += promocion
-                        End If
-
-                    End If
-                    ''Fin Validad de Promociones
 
                     surtir = fila.Cells("txmSurtir").Value
                     Dim art As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = id And x.tblTipoInventario.idTipoinventario = mdlPublicVars.General_idTipoInventario
@@ -1133,24 +1111,27 @@ Public Class frmBuscarArticulo
     'Precios Competencia
     Private Sub fnCompetencia() Handles Me.panel5
         If Me.grdProductos.Rows.Count > 0 Then
-            Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdProductos)
-            If fila >= 0 Then
-                Try
-                    frmBuscarArticuloPrecioCompetencia.Text = "Precios Competencia"
-                    frmBuscarArticuloPrecioCompetencia.StartPosition = FormStartPosition.CenterScreen
-                    frmBuscarArticuloPrecioCompetencia.codigoArticulo = CType(Me.grdProductos.Rows(fila).Cells("ID").Value, Integer)
-                    frmBuscarArticuloPrecioCompetencia.codigoCliente = CType(formSalida.cmbCliente.SelectedValue, Integer)
-                    frmBuscarArticuloPrecioCompetencia.bitBloquearCombo = True ' bloqueamos el combo cliente para que no se pueda cambiar
-                    permiso.PermisoDialogEspeciales(frmBuscarArticuloPrecioCompetencia)
+            ''Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdProductos)
+            ''If fila >= 0 Then
+            ''    Try
+            ''        frmBuscarArticuloPrecioCompetencia.Text = "Precios Competencia"
+            ''        frmBuscarArticuloPrecioCompetencia.StartPosition = FormStartPosition.CenterScreen
+            ''        frmBuscarArticuloPrecioCompetencia.codigoArticulo = CType(Me.grdProductos.Rows(fila).Cells("ID").Value, Integer)
+            ''        frmBuscarArticuloPrecioCompetencia.codigoCliente = CType(formSalida.cmbCliente.SelectedValue, Integer)
+            ''        frmBuscarArticuloPrecioCompetencia.bitBloquearCombo = True ' bloqueamos el combo cliente para que no se pueda cambiar
+            ''        permiso.PermisoDialogEspeciales(frmBuscarArticuloPrecioCompetencia)
 
 
-                    frmBuscarArticuloPrecioCompetencia.Dispose()
+            ''        frmBuscarArticuloPrecioCompetencia.Dispose()
 
-                Catch ex As Exception
-                    RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
-                End Try
+            ''    Catch ex As Exception
+            ''        RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+            ''    End Try
 
-            End If
+            ''End If
+
+
+
         End If
     End Sub
 
@@ -1384,6 +1365,7 @@ Public Class frmBuscarArticulo
                     Exit Sub
                 End If
                 fnLlenar_productos()
+               
                 borrar = True
             ElseIf e.KeyValue = Keys.Down Then
                 Me.grdProductos.Focus()
@@ -1431,6 +1413,7 @@ Public Class frmBuscarArticulo
                     frmProductosTransito.Dispose()
 
                 ElseIf nombre = "txbPrecio" And e.KeyCode = Keys.F2 Then
+                    bitProm = False
                     frmBuscarArticuloPrecios.Text = "Precios"
                     frmBuscarArticuloPrecios.codigo = CType(Me.grdProductos.Rows(Me.grdProductos.CurrentRow.Index).Cells("ID").Value, Integer)
                     frmBuscarArticuloPrecios.codClie = codClie
@@ -1598,7 +1581,7 @@ Public Class frmBuscarArticulo
         End Try
     End Function
 
-    Private Sub btnBuscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
+    Private Sub btnBuscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         fnAgregar_Productos(grdProductos, False)
         fnAgregar_Productos(grdLiquidacion, True)
         grdProductos.PerformLayout()
