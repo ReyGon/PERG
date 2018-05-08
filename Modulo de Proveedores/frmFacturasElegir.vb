@@ -61,9 +61,9 @@ Public Class frmFacturasElegir
     Private Sub frmFacturasElegir_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         mdlPublicVars.fnFormatoGridMovimientos(grdFacturas)
         mdlPublicVars.fnFormatoGridEspeciales(grdFacturas)
-        mdlPublicVars.fnGrid_iconos(grdFacturas)
 
         fnLlenarGrid()
+        mdlPublicVars.fnGrid_iconos(grdFacturas)
     End Sub
 
     'CLIC EN ACEPTAR PARA AGREGAR EMPLEADOS
@@ -106,13 +106,18 @@ Public Class frmFacturasElegir
 
                 If idproveedor > 0 Then
 
+<<<<<<< HEAD
 
                     'dt = EntitiToDataTable(conexion.sp_ConsultafacturasCompras(idproveedor))
 
 
                     dt = EntitiToDataTable(conexion.sp_ConsultafacturasCompras(idproveedor))
 
+=======
+                    dt = EntitiToDataTable(conexion.sp_ConsultafacturasCompras(idproveedor))
+>>>>>>> 435c15c51d6baaabf26390fa16fc75a44f4d0dd1
 
+                    Me.grdFacturas.DataSource = dt
 
                     ' Dim entradas As List(Of tblEntrada) = (From x In conexion.tblEntradas.AsEnumerable Where x.idProveedor = idproveedor Where x.saldo > 0 Select x Order By x.fechaRegistro Descending).ToList()
 
@@ -132,6 +137,8 @@ Public Class frmFacturasElegir
                     'elegir = If((From x In listaSalidas Where x.Item1 = salida.idSalida Select x).Count() > 0, True, False)
                     'Me.grdFacturas.Rows.Add({elegir, salida.idSalida, CStr(salida.documento), salida.saldo, 0, salida.fechaRegistro.ToShortDateString})
                     'Next
+
+                    Me.grdFacturas.DataSource = dt
                     conn.Close()
 
                 End If
@@ -218,4 +225,13 @@ Public Class frmFacturasElegir
         End Try
 
     End Sub
+
+    Private Sub fnSalir() Handles Me.panel0
+        Try
+            Me.Close()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
 End Class

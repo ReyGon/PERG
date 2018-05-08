@@ -19,12 +19,6 @@ Partial Class frmFacturasElegir
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridViewCheckBoxColumn1 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewTextBoxColumn1 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn2 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn3 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn4 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn5 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmFacturasElegir))
         Me.pnlBarra = New System.Windows.Forms.Panel()
         Me.pnx0Salir = New System.Windows.Forms.Panel()
@@ -135,26 +129,6 @@ Partial Class frmFacturasElegir
         '
         Me.grdFacturas.MasterTemplate.AllowAddNewRow = False
         Me.grdFacturas.MasterTemplate.AllowColumnReorder = False
-        GridViewCheckBoxColumn1.HeaderText = "Elegir"
-        GridViewCheckBoxColumn1.MinWidth = 20
-        GridViewCheckBoxColumn1.Name = "chmElegir"
-        GridViewTextBoxColumn1.HeaderText = "Codigo"
-        GridViewTextBoxColumn1.IsVisible = False
-        GridViewTextBoxColumn1.Name = "id"
-        GridViewTextBoxColumn1.ReadOnly = True
-        GridViewTextBoxColumn2.HeaderText = "Factura"
-        GridViewTextBoxColumn2.Name = "Factura"
-        GridViewTextBoxColumn2.ReadOnly = True
-        GridViewTextBoxColumn2.Width = 75
-        GridViewTextBoxColumn3.HeaderText = "Saldo"
-        GridViewTextBoxColumn3.Name = "Saldo"
-        GridViewTextBoxColumn3.ReadOnly = True
-        GridViewTextBoxColumn4.HeaderText = "Monto"
-        GridViewTextBoxColumn4.Name = "chmMontoPago"
-        GridViewTextBoxColumn5.HeaderText = "Fecha"
-        GridViewTextBoxColumn5.Name = "Fecha"
-        GridViewTextBoxColumn5.ReadOnly = True
-        Me.grdFacturas.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn1, GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4, GridViewTextBoxColumn5})
         Me.grdFacturas.Name = "grdFacturas"
         Me.grdFacturas.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
         Me.grdFacturas.RightToLeft = System.Windows.Forms.RightToLeft.No
