@@ -11802,11 +11802,11 @@
             <Parameter Name="factura" Mode="In" Type="Int32" />
             <Parameter Name="empresa" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_ConsultafacturasVentas" ReturnType="Collection(dsi_pos_demoModel.sp_ConsultafacturasVentas_Result)">
-          <Parameter Name="idcliente" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_ConsultafacturasCompras" ReturnType="Collection(dsi_pos_demoModel.sp_ConsultafacturasCompras_Result)">
             <Parameter Name="idproveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ConsultafacturasVentas" ReturnType="Collection(dsi_pos_demoModel.sp_ConsultafacturasVentas_Result)">
+            <Parameter Name="idcliente" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="dtproperty">
@@ -20843,19 +20843,22 @@
           <Property Type="String" Name="estanteria" Nullable="true" MaxLength="100" />
           <Property Type="Decimal" Name="descuento" Nullable="true" Precision="18" Scale="2" />
         </ComplexType>
+        <ComplexType Name="sp_ConsultafacturasCompras_Result">
+          <Property Type="Boolean" Name="chmElegir" Nullable="true" />
+          <Property Type="String" Name="FechaCompra" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Factura" Nullable="true" MaxLength="101" />
+          <Property Type="Decimal" Name="TotalCompra" Nullable="false" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="Saldo" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="txmMontoPagar" Nullable="false" MaxLength="1" />
+        </ComplexType>
         <ComplexType Name="sp_ConsultafacturasVentas_Result">
+          <Property Type="Boolean" Name="chmElegir" Nullable="true" />
           <Property Type="String" Name="FechaFactura" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Remision" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="Facturas" Nullable="true" />
-          <Property Type="Decimal" Name="Saldo" Nullable="true" Precision="18" Scale="5" />
           <Property Type="Decimal" Name="TotalVenta" Nullable="true" Precision="18" Scale="5" />
-          <Property Type="String" Name="Negocio" Nullable="false" MaxLength="100" />
-        </ComplexType>
-        <ComplexType Name="sp_ConsultafacturasCompras_Result">
-          <Property Type="DateTime" Name="FechaCompra" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Documento" Nullable="true" MaxLength="101" />
-          <Property Type="Decimal" Name="Saldo" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="Saldo" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="String" Name="txmMonto" Nullable="false" MaxLength="1" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -26219,25 +26222,28 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_ConsultafacturasVentas" FunctionName="mdlModeloDatos.Store.sp_ConsultafacturasVentas">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_ConsultafacturasVentas_Result">
-                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
-                <ScalarProperty Name="Remision" ColumnName="Remision" />
-                <ScalarProperty Name="Facturas" ColumnName="Facturas" />
-                <ScalarProperty Name="Saldo" ColumnName="Saldo" />
-                <ScalarProperty Name="TotalVenta" ColumnName="TotalVenta" />
-                <ScalarProperty Name="Negocio" ColumnName="Negocio" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_ConsultafacturasCompras" FunctionName="mdlModeloDatos.Store.sp_ConsultafacturasCompras">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_ConsultafacturasCompras_Result">
+                <ScalarProperty Name="chmElegir" ColumnName="chmElegir" />
                 <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
-                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Factura" ColumnName="Factura" />
+                <ScalarProperty Name="TotalCompra" ColumnName="TotalCompra" />
                 <ScalarProperty Name="Saldo" ColumnName="Saldo" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="txmMontoPagar" ColumnName="txmMontoPagar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ConsultafacturasVentas" FunctionName="mdlModeloDatos.Store.sp_ConsultafacturasVentas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_ConsultafacturasVentas_Result">
+                <ScalarProperty Name="chmElegir" ColumnName="chmElegir" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="Remision" ColumnName="Remision" />
+                <ScalarProperty Name="Facturas" ColumnName="Facturas" />
+                <ScalarProperty Name="TotalVenta" ColumnName="TotalVenta" />
+                <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+                <ScalarProperty Name="txmMonto" ColumnName="txmMonto" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
