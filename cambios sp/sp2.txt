@@ -1,0 +1,28 @@
+USE [dsi_pos_demo]
+GO
+
+/****** Object:  Table [dbo].[tblBanco_Cuenta]    Script Date: 09/11/2013 09:13:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[tblBanco_Cuenta](
+	[codigo] [int] IDENTITY(1,1) NOT NULL,
+	[numeroCuenta] [varchar](50) NULL,
+	[banco] [int] NULL,
+ CONSTRAINT [PK_tblBanco_Cuenta] PRIMARY KEY CLUSTERED 
+(
+	[codigo] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+

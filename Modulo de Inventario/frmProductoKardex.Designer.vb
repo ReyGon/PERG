@@ -46,6 +46,9 @@ Partial Class frmProductoKardex
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.pnlBarra = New System.Windows.Forms.Panel()
+        Me.pnx1ajustar = New System.Windows.Forms.Panel()
+        Me.pbx1ajustar = New System.Windows.Forms.PictureBox()
+        Me.lbl1ajustar = New System.Windows.Forms.Label()
         Me.pnx0Salir = New System.Windows.Forms.Panel()
         Me.lbl0Salir = New System.Windows.Forms.Label()
         Me.pbx0Salir = New System.Windows.Forms.PictureBox()
@@ -75,9 +78,6 @@ Partial Class frmProductoKardex
         Me.lblSaldoInicial = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.lblReservaHistorial = New System.Windows.Forms.Label()
-        Me.pnx1ajustar = New System.Windows.Forms.Panel()
-        Me.pbx1ajustar = New System.Windows.Forms.PictureBox()
-        Me.lbl1ajustar = New System.Windows.Forms.Label()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rgbInformacion, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,6 +90,8 @@ Partial Class frmProductoKardex
         Me.pnlFiltros.SuspendLayout()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
+        Me.pnx1ajustar.SuspendLayout()
+        CType(Me.pbx1ajustar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnx0Salir.SuspendLayout()
         CType(Me.pbx0Salir, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,8 +103,6 @@ Partial Class frmProductoKardex
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.RadGroupBox1.SuspendLayout()
-        Me.pnx1ajustar.SuspendLayout()
-        CType(Me.pbx1ajustar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -429,6 +429,38 @@ Partial Class frmProductoKardex
         Me.pnlBarra.Name = "pnlBarra"
         Me.pnlBarra.Size = New System.Drawing.Size(444, 51)
         Me.pnlBarra.TabIndex = 121
+        '
+        'pnx1ajustar
+        '
+        Me.pnx1ajustar.BackColor = System.Drawing.Color.Navy
+        Me.pnx1ajustar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnx1ajustar.Controls.Add(Me.pbx1ajustar)
+        Me.pnx1ajustar.Controls.Add(Me.lbl1ajustar)
+        Me.pnx1ajustar.Location = New System.Drawing.Point(224, 6)
+        Me.pnx1ajustar.Name = "pnx1ajustar"
+        Me.pnx1ajustar.Size = New System.Drawing.Size(100, 40)
+        Me.pnx1ajustar.TabIndex = 196
+        '
+        'pbx1ajustar
+        '
+        Me.pbx1ajustar.Image = Global.laFuente.My.Resources.Resources.bitacora_Blanco
+        Me.pbx1ajustar.Location = New System.Drawing.Point(3, 1)
+        Me.pbx1ajustar.Name = "pbx1ajustar"
+        Me.pbx1ajustar.Size = New System.Drawing.Size(40, 33)
+        Me.pbx1ajustar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx1ajustar.TabIndex = 71
+        Me.pbx1ajustar.TabStop = False
+        '
+        'lbl1ajustar
+        '
+        Me.lbl1ajustar.AutoSize = True
+        Me.lbl1ajustar.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl1ajustar.ForeColor = System.Drawing.Color.White
+        Me.lbl1ajustar.Location = New System.Drawing.Point(45, 2)
+        Me.lbl1ajustar.Name = "lbl1ajustar"
+        Me.lbl1ajustar.Size = New System.Drawing.Size(47, 30)
+        Me.lbl1ajustar.TabIndex = 72
+        Me.lbl1ajustar.Text = "Ajustar" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Kardex"
         '
         'pnx0Salir
         '
@@ -801,38 +833,6 @@ Partial Class frmProductoKardex
         Me.lblReservaHistorial.Text = "Reserva"
         Me.lblReservaHistorial.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'pnx1ajustar
-        '
-        Me.pnx1ajustar.BackColor = System.Drawing.Color.Navy
-        Me.pnx1ajustar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pnx1ajustar.Controls.Add(Me.pbx1ajustar)
-        Me.pnx1ajustar.Controls.Add(Me.lbl1ajustar)
-        Me.pnx1ajustar.Location = New System.Drawing.Point(224, 6)
-        Me.pnx1ajustar.Name = "pnx1ajustar"
-        Me.pnx1ajustar.Size = New System.Drawing.Size(100, 40)
-        Me.pnx1ajustar.TabIndex = 196
-        '
-        'pbx1ajustar
-        '
-        Me.pbx1ajustar.Image = Global.laFuente.My.Resources.Resources.bitacora_Blanco
-        Me.pbx1ajustar.Location = New System.Drawing.Point(3, 1)
-        Me.pbx1ajustar.Name = "pbx1ajustar"
-        Me.pbx1ajustar.Size = New System.Drawing.Size(40, 33)
-        Me.pbx1ajustar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbx1ajustar.TabIndex = 71
-        Me.pbx1ajustar.TabStop = False
-        '
-        'lbl1ajustar
-        '
-        Me.lbl1ajustar.AutoSize = True
-        Me.lbl1ajustar.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl1ajustar.ForeColor = System.Drawing.Color.White
-        Me.lbl1ajustar.Location = New System.Drawing.Point(45, 2)
-        Me.lbl1ajustar.Name = "lbl1ajustar"
-        Me.lbl1ajustar.Size = New System.Drawing.Size(47, 30)
-        Me.lbl1ajustar.TabIndex = 72
-        Me.lbl1ajustar.Text = "Ajustar" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Kardex"
-        '
         'frmProductoKardex
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -888,6 +888,9 @@ Partial Class frmProductoKardex
         Me.pnlFiltros.PerformLayout()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlBarra.ResumeLayout(False)
+        Me.pnx1ajustar.ResumeLayout(False)
+        Me.pnx1ajustar.PerformLayout()
+        CType(Me.pbx1ajustar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnx0Salir.ResumeLayout(False)
         Me.pnx0Salir.PerformLayout()
         CType(Me.pbx0Salir, System.ComponentModel.ISupportInitialize).EndInit()
@@ -903,9 +906,6 @@ Partial Class frmProductoKardex
         CType(Me.RadGroupBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.RadGroupBox1.ResumeLayout(False)
         Me.RadGroupBox1.PerformLayout()
-        Me.pnx1ajustar.ResumeLayout(False)
-        Me.pnx1ajustar.PerformLayout()
-        CType(Me.pbx1ajustar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -392,7 +392,7 @@ Public Class frmProductoKardex
                     fnLlenarGrid()
                     conn.Close()
                 End If
-   End Using
+            End Using
 
         Catch ex As Exception
             MessageBox.Show("Error al ajustar Producto " + ex.ToString())
@@ -426,5 +426,13 @@ Public Class frmProductoKardex
             End If
         End If
     End Sub
+
+
+
+
+    Private Sub Label9_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
 
 End Class

@@ -44,10 +44,10 @@
                 frmPagoClientes.fnAgregarFecha()
 
             ElseIf opcionRetorno = "precioInicio" Then
-                frmProductoPrecio.fnAgregarFechaSucursal()
+                ' frmProductoPrecio.fnAgregarFechaSucursal()
             ElseIf opcionRetorno = "precioFinal" Then
                 mdlPublicVars.superSearchId = 2
-                frmProductoPrecio.fnAgregarFechaSucursal()
+                ' frmProductoPrecio.fnAgregarFechaSucursal()
             ElseIf opcionRetorno = "pagoLista" Then
                 mdlPublicVars.superSearchFechaString = mtcFecha.SelectionStart & " " & fnHoraServidor()
             End If

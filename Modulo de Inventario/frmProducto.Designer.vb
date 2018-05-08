@@ -27,6 +27,7 @@ Partial Class frmProducto
         Dim GridViewTextBoxColumn4 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn5 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn6 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmProducto))
         Dim GridViewTextBoxColumn7 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn8 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn9 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
@@ -78,7 +79,6 @@ Partial Class frmProducto
         Dim GridViewCheckBoxColumn4 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn54 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewCheckBoxColumn5 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmProducto))
         Me.lblProductos = New System.Windows.Forms.Label()
         Me.txtNombre1 = New System.Windows.Forms.TextBox()
         Me.label4 = New System.Windows.Forms.Label()
@@ -370,7 +370,7 @@ Partial Class frmProducto
         Me.rpv.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.rpv.Location = New System.Drawing.Point(7, 144)
         Me.rpv.Name = "rpv"
-        Me.rpv.SelectedPage = Me.pgCatalogo
+        Me.rpv.SelectedPage = Me.pageDatos
         Me.rpv.Size = New System.Drawing.Size(994, 339)
         Me.rpv.TabIndex = 6
         Me.rpv.Text = "Historiales"
@@ -689,7 +689,7 @@ Partial Class frmProducto
         Me.btnCapturarFoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCapturarFoto.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCapturarFoto.ForeColor = System.Drawing.Color.Transparent
-        Me.btnCapturarFoto.Image = Global.laFuente.My.Resources.Resources.camaraBlanco
+        Me.btnCapturarFoto.Image = CType(resources.GetObject("btnCapturarFoto.Image"), System.Drawing.Image)
         Me.btnCapturarFoto.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnCapturarFoto.Location = New System.Drawing.Point(378, 3)
         Me.btnCapturarFoto.Name = "btnCapturarFoto"
@@ -727,7 +727,7 @@ Partial Class frmProducto
         Me.btnSubir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSubir.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSubir.ForeColor = System.Drawing.Color.Transparent
-        Me.btnSubir.Image = Global.laFuente.My.Resources.Resources.subirBlanco
+        Me.btnSubir.Image = CType(resources.GetObject("btnSubir.Image"), System.Drawing.Image)
         Me.btnSubir.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnSubir.Location = New System.Drawing.Point(248, 3)
         Me.btnSubir.Name = "btnSubir"
@@ -780,7 +780,7 @@ Partial Class frmProducto
         Me.grdFotos.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdFotos.Location = New System.Drawing.Point(248, 77)
         '
-        'grdFotos
+        '
         '
         Me.grdFotos.MasterTemplate.AllowAddNewRow = False
         GridViewTextBoxColumn7.HeaderText = "Codigo"
@@ -916,7 +916,7 @@ Partial Class frmProducto
         '
         'PictureBox4
         '
-        Me.PictureBox4.Image = Global.laFuente.My.Resources.Resources.detalles
+        Me.PictureBox4.Image = CType(resources.GetObject("PictureBox4.Image"), System.Drawing.Image)
         Me.PictureBox4.Location = New System.Drawing.Point(659, 9)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(37, 35)
@@ -926,7 +926,7 @@ Partial Class frmProducto
         '
         'PictureBox3
         '
-        Me.PictureBox3.Image = Global.laFuente.My.Resources.Resources.agregar
+        Me.PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"), System.Drawing.Image)
         Me.PictureBox3.Location = New System.Drawing.Point(22, 9)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(37, 35)
@@ -1007,7 +1007,7 @@ Partial Class frmProducto
         Me.grdCatalogos.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdCatalogos.Location = New System.Drawing.Point(13, 37)
         '
-        'grdCatalogos
+        '
         '
         Me.grdCatalogos.MasterTemplate.AllowAddNewRow = False
         GridViewTextBoxColumn11.HeaderText = "id"
@@ -1160,7 +1160,7 @@ Partial Class frmProducto
         Me.btnAgregarCatalogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAgregarCatalogo.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAgregarCatalogo.ForeColor = System.Drawing.Color.Transparent
-        Me.btnAgregarCatalogo.Image = Global.laFuente.My.Resources.Resources.agregar_Blanco
+        Me.btnAgregarCatalogo.Image = CType(resources.GetObject("btnAgregarCatalogo.Image"), System.Drawing.Image)
         Me.btnAgregarCatalogo.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnAgregarCatalogo.Location = New System.Drawing.Point(178, 179)
         Me.btnAgregarCatalogo.Name = "btnAgregarCatalogo"
@@ -1204,7 +1204,7 @@ Partial Class frmProducto
         '
         'pbAgregar
         '
-        Me.pbAgregar.Image = Global.laFuente.My.Resources.Resources.agregar
+        Me.pbAgregar.Image = CType(resources.GetObject("pbAgregar.Image"), System.Drawing.Image)
         Me.pbAgregar.Location = New System.Drawing.Point(32, 23)
         Me.pbAgregar.Name = "pbAgregar"
         Me.pbAgregar.Size = New System.Drawing.Size(37, 35)
@@ -1268,7 +1268,7 @@ Partial Class frmProducto
         Me.btnAgregarCodigoBarra.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAgregarCodigoBarra.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAgregarCodigoBarra.ForeColor = System.Drawing.Color.Transparent
-        Me.btnAgregarCodigoBarra.Image = Global.laFuente.My.Resources.Resources.agregar_Blanco
+        Me.btnAgregarCodigoBarra.Image = CType(resources.GetObject("btnAgregarCodigoBarra.Image"), System.Drawing.Image)
         Me.btnAgregarCodigoBarra.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnAgregarCodigoBarra.Location = New System.Drawing.Point(292, 19)
         Me.btnAgregarCodigoBarra.Name = "btnAgregarCodigoBarra"
@@ -1373,7 +1373,7 @@ Partial Class frmProducto
         Me.btnAgregarSustituto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAgregarSustituto.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAgregarSustituto.ForeColor = System.Drawing.Color.Transparent
-        Me.btnAgregarSustituto.Image = Global.laFuente.My.Resources.Resources.agregar_Blanco
+        Me.btnAgregarSustituto.Image = CType(resources.GetObject("btnAgregarSustituto.Image"), System.Drawing.Image)
         Me.btnAgregarSustituto.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnAgregarSustituto.Location = New System.Drawing.Point(66, 16)
         Me.btnAgregarSustituto.Name = "btnAgregarSustituto"
@@ -1402,7 +1402,7 @@ Partial Class frmProducto
         Me.grdSustitutos.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdSustitutos.Location = New System.Drawing.Point(27, 81)
         '
-        '
+        'grdSustitutos
         '
         Me.grdSustitutos.MasterTemplate.AllowAddNewRow = False
         Me.grdSustitutos.MasterTemplate.AllowDeleteRow = False
@@ -1977,7 +1977,7 @@ Partial Class frmProducto
         Me.btnAgregarKit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAgregarKit.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAgregarKit.ForeColor = System.Drawing.Color.Transparent
-        Me.btnAgregarKit.Image = Global.laFuente.My.Resources.Resources.agregar_Blanco
+        Me.btnAgregarKit.Image = CType(resources.GetObject("btnAgregarKit.Image"), System.Drawing.Image)
         Me.btnAgregarKit.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnAgregarKit.Location = New System.Drawing.Point(60, 18)
         Me.btnAgregarKit.Name = "btnAgregarKit"
@@ -2109,7 +2109,7 @@ Partial Class frmProducto
         Me.btnAgregarMedida.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAgregarMedida.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnAgregarMedida.ForeColor = System.Drawing.Color.Transparent
-        Me.btnAgregarMedida.Image = Global.laFuente.My.Resources.Resources.add
+        Me.btnAgregarMedida.Image = CType(resources.GetObject("btnAgregarMedida.Image"), System.Drawing.Image)
         Me.btnAgregarMedida.Location = New System.Drawing.Point(193, 152)
         Me.btnAgregarMedida.Name = "btnAgregarMedida"
         Me.btnAgregarMedida.Size = New System.Drawing.Size(132, 56)
