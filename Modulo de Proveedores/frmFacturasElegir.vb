@@ -106,16 +106,10 @@ Public Class frmFacturasElegir
 
                 If idproveedor > 0 Then
 
-<<<<<<< HEAD
-
-                    'dt = EntitiToDataTable(conexion.sp_ConsultafacturasCompras(idproveedor))
-
 
                     dt = EntitiToDataTable(conexion.sp_ConsultafacturasCompras(idproveedor))
 
-=======
-                    dt = EntitiToDataTable(conexion.sp_ConsultafacturasCompras(idproveedor))
->>>>>>> 435c15c51d6baaabf26390fa16fc75a44f4d0dd1
+
 
                     Me.grdFacturas.DataSource = dt
 
