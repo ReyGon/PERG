@@ -10495,19 +10495,6 @@
           <FunctionImport Name="sp_imprimePedidoListado" ReturnType="Collection(dsi_pos_demoModel.sp_imprimePedidoListado_Result)">
           <Parameter Name="idPedido" Mode="In" Type="Int64" />
           </FunctionImport>
-          <FunctionImport Name="sp_IndicadoresVenta" ReturnType="Collection(dsi_pos_demoModel.sp_IndicadoresVenta_Result)">
-            <Parameter Name="empresa" Mode="In" Type="Int32" />
-            <Parameter Name="filtro" Mode="In" Type="String" />
-            <Parameter Name="inventarioPrincipal" Mode="In" Type="Int32" />
-            <Parameter Name="almacenPrincipal" Mode="In" Type="Int32" />
-            <Parameter Name="tipoVehiculo" Mode="In" Type="String" />
-            <Parameter Name="cliente" Mode="In" Type="Int32" />
-            <Parameter Name="bitCliente" Mode="In" Type="Boolean" />
-            <Parameter Name="bitProveedor" Mode="In" Type="Boolean" />
-            <Parameter Name="marcasRepuestos" Mode="In" Type="String" />
-            <Parameter Name="ventas" Mode="In" Type="Int32" />
-            <Parameter Name="tipovehiculo2" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="sp_infoCtaCobrar" ReturnType="Collection(dsi_pos_demoModel.sp_infoCtaCobrar_Result)">
           <Parameter Name="idCliente" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -11801,6 +11788,19 @@
             <Parameter Name="filtro" Mode="In" Type="String" />
             <Parameter Name="factura" Mode="In" Type="Int32" />
             <Parameter Name="empresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_IndicadoresVenta" ReturnType="Collection(dsi_pos_demoModel.sp_IndicadoresVenta_Result)">
+            <Parameter Name="empresa" Mode="In" Type="Int32" />
+            <Parameter Name="filtro" Mode="In" Type="String" />
+            <Parameter Name="inventarioPrincipal" Mode="In" Type="Int32" />
+            <Parameter Name="almacenPrincipal" Mode="In" Type="Int32" />
+            <Parameter Name="tipoVehiculo" Mode="In" Type="String" />
+            <Parameter Name="cliente" Mode="In" Type="Int32" />
+            <Parameter Name="bitCliente" Mode="In" Type="Boolean" />
+            <Parameter Name="bitProveedor" Mode="In" Type="Boolean" />
+            <Parameter Name="marcasRepuestos" Mode="In" Type="String" />
+            <Parameter Name="ventas" Mode="In" Type="Int32" />
+            <Parameter Name="tipovehiculo2" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ConsultafacturasCompras" ReturnType="Collection(dsi_pos_demoModel.sp_ConsultafacturasCompras_Result)">
             <Parameter Name="idproveedor" Mode="In" Type="Int32" />
@@ -17283,12 +17283,6 @@
           <Property Type="Int32" Name="Cantidad" Nullable="true" />
           <Property Type="Decimal" Name="Precio" Nullable="true" Precision="18" Scale="2" />
         </ComplexType>
-        <ComplexType Name="sp_IndicadoresVenta_Result">
-          <Property Type="Int32" Name="Sugeridos" Nullable="true" />
-          <Property Type="Int32" Name="Nuevos" Nullable="true" />
-          <Property Type="Int32" Name="Ofertas" Nullable="true" />
-          <Property Type="Int32" Name="Surtir" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="sp_infoCtaCobrar_Result">
           <Property Type="Int16" Name="Dias_Credito" Nullable="true" />
           <Property Type="Int32" Name="Dias_Tomados" Nullable="true" />
@@ -20843,8 +20837,15 @@
           <Property Type="String" Name="estanteria" Nullable="true" MaxLength="100" />
           <Property Type="Decimal" Name="descuento" Nullable="true" Precision="18" Scale="2" />
         </ComplexType>
+        <ComplexType Name="sp_IndicadoresVenta_Result">
+          <Property Type="Int32" Name="Sugeridos" Nullable="true" />
+          <Property Type="Int32" Name="Nuevos" Nullable="true" />
+          <Property Type="Int32" Name="Ofertas" Nullable="true" />
+          <Property Type="Int32" Name="Surtir" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="sp_ConsultafacturasCompras_Result">
           <Property Type="Boolean" Name="chmElegir" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="FechaCompra" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Factura" Nullable="true" MaxLength="101" />
           <Property Type="Decimal" Name="TotalCompra" Nullable="false" Precision="18" Scale="5" />
@@ -20853,12 +20854,13 @@
         </ComplexType>
         <ComplexType Name="sp_ConsultafacturasVentas_Result">
           <Property Type="Boolean" Name="chmElegir" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="FechaFactura" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Remision" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="Facturas" Nullable="true" />
           <Property Type="Decimal" Name="TotalVenta" Nullable="true" Precision="18" Scale="5" />
           <Property Type="Decimal" Name="Saldo" Nullable="true" Precision="18" Scale="5" />
-          <Property Type="String" Name="txmMonto" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="txmMontoPagar" Nullable="false" MaxLength="1" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -24041,16 +24043,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_IndicadoresVenta" FunctionName="mdlModeloDatos.Store.sp_IndicadoresVenta">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_IndicadoresVenta_Result">
-                <ScalarProperty Name="Sugeridos" ColumnName="Sugeridos" />
-                <ScalarProperty Name="Nuevos" ColumnName="Nuevos" />
-                <ScalarProperty Name="Ofertas" ColumnName="Ofertas" />
-                <ScalarProperty Name="Surtir" ColumnName="Surtir" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_infoCtaCobrar" FunctionName="mdlModeloDatos.Store.sp_infoCtaCobrar">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_infoCtaCobrar_Result">
@@ -26222,10 +26214,21 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_IndicadoresVenta" FunctionName="mdlModeloDatos.Store.sp_IndicadoresVenta">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_IndicadoresVenta_Result">
+                <ScalarProperty Name="Sugeridos" ColumnName="Sugeridos" />
+                <ScalarProperty Name="Nuevos" ColumnName="Nuevos" />
+                <ScalarProperty Name="Ofertas" ColumnName="Ofertas" />
+                <ScalarProperty Name="Surtir" ColumnName="Surtir" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_ConsultafacturasCompras" FunctionName="mdlModeloDatos.Store.sp_ConsultafacturasCompras">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_ConsultafacturasCompras_Result">
                 <ScalarProperty Name="chmElegir" ColumnName="chmElegir" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
                 <ScalarProperty Name="Factura" ColumnName="Factura" />
                 <ScalarProperty Name="TotalCompra" ColumnName="TotalCompra" />
@@ -26238,12 +26241,13 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_ConsultafacturasVentas_Result">
                 <ScalarProperty Name="chmElegir" ColumnName="chmElegir" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
                 <ScalarProperty Name="Remision" ColumnName="Remision" />
                 <ScalarProperty Name="Facturas" ColumnName="Facturas" />
                 <ScalarProperty Name="TotalVenta" ColumnName="TotalVenta" />
                 <ScalarProperty Name="Saldo" ColumnName="Saldo" />
-                <ScalarProperty Name="txmMonto" ColumnName="txmMonto" />
+                <ScalarProperty Name="txmMontoPagar" ColumnName="txmMontoPagar" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -76,7 +76,11 @@ Public Class frmFacturasElegir
             Dim entradas As List(Of GridViewRowInfo) = (From x In grdFacturas.Rows Where CBool(x.Cells("chmElegir").Value) Select x).ToList
 
             For Each entrada As GridViewRowInfo In entradas
+<<<<<<< HEAD
                 listaEntradas.Add(New Tuple(Of Integer, String, Decimal)(CInt(entrada.Cells("id").Value), CStr2(entrada.Cells("Factura").Value), CDec(entrada.Cells("txmMontoPagar").Value)))
+=======
+                listaEntradas.Add(New Tuple(Of Integer, String, Decimal)(CInt(entrada.Cells("Id").Value), CStr2(entrada.Cells("Factura").Value), CDec(entrada.Cells("txmMontoPagar").Value)))
+>>>>>>> ae45ec62fd169242880231d17eb50ed940e6bb08
             Next
             mdlPublicVars.superSearchLista3 = listaEntradas
         ElseIf idcliente > 0 Then
@@ -85,17 +89,21 @@ Public Class frmFacturasElegir
             Dim salidas As List(Of GridViewRowInfo) = (From x In grdFacturas.Rows Where CBool(x.Cells("chmElegir").Value) Select x).ToList
 
             For Each salida As GridViewRowInfo In salidas
+<<<<<<< HEAD
                 listaSalidas.Add(New Tuple(Of Integer, String, Decimal)(CInt(salida.Cells("id").Value), CStr(salida.Cells("Factura").Value), CDec(salida.Cells("txmMontoPagar").Value)))
+=======
+                listaSalidas.Add(New Tuple(Of Integer, String, Decimal)(CInt(salida.Cells("id").Value), CStr(salida.Cells("Facturas").Value), CDec(salida.Cells("txmMontoPagar").Value)))
+>>>>>>> ae45ec62fd169242880231d17eb50ed940e6bb08
             Next
 
             mdlPublicVars.superSearchLista3 = listaSalidas
         End If
-        
+
         Me.Close()
     End Sub
 
     'SALIR DEL FORMULARIO
-     Private Sub fnLlenarGrid()
+    Private Sub fnLlenarGrid()
         Try
             Dim dt As New DataTable
             Dim conexion As dsi_pos_demoEntities
@@ -150,6 +158,7 @@ Public Class frmFacturasElegir
 
     Public Sub fnConfiguracion()
         Try
+            Me.grdFacturas.Columns("Id").IsVisible = False
             Me.grdFacturas.Columns("chmElegir").Width = 75
             Me.grdFacturas.Columns("chmElegir").ReadOnly = True
             Me.grdFacturas.Columns("Saldo").Width = 75

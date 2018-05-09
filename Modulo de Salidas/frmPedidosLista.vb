@@ -711,7 +711,7 @@ Public Class frmPedidosLista
                                                             r.reporte = reportetipo
                                                             r.parametro = ""
                                                             ''r.verReporte()
-                                                            r.verReporte()
+                                                            r.imprimirReporte()
 
                                                             ''frmImpresionFacturas.Text = "Impresion Facturas"
                                                             ''frmImpresionFacturas.StartPosition = FormStartPosition.CenterScreen
