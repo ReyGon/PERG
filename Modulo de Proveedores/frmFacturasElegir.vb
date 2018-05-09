@@ -106,7 +106,10 @@ Public Class frmFacturasElegir
 
                 If idproveedor > 0 Then
 
+
                     dt = EntitiToDataTable(conexion.sp_ConsultafacturasCompras(idproveedor))
+
+
 
                     Me.grdFacturas.DataSource = dt
 
