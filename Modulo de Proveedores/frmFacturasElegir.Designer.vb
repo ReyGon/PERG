@@ -55,7 +55,7 @@ Partial Class frmFacturasElegir
         Me.pnlBarra.Controls.Add(Me.pnx0Salir)
         Me.pnlBarra.Location = New System.Drawing.Point(466, 0)
         Me.pnlBarra.Name = "pnlBarra"
-        Me.pnlBarra.Size = New System.Drawing.Size(173, 48)
+        Me.pnlBarra.Size = New System.Drawing.Size(452, 48)
         Me.pnlBarra.TabIndex = 109
         '
         'pnx0Salir
@@ -65,7 +65,7 @@ Partial Class frmFacturasElegir
         Me.pnx0Salir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pnx0Salir.Controls.Add(Me.lbl0Salir)
         Me.pnx0Salir.Controls.Add(Me.pbx0Salir)
-        Me.pnx0Salir.Location = New System.Drawing.Point(51, 4)
+        Me.pnx0Salir.Location = New System.Drawing.Point(330, 4)
         Me.pnx0Salir.Name = "pnx0Salir"
         Me.pnx0Salir.Size = New System.Drawing.Size(107, 40)
         Me.pnx0Salir.TabIndex = 177
@@ -110,7 +110,7 @@ Partial Class frmFacturasElegir
         '
         '
         Me.rgbEmpleados.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        Me.rgbEmpleados.Size = New System.Drawing.Size(612, 322)
+        Me.rgbEmpleados.Size = New System.Drawing.Size(891, 322)
         Me.rgbEmpleados.TabIndex = 110
         Me.rgbEmpleados.Text = "Empleados"
         Me.rgbEmpleados.ThemeName = "Office2007Black"
@@ -137,7 +137,7 @@ Partial Class frmFacturasElegir
         '
         Me.grdFacturas.RootElement.ForeColor = System.Drawing.Color.Black
         Me.grdFacturas.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdFacturas.Size = New System.Drawing.Size(592, 292)
+        Me.grdFacturas.Size = New System.Drawing.Size(871, 292)
         Me.grdFacturas.TabIndex = 0
         Me.grdFacturas.Text = "Empleados"
         Me.grdFacturas.ThemeName = "Office2007Black"
@@ -153,7 +153,7 @@ Partial Class frmFacturasElegir
         Me.btnAceptar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAceptar.ForeColor = System.Drawing.Color.Transparent
         Me.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnAceptar.Location = New System.Drawing.Point(520, 388)
+        Me.btnAceptar.Location = New System.Drawing.Point(799, 388)
         Me.btnAceptar.Name = "btnAceptar"
         Me.btnAceptar.Size = New System.Drawing.Size(104, 43)
         Me.btnAceptar.TabIndex = 178
@@ -164,7 +164,7 @@ Partial Class frmFacturasElegir
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(9, 401)
+        Me.Label2.Location = New System.Drawing.Point(30, 400)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(102, 13)
         Me.Label2.TabIndex = 179
@@ -174,24 +174,26 @@ Partial Class frmFacturasElegir
         '
         Me.txtAcreditacionTotal.Enabled = False
         Me.txtAcreditacionTotal.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtAcreditacionTotal.Location = New System.Drawing.Point(113, 397)
+        Me.txtAcreditacionTotal.Location = New System.Drawing.Point(134, 396)
         Me.txtAcreditacionTotal.Name = "txtAcreditacionTotal"
-        Me.txtAcreditacionTotal.Size = New System.Drawing.Size(125, 25)
+        Me.txtAcreditacionTotal.Size = New System.Drawing.Size(248, 25)
         Me.txtAcreditacionTotal.TabIndex = 180
+        Me.txtAcreditacionTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtAcreditacionPendiente
         '
         Me.txtAcreditacionPendiente.Enabled = False
         Me.txtAcreditacionPendiente.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtAcreditacionPendiente.Location = New System.Drawing.Point(386, 397)
+        Me.txtAcreditacionPendiente.Location = New System.Drawing.Point(552, 398)
         Me.txtAcreditacionPendiente.Name = "txtAcreditacionPendiente"
-        Me.txtAcreditacionPendiente.Size = New System.Drawing.Size(121, 25)
+        Me.txtAcreditacionPendiente.Size = New System.Drawing.Size(206, 25)
         Me.txtAcreditacionPendiente.TabIndex = 182
+        Me.txtAcreditacionPendiente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(256, 401)
+        Me.Label3.Location = New System.Drawing.Point(422, 402)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(129, 13)
         Me.Label3.TabIndex = 181
@@ -200,7 +202,7 @@ Partial Class frmFacturasElegir
         'frmFacturasElegir
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(635, 437)
+        Me.ClientSize = New System.Drawing.Size(914, 437)
         Me.Controls.Add(Me.txtAcreditacionPendiente)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.txtAcreditacionTotal)

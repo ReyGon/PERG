@@ -2118,14 +2118,25 @@ Public Class frmSalidas
                         'actualizar el total del pedido en el encabezado
                         If totalCredito > 0 Then
                             Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaCredito And x.anulado = False Select x.cantidad * x.precio).Sum
-                            Dim totaldesc As Double = (From x In conexion.tblSalidaDetalles Where x.idSalida = codigoSalidaCredito And x.anulado = False And x.promocion > 0 Select x.cantidad * x.precio).Sum
+                            Dim totaldesc As Double = 0
+                            Try
+                                totaldesc = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaCredito And x.anulado = False And x.promocion > 0 Select x.promocion * x.precio).Sum
+                            Catch ex As Exception
+                                totaldesc = 0
+                            End Try
                             salidaCredito.total = totalSalida - totaldesc
                             salidaCredito.subtotal = totalSalida - totaldesc
                         End If
 
                         If totalContado > 0 Then
                             Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaContado And x.anulado = False Select x.cantidad * x.precio).Sum
-                            Dim totaldesc As Double = (From x In conexion.tblSalidaDetalles Where x.idSalida = codigoSalidaContado And x.anulado = False And x.promocion > 0 Select x.promocion * x.precio).Sum
+                            Dim totaldesc As Double = 0
+                            Try
+                                totaldesc = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaContado And x.anulado = False And x.promocion > 0 Select x.promocion * x.precio).Sum
+                            Catch ex As Exception
+                                totaldesc = 0
+                            End Try
+
                             Dim sContado As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = codigoSalidaContado Select x).FirstOrDefault
                             sContado.total = totalSalida - totaldesc
                             sContado.subtotal = totalSalida - totaldesc
@@ -2991,14 +3002,24 @@ Public Class frmSalidas
 
                         If totalCredito > 0 Then
                             Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaCredito And x.anulado = False Select x.cantidad * x.precio).Sum
-                            Dim totaldesc As Double = (From x In conexion.tblSalidaDetalles Where x.idSalida = codigoSalidaCredito And x.anulado = False And x.promocion > 0 Select x.cantidad * x.precio).Sum
+                            Dim totaldesc As Double = 0
+                            Try
+                                totaldesc = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaCredito And x.anulado = False And x.promocion > 0 Select x.promocion * x.precio).Sum
+                            Catch ex As Exception
+                                totaldesc = 0
+                            End Try
                             salidaCredito.total = totalSalida - totaldesc
                             salidaCredito.subtotal = totalSalida - totaldesc
                         End If
 
                         If totalContado > 0 Then
                             Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaContado And x.anulado = False Select x.cantidad * x.precio).Sum
-                            Dim totaldesc As Double = (From x In conexion.tblSalidaDetalles Where x.idSalida = codigoSalidaContado And x.anulado = False And x.promocion > 0 Select x.promocion * x.precio).Sum
+                            Dim totaldesc As Double = 0
+                            Try
+                                totaldesc = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaContado And x.anulado = False And x.promocion > 0 Select x.promocion * x.precio).Sum
+                            Catch ex As Exception
+                                totaldesc = 0
+                            End Try
                             Dim sContado As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = codigoSalidaContado Select x).FirstOrDefault
                             sContado.total = totalSalida - totaldesc
                             sContado.subtotal = totalSalida - totaldesc
@@ -4082,7 +4103,12 @@ Public Class frmSalidas
 
                         If totalCredito > 0 Then
                             Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaCredito And x.anulado = False Select x.cantidad * x.precio).Sum
-                            Dim totaldesc As Double = (From x In conexion.tblSalidaDetalles Where x.idSalida = codigoSalidaCredito And x.anulado = False And x.promocion > 0 Select x.cantidad * x.precio).Sum
+                            Dim totaldesc As Double = 0
+                            Try
+                                totaldesc = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaCredito And x.anulado = False And x.promocion > 0 Select x.promocion * x.precio).Sum
+                            Catch ex As Exception
+                                totaldesc = 0
+                            End Try
                             salidaCredito.total = totalSalida - totaldesc
                             salidaCredito.subtotal = totalSalida - totaldesc
                             conexion.SaveChanges()
@@ -4090,7 +4116,12 @@ Public Class frmSalidas
 
                         If totalContado > 0 Then
                             Dim totalSalida As Double = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaContado And x.anulado = False Select x.cantidad * x.precio).Sum
-                            Dim totaldesc As Double = (From x In conexion.tblSalidaDetalles Where x.idSalida = codigoSalidaContado And x.anulado = False And x.promocion > 0 Select x.promocion * x.precio).Sum
+                            Dim totaldesc As Double = 0
+                            Try
+                                totaldesc = (From x In conexion.tblSalidaDetalles Where x.tblSalida.idSalida = codigoSalidaContado And x.anulado = False And x.promocion > 0 Select x.promocion * x.precio).Sum
+                            Catch ex As Exception
+                                totaldesc = 0
+                            End Try
                             Dim sContado As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = codigoSalidaContado Select x).FirstOrDefault
                             sContado.total = totalSalida - totaldesc
                             sContado.subtotal = totalSalida - totaldesc

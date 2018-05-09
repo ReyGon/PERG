@@ -876,7 +876,10 @@ Public Class frmBuscarArticulo
                         mdlPublicVars.superSearchNombre = nombre
                         mdlPublicVars.superSearchCantidad = cantidad
                         mdlPublicVars.superSearchTipoPrecio = tipoPrecio
-                        mdlPublicVars.superSearchPromocion = promocion
+                        mdlPublicVars.superSearchPromocion = 0
+                        mdlPublicVars.superSearchCantidadPromocion = 0
+                        mdlPublicVars.superSearchCuotaPromocion = 0
+
                         mdlPublicVars.superSearchEstado = estado
                         mdlPublicVars.superSearchIdUnidadMedida = mdlPublicVars.UnidadMedidaDefault
                         mdlPublicVars.superSearchUnidadMedida = "Unidad"

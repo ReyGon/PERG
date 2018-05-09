@@ -19,53 +19,53 @@ Partial Class frmProductoPrecio
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridViewCheckBoxColumn1 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewTextBoxColumn1 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn2 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn3 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn2 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewTextBoxColumn4 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn5 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn6 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn7 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn8 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn9 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn10 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn11 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn12 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn13 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn14 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn3 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewTextBoxColumn15 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn16 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn4 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewCheckBoxColumn5 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewTextBoxColumn17 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn6 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewTextBoxColumn18 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn19 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn20 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn21 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn22 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn23 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn7 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewTextBoxColumn24 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn25 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn8 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewCheckBoxColumn9 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewTextBoxColumn26 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn10 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewTextBoxColumn27 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn28 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn29 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn30 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn31 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn32 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn33 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn34 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn35 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn36 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn37 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn21 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewTextBoxColumn75 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn76 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn77 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn22 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewTextBoxColumn78 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn79 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn80 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn81 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn82 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn83 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn84 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn85 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn86 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn87 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn88 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn23 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewTextBoxColumn89 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn90 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn24 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewCheckBoxColumn25 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewTextBoxColumn91 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn26 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewTextBoxColumn92 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn93 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn94 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn95 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn96 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn97 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn27 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewTextBoxColumn98 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn99 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn28 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewCheckBoxColumn29 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewTextBoxColumn100 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn30 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewTextBoxColumn101 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn102 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn103 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn104 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn105 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn106 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn107 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn108 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn109 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn110 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn111 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmProductoPrecio))
         Me.Label15 = New System.Windows.Forms.Label()
         Me.txtPrecioPublico = New System.Windows.Forms.TextBox()
@@ -139,7 +139,7 @@ Partial Class frmProductoPrecio
         Me.grdOtrosPrecios2 = New Telerik.WinControls.UI.RadGridView()
         Me.RadGroupBox3 = New Telerik.WinControls.UI.RadGroupBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.panel1 = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
@@ -169,6 +169,8 @@ Partial Class frmProductoPrecio
         Me.cmbArticulo = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.lblCosto = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
         CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Pgclasificacion.SuspendLayout()
@@ -566,21 +568,21 @@ Partial Class frmProductoPrecio
         'grdModeloVehiculo
         '
         Me.grdModeloVehiculo.MasterTemplate.AllowAddNewRow = False
-        GridViewCheckBoxColumn1.HeaderText = "Agregar"
-        GridViewCheckBoxColumn1.MinWidth = 20
-        GridViewCheckBoxColumn1.Name = "Agregar"
-        GridViewCheckBoxColumn1.Width = 40
-        GridViewTextBoxColumn1.HeaderText = "Id"
-        GridViewTextBoxColumn1.IsVisible = False
-        GridViewTextBoxColumn1.Name = "Id"
-        GridViewTextBoxColumn2.HeaderText = "Codigo"
-        GridViewTextBoxColumn2.IsVisible = False
-        GridViewTextBoxColumn2.Name = "Codigo"
-        GridViewTextBoxColumn3.HeaderText = "Nombre"
-        GridViewTextBoxColumn3.Name = "Nombre"
-        GridViewTextBoxColumn3.ReadOnly = True
-        GridViewTextBoxColumn3.Width = 152
-        Me.grdModeloVehiculo.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn1, GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3})
+        GridViewCheckBoxColumn21.HeaderText = "Agregar"
+        GridViewCheckBoxColumn21.MinWidth = 20
+        GridViewCheckBoxColumn21.Name = "Agregar"
+        GridViewCheckBoxColumn21.Width = 40
+        GridViewTextBoxColumn75.HeaderText = "Id"
+        GridViewTextBoxColumn75.IsVisible = False
+        GridViewTextBoxColumn75.Name = "Id"
+        GridViewTextBoxColumn76.HeaderText = "Codigo"
+        GridViewTextBoxColumn76.IsVisible = False
+        GridViewTextBoxColumn76.Name = "Codigo"
+        GridViewTextBoxColumn77.HeaderText = "Nombre"
+        GridViewTextBoxColumn77.Name = "Nombre"
+        GridViewTextBoxColumn77.ReadOnly = True
+        GridViewTextBoxColumn77.Width = 152
+        Me.grdModeloVehiculo.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn21, GridViewTextBoxColumn75, GridViewTextBoxColumn76, GridViewTextBoxColumn77})
         Me.grdModeloVehiculo.MasterTemplate.EnableGrouping = False
         Me.grdModeloVehiculo.Name = "grdModeloVehiculo"
         Me.grdModeloVehiculo.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
@@ -686,24 +688,24 @@ Partial Class frmProductoPrecio
         '
         Me.grdTipoVehiculo.MasterTemplate.AllowAddNewRow = False
         Me.grdTipoVehiculo.MasterTemplate.AutoGenerateColumns = False
-        GridViewCheckBoxColumn2.FormatString = ""
-        GridViewCheckBoxColumn2.HeaderText = "Agregar"
-        GridViewCheckBoxColumn2.Name = "Agregar"
-        GridViewCheckBoxColumn2.Width = 48
-        GridViewTextBoxColumn4.HeaderText = "Id"
-        GridViewTextBoxColumn4.IsVisible = False
-        GridViewTextBoxColumn4.Name = "Id"
-        GridViewTextBoxColumn5.FormatString = ""
-        GridViewTextBoxColumn5.HeaderText = "Codigo"
-        GridViewTextBoxColumn5.IsVisible = False
-        GridViewTextBoxColumn5.Name = "Codigo"
-        GridViewTextBoxColumn5.ReadOnly = True
-        GridViewTextBoxColumn6.FormatString = ""
-        GridViewTextBoxColumn6.HeaderText = "Nombre"
-        GridViewTextBoxColumn6.Name = "Nombre"
-        GridViewTextBoxColumn6.ReadOnly = True
-        GridViewTextBoxColumn6.Width = 225
-        Me.grdTipoVehiculo.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn2, GridViewTextBoxColumn4, GridViewTextBoxColumn5, GridViewTextBoxColumn6})
+        GridViewCheckBoxColumn22.FormatString = ""
+        GridViewCheckBoxColumn22.HeaderText = "Agregar"
+        GridViewCheckBoxColumn22.Name = "Agregar"
+        GridViewCheckBoxColumn22.Width = 48
+        GridViewTextBoxColumn78.HeaderText = "Id"
+        GridViewTextBoxColumn78.IsVisible = False
+        GridViewTextBoxColumn78.Name = "Id"
+        GridViewTextBoxColumn79.FormatString = ""
+        GridViewTextBoxColumn79.HeaderText = "Codigo"
+        GridViewTextBoxColumn79.IsVisible = False
+        GridViewTextBoxColumn79.Name = "Codigo"
+        GridViewTextBoxColumn79.ReadOnly = True
+        GridViewTextBoxColumn80.FormatString = ""
+        GridViewTextBoxColumn80.HeaderText = "Nombre"
+        GridViewTextBoxColumn80.Name = "Nombre"
+        GridViewTextBoxColumn80.ReadOnly = True
+        GridViewTextBoxColumn80.Width = 225
+        Me.grdTipoVehiculo.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn22, GridViewTextBoxColumn78, GridViewTextBoxColumn79, GridViewTextBoxColumn80})
         Me.grdTipoVehiculo.MasterTemplate.EnableGrouping = False
         Me.grdTipoVehiculo.Name = "grdTipoVehiculo"
         Me.grdTipoVehiculo.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
@@ -801,7 +803,7 @@ Partial Class frmProductoPrecio
         Me.PgBodega.Controls.Add(Me.txtUbicacionCajas)
         Me.PgBodega.Location = New System.Drawing.Point(10, 44)
         Me.PgBodega.Name = "PgBodega"
-        Me.PgBodega.Size = New System.Drawing.Size(1061, 439)
+        Me.PgBodega.Size = New System.Drawing.Size(1023, 439)
         Me.PgBodega.Text = "Fotos"
         '
         'grdFotos
@@ -813,23 +815,23 @@ Partial Class frmProductoPrecio
         Me.grdFotos.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdFotos.Location = New System.Drawing.Point(33, 50)
         '
-        '
+        'grdFotos
         '
         Me.grdFotos.MasterTemplate.AllowAddNewRow = False
-        GridViewTextBoxColumn7.HeaderText = "Codigo"
-        GridViewTextBoxColumn7.Name = "codigo"
-        GridViewTextBoxColumn7.Width = 95
-        GridViewTextBoxColumn8.HeaderText = "Direccion"
-        GridViewTextBoxColumn8.IsVisible = False
-        GridViewTextBoxColumn8.Name = "direccion"
-        GridViewTextBoxColumn8.Width = 254
-        GridViewTextBoxColumn9.HeaderText = "elimina"
-        GridViewTextBoxColumn9.IsVisible = False
-        GridViewTextBoxColumn9.Name = "elimina"
-        GridViewTextBoxColumn10.HeaderText = "Nombre"
-        GridViewTextBoxColumn10.Name = "nombre"
-        GridViewTextBoxColumn10.Width = 217
-        Me.grdFotos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn7, GridViewTextBoxColumn8, GridViewTextBoxColumn9, GridViewTextBoxColumn10})
+        GridViewTextBoxColumn81.HeaderText = "Codigo"
+        GridViewTextBoxColumn81.Name = "codigo"
+        GridViewTextBoxColumn81.Width = 95
+        GridViewTextBoxColumn82.HeaderText = "Direccion"
+        GridViewTextBoxColumn82.IsVisible = False
+        GridViewTextBoxColumn82.Name = "direccion"
+        GridViewTextBoxColumn82.Width = 254
+        GridViewTextBoxColumn83.HeaderText = "elimina"
+        GridViewTextBoxColumn83.IsVisible = False
+        GridViewTextBoxColumn83.Name = "elimina"
+        GridViewTextBoxColumn84.HeaderText = "Nombre"
+        GridViewTextBoxColumn84.Name = "nombre"
+        GridViewTextBoxColumn84.Width = 217
+        Me.grdFotos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn81, GridViewTextBoxColumn82, GridViewTextBoxColumn83, GridViewTextBoxColumn84})
         Me.grdFotos.MasterTemplate.EnableGrouping = False
         Me.grdFotos.Name = "grdFotos"
         Me.grdFotos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
@@ -907,7 +909,7 @@ Partial Class frmProductoPrecio
         Me.PgPreciosSustitutos.Controls.Add(Me.grdPreciosSustitutos)
         Me.PgPreciosSustitutos.Location = New System.Drawing.Point(10, 44)
         Me.PgPreciosSustitutos.Name = "PgPreciosSustitutos"
-        Me.PgPreciosSustitutos.Size = New System.Drawing.Size(1061, 439)
+        Me.PgPreciosSustitutos.Size = New System.Drawing.Size(1023, 439)
         Me.PgPreciosSustitutos.Text = "Precios Sustitutos"
         '
         'grdSustitutos
@@ -920,7 +922,7 @@ Partial Class frmProductoPrecio
         Me.grdSustitutos.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdSustitutos.Location = New System.Drawing.Point(0, 0)
         '
-        '
+        'grdSustitutos
         '
         Me.grdSustitutos.MasterTemplate.AllowAddNewRow = False
         Me.grdSustitutos.MasterTemplate.EnableGrouping = False
@@ -932,7 +934,7 @@ Partial Class frmProductoPrecio
         '
         Me.grdSustitutos.RootElement.ForeColor = System.Drawing.Color.Gray
         Me.grdSustitutos.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdSustitutos.Size = New System.Drawing.Size(1061, 439)
+        Me.grdSustitutos.Size = New System.Drawing.Size(1023, 439)
         Me.grdSustitutos.TabIndex = 168
         Me.grdSustitutos.ThemeName = "Office2007Black"
         '
@@ -948,67 +950,67 @@ Partial Class frmProductoPrecio
         Me.grdPreciosSustitutos.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdPreciosSustitutos.Location = New System.Drawing.Point(3, 338)
         '
-        '
+        'grdPreciosSustitutos
         '
         Me.grdPreciosSustitutos.MasterTemplate.AllowAddNewRow = False
-        GridViewTextBoxColumn11.HeaderText = "Codigo"
-        GridViewTextBoxColumn11.IsVisible = False
-        GridViewTextBoxColumn11.Name = "codigo"
-        GridViewTextBoxColumn12.HeaderText = "codPrecio"
-        GridViewTextBoxColumn12.IsVisible = False
-        GridViewTextBoxColumn12.Name = "codPrecio"
-        GridViewTextBoxColumn13.HeaderText = "Tipo Precio"
-        GridViewTextBoxColumn13.Name = "tipoPrecio"
-        GridViewTextBoxColumn13.ReadOnly = True
-        GridViewTextBoxColumn13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn13.Width = 87
-        GridViewTextBoxColumn14.HeaderText = "Precio Base"
-        GridViewTextBoxColumn14.Name = "txmPrecio"
-        GridViewTextBoxColumn14.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn14.Width = 77
-        GridViewCheckBoxColumn3.HeaderText = "Activar"
-        GridViewCheckBoxColumn3.MinWidth = 20
-        GridViewCheckBoxColumn3.Name = "chmActiva"
-        GridViewCheckBoxColumn3.Width = 62
-        GridViewTextBoxColumn15.HeaderText = "Margen Utilidad"
-        GridViewTextBoxColumn15.Name = "MargenUtilidad"
-        GridViewTextBoxColumn15.ReadOnly = True
-        GridViewTextBoxColumn15.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn15.Width = 100
-        GridViewTextBoxColumn16.HeaderText = "Precio"
-        GridViewTextBoxColumn16.IsVisible = False
-        GridViewTextBoxColumn16.Name = "precio"
-        GridViewTextBoxColumn16.ReadOnly = True
-        GridViewTextBoxColumn16.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn16.Width = 73
-        GridViewCheckBoxColumn4.HeaderText = "Perdida"
-        GridViewCheckBoxColumn4.MinWidth = 20
-        GridViewCheckBoxColumn4.Name = "chmPerdida"
-        GridViewCheckBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewCheckBoxColumn4.Width = 88
-        GridViewCheckBoxColumn5.HeaderText = "Cant. Estado"
-        GridViewCheckBoxColumn5.MinWidth = 20
-        GridViewCheckBoxColumn5.Name = "chmCantEstado"
-        GridViewCheckBoxColumn5.Width = 91
-        GridViewTextBoxColumn17.HeaderText = "Minima"
-        GridViewTextBoxColumn17.Name = "txmMinima"
-        GridViewTextBoxColumn17.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn17.Width = 72
-        GridViewCheckBoxColumn6.HeaderText = "Fecha Estado"
-        GridViewCheckBoxColumn6.MinWidth = 20
-        GridViewCheckBoxColumn6.Name = "chmFechaEstado"
-        GridViewCheckBoxColumn6.Width = 100
-        GridViewTextBoxColumn18.HeaderText = "Fecha Inicio"
-        GridViewTextBoxColumn18.Name = "txbFechaInicio"
-        GridViewTextBoxColumn18.ReadOnly = True
-        GridViewTextBoxColumn18.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn18.Width = 109
-        GridViewTextBoxColumn19.HeaderText = "Fecha Final"
-        GridViewTextBoxColumn19.Name = "txbFechaFinal"
-        GridViewTextBoxColumn19.ReadOnly = True
-        GridViewTextBoxColumn19.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn19.Width = 109
-        Me.grdPreciosSustitutos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn11, GridViewTextBoxColumn12, GridViewTextBoxColumn13, GridViewTextBoxColumn14, GridViewCheckBoxColumn3, GridViewTextBoxColumn15, GridViewTextBoxColumn16, GridViewCheckBoxColumn4, GridViewCheckBoxColumn5, GridViewTextBoxColumn17, GridViewCheckBoxColumn6, GridViewTextBoxColumn18, GridViewTextBoxColumn19})
+        GridViewTextBoxColumn85.HeaderText = "Codigo"
+        GridViewTextBoxColumn85.IsVisible = False
+        GridViewTextBoxColumn85.Name = "codigo"
+        GridViewTextBoxColumn86.HeaderText = "codPrecio"
+        GridViewTextBoxColumn86.IsVisible = False
+        GridViewTextBoxColumn86.Name = "codPrecio"
+        GridViewTextBoxColumn87.HeaderText = "Tipo Precio"
+        GridViewTextBoxColumn87.Name = "tipoPrecio"
+        GridViewTextBoxColumn87.ReadOnly = True
+        GridViewTextBoxColumn87.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn87.Width = 87
+        GridViewTextBoxColumn88.HeaderText = "Precio Base"
+        GridViewTextBoxColumn88.Name = "txmPrecio"
+        GridViewTextBoxColumn88.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn88.Width = 77
+        GridViewCheckBoxColumn23.HeaderText = "Activar"
+        GridViewCheckBoxColumn23.MinWidth = 20
+        GridViewCheckBoxColumn23.Name = "chmActiva"
+        GridViewCheckBoxColumn23.Width = 62
+        GridViewTextBoxColumn89.HeaderText = "Margen Utilidad"
+        GridViewTextBoxColumn89.Name = "MargenUtilidad"
+        GridViewTextBoxColumn89.ReadOnly = True
+        GridViewTextBoxColumn89.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn89.Width = 100
+        GridViewTextBoxColumn90.HeaderText = "Precio"
+        GridViewTextBoxColumn90.IsVisible = False
+        GridViewTextBoxColumn90.Name = "precio"
+        GridViewTextBoxColumn90.ReadOnly = True
+        GridViewTextBoxColumn90.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn90.Width = 73
+        GridViewCheckBoxColumn24.HeaderText = "Perdida"
+        GridViewCheckBoxColumn24.MinWidth = 20
+        GridViewCheckBoxColumn24.Name = "chmPerdida"
+        GridViewCheckBoxColumn24.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewCheckBoxColumn24.Width = 88
+        GridViewCheckBoxColumn25.HeaderText = "Cant. Estado"
+        GridViewCheckBoxColumn25.MinWidth = 20
+        GridViewCheckBoxColumn25.Name = "chmCantEstado"
+        GridViewCheckBoxColumn25.Width = 91
+        GridViewTextBoxColumn91.HeaderText = "Minima"
+        GridViewTextBoxColumn91.Name = "txmMinima"
+        GridViewTextBoxColumn91.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn91.Width = 72
+        GridViewCheckBoxColumn26.HeaderText = "Fecha Estado"
+        GridViewCheckBoxColumn26.MinWidth = 20
+        GridViewCheckBoxColumn26.Name = "chmFechaEstado"
+        GridViewCheckBoxColumn26.Width = 100
+        GridViewTextBoxColumn92.HeaderText = "Fecha Inicio"
+        GridViewTextBoxColumn92.Name = "txbFechaInicio"
+        GridViewTextBoxColumn92.ReadOnly = True
+        GridViewTextBoxColumn92.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn92.Width = 109
+        GridViewTextBoxColumn93.HeaderText = "Fecha Final"
+        GridViewTextBoxColumn93.Name = "txbFechaFinal"
+        GridViewTextBoxColumn93.ReadOnly = True
+        GridViewTextBoxColumn93.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn93.Width = 109
+        Me.grdPreciosSustitutos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn85, GridViewTextBoxColumn86, GridViewTextBoxColumn87, GridViewTextBoxColumn88, GridViewCheckBoxColumn23, GridViewTextBoxColumn89, GridViewTextBoxColumn90, GridViewCheckBoxColumn24, GridViewCheckBoxColumn25, GridViewTextBoxColumn91, GridViewCheckBoxColumn26, GridViewTextBoxColumn92, GridViewTextBoxColumn93})
         Me.grdPreciosSustitutos.MasterTemplate.EnableGrouping = False
         Me.grdPreciosSustitutos.Name = "grdPreciosSustitutos"
         Me.grdPreciosSustitutos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
@@ -1018,7 +1020,7 @@ Partial Class frmProductoPrecio
         '
         Me.grdPreciosSustitutos.RootElement.ForeColor = System.Drawing.Color.Gray
         Me.grdPreciosSustitutos.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdPreciosSustitutos.Size = New System.Drawing.Size(1010, 13)
+        Me.grdPreciosSustitutos.Size = New System.Drawing.Size(972, 13)
         Me.grdPreciosSustitutos.TabIndex = 167
         Me.grdPreciosSustitutos.ThemeName = "Office2007Black"
         Me.grdPreciosSustitutos.Visible = False
@@ -1028,7 +1030,7 @@ Partial Class frmProductoPrecio
         Me.pgUltimasCompras.Controls.Add(Me.grdUltimasCompras)
         Me.pgUltimasCompras.Location = New System.Drawing.Point(10, 44)
         Me.pgUltimasCompras.Name = "pgUltimasCompras"
-        Me.pgUltimasCompras.Size = New System.Drawing.Size(1061, 439)
+        Me.pgUltimasCompras.Size = New System.Drawing.Size(1023, 439)
         Me.pgUltimasCompras.Text = "Ultimas Compras"
         '
         'grdUltimasCompras
@@ -1036,7 +1038,7 @@ Partial Class frmProductoPrecio
         Me.grdUltimasCompras.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grdUltimasCompras.Location = New System.Drawing.Point(0, 0)
         '
-        '
+        'grdUltimasCompras
         '
         Me.grdUltimasCompras.MasterTemplate.AllowAddNewRow = False
         Me.grdUltimasCompras.Name = "grdUltimasCompras"
@@ -1046,7 +1048,7 @@ Partial Class frmProductoPrecio
         '
         '
         Me.grdUltimasCompras.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdUltimasCompras.Size = New System.Drawing.Size(1061, 439)
+        Me.grdUltimasCompras.Size = New System.Drawing.Size(1023, 439)
         Me.grdUltimasCompras.TabIndex = 0
         Me.grdUltimasCompras.Text = "RadGridView1"
         Me.grdUltimasCompras.ThemeName = "Office2007Black"
@@ -1056,7 +1058,7 @@ Partial Class frmProductoPrecio
         Me.pgUltimasVentas.Controls.Add(Me.grdUltimasVentas)
         Me.pgUltimasVentas.Location = New System.Drawing.Point(10, 44)
         Me.pgUltimasVentas.Name = "pgUltimasVentas"
-        Me.pgUltimasVentas.Size = New System.Drawing.Size(1061, 439)
+        Me.pgUltimasVentas.Size = New System.Drawing.Size(1023, 439)
         Me.pgUltimasVentas.Text = "Ultimas Ventas"
         '
         'grdUltimasVentas
@@ -1069,7 +1071,7 @@ Partial Class frmProductoPrecio
         Me.grdUltimasVentas.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdUltimasVentas.Location = New System.Drawing.Point(0, 0)
         '
-        '
+        'grdUltimasVentas
         '
         Me.grdUltimasVentas.MasterTemplate.AllowAddNewRow = False
         Me.grdUltimasVentas.MasterTemplate.EnableGrouping = False
@@ -1082,7 +1084,7 @@ Partial Class frmProductoPrecio
         '
         Me.grdUltimasVentas.RootElement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.grdUltimasVentas.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdUltimasVentas.Size = New System.Drawing.Size(1061, 439)
+        Me.grdUltimasVentas.Size = New System.Drawing.Size(1023, 439)
         Me.grdUltimasVentas.TabIndex = 1
         Me.grdUltimasVentas.Text = "RadGridView1"
         Me.grdUltimasVentas.ThemeName = "Office2007Black"
@@ -1113,64 +1115,64 @@ Partial Class frmProductoPrecio
         'grdOtrosPrecios
         '
         Me.grdOtrosPrecios.MasterTemplate.AllowAddNewRow = False
-        GridViewTextBoxColumn20.HeaderText = "Codigo"
-        GridViewTextBoxColumn20.IsVisible = False
-        GridViewTextBoxColumn20.Name = "codigo"
-        GridViewTextBoxColumn21.HeaderText = "codPrecio"
-        GridViewTextBoxColumn21.IsVisible = False
-        GridViewTextBoxColumn21.Name = "codPrecio"
-        GridViewTextBoxColumn22.HeaderText = "Tipo Precio"
-        GridViewTextBoxColumn22.Name = "tipoPrecio"
-        GridViewTextBoxColumn22.ReadOnly = True
-        GridViewTextBoxColumn22.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn22.Width = 87
-        GridViewTextBoxColumn23.HeaderText = "Precio Base"
-        GridViewTextBoxColumn23.Name = "txmPrecio"
-        GridViewTextBoxColumn23.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn23.Width = 77
-        GridViewCheckBoxColumn7.HeaderText = "Activar"
-        GridViewCheckBoxColumn7.MinWidth = 20
-        GridViewCheckBoxColumn7.Name = "chmActiva"
-        GridViewCheckBoxColumn7.Width = 62
-        GridViewTextBoxColumn24.HeaderText = "Margen Utilidad"
-        GridViewTextBoxColumn24.Name = "MargenUtilidad"
-        GridViewTextBoxColumn24.ReadOnly = True
-        GridViewTextBoxColumn24.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn24.Width = 100
-        GridViewTextBoxColumn25.HeaderText = "Precio"
-        GridViewTextBoxColumn25.IsVisible = False
-        GridViewTextBoxColumn25.Name = "precio"
-        GridViewTextBoxColumn25.ReadOnly = True
-        GridViewTextBoxColumn25.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn25.Width = 73
-        GridViewCheckBoxColumn8.HeaderText = "Perdida"
-        GridViewCheckBoxColumn8.MinWidth = 20
-        GridViewCheckBoxColumn8.Name = "chmPerdida"
-        GridViewCheckBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewCheckBoxColumn8.Width = 88
-        GridViewCheckBoxColumn9.HeaderText = "Cant. Estado"
-        GridViewCheckBoxColumn9.MinWidth = 20
-        GridViewCheckBoxColumn9.Name = "chmCantEstado"
-        GridViewCheckBoxColumn9.Width = 91
-        GridViewTextBoxColumn26.HeaderText = "Minima"
-        GridViewTextBoxColumn26.Name = "txmMinima"
-        GridViewTextBoxColumn26.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn26.Width = 72
-        GridViewCheckBoxColumn10.HeaderText = "Fecha Estado"
-        GridViewCheckBoxColumn10.MinWidth = 20
-        GridViewCheckBoxColumn10.Name = "chmFechaEstado"
-        GridViewCheckBoxColumn10.Width = 100
-        GridViewTextBoxColumn27.HeaderText = "Fecha Inicio"
-        GridViewTextBoxColumn27.Name = "txbFechaInicio"
-        GridViewTextBoxColumn27.ReadOnly = True
-        GridViewTextBoxColumn27.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn27.Width = 109
-        GridViewTextBoxColumn28.HeaderText = "Fecha Final"
-        GridViewTextBoxColumn28.Name = "txbFechaFinal"
-        GridViewTextBoxColumn28.ReadOnly = True
-        GridViewTextBoxColumn28.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn28.Width = 109
-        Me.grdOtrosPrecios.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn20, GridViewTextBoxColumn21, GridViewTextBoxColumn22, GridViewTextBoxColumn23, GridViewCheckBoxColumn7, GridViewTextBoxColumn24, GridViewTextBoxColumn25, GridViewCheckBoxColumn8, GridViewCheckBoxColumn9, GridViewTextBoxColumn26, GridViewCheckBoxColumn10, GridViewTextBoxColumn27, GridViewTextBoxColumn28})
+        GridViewTextBoxColumn94.HeaderText = "Codigo"
+        GridViewTextBoxColumn94.IsVisible = False
+        GridViewTextBoxColumn94.Name = "codigo"
+        GridViewTextBoxColumn95.HeaderText = "codPrecio"
+        GridViewTextBoxColumn95.IsVisible = False
+        GridViewTextBoxColumn95.Name = "codPrecio"
+        GridViewTextBoxColumn96.HeaderText = "Tipo Precio"
+        GridViewTextBoxColumn96.Name = "tipoPrecio"
+        GridViewTextBoxColumn96.ReadOnly = True
+        GridViewTextBoxColumn96.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn96.Width = 87
+        GridViewTextBoxColumn97.HeaderText = "Precio Base"
+        GridViewTextBoxColumn97.Name = "txmPrecio"
+        GridViewTextBoxColumn97.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn97.Width = 77
+        GridViewCheckBoxColumn27.HeaderText = "Activar"
+        GridViewCheckBoxColumn27.MinWidth = 20
+        GridViewCheckBoxColumn27.Name = "chmActiva"
+        GridViewCheckBoxColumn27.Width = 62
+        GridViewTextBoxColumn98.HeaderText = "Margen Utilidad"
+        GridViewTextBoxColumn98.Name = "MargenUtilidad"
+        GridViewTextBoxColumn98.ReadOnly = True
+        GridViewTextBoxColumn98.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn98.Width = 100
+        GridViewTextBoxColumn99.HeaderText = "Precio"
+        GridViewTextBoxColumn99.IsVisible = False
+        GridViewTextBoxColumn99.Name = "precio"
+        GridViewTextBoxColumn99.ReadOnly = True
+        GridViewTextBoxColumn99.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn99.Width = 73
+        GridViewCheckBoxColumn28.HeaderText = "Perdida"
+        GridViewCheckBoxColumn28.MinWidth = 20
+        GridViewCheckBoxColumn28.Name = "chmPerdida"
+        GridViewCheckBoxColumn28.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewCheckBoxColumn28.Width = 88
+        GridViewCheckBoxColumn29.HeaderText = "Cant. Estado"
+        GridViewCheckBoxColumn29.MinWidth = 20
+        GridViewCheckBoxColumn29.Name = "chmCantEstado"
+        GridViewCheckBoxColumn29.Width = 91
+        GridViewTextBoxColumn100.HeaderText = "Minima"
+        GridViewTextBoxColumn100.Name = "txmMinima"
+        GridViewTextBoxColumn100.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn100.Width = 72
+        GridViewCheckBoxColumn30.HeaderText = "Fecha Estado"
+        GridViewCheckBoxColumn30.MinWidth = 20
+        GridViewCheckBoxColumn30.Name = "chmFechaEstado"
+        GridViewCheckBoxColumn30.Width = 100
+        GridViewTextBoxColumn101.HeaderText = "Fecha Inicio"
+        GridViewTextBoxColumn101.Name = "txbFechaInicio"
+        GridViewTextBoxColumn101.ReadOnly = True
+        GridViewTextBoxColumn101.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn101.Width = 109
+        GridViewTextBoxColumn102.HeaderText = "Fecha Final"
+        GridViewTextBoxColumn102.Name = "txbFechaFinal"
+        GridViewTextBoxColumn102.ReadOnly = True
+        GridViewTextBoxColumn102.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn102.Width = 109
+        Me.grdOtrosPrecios.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn94, GridViewTextBoxColumn95, GridViewTextBoxColumn96, GridViewTextBoxColumn97, GridViewCheckBoxColumn27, GridViewTextBoxColumn98, GridViewTextBoxColumn99, GridViewCheckBoxColumn28, GridViewCheckBoxColumn29, GridViewTextBoxColumn100, GridViewCheckBoxColumn30, GridViewTextBoxColumn101, GridViewTextBoxColumn102})
         Me.grdOtrosPrecios.MasterTemplate.EnableGrouping = False
         Me.grdOtrosPrecios.Name = "grdOtrosPrecios"
         Me.grdOtrosPrecios.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
@@ -1220,32 +1222,32 @@ Partial Class frmProductoPrecio
         '
         Me.grdPrecios.MasterTemplate.AllowAddNewRow = False
         Me.grdPrecios.MasterTemplate.AllowColumnReorder = False
-        GridViewTextBoxColumn29.HeaderText = "Codigo"
-        GridViewTextBoxColumn29.IsVisible = False
-        GridViewTextBoxColumn29.Name = "codigo"
-        GridViewTextBoxColumn30.HeaderText = "codigoTipo"
-        GridViewTextBoxColumn30.IsVisible = False
-        GridViewTextBoxColumn30.Name = "codTipoNegocio"
-        GridViewTextBoxColumn31.HeaderText = "Tipo de Negocio"
-        GridViewTextBoxColumn31.Name = "tipoNegocio"
-        GridViewTextBoxColumn31.ReadOnly = True
-        GridViewTextBoxColumn31.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn31.Width = 176
-        GridViewTextBoxColumn32.HeaderText = "Descuento"
-        GridViewTextBoxColumn32.Name = "txmDescuento"
-        GridViewTextBoxColumn32.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn32.Width = 110
-        GridViewTextBoxColumn33.HeaderText = "Precio Normal"
-        GridViewTextBoxColumn33.Name = "precioNormal"
-        GridViewTextBoxColumn33.ReadOnly = True
-        GridViewTextBoxColumn33.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn33.Width = 102
-        GridViewTextBoxColumn34.HeaderText = "Margen Utilidad"
-        GridViewTextBoxColumn34.Name = "utilidad"
-        GridViewTextBoxColumn34.ReadOnly = True
-        GridViewTextBoxColumn34.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn34.Width = 97
-        Me.grdPrecios.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn29, GridViewTextBoxColumn30, GridViewTextBoxColumn31, GridViewTextBoxColumn32, GridViewTextBoxColumn33, GridViewTextBoxColumn34})
+        GridViewTextBoxColumn103.HeaderText = "Codigo"
+        GridViewTextBoxColumn103.IsVisible = False
+        GridViewTextBoxColumn103.Name = "codigo"
+        GridViewTextBoxColumn104.HeaderText = "codigoTipo"
+        GridViewTextBoxColumn104.IsVisible = False
+        GridViewTextBoxColumn104.Name = "codTipoNegocio"
+        GridViewTextBoxColumn105.HeaderText = "Tipo de Negocio"
+        GridViewTextBoxColumn105.Name = "tipoNegocio"
+        GridViewTextBoxColumn105.ReadOnly = True
+        GridViewTextBoxColumn105.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn105.Width = 176
+        GridViewTextBoxColumn106.HeaderText = "Descuento"
+        GridViewTextBoxColumn106.Name = "txmDescuento"
+        GridViewTextBoxColumn106.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn106.Width = 110
+        GridViewTextBoxColumn107.HeaderText = "Precio Normal"
+        GridViewTextBoxColumn107.Name = "precioNormal"
+        GridViewTextBoxColumn107.ReadOnly = True
+        GridViewTextBoxColumn107.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn107.Width = 102
+        GridViewTextBoxColumn108.HeaderText = "Margen Utilidad"
+        GridViewTextBoxColumn108.Name = "utilidad"
+        GridViewTextBoxColumn108.ReadOnly = True
+        GridViewTextBoxColumn108.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn108.Width = 97
+        Me.grdPrecios.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn103, GridViewTextBoxColumn104, GridViewTextBoxColumn105, GridViewTextBoxColumn106, GridViewTextBoxColumn107, GridViewTextBoxColumn108})
         Me.grdPrecios.MasterTemplate.EnableGrouping = False
         Me.grdPrecios.Name = "grdPrecios"
         Me.grdPrecios.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
@@ -1273,7 +1275,7 @@ Partial Class frmProductoPrecio
         Me.rpv.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.rpv.Location = New System.Drawing.Point(7, 174)
         Me.rpv.Name = "rpv"
-        Me.rpv.SelectedPage = Me.Pgclasificacion
+        Me.rpv.SelectedPage = Me.PgPrimsa
         Me.rpv.Size = New System.Drawing.Size(1044, 494)
         Me.rpv.TabIndex = 88
         Me.rpv.Text = "Motriza"
@@ -1295,18 +1297,18 @@ Partial Class frmProductoPrecio
         '
         Me.grdOtrosPrecios2.MasterTemplate.AllowAddNewRow = False
         Me.grdOtrosPrecios2.MasterTemplate.AllowColumnReorder = False
-        GridViewTextBoxColumn35.HeaderText = "codPrecio"
-        GridViewTextBoxColumn35.IsVisible = False
-        GridViewTextBoxColumn35.Name = "codPrecio"
-        GridViewTextBoxColumn36.HeaderText = "Tipo Precio"
-        GridViewTextBoxColumn36.Name = "tipoPrecio"
-        GridViewTextBoxColumn36.ReadOnly = True
-        GridViewTextBoxColumn36.Width = 133
-        GridViewTextBoxColumn37.HeaderText = "Precio"
-        GridViewTextBoxColumn37.Name = "txmPrecio"
-        GridViewTextBoxColumn37.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn37.Width = 99
-        Me.grdOtrosPrecios2.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn35, GridViewTextBoxColumn36, GridViewTextBoxColumn37})
+        GridViewTextBoxColumn109.HeaderText = "codPrecio"
+        GridViewTextBoxColumn109.IsVisible = False
+        GridViewTextBoxColumn109.Name = "codPrecio"
+        GridViewTextBoxColumn110.HeaderText = "Tipo Precio"
+        GridViewTextBoxColumn110.Name = "tipoPrecio"
+        GridViewTextBoxColumn110.ReadOnly = True
+        GridViewTextBoxColumn110.Width = 133
+        GridViewTextBoxColumn111.HeaderText = "Precio"
+        GridViewTextBoxColumn111.Name = "txmPrecio"
+        GridViewTextBoxColumn111.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn111.Width = 99
+        Me.grdOtrosPrecios2.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn109, GridViewTextBoxColumn110, GridViewTextBoxColumn111})
         Me.grdOtrosPrecios2.MasterTemplate.EnableGrouping = False
         Me.grdOtrosPrecios2.Name = "grdOtrosPrecios2"
         Me.grdOtrosPrecios2.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
@@ -1358,11 +1360,11 @@ Partial Class frmProductoPrecio
         '
         'Panel1
         '
-        Me.panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panel1.Location = New System.Drawing.Point(101, 3)
-        Me.panel1.Name = "Panel1"
-        Me.panel1.Size = New System.Drawing.Size(721, 87)
-        Me.panel1.TabIndex = 0
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel1.Location = New System.Drawing.Point(101, 3)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(721, 87)
+        Me.Panel1.TabIndex = 0
         '
         'Label28
         '
@@ -1690,10 +1692,35 @@ Partial Class frmProductoPrecio
         Me.Button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.Button3.UseVisualStyleBackColor = False
         '
+        'lblCosto
+        '
+        Me.lblCosto.AutoSize = True
+        Me.lblCosto.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.lblCosto.ForeColor = System.Drawing.Color.Black
+        Me.lblCosto.Location = New System.Drawing.Point(303, 123)
+        Me.lblCosto.Name = "lblCosto"
+        Me.lblCosto.Size = New System.Drawing.Size(31, 20)
+        Me.lblCosto.TabIndex = 182
+        Me.lblCosto.Text = "0.0"
+        Me.lblCosto.Visible = False
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label24.Location = New System.Drawing.Point(233, 128)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(64, 13)
+        Me.Label24.TabIndex = 181
+        Me.Label24.Text = "Promedio :"
+        Me.Label24.Visible = False
+        '
         'frmProductoPrecio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(1055, 665)
+        Me.Controls.Add(Me.lblCosto)
+        Me.Controls.Add(Me.Label24)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.grdOtrosPrecios2)
         Me.Controls.Add(Me.cmbCodigo1)
@@ -1748,6 +1775,8 @@ Partial Class frmProductoPrecio
         Me.Controls.SetChildIndex(Me.grdOtrosPrecios2, 0)
         Me.Controls.SetChildIndex(Me.rgbDatos, 0)
         Me.Controls.SetChildIndex(Me.Button3, 0)
+        Me.Controls.SetChildIndex(Me.Label24, 0)
+        Me.Controls.SetChildIndex(Me.lblCosto, 0)
         CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Pgclasificacion.ResumeLayout(False)
@@ -1898,5 +1927,7 @@ Partial Class frmProductoPrecio
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents txtCodigoM2 As System.Windows.Forms.TextBox
     Friend WithEvents ButtonGuardar As System.Windows.Forms.Button
+    Friend WithEvents lblCosto As System.Windows.Forms.Label
+    Friend WithEvents Label24 As System.Windows.Forms.Label
 
 End Class

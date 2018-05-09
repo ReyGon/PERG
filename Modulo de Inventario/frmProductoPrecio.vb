@@ -104,15 +104,10 @@ Public Class frmProductoPrecio
 
             Dim consulta = From x In ctx.tblArticuloes Order By x.codigo1 Where x.empresa = mdlPublicVars.idEmpresa _
                            Select Codigo = x.idArticulo, Codigo1 = x.codigo1, Nombre1 = x.nombre1 + " - " + x.codigo1, _
-                           Codigo2 = x.codigo2, _
-                           Nombre2 = x.nombre2,
-                           Obser = x.Observacion,
                            Existencia = (From i In ctx.tblInventarios Where x.idArticulo = i.idArticulo Select i.saldo).FirstOrDefault, _
-                           marcarepuesto = x.tblArticuloMarcaRepuesto.nombre,
-                           tiporepuesto = x.tblArticuloRepuesto.nombre,
                            Importacia = x.tblArticuloImportancia.nombre, Minimo = x.minimo, PrecioPublico = x.precioPublico, PrecioPublicoMotriza = x.preciopublicosucursal, Importancia = x.tblArticuloImportancia.nombre, _
-                           CostoLocal = x.costoIVA, CostoImportacion = 0, Costo = (x.costoIVA + 0), Observaciones = x.observacionPrecio
-                           Order By Codigo
+                           CostoLocal = x.costoIVA, CostoImportacion = 0, Costo = (x.costoIVA + 0), Observaciones = x.observacionPrecio, _
+                           Codigo2 = x.codigo2, Nombre2 = x.nombre2, Obser = x.Observacion, marcarepuesto = x.tblArticuloMarcaRepuesto.nombre, tiporepuesto = x.tblArticuloRepuesto.nombre Order By Codigo
 
             Me.grdDatos.DataSource = consulta
             fnLlenaPrecios()
@@ -120,7 +115,7 @@ Public Class frmProductoPrecio
             fnUltimasCompras()
             fnUltimasVentas()
 
-           
+
 
             'calcular los costos
             fnCalculaOtros()
@@ -351,7 +346,7 @@ Public Class frmProductoPrecio
         End Try
     End Sub
 
-    Private Sub frm_llenarLista() Handles Me.llenarLista
+    Private Sub frm_llenarLista() Handles MyBase.llenarLista
         llenagrid()
         llenagrid2()
     End Sub
@@ -361,7 +356,7 @@ Public Class frmProductoPrecio
     'End Sub
 
     'MODIFICAR
-    Private Sub frm_modificaRegistro() Handles Me.modificaRegistro
+    Private Sub frm_modificaRegistro() Handles MyBase.modificaRegistro
         Try
             Dim success As Boolean = True
             Dim codArt As Integer = CType(txtCodigo.Text, Integer)
@@ -1264,18 +1259,13 @@ Public Class frmProductoPrecio
     '   End Try
     'End Sub
 
-    '  Private Sub lblCosto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblCosto.TextChanged
-    '   Try
-    '     fnLlenaPrecios()
-    '   fnCalculaNormales()
-    '  fnLlenaOtrosPrecios()
-    ' fnCalculaOtros()
-    ' fnConfiguracion()
-    'lblCostoProm.Text = lblCosto.Text
-    '  Catch ex As Exception
+    Private Sub lblCosto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblCosto.TextChanged
+        Try
+            lblCostoProm.Text = lblCosto.Text
+        Catch ex As Exception
 
-    ' End Try
-    ' End Sub
+        End Try
+    End Sub
 
     Private Sub grdOtrosPrecios2_CellEndEdit(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs)
         Try
@@ -1509,7 +1499,7 @@ Public Class frmProductoPrecio
 
     Private Sub frmProductoPrecio_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
         frmPriceLista.frm_llenarLista()
-        frmProductoLista.frm_llenarLista()
+        ''frmProductoLista.frm_llenarLista()
     End Sub
 
     Private Sub grdOtrosPrecios_CellDoubleClick(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs) Handles grdOtrosPrecios.CellDoubleClick
@@ -1548,7 +1538,7 @@ Public Class frmProductoPrecio
     '  End Try
     'End Sub
 
-  
+
     ' Private Sub grdOtrosPreciosSucursal_KeyDown(sender As Object, e As KeyEventArgs)
     '  Try
     'Si presionamos la tecla F2
@@ -1908,7 +1898,7 @@ Public Class frmProductoPrecio
 
         'Verificamos si aun no existe el codigo
         If fnVerificaCodigo(cmbCodigo1.Text) = True Then
-            RadMessageBox.Show("El codigo " & cmbcodigo1.Text & " ya existe !!!", nombreSistema)
+            RadMessageBox.Show("El codigo " & cmbCodigo1.Text & " ya existe !!!", nombreSistema)
 
             If RadMessageBox.Show("Desea Habilitarlo?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
                 Dim conexion As dsi_pos_demoEntities
@@ -1966,7 +1956,7 @@ Public Class frmProductoPrecio
                 m.idUnidadMedida = mdlPublicVars.UnidadMedidaDefault
 
 
-                m.ultimoprecio = False
+                m.UltimoPrecio = False
 
                 If (Not chkProducto.Checked And Not chkServicio.Checked And Not chkKit.Checked And Not chkUnidadMedida.Checked) Then
                     m.bitProducto = True
@@ -2268,7 +2258,7 @@ Public Class frmProductoPrecio
 
     End Sub
 
-   
+
 
     'Funcion utilizada para guardar kit de un producto
     Public Sub fnGuardaKit()
@@ -2281,40 +2271,40 @@ Public Class frmProductoPrecio
         Dim cantidad As Decimal = 0
         Dim codArticuloUnidadMedida As String
         Dim fechaServer As DateTime = mdlPublicVars.fnFecha_horaServidor
-            If elimina = 1 Then
-                '-- Elimina el articulo del kit
-                'Obtenemos el articulo de la lista
-                Dim detalle As tblArticulo_Kit = (From x In ctx.tblArticulo_Kit Where x.codigo = idDetalle Select x).FirstOrDefault
+        If elimina = 1 Then
+            '-- Elimina el articulo del kit
+            'Obtenemos el articulo de la lista
+            Dim detalle As tblArticulo_Kit = (From x In ctx.tblArticulo_Kit Where x.codigo = idDetalle Select x).FirstOrDefault
 
-                'Eliminamos el objeto del contexto
-                ctx.DeleteObject(detalle)
-                ctx.SaveChanges()
-            ElseIf idDetalle > 0 Then
-                '-- Modificamos el articulo del kit
-                'Obtenemos el articulo para poder modificarlo
-                Dim detalle As tblArticulo_Kit = (From x In ctx.tblArticulo_Kit Where x.codigo = idDetalle Select x).FirstOrDefault
+            'Eliminamos el objeto del contexto
+            ctx.DeleteObject(detalle)
+            ctx.SaveChanges()
+        ElseIf idDetalle > 0 Then
+            '-- Modificamos el articulo del kit
+            'Obtenemos el articulo para poder modificarlo
+            Dim detalle As tblArticulo_Kit = (From x In ctx.tblArticulo_Kit Where x.codigo = idDetalle Select x).FirstOrDefault
 
-                detalle.cantidad = cantidad
-                detalle.idArticulo_UnidadMedida = codArticuloUnidadMedida
-                ctx.SaveChanges()
-            Else
-                '-- Agregamos el articulo al kit
+            detalle.cantidad = cantidad
+            detalle.idArticulo_UnidadMedida = codArticuloUnidadMedida
+            ctx.SaveChanges()
+        Else
+            '-- Agregamos el articulo al kit
 
-                'Creamos un nuevo objeto del tipo tblArticulo_Kit
-                Dim articulo As New tblArticulo_Kit
-                articulo.cantidad = cantidad
-                articulo.articuloBase = codArt
-                articulo.articulo = idArticulo
-                articulo.fecha = fechaServer
-                articulo.usuario = mdlPublicVars.idUsuario
-                If codArticuloUnidadMedida > 0 Then
-                    articulo.idArticulo_UnidadMedida = codArticuloUnidadMedida
-                End If
-
-
-                ctx.AddTotblArticulo_Kit(articulo)
-                ctx.SaveChanges()
+            'Creamos un nuevo objeto del tipo tblArticulo_Kit
+            Dim articulo As New tblArticulo_Kit
+            articulo.cantidad = cantidad
+            articulo.articuloBase = codArt
+            articulo.articulo = idArticulo
+            articulo.fecha = fechaServer
+            articulo.usuario = mdlPublicVars.idUsuario
+            If codArticuloUnidadMedida > 0 Then
+                articulo.idArticulo_UnidadMedida = codArticuloUnidadMedida
             End If
+
+
+            ctx.AddTotblArticulo_Kit(articulo)
+            ctx.SaveChanges()
+        End If
     End Sub
 
     'Funcion utilizada para guardar sustitutos
@@ -2391,7 +2381,7 @@ Public Class frmProductoPrecio
         End If
     End Sub
 
-   
+
 
     Public Sub llenarGridSustitutos()
         Try
