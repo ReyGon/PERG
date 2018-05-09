@@ -76,11 +76,9 @@ Public Class frmFacturasElegir
             Dim entradas As List(Of GridViewRowInfo) = (From x In grdFacturas.Rows Where CBool(x.Cells("chmElegir").Value) Select x).ToList
 
             For Each entrada As GridViewRowInfo In entradas
-<<<<<<< HEAD
-                listaEntradas.Add(New Tuple(Of Integer, String, Decimal)(CInt(entrada.Cells("id").Value), CStr2(entrada.Cells("Factura").Value), CDec(entrada.Cells("txmMontoPagar").Value)))
-=======
+
                 listaEntradas.Add(New Tuple(Of Integer, String, Decimal)(CInt(entrada.Cells("Id").Value), CStr2(entrada.Cells("Factura").Value), CDec(entrada.Cells("txmMontoPagar").Value)))
->>>>>>> ae45ec62fd169242880231d17eb50ed940e6bb08
+
             Next
             mdlPublicVars.superSearchLista3 = listaEntradas
         ElseIf idcliente > 0 Then
@@ -89,11 +87,9 @@ Public Class frmFacturasElegir
             Dim salidas As List(Of GridViewRowInfo) = (From x In grdFacturas.Rows Where CBool(x.Cells("chmElegir").Value) Select x).ToList
 
             For Each salida As GridViewRowInfo In salidas
-<<<<<<< HEAD
-                listaSalidas.Add(New Tuple(Of Integer, String, Decimal)(CInt(salida.Cells("id").Value), CStr(salida.Cells("Factura").Value), CDec(salida.Cells("txmMontoPagar").Value)))
-=======
+
                 listaSalidas.Add(New Tuple(Of Integer, String, Decimal)(CInt(salida.Cells("id").Value), CStr(salida.Cells("Facturas").Value), CDec(salida.Cells("txmMontoPagar").Value)))
->>>>>>> ae45ec62fd169242880231d17eb50ed940e6bb08
+
             Next
 
             mdlPublicVars.superSearchLista3 = listaSalidas
