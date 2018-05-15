@@ -60,7 +60,6 @@ Partial Class frmProductoKardex
         Me.cmbArticulo = New System.Windows.Forms.ComboBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
-        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
         Me.RadGroupBox2 = New Telerik.WinControls.UI.RadGroupBox()
         Me.btnDetalleReserva = New System.Windows.Forms.Button()
         Me.lblFinalNeto = New System.Windows.Forms.Label()
@@ -70,7 +69,6 @@ Partial Class frmProductoKardex
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.RadGroupBox1 = New Telerik.WinControls.UI.RadGroupBox()
         Me.lblSaldoNetoInicial = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
@@ -78,6 +76,9 @@ Partial Class frmProductoKardex
         Me.lblSaldoInicial = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.lblReservaHistorial = New System.Windows.Forms.Label()
+        Me.btnAjustesDetalle = New System.Windows.Forms.Button()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rgbInformacion, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,10 +98,8 @@ Partial Class frmProductoKardex
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rgbArticulo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.rgbArticulo.SuspendLayout()
-        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadGroupBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.RadGroupBox2.SuspendLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.RadGroupBox1.SuspendLayout()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -597,20 +596,12 @@ Partial Class frmProductoKardex
         Me.Label17.TabIndex = 196
         Me.Label17.Text = "Resultados"
         '
-        'PictureBox9
-        '
-        Me.PictureBox9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox9.Image = Global.laFuente.My.Resources.Resources.detalles
-        Me.PictureBox9.Location = New System.Drawing.Point(539, 562)
-        Me.PictureBox9.Name = "PictureBox9"
-        Me.PictureBox9.Size = New System.Drawing.Size(47, 37)
-        Me.PictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox9.TabIndex = 195
-        Me.PictureBox9.TabStop = False
-        '
         'RadGroupBox2
         '
         Me.RadGroupBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RadGroupBox2.Controls.Add(Me.btnAjustesDetalle)
+        Me.RadGroupBox2.Controls.Add(Me.Label10)
+        Me.RadGroupBox2.Controls.Add(Me.Label20)
         Me.RadGroupBox2.Controls.Add(Me.btnDetalleReserva)
         Me.RadGroupBox2.Controls.Add(Me.lblFinalNeto)
         Me.RadGroupBox2.Controls.Add(Me.lblReserva)
@@ -644,7 +635,7 @@ Partial Class frmProductoKardex
         Me.btnDetalleReserva.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDetalleReserva.ForeColor = System.Drawing.Color.Transparent
         Me.btnDetalleReserva.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnDetalleReserva.Location = New System.Drawing.Point(180, 65)
+        Me.btnDetalleReserva.Location = New System.Drawing.Point(180, 47)
         Me.btnDetalleReserva.Name = "btnDetalleReserva"
         Me.btnDetalleReserva.Size = New System.Drawing.Size(60, 24)
         Me.btnDetalleReserva.TabIndex = 193
@@ -656,7 +647,7 @@ Partial Class frmProductoKardex
         '
         Me.lblFinalNeto.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblFinalNeto.ForeColor = System.Drawing.Color.Black
-        Me.lblFinalNeto.Location = New System.Drawing.Point(172, 94)
+        Me.lblFinalNeto.Location = New System.Drawing.Point(172, 111)
         Me.lblFinalNeto.Name = "lblFinalNeto"
         Me.lblFinalNeto.Size = New System.Drawing.Size(189, 26)
         Me.lblFinalNeto.TabIndex = 191
@@ -667,7 +658,7 @@ Partial Class frmProductoKardex
         '
         Me.lblReserva.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblReserva.ForeColor = System.Drawing.Color.Black
-        Me.lblReserva.Location = New System.Drawing.Point(172, 63)
+        Me.lblReserva.Location = New System.Drawing.Point(172, 45)
         Me.lblReserva.Name = "lblReserva"
         Me.lblReserva.Size = New System.Drawing.Size(189, 26)
         Me.lblReserva.TabIndex = 189
@@ -678,7 +669,7 @@ Partial Class frmProductoKardex
         '
         Me.lblFinal.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblFinal.ForeColor = System.Drawing.Color.Black
-        Me.lblFinal.Location = New System.Drawing.Point(172, 27)
+        Me.lblFinal.Location = New System.Drawing.Point(172, 12)
         Me.lblFinal.Name = "lblFinal"
         Me.lblFinal.Size = New System.Drawing.Size(189, 26)
         Me.lblFinal.TabIndex = 177
@@ -690,7 +681,7 @@ Partial Class frmProductoKardex
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.ForeColor = System.Drawing.Color.DimGray
-        Me.Label23.Location = New System.Drawing.Point(57, 95)
+        Me.Label23.Location = New System.Drawing.Point(57, 112)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(117, 25)
         Me.Label23.TabIndex = 186
@@ -701,7 +692,7 @@ Partial Class frmProductoKardex
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.DimGray
-        Me.Label12.Location = New System.Drawing.Point(59, 27)
+        Me.Label12.Location = New System.Drawing.Point(59, 12)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(115, 25)
         Me.Label12.TabIndex = 176
@@ -712,7 +703,7 @@ Partial Class frmProductoKardex
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label24.ForeColor = System.Drawing.Color.DimGray
-        Me.Label24.Location = New System.Drawing.Point(50, 63)
+        Me.Label24.Location = New System.Drawing.Point(50, 45)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(124, 25)
         Me.Label24.TabIndex = 184
@@ -730,17 +721,6 @@ Partial Class frmProductoKardex
         Me.Label15.Size = New System.Drawing.Size(110, 29)
         Me.Label15.TabIndex = 199
         Me.Label15.Text = "Historial"
-        '
-        'PictureBox3
-        '
-        Me.PictureBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox3.Image = Global.laFuente.My.Resources.Resources.informacion
-        Me.PictureBox3.Location = New System.Drawing.Point(249, 562)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(47, 37)
-        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox3.TabIndex = 198
-        Me.PictureBox3.TabStop = False
         '
         'RadGroupBox1
         '
@@ -833,13 +813,51 @@ Partial Class frmProductoKardex
         Me.lblReservaHistorial.Text = "Reserva"
         Me.lblReservaHistorial.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'btnAjustesDetalle
+        '
+        Me.btnAjustesDetalle.BackColor = System.Drawing.Color.SteelBlue
+        Me.btnAjustesDetalle.FlatAppearance.BorderSize = 0
+        Me.btnAjustesDetalle.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnAjustesDetalle.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnAjustesDetalle.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAjustesDetalle.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAjustesDetalle.ForeColor = System.Drawing.Color.Transparent
+        Me.btnAjustesDetalle.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnAjustesDetalle.Location = New System.Drawing.Point(180, 80)
+        Me.btnAjustesDetalle.Name = "btnAjustesDetalle"
+        Me.btnAjustesDetalle.Size = New System.Drawing.Size(60, 24)
+        Me.btnAjustesDetalle.TabIndex = 196
+        Me.btnAjustesDetalle.Text = "Detalle"
+        Me.btnAjustesDetalle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnAjustesDetalle.UseVisualStyleBackColor = False
+        '
+        'Label10
+        '
+        Me.Label10.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.Label10.ForeColor = System.Drawing.Color.Black
+        Me.Label10.Location = New System.Drawing.Point(172, 78)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(189, 26)
+        Me.Label10.TabIndex = 195
+        Me.Label10.Text = "Ajustes"
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.Color.DimGray
+        Me.Label20.Location = New System.Drawing.Point(42, 78)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(132, 25)
+        Me.Label20.TabIndex = 194
+        Me.Label20.Text = "( +- ) Ajustes :"
+        '
         'frmProductoKardex
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(907, 727)
         Me.Controls.Add(Me.Label15)
-        Me.Controls.Add(Me.PictureBox3)
-        Me.Controls.Add(Me.PictureBox9)
         Me.Controls.Add(Me.RadGroupBox1)
         Me.Controls.Add(Me.Label17)
         Me.Controls.Add(Me.PictureBox4)
@@ -872,8 +890,6 @@ Partial Class frmProductoKardex
         Me.Controls.SetChildIndex(Me.PictureBox4, 0)
         Me.Controls.SetChildIndex(Me.Label17, 0)
         Me.Controls.SetChildIndex(Me.RadGroupBox1, 0)
-        Me.Controls.SetChildIndex(Me.PictureBox9, 0)
-        Me.Controls.SetChildIndex(Me.PictureBox3, 0)
         Me.Controls.SetChildIndex(Me.Label15, 0)
         CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -898,11 +914,9 @@ Partial Class frmProductoKardex
         CType(Me.rgbArticulo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.rgbArticulo.ResumeLayout(False)
         Me.rgbArticulo.PerformLayout()
-        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RadGroupBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.RadGroupBox2.ResumeLayout(False)
         Me.RadGroupBox2.PerformLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RadGroupBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.RadGroupBox1.ResumeLayout(False)
         Me.RadGroupBox1.PerformLayout()
@@ -944,14 +958,12 @@ Partial Class frmProductoKardex
     Friend WithEvents lbl0Salir As System.Windows.Forms.Label
     Friend WithEvents pbx0Salir As System.Windows.Forms.PictureBox
     Friend WithEvents Label17 As System.Windows.Forms.Label
-    Friend WithEvents PictureBox9 As System.Windows.Forms.PictureBox
     Friend WithEvents RadGroupBox2 As Telerik.WinControls.UI.RadGroupBox
     Friend WithEvents lblFinal As System.Windows.Forms.Label
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents cmbInventario As System.Windows.Forms.ComboBox
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents Label15 As System.Windows.Forms.Label
-    Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
     Friend WithEvents RadGroupBox1 As Telerik.WinControls.UI.RadGroupBox
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents lblReservaHistorial As System.Windows.Forms.Label
@@ -969,5 +981,8 @@ Partial Class frmProductoKardex
     Friend WithEvents pnx1ajustar As System.Windows.Forms.Panel
     Friend WithEvents pbx1ajustar As System.Windows.Forms.PictureBox
     Friend WithEvents lbl1ajustar As System.Windows.Forms.Label
+    Friend WithEvents btnAjustesDetalle As System.Windows.Forms.Button
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Label20 As System.Windows.Forms.Label
 
 End Class

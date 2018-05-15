@@ -153,7 +153,6 @@
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalida" Width="1.5" PointX="9.46392734230679" PointY="31.526338740962714" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalida_Factura" Width="1.5" PointX="5.6078469909764115" PointY="20.219678098438159" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblsalidaBodega" Width="1.5" PointX="2.1461270591924557" PointY="18.335055672719633" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblsalidabodega_detalle" Width="1.5" PointX="4.6120390578229165" PointY="25.07628976976326" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalidaDetalle_Factura" Width="1.5" PointX="5.6240896217637184" PointY="6.9352698805440545" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalidasTransporte" Width="1.5" PointX="9.6928073846235918" PointY="4.9642144762744262" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalidasTransportesMedio" Width="1.5" PointX="4.04608831743062" PointY="5.9078385559412832" />
@@ -516,6 +515,7 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblReciboCaja_tblReciboCaja1" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblClientes" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSurtir_tblClientes" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblsalidabodega_detalle" Width="1.5" PointX="9.00771966996031" PointY="2.5488447260804681" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

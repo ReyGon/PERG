@@ -3596,6 +3596,7 @@
           <Property Name="sacado" Type="bit" />
           <Property Name="revisado" Type="bit" />
           <Property Name="empacado" Type="bit" />
+          <Property Name="errores" Type="int" />
         </EntityType>
         <EntityType Name="tblSalidaDetalle">
           <Key>
@@ -9255,7 +9256,6 @@
           <EntitySet Name="tblSalidas" EntityType="dsi_pos_demoModel.tblSalida" />
           <EntitySet Name="tblSalida_Factura" EntityType="dsi_pos_demoModel.tblSalida_Factura" />
           <EntitySet Name="tblsalidaBodegas" EntityType="dsi_pos_demoModel.tblsalidaBodega" />
-          <EntitySet Name="tblsalidabodega_detalle" EntityType="dsi_pos_demoModel.tblsalidabodega_detalle" />
           <EntitySet Name="tblSalidaDetalle_Factura" EntityType="dsi_pos_demoModel.tblSalidaDetalle_Factura" />
           <EntitySet Name="tblSalidasTransportes" EntityType="dsi_pos_demoModel.tblSalidasTransporte" />
           <EntitySet Name="tblSalidasTransportesMedios" EntityType="dsi_pos_demoModel.tblSalidasTransportesMedio" />
@@ -10128,7 +10128,6 @@
             <Parameter Name="filtro6" Mode="In" Type="String" />
             <Parameter Name="filtro7" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_bodega_lista" ReturnType="Collection(dsi_pos_demoModel.sp_bodega_lista_Result)" />
           <FunctionImport Name="sp_buscar_Articulo1" ReturnType="Collection(dsi_pos_demoModel.sp_buscar_Articulo1_Result)">
             <Parameter Name="empresa" Mode="In" Type="Int32" />
             <Parameter Name="filtro" Mode="In" Type="String" />
@@ -11803,11 +11802,13 @@
             <Parameter Name="tipovehiculo2" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ConsultafacturasCompras" ReturnType="Collection(dsi_pos_demoModel.sp_ConsultafacturasCompras_Result)">
-            <Parameter Name="idproveedor" Mode="In" Type="Int32" />
+          <Parameter Name="idproveedor" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ConsultafacturasVentas" ReturnType="Collection(dsi_pos_demoModel.sp_ConsultafacturasVentas_Result)">
-            <Parameter Name="idcliente" Mode="In" Type="Int32" />
+          <Parameter Name="idcliente" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="tblsalidabodega_detalle" EntityType="dsi_pos_demoModel.tblsalidabodega_detalle" />
+          <FunctionImport Name="sp_bodega_lista" ReturnType="Collection(dsi_pos_demoModel.sp_bodega_lista_Result)" />
           </EntityContainer>
         <EntityType Name="dtproperty">
           <Key>
@@ -14049,17 +14050,6 @@
           <NavigationProperty Name="tblEmpleado1" Relationship="dsi_pos_demoModel.FK_tblsalidaBodega_tblEmpleado1" FromRole="tblsalidaBodega" ToRole="tblEmpleado" />
           <NavigationProperty Name="tblEmpleado2" Relationship="dsi_pos_demoModel.FK_tblsalidaBodega_tblEmpleado2" FromRole="tblsalidaBodega" ToRole="tblEmpleado" />
           <NavigationProperty Name="tblSalida" Relationship="dsi_pos_demoModel.FK_tblsalidaBodega_tblSalida" FromRole="tblsalidaBodega" ToRole="tblSalida" />
-        </EntityType>
-        <EntityType Name="tblsalidabodega_detalle">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="idsalidabodega" />
-          <Property Type="Int32" Name="idempleado" />
-          <Property Type="Boolean" Name="sacado" />
-          <Property Type="Boolean" Name="revisado" />
-          <Property Type="Boolean" Name="empacado" />
         </EntityType>
         <EntityType Name="tblSalidaDetalle_Factura">
           <Key>
@@ -16752,20 +16742,6 @@
         <ComplexType Name="sp_articulos_ConExistencia_SinFoto_Result">
           <Property Type="String" Name="codigo1" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="nombre1" Nullable="false" MaxLength="200" />
-        </ComplexType>
-        <ComplexType Name="sp_bodega_lista_Result">
-          <Property Type="Int32" Name="Bodega" Nullable="false" />
-          <Property Type="Int32" Name="Salida" Nullable="false" />
-          <Property Type="String" Name="Documento" Nullable="true" MaxLength="20" />
-          <Property Type="Decimal" Name="Total" Nullable="true" Precision="18" Scale="5" />
-          <Property Type="String" Name="Negocio" Nullable="true" MaxLength="1000" />
-          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
-          <Property Type="String" Name="Vendedor" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="txbSacado" Nullable="false" />
-          <Property Type="String" Name="txbRevisado" Nullable="false" />
-          <Property Type="String" Name="txbEmpacado" Nullable="false" />
-          <Property Type="String" Name="txmObservacion" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Errores" Nullable="false" />
         </ComplexType>
         <ComplexType Name="sp_buscar_Articulo1_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -20862,6 +20838,34 @@
           <Property Type="Decimal" Name="Saldo" Nullable="true" Precision="18" Scale="5" />
           <Property Type="String" Name="txmMontoPagar" Nullable="false" MaxLength="1" />
         </ComplexType>
+        <EntityType Name="tblsalidabodega_detalle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="idsalidabodega" />
+          <Property Type="Int32" Name="idempleado" />
+          <Property Type="Boolean" Name="sacado" />
+          <Property Type="Boolean" Name="revisado" />
+          <Property Type="Boolean" Name="empacado" />
+          <Property Type="Int32" Name="errores" />
+        </EntityType>
+        <ComplexType Name="sp_bodega_lista_Result">
+          <Property Type="Int32" Name="Bodega" Nullable="false" />
+          <Property Type="Int32" Name="Salida" Nullable="false" />
+          <Property Type="String" Name="Documento" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="String" Name="Negocio" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="String" Name="FechaEmpacado" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HoraEmpacado" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Vendedor" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="txbSacado" Nullable="false" />
+          <Property Type="String" Name="txbRevisado" Nullable="false" />
+          <Property Type="String" Name="txbEmpacado" Nullable="false" />
+          <Property Type="String" Name="txmObservacion" Nullable="false" MaxLength="400" />
+          <Property Type="Int32" Name="Errores" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -22868,18 +22872,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblsalidabodega_detalle">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblsalidabodega_detalle">
-              <MappingFragment StoreEntitySet="tblsalidabodega_detalle">
-                <ScalarProperty Name="empacado" ColumnName="empacado" />
-                <ScalarProperty Name="revisado" ColumnName="revisado" />
-                <ScalarProperty Name="sacado" ColumnName="sacado" />
-                <ScalarProperty Name="idempleado" ColumnName="idempleado" />
-                <ScalarProperty Name="idsalidabodega" ColumnName="idsalidabodega" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblSalidaDetalle_Factura">
             <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSalidaDetalle_Factura">
               <MappingFragment StoreEntitySet="tblSalidaDetalle_Factura">
@@ -23348,24 +23340,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_articulosFiltro" FunctionName="mdlModeloDatos.Store.sp_articulosFiltro" />
-          <FunctionImportMapping FunctionImportName="sp_bodega_lista" FunctionName="mdlModeloDatos.Store.sp_bodega_lista">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_bodega_lista_Result">
-                <ScalarProperty Name="Bodega" ColumnName="Bodega" />
-                <ScalarProperty Name="Salida" ColumnName="Salida" />
-                <ScalarProperty Name="Documento" ColumnName="Documento" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="Negocio" ColumnName="Negocio" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
-                <ScalarProperty Name="txbSacado" ColumnName="txbSacado" />
-                <ScalarProperty Name="txbRevisado" ColumnName="txbRevisado" />
-                <ScalarProperty Name="txbEmpacado" ColumnName="txbEmpacado" />
-                <ScalarProperty Name="txmObservacion" ColumnName="txmObservacion" />
-                <ScalarProperty Name="Errores" ColumnName="Errores" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_buscar_Articulo1" FunctionName="mdlModeloDatos.Store.sp_buscar_Articulo1">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_buscar_Articulo1_Result">
@@ -26248,6 +26222,39 @@
                 <ScalarProperty Name="TotalVenta" ColumnName="TotalVenta" />
                 <ScalarProperty Name="Saldo" ColumnName="Saldo" />
                 <ScalarProperty Name="txmMontoPagar" ColumnName="txmMontoPagar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblsalidabodega_detalle">
+            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblsalidabodega_detalle">
+              <MappingFragment StoreEntitySet="tblsalidabodega_detalle">
+                <ScalarProperty Name="errores" ColumnName="errores" />
+                <ScalarProperty Name="empacado" ColumnName="empacado" />
+                <ScalarProperty Name="revisado" ColumnName="revisado" />
+                <ScalarProperty Name="sacado" ColumnName="sacado" />
+                <ScalarProperty Name="idempleado" ColumnName="idempleado" />
+                <ScalarProperty Name="idsalidabodega" ColumnName="idsalidabodega" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_bodega_lista" FunctionName="mdlModeloDatos.Store.sp_bodega_lista">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_bodega_lista_Result">
+                <ScalarProperty Name="Bodega" ColumnName="Bodega" />
+                <ScalarProperty Name="Salida" ColumnName="Salida" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Negocio" ColumnName="Negocio" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="FechaEmpacado" ColumnName="FechaEmpacado" />
+                <ScalarProperty Name="HoraEmpacado" ColumnName="HoraEmpacado" />
+                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
+                <ScalarProperty Name="txbSacado" ColumnName="txbSacado" />
+                <ScalarProperty Name="txbRevisado" ColumnName="txbRevisado" />
+                <ScalarProperty Name="txbEmpacado" ColumnName="txbEmpacado" />
+                <ScalarProperty Name="txmObservacion" ColumnName="txmObservacion" />
+                <ScalarProperty Name="Errores" ColumnName="Errores" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

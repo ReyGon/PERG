@@ -21,6 +21,7 @@ Public Class frmSalidas
     Private _tblGuias As New DataTable
 
     Public inventario As Integer
+    Private verificarexistencia As Boolean = False
 
     Dim valida As New bl_Pedidos
     Private permiso As New clsPermisoUsuario
@@ -2502,6 +2503,14 @@ Public Class frmSalidas
 
     '--------------------------------------------- RESERVA ------------------------------------------
     Private Sub fnGuardarReserva()
+
+        fnVerificarExistencia()
+
+        If verificarexistencia = False Then
+            RadMessageBox.Show("Debe verificar existencia para poder guardar", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+            Exit Sub
+        End If
+
         'variable que guardan los codigos.
         Dim codcliente As Integer = cmbCliente.SelectedValue
         Dim cliente As String = cmbNombre.Text
@@ -3088,6 +3097,12 @@ Public Class frmSalidas
 
     '----------------------------------- Modificar Reserva ----------------------------------------------------------------
     Private Function fnModificarReserva()
+
+        ''If verificarexistencia = False Then
+        ''    RadMessageBox.Show("Debe verificar existencia para poder guardar", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+        ''    Exit Function
+        ''End If
+
         Dim codcliente As Integer = cmbCliente.SelectedValue
         Dim cliente As String = cmbNombre.Text
         Dim codmovimiento As Integer = mdlPublicVars.Salida_TipoMovimientoVenta
@@ -3491,6 +3506,14 @@ Public Class frmSalidas
 
     '--------------------------------------------  DESPACHO -----------------------------------------
     Private Sub fnGuardarDespacho()
+
+        fnVerificarExistencia()
+
+        If verificarexistencia = False Then
+            RadMessageBox.Show("Debe verificar existencia para poder guardar", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+            Exit Sub
+        End If
+
         Dim idsalidaimp As Integer
 
         Dim codcliente As Integer = cmbCliente.SelectedValue
@@ -4255,6 +4278,12 @@ Public Class frmSalidas
     End Sub
 
     Private Function fnModificarDespacho()
+
+        If verificarexistencia = False Then
+            RadMessageBox.Show("Debe verificar existencia para poder guardar", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+            Exit Function
+        End If
+
         If fnErrores() = True Then
             Return False
         End If
@@ -6442,13 +6471,16 @@ Public Class frmSalidas
                     Me.txtAjusteRevisionStock.Text = Format(Ajustes + TotalAjuste, formatoMoneda)
                     ''End If
                 Else
-                RadMessageBox.Show("Stock Disponible", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                    RadMessageBox.Show("Stock Disponible", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
                 End If
                 fnActualizar_Total()
                 conn.Close()
             End Using
-        Catch ex As Exception
 
+            verificarexistencia = True
+
+        Catch ex As Exception
+            verificarexistencia = False
         End Try
     End Sub
 End Class
