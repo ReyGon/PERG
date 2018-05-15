@@ -757,7 +757,12 @@ Public Class frmPedidosListaBarraDerecha
                             If ArtEmpresa.saldo < Pedido Then
                                 saldo = Pedido - ArtEmpresa.saldo
                                 'Guardamos el error con los datos del producto en una variable para q se agruen todos lo productos que tengan error.
-                                errContenido += "El articulo: " & NombreArt & ", Pedido " & Pedido.ToString & " en existencia " & ArtEmpresa.saldo.ToString & ", Faltantes " & saldo.ToString + vbCrLf
+                                errContenido += "El articulo: " & Trim(NombreArt) & vbCrLf _
+                                    & "Pedido: " & Trim(Pedido).ToString & vbCrLf _
+                                    & "En existencia: " & CStr(CInt(ArtEmpresa.saldo)) & vbCrLf _
+                                    & "Faltantes: " & saldo & vbCrLf
+
+                                ''"El articulo: " & NombreArt & ", Pedido " & Pedido.ToString & " en existencia " & ArtEmpresa.saldo.ToString & ", Faltantes " & saldo.ToString + vbCrLf
                                 success = False
                             End If
                         End If

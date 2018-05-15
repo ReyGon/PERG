@@ -46,6 +46,8 @@ Partial Class frmPedidoConcepto
         Me.lbl5Salir = New System.Windows.Forms.Label()
         Me.pbx5Salir = New System.Windows.Forms.PictureBox()
         Me.rgbInformacion = New Telerik.WinControls.UI.RadGroupBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.lblDescuento = New System.Windows.Forms.Label()
         Me.lblEmpaque = New System.Windows.Forms.Label()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.lblPagado = New System.Windows.Forms.Label()
@@ -447,6 +449,8 @@ Partial Class frmPedidoConcepto
         '
         Me.rgbInformacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rgbInformacion.Controls.Add(Me.Label18)
+        Me.rgbInformacion.Controls.Add(Me.lblDescuento)
         Me.rgbInformacion.Controls.Add(Me.lblEmpaque)
         Me.rgbInformacion.Controls.Add(Me.Label30)
         Me.rgbInformacion.Controls.Add(Me.lblPagado)
@@ -514,6 +518,29 @@ Partial Class frmPedidoConcepto
         Me.rgbInformacion.Size = New System.Drawing.Size(1161, 257)
         Me.rgbInformacion.TabIndex = 183
         '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.ForeColor = System.Drawing.Color.DimGray
+        Me.Label18.Location = New System.Drawing.Point(768, 97)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(133, 20)
+        Me.Label18.TabIndex = 218
+        Me.Label18.Text = "Descuento Prom :"
+        '
+        'lblDescuento
+        '
+        Me.lblDescuento.AutoSize = True
+        Me.lblDescuento.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDescuento.ForeColor = System.Drawing.Color.Black
+        Me.lblDescuento.Location = New System.Drawing.Point(919, 97)
+        Me.lblDescuento.Name = "lblDescuento"
+        Me.lblDescuento.Size = New System.Drawing.Size(45, 20)
+        Me.lblDescuento.TabIndex = 217
+        Me.lblDescuento.Text = "Total"
+        Me.lblDescuento.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'lblEmpaque
         '
         Me.lblEmpaque.AutoSize = True
@@ -542,7 +569,7 @@ Partial Class frmPedidoConcepto
         Me.lblPagado.AutoSize = True
         Me.lblPagado.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPagado.ForeColor = System.Drawing.Color.Black
-        Me.lblPagado.Location = New System.Drawing.Point(854, 223)
+        Me.lblPagado.Location = New System.Drawing.Point(917, 234)
         Me.lblPagado.Name = "lblPagado"
         Me.lblPagado.Size = New System.Drawing.Size(61, 20)
         Me.lblPagado.TabIndex = 214
@@ -554,7 +581,7 @@ Partial Class frmPedidoConcepto
         Me.Label29.AutoSize = True
         Me.Label29.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label29.ForeColor = System.Drawing.Color.DimGray
-        Me.Label29.Location = New System.Drawing.Point(769, 222)
+        Me.Label29.Location = New System.Drawing.Point(832, 233)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(69, 20)
         Me.Label29.TabIndex = 213
@@ -565,7 +592,7 @@ Partial Class frmPedidoConcepto
         Me.lblDevoluciones.AutoSize = True
         Me.lblDevoluciones.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDevoluciones.ForeColor = System.Drawing.Color.Black
-        Me.lblDevoluciones.Location = New System.Drawing.Point(854, 200)
+        Me.lblDevoluciones.Location = New System.Drawing.Point(917, 211)
         Me.lblDevoluciones.Name = "lblDevoluciones"
         Me.lblDevoluciones.Size = New System.Drawing.Size(102, 20)
         Me.lblDevoluciones.TabIndex = 212
@@ -577,7 +604,7 @@ Partial Class frmPedidoConcepto
         Me.Label28.AutoSize = True
         Me.Label28.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label28.ForeColor = System.Drawing.Color.DimGray
-        Me.Label28.Location = New System.Drawing.Point(728, 200)
+        Me.Label28.Location = New System.Drawing.Point(791, 211)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(110, 20)
         Me.Label28.TabIndex = 211
@@ -588,7 +615,7 @@ Partial Class frmPedidoConcepto
         Me.lblSaldo.AutoSize = True
         Me.lblSaldo.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSaldo.ForeColor = System.Drawing.Color.Black
-        Me.lblSaldo.Location = New System.Drawing.Point(854, 179)
+        Me.lblSaldo.Location = New System.Drawing.Point(917, 190)
         Me.lblSaldo.Name = "lblSaldo"
         Me.lblSaldo.Size = New System.Drawing.Size(47, 20)
         Me.lblSaldo.TabIndex = 210
@@ -600,7 +627,7 @@ Partial Class frmPedidoConcepto
         Me.Label27.AutoSize = True
         Me.Label27.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label27.ForeColor = System.Drawing.Color.DimGray
-        Me.Label27.Location = New System.Drawing.Point(783, 179)
+        Me.Label27.Location = New System.Drawing.Point(846, 190)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(55, 20)
         Me.Label27.TabIndex = 209
@@ -657,7 +684,7 @@ Partial Class frmPedidoConcepto
         Me.lblFacturasAnuladas.AutoSize = True
         Me.lblFacturasAnuladas.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFacturasAnuladas.ForeColor = System.Drawing.Color.Black
-        Me.lblFacturasAnuladas.Location = New System.Drawing.Point(854, 155)
+        Me.lblFacturasAnuladas.Location = New System.Drawing.Point(917, 166)
         Me.lblFacturasAnuladas.Name = "lblFacturasAnuladas"
         Me.lblFacturasAnuladas.Size = New System.Drawing.Size(137, 20)
         Me.lblFacturasAnuladas.TabIndex = 204
@@ -669,7 +696,7 @@ Partial Class frmPedidoConcepto
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label25.ForeColor = System.Drawing.Color.DimGray
-        Me.Label25.Location = New System.Drawing.Point(693, 155)
+        Me.Label25.Location = New System.Drawing.Point(756, 166)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(145, 20)
         Me.Label25.TabIndex = 203
@@ -680,7 +707,7 @@ Partial Class frmPedidoConcepto
         Me.lblFacturasImpresas.AutoSize = True
         Me.lblFacturasImpresas.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFacturasImpresas.ForeColor = System.Drawing.Color.Black
-        Me.lblFacturasImpresas.Location = New System.Drawing.Point(855, 133)
+        Me.lblFacturasImpresas.Location = New System.Drawing.Point(632, 143)
         Me.lblFacturasImpresas.Name = "lblFacturasImpresas"
         Me.lblFacturasImpresas.Size = New System.Drawing.Size(68, 20)
         Me.lblFacturasImpresas.TabIndex = 202
@@ -692,7 +719,7 @@ Partial Class frmPedidoConcepto
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label24.ForeColor = System.Drawing.Color.DimGray
-        Me.Label24.Location = New System.Drawing.Point(762, 133)
+        Me.Label24.Location = New System.Drawing.Point(538, 143)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(76, 20)
         Me.Label24.TabIndex = 201
@@ -703,7 +730,7 @@ Partial Class frmPedidoConcepto
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.Label8.ForeColor = System.Drawing.Color.Black
-        Me.Label8.Location = New System.Drawing.Point(923, 15)
+        Me.Label8.Location = New System.Drawing.Point(986, 1)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(28, 25)
         Me.Label8.TabIndex = 200
@@ -715,7 +742,7 @@ Partial Class frmPedidoConcepto
         Me.lblEfectividadVenta.AutoSize = True
         Me.lblEfectividadVenta.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEfectividadVenta.ForeColor = System.Drawing.Color.Black
-        Me.lblEfectividadVenta.Location = New System.Drawing.Point(856, 18)
+        Me.lblEfectividadVenta.Location = New System.Drawing.Point(919, 4)
         Me.lblEfectividadVenta.Name = "lblEfectividadVenta"
         Me.lblEfectividadVenta.Size = New System.Drawing.Size(67, 20)
         Me.lblEfectividadVenta.TabIndex = 199
@@ -726,7 +753,7 @@ Partial Class frmPedidoConcepto
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label19.ForeColor = System.Drawing.Color.DimGray
-        Me.Label19.Location = New System.Drawing.Point(744, 18)
+        Me.Label19.Location = New System.Drawing.Point(807, 4)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(95, 20)
         Me.Label19.TabIndex = 198
@@ -806,7 +833,7 @@ Partial Class frmPedidoConcepto
         Me.lblVentaInicial.AutoSize = True
         Me.lblVentaInicial.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblVentaInicial.ForeColor = System.Drawing.Color.Black
-        Me.lblVentaInicial.Location = New System.Drawing.Point(856, 40)
+        Me.lblVentaInicial.Location = New System.Drawing.Point(919, 26)
         Me.lblVentaInicial.Name = "lblVentaInicial"
         Me.lblVentaInicial.Size = New System.Drawing.Size(31, 20)
         Me.lblVentaInicial.TabIndex = 189
@@ -817,7 +844,7 @@ Partial Class frmPedidoConcepto
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.ForeColor = System.Drawing.Color.DimGray
-        Me.Label15.Location = New System.Drawing.Point(736, 40)
+        Me.Label15.Location = New System.Drawing.Point(799, 26)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(103, 20)
         Me.Label15.TabIndex = 188
@@ -828,7 +855,7 @@ Partial Class frmPedidoConcepto
         Me.lblTotalAjustes.AutoSize = True
         Me.lblTotalAjustes.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotalAjustes.ForeColor = System.Drawing.Color.Black
-        Me.lblTotalAjustes.Location = New System.Drawing.Point(856, 88)
+        Me.lblTotalAjustes.Location = New System.Drawing.Point(919, 74)
         Me.lblTotalAjustes.Name = "lblTotalAjustes"
         Me.lblTotalAjustes.Size = New System.Drawing.Size(31, 20)
         Me.lblTotalAjustes.TabIndex = 186
@@ -839,7 +866,7 @@ Partial Class frmPedidoConcepto
         Me.lblTotalSurtir.AutoSize = True
         Me.lblTotalSurtir.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotalSurtir.ForeColor = System.Drawing.Color.Black
-        Me.lblTotalSurtir.Location = New System.Drawing.Point(856, 63)
+        Me.lblTotalSurtir.Location = New System.Drawing.Point(919, 49)
         Me.lblTotalSurtir.Name = "lblTotalSurtir"
         Me.lblTotalSurtir.Size = New System.Drawing.Size(31, 20)
         Me.lblTotalSurtir.TabIndex = 185
@@ -850,7 +877,7 @@ Partial Class frmPedidoConcepto
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.ForeColor = System.Drawing.Color.DimGray
-        Me.Label21.Location = New System.Drawing.Point(744, 110)
+        Me.Label21.Location = New System.Drawing.Point(807, 121)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(95, 20)
         Me.Label21.TabIndex = 182
@@ -861,7 +888,7 @@ Partial Class frmPedidoConcepto
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label22.ForeColor = System.Drawing.Color.DimGray
-        Me.Label22.Location = New System.Drawing.Point(769, 90)
+        Me.Label22.Location = New System.Drawing.Point(832, 76)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(69, 20)
         Me.Label22.TabIndex = 181
@@ -872,7 +899,7 @@ Partial Class frmPedidoConcepto
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.ForeColor = System.Drawing.Color.DimGray
-        Me.Label23.Location = New System.Drawing.Point(782, 63)
+        Me.Label23.Location = New System.Drawing.Point(845, 49)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(56, 20)
         Me.Label23.TabIndex = 180
@@ -1050,7 +1077,7 @@ Partial Class frmPedidoConcepto
         Me.lblTotal.AutoSize = True
         Me.lblTotal.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotal.ForeColor = System.Drawing.Color.Black
-        Me.lblTotal.Location = New System.Drawing.Point(856, 110)
+        Me.lblTotal.Location = New System.Drawing.Point(919, 121)
         Me.lblTotal.Name = "lblTotal"
         Me.lblTotal.Size = New System.Drawing.Size(45, 20)
         Me.lblTotal.TabIndex = 152
@@ -1226,5 +1253,7 @@ Partial Class frmPedidoConcepto
     Friend WithEvents pbx0Bodega As System.Windows.Forms.PictureBox
     Friend WithEvents lblEmpaque As System.Windows.Forms.Label
     Friend WithEvents Label30 As System.Windows.Forms.Label
+    Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents lblDescuento As System.Windows.Forms.Label
 
 End Class

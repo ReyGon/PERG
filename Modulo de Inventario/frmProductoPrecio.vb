@@ -879,6 +879,8 @@ Public Class frmProductoPrecio
                 alerta.fnErrorGuardar()
                 Console.WriteLine("La operacion no pudo ser completada")
             End If
+
+            ''fnModificarProducto()
         Catch ex As Exception
 
         End Try
@@ -942,7 +944,7 @@ Public Class frmProductoPrecio
                     pPub2 = CDec(txtPrecioPublicoMotriza.Text)
                 End If
 
-                'Dim cProm As Decimal = CDec(lblCosto.Text)
+                Dim cProm As Decimal = CDec(lblCostoProm.Text)
 
                 'Recorremos el grid
                 Dim index
@@ -973,13 +975,13 @@ Public Class frmProductoPrecio
                     'Realizamos las operaciones
                     pNor = pPub - (pPub * (descuento))
                     If pNor > 0 Then
-                        ' utili = (1 - (cProm / pNor))
+                        utili = (1 - (cProm / pNor))
                     End If
 
                     'Realizamos las operaciones
                     pNorSucursal = pPub2 - (pPub2 * (descuentosucursal))
                     If pNorSucursal > 0 Then
-                        ' utiliSucursal = (1 - (cProm / pNorSucursal))
+                        utiliSucursal = (1 - (cProm / pNorSucursal))
                     End If
 
                     'Modificamos el grid
@@ -1117,13 +1119,13 @@ Public Class frmProductoPrecio
 
                 Dim precioBase As Decimal = 0
                 Dim utilidad As Decimal = 0
-                '   Dim costoPromedio As Double = lblCosto.Text
+                Dim costoPromedio As Double = lblCostoProm.Text
 
                 For index = 0 To Me.grdOtrosPrecios.Rows.Count - 1
                     precioBase = CType(Me.grdOtrosPrecios.Rows(index).Cells("txmPrecio").Value, Decimal)
 
                     Try
-                        '                        utilidad = 1 - (costoPromedio / precioBase)
+                        utilidad = 1 - (costoPromedio / precioBase)
                     Catch ex As Exception
                         utilidad = 0
                     End Try
@@ -1650,25 +1652,15 @@ Public Class frmProductoPrecio
         End Try
     End Sub
 
-    'GUARDAR
-    Private Sub frm_grabaRegistro() Handles MyBase.grabaRegistro
-        If IsNumeric(txtCodigo.Text) Then
-            fnModificarProducto()
-        Else
-            fnGuardarProducto()
-        End If
-    End Sub
+    '''GUARDAR
+    ''Private Sub frm_grabaRegistro() Handles MyBase.grabaRegistro
+    ''    If IsNumeric(txtCodigo.Text) Then
+    ''        fnModificarProducto()
+    ''    Else
+    ''        fnGuardarProducto()
+    ''    End If
+    ''End Sub
 
-
-
-    'MODIFICAR
-    Private Sub frm_modificaRegistro2() Handles MyBase.modificaRegistro
-        If IsNumeric(txtCodigo.Text) Then
-            fnModificarProducto()
-        Else
-            fnGuardarProducto()
-        End If
-    End Sub
 
     'Funcion utilizada para modificar un producto
     Private Sub fnModificarProducto()
@@ -1863,16 +1855,16 @@ Public Class frmProductoPrecio
                 ctx.AcceptAllChanges()
                 alertas.fnModificar()
                 'Vaciamos el picture box
-                If pctFoto.Image IsNot Nothing Then
-                    pctFoto.Image = Nothing
-                End If
+                ''If pctFoto.Image IsNot Nothing Then
+                ''    pctFoto.Image = Nothing
+                ''End If
 
-                'Guardamos las imagenes
-                If Me.grdFotos.Rows.Count > 0 Then
-                    For i As Integer = 0 To Me.grdFotos.Rows.Count - 1
-                        fnGuardar_foto(codigo, i)
-                    Next
-                End If
+                ' ''Guardamos las imagenes
+                ''If Me.grdFotos.Rows.Count > 0 Then
+                ''    For i As Integer = 0 To Me.grdFotos.Rows.Count - 1
+                ''        fnGuardar_foto(codigo, i)
+                ''    Next
+                ''End If
 
                 Call llenagrid()
                 Call llenagrid2()

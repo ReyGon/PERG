@@ -44,6 +44,7 @@ Partial Class frmSalidas
         Dim GridViewTextBoxColumn21 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn22 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn23 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn24 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim FilterDescriptor1 As Telerik.WinControls.Data.FilterDescriptor = New Telerik.WinControls.Data.FilterDescriptor()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSalidas))
         Me.pnlBarra = New System.Windows.Forms.Panel()
@@ -174,6 +175,9 @@ Partial Class frmSalidas
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
+        Me.btnVerificarExistencia = New System.Windows.Forms.Button()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.txtAjusteRevisionStock = New System.Windows.Forms.TextBox()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
         Me.pnx8Guias.SuspendLayout()
@@ -659,7 +663,10 @@ Partial Class frmSalidas
         GridViewTextBoxColumn23.HeaderText = "CantidadPromocion"
         GridViewTextBoxColumn23.IsVisible = False
         GridViewTextBoxColumn23.Name = "CantidadPromocion"
-        Me.grdProductos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4, GridViewDecimalColumn1, GridViewTextBoxColumn5, GridViewTextBoxColumn6, GridViewCheckBoxColumn1, GridViewTextBoxColumn7, GridViewTextBoxColumn8, GridViewTextBoxColumn9, GridViewTextBoxColumn10, GridViewTextBoxColumn11, GridViewTextBoxColumn12, GridViewTextBoxColumn13, GridViewTextBoxColumn14, GridViewTextBoxColumn15, GridViewTextBoxColumn16, GridViewTextBoxColumn17, GridViewTextBoxColumn18, GridViewTextBoxColumn19, GridViewTextBoxColumn20, GridViewTextBoxColumn21, GridViewTextBoxColumn22, GridViewTextBoxColumn23})
+        GridViewTextBoxColumn24.HeaderText = "Cant. Ajustada"
+        GridViewTextBoxColumn24.Name = "CantidadAjustada"
+        GridViewTextBoxColumn24.Width = 75
+        Me.grdProductos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4, GridViewDecimalColumn1, GridViewTextBoxColumn5, GridViewTextBoxColumn6, GridViewCheckBoxColumn1, GridViewTextBoxColumn7, GridViewTextBoxColumn8, GridViewTextBoxColumn9, GridViewTextBoxColumn10, GridViewTextBoxColumn11, GridViewTextBoxColumn12, GridViewTextBoxColumn13, GridViewTextBoxColumn14, GridViewTextBoxColumn15, GridViewTextBoxColumn16, GridViewTextBoxColumn17, GridViewTextBoxColumn18, GridViewTextBoxColumn19, GridViewTextBoxColumn20, GridViewTextBoxColumn21, GridViewTextBoxColumn22, GridViewTextBoxColumn23, GridViewTextBoxColumn24})
         Me.grdProductos.MasterTemplate.EnableAlternatingRowColor = True
         Me.grdProductos.MasterTemplate.EnableGrouping = False
         Me.grdProductos.MasterTemplate.EnableSorting = False
@@ -1923,11 +1930,55 @@ Partial Class frmSalidas
         Me.Label28.TabIndex = 109
         Me.Label28.Text = "Pendiente Surtir :"
         '
+        'btnVerificarExistencia
+        '
+        Me.btnVerificarExistencia.BackColor = System.Drawing.Color.SteelBlue
+        Me.btnVerificarExistencia.FlatAppearance.BorderSize = 0
+        Me.btnVerificarExistencia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnVerificarExistencia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnVerificarExistencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnVerificarExistencia.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.btnVerificarExistencia.ForeColor = System.Drawing.Color.Transparent
+        Me.btnVerificarExistencia.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnVerificarExistencia.Location = New System.Drawing.Point(781, 317)
+        Me.btnVerificarExistencia.Name = "btnVerificarExistencia"
+        Me.btnVerificarExistencia.Size = New System.Drawing.Size(149, 20)
+        Me.btnVerificarExistencia.TabIndex = 178
+        Me.btnVerificarExistencia.Text = "Verificar Existencia"
+        Me.btnVerificarExistencia.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnVerificarExistencia.UseVisualStyleBackColor = False
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.BackColor = System.Drawing.Color.Transparent
+        Me.Label34.Location = New System.Drawing.Point(951, 321)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(91, 13)
+        Me.Label34.TabIndex = 86
+        Me.Label34.Text = "Ajuste Revision :"
+        '
+        'txtAjusteRevisionStock
+        '
+        Me.txtAjusteRevisionStock.BackColor = System.Drawing.Color.White
+        Me.txtAjusteRevisionStock.Enabled = False
+        Me.txtAjusteRevisionStock.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.txtAjusteRevisionStock.ForeColor = System.Drawing.Color.Blue
+        Me.txtAjusteRevisionStock.Location = New System.Drawing.Point(1047, 314)
+        Me.txtAjusteRevisionStock.Name = "txtAjusteRevisionStock"
+        Me.txtAjusteRevisionStock.Size = New System.Drawing.Size(172, 25)
+        Me.txtAjusteRevisionStock.TabIndex = 86
+        Me.txtAjusteRevisionStock.Text = "0"
+        Me.txtAjusteRevisionStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'frmSalidas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1276, 669)
+        Me.Controls.Add(Me.txtAjusteRevisionStock)
+        Me.Controls.Add(Me.Label34)
+        Me.Controls.Add(Me.btnVerificarExistencia)
         Me.Controls.Add(Me.rgbIndicador)
         Me.Controls.Add(Me.rgbSubTotales)
         Me.Controls.Add(Me.rgbTipoVenta)
@@ -1970,6 +2021,9 @@ Partial Class frmSalidas
         Me.Controls.SetChildIndex(Me.rgbTipoVenta, 0)
         Me.Controls.SetChildIndex(Me.rgbSubTotales, 0)
         Me.Controls.SetChildIndex(Me.rgbIndicador, 0)
+        Me.Controls.SetChildIndex(Me.btnVerificarExistencia, 0)
+        Me.Controls.SetChildIndex(Me.Label34, 0)
+        Me.Controls.SetChildIndex(Me.txtAjusteRevisionStock, 0)
         CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlBarra.ResumeLayout(False)
         Me.pnx8Guias.ResumeLayout(False)
@@ -2160,5 +2214,8 @@ Partial Class frmSalidas
     Friend WithEvents lblConteoSugeridos As System.Windows.Forms.Label
     Friend WithEvents Label25 As System.Windows.Forms.Label
     Friend WithEvents lblDescPromociones As System.Windows.Forms.Label
+    Friend WithEvents btnVerificarExistencia As System.Windows.Forms.Button
+    Friend WithEvents Label34 As System.Windows.Forms.Label
+    Friend WithEvents txtAjusteRevisionStock As System.Windows.Forms.TextBox
 
 End Class

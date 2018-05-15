@@ -420,7 +420,8 @@ Public Class frmEntrada
         Dim filas() As String
 
         'id, codigo,nombre,precio,cantidad
-        filas = {"0", mdlPublicVars.superSearchId, mdlPublicVars.superSearchCodigo, mdlPublicVars.superSearchNombre, superSearchCantidad, mdlPublicVars.superSearchIdUnidadMedida, mdlPublicVars.superSearchUnidadMedida, mdlPublicVars.superSearchUnidadMedidaValor, Format(mdlPublicVars.superSearchPrecio, "###,###." & mdlPublicVars.Entrada_numeroDecimales), "0", "0", "0", "0", "0"}
+        ''"###,###." & mdlPublicVars.Entrada_numeroDecimales
+        filas = {"0", mdlPublicVars.superSearchId, mdlPublicVars.superSearchCodigo, mdlPublicVars.superSearchNombre, superSearchCantidad, mdlPublicVars.superSearchIdUnidadMedida, mdlPublicVars.superSearchUnidadMedida, mdlPublicVars.superSearchUnidadMedidaValor, Format(mdlPublicVars.superSearchPrecio, formatoNumero), "0", "0", "0", "0", "0"}
         grdProductos.Rows.Add(filas)
         grdProductos.Columns(3).IsCurrent = True
         grdProductos.Rows(grdProductos.Rows.Count - 1).IsCurrent = True

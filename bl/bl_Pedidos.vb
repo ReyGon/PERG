@@ -125,7 +125,10 @@ Public Class bl_Pedidos
                     If ArtEmpresa.saldo < Pedido Then
                         saldo = Pedido - ArtEmpresa.saldo
                         'Guardamos el error con los datos del producto en una variable para q se agruen todos lo productos que tengan error.
-                        errContenido = errContenido & "El articulo: " & Trim(NombreArt) & ", Pedido " & Trim(Pedido).ToString & " en existencia " & ArtEmpresa.saldo.ToString & ", Faltantes " & saldo & vbCrLf
+                        errContenido = errContenido & "El articulo: " & Trim(NombreArt) & vbCrLf _
+                            & "Pedido: " & Trim(Pedido).ToString & vbCrLf _
+                            & "En existencia: " & CStr(CInt(ArtEmpresa.saldo)) & vbCrLf _
+                            & "Faltantes: " & saldo & vbCrLf
                         success = False
                     End If
                 End If
@@ -134,7 +137,6 @@ Public Class bl_Pedidos
             'Si existe un error mandamos el mensaje e interrumpimos la aplicación
             If success = False Then
                 RadMessageBox.Show(errContenido, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
-                faltantes = True
                 Exit Try
             End If
 
