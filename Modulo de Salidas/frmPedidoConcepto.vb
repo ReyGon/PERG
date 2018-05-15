@@ -92,7 +92,7 @@ Public Class frmPedidoConcepto
                                            Select x).FirstOrDefault
 
 
-                Dim totalVentaInicial As Double = pedido.total - totalAjuste - totalSurtir
+                Dim totalVentaInicial As Double = pedido.total - totalAjuste - totalSurtir + pedido.descuento
                 lblVentaInicial.Text = Format(totalVentaInicial, mdlPublicVars.formatoMoneda)
 
 
@@ -116,6 +116,7 @@ Public Class frmPedidoConcepto
                 lblDireccionEnvio.Text = pedido.direccionEnvio
                 lblDireccionFacturacion.Text = pedido.direccionFacturacion
                 lblObservacion.Text = pedido.observacion
+                lblDescuento.Text = pedido.descuento
 
                 If pedido.efectividaVenta Is Nothing Then
                     lblEfectividadVenta.Text = ""

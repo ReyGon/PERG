@@ -915,7 +915,7 @@ Public Class frmBuscarArticulo
                             mdlPublicVars.superSearchPrecio = costo
                             frmImportaciones.fnAgregar_Articulos()
                         ElseIf bitProveedor = True Then
-                            mdlPublicVars.superSearchPrecio = costo
+                            mdlPublicVars.superSearchPrecio = Format(costo, formatoNumero)
                             frmEntrada.fnAgregar_Articulos()
                         ElseIf bitMovimientoInventario = True Then
                             mdlPublicVars.superSearchPrecio = costo

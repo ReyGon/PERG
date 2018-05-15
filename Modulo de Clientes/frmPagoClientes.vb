@@ -76,11 +76,13 @@ Public Class frmPagoClientes
             mdlPublicVars.fnGridTelerik_formatoMoneda(grdProductos, "txmMonto")
             mdlPublicVars.comboActivarFiltro(cmbClientes)
 
-
-
             Me.rbtFacturaUnica.Checked = True
 
             listaSalidas = New List(Of Tuple(Of Integer, String, Decimal))
+
+            If codigoCP > 0 Then
+                Me.cmbClientes.SelectedValue = codigoCP
+            End If
 
         Catch ex As Exception
 

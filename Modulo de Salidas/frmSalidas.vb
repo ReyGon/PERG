@@ -2985,7 +2985,7 @@ Public Class frmSalidas
                                             conexion.SaveChanges()
                                         Else
                                             'alerta.contenido = "Error !!!, Existencia insuficiente " + articulo.nombre1
-                                            RadMessageBox.Show("Existencia insuficiente de " & articulo.nombre1 & " (" & articulo.codigo1 & ")  por :" & (cantidad - inve.saldo), mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+                                            RadMessageBox.Show("Existencia insuficiente de " & articulo.nombre1.Trim() & " (" & articulo.codigo1.Trim() & ")  por: " & CInt((cantidad - inve.saldo)), mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
                                             existenciaIns = True
                                             success = False
                                             Exit Try
@@ -3753,6 +3753,7 @@ Public Class frmSalidas
 
                             Dim index
                             Dim cantidad As Double = 0
+                            Dim cantidaddisp As Double = 0
                             Dim precio As Decimal = 0
                             Dim total As Decimal = 0
                             Dim idarticulo As Integer = 0
@@ -3928,12 +3929,13 @@ Public Class frmSalidas
                                             'asignar cantidad al detalle.
                                             detalle.cantidad = inve.saldo
                                             'Cantidad a descontar de surtir
-                                            cantidad = inve.saldo
+                                            ''cantidad = inve.saldo
                                             'cantidad a surtir.
                                             cantidadSurtir = cantidad - inve.saldo
                                             contadorSurtir = contadorSurtir + 1
 
                                             'descontar el saldo y enviar a pendientes por surtir.
+                                            cantidaddisp = inve.saldo
                                             inve.salida = inve.salida + (inve.saldo)
                                             inve.saldo = 0
 
@@ -3945,33 +3947,39 @@ Public Class frmSalidas
                                             If vsurtir2 > 0 Then
 
                                             Else
-                                                If RadMessageBox.Show("Existencia insuficiente para el articulo: " & articulo.nombre1 & " (" & articulo.codigo1 & ") " & vbCrLf _
-                                                                  & "Cantidad Requerida: " & cantidad & vbCrLf _
-                                                                  & "Disponible:" & inve.saldo & vbCrLf _
-                                                                  & "Desea Surtir de " & articulo.nombre1 & " (" & articulo.codigo1 & ") la cantidad de " & cantidadSurtir, mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+                                                ''If RadMessageBox.Show("Existencia insuficiente para el articulo: " & articulo.nombre1.Trim() & " (" & articulo.codigo1.Trim() & ") " & vbCrLf _
+                                                ''                  & "Cantidad Requerida: " & cantidad & vbCrLf _
+                                                ''                  & "Disponible:" & cantidaddisp & vbCrLf _
+                                                ''                  & "Desea Surtir de " & articulo.nombre1.Trim() & " (" & articulo.codigo1.Trim() & ") la cantidad de " & cantidadSurtir, mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
 
-                                                    Dim pendiente As New tblSurtir
-                                                    pendiente.salidaDetalle = detalle.idSalidaDetalle
-                                                    pendiente.articulo = detalle.idArticulo
-                                                    pendiente.cantidad = cantidadSurtir
-                                                    pendiente.saldo = cantidadSurtir
-                                                    pendiente.fechaTransaccion = fecha
-                                                    pendiente.anulado = 0
-                                                    pendiente.usuario = mdlPublicVars.idUsuario
-                                                    pendiente.vendedor = mdlPublicVars.idVendedor
-                                                    pendiente.Eliminar = False
+                                                ''    Dim pendiente As New tblSurtir
+                                                ''    pendiente.salidaDetalle = detalle.idSalidaDetalle
+                                                ''    pendiente.articulo = detalle.idArticulo
+                                                ''    pendiente.cantidad = cantidadSurtir
+                                                ''    pendiente.saldo = cantidadSurtir
+                                                ''    pendiente.fechaTransaccion = fecha
+                                                ''    pendiente.anulado = 0
+                                                ''    pendiente.usuario = mdlPublicVars.idUsuario
+                                                ''    pendiente.vendedor = mdlPublicVars.idVendedor
+                                                ''    pendiente.Eliminar = False
 
-                                                    If contado = True Then
-                                                        pendiente.cliente = salida.idCliente
-                                                    Else
-                                                        pendiente.cliente = salidaCredito.idCliente
-                                                    End If
+                                                ''    If contado = True Then
+                                                ''        pendiente.cliente = salida.idCliente
+                                                ''    Else
+                                                ''        pendiente.cliente = salidaCredito.idCliente
+                                                ''    End If
 
-                                                    'guardar el pendiente por surtir.
-                                                    conexion.AddTotblSurtirs(pendiente)
-                                                    conexion.SaveChanges()
+                                                ''    'guardar el pendiente por surtir.
+                                                ''    conexion.AddTotblSurtirs(pendiente)
+                                                ''    conexion.SaveChanges()
 
-                                                End If
+                                                ''End If
+
+                                                'alerta.contenido = "Error !!!, Existencia insuficiente " + articulo.nombre1
+                                                RadMessageBox.Show("Existencia insuficiente de " & articulo.nombre1.Trim() & " (" & articulo.codigo1.Trim() & ")  por: " & CInt((cantidad - inve.saldo)), mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+                                                ''existenciaIns = True
+                                                success = False
+                                                Exit Try
                                             End If
                                             ''Fin de la validacion de que el pendiente por surtir no exista
                                         End If
@@ -4149,52 +4157,52 @@ Public Class frmSalidas
                 End Using
             End If
 
-            ''-----********------------IMPUESTOS-*-*-*-*--*-*-------------------**************
-            If Activar_Impuestos = True Then
-                Dim totalcon As Decimal
-                totalcon = CDec(Replace(lblSaldoFinal.Text, "Q", "").Trim)
+            '' ''-----********------------IMPUESTOS-*-*-*-*--*-*-------------------**************
+            ''If Activar_Impuestos = True Then
+            ''    Dim totalcon As Decimal
+            ''    totalcon = CDec(Replace(lblSaldoFinal.Text, "Q", "").Trim)
 
-                Dim impuesto = (From x In conexion.tblImpuestoPagar_TipoMovimiento, y In conexion.tblImpuestoPagar_Impuesto, z In conexion.tblImpuestoes Where y.idImpuestoPagar = x.idImpuestoPagar _
-                                And z.idImpuesto = y.idImpuesto And x.idTipoMovimiento = Salida_TipoMovimientoVenta Select z.idImpuesto, z.nombre, z.formula)
+            ''    Dim impuesto = (From x In conexion.tblImpuestoPagar_TipoMovimiento, y In conexion.tblImpuestoPagar_Impuesto, z In conexion.tblImpuestoes Where y.idImpuestoPagar = x.idImpuestoPagar _
+            ''                    And z.idImpuesto = y.idImpuesto And x.idTipoMovimiento = Salida_TipoMovimientoVenta Select z.idImpuesto, z.nombre, z.formula)
 
-                Dim impuestos As DataTable = mdlPublicVars.EntitiToDataTable(impuesto)
+            ''    Dim impuestos As DataTable = mdlPublicVars.EntitiToDataTable(impuesto)
 
-                Dim idimpues As Integer = 0
-                Dim nombreimpuesto As String = ""
-                Dim formu As String = ""
-                Dim expresionpostfija As String = ""
-                Dim validador As New clsValidar
-                Dim convertidor As New clsConvertir
-                Dim resuelve As New clsResolver
-                Dim impues As Decimal = 0
-                Dim totalString As String = ""
+            ''    Dim idimpues As Integer = 0
+            ''    Dim nombreimpuesto As String = ""
+            ''    Dim formu As String = ""
+            ''    Dim expresionpostfija As String = ""
+            ''    Dim validador As New clsValidar
+            ''    Dim convertidor As New clsConvertir
+            ''    Dim resuelve As New clsResolver
+            ''    Dim impues As Decimal = 0
+            ''    Dim totalString As String = ""
 
-                For Each fila As DataRow In impuestos.Rows
+            ''    For Each fila As DataRow In impuestos.Rows
 
-                    totalString = CStr(totalcon)
-                    idimpues = fila.Item("idImpuesto")
-                    nombreimpuesto = fila.Item("nombre")
-                    formu = fila.Item("formula")
-                    formu = formu.Replace("dato", CStr(totalString))
+            ''        totalString = CStr(totalcon)
+            ''        idimpues = fila.Item("idImpuesto")
+            ''        nombreimpuesto = fila.Item("nombre")
+            ''        formu = fila.Item("formula")
+            ''        formu = formu.Replace("dato", CStr(totalString))
 
-                    If validador.validar(formu) Then
-                        expresionpostfija = convertidor.fnConvierte(formu)
-                        impues = CDec(resuelve.fnResolver(expresionpostfija))
+            ''        If validador.validar(formu) Then
+            ''            expresionpostfija = convertidor.fnConvierte(formu)
+            ''            impues = CDec(resuelve.fnResolver(expresionpostfija))
 
-                        Dim impuestosalida As New tblImpuesto_Salida
-                        impuestosalida.idImpuesto = idimpues
-                        impuestosalida.idSalida = idsalidaimp
-                        impuestosalida.descripcion = nombreimpuesto
-                        impuestosalida.valor = impues
+            ''            Dim impuestosalida As New tblImpuesto_Salida
+            ''            impuestosalida.idImpuesto = idimpues
+            ''            impuestosalida.idSalida = idsalidaimp
+            ''            impuestosalida.descripcion = nombreimpuesto
+            ''            impuestosalida.valor = impues
 
-                        conexion.AddTotblImpuesto_Salida(impuestosalida)
-                        conexion.SaveChanges()
+            ''            conexion.AddTotblImpuesto_Salida(impuestosalida)
+            ''            conexion.SaveChanges()
 
-                    End If
+            ''        End If
 
-                Next
-            End If
-            ''-------------************FIN DE IMPUESTOS************----------------------------
+            ''    Next
+            ''End If
+            '' ''-------------************FIN DE IMPUESTOS************----------------------------
 
 
             If success = True Then
@@ -4240,7 +4248,7 @@ Public Class frmSalidas
             If autorizaCredito = True Then
                 alerta.fnErrorAutorizacionCredito()
             Else
-                alerta.contenido = errContenido
+                alerta.contenido = "No se puede Guardar por Diferencias en Stock"
                 alerta.fnErrorContenido()
             End If
         End If
@@ -6353,6 +6361,92 @@ Public Class frmSalidas
             lblSaldo.Text = 0
             lblUltPrecio.Text = 0
             lblUltTipoPrecio.Text = ""
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub btnVerificarExistencia_Click(sender As Object, e As EventArgs) Handles btnVerificarExistencia.Click
+        Try
+            fnVerificarExistencia()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub fnVerificarExistencia()
+        Try
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim id As Integer = 0
+                Dim cantidad As Double = 0.0
+                Dim ajuste As Boolean = False
+
+                Dim a As tblInventario
+                Dim ar As tblArticulo
+
+                For i As Integer = 0 To Me.grdProductos.Rows.Count - 1
+                    id = Me.grdProductos.Rows(i).Cells("Id").Value
+                    cantidad = Me.grdProductos.Rows(i).Cells("txmCantidad").Value
+
+                    a = (From x In conexion.tblInventarios Where x.idArticulo = id And x.idTipoInventario = mdlPublicVars.General_idTipoInventario Select x).FirstOrDefault
+
+                    If a Is Nothing Then
+
+                    Else
+
+                        If cantidad > a.saldo Then
+
+                            ar = (From x In conexion.tblArticuloes Where x.idArticulo = id Select x).FirstOrDefault
+
+                            RadMessageBox.Show("Existencia insuficiente para el articulo: " & ar.nombre1.Trim() & " (" & ar.codigo1.Trim() & ") " & vbCrLf _
+                            & "Cantidad Requerida: " & cantidad & vbCrLf _
+                            & "Disponible:" & a.saldo & vbCrLf _
+                            & "Desea Surtir de " & ar.nombre1.Trim() & " (" & ar.codigo1.Trim() & ") la cantidad de " & cantidad - a.saldo, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+
+                            Me.grdProductos.Rows(i).Cells("CantidadAjustada").Value += cantidad - a.saldo
+                            Me.grdProductos.Rows(i).Cells("txmCantidad").Value = a.saldo
+
+                            ajuste = True
+
+                        End If
+
+                    End If
+                Next
+
+                Dim TotalAjuste As Double = 0.0
+                Dim Ajustes As Double = 0.0
+
+                Try
+                    Ajustes = Replace(Me.txtAjusteRevisionStock.Text, "Q", "")
+                Catch ex As Exception
+                    Ajustes = Me.txtAjusteRevisionStock.Text
+                End Try
+
+                If ajuste = True Then
+                    ''If RadMessageBox.Show("Existen productos ajustados por Stock, ¿Desea conocer el Total de lo Ajustado?", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation) Then
+                    For x As Integer = 0 To Me.grdProductos.Rows.Count - 1
+                        Try
+                            If Me.grdProductos.Rows(x).Cells("CantidadAjustada").Value > 0 Then
+                                TotalAjuste += Me.grdProductos.Rows(x).Cells("txbPrecio").Value * Me.grdProductos.Rows(x).Cells("CantidadAjustada").Value
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+                    Next
+
+                    ''RadMessageBox.Show("El Monto Total Ajustado Es: " + CStr(Format(TotalAjuste, formatoMoneda)), nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                    Me.txtAjusteRevisionStock.Text = Format(Ajustes + TotalAjuste, formatoMoneda)
+                    ''End If
+                Else
+                RadMessageBox.Show("Stock Disponible", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                End If
+                fnActualizar_Total()
+                conn.Close()
+            End Using
         Catch ex As Exception
 
         End Try
