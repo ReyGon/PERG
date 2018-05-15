@@ -819,6 +819,7 @@ Partial Class frmReportesDinamicos
         '
         '
         Me.RootElement.ApplyShapeToControl = True
+        Me.Text = "-"
         Me.Controls.SetChildIndex(Me.pnlBarra, 0)
         Me.Controls.SetChildIndex(Me.btnConsulta, 0)
         Me.Controls.SetChildIndex(Me.btnCopiarFilas, 0)

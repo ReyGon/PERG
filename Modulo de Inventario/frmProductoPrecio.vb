@@ -8,7 +8,6 @@ Imports System.Data.SqlClient
 Imports System.Data.OleDb
 Imports System.Data.Objects.DataClasses
 Imports System.Data.EntityClient
-
 Public Class frmProductoPrecio
     Public grdBase As RadGridView = Nothing
     Dim alerta As New bl_Alertas
@@ -181,8 +180,8 @@ Public Class frmProductoPrecio
     'Aplica configuraciones de formato a los grid, textbox, label...
     Private Sub fnConfiguracion()
         Try
-            'Dim costo As Decimal = lblCosto.Text
-            'lblCosto.Text = Format(costo, mdlPublicVars.formatoMoneda)
+            Dim costo As Decimal = lblCosto.Text
+            lblCosto.Text = Format(costo, mdlPublicVars.formatoMoneda)
 
             'Configuramos el grid de sustitutos
             If Me.grdSustitutos.Rows.Count > 0 Then

@@ -19,15 +19,16 @@ Partial Class frmPedidosBodega
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridViewTextBoxColumn5 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn3 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewTextBoxColumn6 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn1 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewCheckBoxColumn1 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn2 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn3 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewCheckBoxColumn2 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn4 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn5 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn6 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn3 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewTextBoxColumn7 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPedidosBodega))
         Me.pnlBarra = New System.Windows.Forms.Panel()
         Me.pnx1Salir = New System.Windows.Forms.Panel()
@@ -60,12 +61,12 @@ Partial Class frmPedidosBodega
         Me.Label13 = New System.Windows.Forms.Label()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.rgbDetalle = New Telerik.WinControls.UI.RadGroupBox()
+        Me.grdEmpacado = New Telerik.WinControls.UI.RadGridView()
+        Me.grdSacado = New Telerik.WinControls.UI.RadGridView()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.grdRevisado = New Telerik.WinControls.UI.RadGridView()
-        Me.grdEmpacado = New Telerik.WinControls.UI.RadGridView()
-        Me.grdSacado = New Telerik.WinControls.UI.RadGridView()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
         Me.pnx1Salir.SuspendLayout()
@@ -78,17 +79,18 @@ Partial Class frmPedidosBodega
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rgbDetalle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.rgbDetalle.SuspendLayout()
-        CType(Me.grdRevisado, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.grdRevisado.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdEmpacado, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdEmpacado.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdSacado, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdSacado.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdRevisado, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdRevisado.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lbTituloFrm
         '
+        Me.lbTituloFrm.Location = New System.Drawing.Point(54, 4)
         Me.lbTituloFrm.Size = New System.Drawing.Size(226, 32)
         Me.lbTituloFrm.Text = "FrmBaseEspeciales"
         '
@@ -236,7 +238,7 @@ Partial Class frmPedidosBodega
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.ForeColor = System.Drawing.Color.DimGray
-        Me.Label15.Location = New System.Drawing.Point(587, 106)
+        Me.Label15.Location = New System.Drawing.Point(597, 101)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(98, 25)
         Me.Label15.TabIndex = 211
@@ -245,9 +247,9 @@ Partial Class frmPedidosBodega
         'txtErrores
         '
         Me.txtErrores.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtErrores.Location = New System.Drawing.Point(712, 97)
+        Me.txtErrores.Location = New System.Drawing.Point(712, 92)
         Me.txtErrores.Name = "txtErrores"
-        Me.txtErrores.Size = New System.Drawing.Size(146, 39)
+        Me.txtErrores.Size = New System.Drawing.Size(162, 39)
         Me.txtErrores.TabIndex = 210
         Me.txtErrores.Text = "0"
         Me.txtErrores.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -271,7 +273,6 @@ Partial Class frmPedidosBodega
         Me.lblObservacion.Name = "lblObservacion"
         Me.lblObservacion.Size = New System.Drawing.Size(301, 40)
         Me.lblObservacion.TabIndex = 208
-        Me.lblObservacion.Text = "Nombre"
         '
         'Label6
         '
@@ -479,67 +480,6 @@ Partial Class frmPedidosBodega
         Me.rgbDetalle.Size = New System.Drawing.Size(913, 347)
         Me.rgbDetalle.TabIndex = 206
         '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(135, 9)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(63, 21)
-        Me.Label9.TabIndex = 213
-        Me.Label9.Text = "Sacado"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(708, 9)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(86, 21)
-        Me.Label3.TabIndex = 212
-        Me.Label3.Text = "Empacado"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(429, 9)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(76, 21)
-        Me.Label2.TabIndex = 210
-        Me.Label2.Text = "Revisado"
-        '
-        'grdRevisado
-        '
-        Me.grdRevisado.Location = New System.Drawing.Point(327, 34)
-        '
-        'grdRevisado
-        '
-        Me.grdRevisado.MasterTemplate.AllowAddNewRow = False
-        Me.grdRevisado.MasterTemplate.AutoGenerateColumns = False
-        GridViewTextBoxColumn5.HeaderText = "Codigo"
-        GridViewTextBoxColumn5.Name = "Codigo"
-        GridViewCheckBoxColumn3.HeaderText = "Agregar"
-        GridViewCheckBoxColumn3.Name = "chkAgregar"
-        GridViewTextBoxColumn6.HeaderText = "Nombre"
-        GridViewTextBoxColumn6.Name = "Nombre"
-        Me.grdRevisado.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn5, GridViewCheckBoxColumn3, GridViewTextBoxColumn6})
-        Me.grdRevisado.MasterTemplate.EnableGrouping = False
-        Me.grdRevisado.Name = "grdRevisado"
-        Me.grdRevisado.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdRevisado.ReadOnly = True
-        '
-        '
-        '
-        Me.grdRevisado.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdRevisado.Size = New System.Drawing.Size(278, 313)
-        Me.grdRevisado.TabIndex = 211
-        Me.grdRevisado.Text = "RadGridView2"
-        Me.grdRevisado.ThemeName = "Office2007Black"
-        '
         'grdEmpacado
         '
         Me.grdEmpacado.Location = New System.Drawing.Point(622, 34)
@@ -583,11 +523,12 @@ Partial Class frmPedidosBodega
         GridViewCheckBoxColumn2.Name = "chkAgregar"
         GridViewTextBoxColumn4.HeaderText = "Nombre"
         GridViewTextBoxColumn4.Name = "Nombre"
-        Me.grdSacado.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn3, GridViewCheckBoxColumn2, GridViewTextBoxColumn4})
+        GridViewTextBoxColumn5.HeaderText = "Errores"
+        GridViewTextBoxColumn5.Name = "txmErrores"
+        Me.grdSacado.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn3, GridViewCheckBoxColumn2, GridViewTextBoxColumn4, GridViewTextBoxColumn5})
         Me.grdSacado.MasterTemplate.EnableGrouping = False
         Me.grdSacado.Name = "grdSacado"
         Me.grdSacado.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdSacado.ReadOnly = True
         '
         '
         '
@@ -596,6 +537,67 @@ Partial Class frmPedidosBodega
         Me.grdSacado.TabIndex = 209
         Me.grdSacado.Text = "RadGridView2"
         Me.grdSacado.ThemeName = "Office2007Black"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.Black
+        Me.Label9.Location = New System.Drawing.Point(135, 9)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(63, 21)
+        Me.Label9.TabIndex = 213
+        Me.Label9.Text = "Sacado"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(708, 9)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(86, 21)
+        Me.Label3.TabIndex = 212
+        Me.Label3.Text = "Empacado"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Black
+        Me.Label2.Location = New System.Drawing.Point(429, 9)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(76, 21)
+        Me.Label2.TabIndex = 210
+        Me.Label2.Text = "Revisado"
+        '
+        'grdRevisado
+        '
+        Me.grdRevisado.Location = New System.Drawing.Point(327, 34)
+        '
+        'grdRevisado
+        '
+        Me.grdRevisado.MasterTemplate.AllowAddNewRow = False
+        Me.grdRevisado.MasterTemplate.AutoGenerateColumns = False
+        GridViewTextBoxColumn6.HeaderText = "Codigo"
+        GridViewTextBoxColumn6.Name = "Codigo"
+        GridViewCheckBoxColumn3.HeaderText = "Agregar"
+        GridViewCheckBoxColumn3.Name = "chkAgregar"
+        GridViewTextBoxColumn7.HeaderText = "Nombre"
+        GridViewTextBoxColumn7.Name = "Nombre"
+        Me.grdRevisado.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn6, GridViewCheckBoxColumn3, GridViewTextBoxColumn7})
+        Me.grdRevisado.MasterTemplate.EnableGrouping = False
+        Me.grdRevisado.Name = "grdRevisado"
+        Me.grdRevisado.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdRevisado.ReadOnly = True
+        '
+        '
+        '
+        Me.grdRevisado.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdRevisado.Size = New System.Drawing.Size(278, 313)
+        Me.grdRevisado.TabIndex = 211
+        Me.grdRevisado.Text = "RadGridView2"
+        Me.grdRevisado.ThemeName = "Office2007Black"
         '
         'frmPedidosBodega
         '
@@ -637,12 +639,12 @@ Partial Class frmPedidosBodega
         CType(Me.rgbDetalle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.rgbDetalle.ResumeLayout(False)
         Me.rgbDetalle.PerformLayout()
-        CType(Me.grdRevisado.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.grdRevisado, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdEmpacado.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdEmpacado, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdSacado.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdSacado, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdRevisado.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdRevisado, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

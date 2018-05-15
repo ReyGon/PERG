@@ -34,7 +34,7 @@ Public Class frmPedidosBodega
         mdlPublicVars.fnGrid_iconos(Me.grdSacado)
         mdlPublicVars.fnGrid_iconos(Me.grdRevisado)
 
-        fnLlenarCombos()
+        fnLlenarGrid()
         fnLlenar()
     End Sub
 
@@ -55,6 +55,7 @@ Public Class frmPedidosBodega
             Dim revisado As Integer
             Dim empacado As Integer
 
+
             If bodega.sacado Is Nothing Then
                 sacado = ""
             Else
@@ -73,6 +74,7 @@ Public Class frmPedidosBodega
                 empacado = CType(bodega.empacado, Integer)
             End If
 
+
             ''cmbEmpacado.SelectedValue = empacado
             ''cmbRevisado.SelectedValue = revisado
             ''cmbSacado.SelectedValue = sacado
@@ -84,7 +86,7 @@ Public Class frmPedidosBodega
 
     End Sub
 
-    Private Sub fnLlenarCombos()
+    Private Sub fnLlenarGrid()
         Try
             Dim conexion As dsi_pos_demoEntities
             Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
@@ -94,14 +96,16 @@ Public Class frmPedidosBodega
                 Dim empleados As List(Of tblEmpleado) = (From x In conexion.tblEmpleadoes Where x.idpuesto = 1 Order By x.nombre Ascending Select x).ToList
 
                 Dim fila As Object()
+                Dim fila2 As Object()
 
                 For Each index As tblEmpleado In empleados
 
                     fila = {index.idEmpleado, 0, index.nombre}
+                    fila2 = {index.idEmpleado, 0, index.nombre, 0}
 
                     Me.grdEmpacado.Rows.Add(fila)
                     Me.grdRevisado.Rows.Add(fila)
-                    Me.grdSacado.Rows.Add(fila)
+                    Me.grdSacado.Rows.Add(fila2)
 
                 Next
 
@@ -241,6 +245,8 @@ Public Class frmPedidosBodega
             Me.grdRevisado.Columns("Nombre").ReadOnly = True
             Me.grdSacado.Columns("Nombre").ReadOnly = True
 
+            Me.grdSacado.Columns("txmErrores").ReadOnly = False
+
         Catch ex As Exception
 
         End Try
@@ -271,12 +277,18 @@ Public Class frmPedidosBodega
                 End If
                 conn.Close()
             End Using
+
+
         Catch ex As Exception
 
         End Try
     End Function
 
     Private Sub pbModificar_Click() Handles Me.panel0
+        If fnErrores() = True Then
+            alerta.fnError()
+            Exit Sub
+        End If
 
         If fnValidarGuardado() = True Then
             alerta.contenido = "No se Puede Modificar"
@@ -338,7 +350,7 @@ Public Class frmPedidosBodega
                         ctx.AddTotblsalidabodega_detalle(detalle)
                         ctx.SaveChanges()
 
-                        Dim bode As tblsalidabodega = (From x In ctx.tblsalidaBodegas Where x.idsalidaBodega = idsalidabodega Select x).FirstOrDefault
+                        Dim bode As tblsalidaBodega = (From x In ctx.tblsalidaBodegas Where x.idsalidaBodega = idsalidabodega Select x).FirstOrDefault
 
                         bode.fechaEmpacado = fecha
 
@@ -358,7 +370,6 @@ Public Class frmPedidosBodega
                         detalle.idempleado = codigoempleado
                         detalle.empacado = False
                         detalle.sacado = False
-                        detalle.revisado = True
 
                         ctx.AddTotblsalidabodega_detalle(detalle)
                         ctx.SaveChanges()
@@ -384,6 +395,7 @@ Public Class frmPedidosBodega
                         detalle.empacado = False
                         detalle.sacado = True
                         detalle.revisado = False
+
 
                         ctx.AddTotblsalidabodega_detalle(detalle)
                         ctx.SaveChanges()
@@ -468,6 +480,12 @@ Public Class frmPedidosBodega
                     Me.grdSacado.Rows(fila).Cells("chkAgregar").Value = False
                 End If
 
+                If valor = 2 Then
+
+                    RadMessageBox.Show("No se permite seleccionar mas de 2 personas!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+
+                End If
+
             End If
         Catch ex As Exception
 
@@ -496,7 +514,62 @@ Public Class frmPedidosBodega
         End Try
     End Sub
 
-    Private Sub Label11_Click(sender As Object, e As EventArgs) Handles Label11.Click
+    'Funcion utilizada para verificar errores
+    Private Function fnErrores() As Boolean
 
-    End Sub
+        If Me.txtErrores.Text.Length = 0 Or txtErrores.Text.Trim.Equals("") Then
+            RadMessageBox.Show("El campo de errores no debe estar vacio!", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+            Return True
+        End If
+
+        Dim contador As Integer = 0
+
+        ''Sacado
+        For i As Integer = 0 To Me.grdSacado.Rows.Count - 1
+            If Me.grdSacado.Rows(i).Cells("chkAgregar").Value = True Then
+                contador += 1
+            End If
+        Next
+
+        If contador = 0 Then
+            RadMessageBox.Show("No ha seleccionado ninguna persona para Sacado!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+            contador = 0
+            Return True
+        Else
+            contador = 0
+        End If
+
+        ''Revisado
+        For i As Integer = 0 To Me.grdRevisado.Rows.Count - 1
+            If Me.grdRevisado.Rows(i).Cells("chkAgregar").Value = True Then
+                contador += 1
+            End If
+        Next
+
+        If contador = 0 Then
+            RadMessageBox.Show("No ha seleccionado ninguna persona para Revisado!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+            contador = 0
+            Return True
+        Else
+            contador = 0
+        End If
+
+        ''Empacado
+        For i As Integer = 0 To Me.grdEmpacado.Rows.Count - 1
+            If Me.grdEmpacado.Rows(i).Cells("chkAgregar").Value = True Then
+                contador += 1
+            End If
+        Next
+
+        If contador = 0 Then
+            RadMessageBox.Show("No ha seleccionado ninguna persona para Empacado!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+            contador = 0
+            Return True
+        Else
+            contador = 0
+        End If
+
+        Return False
+
+    End Function
 End Class
