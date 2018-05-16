@@ -78,6 +78,7 @@ Public Class frmProductoPrecio
         mdlPublicVars.fnSeleccionarDefault(grdDatos, mdlPublicVars.superSearchId, True)
         mdlPublicVars.fnSeleccionarDefault(grdDatos, codigoDefault, seleccionDefault)
 
+        Call frm_txtcodigo()
 
         pctFoto.SizeMode = PictureBoxSizeMode.StretchImage
         pctFoto.BorderStyle = BorderStyle.Fixed3D
@@ -113,9 +114,6 @@ Public Class frmProductoPrecio
             fnCalculaNormales()
             fnUltimasCompras()
             fnUltimasVentas()
-
-
-
             'calcular los costos
             fnCalculaOtros()
         Catch ex As Exception
@@ -944,8 +942,8 @@ Public Class frmProductoPrecio
                     pPub2 = CDec(txtPrecioPublicoMotriza.Text)
                 End If
 
-                Dim cProm As Decimal = CDec(lblCostoProm.Text)
-
+                '' Dim cProm As Decimal = CDec(lblCostoProm.Text) ''Pruebadatos lblCosto
+                Dim cProm As Decimal = CDec(lblCosto.Text)
                 'Recorremos el grid
                 Dim index
                 For index = 0 To Me.grdPrecios.Rows.Count - 1
@@ -1119,7 +1117,8 @@ Public Class frmProductoPrecio
 
                 Dim precioBase As Decimal = 0
                 Dim utilidad As Decimal = 0
-                Dim costoPromedio As Double = lblCostoProm.Text
+                '' Dim costoPromedio As Double = lblCostoProm.Text  ''pruebadatos  lblcosto.tex
+                Dim costoPromedio As Double = lblCosto.Text
 
                 For index = 0 To Me.grdOtrosPrecios.Rows.Count - 1
                     precioBase = CType(Me.grdOtrosPrecios.Rows(index).Cells("txmPrecio").Value, Decimal)
@@ -1262,6 +1261,11 @@ Public Class frmProductoPrecio
 
     Private Sub lblCosto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblCosto.TextChanged
         Try
+            fnLlenaPrecios()
+            fnCalculaNormales()
+            fnLlenaOtrosPrecios()
+            fnCalculaOtros()
+            fnConfiguracion()
             lblCostoProm.Text = lblCosto.Text
         Catch ex As Exception
 

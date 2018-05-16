@@ -331,6 +331,7 @@ Public Class frmPedidosBodega
                 idsalidabodega = bodega.idsalidaBodega
 
                 Dim codigoempleado As Integer
+                Dim errores As Integer
 
 
                 For index As Integer = 0 To Me.grdEmpacado.Rows.Count - 1
@@ -389,12 +390,16 @@ Public Class frmPedidosBodega
                         Dim detalle As New tblsalidabodega_detalle
 
                         codigoempleado = Me.grdSacado.Rows(index).Cells("Codigo").Value
+                        errores = Me.grdSacado.Rows(index).Cells("txmErrores").Value
+
+
 
                         detalle.idsalidabodega = idsalidabodega
                         detalle.idempleado = codigoempleado
                         detalle.empacado = False
                         detalle.sacado = True
                         detalle.revisado = False
+                        detalle.errores = errores
 
 
                         ctx.AddTotblsalidabodega_detalle(detalle)
