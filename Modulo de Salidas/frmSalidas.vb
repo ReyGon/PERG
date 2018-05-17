@@ -1336,18 +1336,18 @@ Public Class frmSalidas
                                         idajuste = 0
                                     End Try
 
-                                    Dim ac As tblTipoMovimiento = (From x In conexion.tblTipoMovimientoes.AsEnumerable Where x.idTipoMovimiento = idajuste Select x).FirstOrDefault
+                                    ''Dim ac As tblTipoMovimiento = (From x In conexion.tblTipoMovimientoes.AsEnumerable Where x.idTipoMovimiento = idajuste Select x).FirstOrDefault
 
-
-                                    If ac IsNot Nothing Then
-                                        If ac.nombre.Contains("-") = True Then
-                                            'cantidad = cantidad - cantidadAjuste
-                                            ajusteNegativo += (cantidadAjuste * precio)
-                                        Else
-                                            'cantidad = cantidad + cantidadAjuste
-                                            ajustePositivo += (cantidadAjuste * precio)
-                                        End If
-                                    End If
+                                    ajusteNegativo = (cantidadAjuste * precio)
+                                    ''If ac IsNot Nothing Then
+                                    ''    If ac.nombre.Contains("-") = True Then
+                                    ''        'cantidad = cantidad - cantidadAjuste
+                                    ''        ajusteNegativo += (cantidadAjuste * precio)
+                                    ''    Else
+                                    ''        'cantidad = cantidad + cantidadAjuste
+                                    ''        ajustePositivo += (cantidadAjuste * precio)
+                                    ''    End If
+                                    ''End If
                                 End If
                             End If
 
@@ -2504,12 +2504,12 @@ Public Class frmSalidas
     '--------------------------------------------- RESERVA ------------------------------------------
     Private Sub fnGuardarReserva()
 
-        fnVerificarExistencia()
+        ''fnVerificarExistencia()
 
-        If verificarexistencia = False Then
-            RadMessageBox.Show("Debe verificar existencia para poder guardar", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
-            Exit Sub
-        End If
+        ''If verificarexistencia = False Then
+        ''    RadMessageBox.Show("Debe verificar existencia para poder guardar", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+        ''    Exit Sub
+        ''End If
 
         'variable que guardan los codigos.
         Dim codcliente As Integer = cmbCliente.SelectedValue
@@ -3507,12 +3507,12 @@ Public Class frmSalidas
     '--------------------------------------------  DESPACHO -----------------------------------------
     Private Sub fnGuardarDespacho()
 
-        fnVerificarExistencia()
+        ''fnVerificarExistencia()
 
-        If verificarexistencia = False Then
-            RadMessageBox.Show("Debe verificar existencia para poder guardar", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
-            Exit Sub
-        End If
+        ''If verificarexistencia = False Then
+        ''    RadMessageBox.Show("Debe verificar existencia para poder guardar", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+        ''    Exit Sub
+        ''End If
 
         Dim idsalidaimp As Integer
 
@@ -4278,552 +4278,900 @@ Public Class frmSalidas
     End Sub
 
     Private Function fnModificarDespacho()
+        Try
+            If fnErrores() = True Then
+                Return False
+            End If
 
-        If verificarexistencia = False Then
-            RadMessageBox.Show("Debe verificar existencia para poder guardar", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
-            Exit Function
-        End If
+            Dim codcliente As Integer = cmbCliente.SelectedValue
+            Dim cliente As String = cmbNombre.Text
+            Dim codmovimiento As Integer = mdlPublicVars.Salida_TipoMovimientoVenta
+            Dim codvendedor As Integer = cmbVendedor.SelectedValue
+            Dim hora As String = fnHoraServidor()
+            Dim fecha As DateTime = fnFecha_horaServidor()
+            Dim success As Boolean = True
+            Dim errContenido As String = ""
+            Dim idCorrelativo As String = ""
+            Dim codigoMovPrincipal As Integer = 0
 
-        If fnErrores() = True Then
-            Return False
-        End If
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
-        Dim codcliente As Integer = cmbCliente.SelectedValue
-        Dim cliente As String = cmbNombre.Text
-        Dim codmovimiento As Integer = mdlPublicVars.Salida_TipoMovimientoVenta
-        Dim codvendedor As Integer = cmbVendedor.SelectedValue
-        Dim hora As String = fnHoraServidor()
-        Dim fecha As DateTime = fnFecha_horaServidor()
-        Dim success As Boolean = True
-        Dim errContenido As String = ""
-        Dim idCorrelativo As String = ""
+                If success = True Then
+                    Using Transaction As New TransactionScope
+                        Try
+                            ''Guardar Modificacion Encabezado de Salida
+                            Dim s As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = codigo Select x).FirstOrDefault
 
-        'conexion nueva.
-        Dim conexion As New dsi_pos_demoEntities
-
-        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
-            conn.Open()
-            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
-
-            If success = True Then
-                Using transaction As New TransactionScope
-                    Try
-
-                        'GUARDAR REGISTRO DE SALIDA.
-                        '------------------------------------------------------  crear encabezado.-----------------------------
-                        'paso 5, guardar el registro de encabezado
-                        Dim salida As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = codigo Select x).First
-
-                        salida.observacion = txtObservacion.Text
-                        salida.descuento = 0
-                        salida.subtotal = CType(lblSaldoFinal.Text, Double)
-                        salida.total = CType(lblSaldoFinal.Text, Double)
-                        salida.saldo = salida.total
-                        salida.cliente = cmbNombre.Text
-                        conexion.SaveChanges()
-
-                        '--------------------------------------- fin de crear encabezado. ------------------
-                        'paso 6, guardar el detalle
-                        Dim index
-                        Dim cantidad As Double = 0
-                        Dim idajustecate As Integer = 0
-                        Dim cantidadAjuste As Double = 0
-                        Dim precio As Decimal = 0
-                        Dim total As Decimal = 0
-                        Dim idarticulo As Integer = 0
-                        Dim idInventario As Integer = 0
-                        Dim idSurtir As Integer = 0
-                        Dim cantSurtir As Integer = 0
-                        Dim observacion As String = ""
-                        Dim articulo As String = ""
-                        Dim iddetalle As Integer = 0
-
-                        ''crear registro de salida bodega.
-                        Dim codigobodega As Integer = 0
-
-                        'Verificamos si existe algun ajuste
-                        Dim totalAjuste As Decimal = lblSaldoAjuste.Text
-
-                        Dim codigoMovPrincipal As Integer = 0
-                        'Dim codigoMovLiquidacion As Integer = 0
-
-                        If totalAjuste <> 0 Then
-                            'Si existe algun cambio entre el pago inicial y el pago ajuste es porque existe un ajuste
-
-                            'Obtenemos el correlativo del ajuste
-                            Dim correlativo As tblCorrelativo = (From x In conexion.tblCorrelativos Where x.idTipoMovimiento = Ajuste_CodigoMovimiento _
-                                                                 Select x).FirstOrDefault
-
-                            If correlativo IsNot Nothing Then
-                                correlativo.correlativo += 1
-                                conexion.SaveChanges()
-                                idCorrelativo = correlativo.serie & correlativo.correlativo
-                            Else
-                                'Si no existe el correlativo lo creamos
-                                Dim correlativoNuevo As New tblCorrelativo
-                                correlativoNuevo.correlativo = 1
-                                correlativoNuevo.serie = ""
-                                correlativoNuevo.inicio = 1
-                                correlativoNuevo.fin = 1000
-                                correlativoNuevo.porcentajeAviso = 20
-                                correlativoNuevo.idEmpresa = mdlPublicVars.idEmpresa
-                                correlativoNuevo.idTipoMovimiento = mdlPublicVars.Ajuste_CodigoMovimiento
-                                conexion.AddTotblCorrelativos(correlativoNuevo)
-                                conexion.SaveChanges()
-
-                                'asignar el numero de correlativo.
-                                idCorrelativo = 1
-                            End If
-                            'Procedemos a crear el ajuste
-                            '--------ENCABEZADO MOVIMIENTO INVENTARIO PRINCIPAL -------------
-                            Dim movimiento As New tblMovimientoInventario
-                            movimiento.correlativo = idCorrelativo
-                            movimiento.empresa = mdlPublicVars.idEmpresa
-                            movimiento.usuario = mdlPublicVars.idUsuario
-                            movimiento.almacen = mdlPublicVars.General_idAlmacenPrincipal
-                            movimiento.documento = ""
-                            movimiento.bitBodega = True
-                            movimiento.bitVenta = False
-                            movimiento.tipoMovimiento = Ajuste_CodigoMovimiento
-                            movimiento.inventarioInicial = mdlPublicVars.General_idTipoInventario
-                            movimiento.inventarioFinal = mdlPublicVars.General_idTipoInventario
-                            movimiento.ajuste = True
-                            movimiento.traslado = False
-                            movimiento.anulado = False
-                            movimiento.revisado = True
-                            movimiento.fechaRegistro = dtpFechaRegistro.Text & " " & hora
-                            movimiento.fechaTransaccion = fecha
-                            movimiento.observacion = "Cod: " & salida.idSalida & ",Doc: " & salida.documento & ",Cliente: " & salida.tblCliente.Negocio
-                            movimiento.revisado = False
-                            movimiento.bitVenta = True
-                            movimiento.bitBodega = False
-                            movimiento.codigoSalida = salida.idSalida
-
-                            conexion.AddTotblMovimientoInventarios(movimiento)
+                            s.observacion = Me.txtObservacion.Text
+                            s.descuento = 0
+                            s.subtotal = CDec(Me.lblSaldoFinal.Text)
+                            s.total = CDec(Me.lblSaldoFinal.Text)
+                            s.saldo = s.total
+                            s.cliente = cmbNombre.Text
                             conexion.SaveChanges()
 
-                            codigoMovPrincipal = movimiento.codigo
-                        End If
+                            ''Guardar Modificacion Detalle de Salida
+                            Dim index
+                            Dim cantidad As Double = 0
+                            Dim idajuste As Integer = 0
+                            Dim cantidadAjuste As Double = 0
+                            Dim precio As Decimal = 0
+                            Dim total As Decimal = 0
+                            Dim idarticulo As Integer = 0
+                            Dim idInventario As Integer = 0
+                            Dim idSurtir As Integer = 0
+                            Dim cantSurtir As Integer = 0
+                            Dim observacion As String = ""
+                            Dim articulo As String = ""
+                            Dim iddetalle As Integer = 0
+                            Dim totalAjuste As Decimal = Me.lblSaldoAjuste.Text
 
-                        For index = 0 To Me.grdProductos.Rows.Count - 1
+                            If totalAjuste <> 0 Then
 
-                            'consultar datos base del registro de producto.
-                            iddetalle = Me.grdProductos.Rows(index).Cells("iddetalle").Value ' id detalle
-                            idarticulo = Me.grdProductos.Rows(index).Cells("Id").Value ' id articulo
-                            articulo = Me.grdProductos.Rows(index).Cells("txbProducto").Value ' codigo
-                            cantidad = Me.grdProductos.Rows(index).Cells("txmCantidad").Value ' cantidad
-                            precio = CDec(Replace(Me.grdProductos.Rows(index).Cells("txbPrecio").Value, "Q", "").Trim) ' precio
-                            total = CDec(Replace(Me.grdProductos.Rows(index).Cells("Total").Value, "Q", "").Trim) ' total
-                            idInventario = Me.grdProductos.Rows(index).Cells("idInventario").Value ' total
-                            idSurtir = Me.grdProductos.Rows(index).Cells("idSurtir").Value ' idsurtir
-                            cantSurtir = Me.grdProductos.Rows(index).Cells("txmCantidadSurtir").Value ' cant surtir
-                            observacion = Me.grdProductos.Rows(index).Cells("txbObservacion").Value   'observacion
+                                Dim inv As tblInventario
+                                Dim tm As tblTipoMovimiento
 
-                            'actualizar el modelo
-                            'conexion.Refresh(System.Data.Objects.RefreshMode.ClientWins, conexion.tblInventarios)
-                            'conexion.SaveChanges()
+                                For i As Integer = 0 To Me.grdProductos.Rows.Count - 1
+                                    iddetalle = Me.grdProductos.Rows(index).Cells("iddetalle").Value ' id detalle
+                                    idarticulo = Me.grdProductos.Rows(index).Cells("Id").Value ' id articulo
+                                    articulo = Me.grdProductos.Rows(index).Cells("txbProducto").Value ' codigo
+                                    cantidad = Me.grdProductos.Rows(index).Cells("txmCantidad").Value ' cantidad
+                                    precio = CDec(Replace(Me.grdProductos.Rows(index).Cells("txbPrecio").Value, "Q", "").Trim) ' precio
+                                    total = CDec(Replace(Me.grdProductos.Rows(index).Cells("Total").Value, "Q", "").Trim) ' total
+                                    idInventario = Me.grdProductos.Rows(index).Cells("idInventario").Value ' total
+                                    idSurtir = Me.grdProductos.Rows(index).Cells("idSurtir").Value ' idsurtir
+                                    cantSurtir = Me.grdProductos.Rows(index).Cells("txmCantidadSurtir").Value ' cant surtir
+                                    observacion = Me.grdProductos.Rows(index).Cells("txbObservacion").Value   'observacion
 
-                            'consultar registro de inventario.
-                            Dim inve As tblInventario = (From x In conexion.tblInventarios Where x.tblArticulo.empresa = mdlPublicVars.idEmpresa _
-                                                             And x.idTipoInventario = idInventario And x.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal _
-                                                             And x.idArticulo = idarticulo Select x).FirstOrDefault
+                                    inv = (From x In conexion.tblInventarios Where x.tblArticulo.empresa = mdlPublicVars.idEmpresa _
+                                            And x.idTipoInventario = idInventario And x.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal _
+                                            And x.idArticulo = idarticulo Select x).FirstOrDefault
 
-                            'modificar registro de detalle.
-                            Dim detalle As tblSalidaDetalle = (From x In conexion.tblSalidaDetalles Where x.idSalidaDetalle = iddetalle Select x).First
+                                    Dim detalle As tblSalidaDetalle = (From x In conexion.tblSalidaDetalles Where x.idSalidaDetalle = iddetalle Select x).First
+                                    detalle.precio = precio
+                                    detalle.precioFactura = precio
+                                    detalle.comentario = observacion
+                                    conexion.SaveChanges()
 
-                            'actualizar el precio del detalle.
-                            detalle.precio = precio
+                                    If IsNumeric(Me.grdProductos.Rows(i).Cells("idajustecategoria").Value) Then
 
-                            detalle.precioFactura = precio
-                            detalle.comentario = observacion
-                            conexion.SaveChanges()
+                                        Dim c As tblCorrelativo = (From x In conexion.tblCorrelativos Where x.idTipoMovimiento = Ajuste_CodigoMovimiento Select x).FirstOrDefault
 
-                            'verificar que id ajuste categoria sea numerico.
-                            If IsNumeric(Me.grdProductos.Rows(index).Cells("idajustecategoria").Value) Then ' cantidadAjuste
-
-                                'Obtenemos la informacion del articulo
-                                Dim producto As tblArticulo = (From x In conexion.tblArticuloes.AsEnumerable Where x.idArticulo = idarticulo _
-                                                               Select x).FirstOrDefault
-
-                                'obtener del grid view el idajustecategoria.
-                                idajustecate = Me.grdProductos.Rows(index).Cells("idajustecategoria").Value
-
-                                'si el codigo de ajuste categoria es mayor a cero, existe
-                                If idajustecate > 0 Then
-                                    'obtener la cantidad a ajustar.
-                                    cantidadAjuste = Me.grdProductos.Rows(index).Cells("txmCantidadAjuste").Value
-
-                                    'Verificamos si es entrada o salida
-                                    Dim tipoMov As tblTipoMovimiento = (From x In conexion.tblTipoMovimientoes.AsEnumerable
-                                                                        Where x.idTipoMovimiento = idajustecate
-                                                                        Select x).FirstOrDefault
-
-                                    'Verificamos si es traslado o ajuste
-                                    If tipoMov.traslado Then
-                                        'Creamos un nuevo traslado
-
-                                        'Procedemos a crear el ajuste
-                                        '--------ENCABEZADO MOVIMIENTO INVENTARIO PRINCIPAL -------------
-                                        Dim traslado As New tblMovimientoInventario
-                                        traslado.correlativo = idCorrelativo
-                                        traslado.empresa = mdlPublicVars.idEmpresa
-                                        traslado.usuario = mdlPublicVars.idUsuario
-                                        traslado.almacen = mdlPublicVars.General_idAlmacenPrincipal
-                                        traslado.documento = ""
-                                        traslado.bitBodega = True
-                                        traslado.revisado = True
-                                        traslado.bitVenta = False
-                                        traslado.tipoMovimiento = Ajuste_CodigoMovimiento
-                                        traslado.inventarioInicial = mdlPublicVars.General_idTipoInventario
-                                        traslado.inventarioFinal = tipoMov.idTipoInventario
-                                        traslado.ajuste = False
-                                        traslado.traslado = True
-                                        traslado.anulado = False
-
-                                        traslado.fechaRegistro = dtpFechaRegistro.Text & " " & hora
-                                        traslado.fechaTransaccion = fecha
-                                        traslado.observacion = "Cod: " & salida.idSalida & ",Doc: " & salida.documento & ",Cliente: " & salida.tblCliente.Negocio
-                                        traslado.revisado = False
-                                        traslado.bitVenta = True
-                                        traslado.bitBodega = False
-                                        traslado.codigoSalida = salida.idSalida
-
-                                        conexion.AddTotblMovimientoInventarios(traslado)
-                                        conexion.SaveChanges()
-
-                                        'Creamos el nuevo detalle del movimiento
-                                        Dim detalleAj As New tblMovimientoInventarioDetalle
-                                        detalleAj.movimientoInventario = traslado.codigo
-                                        detalleAj.articulo = detalle.idArticulo
-                                        detalleAj.cantidad = cantidadAjuste
-                                        detalleAj.tipoMovimiento = tipoMov.idTipoMovimiento
-                                        detalleAj.costo = producto.costoIVA
-                                        detalleAj.total = producto.costoIVA * cantidadAjuste
-                                        detalleAj.salidaDetalle = detalle.idSalidaDetalle
-                                        detalleAj.idunidadmedida = 1
-                                        detalleAj.valormedida = 1
-
-                                        detalleAj.entrada = tipoMov.aumentaInventario
-                                        detalleAj.salida = tipoMov.disminuyeInventario
-
-                                        conexion.AddTotblMovimientoInventarioDetalles(detalleAj)
-                                        conexion.SaveChanges()
-
-                                        'Devolvemos es cantidad al inventario del movimiento
-                                        'restar cantidad del detalle.
-                                        detalle.cantidad = detalle.cantidad - cantidadAjuste
-                                        'guardar los cambios.
-                                        conexion.SaveChanges()
-
-                                        If tipoMov.idTipoInventario IsNot Nothing Then
-
-                                            'Verificamos si aumenta o disminuye
-                                            If tipoMov.disminuyeInventario Then
-                                                traslado.inventarioInicial = mdlPublicVars.General_idTipoInventario
-                                                traslado.inventarioFinal = tipoMov.idTipoInventario
-                                                conexion.SaveChanges()
-
-                                                'Obtenemos el inventario de se artciulo
-                                                Dim inventario As tblInventario = (From x In conexion.tblInventarios
-                                                                                   Where x.idArticulo = detalle.idArticulo And x.idTipoInventario = tipoMov.idTipoInventario
-                                                                                   Select x).FirstOrDefault
-
-                                                'decremental el total de la salida o venta.
-                                                'salida.total = salida.total - detalleAj.total,, 
-
-                                                'se debe restar del inventario cuando sea diferente al inventario principal o inventario de liquidacion.
-
-                                                '**** DEBERIAS VALIDARSE QUE NO SEA INVENTARIO DE ESTANTERIA O LIQUIDACION PARA AUMENTAR AL SALDO.
-                                                If inventario IsNot Nothing Then
-
-                                                    'disminuir el saldo del inventario y disminuimos la salida, del tipo de inventario del movimiento segun el articulo
-                                                    inventario.entrada += cantidadAjuste
-                                                    inventario.saldo += cantidadAjuste
-                                                    conexion.SaveChanges()
-                                                    'Guardamos los cambios
-
-                                                Else
-                                                    'Cremos el registro en inventario
-                                                    Dim inveNuevo As New tblInventario
-
-                                                    inveNuevo.idArticulo = detalle.idArticulo
-                                                    inveNuevo.entrada = cantidadAjuste
-                                                    inveNuevo.salida = 0
-                                                    inveNuevo.transito = 0
-                                                    inveNuevo.reserva = 0
-                                                    inveNuevo.saldo = cantidadAjuste
-                                                    inveNuevo.idTipoInventario = tipoMov.idTipoInventario
-                                                    inveNuevo.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal
-
-                                                    'Agregamos el inventario
-                                                    conexion.AddTotblInventarios(inveNuevo)
-                                                    conexion.SaveChanges()
-
-                                                End If
-
-                                            ElseIf tipoMov.aumentaInventario Then
-
-                                                traslado.inventarioFinal = mdlPublicVars.General_idTipoInventario
-                                                traslado.inventarioInicial = tipoMov.idTipoInventario
-
-                                                'actualizar el modelo
-                                                'conexion.Refresh(System.Data.Objects.RefreshMode.ClientWins, conexion.tblInventarios)
-                                                'conexion.SaveChanges()
-
-                                                'Obtenemos el inventario de se artciulo
-                                                Dim inventario As tblInventario = (From x In conexion.tblInventarios
-                                                                                   Where x.idArticulo = detalle.idArticulo And x.idTipoInventario = tipoMov.idTipoInventario
-                                                                                   Select x).FirstOrDefault
-
-
-                                                'incremental el total de la salida o venta.
-                                                'salida.total = salida.total + detalleAj.total
-
-
-                                                '***** DEVERIA VALIDARSE QUE NO SEA EL INVENTARIO PRINCIPAL
-                                                If inventario IsNot Nothing Then
-                                                    'Aumentamos el saldo del inventario y disminuimos la salida
-                                                    inventario.saldo += cantidadAjuste
-                                                    inventario.entrada += cantidadAjuste
-
-                                                    'Guardamos los cambios
-                                                    conexion.SaveChanges()
-                                                Else
-                                                    'Cremos el registro en inventario
-                                                    Dim inveNuevo As New tblInventario
-
-                                                    inveNuevo.idArticulo = detalle.idArticulo
-                                                    inveNuevo.entrada = cantidadAjuste
-                                                    inveNuevo.salida = 0
-                                                    inveNuevo.transito = 0
-                                                    inveNuevo.reserva = 0
-                                                    inveNuevo.saldo = cantidadAjuste
-                                                    inveNuevo.idTipoInventario = tipoMov.idTipoInventario
-                                                    inveNuevo.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal
-
-                                                    'Agregamos el inventario
-                                                    conexion.AddTotblInventarios(inveNuevo)
-                                                    conexion.SaveChanges()
-
-                                                End If
-                                                detalle.cantidad = detalle.cantidad + cantidadAjuste
-                                            End If
-                                        End If
-                                    ElseIf tipoMov.ajuste Then
-                                        'Creamos el nuevo detalle del movimiento
-                                        Dim detalleAj As New tblMovimientoInventarioDetalle
-
-                                        detalleAj.movimientoInventario = codigoMovPrincipal
-                                        detalleAj.articulo = idarticulo
-
-                                        detalleAj.tipoMovimiento = idajustecate
-                                        detalleAj.costo = precio
-                                        detalleAj.total = (precio * cantidadAjuste)
-                                        detalleAj.salidaDetalle = detalle.idSalidaDetalle
-                                        detalleAj.idunidadmedida = UnidadMedidaDefault
-                                        detalleAj.valormedida = 1
-                                        detalleAj.cantidad = cantidadAjuste
-                                        If tipoMov.aumentaInventario = True Then
-
-                                            detalleAj.entrada = True
-                                            detalleAj.salida = False
-                                        ElseIf tipoMov.disminuyeInventario = True Then
-                                            detalleAj.salida = True
-                                            detalleAj.entrada = False
-                                        End If
-
-                                        conexion.AddTotblMovimientoInventarioDetalles(detalleAj)
-                                        conexion.SaveChanges()
-
-                                        'si ajuste categoria es una entrada, quiere decir que es un agregado o suma a la cantidad existente, por lo tanto descontar de inventario.
-                                        If tipoMov.disminuyeInventario = True Then
-                                            'restar de inventario y guardar registro de ajuste.
-                                            inve.saldo = inve.saldo - cantidadAjuste
-                                            detalle.cantidad = detalle.cantidad - cantidadAjuste
-
-
-                                            'actualizar el modelo
-                                            conexion.Refresh(System.Data.Objects.RefreshMode.ClientWins, conexion.tblInventarios)
+                                        If c IsNot Nothing Then
+                                            c.correlativo += 1
                                             conexion.SaveChanges()
-
-
-                                            'Obtenemos el inventario de se artculo
-                                            Dim inventario As tblInventario = (From x In conexion.tblInventarios
-                                                                               Where x.idArticulo = detalle.idArticulo _
-                                                                               And x.idTipoInventario = mdlPublicVars.General_idTipoInventario
-                                                                               Select x).FirstOrDefault
-
-                                            'Aumentamos el saldo del inventario y disminuimos la salida
-                                            inventario.saldo += cantidadAjuste
-                                            inventario.entrada += cantidadAjuste
-
-                                            conexion.SaveChanges()
+                                            idCorrelativo = c.serie & c.correlativo
                                         Else
-                                            'si ajuste movimiento no es entrada, es una salida se debe agregar la cantidad de ajuste al inventario.
-                                            'inve.saldo = inve.saldo + cantidadAjuste
-                                            ''detalle.cantidad = detalle.cantidad + cantidadAjuste
-                                            ''''''conexion.SaveChanges()
-                                            'If detalle.cantidad < 0 Then
-                                            '    alerta.contenido = "Error !!!, Cantidad no puede ser menor a cero en articulo : " + articulo.ToString
-                                            '    alerta.fnErrorContenido()
-                                            '    success = False
-                                            '    Exit Try
-                                            'End If
+                                            Dim cn As New tblCorrelativo
+                                            cn.correlativo = 1
+                                            cn.serie = ""
+                                            cn.inicio = 1
+                                            cn.fin = 1000
+                                            cn.porcentajeAviso = 20
+                                            cn.idEmpresa = mdlPublicVars.idEmpresa
+                                            cn.idTipoMovimiento = mdlPublicVars.Ajuste_CodigoMovimiento
+                                            conexion.AddTotblCorrelativos(cn)
+                                            conexion.SaveChanges()
+
+                                            idCorrelativo = 1
                                         End If
 
-                                        If producto.bitKit Then
-                                            'Obtenemos la lista del detalle del kit en la tblSalidaDetalle
-                                            Dim lSalidaDetalleKit As List(Of tblSalidaDetalle) = (From x In conexion.tblSalidaDetalles Where x.kitSalidaDetalle = iddetalle _
-                                                                                                  Select x).ToList
+                                        Dim producto As tblArticulo = (From x In conexion.tblArticuloes.AsEnumerable Where x.idArticulo = idarticulo Select x).FirstOrDefault
 
-                                            'Recorremos el kit detalle y generamos los ajustes
-                                            Dim cantidadAnterior As Integer = 0
-                                            For Each salidaDetalleKit As tblSalidaDetalle In lSalidaDetalleKit
-                                                cantidadAnterior = salidaDetalleKit.cantidad / salidaDetalleKit.tblSalidaDetalle2.cantidad
+                                        idajuste = Me.grdProductos.Rows(i).Cells("idajustecategoria").Value
 
-                                                'Creamos el nuevo detalle del movimiento
-                                                Dim detalleAju As New tblMovimientoInventarioDetalle
+                                        If idajuste > 0 Then
 
-                                                detalleAju.movimientoInventario = codigoMovPrincipal
-                                                detalleAju.articulo = salidaDetalleKit.idArticulo
-                                                detalleAju.cantidad = cantidadAjuste * salidaDetalleKit.cantidad
-                                                detalleAju.tipoMovimiento = idajustecate
-                                                detalleAju.costo = 0
-                                                detalleAju.total = 0
-                                                detalleAju.salidaDetalle = detalle.idSalidaDetalle
+                                            cantidadAjuste = Me.grdProductos.Rows(i).Cells("txmCantidadAjuste").Value
 
-                                                If tipoMov.aumentaInventario = True Then
-                                                    detalleAju.entrada = True
-                                                    detalleAju.salida = False
-                                                ElseIf tipoMov.disminuyeInventario = True Then
-                                                    detalleAju.salida = True
-                                                    detalleAju.entrada = False
-                                                End If
+                                            tm = (From x In conexion.tblTipoMovimientoes.AsEnumerable Where x.idTipoMovimiento = idajuste Select x).FirstOrDefault
 
-                                                conexion.AddTotblMovimientoInventarioDetalles(detalleAju)
+                                            If tm.ajuste Then
+
+                                                Dim m As New tblMovimientoInventario
+                                                m.correlativo = idCorrelativo
+                                                m.empresa = mdlPublicVars.idEmpresa
+                                                m.usuario = mdlPublicVars.idUsuario
+                                                m.almacen = mdlPublicVars.General_idAlmacenPrincipal
+                                                m.documento = "Vta. " & s.documento
+                                                m.tipoMovimiento = Ajuste_CodigoMovimiento
+                                                m.inventarioInicial = mdlPublicVars.General_idTipoInventario
+                                                m.inventarioFinal = mdlPublicVars.General_idTipoInventario
+                                                m.ajuste = True
+                                                m.traslado = False
+                                                m.anulado = False
+                                                m.fechaRegistro = dtpFechaRegistro.Text & " " & hora
+                                                m.fechaTransaccion = fecha
+                                                m.observacion = "Cod: " & s.idSalida & ",Doc: " & s.documento & ",Cliente: " & s.tblCliente.Negocio
+                                                m.revisado = False
+                                                m.bitVenta = True
+                                                m.bitBodega = False
+                                                m.codigoSalida = s.idSalida
+
+                                                conexion.AddTotblMovimientoInventarios(m)
                                                 conexion.SaveChanges()
 
-                                                'si ajuste categoria es una entrada, quiere decir que es un agregado o suma a la cantidad existente, por lo tanto descontar de inventario.
-                                                If tipoMov.disminuyeInventario = True Then
-                                                    If (inve.saldo - (cantidadAjuste * cantidadAnterior)) >= 0 Then
-                                                        'restar de inventario y guardar registro de ajuste.
-                                                        'inve.saldo = inve.saldo - cantidadAjuste
-                                                        salidaDetalleKit.cantidad = salidaDetalleKit.cantidad - (cantidadAjuste * cantidadAnterior)
+                                                Dim d As New tblMovimientoInventarioDetalle
+                                                d.movimientoInventario = m.codigo
+                                                d.articulo = detalle.idArticulo
+                                                d.cantidad = cantidadAjuste
+                                                d.tipoMovimiento = tm.idTipoMovimiento
+                                                d.costo = producto.costoIVA
+                                                d.total = producto.costoIVA * cantidadAjuste
+                                                d.salidaDetalle = detalle.idSalidaDetalle
+                                                d.idunidadmedida = 1
+                                                d.valormedida = 1
+                                                d.entrada = tm.aumentaInventario
+                                                d.salida = tm.disminuyeInventario
+
+                                                conexion.AddTotblMovimientoInventarioDetalles(d)
+                                                conexion.SaveChanges()
+
+                                                If tm.disminuyeInventario Then
+                                                    inv.saldo -= cantidadAjuste
+                                                    detalle.cantidad -= cantidadAjuste
+                                                    conexion.SaveChanges()
+                                                ElseIf tm.aumentaInventario Then
+                                                    inv.salida -= cantidadAjuste
+                                                    detalle.cantidad -= cantidadAjuste
+                                                    conexion.SaveChanges()
+                                                End If
+
+                                                conexion.SaveChanges()
+
+                                            ElseIf tm.traslado Then
+
+                                                Dim t As New tblMovimientoInventario
+                                                t.correlativo = idCorrelativo
+                                                t.empresa = mdlPublicVars.idEmpresa
+                                                t.usuario = mdlPublicVars.idUsuario
+                                                t.almacen = mdlPublicVars.General_idAlmacenPrincipal
+                                                t.documento = "Vta. " & s.documento
+                                                t.tipoMovimiento = Ajuste_CodigoMovimiento
+                                                t.inventarioInicial = mdlPublicVars.General_idTipoInventario
+                                                t.inventarioFinal = tm.idTipoInventario
+                                                t.ajuste = False
+                                                t.traslado = True
+                                                t.anulado = False
+                                                t.fechaRegistro = dtpFechaRegistro.Text & " " & hora
+                                                t.fechaTransaccion = fecha
+                                                t.observacion = "Cod: " & s.idSalida & ",Doc: " & s.documento & ",Cliente: " & s.tblCliente.Negocio
+                                                t.revisado = False
+                                                t.bitVenta = True
+                                                t.bitBodega = False
+                                                t.codigoSalida = s.idSalida
+
+                                                conexion.AddTotblMovimientoInventarios(t)
+                                                conexion.SaveChanges()
+
+                                                Dim d As New tblMovimientoInventarioDetalle
+                                                d.movimientoInventario = t.codigo
+                                                d.articulo = detalle.idArticulo
+                                                d.cantidad = cantidadAjuste
+                                                d.tipoMovimiento = tm.idTipoMovimiento
+                                                d.costo = producto.costoIVA
+                                                d.total = producto.costoIVA * cantidadAjuste
+                                                d.salidaDetalle = detalle.idSalidaDetalle
+                                                d.idunidadmedida = 1
+                                                d.valormedida = 1
+                                                d.entrada = tm.aumentaInventario
+                                                d.salida = tm.disminuyeInventario
+
+                                                conexion.AddTotblMovimientoInventarioDetalles(d)
+                                                conexion.SaveChanges()
+
+                                                If tm.idTipoInventario IsNot Nothing Then
+                                                    If tm.disminuyeInventario Then
+
+                                                        t.inventarioInicial = mdlPublicVars.General_idTipoInventario
+                                                        t.inventarioFinal = tm.idTipoInventario
                                                         conexion.SaveChanges()
-                                                    Else
-                                                        'cantidad insuficiente, error !!!
-                                                        'no hay existencia.
-                                                        'alerta.contenido = "Error !!!, Existencia insuficiente de articulo: " + articulo.ToString
-                                                        'alerta.fnErrorContenido()
-                                                        MessageBox.Show("Error !!!, Existencia insuficiente de articulo: " + articulo.ToString)
-                                                        success = False
-                                                        Exit Try
-                                                    End If
-                                                Else
-                                                    'si ajuste movimiento no es entrada, es una salida se debe agregar la cantidad de ajuste al inventario.
-                                                    'inve.saldo = inve.saldo + cantidadAjuste
-                                                    salidaDetalleKit.cantidad = salidaDetalleKit.cantidad + (cantidadAjuste * cantidadAnterior)
-                                                    If detalle.cantidad < 0 Then
-                                                        alerta.contenido = "Error !!!, Cantidad no puede ser menor a cero en articulo : " + articulo.ToString
-                                                        alerta.fnErrorContenido()
-                                                        success = False
-                                                        Exit Try
+
+                                                        Dim inven As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.idTipoInventario = tm.idTipoInventario Select x).FirstOrDefault
+
+                                                        If inven Is Nothing Then
+                                                            Dim invent As New tblInventario
+                                                            invent.idArticulo = detalle.idArticulo
+                                                            invent.entrada = 0
+                                                            invent.salida = 0
+                                                            invent.transito = 0
+                                                            invent.reserva = 0
+                                                            invent.saldo = 0
+                                                            invent.idTipoInventario = tm.idTipoInventario
+                                                            invent.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal
+
+                                                            conexion.AddTotblInventarios(invent)
+                                                            conexion.SaveChanges()
+                                                        Else
+                                                            inven.salida += cantidadAjuste
+                                                            detalle.cantidad -= cantidadAjuste
+                                                            conexion.SaveChanges()
+                                                        End If
+
+                                                    ElseIf tm.aumentaInventario Then
+
+                                                        t.inventarioFinal = mdlPublicVars.General_idTipoInventario
+                                                        t.inventarioInicial = tm.idTipoInventario
+
+                                                        Dim inven As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.idTipoInventario = tm.idTipoInventario Select x).FirstOrDefault
+
+                                                        If inven Is Nothing Then
+                                                            Dim invent As New tblInventario
+                                                            invent.idArticulo = detalle.idArticulo
+                                                            invent.entrada = 0
+                                                            invent.salida = 0
+                                                            invent.transito = 0
+                                                            invent.reserva = 0
+                                                            invent.saldo = 0
+                                                            invent.idTipoInventario = tm.idTipoInventario
+                                                            invent.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal
+
+                                                            conexion.AddTotblInventarios(invent)
+                                                            conexion.SaveChanges()
+                                                        Else
+                                                            inven.entrada += cantidadAjuste
+                                                            detalle.cantidad -= cantidadAjuste
+                                                            conexion.SaveChanges()
+                                                        End If
+
                                                     End If
                                                 End If
-                                            Next
+                                                conexion.SaveChanges()
+                                            End If
+                                            conexion.SaveChanges()
                                         End If
+                                    End If
+
+                                    If idSurtir > 0 Then
+
+                                        Dim pen As List(Of tblSurtir) = (From x In conexion.tblSurtirs Where x.cliente = s.idCliente And x.saldo > 0 And x.articulo = detalle.idArticulo Select x Order By x.fechaTransaccion Descending).ToList
+
+                                        Dim p As tblSurtir
+                                        For Each p In pen
+                                            If cantSurtir > p.saldo Then
+                                                cantSurtir -= p.saldo
+                                                p.saldo = 0
+                                            Else
+                                                p.saldo -= cantSurtir
+                                                cantSurtir = 0
+                                            End If
+                                            conexion.SaveChanges()
+                                            If cantSurtir = 0 Then
+                                                Exit For
+                                            End If
+                                        Next
+                                    ElseIf cantSurtir > 0 Then
+
+                                        Dim p As New tblSurtir
+                                        p.salidaDetalle = detalle.idSalidaDetalle
+                                        p.articulo = detalle.idArticulo
+                                        p.cantidad = cantSurtir
+                                        p.saldo = cantSurtir
+                                        p.fechaTransaccion = fecha
+                                        p.anulado = 0
+                                        p.usuario = mdlPublicVars.idUsuario
+                                        p.vendedor = mdlPublicVars.idVendedor
+                                        p.cliente = s.idCliente
+                                        p.Eliminar = False
+
+                                        conexion.AddTotblSurtirs(p)
                                         conexion.SaveChanges()
                                     End If
 
-                                    conexion.SaveChanges()
-                                End If
-                            End If
-
-                            'Verifiamos si es surtir
-                            If idSurtir > 0 Then
-                                'Modificamos el pendiente por surtir
-                                Dim pendiente As List(Of tblSurtir) = (From x In conexion.tblSurtirs Where x.cliente = salida.idCliente And x.saldo > 0 And x.articulo = detalle.idArticulo Select x Order By x.fechaTransaccion Descending).ToList
-
-                                Dim p As tblSurtir
-                                For Each p In pendiente
-                                    If cantSurtir > p.saldo Then
-                                        cantSurtir -= p.saldo
-                                        p.saldo = 0
-
-                                    Else
-                                        p.saldo -= cantSurtir
-                                        cantSurtir = 0
-                                    End If
-                                    conexion.SaveChanges()
-                                    If cantSurtir = 0 Then
-                                        Exit For
-                                    End If
                                 Next
-                            ElseIf cantSurtir > 0 Then
-                                'Creamos el pendiente por surtir
-                                Dim pendiente As New tblSurtir
-                                pendiente.salidaDetalle = detalle.idSalidaDetalle
-                                pendiente.articulo = detalle.idArticulo
-                                pendiente.cantidad = cantSurtir
-                                pendiente.saldo = cantSurtir
-                                pendiente.fechaTransaccion = fecha
-                                pendiente.anulado = 0
-                                pendiente.usuario = mdlPublicVars.idUsuario
-                                pendiente.vendedor = mdlPublicVars.idVendedor
-                                pendiente.cliente = salida.idCliente
-                                pendiente.Eliminar = False
-
-                                conexion.AddTotblSurtirs(pendiente)
                                 conexion.SaveChanges()
+
+                                Dim totalventa As Double = (From x In conexion.tblSalidas Join y In conexion.tblSalidaDetalles On x.idSalida Equals y.idSalida Where x.idSalida = codigo And y.anulado = False Select y.cantidad * y.precio).Sum()
+
+                                s.total = totalventa
+                                s.subtotal = totalventa
+
+                                conexion.SaveChanges()
+
                             End If
+                            Transaction.Complete()
 
-                        Next
+                        Catch ex As System.Data.EntityException
+                            MessageBox.Show(ex.Message)
+                            success = False
+                            MessageBox.Show(ex.Message)
+                        Catch ex As Exception
+                            success = False
+                            MessageBox.Show(ex.Message)
+                            If ex.[GetType]() <> GetType(UpdateException) Then
+                                Console.WriteLine(("An error occured. " & "The operation cannot be retried.") + ex.Message)
+                                alerta.fnErrorGuardar()
+                                Exit Try
+                            End If
+                        End Try
+                    End Using
+                End If
 
-                        conexion.SaveChanges()
+                If success Then
+                    conexion.AcceptAllChanges()
+                    alerta.fnGuardar()
+                End If
 
-                        'actualizar el total de la venta.
-                        Dim TotalVenta As Double = (From x In conexion.tblSalidas Join y In conexion.tblSalidaDetalles On x.idSalida Equals y.idSalida
-                                                  Where x.idSalida = codigo And y.anulado = False Select y.cantidad * y.precio).Sum()
+                conn.Close()
+            End Using
 
-                        salida.total = TotalVenta
-                        salida.subtotal = TotalVenta
+            Return success
+        Catch ex As Exception
 
-
-                        conexion.SaveChanges()
-                        'paso 8, completar la transaccion.
-                        transaction.Complete()
-
-                    Catch ex As System.Data.EntityException
-                        MessageBox.Show(ex.Message)
-                        success = False
-                        MessageBox.Show(ex.Message)
-                    Catch ex As Exception
-                        success = False
-                        MessageBox.Show(ex.Message)
-                        If ex.[GetType]() <> GetType(UpdateException) Then
-                            Console.WriteLine(("An error occured. " & "The operation cannot be retried.") + ex.Message)
-                            alerta.fnErrorGuardar()
-                            Exit Try
-                            ' If we get to this point, the operation will be retried. 
-                        End If
-                    End Try
-                End Using
-            End If
-
-
-            If success Then
-                conexion.AcceptAllChanges()
-                alerta.fnGuardar()
-            End If
-
-            'cerrar la conexion
-            conn.Close()
-        End Using
-
-
-        Return success
-
+        End Try
     End Function
+
+    ''Private Function fnModificarDespacho()
+
+    ''    ''If verificarexistencia = False Then
+    ''    ''    RadMessageBox.Show("Debe verificar existencia para poder guardar", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+    ''    ''    Exit Function
+    ''    ''End If
+
+    ''    If fnErrores() = True Then
+    ''        Return False
+    ''    End If
+
+    ''    Dim codcliente As Integer = cmbCliente.SelectedValue
+    ''    Dim cliente As String = cmbNombre.Text
+    ''    Dim codmovimiento As Integer = mdlPublicVars.Salida_TipoMovimientoVenta
+    ''    Dim codvendedor As Integer = cmbVendedor.SelectedValue
+    ''    Dim hora As String = fnHoraServidor()
+    ''    Dim fecha As DateTime = fnFecha_horaServidor()
+    ''    Dim success As Boolean = True
+    ''    Dim errContenido As String = ""
+    ''    Dim idCorrelativo As String = ""
+
+    ''    'conexion nueva.
+    ''    Dim conexion As New dsi_pos_demoEntities
+
+    ''    Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+    ''        conn.Open()
+    ''        conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+    ''        If success = True Then
+    ''            Using transaction As New TransactionScope
+    ''                Try
+
+    ''                    'GUARDAR REGISTRO DE SALIDA.
+    ''                    '------------------------------------------------------  crear encabezado.-----------------------------
+    ''                    'paso 5, guardar el registro de encabezado
+    ''                    Dim salida As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = codigo Select x).First
+
+    ''                    salida.observacion = txtObservacion.Text
+    ''                    salida.descuento = 0
+    ''                    salida.subtotal = CType(lblSaldoFinal.Text, Double)
+    ''                    salida.total = CType(lblSaldoFinal.Text, Double)
+    ''                    salida.saldo = salida.total
+    ''                    salida.cliente = cmbNombre.Text
+    ''                    conexion.SaveChanges()
+
+    ''                    '--------------------------------------- fin de crear encabezado. ------------------
+    ''                    'paso 6, guardar el detalle
+    ''                    Dim index
+    ''                    Dim cantidad As Double = 0
+    ''                    Dim idajustecate As Integer = 0
+    ''                    Dim cantidadAjuste As Double = 0
+    ''                    Dim precio As Decimal = 0
+    ''                    Dim total As Decimal = 0
+    ''                    Dim idarticulo As Integer = 0
+    ''                    Dim idInventario As Integer = 0
+    ''                    Dim idSurtir As Integer = 0
+    ''                    Dim cantSurtir As Integer = 0
+    ''                    Dim observacion As String = ""
+    ''                    Dim articulo As String = ""
+    ''                    Dim iddetalle As Integer = 0
+
+    ''                    ''crear registro de salida bodega.
+    ''                    Dim codigobodega As Integer = 0
+
+    ''                    'Verificamos si existe algun ajuste
+    ''                    Dim totalAjuste As Decimal = lblSaldoAjuste.Text
+
+    ''                    Dim codigoMovPrincipal As Integer = 0
+    ''                    'Dim codigoMovLiquidacion As Integer = 0
+
+    ''                    If totalAjuste <> 0 Then
+    ''                        'Si existe algun cambio entre el pago inicial y el pago ajuste es porque existe un ajuste
+
+    ''                        'Obtenemos el correlativo del ajuste
+    ''                        Dim correlativo As tblCorrelativo = (From x In conexion.tblCorrelativos Where x.idTipoMovimiento = Ajuste_CodigoMovimiento _
+    ''                                                             Select x).FirstOrDefault
+
+    ''                        If correlativo IsNot Nothing Then
+    ''                            correlativo.correlativo += 1
+    ''                            conexion.SaveChanges()
+    ''                            idCorrelativo = correlativo.serie & correlativo.correlativo
+    ''                        Else
+    ''                            'Si no existe el correlativo lo creamos
+    ''                            Dim correlativoNuevo As New tblCorrelativo
+    ''                            correlativoNuevo.correlativo = 1
+    ''                            correlativoNuevo.serie = ""
+    ''                            correlativoNuevo.inicio = 1
+    ''                            correlativoNuevo.fin = 1000
+    ''                            correlativoNuevo.porcentajeAviso = 20
+    ''                            correlativoNuevo.idEmpresa = mdlPublicVars.idEmpresa
+    ''                            correlativoNuevo.idTipoMovimiento = mdlPublicVars.Ajuste_CodigoMovimiento
+    ''                            conexion.AddTotblCorrelativos(correlativoNuevo)
+    ''                            conexion.SaveChanges()
+
+    ''                            'asignar el numero de correlativo.
+    ''                            idCorrelativo = 1
+    ''                        End If
+    ''                        'Procedemos a crear el ajuste
+    ''                        '--------ENCABEZADO MOVIMIENTO INVENTARIO PRINCIPAL -------------
+    ''                        Dim movimiento As New tblMovimientoInventario
+    ''                        movimiento.correlativo = idCorrelativo
+    ''                        movimiento.empresa = mdlPublicVars.idEmpresa
+    ''                        movimiento.usuario = mdlPublicVars.idUsuario
+    ''                        movimiento.almacen = mdlPublicVars.General_idAlmacenPrincipal
+    ''                        movimiento.documento = "Vta. " & salida.documento
+    ''                        movimiento.bitBodega = True
+    ''                        movimiento.bitVenta = False
+    ''                        movimiento.tipoMovimiento = Ajuste_CodigoMovimiento
+    ''                        movimiento.inventarioInicial = mdlPublicVars.General_idTipoInventario
+    ''                        movimiento.inventarioFinal = mdlPublicVars.General_idTipoInventario
+    ''                        movimiento.ajuste = True
+    ''                        movimiento.traslado = False
+    ''                        movimiento.anulado = False
+    ''                        movimiento.revisado = True
+    ''                        movimiento.fechaRegistro = dtpFechaRegistro.Text & " " & hora
+    ''                        movimiento.fechaTransaccion = fecha
+    ''                        movimiento.observacion = "Cod: " & salida.idSalida & ",Doc: " & salida.documento & ",Cliente: " & salida.tblCliente.Negocio
+    ''                        movimiento.revisado = False
+    ''                        movimiento.bitVenta = True
+    ''                        movimiento.bitBodega = False
+    ''                        movimiento.codigoSalida = salida.idSalida
+
+    ''                        conexion.AddTotblMovimientoInventarios(movimiento)
+    ''                        conexion.SaveChanges()
+
+    ''                        codigoMovPrincipal = movimiento.codigo
+    ''                    End If
+
+    ''                    For index = 0 To Me.grdProductos.Rows.Count - 1
+
+    ''                        'consultar datos base del registro de producto.
+    ''                        iddetalle = Me.grdProductos.Rows(index).Cells("iddetalle").Value ' id detalle
+    ''                        idarticulo = Me.grdProductos.Rows(index).Cells("Id").Value ' id articulo
+    ''                        articulo = Me.grdProductos.Rows(index).Cells("txbProducto").Value ' codigo
+    ''                        cantidad = Me.grdProductos.Rows(index).Cells("txmCantidad").Value ' cantidad
+    ''                        precio = CDec(Replace(Me.grdProductos.Rows(index).Cells("txbPrecio").Value, "Q", "").Trim) ' precio
+    ''                        total = CDec(Replace(Me.grdProductos.Rows(index).Cells("Total").Value, "Q", "").Trim) ' total
+    ''                        idInventario = Me.grdProductos.Rows(index).Cells("idInventario").Value ' total
+    ''                        idSurtir = Me.grdProductos.Rows(index).Cells("idSurtir").Value ' idsurtir
+    ''                        cantSurtir = Me.grdProductos.Rows(index).Cells("txmCantidadSurtir").Value ' cant surtir
+    ''                        observacion = Me.grdProductos.Rows(index).Cells("txbObservacion").Value   'observacion
+
+    ''                        'actualizar el modelo
+    ''                        'conexion.Refresh(System.Data.Objects.RefreshMode.ClientWins, conexion.tblInventarios)
+    ''                        'conexion.SaveChanges()
+
+    ''                        'consultar registro de inventario.
+    ''                        Dim inve As tblInventario = (From x In conexion.tblInventarios Where x.tblArticulo.empresa = mdlPublicVars.idEmpresa _
+    ''                                                         And x.idTipoInventario = idInventario And x.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal _
+    ''                                                         And x.idArticulo = idarticulo Select x).FirstOrDefault
+
+    ''                        'modificar registro de detalle.
+    ''                        Dim detalle As tblSalidaDetalle = (From x In conexion.tblSalidaDetalles Where x.idSalidaDetalle = iddetalle Select x).First
+
+    ''                        'actualizar el precio del detalle.
+    ''                        detalle.precio = precio
+
+    ''                        detalle.precioFactura = precio
+    ''                        detalle.comentario = observacion
+    ''                        conexion.SaveChanges()
+
+    ''                        'verificar que id ajuste categoria sea numerico.
+    ''                        If IsNumeric(Me.grdProductos.Rows(index).Cells("idajustecategoria").Value) Then ' cantidadAjuste
+
+    ''                            'Obtenemos la informacion del articulo
+    ''                            Dim producto As tblArticulo = (From x In conexion.tblArticuloes.AsEnumerable Where x.idArticulo = idarticulo _
+    ''                                                           Select x).FirstOrDefault
+
+    ''                            'obtener del grid view el idajustecategoria.
+    ''                            idajustecate = Me.grdProductos.Rows(index).Cells("idajustecategoria").Value
+
+    ''                            'si el codigo de ajuste categoria es mayor a cero, existe
+    ''                            If idajustecate > 0 Then
+    ''                                'obtener la cantidad a ajustar.
+    ''                                cantidadAjuste = Me.grdProductos.Rows(index).Cells("txmCantidadAjuste").Value
+
+    ''                                'Verificamos si es entrada o salida
+    ''                                Dim tipoMov As tblTipoMovimiento = (From x In conexion.tblTipoMovimientoes.AsEnumerable
+    ''                                                                    Where x.idTipoMovimiento = idajustecate
+    ''                                                                    Select x).FirstOrDefault
+
+    ''                                'Verificamos si es traslado o ajuste
+    ''                                If tipoMov.traslado Then
+    ''                                    'Creamos un nuevo traslado
+
+    ''                                    'Procedemos a crear el ajuste
+    ''                                    '--------ENCABEZADO MOVIMIENTO INVENTARIO PRINCIPAL -------------
+    ''                                    Dim traslado As New tblMovimientoInventario
+    ''                                    traslado.correlativo = idCorrelativo
+    ''                                    traslado.empresa = mdlPublicVars.idEmpresa
+    ''                                    traslado.usuario = mdlPublicVars.idUsuario
+    ''                                    traslado.almacen = mdlPublicVars.General_idAlmacenPrincipal
+    ''                                    traslado.documento = ""
+    ''                                    traslado.bitBodega = True
+    ''                                    traslado.revisado = True
+    ''                                    traslado.bitVenta = False
+    ''                                    traslado.tipoMovimiento = Ajuste_CodigoMovimiento
+    ''                                    traslado.inventarioInicial = mdlPublicVars.General_idTipoInventario
+    ''                                    traslado.inventarioFinal = tipoMov.idTipoInventario
+    ''                                    traslado.ajuste = False
+    ''                                    traslado.traslado = True
+    ''                                    traslado.anulado = False
+
+    ''                                    traslado.fechaRegistro = dtpFechaRegistro.Text & " " & hora
+    ''                                    traslado.fechaTransaccion = fecha
+    ''                                    traslado.observacion = "Cod: " & salida.idSalida & ",Doc: " & salida.documento & ",Cliente: " & salida.tblCliente.Negocio
+    ''                                    traslado.revisado = False
+    ''                                    traslado.bitVenta = True
+    ''                                    traslado.bitBodega = False
+    ''                                    traslado.codigoSalida = salida.idSalida
+
+    ''                                    conexion.AddTotblMovimientoInventarios(traslado)
+    ''                                    conexion.SaveChanges()
+
+    ''                                    'Creamos el nuevo detalle del movimiento
+    ''                                    Dim detalleAj As New tblMovimientoInventarioDetalle
+    ''                                    detalleAj.movimientoInventario = traslado.codigo
+    ''                                    detalleAj.articulo = detalle.idArticulo
+    ''                                    detalleAj.cantidad = cantidadAjuste
+    ''                                    detalleAj.tipoMovimiento = tipoMov.idTipoMovimiento
+    ''                                    detalleAj.costo = producto.costoIVA
+    ''                                    detalleAj.total = producto.costoIVA * cantidadAjuste
+    ''                                    detalleAj.salidaDetalle = detalle.idSalidaDetalle
+    ''                                    detalleAj.idunidadmedida = 1
+    ''                                    detalleAj.valormedida = 1
+
+    ''                                    detalleAj.entrada = tipoMov.aumentaInventario
+    ''                                    detalleAj.salida = tipoMov.disminuyeInventario
+
+    ''                                    conexion.AddTotblMovimientoInventarioDetalles(detalleAj)
+    ''                                    conexion.SaveChanges()
+
+    ''                                    'Devolvemos es cantidad al inventario del movimiento
+    ''                                    'restar cantidad del detalle.
+    ''                                    detalle.cantidad = detalle.cantidad - cantidadAjuste
+    ''                                    'guardar los cambios.
+    ''                                    conexion.SaveChanges()
+
+    ''                                    If tipoMov.idTipoInventario IsNot Nothing Then
+
+    ''                                        'Verificamos si aumenta o disminuye
+    ''                                        If tipoMov.disminuyeInventario Then
+    ''                                            traslado.inventarioInicial = mdlPublicVars.General_idTipoInventario
+    ''                                            traslado.inventarioFinal = tipoMov.idTipoInventario
+    ''                                            conexion.SaveChanges()
+
+    ''                                            'Obtenemos el inventario de se artciulo
+    ''                                            Dim inventario As tblInventario = (From x In conexion.tblInventarios
+    ''                                                                               Where x.idArticulo = detalle.idArticulo And x.idTipoInventario = tipoMov.idTipoInventario
+    ''                                                                               Select x).FirstOrDefault
+
+    ''                                            'decremental el total de la salida o venta.
+    ''                                            'salida.total = salida.total - detalleAj.total,, 
+
+    ''                                            'se debe restar del inventario cuando sea diferente al inventario principal o inventario de liquidacion.
+
+    ''                                            '**** DEBERIAS VALIDARSE QUE NO SEA INVENTARIO DE ESTANTERIA O LIQUIDACION PARA AUMENTAR AL SALDO.
+    ''                                            If inventario IsNot Nothing Then
+
+    ''                                                'disminuir el saldo del inventario y disminuimos la salida, del tipo de inventario del movimiento segun el articulo
+    ''                                                inventario.entrada += cantidadAjuste
+    ''                                                inventario.saldo += cantidadAjuste
+    ''                                                conexion.SaveChanges()
+    ''                                                'Guardamos los cambios
+
+    ''                                            Else
+    ''                                                'Cremos el registro en inventario
+    ''                                                Dim inveNuevo As New tblInventario
+
+    ''                                                inveNuevo.idArticulo = detalle.idArticulo
+    ''                                                inveNuevo.entrada = cantidadAjuste
+    ''                                                inveNuevo.salida = 0
+    ''                                                inveNuevo.transito = 0
+    ''                                                inveNuevo.reserva = 0
+    ''                                                inveNuevo.saldo = cantidadAjuste
+    ''                                                inveNuevo.idTipoInventario = tipoMov.idTipoInventario
+    ''                                                inveNuevo.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal
+
+    ''                                                'Agregamos el inventario
+    ''                                                conexion.AddTotblInventarios(inveNuevo)
+    ''                                                conexion.SaveChanges()
+
+    ''                                            End If
+
+    ''                                        ElseIf tipoMov.aumentaInventario Then
+
+    ''                                            traslado.inventarioFinal = mdlPublicVars.General_idTipoInventario
+    ''                                            traslado.inventarioInicial = tipoMov.idTipoInventario
+
+    ''                                            'actualizar el modelo
+    ''                                            'conexion.Refresh(System.Data.Objects.RefreshMode.ClientWins, conexion.tblInventarios)
+    ''                                            'conexion.SaveChanges()
+
+    ''                                            'Obtenemos el inventario de se artciulo
+    ''                                            Dim inventario As tblInventario = (From x In conexion.tblInventarios
+    ''                                                                               Where x.idArticulo = detalle.idArticulo And x.idTipoInventario = tipoMov.idTipoInventario
+    ''                                                                               Select x).FirstOrDefault
+
+
+    ''                                            'incremental el total de la salida o venta.
+    ''                                            'salida.total = salida.total + detalleAj.total
+
+
+    ''                                            '***** DEVERIA VALIDARSE QUE NO SEA EL INVENTARIO PRINCIPAL
+    ''                                            If inventario IsNot Nothing Then
+    ''                                                'Aumentamos el saldo del inventario y disminuimos la salida
+    ''                                                inventario.saldo += cantidadAjuste
+    ''                                                inventario.entrada += cantidadAjuste
+
+    ''                                                'Guardamos los cambios
+    ''                                                conexion.SaveChanges()
+    ''                                            Else
+    ''                                                'Cremos el registro en inventario
+    ''                                                Dim inveNuevo As New tblInventario
+
+    ''                                                inveNuevo.idArticulo = detalle.idArticulo
+    ''                                                inveNuevo.entrada = cantidadAjuste
+    ''                                                inveNuevo.salida = 0
+    ''                                                inveNuevo.transito = 0
+    ''                                                inveNuevo.reserva = 0
+    ''                                                inveNuevo.saldo = cantidadAjuste
+    ''                                                inveNuevo.idTipoInventario = tipoMov.idTipoInventario
+    ''                                                inveNuevo.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal
+
+    ''                                                'Agregamos el inventario
+    ''                                                conexion.AddTotblInventarios(inveNuevo)
+    ''                                                conexion.SaveChanges()
+
+    ''                                            End If
+    ''                                            detalle.cantidad = detalle.cantidad + cantidadAjuste
+    ''                                        End If
+    ''                                    End If
+    ''                                ElseIf tipoMov.ajuste Then
+    ''                                    'Creamos el nuevo detalle del movimiento
+    ''                                    Dim detalleAj As New tblMovimientoInventarioDetalle
+
+    ''                                    detalleAj.movimientoInventario = codigoMovPrincipal
+    ''                                    detalleAj.articulo = idarticulo
+
+    ''                                    detalleAj.tipoMovimiento = idajustecate
+    ''                                    detalleAj.costo = precio
+    ''                                    detalleAj.total = (precio * cantidadAjuste)
+    ''                                    detalleAj.salidaDetalle = detalle.idSalidaDetalle
+    ''                                    detalleAj.idunidadmedida = UnidadMedidaDefault
+    ''                                    detalleAj.valormedida = 1
+    ''                                    detalleAj.cantidad = cantidadAjuste
+    ''                                    If tipoMov.aumentaInventario = True Then
+
+    ''                                        detalleAj.entrada = True
+    ''                                        detalleAj.salida = False
+    ''                                    ElseIf tipoMov.disminuyeInventario = True Then
+    ''                                        detalleAj.salida = True
+    ''                                        detalleAj.entrada = False
+    ''                                    End If
+
+    ''                                    conexion.AddTotblMovimientoInventarioDetalles(detalleAj)
+    ''                                    conexion.SaveChanges()
+
+    ''                                    'si ajuste categoria es una entrada, quiere decir que es un agregado o suma a la cantidad existente, por lo tanto descontar de inventario.
+    ''                                    If tipoMov.disminuyeInventario = True Then
+    ''                                        'restar de inventario y guardar registro de ajuste.
+    ''                                        inve.saldo = inve.saldo - cantidadAjuste
+    ''                                        detalle.cantidad = detalle.cantidad - cantidadAjuste
+
+
+    ''                                        'actualizar el modelo
+    ''                                        conexion.Refresh(System.Data.Objects.RefreshMode.ClientWins, conexion.tblInventarios)
+    ''                                        conexion.SaveChanges()
+
+
+    ''                                        ' ''Obtenemos el inventario de se artculo
+    ''                                        ''Dim inventario As tblInventario = (From x In conexion.tblInventarios
+    ''                                        ''                                   Where x.idArticulo = detalle.idArticulo _
+    ''                                        ''                                   And x.idTipoInventario = mdlPublicVars.General_idTipoInventario
+    ''                                        ''                                   Select x).FirstOrDefault
+
+    ''                                        ' ''Aumentamos el saldo del inventario y disminuimos la salida
+    ''                                        ''inventario.saldo += cantidadAjuste
+    ''                                        ''inventario.entrada += cantidadAjuste
+
+    ''                                        ''conexion.SaveChanges()
+    ''                                    Else
+    ''                                        'si ajuste movimiento no es entrada, es una salida se debe agregar la cantidad de ajuste al inventario.
+    ''                                        ''inve.saldo = inve.saldo + cantidadAjuste
+    ''                                        inve.salida -= cantidadAjuste
+    ''                                        detalle.cantidad = detalle.cantidad - cantidadAjuste
+    ''                                        conexion.SaveChanges()
+    ''                                        'If detalle.cantidad < 0 Then
+    ''                                        '    alerta.contenido = "Error !!!, Cantidad no puede ser menor a cero en articulo : " + articulo.ToString
+    ''                                        '    alerta.fnErrorContenido()
+    ''                                        '    success = False
+    ''                                        '    Exit Try
+    ''                                        'End If
+    ''                                    End If
+
+    ''                                    If producto.bitKit Then
+    ''                                        'Obtenemos la lista del detalle del kit en la tblSalidaDetalle
+    ''                                        Dim lSalidaDetalleKit As List(Of tblSalidaDetalle) = (From x In conexion.tblSalidaDetalles Where x.kitSalidaDetalle = iddetalle _
+    ''                                                                                              Select x).ToList
+
+    ''                                        'Recorremos el kit detalle y generamos los ajustes
+    ''                                        Dim cantidadAnterior As Integer = 0
+    ''                                        For Each salidaDetalleKit As tblSalidaDetalle In lSalidaDetalleKit
+    ''                                            cantidadAnterior = salidaDetalleKit.cantidad / salidaDetalleKit.tblSalidaDetalle2.cantidad
+
+    ''                                            'Creamos el nuevo detalle del movimiento
+    ''                                            Dim detalleAju As New tblMovimientoInventarioDetalle
+
+    ''                                            detalleAju.movimientoInventario = codigoMovPrincipal
+    ''                                            detalleAju.articulo = salidaDetalleKit.idArticulo
+    ''                                            detalleAju.cantidad = cantidadAjuste * salidaDetalleKit.cantidad
+    ''                                            detalleAju.tipoMovimiento = idajustecate
+    ''                                            detalleAju.costo = 0
+    ''                                            detalleAju.total = 0
+    ''                                            detalleAju.salidaDetalle = detalle.idSalidaDetalle
+
+    ''                                            If tipoMov.aumentaInventario = True Then
+    ''                                                detalleAju.entrada = True
+    ''                                                detalleAju.salida = False
+    ''                                            ElseIf tipoMov.disminuyeInventario = True Then
+    ''                                                detalleAju.salida = True
+    ''                                                detalleAju.entrada = False
+    ''                                            End If
+
+    ''                                            conexion.AddTotblMovimientoInventarioDetalles(detalleAju)
+    ''                                            conexion.SaveChanges()
+
+    ''                                            'si ajuste categoria es una entrada, quiere decir que es un agregado o suma a la cantidad existente, por lo tanto descontar de inventario.
+    ''                                            If tipoMov.disminuyeInventario = True Then
+    ''                                                If (inve.saldo - (cantidadAjuste * cantidadAnterior)) >= 0 Then
+    ''                                                    'restar de inventario y guardar registro de ajuste.
+    ''                                                    'inve.saldo = inve.saldo - cantidadAjuste
+    ''                                                    salidaDetalleKit.cantidad = salidaDetalleKit.cantidad - (cantidadAjuste * cantidadAnterior)
+    ''                                                    conexion.SaveChanges()
+    ''                                                Else
+    ''                                                    'cantidad insuficiente, error !!!
+    ''                                                    'no hay existencia.
+    ''                                                    'alerta.contenido = "Error !!!, Existencia insuficiente de articulo: " + articulo.ToString
+    ''                                                    'alerta.fnErrorContenido()
+    ''                                                    MessageBox.Show("Error !!!, Existencia insuficiente de articulo: " + articulo.ToString)
+    ''                                                    success = False
+    ''                                                    Exit Try
+    ''                                                End If
+    ''                                            Else
+    ''                                                'si ajuste movimiento no es entrada, es una salida se debe agregar la cantidad de ajuste al inventario.
+    ''                                                'inve.saldo = inve.saldo + cantidadAjuste
+    ''                                                salidaDetalleKit.cantidad = salidaDetalleKit.cantidad + (cantidadAjuste * cantidadAnterior)
+    ''                                                If detalle.cantidad < 0 Then
+    ''                                                    alerta.contenido = "Error !!!, Cantidad no puede ser menor a cero en articulo : " + articulo.ToString
+    ''                                                    alerta.fnErrorContenido()
+    ''                                                    success = False
+    ''                                                    Exit Try
+    ''                                                End If
+    ''                                            End If
+    ''                                        Next
+    ''                                    End If
+    ''                                    conexion.SaveChanges()
+    ''                                End If
+
+    ''                                conexion.SaveChanges()
+    ''                            End If
+    ''                        End If
+
+    ''                        'Verifiamos si es surtir
+    ''                        If idSurtir > 0 Then
+    ''                            'Modificamos el pendiente por surtir
+    ''                            Dim pendiente As List(Of tblSurtir) = (From x In conexion.tblSurtirs Where x.cliente = salida.idCliente And x.saldo > 0 And x.articulo = detalle.idArticulo Select x Order By x.fechaTransaccion Descending).ToList
+
+    ''                            Dim p As tblSurtir
+    ''                            For Each p In pendiente
+    ''                                If cantSurtir > p.saldo Then
+    ''                                    cantSurtir -= p.saldo
+    ''                                    p.saldo = 0
+
+    ''                                Else
+    ''                                    p.saldo -= cantSurtir
+    ''                                    cantSurtir = 0
+    ''                                End If
+    ''                                conexion.SaveChanges()
+    ''                                If cantSurtir = 0 Then
+    ''                                    Exit For
+    ''                                End If
+    ''                            Next
+    ''                        ElseIf cantSurtir > 0 Then
+    ''                            'Creamos el pendiente por surtir
+    ''                            Dim pendiente As New tblSurtir
+    ''                            pendiente.salidaDetalle = detalle.idSalidaDetalle
+    ''                            pendiente.articulo = detalle.idArticulo
+    ''                            pendiente.cantidad = cantSurtir
+    ''                            pendiente.saldo = cantSurtir
+    ''                            pendiente.fechaTransaccion = fecha
+    ''                            pendiente.anulado = 0
+    ''                            pendiente.usuario = mdlPublicVars.idUsuario
+    ''                            pendiente.vendedor = mdlPublicVars.idVendedor
+    ''                            pendiente.cliente = salida.idCliente
+    ''                            pendiente.Eliminar = False
+
+    ''                            conexion.AddTotblSurtirs(pendiente)
+    ''                            conexion.SaveChanges()
+    ''                        End If
+
+    ''                    Next
+
+    ''                    conexion.SaveChanges()
+
+    ''                    'actualizar el total de la venta.
+    ''                    Dim TotalVenta As Double = (From x In conexion.tblSalidas Join y In conexion.tblSalidaDetalles On x.idSalida Equals y.idSalida
+    ''                                              Where x.idSalida = codigo And y.anulado = False Select y.cantidad * y.precio).Sum()
+
+    ''                    salida.total = TotalVenta
+    ''                    salida.subtotal = TotalVenta
+
+
+    ''                    conexion.SaveChanges()
+    ''                    'paso 8, completar la transaccion.
+    ''                    transaction.Complete()
+
+    ''                Catch ex As System.Data.EntityException
+    ''                    MessageBox.Show(ex.Message)
+    ''                    success = False
+    ''                    MessageBox.Show(ex.Message)
+    ''                Catch ex As Exception
+    ''                    success = False
+    ''                    MessageBox.Show(ex.Message)
+    ''                    If ex.[GetType]() <> GetType(UpdateException) Then
+    ''                        Console.WriteLine(("An error occured. " & "The operation cannot be retried.") + ex.Message)
+    ''                        alerta.fnErrorGuardar()
+    ''                        Exit Try
+    ''                        ' If we get to this point, the operation will be retried. 
+    ''                    End If
+    ''                End Try
+    ''            End Using
+    ''        End If
+
+
+    ''        If success Then
+    ''            conexion.AcceptAllChanges()
+    ''            alerta.fnGuardar()
+    ''        End If
+
+    ''        'cerrar la conexion
+    ''        conn.Close()
+    ''    End Using
+
+
+    ''    Return success
+
+    ''End Function
 
     Private Sub grdProductos_CellDoubleClick(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs) Handles grdProductos.CellDoubleClick
         fnMuestraCombo()

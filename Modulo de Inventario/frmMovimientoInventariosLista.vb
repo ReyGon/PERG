@@ -5,6 +5,8 @@ Imports System.Data.SqlClient
 Imports Telerik.WinControls.UI
 Imports System.Transactions
 Imports Telerik.WinControls
+Imports System.Data.EntityClient
+
 
 Public Class frmMovimientoInventariosLista
     Public permiso As New clsPermisoUsuario
@@ -267,6 +269,11 @@ Public Class frmMovimientoInventariosLista
         Dim nombreArticuloInsuficiente As String = ""
         Dim fechaServidor As DateTime = CType(mdlPublicVars.fnFecha_horaServidor, DateTime)
         'crear el encabezado de la transaccion
+        Dim conexion As dsi_pos_demoEntities
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
         Using transaction As New TransactionScope
 
             'inicio de excepcion
@@ -283,6 +290,8 @@ Public Class frmMovimientoInventariosLista
                 movimiento.revisado = True
                 movimiento.fechaRevisado = fechaAcreditado
                 ctx.SaveChanges()
+
+                fnAcreditarInventario(codigo, conexion)
 
                 'completar la transaccion.
                 transaction.Complete()
@@ -301,6 +310,8 @@ Public Class frmMovimientoInventariosLista
                     ' If we get to this point, the operation will be retried. 
                 End If
             End Try
+            End Using
+            conn.Close()
         End Using
 
         If success = True Then
@@ -325,6 +336,79 @@ Public Class frmMovimientoInventariosLista
         Dim fila As Integer = CType(Me.grdDatos.CurrentRow.Index, Integer)
         llenagrid()
         Me.grdDatos.Rows(fila).IsCurrent = True
+    End Sub
+
+    Private Sub fnAcreditarInventario(ByVal id As Integer, ByVal conexion As dsi_pos_demoEntities)
+        Try
+
+            Dim m As tblMovimientoInventario = (From x In conexion.tblMovimientoInventarios Where x.codigo = id Select x).FirstOrDefault
+
+            Dim lista As List(Of tblMovimientoInventarioDetalle) = (From x In conexion.tblMovimientoInventarioDetalles Where x.movimientoInventario = id Select x).ToList()
+
+            Dim t As tblTipoMovimiento
+            Dim i As tblInventario
+            Dim i2 As tblInventario
+
+            For Each d As tblMovimientoInventarioDetalle In lista
+
+                If m.bitVenta = True Then
+
+                    If m.ajuste Then
+                        t = (From x In conexion.tblTipoMovimientoes Where x.idTipoMovimiento = d.tipoMovimiento Select x).FirstOrDefault
+
+                        If t.aumentaInventario = True Then
+
+                            i = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.idTipoInventario = mdlPublicVars.General_idTipoInventario Select x).FirstOrDefault
+
+                            i.saldo += d.cantidad
+
+                            conexion.SaveChanges()
+
+                        Else
+                            i = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.idTipoInventario = mdlPublicVars.General_idTipoInventario Select x).FirstOrDefault
+
+                            i.saldo -= d.cantidad
+
+                            conexion.SaveChanges()
+                        End If
+                    ElseIf m.traslado Then
+
+                    End If
+
+                ElseIf m.bitBodega = True Then
+
+                    t = (From x In conexion.tblTipoMovimientoes Where x.idTipoMovimiento = d.tipoMovimiento Select x).FirstOrDefault
+
+                    i = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.IdAlmacen = m.almacen And x.idTipoInventario = m.inventarioInicial Select x).FirstOrDefault
+                    i2 = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.IdAlmacen = m.almacenFinal And x.idTipoInventario = m.inventarioFinal Select x).FirstOrDefault
+
+                    If m.ajuste = True Then
+                        If t.aumentaInventario = True Then
+                            i.saldo += d.cantidad * d.valormedida
+                            i.entrada += d.cantidad * d.valormedida
+                            conexion.SaveChanges()
+                        ElseIf t.disminuyeInventario = True Then
+                            i.saldo -= d.cantidad * d.valormedida
+                            i.salida += d.cantidad * d.valormedida
+                            conexion.SaveChanges()
+                        End If
+                    ElseIf m.traslado = True Then
+                        i.saldo -= d.cantidad * d.valormedida
+                        i.salida += d.cantidad * d.valormedida
+                        conexion.SaveChanges()
+
+                        i2.saldo += d.cantidad * d.valormedida
+                        i2.entrada += d.cantidad * d.valormedida
+                        conexion.SaveChanges()
+                    End If
+
+                End If
+
+            Next
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub fnAcreditarDevolucionCliente()

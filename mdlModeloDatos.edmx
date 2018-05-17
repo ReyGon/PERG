@@ -10987,16 +10987,6 @@
             <Parameter Name="filtro" Mode="In" Type="String" />
             <Parameter Name="idcaja" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_SaldoInicialReservaOtros" ReturnType="Collection(dsi_pos_demoModel.sp_SaldoInicialReservaOtros_Result)">
-            <Parameter Name="articulo" Mode="In" Type="Int32" />
-            <Parameter Name="cliente" Mode="In" Type="Int32" />
-            <Parameter Name="tipoMovimiento" Mode="In" Type="Int32" />
-            <Parameter Name="inventario" Mode="In" Type="Int32" />
-            <Parameter Name="documento" Mode="In" Type="String" />
-            <Parameter Name="desde" Mode="In" Type="DateTime" />
-            <Parameter Name="hasta" Mode="In" Type="DateTime" />
-            <Parameter Name="empresa" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_salida_efectividadVenta" ReturnType="Collection(Decimal)">
           <Parameter Name="idsalida" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -11809,6 +11799,16 @@
           </FunctionImport>
           <EntitySet Name="tblsalidabodega_detalle" EntityType="dsi_pos_demoModel.tblsalidabodega_detalle" />
           <FunctionImport Name="sp_bodega_lista" ReturnType="Collection(dsi_pos_demoModel.sp_bodega_lista_Result)" />
+          <FunctionImport Name="sp_SaldoInicialReservaOtros" ReturnType="Collection(dsi_pos_demoModel.sp_SaldoInicialReservaOtros_Result)">
+            <Parameter Name="articulo" Mode="In" Type="Int32" />
+            <Parameter Name="cliente" Mode="In" Type="Int32" />
+            <Parameter Name="tipoMovimiento" Mode="In" Type="Int32" />
+            <Parameter Name="inventario" Mode="In" Type="Int32" />
+            <Parameter Name="documento" Mode="In" Type="String" />
+            <Parameter Name="desde" Mode="In" Type="DateTime" />
+            <Parameter Name="hasta" Mode="In" Type="DateTime" />
+            <Parameter Name="empresa" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="dtproperty">
           <Key>
@@ -18287,11 +18287,6 @@
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="150" />
           <Property Type="String" Name="observacion" Nullable="true" MaxLength="300" />
         </ComplexType>
-        <ComplexType Name="sp_SaldoInicialReservaOtros_Result">
-          <Property Type="Decimal" Name="SaldoInicial" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="ReservaHistorial" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="ReservaActual" Nullable="true" Precision="18" Scale="2" />
-        </ComplexType>
         <ComplexType Name="sp_salida_mov_lista_pequenia_Result">
           <Property Type="Int32" Name="Codigo" Nullable="false" />
           <Property Type="DateTime" Name="Fecha" Nullable="true" />
@@ -20865,6 +20860,13 @@
           <Property Type="String" Name="txbEmpacado" Nullable="false" />
           <Property Type="String" Name="txmObservacion" Nullable="false" MaxLength="400" />
           <Property Type="Int32" Name="Errores" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_SaldoInicialReservaOtros_Result">
+          <Property Type="Decimal" Name="SaldoInicial" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="ReservaHistorial" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="ReservaActual" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="AjustesHistorial" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="AjustesActual" Nullable="true" Precision="18" Scale="2" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -25315,15 +25317,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_SaldoInicialReservaOtros" FunctionName="mdlModeloDatos.Store.sp_SaldoInicialReservaOtros">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_SaldoInicialReservaOtros_Result">
-                <ScalarProperty Name="SaldoInicial" ColumnName="SaldoInicial" />
-                <ScalarProperty Name="ReservaHistorial" ColumnName="ReservaHistorial" />
-                <ScalarProperty Name="ReservaActual" ColumnName="ReservaActual" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_salida_efectividadVenta" FunctionName="mdlModeloDatos.Store.sp_salida_efectividadVenta" />
           <FunctionImportMapping FunctionImportName="sp_salida_mov_lista_pequenia" FunctionName="mdlModeloDatos.Store.sp_salida_mov_lista_pequenia">
             <ResultMapping>
@@ -26255,6 +26248,17 @@
                 <ScalarProperty Name="txbEmpacado" ColumnName="txbEmpacado" />
                 <ScalarProperty Name="txmObservacion" ColumnName="txmObservacion" />
                 <ScalarProperty Name="Errores" ColumnName="Errores" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_SaldoInicialReservaOtros" FunctionName="mdlModeloDatos.Store.sp_SaldoInicialReservaOtros">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_SaldoInicialReservaOtros_Result">
+                <ScalarProperty Name="SaldoInicial" ColumnName="SaldoInicial" />
+                <ScalarProperty Name="ReservaHistorial" ColumnName="ReservaHistorial" />
+                <ScalarProperty Name="ReservaActual" ColumnName="ReservaActual" />
+                <ScalarProperty Name="AjustesHistorial" ColumnName="AjustesHistorial" />
+                <ScalarProperty Name="AjustesActual" ColumnName="AjustesActual" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

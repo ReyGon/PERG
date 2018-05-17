@@ -166,13 +166,17 @@ Public Class frmProductoKardex
                 Me.grdDatos.DataSource = consulta
                 Dim historial = conexion.sp_SaldoInicialReservaOtros(articulo, cli, tipo, inv, txtDocumento.Text, fechaInicio, fechaFinal, mdlPublicVars.idEmpresa)
                 Dim reservaActual As Integer = 0
+                Dim ajustesactual As Integer = 0
                 'Recorremos el historial
                 For Each hist As sp_SaldoInicialReservaOtros_Result In historial
                     lblSaldoInicial.Text = Format(hist.SaldoInicial, mdlPublicVars.formatoNumero)
                     lblReservaHistorial.Text = Format(hist.ReservaHistorial, mdlPublicVars.formatoNumero)
+                    lblAjustesHistorial.Text = Format(hist.AjustesHistorial, mdlPublicVars.formatoNumero)
                     lblSaldoNetoInicial.Text = Format(hist.SaldoInicial - hist.ReservaHistorial, mdlPublicVars.formatoNumero)
                     lblReserva.Text = Format(hist.ReservaActual, mdlPublicVars.formatoNumero)
+                    lblAjustes.Text = Format(hist.AjustesActual, mdlPublicVars.formatoNumero)
                     reservaActual = hist.ReservaActual
+                    ajustesactual = hist.AjustesActual
                 Next
 
                 'Establecemos el saldo final
@@ -185,7 +189,7 @@ Public Class frmProductoKardex
                 Dim final As Decimal = CDec(lblFinal.Text)
                 'Establecemos el saldo final neto
                 Try
-                    lblFinalNeto.Text = Format(final - reservaActual, mdlPublicVars.formatoNumero)
+                    lblFinalNeto.Text = Format((final - reservaActual) + ajustesactual, mdlPublicVars.formatoNumero)
                 Catch ex As Exception
                     RadMessageBox.Show("ERROR!", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
                 End Try
@@ -435,4 +439,7 @@ Public Class frmProductoKardex
     End Sub
 
 
+    Private Sub lblAjustesHistorial_Click(sender As Object, e As EventArgs) Handles lblAjustesHistorial.Click
+
+    End Sub
 End Class
