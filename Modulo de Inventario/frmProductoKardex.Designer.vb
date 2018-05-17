@@ -77,8 +77,10 @@ Partial Class frmProductoKardex
         Me.Label18 = New System.Windows.Forms.Label()
         Me.lblReservaHistorial = New System.Windows.Forms.Label()
         Me.btnAjustesDetalle = New System.Windows.Forms.Button()
-        Me.Label10 = New System.Windows.Forms.Label()
+        Me.lblAjustes = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.lblAjustesHistorial = New System.Windows.Forms.Label()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rgbInformacion, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,7 +116,7 @@ Partial Class frmProductoKardex
         '
         Me.PictureBox4.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox4.Image = Global.laFuente.My.Resources.Resources.buscar_Negro
-        Me.PictureBox4.Location = New System.Drawing.Point(27, 130)
+        Me.PictureBox4.Location = New System.Drawing.Point(27, 117)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(41, 37)
         Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -126,7 +128,7 @@ Partial Class frmProductoKardex
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.Label9.ForeColor = System.Drawing.Color.Gray
-        Me.Label9.Location = New System.Drawing.Point(70, 140)
+        Me.Label9.Location = New System.Drawing.Point(70, 127)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(191, 25)
         Me.Label9.TabIndex = 98
@@ -144,14 +146,14 @@ Partial Class frmProductoKardex
         Me.rgbInformacion.HeaderImageKey = ""
         Me.rgbInformacion.HeaderMargin = New System.Windows.Forms.Padding(0)
         Me.rgbInformacion.HeaderText = ""
-        Me.rgbInformacion.Location = New System.Drawing.Point(3, 297)
+        Me.rgbInformacion.Location = New System.Drawing.Point(3, 281)
         Me.rgbInformacion.Name = "rgbInformacion"
         Me.rgbInformacion.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
         '
         '
         '
         Me.rgbInformacion.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        Me.rgbInformacion.Size = New System.Drawing.Size(898, 259)
+        Me.rgbInformacion.Size = New System.Drawing.Size(903, 205)
         Me.rgbInformacion.TabIndex = 96
         '
         'grdDatos
@@ -174,7 +176,7 @@ Partial Class frmProductoKardex
         '
         '
         Me.grdDatos.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdDatos.Size = New System.Drawing.Size(878, 226)
+        Me.grdDatos.Size = New System.Drawing.Size(883, 179)
         Me.grdDatos.TabIndex = 82
         Me.grdDatos.Text = "RadGridView1"
         Me.grdDatos.ThemeName = "Office2007Black"
@@ -190,14 +192,14 @@ Partial Class frmProductoKardex
         Me.rgbBusqueda.HeaderImageKey = ""
         Me.rgbBusqueda.HeaderMargin = New System.Windows.Forms.Padding(0)
         Me.rgbBusqueda.HeaderText = ""
-        Me.rgbBusqueda.Location = New System.Drawing.Point(4, 148)
+        Me.rgbBusqueda.Location = New System.Drawing.Point(4, 135)
         Me.rgbBusqueda.Name = "rgbBusqueda"
         Me.rgbBusqueda.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
         '
         '
         '
         Me.rgbBusqueda.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        Me.rgbBusqueda.Size = New System.Drawing.Size(897, 123)
+        Me.rgbBusqueda.Size = New System.Drawing.Size(902, 123)
         Me.rgbBusqueda.TabIndex = 95
         '
         'tlpInformacion
@@ -212,7 +214,7 @@ Partial Class frmProductoKardex
         Me.tlpInformacion.Name = "tlpInformacion"
         Me.tlpInformacion.RowCount = 1
         Me.tlpInformacion.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpInformacion.Size = New System.Drawing.Size(877, 93)
+        Me.tlpInformacion.Size = New System.Drawing.Size(882, 93)
         Me.tlpInformacion.TabIndex = 0
         '
         'pnlFiltros
@@ -234,7 +236,7 @@ Partial Class frmProductoKardex
         Me.pnlFiltros.Controls.Add(Me.Label3)
         Me.pnlFiltros.Controls.Add(Me.Label6)
         Me.pnlFiltros.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlFiltros.Location = New System.Drawing.Point(78, 3)
+        Me.pnlFiltros.Location = New System.Drawing.Point(80, 3)
         Me.pnlFiltros.Name = "pnlFiltros"
         Me.pnlFiltros.Size = New System.Drawing.Size(721, 87)
         Me.pnlFiltros.TabIndex = 0
@@ -399,7 +401,7 @@ Partial Class frmProductoKardex
         '
         Me.PictureBox5.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox5.Image = Global.laFuente.My.Resources.Resources.detalles
-        Me.PictureBox5.Location = New System.Drawing.Point(27, 278)
+        Me.PictureBox5.Location = New System.Drawing.Point(27, 262)
         Me.PictureBox5.Name = "PictureBox5"
         Me.PictureBox5.Size = New System.Drawing.Size(41, 37)
         Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -411,7 +413,7 @@ Partial Class frmProductoKardex
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Bold)
         Me.Label7.ForeColor = System.Drawing.Color.Gray
-        Me.Label7.Location = New System.Drawing.Point(68, 286)
+        Me.Label7.Location = New System.Drawing.Point(68, 270)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(212, 25)
         Me.Label7.TabIndex = 101
@@ -426,7 +428,7 @@ Partial Class frmProductoKardex
         Me.pnlBarra.Controls.Add(Me.pnx0Salir)
         Me.pnlBarra.Location = New System.Drawing.Point(464, -3)
         Me.pnlBarra.Name = "pnlBarra"
-        Me.pnlBarra.Size = New System.Drawing.Size(444, 51)
+        Me.pnlBarra.Size = New System.Drawing.Size(449, 51)
         Me.pnlBarra.TabIndex = 121
         '
         'pnx1ajustar
@@ -468,7 +470,7 @@ Partial Class frmProductoKardex
         Me.pnx0Salir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pnx0Salir.Controls.Add(Me.lbl0Salir)
         Me.pnx0Salir.Controls.Add(Me.pbx0Salir)
-        Me.pnx0Salir.Location = New System.Drawing.Point(330, 6)
+        Me.pnx0Salir.Location = New System.Drawing.Point(335, 6)
         Me.pnx0Salir.Name = "pnx0Salir"
         Me.pnx0Salir.Size = New System.Drawing.Size(107, 40)
         Me.pnx0Salir.TabIndex = 194
@@ -537,7 +539,7 @@ Partial Class frmProductoKardex
         '
         '
         Me.rgbArticulo.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        Me.rgbArticulo.Size = New System.Drawing.Size(896, 53)
+        Me.rgbArticulo.Size = New System.Drawing.Size(901, 41)
         Me.rgbArticulo.TabIndex = 191
         '
         'Label11
@@ -545,7 +547,7 @@ Partial Class frmProductoKardex
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.DimGray
-        Me.Label11.Location = New System.Drawing.Point(27, 18)
+        Me.Label11.Location = New System.Drawing.Point(27, 13)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(83, 25)
         Me.Label11.TabIndex = 177
@@ -556,7 +558,7 @@ Partial Class frmProductoKardex
         Me.lblCodigo.AutoSize = True
         Me.lblCodigo.Font = New System.Drawing.Font("Segoe UI", 15.0!, System.Drawing.FontStyle.Bold)
         Me.lblCodigo.ForeColor = System.Drawing.Color.Black
-        Me.lblCodigo.Location = New System.Drawing.Point(114, 15)
+        Me.lblCodigo.Location = New System.Drawing.Point(114, 10)
         Me.lblCodigo.Name = "lblCodigo"
         Me.lblCodigo.Size = New System.Drawing.Size(63, 28)
         Me.lblCodigo.TabIndex = 178
@@ -567,9 +569,9 @@ Partial Class frmProductoKardex
         Me.cmbArticulo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmbArticulo.FormattingEnabled = True
-        Me.cmbArticulo.Location = New System.Drawing.Point(467, 19)
+        Me.cmbArticulo.Location = New System.Drawing.Point(467, 14)
         Me.cmbArticulo.Name = "cmbArticulo"
-        Me.cmbArticulo.Size = New System.Drawing.Size(416, 21)
+        Me.cmbArticulo.Size = New System.Drawing.Size(421, 21)
         Me.cmbArticulo.TabIndex = 176
         '
         'Label14
@@ -577,7 +579,7 @@ Partial Class frmProductoKardex
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.Color.DimGray
-        Me.Label14.Location = New System.Drawing.Point(361, 16)
+        Me.Label14.Location = New System.Drawing.Point(361, 11)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(100, 25)
         Me.Label14.TabIndex = 168
@@ -590,7 +592,7 @@ Partial Class frmProductoKardex
         Me.Label17.BackColor = System.Drawing.Color.Transparent
         Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label17.ForeColor = System.Drawing.Color.DimGray
-        Me.Label17.Location = New System.Drawing.Point(590, 566)
+        Me.Label17.Location = New System.Drawing.Point(525, 489)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(144, 29)
         Me.Label17.TabIndex = 196
@@ -600,29 +602,29 @@ Partial Class frmProductoKardex
         '
         Me.RadGroupBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadGroupBox2.Controls.Add(Me.btnAjustesDetalle)
-        Me.RadGroupBox2.Controls.Add(Me.Label10)
-        Me.RadGroupBox2.Controls.Add(Me.Label20)
-        Me.RadGroupBox2.Controls.Add(Me.btnDetalleReserva)
-        Me.RadGroupBox2.Controls.Add(Me.lblFinalNeto)
-        Me.RadGroupBox2.Controls.Add(Me.lblReserva)
+        Me.RadGroupBox2.Controls.Add(Me.lblAjustes)
         Me.RadGroupBox2.Controls.Add(Me.lblFinal)
-        Me.RadGroupBox2.Controls.Add(Me.Label23)
         Me.RadGroupBox2.Controls.Add(Me.Label12)
         Me.RadGroupBox2.Controls.Add(Me.Label24)
+        Me.RadGroupBox2.Controls.Add(Me.lblFinalNeto)
+        Me.RadGroupBox2.Controls.Add(Me.btnDetalleReserva)
+        Me.RadGroupBox2.Controls.Add(Me.Label20)
+        Me.RadGroupBox2.Controls.Add(Me.lblReserva)
+        Me.RadGroupBox2.Controls.Add(Me.Label23)
         Me.RadGroupBox2.FooterImageIndex = -1
         Me.RadGroupBox2.FooterImageKey = ""
         Me.RadGroupBox2.HeaderImageIndex = -1
         Me.RadGroupBox2.HeaderImageKey = ""
         Me.RadGroupBox2.HeaderMargin = New System.Windows.Forms.Padding(0)
         Me.RadGroupBox2.HeaderText = ""
-        Me.RadGroupBox2.Location = New System.Drawing.Point(521, 578)
+        Me.RadGroupBox2.Location = New System.Drawing.Point(456, 501)
         Me.RadGroupBox2.Name = "RadGroupBox2"
         Me.RadGroupBox2.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
         '
         '
         '
         Me.RadGroupBox2.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        Me.RadGroupBox2.Size = New System.Drawing.Size(380, 142)
+        Me.RadGroupBox2.Size = New System.Drawing.Size(450, 117)
         Me.RadGroupBox2.TabIndex = 194
         '
         'btnDetalleReserva
@@ -635,7 +637,7 @@ Partial Class frmProductoKardex
         Me.btnDetalleReserva.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDetalleReserva.ForeColor = System.Drawing.Color.Transparent
         Me.btnDetalleReserva.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnDetalleReserva.Location = New System.Drawing.Point(180, 47)
+        Me.btnDetalleReserva.Location = New System.Drawing.Point(151, 38)
         Me.btnDetalleReserva.Name = "btnDetalleReserva"
         Me.btnDetalleReserva.Size = New System.Drawing.Size(60, 24)
         Me.btnDetalleReserva.TabIndex = 193
@@ -647,9 +649,9 @@ Partial Class frmProductoKardex
         '
         Me.lblFinalNeto.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblFinalNeto.ForeColor = System.Drawing.Color.Black
-        Me.lblFinalNeto.Location = New System.Drawing.Point(172, 111)
+        Me.lblFinalNeto.Location = New System.Drawing.Point(151, 87)
         Me.lblFinalNeto.Name = "lblFinalNeto"
-        Me.lblFinalNeto.Size = New System.Drawing.Size(189, 26)
+        Me.lblFinalNeto.Size = New System.Drawing.Size(286, 26)
         Me.lblFinalNeto.TabIndex = 191
         Me.lblFinalNeto.Text = "Neto"
         Me.lblFinalNeto.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -658,9 +660,9 @@ Partial Class frmProductoKardex
         '
         Me.lblReserva.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblReserva.ForeColor = System.Drawing.Color.Black
-        Me.lblReserva.Location = New System.Drawing.Point(172, 45)
+        Me.lblReserva.Location = New System.Drawing.Point(217, 36)
         Me.lblReserva.Name = "lblReserva"
-        Me.lblReserva.Size = New System.Drawing.Size(189, 26)
+        Me.lblReserva.Size = New System.Drawing.Size(220, 26)
         Me.lblReserva.TabIndex = 189
         Me.lblReserva.Text = "Reserva"
         Me.lblReserva.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -669,9 +671,9 @@ Partial Class frmProductoKardex
         '
         Me.lblFinal.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblFinal.ForeColor = System.Drawing.Color.Black
-        Me.lblFinal.Location = New System.Drawing.Point(172, 12)
+        Me.lblFinal.Location = New System.Drawing.Point(151, 11)
         Me.lblFinal.Name = "lblFinal"
-        Me.lblFinal.Size = New System.Drawing.Size(189, 26)
+        Me.lblFinal.Size = New System.Drawing.Size(289, 26)
         Me.lblFinal.TabIndex = 177
         Me.lblFinal.Text = "Final"
         Me.lblFinal.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -681,7 +683,7 @@ Partial Class frmProductoKardex
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.ForeColor = System.Drawing.Color.DimGray
-        Me.Label23.Location = New System.Drawing.Point(57, 112)
+        Me.Label23.Location = New System.Drawing.Point(28, 88)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(117, 25)
         Me.Label23.TabIndex = 186
@@ -692,7 +694,7 @@ Partial Class frmProductoKardex
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.DimGray
-        Me.Label12.Location = New System.Drawing.Point(59, 12)
+        Me.Label12.Location = New System.Drawing.Point(30, 11)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(115, 25)
         Me.Label12.TabIndex = 176
@@ -703,7 +705,7 @@ Partial Class frmProductoKardex
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label24.ForeColor = System.Drawing.Color.DimGray
-        Me.Label24.Location = New System.Drawing.Point(50, 45)
+        Me.Label24.Location = New System.Drawing.Point(21, 36)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(124, 25)
         Me.Label24.TabIndex = 184
@@ -716,7 +718,7 @@ Partial Class frmProductoKardex
         Me.Label15.BackColor = System.Drawing.Color.Transparent
         Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.ForeColor = System.Drawing.Color.DimGray
-        Me.Label15.Location = New System.Drawing.Point(296, 566)
+        Me.Label15.Location = New System.Drawing.Point(81, 489)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(110, 29)
         Me.Label15.TabIndex = 199
@@ -725,35 +727,37 @@ Partial Class frmProductoKardex
         'RadGroupBox1
         '
         Me.RadGroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RadGroupBox1.Controls.Add(Me.lblAjustesHistorial)
+        Me.RadGroupBox1.Controls.Add(Me.Label22)
         Me.RadGroupBox1.Controls.Add(Me.lblSaldoNetoInicial)
-        Me.RadGroupBox1.Controls.Add(Me.Label21)
-        Me.RadGroupBox1.Controls.Add(Me.Label19)
-        Me.RadGroupBox1.Controls.Add(Me.lblSaldoInicial)
         Me.RadGroupBox1.Controls.Add(Me.Label18)
         Me.RadGroupBox1.Controls.Add(Me.lblReservaHistorial)
+        Me.RadGroupBox1.Controls.Add(Me.Label21)
+        Me.RadGroupBox1.Controls.Add(Me.lblSaldoInicial)
+        Me.RadGroupBox1.Controls.Add(Me.Label19)
         Me.RadGroupBox1.FooterImageIndex = -1
         Me.RadGroupBox1.FooterImageKey = ""
         Me.RadGroupBox1.HeaderImageIndex = -1
         Me.RadGroupBox1.HeaderImageKey = ""
         Me.RadGroupBox1.HeaderMargin = New System.Windows.Forms.Padding(0)
         Me.RadGroupBox1.HeaderText = ""
-        Me.RadGroupBox1.Location = New System.Drawing.Point(217, 578)
+        Me.RadGroupBox1.Location = New System.Drawing.Point(2, 501)
         Me.RadGroupBox1.Name = "RadGroupBox1"
         Me.RadGroupBox1.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
         '
         '
         '
         Me.RadGroupBox1.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        Me.RadGroupBox1.Size = New System.Drawing.Size(299, 142)
+        Me.RadGroupBox1.Size = New System.Drawing.Size(450, 117)
         Me.RadGroupBox1.TabIndex = 197
         '
         'lblSaldoNetoInicial
         '
         Me.lblSaldoNetoInicial.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblSaldoNetoInicial.ForeColor = System.Drawing.Color.Black
-        Me.lblSaldoNetoInicial.Location = New System.Drawing.Point(160, 90)
+        Me.lblSaldoNetoInicial.Location = New System.Drawing.Point(150, 85)
         Me.lblSaldoNetoInicial.Name = "lblSaldoNetoInicial"
-        Me.lblSaldoNetoInicial.Size = New System.Drawing.Size(121, 30)
+        Me.lblSaldoNetoInicial.Size = New System.Drawing.Size(287, 30)
         Me.lblSaldoNetoInicial.TabIndex = 183
         Me.lblSaldoNetoInicial.Text = "Neto"
         Me.lblSaldoNetoInicial.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -763,7 +767,7 @@ Partial Class frmProductoKardex
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.ForeColor = System.Drawing.Color.DimGray
-        Me.Label21.Location = New System.Drawing.Point(29, 95)
+        Me.Label21.Location = New System.Drawing.Point(33, 88)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(125, 25)
         Me.Label21.TabIndex = 182
@@ -774,7 +778,7 @@ Partial Class frmProductoKardex
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label19.ForeColor = System.Drawing.Color.DimGray
-        Me.Label19.Location = New System.Drawing.Point(9, 25)
+        Me.Label19.Location = New System.Drawing.Point(13, 12)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(145, 25)
         Me.Label19.TabIndex = 180
@@ -784,9 +788,9 @@ Partial Class frmProductoKardex
         '
         Me.lblSaldoInicial.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblSaldoInicial.ForeColor = System.Drawing.Color.Black
-        Me.lblSaldoInicial.Location = New System.Drawing.Point(160, 22)
+        Me.lblSaldoInicial.Location = New System.Drawing.Point(150, 8)
         Me.lblSaldoInicial.Name = "lblSaldoInicial"
-        Me.lblSaldoInicial.Size = New System.Drawing.Size(121, 30)
+        Me.lblSaldoInicial.Size = New System.Drawing.Size(287, 30)
         Me.lblSaldoInicial.TabIndex = 181
         Me.lblSaldoInicial.Text = "Inicial"
         Me.lblSaldoInicial.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -796,7 +800,7 @@ Partial Class frmProductoKardex
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label18.ForeColor = System.Drawing.Color.DimGray
-        Me.Label18.Location = New System.Drawing.Point(31, 62)
+        Me.Label18.Location = New System.Drawing.Point(34, 36)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(124, 25)
         Me.Label18.TabIndex = 178
@@ -806,9 +810,9 @@ Partial Class frmProductoKardex
         '
         Me.lblReservaHistorial.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblReservaHistorial.ForeColor = System.Drawing.Color.Black
-        Me.lblReservaHistorial.Location = New System.Drawing.Point(160, 58)
+        Me.lblReservaHistorial.Location = New System.Drawing.Point(150, 33)
         Me.lblReservaHistorial.Name = "lblReservaHistorial"
-        Me.lblReservaHistorial.Size = New System.Drawing.Size(121, 30)
+        Me.lblReservaHistorial.Size = New System.Drawing.Size(287, 30)
         Me.lblReservaHistorial.TabIndex = 179
         Me.lblReservaHistorial.Text = "Reserva"
         Me.lblReservaHistorial.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -823,7 +827,7 @@ Partial Class frmProductoKardex
         Me.btnAjustesDetalle.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAjustesDetalle.ForeColor = System.Drawing.Color.Transparent
         Me.btnAjustesDetalle.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnAjustesDetalle.Location = New System.Drawing.Point(180, 80)
+        Me.btnAjustesDetalle.Location = New System.Drawing.Point(151, 63)
         Me.btnAjustesDetalle.Name = "btnAjustesDetalle"
         Me.btnAjustesDetalle.Size = New System.Drawing.Size(60, 24)
         Me.btnAjustesDetalle.TabIndex = 196
@@ -831,32 +835,54 @@ Partial Class frmProductoKardex
         Me.btnAjustesDetalle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnAjustesDetalle.UseVisualStyleBackColor = False
         '
-        'Label10
+        'lblAjustes
         '
-        Me.Label10.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label10.ForeColor = System.Drawing.Color.Black
-        Me.Label10.Location = New System.Drawing.Point(172, 78)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(189, 26)
-        Me.Label10.TabIndex = 195
-        Me.Label10.Text = "Ajustes"
-        Me.Label10.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.lblAjustes.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.lblAjustes.ForeColor = System.Drawing.Color.Black
+        Me.lblAjustes.Location = New System.Drawing.Point(217, 61)
+        Me.lblAjustes.Name = "lblAjustes"
+        Me.lblAjustes.Size = New System.Drawing.Size(220, 26)
+        Me.lblAjustes.TabIndex = 195
+        Me.lblAjustes.Text = "Ajustes"
+        Me.lblAjustes.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label20
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label20.ForeColor = System.Drawing.Color.DimGray
-        Me.Label20.Location = New System.Drawing.Point(42, 78)
+        Me.Label20.Location = New System.Drawing.Point(13, 61)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(132, 25)
         Me.Label20.TabIndex = 194
         Me.Label20.Text = "( +- ) Ajustes :"
         '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.ForeColor = System.Drawing.Color.DimGray
+        Me.Label22.Location = New System.Drawing.Point(26, 61)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(132, 25)
+        Me.Label22.TabIndex = 184
+        Me.Label22.Text = "( +- ) Ajustes :"
+        '
+        'lblAjustesHistorial
+        '
+        Me.lblAjustesHistorial.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.lblAjustesHistorial.ForeColor = System.Drawing.Color.Black
+        Me.lblAjustesHistorial.Location = New System.Drawing.Point(150, 58)
+        Me.lblAjustesHistorial.Name = "lblAjustesHistorial"
+        Me.lblAjustesHistorial.Size = New System.Drawing.Size(287, 30)
+        Me.lblAjustesHistorial.TabIndex = 185
+        Me.lblAjustesHistorial.Text = "Ajustes"
+        Me.lblAjustesHistorial.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'frmProductoKardex
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(907, 727)
+        Me.ClientSize = New System.Drawing.Size(912, 623)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.RadGroupBox1)
         Me.Controls.Add(Me.Label17)
@@ -982,7 +1008,9 @@ Partial Class frmProductoKardex
     Friend WithEvents pbx1ajustar As System.Windows.Forms.PictureBox
     Friend WithEvents lbl1ajustar As System.Windows.Forms.Label
     Friend WithEvents btnAjustesDetalle As System.Windows.Forms.Button
-    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents lblAjustes As System.Windows.Forms.Label
     Friend WithEvents Label20 As System.Windows.Forms.Label
+    Friend WithEvents Label22 As System.Windows.Forms.Label
+    Friend WithEvents lblAjustesHistorial As System.Windows.Forms.Label
 
 End Class

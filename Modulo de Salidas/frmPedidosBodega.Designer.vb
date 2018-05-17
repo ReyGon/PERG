@@ -529,6 +529,7 @@ Partial Class frmPedidosBodega
         Me.grdSacado.MasterTemplate.EnableGrouping = False
         Me.grdSacado.Name = "grdSacado"
         Me.grdSacado.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdSacado.ReadOnly = True
         '
         '
         '

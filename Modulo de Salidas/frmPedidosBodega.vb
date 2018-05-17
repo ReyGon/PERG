@@ -93,6 +93,10 @@ Public Class frmPedidosBodega
                 conn.Open()
                 conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
+                Me.grdSacado.Rows.Clear()
+                Me.grdEmpacado.Rows.Clear()
+                Me.grdRevisado.Rows.Clear()
+
                 Dim empleados As List(Of tblEmpleado) = (From x In conexion.tblEmpleadoes Where x.idpuesto = 1 Order By x.nombre Ascending Select x).ToList
 
                 Dim fila As Object()
@@ -116,63 +120,9 @@ Public Class frmPedidosBodega
         End Try
 
         fnConfiguracionGrds()
-        fnCargarDatos()
-        ''Dim empleados As New DataTable
-        ''empleados.Columns.Add("Codigo")
-        ''empleados.Columns.Add("Nombre")
-
-        ''empleados.Rows.Add(0, "Ninguno")
-
-        ''Dim consulta As List(Of tblEmpleado) = (From x In ctx.tblEmpleadoes Where x.idpuesto = mdlPublicVars.Bodega_CodigoPuestoBodegero Select x).ToList
-        ''Dim empleado As tblEmpleado
-
-        ''For Each empleado In consulta
-        ''    empleados.Rows.Add(empleado.idEmpleado, empleado.nombre)
-        ''Next
-
-        ''Dim empleados2 As New DataTable
-        ''empleados2.Columns.Add("Codigo")
-        ''empleados2.Columns.Add("Nombre")
-
-        ''empleados2.Rows.Add(0, "Ninguno")
-
-
-        ''For Each empleado In consulta
-        ''    empleados2.Rows.Add(empleado.idEmpleado, empleado.nombre)
-        ''Next
-
-        ''Dim empleados3 As New DataTable
-        ''empleados3.Columns.Add("Codigo")
-        ''empleados3.Columns.Add("Nombre")
-
-        ''empleados3.Rows.Add(0, "Ninguno")
-
-
-        ''For Each empleado In consulta
-        ''    empleados3.Rows.Add(empleado.idEmpleado, empleado.nombre)
-        ''Next
-
-        ''With cmbEmpacado
-        ''    .DataSource = Nothing
-        ''    .ValueMember = "Codigo"
-        ''    .DisplayMember = "Nombre"
-        ''    .DataSource = empleados
-        ''End With
-
-        ''With cmbSacado
-        ''    .DataSource = Nothing
-        ''    .ValueMember = "Codigo"
-        ''    .DisplayMember = "Nombre"
-        ''    .DataSource = empleados2
-        ''End With
-
-        ''With cmbRevisado
-        ''    .DataSource = Nothing
-        ''    .ValueMember = "Codigo"
-        ''    .DisplayMember = "Nombre"
-        ''    .DataSource = empleados3
-        ''End With
-
+        If idSalida > 0 Then
+            fnCargarDatos()
+        End If
     End Sub
 
     Private Sub fnCargarDatos()
@@ -209,6 +159,7 @@ Public Class frmPedidosBodega
 
                             If codigoempleado = codigo Then
                                 Me.grdSacado.Rows(fila).Cells("chkAgregar").Value = True
+                                Me.grdSacado.Rows(fila).Cells("txmErrores").Value = index.errores
                             End If
                         Next
                     ElseIf index.revisado Then
@@ -241,10 +192,13 @@ Public Class frmPedidosBodega
             Me.grdRevisado.Columns("chkAgregar").Width = 50
             Me.grdSacado.Columns("chkAgregar").Width = 50
 
-            Me.grdEmpacado.Columns("Nombre").ReadOnly = True
-            Me.grdRevisado.Columns("Nombre").ReadOnly = True
-            Me.grdSacado.Columns("Nombre").ReadOnly = True
+            ''Me.grdEmpacado.Columns("Nombre").ReadOnly = True
+            ''Me.grdRevisado.Columns("Nombre").ReadOnly = True
+            ''Me.grdSacado.Columns("Nombre").ReadOnly = True
 
+            Me.grdSacado.Columns("Codigo").ReadOnly = True
+            Me.grdSacado.Columns("chkAgregar").ReadOnly = False
+            Me.grdSacado.Columns("Nombre").ReadOnly = True
             Me.grdSacado.Columns("txmErrores").ReadOnly = False
 
         Catch ex As Exception
@@ -572,4 +526,48 @@ Public Class frmPedidosBodega
         Return False
 
     End Function
+
+    Private Sub grdSacado_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles grdSacado.KeyDown
+        Try
+            If Me.grdSacado.CurrentRow.Index >= 0 Then
+                Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdSacado)
+                Dim col As Integer = Me.grdSacado.CurrentColumn.Index
+                Dim nombre As String = Me.grdSacado.Columns(col).Name
+
+                If nombre = "txmErrores" Then
+                    If e.KeyCode = Keys.Delete Then
+                        Me.grdSacado.Rows(fila).Cells(nombre).Value = 0
+                    ElseIf e.KeyCode = Keys.Back Then
+                        Me.grdSacado.Rows(fila).Cells(nombre).Value = 0
+                    End If
+
+                    If (e.KeyCode >= Keys.D0 And e.KeyCode <= Keys.D9) Then
+                        If Me.grdSacado.Rows(fila).Cells(nombre).Value = "0" Then
+                            Me.grdSacado.Rows(fila).Cells(nombre).Value = Char.ConvertFromUtf32(e.KeyValue)
+                        Else
+                            Me.grdSacado.Rows(fila).Cells(nombre).Value += Char.ConvertFromUtf32(e.KeyValue)
+                        End If
+                    ElseIf (e.KeyCode >= Keys.NumPad0 And e.KeyCode <= Keys.NumPad9) Then
+                        If Me.grdSacado.Rows(fila).Cells(nombre).Value = "0" Then
+                            Me.grdSacado.Rows(fila).Cells(nombre).Value = e.KeyData.ToString.Substring(e.KeyData.ToString.Length - 1, 1)
+                        Else
+                            Me.grdSacado.Rows(fila).Cells(nombre).Value += e.KeyData.ToString.Substring(e.KeyData.ToString.Length - 1, 1)
+                        End If
+                    ElseIf (e.KeyCode = 110) Or (e.KeyCode = 190) Then
+
+                        If Me.grdSacado.Rows(fila).Cells(nombre).Value = "0" Then
+                            Me.grdSacado.Rows(fila).Cells(nombre).Value += "."
+                        Else
+                            Me.grdSacado.Rows(fila).Cells(nombre).Value += "."
+                        End If
+                    ElseIf e.KeyValue >= 65 And e.KeyValue <= 90 Then
+                        Me.grdSacado.Columns(nombre).ReadOnly = True
+                        Me.grdSacado.Rows(fila).Cells(nombre).EndEdit()
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

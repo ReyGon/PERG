@@ -650,23 +650,23 @@ Public Class frmMovimientoInventarios
 
                             If rbtAjuste.Checked Then
                                 If tipoMov.aumentaInventario Then
-                                    inventario1.saldo += cantidad * valmedida
-                                    inventario1.entrada += cantidad * valmedida
-                                    conexion.SaveChanges()
+                                    ''inventario1.saldo += cantidad * valmedida
+                                    ''inventario1.entrada += cantidad * valmedida
+                                    ''conexion.SaveChanges()
 
                                 ElseIf tipoMov.disminuyeInventario = True Then
                                     'Verificamos si existe esa cantidad de producto
 
                                     If inventario1.saldo >= cantidad * valmedida Or mdlPublicVars.ExistenciaCero = True Then
-                                        inventario1.saldo -= cantidad * valmedida
-                                        inventario1.salida += cantidad * valmedida
-                                        conexion.SaveChanges()
+                                        ''inventario1.saldo -= cantidad * valmedida
+                                        ''inventario1.salida += cantidad * valmedida
+                                        ''conexion.SaveChanges()
                                     Else
                                         If RadMessageBox.Show("Desea Ajustar el articulo : " & inventario1.tblArticulo.nombre1 & " de :" & cantidad * valmedida & " a :" & inventario1.saldo, mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
                                             detalle.cantidad = inventario1.saldo
                                             detalle.total = detalle.cantidad * detalle.costo
-                                            inventario1.saldo = 0
-                                            inventario1.salida += detalle.cantidad
+                                            ''inventario1.saldo = 0
+                                            ''inventario1.salida += detalle.cantidad
                                             conexion.SaveChanges()
                                         Else
                                             cantidadInsuficiente = True
@@ -707,9 +707,9 @@ Public Class frmMovimientoInventarios
                                 End If
                             Else
                                 If inventario1.saldo >= cantidad * valmedida Then
-                                    inventario1.saldo -= cantidad * valmedida
-                                    inventario1.salida += cantidad * valmedida
-                                    conexion.SaveChanges()
+                                    ''inventario1.saldo -= cantidad * valmedida
+                                    ''inventario1.salida += cantidad * valmedida
+                                    ''conexion.SaveChanges()
                                     'Si no existe el registro del articulo en el invetario lo creamos, y aumentamos o dismminimos el saldo
                                     If inventario2 Is Nothing Then
                                         Dim nuevoInventario As New tblInventario
@@ -726,9 +726,9 @@ Public Class frmMovimientoInventarios
                                         nuevoInventario.tblArticulo.fechaUltAjuste = fechaServidor
                                         conexion.SaveChanges()
                                     Else
-                                        inventario2.saldo += cantidad * valmedida
-                                        inventario2.entrada += cantidad * valmedida
-                                        conexion.SaveChanges()
+                                        ''inventario2.saldo += cantidad * valmedida
+                                        ''inventario2.entrada += cantidad * valmedida
+                                        ''conexion.SaveChanges()
                                         'Si existe el articulo le aumentamos o dismnuimos el saldo
                                     End If
                                 Else
@@ -1301,5 +1301,6 @@ Public Class frmMovimientoInventarios
             conn.Close()
         End Using
     End Sub
+
 
 End Class
