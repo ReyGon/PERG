@@ -285,6 +285,7 @@ Public Class frmPedidosBodega
                 idsalidabodega = bodega.idsalidaBodega
 
                 Dim codigoempleado As Integer
+                Dim errores As Integer
 
 
                 For index As Integer = 0 To Me.grdEmpacado.Rows.Count - 1
@@ -323,6 +324,7 @@ Public Class frmPedidosBodega
                         detalle.idsalidabodega = idsalidabodega
                         detalle.idempleado = codigoempleado
                         detalle.empacado = False
+                        detalle.revisado = True
                         detalle.sacado = False
 
                         ctx.AddTotblsalidabodega_detalle(detalle)
@@ -343,12 +345,16 @@ Public Class frmPedidosBodega
                         Dim detalle As New tblsalidabodega_detalle
 
                         codigoempleado = Me.grdSacado.Rows(index).Cells("Codigo").Value
+                        errores = Me.grdSacado.Rows(index).Cells("txmErrores").Value
+
+
 
                         detalle.idsalidabodega = idsalidabodega
                         detalle.idempleado = codigoempleado
                         detalle.empacado = False
                         detalle.sacado = True
                         detalle.revisado = False
+                        detalle.errores = errores
 
 
                         ctx.AddTotblsalidabodega_detalle(detalle)
@@ -432,12 +438,6 @@ Public Class frmPedidosBodega
                     Me.grdSacado.Rows(fila).Cells("chkAgregar").Value = True
                 ElseIf valor = True Then
                     Me.grdSacado.Rows(fila).Cells("chkAgregar").Value = False
-                End If
-
-                If valor = 2 Then
-
-                    RadMessageBox.Show("No se permite seleccionar mas de 2 personas!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
-
                 End If
 
             End If
