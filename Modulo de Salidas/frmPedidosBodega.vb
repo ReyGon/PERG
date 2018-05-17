@@ -370,7 +370,6 @@ Public Class frmPedidosBodega
                         detalle.idsalidabodega = idsalidabodega
                         detalle.idempleado = codigoempleado
                         detalle.empacado = False
-                        detalle.revisado = True
                         detalle.sacado = False
 
                         ctx.AddTotblsalidabodega_detalle(detalle)
@@ -484,6 +483,12 @@ Public Class frmPedidosBodega
                     Me.grdSacado.Rows(fila).Cells("chkAgregar").Value = True
                 ElseIf valor = True Then
                     Me.grdSacado.Rows(fila).Cells("chkAgregar").Value = False
+                End If
+
+                If valor = 2 Then
+
+                    RadMessageBox.Show("No se permite seleccionar mas de 2 personas!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+
                 End If
 
             End If
