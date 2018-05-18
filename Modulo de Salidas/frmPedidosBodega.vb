@@ -239,10 +239,10 @@ Public Class frmPedidosBodega
     End Function
 
     Private Sub pbModificar_Click() Handles Me.panel0
-        '    If fnErrores() = True Then
-        '        alerta.fnError()
-        '        Exit Sub
-        '    End If
+        If fnErrores() = True Then
+            alerta.fnError()
+            Exit Sub
+        End If
 
         If fnValidarGuardado() = True Then
             alerta.contenido = "No se Puede Modificar"
@@ -270,99 +270,99 @@ Public Class frmPedidosBodega
 
             Try
                 Dim fecha As DateTime = fnFecha_horaServidor()
-                '            Dim sacado As String ''= Me.cmbSacado.SelectedValue
-                '            Dim revisado As Integer ''= Me.cmbRevisado.SelectedValue
-                '            Dim empacado As String ''= Me.cmbEmpacado.SelectedValue
-                'Dim idsalidabodega As Integer
+                Dim sacado As String ''= Me.cmbSacado.SelectedValue
+                Dim revisado As Integer ''= Me.cmbRevisado.SelectedValue
+                Dim empacado As String ''= Me.cmbEmpacado.SelectedValue
+                Dim idsalidabodega As Integer
 
-                '            obtenemos el registro de bodega a modificar
+                'obtenemos el registro de bodega a modificar
                 Dim bodega As tblsalidaBodega = (From x In ctx.tblsalidaBodegas Where x.idsalida = codigoSalida Select x).FirstOrDefault
 
                 'bodega.observacion = txtObservacion.Text
                 bodega.errores = txtErrores.Text
                 ctx.SaveChanges()
 
-                '            idsalidabodega = bodega.idsalidaBodega
+                idsalidabodega = bodega.idsalidaBodega
 
-                '            Dim codigoempleado As Integer
-                '            Dim errores As Integer
+                Dim codigoempleado As Integer
+                Dim errores As Integer
 
-                '            For index As Integer = 0 To Me.grdSacado.Rows.Count - 1
+                For index As Integer = 0 To Me.grdSacado.Rows.Count - 1
 
-                '                If Me.grdSacado.Rows(index).Cells("chkAgregar").Value = True Then
+                    If Me.grdSacado.Rows(index).Cells("chkAgregar").Value = True Then
 
-                '                    Dim detalle As New tblsalidabodega_detalle
+                        Dim detalle As New tblsalidabodega_detalle
 
-                '                    codigoempleado = Me.grdSacado.Rows(index).Cells("Codigo").Value
-                '                    'errores = Me.grdSacado.Rows(index).Cells("txmErrores").Value
+                        codigoempleado = Me.grdSacado.Rows(index).Cells("Codigo").Value
+                        'errores = Me.grdSacado.Rows(index).Cells("txmErrores").Value
 
-                '                    detalle.idsalidabodega = idsalidabodega
-                '                    detalle.idempleado = codigoempleado
-                '                    detalle.empacado = False
-                '                    detalle.sacado = True
-                '                    detalle.revisado = False
-                '                    ' detalle.errores = errores
+                        detalle.idsalidabodega = idsalidabodega
+                        detalle.idempleado = codigoempleado
+                        detalle.empacado = False
+                        detalle.sacado = True
+                        detalle.revisado = False
+                        ' detalle.errores = errores
 
-                '                    ctx.AddTotblsalidabodega_detalle(detalle)
-                '                    ctx.SaveChanges()
+                        ctx.AddTotblsalidabodega_detalle(detalle)
+                        ctx.SaveChanges()
 
-                '                    Dim bode As tblsalidaBodega = (From x In ctx.tblsalidaBodegas Where x.idsalidaBodega = idsalidabodega Select x).FirstOrDefault
+                        Dim bode As tblsalidaBodega = (From x In ctx.tblsalidaBodegas Where x.idsalidaBodega = idsalidabodega Select x).FirstOrDefault
 
-                '                    bode.fechaSacado = fecha
+                        bode.fechaSacado = fecha
 
-                '                    ctx.SaveChanges()
-                '                End If
-                '            Next
+                        ctx.SaveChanges()
+                    End If
+                Next
 
-                '            For index As Integer = 0 To Me.grdRevisado.Rows.Count - 1
+                For index As Integer = 0 To Me.grdRevisado.Rows.Count - 1
 
-                '                If Me.grdRevisado.Rows(index).Cells("chkAgregar").Value = True Then
+                    If Me.grdRevisado.Rows(index).Cells("chkAgregar").Value = True Then
 
-                '                    Dim detalle As New tblsalidabodega_detalle
+                        Dim detalle As New tblsalidabodega_detalle
 
-                '                    codigoempleado = Me.grdRevisado.Rows(index).Cells("Codigo").Value
+                        codigoempleado = Me.grdRevisado.Rows(index).Cells("Codigo").Value
 
-                '                    detalle.idsalidabodega = idsalidabodega
-                '                    detalle.idempleado = codigoempleado
-                '                    detalle.empacado = False
-                '                    detalle.sacado = False
-                '                    detalle.revisado = True
+                        detalle.idsalidabodega = idsalidabodega
+                        detalle.idempleado = codigoempleado
+                        detalle.empacado = False
+                        detalle.sacado = False
+                        detalle.revisado = True
 
-                '                    ctx.AddTotblsalidabodega_detalle(detalle)
-                '                    ctx.SaveChanges()
+                        ctx.AddTotblsalidabodega_detalle(detalle)
+                        ctx.SaveChanges()
 
-                '                    Dim bode As tblsalidaBodega = (From x In ctx.tblsalidaBodegas Where x.idsalidaBodega = idsalidabodega Select x).FirstOrDefault
+                        Dim bode As tblsalidaBodega = (From x In ctx.tblsalidaBodegas Where x.idsalidaBodega = idsalidabodega Select x).FirstOrDefault
 
-                '                    bode.fechaRevisado = fecha
+                        bode.fechaRevisado = fecha
 
-                '                    ctx.SaveChanges()
-                '                End If
-                '            Next
+                        ctx.SaveChanges()
+                    End If
+                Next
 
-                '            For index As Integer = 0 To Me.grdEmpacado.Rows.Count - 1
+                For index As Integer = 0 To Me.grdEmpacado.Rows.Count - 1
 
-                '                If Me.grdEmpacado.Rows(index).Cells("chkAgregar").Value = True Then
+                    If Me.grdEmpacado.Rows(index).Cells("chkAgregar").Value = True Then
 
-                '                    Dim detalle As New tblsalidabodega_detalle
+                        Dim detalle As New tblsalidabodega_detalle
 
-                '                    codigoempleado = Me.grdEmpacado.Rows(index).Cells("Codigo").Value
+                        codigoempleado = Me.grdEmpacado.Rows(index).Cells("Codigo").Value
 
-                '                    detalle.idsalidabodega = idsalidabodega
-                '                    detalle.idempleado = codigoempleado
-                '                    detalle.empacado = True
-                '                    detalle.sacado = False
-                '                    detalle.revisado = False
+                        detalle.idsalidabodega = idsalidabodega
+                        detalle.idempleado = codigoempleado
+                        detalle.empacado = True
+                        detalle.sacado = False
+                        detalle.revisado = False
 
-                '                    ctx.AddTotblsalidabodega_detalle(detalle)
-                '                    ctx.SaveChanges()
+                        ctx.AddTotblsalidabodega_detalle(detalle)
+                        ctx.SaveChanges()
 
-                '                    Dim bode As tblsalidaBodega = (From x In ctx.tblsalidaBodegas Where x.idsalidaBodega = idsalidabodega Select x).FirstOrDefault
+                        Dim bode As tblsalidaBodega = (From x In ctx.tblsalidaBodegas Where x.idsalidaBodega = idsalidabodega Select x).FirstOrDefault
 
-                '                    bode.fechaEmpacado = fecha
+                        bode.fechaEmpacado = fecha
 
-                '                    ctx.SaveChanges()
-                '                End If
-                '            Next
+                        ctx.SaveChanges()
+                    End If
+                Next
 
                 transaction.Complete()
 
