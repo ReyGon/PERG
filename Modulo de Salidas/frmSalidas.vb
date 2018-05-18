@@ -4449,6 +4449,7 @@ Public Class frmSalidas
                                                 t.empresa = mdlPublicVars.idEmpresa
                                                 t.usuario = mdlPublicVars.idUsuario
                                                 t.almacen = mdlPublicVars.General_idAlmacenPrincipal
+                                                t.almacenFinal = mdlPublicVars.General_idAlmacenPrincipal
                                                 t.documento = "Vta. " & s.documento
                                                 t.tipoMovimiento = Ajuste_CodigoMovimiento
                                                 t.inventarioInicial = mdlPublicVars.General_idTipoInventario
@@ -4490,7 +4491,7 @@ Public Class frmSalidas
                                                         t.inventarioFinal = tm.idTipoInventario
                                                         conexion.SaveChanges()
 
-                                                        Dim inven As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.idTipoInventario = tm.idTipoInventario Select x).FirstOrDefault
+                                                        Dim inven As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.idTipoInventario = mdlPublicVars.General_idTipoInventario Select x).FirstOrDefault
 
                                                         If inven Is Nothing Then
                                                             Dim invent As New tblInventario
@@ -4506,7 +4507,7 @@ Public Class frmSalidas
                                                             conexion.AddTotblInventarios(invent)
                                                             conexion.SaveChanges()
                                                         Else
-                                                            inven.salida += cantidadAjuste
+                                                            inven.salida -= cantidadAjuste
                                                             detalle.cantidad -= cantidadAjuste
                                                             conexion.SaveChanges()
                                                         End If
@@ -4516,7 +4517,7 @@ Public Class frmSalidas
                                                         t.inventarioFinal = mdlPublicVars.General_idTipoInventario
                                                         t.inventarioInicial = tm.idTipoInventario
 
-                                                        Dim inven As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.idTipoInventario = tm.idTipoInventario Select x).FirstOrDefault
+                                                        Dim inven As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.idTipoInventario = mdlPublicVars.General_idTipoInventario Select x).FirstOrDefault
 
                                                         If inven Is Nothing Then
                                                             Dim invent As New tblInventario
