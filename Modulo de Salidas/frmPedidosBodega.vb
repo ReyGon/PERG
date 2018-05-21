@@ -278,7 +278,7 @@ Public Class frmPedidosBodega
                 'obtenemos el registro de bodega a modificar
                 Dim bodega As tblsalidaBodega = (From x In ctx.tblsalidaBodegas Where x.idsalida = codigoSalida Select x).FirstOrDefault
 
-                'bodega.observacion = txtObservacion.Text
+                bodega.observacion = txtObservacion.Text
                 bodega.errores = txtErrores.Text
                 ctx.SaveChanges()
 
@@ -294,14 +294,14 @@ Public Class frmPedidosBodega
                         Dim detalle As New tblsalidabodega_detalle
 
                         codigoempleado = Me.grdSacado.Rows(index).Cells("Codigo").Value
-                        'errores = Me.grdSacado.Rows(index).Cells("txmErrores").Value
+                        errores = Me.grdSacado.Rows(index).Cells("txmErrores").Value
 
                         detalle.idsalidabodega = idsalidabodega
                         detalle.idempleado = codigoempleado
                         detalle.empacado = False
                         detalle.sacado = True
                         detalle.revisado = False
-                        ' detalle.errores = errores
+                        detalle.errores = errores
 
                         ctx.AddTotblsalidabodega_detalle(detalle)
                         ctx.SaveChanges()
