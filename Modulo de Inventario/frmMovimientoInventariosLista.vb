@@ -73,6 +73,12 @@ Public Class frmMovimientoInventariosLista
             ''                clrEstado = CType(If(x.anulado = True, "0", If(x.revisado = False, "1", If(x.revisado = True, "4", ""))), Integer), chkBodega = x.bitBodega, _
             ''                chmConfirmar = x.revisado Order By Fecha Descending, Codigo Descending)
 
+
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
             Dim codigo As Integer
 
             Try
@@ -92,14 +98,18 @@ Public Class frmMovimientoInventariosLista
                 bitajuste = 1
             End If
 
-            Dim consulta = ctx.Sp_ListaMovimientoInventario(mdlPublicVars.idEmpresa, bitventa, bitajuste)
+                Dim consulta = conexion.Sp_ListaMovimientoInventario(mdlPublicVars.idEmpresa, bitventa, bitajuste)
 
             Me.grdDatos.DataSource = consulta
 
             'Para saber cuantas filas tiene el grid
             mdlPublicVars.superSearchFilasGrid = Me.grdDatos.Rows.Count
             mdlPublicVars.fnGrid_iconos(Me.grdDatos)
-            fnConfiguracion()
+                fnConfiguracion()
+
+                conn.Close()
+            End Using
+
         Catch ex As Exception
             RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
         End Try
@@ -364,14 +374,26 @@ Public Class frmMovimientoInventariosLista
 
                             conexion.SaveChanges()
 
-                        Else
+                        ElseIf t.disminuyeInventario Then
+
                             i = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.idTipoInventario = mdlPublicVars.General_idTipoInventario Select x).FirstOrDefault
 
-                            i.saldo -= d.cantidad
+                            i.salida += d.cantidad
 
                             conexion.SaveChanges()
                         End If
                     ElseIf m.traslado Then
+
+                        i = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.IdAlmacen = m.almacen And x.idTipoInventario = m.inventarioInicial Select x).FirstOrDefault
+                        i2 = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.IdAlmacen = m.almacenFinal And x.idTipoInventario = m.inventarioFinal Select x).FirstOrDefault
+
+                        ''i.saldo -= d.cantidad * d.valormedida
+                        i.salida += d.cantidad * d.valormedida
+                        conexion.SaveChanges()
+
+                        i2.saldo += d.cantidad * d.valormedida
+                        i2.entrada += d.cantidad * d.valormedida
+                        conexion.SaveChanges()
 
                     End If
 
@@ -542,6 +564,12 @@ Public Class frmMovimientoInventariosLista
         Dim anulado As Boolean = CType(Me.grdDatos.Rows(Me.grdDatos.CurrentRow.Index).Cells("chkAnulado").Value, Boolean)
         Dim fechaAnulado As DateTime = fnFecha_horaServidor()
         Try
+
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
             If acreditado = True Then
                 alertas.contenido = "El " & tipo & " ya ha sido acreditado"
                 alertas.fnErrorContenido()
@@ -549,23 +577,53 @@ Public Class frmMovimientoInventariosLista
                 alertas.contenido = "El " & tipo & " ya ha sido anulado"
                 alertas.fnErrorContenido()
             Else
-                If tipo = "Ajuste en Venta" Or tipo = "Ajuste en Bodega" Or tipo = "Traslado entre bodegas" Then
+                If tipo = "Ajuste en Venta" Then
+                        Dim m As tblMovimientoInventario = (From x In conexion.tblMovimientoInventarios Where x.codigo = id Select x).FirstOrDefault
+                    If m.ajuste Then
+                            Dim md As List(Of tblMovimientoInventarioDetalle) = (From x In conexion.tblMovimientoInventarioDetalles Where x.movimientoInventario = id Select x).ToList()
+
+                            Dim i As tblInventario
+
+                            For Each d As tblMovimientoInventarioDetalle In md
+                                i = (From x In conexion.tblInventarios Where x.idTipoInventario = m.inventarioInicial And x.idArticulo = d.articulo Select x).FirstOrDefault
+
+                                i.saldo += d.cantidad * d.valormedida
+                                conexion.SaveChanges()
+                            Next
+                    ElseIf m.traslado Then
+                            Dim md As List(Of tblMovimientoInventarioDetalle) = (From x In conexion.tblMovimientoInventarioDetalles Where x.movimientoInventario = id Select x).ToList()
+
+                            Dim i As tblInventario
+
+                            For Each d As tblMovimientoInventarioDetalle In md
+                                i = (From x In conexion.tblInventarios Where x.idTipoInventario = m.inventarioInicial And x.idArticulo = d.articulo Select x).FirstOrDefault
+
+                                i.saldo += d.cantidad * d.valormedida
+                                conexion.SaveChanges()
+                            Next
+                    End If
+                        m.anulado = True
+                        m.anuladoFecha = fechaAnulado
+                        conexion.SaveChanges()
+                ElseIf tipo = "Ajuste en Bodega" Or tipo = "Traslado entre bodegas" Then
                     'Seleccionamos el movimiento de inventario a anular
-                    Dim movimiento As tblMovimientoInventario = (From x In ctx.tblMovimientoInventarios Where x.codigo = id Select x).FirstOrDefault
+                        Dim movimiento As tblMovimientoInventario = (From x In conexion.tblMovimientoInventarios Where x.codigo = id Select x).FirstOrDefault
                     movimiento.anulado = True
                     movimiento.anuladoFecha = fechaAnulado
-                    ctx.SaveChanges()
+                        conexion.SaveChanges()
                 ElseIf tipo = "Devolucion Cliente" Then
                     'Seleccionamos la devolucion del cliente
-                    Dim devolucion As tblDevolucionCliente = (From x In ctx.tblDevolucionClientes Where x.codigo = id Select x).FirstOrDefault
+                        Dim devolucion As tblDevolucionCliente = (From x In conexion.tblDevolucionClientes Where x.codigo = id Select x).FirstOrDefault
                     devolucion.anulado = True
                     devolucion.anuladoFecha = fechaAnulado
-                    ctx.SaveChanges()
+                        conexion.SaveChanges()
                 End If
             End If
             Dim fila As Integer = CType(Me.grdDatos.CurrentRow.Index, Integer)
             llenagrid()
-            Me.grdDatos.Rows(fila).IsCurrent = True
+                Me.grdDatos.Rows(fila).IsCurrent = True
+                conn.Close()
+            End Using
         Catch ex As Exception
 
         End Try

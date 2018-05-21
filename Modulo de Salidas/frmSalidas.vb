@@ -124,7 +124,7 @@ Public Class frmSalidas
         inventario = mdlPublicVars.General_idTipoInventario
         fnNuevo()
         fnIndicadores()
-        fnVerificaLimiteCredito()
+        ''fnVerificaLimiteCredito()
 
         Me.grdProductos.BeginEditMode = Telerik.WinControls.RadGridViewBeginEditMode.BeginEditProgrammatically
         grdProductos.CloseEditorWhenValidationFails = True
@@ -1427,7 +1427,7 @@ Public Class frmSalidas
 
         ''verificar el credito del cliente
         fnVerificaCredito()
-        fnVerificaLimiteCredito()
+        ''fnVerificaLimiteCredito()
     End Sub
 
     Private Function fnVerificaLimiteCredito()
@@ -1721,6 +1721,8 @@ Public Class frmSalidas
     '--------------------------------------------- COTIZACION --------------------------------------
     Private Sub fnGuardarCotizacion()
 
+
+        fnVerificaLimiteCredito()
 
         'validaciones
         If IsNumeric(txtCodigo.Text) Then
@@ -2503,6 +2505,8 @@ Public Class frmSalidas
 
     '--------------------------------------------- RESERVA ------------------------------------------
     Private Sub fnGuardarReserva()
+
+        fnVerificaLimiteCredito()
 
         ''fnVerificarExistencia()
 
@@ -3507,6 +3511,8 @@ Public Class frmSalidas
     '--------------------------------------------  DESPACHO -----------------------------------------
     Private Sub fnGuardarDespacho()
 
+        fnVerificaLimiteCredito()
+
         ''fnVerificarExistencia()
 
         ''If verificarexistencia = False Then
@@ -4431,12 +4437,16 @@ Public Class frmSalidas
                                                 conexion.SaveChanges()
 
                                                 If tm.disminuyeInventario Then
-                                                    inv.saldo -= cantidadAjuste
+                                                    inv.salida -= cantidadAjuste
                                                     detalle.cantidad -= cantidadAjuste
                                                     conexion.SaveChanges()
                                                 ElseIf tm.aumentaInventario Then
                                                     inv.salida -= cantidadAjuste
+                                                    inv.saldo += cantidadAjuste
                                                     detalle.cantidad -= cantidadAjuste
+                                                    conexion.SaveChanges()
+
+                                                    m.revisado = True
                                                     conexion.SaveChanges()
                                                 End If
 
@@ -4449,6 +4459,7 @@ Public Class frmSalidas
                                                 t.empresa = mdlPublicVars.idEmpresa
                                                 t.usuario = mdlPublicVars.idUsuario
                                                 t.almacen = mdlPublicVars.General_idAlmacenPrincipal
+                                                t.almacenFinal = mdlPublicVars.General_idAlmacenPrincipal
                                                 t.documento = "Vta. " & s.documento
                                                 t.tipoMovimiento = Ajuste_CodigoMovimiento
                                                 t.inventarioInicial = mdlPublicVars.General_idTipoInventario
@@ -4490,7 +4501,7 @@ Public Class frmSalidas
                                                         t.inventarioFinal = tm.idTipoInventario
                                                         conexion.SaveChanges()
 
-                                                        Dim inven As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.idTipoInventario = tm.idTipoInventario Select x).FirstOrDefault
+                                                        Dim inven As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.idTipoInventario = mdlPublicVars.General_idTipoInventario Select x).FirstOrDefault
 
                                                         If inven Is Nothing Then
                                                             Dim invent As New tblInventario
@@ -4506,7 +4517,7 @@ Public Class frmSalidas
                                                             conexion.AddTotblInventarios(invent)
                                                             conexion.SaveChanges()
                                                         Else
-                                                            inven.salida += cantidadAjuste
+                                                            inven.salida -= cantidadAjuste
                                                             detalle.cantidad -= cantidadAjuste
                                                             conexion.SaveChanges()
                                                         End If
@@ -4516,7 +4527,7 @@ Public Class frmSalidas
                                                         t.inventarioFinal = mdlPublicVars.General_idTipoInventario
                                                         t.inventarioInicial = tm.idTipoInventario
 
-                                                        Dim inven As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.idTipoInventario = tm.idTipoInventario Select x).FirstOrDefault
+                                                        Dim inven As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.idTipoInventario = mdlPublicVars.General_idTipoInventario Select x).FirstOrDefault
 
                                                         If inven Is Nothing Then
                                                             Dim invent As New tblInventario
@@ -5200,9 +5211,23 @@ Public Class frmSalidas
                     conn.Open()
                     conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
-                    cons = (From x In conexion.tblTipoMovimientoes.AsEnumerable
-                                Where x.ajusteVenta
+                    Dim u As tblUsuario = (From x In conexion.tblUsuarios Where x.idUsuario = mdlPublicVars.idUsuario Select x).FirstOrDefault
+
+                    Dim g As String = (From x In conexion.tblGrupoUsuarios Where x.idGrupo = u.idGrupo Select x.nombre).FirstOrDefault
+
+                    If g.Contains("Ventas") Then
+                        cons = (From x In conexion.tblTipoMovimientoes.AsEnumerable
+                                Where x.ajusteVenta = True And x.produccion = True
                                 Select Codigo = x.idTipoMovimiento, Nombre = x.nombre + " : " + If(x.idTipoInventario Is Nothing, "", x.tblTipoInventario.nombre))
+                    ElseIf g.Contains("Bodega") Then
+                        cons = (From x In conexion.tblTipoMovimientoes.AsEnumerable
+                                    Where x.ajusteVenta = True And x.produccion = False
+                                    Select Codigo = x.idTipoMovimiento, Nombre = x.nombre + " : " + If(x.idTipoInventario Is Nothing, "", x.tblTipoInventario.nombre))
+                    Else
+                        cons = (From x In conexion.tblTipoMovimientoes.AsEnumerable
+                                  Where x.ajusteVenta = True
+                                  Select Codigo = x.idTipoMovimiento, Nombre = x.nombre + " : " + If(x.idTipoInventario Is Nothing, "", x.tblTipoInventario.nombre))
+                    End If
 
                     conn.Close()
                 End Using
@@ -6831,4 +6856,5 @@ Public Class frmSalidas
             verificarexistencia = False
         End Try
     End Sub
+
 End Class
