@@ -35,10 +35,10 @@ Public Class frmPedidosBodega
         mdlPublicVars.fnGrid_iconos(Me.grdRevisado)
 
         fnLlenarGrid()
-        fnLlenar()
+        fnLlenarDatos()
     End Sub
 
-    Private Sub fnLlenar()
+    Private Sub fnLlenarDatos()
         Try
             Dim salida As tblSalida = (From x In ctx.tblSalidas Where x.idSalida = idSalida Select x).FirstOrDefault
             lblCodigoSalida.Text = salida.idSalida
@@ -97,21 +97,44 @@ Public Class frmPedidosBodega
                 Me.grdEmpacado.Rows.Clear()
                 Me.grdRevisado.Rows.Clear()
 
-                Dim empleados As List(Of tblEmpleado) = (From x In conexion.tblEmpleadoes Where x.idpuesto = 1 Order By x.nombre Ascending Select x).ToList
+                Dim empleados As List(Of tblEmpleado) = (From x In conexion.tblEmpleadoes Order By x.nombre Ascending Select x).ToList
 
                 Dim fila As Object()
                 Dim fila2 As Object()
 
-                For Each index As tblEmpleado In empleados
+                If chkVendedores.Checked = True Then
+                    For Each index As tblEmpleado In empleados
 
-                    fila = {index.idEmpleado, 0, index.nombre}
-                    fila2 = {index.idEmpleado, 0, index.nombre, 0}
+                        fila = {index.idEmpleado, 0, index.nombre}
+                        fila2 = {index.idEmpleado, 0, index.nombre, 0}
 
-                    Me.grdEmpacado.Rows.Add(fila)
-                    Me.grdRevisado.Rows.Add(fila)
-                    Me.grdSacado.Rows.Add(fila2)
+                        If index.idpuesto = 1 Or index.idpuesto = 2 Then
+                            Me.grdEmpacado.Rows.Add(fila)
+                            Me.grdSacado.Rows.Add(fila2)
+                        End If
 
-                Next
+                        If index.idpuesto = 1 Or index.idpuesto = 3 Or index.idpuesto = 2 Then
+                            Me.grdRevisado.Rows.Add(fila)
+                        End If
+
+                    Next
+                Else
+                    For Each index As tblEmpleado In empleados
+
+                        fila = {index.idEmpleado, 0, index.nombre}
+                        fila2 = {index.idEmpleado, 0, index.nombre, 0}
+
+                        If index.idpuesto = 1 Then
+                            Me.grdEmpacado.Rows.Add(fila)
+                            Me.grdSacado.Rows.Add(fila2)
+                        End If
+
+                        If index.idpuesto = 1 Or index.idpuesto = 3 Then
+                            Me.grdRevisado.Rows.Add(fila)
+                        End If
+
+                    Next
+                End If
 
                 conn.Close()
             End Using
@@ -385,7 +408,7 @@ Public Class frmPedidosBodega
         If success = True Then
             ctx.AcceptAllChanges()
             alerta.fnGuardar()
-            fnLlenar()
+            fnLlenarDatos()
             Me.Close()
         Else
             alerta.fnErrorGuardar()
@@ -414,6 +437,21 @@ Public Class frmPedidosBodega
                     Me.grdRevisado.Rows(fila).Cells("chkAgregar").Value = False
                 End If
 
+                Dim contador As Integer = 0
+
+                For i As Integer = 0 To Me.grdRevisado.Rows.Count - 1
+                    If Me.grdRevisado.Rows(i).Cells("chkAgregar").Value = True Then
+                        contador += 1
+                    End If
+                Next
+
+                If contador > 1 Then
+                    RadMessageBox.Show("Solo puede seleccionar a una persona para la revisión del pedido", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                    Me.grdRevisado.Rows(fila).Cells("chkAgregar").Value = False
+                    contador = 0
+                    Exit Sub
+                End If
+
             End If
         Catch ex As Exception
 
@@ -436,6 +474,21 @@ Public Class frmPedidosBodega
                     Me.grdSacado.Rows(fila).Cells("chkAgregar").Value = False
                 End If
 
+                Dim contador As Integer = 0
+
+                For i As Integer = 0 To Me.grdSacado.Rows.Count - 1
+                    If Me.grdSacado.Rows(i).Cells("chkAgregar").Value = True Then
+                        contador += 1
+                    End If
+                Next
+
+                If contador > 2 Then
+                    RadMessageBox.Show("Solo puede seleccionar a dos personas para el sacado del pedido", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                    Me.grdSacado.Rows(fila).Cells("chkAgregar").Value = False
+                    contador = 0
+                    Exit Sub
+                End If
+
             End If
         Catch ex As Exception
 
@@ -456,6 +509,21 @@ Public Class frmPedidosBodega
                     Me.grdEmpacado.Rows(fila).Cells("chkAgregar").Value = True
                 ElseIf valor = True Then
                     Me.grdEmpacado.Rows(fila).Cells("chkAgregar").Value = False
+                End If
+
+                Dim contador As Integer = 0
+
+                For i As Integer = 0 To Me.grdEmpacado.Rows.Count - 1
+                    If Me.grdEmpacado.Rows(i).Cells("chkAgregar").Value = True Then
+                        contador += 1
+                    End If
+                Next
+
+                If contador > 2 Then
+                    RadMessageBox.Show("Solo puede seleccionar a dos personas para el empacado del pedido", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                    Me.grdEmpacado.Rows(fila).Cells("chkAgregar").Value = False
+                    contador = 0
+                    Exit Sub
                 End If
 
             End If
@@ -562,6 +630,14 @@ Public Class frmPedidosBodega
                     End If
                 End If
             End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub chkVendedores_CheckedChanged(sender As Object, e As EventArgs) Handles chkVendedores.CheckedChanged
+        Try
+            fnLlenarGrid()
         Catch ex As Exception
 
         End Try

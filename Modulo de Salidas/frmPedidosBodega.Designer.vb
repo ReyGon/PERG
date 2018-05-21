@@ -67,6 +67,7 @@ Partial Class frmPedidosBodega
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.grdRevisado = New Telerik.WinControls.UI.RadGridView()
+        Me.chkVendedores = New System.Windows.Forms.CheckBox()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
         Me.pnx1Salir.SuspendLayout()
@@ -600,10 +601,22 @@ Partial Class frmPedidosBodega
         Me.grdRevisado.Text = "RadGridView2"
         Me.grdRevisado.ThemeName = "Office2007Black"
         '
+        'chkVendedores
+        '
+        Me.chkVendedores.AutoSize = True
+        Me.chkVendedores.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkVendedores.Location = New System.Drawing.Point(822, 201)
+        Me.chkVendedores.Name = "chkVendedores"
+        Me.chkVendedores.Size = New System.Drawing.Size(88, 17)
+        Me.chkVendedores.TabIndex = 209
+        Me.chkVendedores.Text = "Vendedores"
+        Me.chkVendedores.UseVisualStyleBackColor = True
+        '
         'frmPedidosBodega
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(922, 572)
+        Me.Controls.Add(Me.chkVendedores)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.PictureBox4)
         Me.Controls.Add(Me.rgbDetalle)
@@ -624,6 +637,7 @@ Partial Class frmPedidosBodega
         Me.Controls.SetChildIndex(Me.rgbDetalle, 0)
         Me.Controls.SetChildIndex(Me.PictureBox4, 0)
         Me.Controls.SetChildIndex(Me.Label13, 0)
+        Me.Controls.SetChildIndex(Me.chkVendedores, 0)
         CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlBarra.ResumeLayout(False)
         Me.pnx1Salir.ResumeLayout(False)
@@ -688,5 +702,6 @@ Partial Class frmPedidosBodega
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents txtErrores As System.Windows.Forms.TextBox
+    Friend WithEvents chkVendedores As System.Windows.Forms.CheckBox
 
 End Class
