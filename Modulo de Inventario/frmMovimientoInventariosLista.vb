@@ -374,10 +374,11 @@ Public Class frmMovimientoInventariosLista
 
                             conexion.SaveChanges()
 
-                        Else
+                        ElseIf t.disminuyeInventario Then
+
                             i = (From x In conexion.tblInventarios Where x.idArticulo = d.articulo And x.idTipoInventario = mdlPublicVars.General_idTipoInventario Select x).FirstOrDefault
 
-                            i.saldo -= d.cantidad
+                            i.salida += d.cantidad
 
                             conexion.SaveChanges()
                         End If
@@ -579,7 +580,16 @@ Public Class frmMovimientoInventariosLista
                 If tipo = "Ajuste en Venta" Then
                         Dim m As tblMovimientoInventario = (From x In conexion.tblMovimientoInventarios Where x.codigo = id Select x).FirstOrDefault
                     If m.ajuste Then
+                            Dim md As List(Of tblMovimientoInventarioDetalle) = (From x In conexion.tblMovimientoInventarioDetalles Where x.movimientoInventario = id Select x).ToList()
 
+                            Dim i As tblInventario
+
+                            For Each d As tblMovimientoInventarioDetalle In md
+                                i = (From x In conexion.tblInventarios Where x.idTipoInventario = m.inventarioInicial And x.idArticulo = d.articulo Select x).FirstOrDefault
+
+                                i.saldo += d.cantidad * d.valormedida
+                                conexion.SaveChanges()
+                            Next
                     ElseIf m.traslado Then
                             Dim md As List(Of tblMovimientoInventarioDetalle) = (From x In conexion.tblMovimientoInventarioDetalles Where x.movimientoInventario = id Select x).ToList()
 
