@@ -1131,7 +1131,7 @@ Public Class frmPedidosListaBarraDerecha
 
                 d = (From x In conexion.tblClientes Where x.idCliente = cliente And x.habillitado = True Select x).FirstOrDefault
 
-                salidas = (From x In conexion.tblSalidas Where x.idCliente = cliente And x.facturado = True And x.anulado = False Select x).ToList
+                salidas = (From x In conexion.tblSalidas Where x.idCliente = cliente And x.facturado = True And x.anulado = False And x.saldo > 0 Select x).ToList
 
                 For Each s As tblSalida In salidas
 

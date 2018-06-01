@@ -419,12 +419,12 @@ Public Class frmMenuPrincipal
                     Dim t As New Random()
                     Dim token As Integer = t.Next(1000, 9999)
 
-                    RadMessageBox.Show("El Token Generado es: " + CStr(token), nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
-
                     Dim c As tblConfiguracion = (From x In conexion.tblConfiguracions Where x.id = 124 Select x).FirstOrDefault
 
                     c.valor = token
                     conexion.SaveChanges()
+
+                    RadMessageBox.Show("El Token Generado es: " + CStr(token), nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
 
                 Else
                     RadMessageBox.Show("No Tiene Permiso Para Generar Tokens", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
