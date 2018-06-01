@@ -431,15 +431,21 @@ Public Class frmProductoKardex
         End If
     End Sub
 
+    Private Sub btnAjustesDetalle_Click(sender As Object, e As EventArgs) Handles btnAjustesDetalle.Click
+        Try
 
+            Dim ar As tblArticulo = (From x In ctx.tblArticuloes.AsEnumerable Where x.idArticulo = articulo Select x).FirstOrDefault
+            Dim codigo As Integer
+            codigo = ar.idArticulo
 
+            frmDetalleAjustes.Text = "Detalle de Ajustes"
+            frmDetalleAjustes.codigo = CInt(codigo)
+            frmDetalleAjustes.StartPosition = FormStartPosition.CenterScreen
+            frmDetalleAjustes.ShowDialog()
+            frmDetalleAjustes.Dispose()
 
-    Private Sub Label9_Click(sender As Object, e As EventArgs)
+        Catch ex As Exception
 
-    End Sub
-
-
-    Private Sub lblAjustesHistorial_Click(sender As Object, e As EventArgs) Handles lblAjustesHistorial.Click
-
+        End Try
     End Sub
 End Class

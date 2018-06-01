@@ -38,7 +38,10 @@ Public Class frmPedidosListaBarraDerecha
                 conn.Open()
                 conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
                 salida = (From x In conexion.tblSalidas Where x.idSalida = codigo Select x).FirstOrDefault
-            
+
+                If fnValidarVencido(codigo) = False Then
+                    Exit Sub
+                End If
 
                 If tipoSalida = "Cotizado" Then
                     If RadMessageBox.Show("¿Desea pasar la cotización a despacho?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = vbYes Then
@@ -1109,8 +1112,62 @@ Public Class frmPedidosListaBarraDerecha
         End Try
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+    Private Function fnValidarVencido(ByVal codigo As Integer) As Boolean
+        Try
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
-    End Sub
+                Dim d As tblCliente
+                Dim cliente As Integer
+
+                Dim salidas As List(Of tblSalida)
+                Dim suma As Integer
+                Dim fecha As Date
+
+                cliente = (From x In conexion.tblSalidas Where x.idSalida = codigo Select x.idCliente).FirstOrDefault
+
+
+                d = (From x In conexion.tblClientes Where x.idCliente = cliente And x.habillitado = True Select x).FirstOrDefault
+
+                salidas = (From x In conexion.tblSalidas Where x.idCliente = cliente And x.facturado = True And x.anulado = False Select x).ToList
+
+                For Each s As tblSalida In salidas
+
+                    fecha = DateAdd(DateInterval.Day, CDec(d.diasCredito), CDate(s.fechaFacturado))
+
+                    If fecha < Today Then
+                        suma += 1
+                    End If
+
+                Next
+
+                If suma > 0 Then
+
+                    frmValidacionClave.Text = "Autorizacion"
+                    frmValidacionClave.lblInformacion.Text = "¡Se necesita autorizacion administrativa debido a que el cliente posee saldo vencido!"
+                    frmValidacionClave.StartPosition = FormStartPosition.CenterScreen
+                    frmValidacionClave.WindowState = FormWindowState.Normal
+                    frmValidacionClave.ShowDialog()
+                    frmValidacionClave.Dispose()
+
+                    If mdlPublicVars.ClaveVencidosStatus = True Then
+                        mdlPublicVars.ClaveVencidosStatus = False
+                        Return True
+                    Else
+                        Return False
+                    End If
+                Else
+                    Return True
+                End If
+
+                conn.Close()
+            End Using
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
 End Class
 

@@ -61,26 +61,26 @@ Partial Class frmProductoKardex
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.RadGroupBox2 = New Telerik.WinControls.UI.RadGroupBox()
-        Me.btnDetalleReserva = New System.Windows.Forms.Button()
-        Me.lblFinalNeto = New System.Windows.Forms.Label()
-        Me.lblReserva = New System.Windows.Forms.Label()
-        Me.lblFinal = New System.Windows.Forms.Label()
-        Me.Label23 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label24 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.RadGroupBox1 = New Telerik.WinControls.UI.RadGroupBox()
-        Me.lblSaldoNetoInicial = New System.Windows.Forms.Label()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.lblSaldoInicial = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.lblReservaHistorial = New System.Windows.Forms.Label()
         Me.btnAjustesDetalle = New System.Windows.Forms.Button()
         Me.lblAjustes = New System.Windows.Forms.Label()
+        Me.lblFinal = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.lblFinalNeto = New System.Windows.Forms.Label()
+        Me.btnDetalleReserva = New System.Windows.Forms.Button()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label22 = New System.Windows.Forms.Label()
+        Me.lblReserva = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.RadGroupBox1 = New Telerik.WinControls.UI.RadGroupBox()
         Me.lblAjustesHistorial = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.lblSaldoNetoInicial = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.lblReservaHistorial = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.lblSaldoInicial = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rgbInformacion, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -627,45 +627,34 @@ Partial Class frmProductoKardex
         Me.RadGroupBox2.Size = New System.Drawing.Size(450, 117)
         Me.RadGroupBox2.TabIndex = 194
         '
-        'btnDetalleReserva
+        'btnAjustesDetalle
         '
-        Me.btnDetalleReserva.BackColor = System.Drawing.Color.SteelBlue
-        Me.btnDetalleReserva.FlatAppearance.BorderSize = 0
-        Me.btnDetalleReserva.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
-        Me.btnDetalleReserva.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.btnDetalleReserva.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDetalleReserva.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDetalleReserva.ForeColor = System.Drawing.Color.Transparent
-        Me.btnDetalleReserva.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnDetalleReserva.Location = New System.Drawing.Point(151, 38)
-        Me.btnDetalleReserva.Name = "btnDetalleReserva"
-        Me.btnDetalleReserva.Size = New System.Drawing.Size(60, 24)
-        Me.btnDetalleReserva.TabIndex = 193
-        Me.btnDetalleReserva.Text = "Detalle"
-        Me.btnDetalleReserva.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnDetalleReserva.UseVisualStyleBackColor = False
+        Me.btnAjustesDetalle.BackColor = System.Drawing.Color.SteelBlue
+        Me.btnAjustesDetalle.FlatAppearance.BorderSize = 0
+        Me.btnAjustesDetalle.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnAjustesDetalle.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnAjustesDetalle.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAjustesDetalle.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAjustesDetalle.ForeColor = System.Drawing.Color.Transparent
+        Me.btnAjustesDetalle.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnAjustesDetalle.Location = New System.Drawing.Point(151, 63)
+        Me.btnAjustesDetalle.Name = "btnAjustesDetalle"
+        Me.btnAjustesDetalle.Size = New System.Drawing.Size(60, 24)
+        Me.btnAjustesDetalle.TabIndex = 196
+        Me.btnAjustesDetalle.Text = "Detalle"
+        Me.btnAjustesDetalle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnAjustesDetalle.UseVisualStyleBackColor = False
         '
-        'lblFinalNeto
+        'lblAjustes
         '
-        Me.lblFinalNeto.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.lblFinalNeto.ForeColor = System.Drawing.Color.Black
-        Me.lblFinalNeto.Location = New System.Drawing.Point(151, 87)
-        Me.lblFinalNeto.Name = "lblFinalNeto"
-        Me.lblFinalNeto.Size = New System.Drawing.Size(286, 26)
-        Me.lblFinalNeto.TabIndex = 191
-        Me.lblFinalNeto.Text = "Neto"
-        Me.lblFinalNeto.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'lblReserva
-        '
-        Me.lblReserva.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.lblReserva.ForeColor = System.Drawing.Color.Black
-        Me.lblReserva.Location = New System.Drawing.Point(217, 36)
-        Me.lblReserva.Name = "lblReserva"
-        Me.lblReserva.Size = New System.Drawing.Size(220, 26)
-        Me.lblReserva.TabIndex = 189
-        Me.lblReserva.Text = "Reserva"
-        Me.lblReserva.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.lblAjustes.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.lblAjustes.ForeColor = System.Drawing.Color.Black
+        Me.lblAjustes.Location = New System.Drawing.Point(217, 61)
+        Me.lblAjustes.Name = "lblAjustes"
+        Me.lblAjustes.Size = New System.Drawing.Size(220, 26)
+        Me.lblAjustes.TabIndex = 195
+        Me.lblAjustes.Text = "Ajustes"
+        Me.lblAjustes.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'lblFinal
         '
@@ -677,17 +666,6 @@ Partial Class frmProductoKardex
         Me.lblFinal.TabIndex = 177
         Me.lblFinal.Text = "Final"
         Me.lblFinal.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.ForeColor = System.Drawing.Color.DimGray
-        Me.Label23.Location = New System.Drawing.Point(28, 88)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(117, 25)
-        Me.Label23.TabIndex = 186
-        Me.Label23.Text = "Saldo Neto :"
         '
         'Label12
         '
@@ -710,6 +688,68 @@ Partial Class frmProductoKardex
         Me.Label24.Size = New System.Drawing.Size(124, 25)
         Me.Label24.TabIndex = 184
         Me.Label24.Text = "( - ) Reserva :"
+        '
+        'lblFinalNeto
+        '
+        Me.lblFinalNeto.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.lblFinalNeto.ForeColor = System.Drawing.Color.Black
+        Me.lblFinalNeto.Location = New System.Drawing.Point(151, 87)
+        Me.lblFinalNeto.Name = "lblFinalNeto"
+        Me.lblFinalNeto.Size = New System.Drawing.Size(286, 26)
+        Me.lblFinalNeto.TabIndex = 191
+        Me.lblFinalNeto.Text = "Neto"
+        Me.lblFinalNeto.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'btnDetalleReserva
+        '
+        Me.btnDetalleReserva.BackColor = System.Drawing.Color.SteelBlue
+        Me.btnDetalleReserva.FlatAppearance.BorderSize = 0
+        Me.btnDetalleReserva.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnDetalleReserva.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.btnDetalleReserva.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDetalleReserva.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDetalleReserva.ForeColor = System.Drawing.Color.Transparent
+        Me.btnDetalleReserva.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnDetalleReserva.Location = New System.Drawing.Point(151, 38)
+        Me.btnDetalleReserva.Name = "btnDetalleReserva"
+        Me.btnDetalleReserva.Size = New System.Drawing.Size(60, 24)
+        Me.btnDetalleReserva.TabIndex = 193
+        Me.btnDetalleReserva.Text = "Detalle"
+        Me.btnDetalleReserva.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnDetalleReserva.UseVisualStyleBackColor = False
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.Color.DimGray
+        Me.Label20.Location = New System.Drawing.Point(13, 61)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(132, 25)
+        Me.Label20.TabIndex = 194
+        Me.Label20.Text = "( +- ) Ajustes :"
+        '
+        'lblReserva
+        '
+        Me.lblReserva.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.lblReserva.ForeColor = System.Drawing.Color.Black
+        Me.lblReserva.Location = New System.Drawing.Point(217, 36)
+        Me.lblReserva.Name = "lblReserva"
+        Me.lblReserva.Size = New System.Drawing.Size(220, 26)
+        Me.lblReserva.TabIndex = 189
+        Me.lblReserva.Text = "Reserva"
+        Me.lblReserva.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.ForeColor = System.Drawing.Color.DimGray
+        Me.Label23.Location = New System.Drawing.Point(28, 88)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(117, 25)
+        Me.Label23.TabIndex = 186
+        Me.Label23.Text = "Saldo Neto :"
         '
         'Label15
         '
@@ -751,6 +791,28 @@ Partial Class frmProductoKardex
         Me.RadGroupBox1.Size = New System.Drawing.Size(450, 117)
         Me.RadGroupBox1.TabIndex = 197
         '
+        'lblAjustesHistorial
+        '
+        Me.lblAjustesHistorial.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.lblAjustesHistorial.ForeColor = System.Drawing.Color.Black
+        Me.lblAjustesHistorial.Location = New System.Drawing.Point(150, 58)
+        Me.lblAjustesHistorial.Name = "lblAjustesHistorial"
+        Me.lblAjustesHistorial.Size = New System.Drawing.Size(287, 30)
+        Me.lblAjustesHistorial.TabIndex = 185
+        Me.lblAjustesHistorial.Text = "Ajustes"
+        Me.lblAjustesHistorial.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.ForeColor = System.Drawing.Color.DimGray
+        Me.Label22.Location = New System.Drawing.Point(26, 61)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(132, 25)
+        Me.Label22.TabIndex = 184
+        Me.Label22.Text = "( +- ) Ajustes :"
+        '
         'lblSaldoNetoInicial
         '
         Me.lblSaldoNetoInicial.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
@@ -761,39 +823,6 @@ Partial Class frmProductoKardex
         Me.lblSaldoNetoInicial.TabIndex = 183
         Me.lblSaldoNetoInicial.Text = "Neto"
         Me.lblSaldoNetoInicial.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.ForeColor = System.Drawing.Color.DimGray
-        Me.Label21.Location = New System.Drawing.Point(33, 88)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(125, 25)
-        Me.Label21.TabIndex = 182
-        Me.Label21.Text = "Saldo Inicial :"
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.ForeColor = System.Drawing.Color.DimGray
-        Me.Label19.Location = New System.Drawing.Point(13, 12)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(145, 25)
-        Me.Label19.TabIndex = 180
-        Me.Label19.Text = "Saldo Anterior :"
-        '
-        'lblSaldoInicial
-        '
-        Me.lblSaldoInicial.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.lblSaldoInicial.ForeColor = System.Drawing.Color.Black
-        Me.lblSaldoInicial.Location = New System.Drawing.Point(150, 8)
-        Me.lblSaldoInicial.Name = "lblSaldoInicial"
-        Me.lblSaldoInicial.Size = New System.Drawing.Size(287, 30)
-        Me.lblSaldoInicial.TabIndex = 181
-        Me.lblSaldoInicial.Text = "Inicial"
-        Me.lblSaldoInicial.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label18
         '
@@ -817,67 +846,38 @@ Partial Class frmProductoKardex
         Me.lblReservaHistorial.Text = "Reserva"
         Me.lblReservaHistorial.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'btnAjustesDetalle
+        'Label21
         '
-        Me.btnAjustesDetalle.BackColor = System.Drawing.Color.SteelBlue
-        Me.btnAjustesDetalle.FlatAppearance.BorderSize = 0
-        Me.btnAjustesDetalle.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
-        Me.btnAjustesDetalle.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.btnAjustesDetalle.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAjustesDetalle.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAjustesDetalle.ForeColor = System.Drawing.Color.Transparent
-        Me.btnAjustesDetalle.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnAjustesDetalle.Location = New System.Drawing.Point(151, 63)
-        Me.btnAjustesDetalle.Name = "btnAjustesDetalle"
-        Me.btnAjustesDetalle.Size = New System.Drawing.Size(60, 24)
-        Me.btnAjustesDetalle.TabIndex = 196
-        Me.btnAjustesDetalle.Text = "Detalle"
-        Me.btnAjustesDetalle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnAjustesDetalle.UseVisualStyleBackColor = False
+        Me.Label21.AutoSize = True
+        Me.Label21.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.ForeColor = System.Drawing.Color.DimGray
+        Me.Label21.Location = New System.Drawing.Point(33, 88)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(125, 25)
+        Me.Label21.TabIndex = 182
+        Me.Label21.Text = "Saldo Inicial :"
         '
-        'lblAjustes
+        'lblSaldoInicial
         '
-        Me.lblAjustes.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.lblAjustes.ForeColor = System.Drawing.Color.Black
-        Me.lblAjustes.Location = New System.Drawing.Point(217, 61)
-        Me.lblAjustes.Name = "lblAjustes"
-        Me.lblAjustes.Size = New System.Drawing.Size(220, 26)
-        Me.lblAjustes.TabIndex = 195
-        Me.lblAjustes.Text = "Ajustes"
-        Me.lblAjustes.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.lblSaldoInicial.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.lblSaldoInicial.ForeColor = System.Drawing.Color.Black
+        Me.lblSaldoInicial.Location = New System.Drawing.Point(150, 8)
+        Me.lblSaldoInicial.Name = "lblSaldoInicial"
+        Me.lblSaldoInicial.Size = New System.Drawing.Size(287, 30)
+        Me.lblSaldoInicial.TabIndex = 181
+        Me.lblSaldoInicial.Text = "Inicial"
+        Me.lblSaldoInicial.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'Label20
+        'Label19
         '
-        Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.ForeColor = System.Drawing.Color.DimGray
-        Me.Label20.Location = New System.Drawing.Point(13, 61)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(132, 25)
-        Me.Label20.TabIndex = 194
-        Me.Label20.Text = "( +- ) Ajustes :"
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.ForeColor = System.Drawing.Color.DimGray
-        Me.Label22.Location = New System.Drawing.Point(26, 61)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(132, 25)
-        Me.Label22.TabIndex = 184
-        Me.Label22.Text = "( +- ) Ajustes :"
-        '
-        'lblAjustesHistorial
-        '
-        Me.lblAjustesHistorial.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.lblAjustesHistorial.ForeColor = System.Drawing.Color.Black
-        Me.lblAjustesHistorial.Location = New System.Drawing.Point(150, 58)
-        Me.lblAjustesHistorial.Name = "lblAjustesHistorial"
-        Me.lblAjustesHistorial.Size = New System.Drawing.Size(287, 30)
-        Me.lblAjustesHistorial.TabIndex = 185
-        Me.lblAjustesHistorial.Text = "Ajustes"
-        Me.lblAjustesHistorial.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label19.AutoSize = True
+        Me.Label19.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.ForeColor = System.Drawing.Color.DimGray
+        Me.Label19.Location = New System.Drawing.Point(13, 12)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(145, 25)
+        Me.Label19.TabIndex = 180
+        Me.Label19.Text = "Saldo Anterior :"
         '
         'frmProductoKardex
         '

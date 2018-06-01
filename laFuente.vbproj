@@ -881,6 +881,12 @@
     <Compile Include="Modulo de Impuestos\frmImpuestoPagarMovimiento.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modulo de Inventario\frmDetalleAjustes.Designer.vb">
+      <DependentUpon>frmDetalleAjustes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo de Inventario\frmDetalleAjustes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modulo de Inventario\frmConceptosAjustes.Designer.vb">
       <DependentUpon>frmConceptosAjustes.vb</DependentUpon>
     </Compile>
@@ -1191,6 +1197,12 @@
       <DependentUpon>frmReportesDinamicos.vb</DependentUpon>
     </Compile>
     <Compile Include="Modulos Dinamicos\frmReportesDinamicos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos Seguridad\frmValidacionClave.Designer.vb">
+      <DependentUpon>frmValidacionClave.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos Seguridad\frmValidacionClave.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reportes\Nuevos\factura_FacturaConDesc.vb">
@@ -2200,6 +2212,9 @@
     <EmbeddedResource Include="Modulo de Impuestos\frmImpuestoPagarMovimiento.resx">
       <DependentUpon>frmImpuestoPagarMovimiento.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulo de Inventario\frmDetalleAjustes.resx">
+      <DependentUpon>frmDetalleAjustes.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Inventario\frmConceptosAjustes.resx">
       <DependentUpon>frmConceptosAjustes.vb</DependentUpon>
     </EmbeddedResource>
@@ -2352,6 +2367,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos Dinamicos\frmReportesDinamicos.resx">
       <DependentUpon>frmReportesDinamicos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos Seguridad\frmValidacionClave.resx">
+      <DependentUpon>frmValidacionClave.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Nuevos\factura_FacturaConDesc.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

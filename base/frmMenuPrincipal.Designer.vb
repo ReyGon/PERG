@@ -143,6 +143,7 @@ Partial Class frmMenuPrincipal
         Me.rdmConsultas = New Telerik.WinControls.UI.RadMenuItem()
         Me.RadMenuItem1 = New Telerik.WinControls.UI.RadMenuItem()
         Me.rdmReportesDinamicos = New Telerik.WinControls.UI.RadMenuItem()
+        Me.rdmReportesAdministrativos = New Telerik.WinControls.UI.RadMenuItem()
         Me.RadButtonElement1 = New Telerik.WinControls.UI.RadButtonElement()
         Me.RadButtonElement2 = New Telerik.WinControls.UI.RadButtonElement()
         Me.RadButtonElement3 = New Telerik.WinControls.UI.RadButtonElement()
@@ -167,7 +168,7 @@ Partial Class frmMenuPrincipal
         Me.itemImportarProveedores = New Telerik.WinControls.UI.RadMenuItem()
         Me.rme = New Telerik.WinControls.UI.RadMenu()
         Me.AquaTheme1 = New Telerik.WinControls.Themes.AquaTheme()
-        Me.rdmReportesAdministrativos = New Telerik.WinControls.UI.RadMenuItem()
+        Me.rmdToken = New Telerik.WinControls.UI.RadMenuItem()
         CType(Me.rme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -1120,6 +1121,11 @@ Partial Class frmMenuPrincipal
         Me.rdmReportesDinamicos.Name = "rdmReportesDinamicos"
         Me.rdmReportesDinamicos.Text = "Reportes Dinamicos"
         '
+        'rdmReportesAdministrativos
+        '
+        Me.rdmReportesAdministrativos.Name = "rdmReportesAdministrativos"
+        Me.rdmReportesAdministrativos.Text = "Reportes Administrativos"
+        '
         'RadButtonElement1
         '
         Me.RadButtonElement1.Class = "RibbonBarButtonElement"
@@ -1286,7 +1292,7 @@ Partial Class frmMenuPrincipal
         '
         Me.rme.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.rme.ImageList = Me.ilBarra
-        Me.rme.Items.AddRange(New Telerik.WinControls.RadItem() {Me.itemVistaPrincipal, Me.itemMenuPrincipal, Me.itemMenuTablas, Me.itemMenuUsuarios, Me.RadMenuHeaderItem1, Me.itemUsuario, Me.itemBD, Me.itemMenuImportacion})
+        Me.rme.Items.AddRange(New Telerik.WinControls.RadItem() {Me.itemVistaPrincipal, Me.itemMenuPrincipal, Me.itemMenuTablas, Me.itemMenuUsuarios, Me.RadMenuHeaderItem1, Me.itemUsuario, Me.itemBD, Me.itemMenuImportacion, Me.rmdToken})
         Me.rme.Location = New System.Drawing.Point(0, 0)
         Me.rme.Name = "rme"
         Me.rme.Size = New System.Drawing.Size(1209, 31)
@@ -1294,10 +1300,11 @@ Partial Class frmMenuPrincipal
         Me.rme.Text = "RadMenu1"
         Me.rme.ThemeName = "Office2007Black"
         '
-        'rdmReportesAdministrativos
+        'rmdToken
         '
-        Me.rdmReportesAdministrativos.Name = "rdmReportesAdministrativos"
-        Me.rdmReportesAdministrativos.Text = "Reportes Administrativos"
+        Me.rmdToken.Name = "rmdToken"
+        Me.rmdToken.Text = "TOKEN"
+        Me.rmdToken.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay
         '
         'frmMenuPrincipal
         '
@@ -1468,5 +1475,6 @@ Partial Class frmMenuPrincipal
     Friend WithEvents RadMenuItem1 As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents rdmReportesDinamicos As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents rdmReportesAdministrativos As Telerik.WinControls.UI.RadMenuItem
+    Friend WithEvents rmdToken As Telerik.WinControls.UI.RadMenuItem
 End Class
 

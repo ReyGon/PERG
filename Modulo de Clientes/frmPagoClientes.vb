@@ -112,7 +112,7 @@ Public Class frmPagoClientes
 
                 consulta = (From x In conexion.tblClientes Select Codigo = 0, Nombre = "< .. Ninguno .. >").Union(From x In conexion.tblClientes _
                            Where x.habillitado = True Order By x.Negocio
-                          Select codigo = x.idCliente, nombre = x.Negocio + " (" + x.nit1 + ") ")
+                          Select codigo = x.idCliente, nombre = x.Negocio.Trim() + " (" + x.nit1.Trim() + ") ")
 
                 With cmbClientes
                     .DataSource = Nothing
@@ -192,6 +192,17 @@ Public Class frmPagoClientes
                 Else
                     lblSaldo.Text = 0
                 End If
+
+                Dim salidas As Double
+                Try
+                    salidas = (From x In conexion.tblSalidas Where x.idCliente = codigo And x.anulado = False _
+                               And x.facturado = False And x.despachar = True And x.saldo > 0 _
+                               Select x.saldo).Sum
+                Catch ex As Exception
+                    salidas = 0
+                End Try
+
+                lblEnProceso.Text = Format(salidas, mdlPublicVars.formatoMoneda)
 
                 conn.Close()
             End Using
@@ -1323,4 +1334,24 @@ Public Class frmPagoClientes
     End Sub
 
 
+    Private Sub btnDetalleVentas_Click(sender As Object, e As EventArgs) Handles btnDetalleVentas.Click
+        Try
+
+            If Me.cmbClientes.SelectedValue > 0 Then
+                frmDetalleVentasPagos.Text = "Ventas"
+                frmDetalleVentasPagos.bitVentas = True
+                frmDetalleVentasPagos.bitPagos = False
+                frmDetalleVentasPagos.cliente = CInt(Me.cmbClientes.SelectedValue)
+                frmDetalleVentasPagos.total = CDec(lblEnProceso.Text)
+                frmDetalleVentasPagos.StartPosition = FormStartPosition.CenterScreen
+                frmDetalleVentasPagos.ShowDialog()
+                frmDetalleVentasPagos.Dispose()
+            Else
+                alerta.contenido = "Seleccionar un Cliente"
+                alerta.fnErrorContenido()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

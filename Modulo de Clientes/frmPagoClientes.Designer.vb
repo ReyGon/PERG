@@ -19,12 +19,12 @@ Partial Class frmPagoClientes
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridViewTextBoxColumn6 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn7 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn8 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn9 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewTextBoxColumn10 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim FilterDescriptor2 As Telerik.WinControls.Data.FilterDescriptor = New Telerik.WinControls.Data.FilterDescriptor()
+        Dim GridViewTextBoxColumn1 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn2 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn3 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn4 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn5 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim FilterDescriptor1 As Telerik.WinControls.Data.FilterDescriptor = New Telerik.WinControls.Data.FilterDescriptor()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPagoClientes))
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -174,30 +174,30 @@ Partial Class frmPagoClientes
         '
         Me.grdProductos.MasterTemplate.AllowAddNewRow = False
         Me.grdProductos.MasterTemplate.AutoGenerateColumns = False
-        GridViewTextBoxColumn6.HeaderText = "Cuenta"
-        GridViewTextBoxColumn6.Name = "Cuenta"
-        GridViewTextBoxColumn6.ReadOnly = True
-        GridViewTextBoxColumn6.Width = 163
-        GridViewTextBoxColumn7.HeaderText = "Documento"
-        GridViewTextBoxColumn7.Name = "txmDocumento"
-        GridViewTextBoxColumn7.Width = 126
-        GridViewTextBoxColumn8.HeaderText = "Monto"
-        GridViewTextBoxColumn8.Name = "txmMonto"
-        GridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleRight
-        GridViewTextBoxColumn8.Width = 103
-        GridViewTextBoxColumn9.HeaderText = "Fecha"
-        GridViewTextBoxColumn9.Name = "txbFecha"
-        GridViewTextBoxColumn9.ReadOnly = True
-        GridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn9.Width = 98
-        GridViewTextBoxColumn10.HeaderText = "Observación"
-        GridViewTextBoxColumn10.Name = "observacion"
-        GridViewTextBoxColumn10.Width = 265
-        Me.grdProductos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn6, GridViewTextBoxColumn7, GridViewTextBoxColumn8, GridViewTextBoxColumn9, GridViewTextBoxColumn10})
+        GridViewTextBoxColumn1.HeaderText = "Cuenta"
+        GridViewTextBoxColumn1.Name = "Cuenta"
+        GridViewTextBoxColumn1.ReadOnly = True
+        GridViewTextBoxColumn1.Width = 163
+        GridViewTextBoxColumn2.HeaderText = "Documento"
+        GridViewTextBoxColumn2.Name = "txmDocumento"
+        GridViewTextBoxColumn2.Width = 126
+        GridViewTextBoxColumn3.HeaderText = "Monto"
+        GridViewTextBoxColumn3.Name = "txmMonto"
+        GridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleRight
+        GridViewTextBoxColumn3.Width = 103
+        GridViewTextBoxColumn4.HeaderText = "Fecha"
+        GridViewTextBoxColumn4.Name = "txbFecha"
+        GridViewTextBoxColumn4.ReadOnly = True
+        GridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn4.Width = 98
+        GridViewTextBoxColumn5.HeaderText = "Observación"
+        GridViewTextBoxColumn5.Name = "observacion"
+        GridViewTextBoxColumn5.Width = 265
+        Me.grdProductos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4, GridViewTextBoxColumn5})
         Me.grdProductos.MasterTemplate.EnableAlternatingRowColor = True
         Me.grdProductos.MasterTemplate.EnableGrouping = False
-        FilterDescriptor2.PropertyName = Nothing
-        Me.grdProductos.MasterTemplate.FilterDescriptors.AddRange(New Telerik.WinControls.Data.FilterDescriptor() {FilterDescriptor2})
+        FilterDescriptor1.PropertyName = Nothing
+        Me.grdProductos.MasterTemplate.FilterDescriptors.AddRange(New Telerik.WinControls.Data.FilterDescriptor() {FilterDescriptor1})
         Me.grdProductos.MasterTemplate.HorizontalScrollState = Telerik.WinControls.UI.ScrollState.AlwaysShow
         Me.grdProductos.Name = "grdProductos"
         Me.grdProductos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)

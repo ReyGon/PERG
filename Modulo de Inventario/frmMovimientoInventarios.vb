@@ -218,32 +218,39 @@ Public Class frmMovimientoInventarios
                     Dim precio As Double = 0
                     Dim total As Double = 0
                     Dim elimina As Integer = 0
-                    For index As Integer = 0 To Me.grdProductos.Rows.Count - 1
-                        elimina = CType(Me.grdProductos.Rows(index).Cells("elimina").Value, Integer)
-                        tipoMovimiento = CType(Me.grdProductos.Rows(index).Cells("tipoMovimiento").Value, Integer)
-                        cantidad = CType(Me.grdProductos.Rows(index).Cells("txmCantidad").Value, Double)
-                        precio = CType(Me.grdProductos.Rows(index).Cells("txmCosto").Value, Double)
+                    Try
 
-                        If elimina = 0 Then
-                            'Vemos si el tipo movimiento es de aumento o de disminucion
-                            Dim tipoMov As tblTipoMovimiento = (From x In conexion.tblTipoMovimientoes.AsEnumerable Where x.idTipoMovimiento = tipoMovimiento Select x).FirstOrDefault
+                        For index As Integer = 0 To Me.grdProductos.Rows.Count - 1
+                            elimina = CType(Me.grdProductos.Rows(index).Cells("elimina").Value, Integer)
+                            tipoMovimiento = CType(Me.grdProductos.Rows(index).Cells("tipoMovimiento").Value, Integer)
+                            cantidad = CType(Me.grdProductos.Rows(index).Cells("txmCantidad").Value, Double)
+                            precio = CType(Me.grdProductos.Rows(index).Cells("txmCosto").Value, Double)
 
-                            If (cantidad * precio) = 0 Then
-                                Me.grdProductos.Rows(index).Cells("Total").Value = "0"
-                                total = 0
-                            Else
-                                Me.grdProductos.Rows(index).Cells("Total").Value = Format(cantidad * precio, mdlPublicVars.formatoMoneda).ToString
-                                total = CType(Me.grdProductos.Rows(index).Cells("Total").Value, Double)
+                            If elimina = 0 Then
+                                'Vemos si el tipo movimiento es de aumento o de disminucion
+                                Dim tipoMov As tblTipoMovimiento = (From x In conexion.tblTipoMovimientoes.AsEnumerable Where x.idTipoMovimiento = tipoMovimiento Select x).FirstOrDefault
 
-                                If tipoMov.aumentaInventario = True Then
-                                    sumaPositivo += CType(Me.grdProductos.Rows(index).Cells("Total").Value, Double)
-                                ElseIf tipoMov.disminuyeInventario = True Then
-                                    sumaNegativo += CType(Me.grdProductos.Rows(index).Cells("Total").Value, Double)
+                                If (cantidad * precio) = 0 Then
+                                    Me.grdProductos.Rows(index).Cells("Total").Value = "0"
+                                    total = 0
+                                Else
+                                    Me.grdProductos.Rows(index).Cells("Total").Value = Format(cantidad * precio, mdlPublicVars.formatoMoneda).ToString
+                                    total = CType(Me.grdProductos.Rows(index).Cells("Total").Value, Double)
+
+                                    If tipoMov.aumentaInventario = True Then
+                                        sumaPositivo += CType(Me.grdProductos.Rows(index).Cells("Total").Value, Double)
+                                    ElseIf tipoMov.disminuyeInventario = True Then
+                                        sumaNegativo += CType(Me.grdProductos.Rows(index).Cells("Total").Value, Double)
+                                    End If
                                 End If
-                            End If
 
-                        End If
-                    Next
+                            End If
+                        Next
+
+                    Catch ex As Exception
+
+                    End Try
+
                     suma = sumaPositivo - sumaNegativo
 
                     lblTotal.Text = Format(suma, mdlPublicVars.formatoMoneda)

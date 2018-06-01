@@ -204,6 +204,7 @@ Public Module mdlPublicVars
     Public General_ImportanciaDefault As Integer = 0
     Public bitUnidadMedida_Activado As Boolean = False
 
+
     Public buscarArticulo_cantidadUltimasVentas As Integer = 0
     Public BuscarArticulo_CarpetaCatalogo As String = ""
     Public BuscarArticulo_CodigoOferta As Integer = 0
@@ -283,6 +284,11 @@ Public Module mdlPublicVars
     Public Produccion_CodigoMovimiento As Integer
     Public Produccion_Habilitado As Boolean
     Public UnidadMedidaDefault As Integer
+
+    ''Validacion para Ventas Vencidas
+    Public superSearchClaveVencidos As String = ""
+    Public ClaveVencidos As String
+    Public ClaveVencidosStatus As Boolean = False
 
     Public Activar_Impuestos As Boolean
 
@@ -411,6 +417,7 @@ Public Module mdlPublicVars
             If config.id = 121 Then Notificacion_ClientesNuevos = config.valor
             If config.id = 122 Then Notificacion_Clientes15Dias = config.valor
             If config.id = 123 Then Notificacion_Otro = config.valor
+            If config.id = 124 Then ClaveVencidos = config.valor
 
         Next
 

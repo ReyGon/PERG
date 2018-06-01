@@ -3,6 +3,7 @@ Imports Telerik.WinControls.UI
 Imports Telerik.WinControls
 Imports System.Linq
 Imports Microsoft.VisualBasic.DateAndTime
+Imports System.Data.EntityClient
 
 Public Class frmMenuPrincipal
     Dim ctlMDI As MdiClient
@@ -402,5 +403,39 @@ Public Class frmMenuPrincipal
         frmReportesAdministrativos.WindowState = FormWindowState.Normal
         permiso.PermisoDialogEspeciales(frmReportesAdministrativos)
         frmReportesAdministrativos.Dispose()
+    End Sub
+
+    Private Sub rmdToken_Click(sender As Object, e As EventArgs) Handles rmdToken.Click
+        Try
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim u As tblUsuario = (From x In conexion.tblUsuarios Where x.idUsuario = mdlPublicVars.idUsuario Select x).FirstOrDefault
+
+                If u.bitAutorizaVenta = True Then
+
+                    Dim t As New Random()
+                    Dim token As Integer = t.Next(1000, 9999)
+
+                    RadMessageBox.Show("El Token Generado es: " + CStr(token), nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+
+                    Dim c As tblConfiguracion = (From x In conexion.tblConfiguracions Where x.id = 124 Select x).FirstOrDefault
+
+                    c.valor = token
+                    conexion.SaveChanges()
+
+                Else
+                    RadMessageBox.Show("No Tiene Permiso Para Generar Tokens", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                    conn.Close()
+                    Exit Sub
+                End If
+
+                conn.Close()
+            End Using
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

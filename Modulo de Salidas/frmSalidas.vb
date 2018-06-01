@@ -9,6 +9,7 @@ Imports System.Data.EntityClient
 
 Public Class frmSalidas
     Dim dt As New clsDevuelveTabla
+    Dim grdlistado As New DataGridView
 
     Private _bitEditarBodega As Boolean
     Private _bitEditarSalida As Boolean
@@ -17,6 +18,7 @@ Public Class frmSalidas
     Private _bitSugerirReserva As Boolean
     Private _codFact As Integer
     Private _codigo As Integer
+    Private _Clave As Boolean
 
     Private _tblGuias As New DataTable
 
@@ -35,6 +37,14 @@ Public Class frmSalidas
         End Set
     End Property
 
+    Public Property Clave As Boolean
+        Get
+            Clave = _Clave
+        End Get
+        Set(value As Boolean)
+            _Clave = value
+        End Set
+    End Property
 
     Private _venta As Integer
     Public Property venta As Integer
@@ -114,6 +124,7 @@ Public Class frmSalidas
 
     Private Sub frmSalidas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
+        Clave = False
 
         mdlPublicVars.fnFormatoGridMovimientos(grdProductos)
         mdlPublicVars.fnGrid_iconos(grdProductos)
@@ -146,6 +157,20 @@ Public Class frmSalidas
         ''Me.grdProductos.Rows(0).IsSelected = True
         ''Me.grdProductos.SelectedCells("txbProducto").IsSelected = True
 
+        fnCrearColumnasGrid()
+
+    End Sub
+
+    Private Sub fnCrearColumnasGrid()
+        Try
+
+            Me.grdlistado.Columns.Add("Codigo", "Codigo")
+            Me.grdlistado.Columns.Add("Cantidad", "Cantidad")
+            Me.grdlistado.Columns.Add("Precio", "Precio")
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     'Funcion utilizada para ver los indicadores
@@ -1031,6 +1056,9 @@ Public Class frmSalidas
         grdProductos.CancelEdit()
         grdProductos.EditorManager.CloseEditor()
         grdProductos.EditorManager.CancelEdit()
+
+        ''fnCopiarGrid()
+
     End Sub
 
     'Buscar Articulo Unico
@@ -1152,6 +1180,7 @@ Public Class frmSalidas
                      mdlPublicVars.superSearchBitNuevo, mdlPublicVars.superSearchBitOferta, mdlPublicVars.superSearchPromocion, mdlPublicVars.superSearchCuotaPromocion, mdlPublicVars.superSearchCantidadPromocion}
             Try
                 grdProductos.Rows.Add(filas)
+                grdlistado.Rows.Add(mdlPublicVars.superSearchCodigo, mdlPublicVars.superSearchCantidad, mdlPublicVars.superSearchPrecio)
             Catch ex As Exception
 
             End Try
@@ -1338,7 +1367,7 @@ Public Class frmSalidas
 
                                     ''Dim ac As tblTipoMovimiento = (From x In conexion.tblTipoMovimientoes.AsEnumerable Where x.idTipoMovimiento = idajuste Select x).FirstOrDefault
 
-                                    ajusteNegativo = (cantidadAjuste * precio)
+                                    ajusteNegativo += (cantidadAjuste * precio)
                                     ''If ac IsNot Nothing Then
                                     ''    If ac.nombre.Contains("-") = True Then
                                     ''        'cantidad = cantidad - cantidadAjuste
@@ -1427,6 +1456,7 @@ Public Class frmSalidas
 
         ''verificar el credito del cliente
         fnVerificaCredito()
+        fnCopiarGrid()
         ''fnVerificaLimiteCredito()
     End Sub
 
@@ -2508,7 +2538,7 @@ Public Class frmSalidas
 
         fnVerificaLimiteCredito()
 
-        ''fnVerificarExistencia()
+        fnVerificarExistencia()
 
         ''If verificarexistencia = False Then
         ''    RadMessageBox.Show("Debe verificar existencia para poder guardar", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
@@ -3102,10 +3132,7 @@ Public Class frmSalidas
     '----------------------------------- Modificar Reserva ----------------------------------------------------------------
     Private Function fnModificarReserva()
 
-        ''If verificarexistencia = False Then
-        ''    RadMessageBox.Show("Debe verificar existencia para poder guardar", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
-        ''    Exit Function
-        ''End If
+        fnVerificarExistencia()
 
         Dim codcliente As Integer = cmbCliente.SelectedValue
         Dim cliente As String = cmbNombre.Text
@@ -3511,9 +3538,13 @@ Public Class frmSalidas
     '--------------------------------------------  DESPACHO -----------------------------------------
     Private Sub fnGuardarDespacho()
 
+        If fnValidarVencido() = False Then
+            Exit Sub
+        End If
+
         fnVerificaLimiteCredito()
 
-        ''fnVerificarExistencia()
+        fnVerificarExistencia()
 
         ''If verificarexistencia = False Then
         ''    RadMessageBox.Show("Debe verificar existencia para poder guardar", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
@@ -4320,7 +4351,7 @@ Public Class frmSalidas
                             conexion.SaveChanges()
 
                             ''Guardar Modificacion Detalle de Salida
-                            Dim index
+                            ''Dim index
                             Dim cantidad As Double = 0
                             Dim idajuste As Integer = 0
                             Dim cantidadAjuste As Double = 0
@@ -4340,7 +4371,7 @@ Public Class frmSalidas
                                 Dim inv As tblInventario
                                 Dim tm As tblTipoMovimiento
 
-                                For i As Integer = 0 To Me.grdProductos.Rows.Count - 1
+                                For index As Integer = 0 To Me.grdProductos.Rows.Count - 1
                                     iddetalle = Me.grdProductos.Rows(index).Cells("iddetalle").Value ' id detalle
                                     idarticulo = Me.grdProductos.Rows(index).Cells("Id").Value ' id articulo
                                     articulo = Me.grdProductos.Rows(index).Cells("txbProducto").Value ' codigo
@@ -4362,7 +4393,7 @@ Public Class frmSalidas
                                     detalle.comentario = observacion
                                     conexion.SaveChanges()
 
-                                    If IsNumeric(Me.grdProductos.Rows(i).Cells("idajustecategoria").Value) Then
+                                    If IsNumeric(Me.grdProductos.Rows(index).Cells("idajustecategoria").Value) Then
 
                                         Dim c As tblCorrelativo = (From x In conexion.tblCorrelativos Where x.idTipoMovimiento = Ajuste_CodigoMovimiento Select x).FirstOrDefault
 
@@ -4387,11 +4418,11 @@ Public Class frmSalidas
 
                                         Dim producto As tblArticulo = (From x In conexion.tblArticuloes.AsEnumerable Where x.idArticulo = idarticulo Select x).FirstOrDefault
 
-                                        idajuste = Me.grdProductos.Rows(i).Cells("idajustecategoria").Value
+                                        idajuste = Me.grdProductos.Rows(index).Cells("idajustecategoria").Value
 
                                         If idajuste > 0 Then
 
-                                            cantidadAjuste = Me.grdProductos.Rows(i).Cells("txmCantidadAjuste").Value
+                                            cantidadAjuste = Me.grdProductos.Rows(index).Cells("txmCantidadAjuste").Value
 
                                             tm = (From x In conexion.tblTipoMovimientoes.AsEnumerable Where x.idTipoMovimiento = idajuste Select x).FirstOrDefault
 
@@ -6785,39 +6816,92 @@ Public Class frmSalidas
 
                 Dim id As Integer = 0
                 Dim cantidad As Double = 0.0
+                Dim cantidadAnterior As Double = 0.0
+                Dim iddetalle As Integer = 0
                 Dim ajuste As Boolean = False
+                Dim idInventario As Integer
 
                 Dim a As tblInventario
                 Dim ar As tblArticulo
 
-                For i As Integer = 0 To Me.grdProductos.Rows.Count - 1
-                    id = Me.grdProductos.Rows(i).Cells("Id").Value
-                    cantidad = Me.grdProductos.Rows(i).Cells("txmCantidad").Value
+                If codigo > 0 Then
 
-                    a = (From x In conexion.tblInventarios Where x.idArticulo = id And x.idTipoInventario = mdlPublicVars.General_idTipoInventario Select x).FirstOrDefault
+                    Dim s As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = codigo Select x).FirstOrDefault
 
-                    If a Is Nothing Then
+                    If s.facturado = False And s.despachar = False And s.empacado = False And s.reservado = True Then
 
-                    Else
+                        For c As Integer = 0 To Me.grdProductos.Rows.Count - 1
 
-                        If cantidad > a.saldo Then
+                            id = Me.grdProductos.Rows(c).Cells("Id").Value
+                            cantidad = Me.grdProductos.Rows(c).Cells("txmCantidad").Value
+                            iddetalle = Me.grdProductos.Rows(c).Cells("iddetalle").Value
+                            idInventario = Me.grdProductos.Rows(c).Cells("idInventario").Value
 
-                            ar = (From x In conexion.tblArticuloes Where x.idArticulo = id Select x).FirstOrDefault
+                            Dim detalle As tblSalidaDetalle = (From x In conexion.tblSalidaDetalles Where x.idSalidaDetalle = iddetalle Select x).First
+                            cantidadAnterior = detalle.cantidad
 
-                            RadMessageBox.Show("Existencia insuficiente para el articulo: " & ar.nombre1.Trim() & " (" & ar.codigo1.Trim() & ") " & vbCrLf _
-                            & "Cantidad Requerida: " & cantidad & vbCrLf _
-                            & "Disponible:" & a.saldo & vbCrLf _
-                            & "Desea Surtir de " & ar.nombre1.Trim() & " (" & ar.codigo1.Trim() & ") la cantidad de " & cantidad - a.saldo, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                            a = (From x In conexion.tblInventarios Where x.tblArticulo.empresa = mdlPublicVars.idEmpresa _
+                                                                And x.idTipoInventario = idInventario And x.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal _
+                                                                And x.idArticulo = id Select x).FirstOrDefault
 
-                            Me.grdProductos.Rows(i).Cells("CantidadAjustada").Value += cantidad - a.saldo
-                            Me.grdProductos.Rows(i).Cells("txmCantidad").Value = a.saldo
+                            a.saldo += cantidadAnterior
+                            a.reserva -= cantidadAnterior
 
-                            ajuste = True
+                            If cantidad > a.saldo Then
+                                ar = (From x In conexion.tblArticuloes Where x.idArticulo = id Select x).FirstOrDefault
 
-                        End If
+                                RadMessageBox.Show("Existencia insuficiente para el articulo: " & ar.nombre1.Trim() & " (" & ar.codigo1.Trim() & ") " & vbCrLf _
+                                & "Cantidad Requerida: " & cantidad & vbCrLf _
+                                & "Disponible:" & a.saldo & vbCrLf _
+                                & "Faltante: " & cantidad - a.saldo, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+
+                                Me.grdProductos.Rows(c).Cells("CantidadAjustada").Value += cantidad - a.saldo
+                                Me.grdProductos.Rows(c).Cells("txmCantidad").Value = a.saldo
+
+                                ajuste = True
+                            ElseIf a.saldo >= cantidad Then
+                                a.saldo -= cantidadAnterior
+                                a.reserva += cantidadAnterior
+                            End If
+
+                        Next
 
                     End If
-                Next
+
+                Else
+
+                    For i As Integer = 0 To Me.grdProductos.Rows.Count - 1
+                        id = Me.grdProductos.Rows(i).Cells("Id").Value
+                        cantidad = Me.grdProductos.Rows(i).Cells("txmCantidad").Value
+
+                        a = (From x In conexion.tblInventarios Where x.idArticulo = id And x.idTipoInventario = mdlPublicVars.General_idTipoInventario Select x).FirstOrDefault
+
+                        If a Is Nothing Then
+
+                        Else
+
+                            If cantidad > a.saldo Then
+
+                                ar = (From x In conexion.tblArticuloes Where x.idArticulo = id Select x).FirstOrDefault
+
+                                RadMessageBox.Show("Existencia insuficiente para el articulo: " & ar.nombre1.Trim() & " (" & ar.codigo1.Trim() & ") " & vbCrLf _
+                                & "Cantidad Requerida: " & cantidad & vbCrLf _
+                                & "Disponible:" & a.saldo & vbCrLf _
+                                & "Faltante: " & cantidad - a.saldo, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+
+                                Me.grdProductos.Rows(i).Cells("CantidadAjustada").Value += cantidad - a.saldo
+                                Me.grdProductos.Rows(i).Cells("txmCantidad").Value = a.saldo
+
+                                ajuste = True
+
+                            End If
+
+                        End If
+                    Next
+
+                End If
+
+
 
                 Dim TotalAjuste As Double = 0.0
                 Dim Ajustes As Double = 0.0
@@ -6844,6 +6928,7 @@ Public Class frmSalidas
                     Me.txtAjusteRevisionStock.Text = Format(Ajustes + TotalAjuste, formatoMoneda)
                     ''End If
                 Else
+                    Me.txtAjusteRevisionStock.Text = Format(0, formatoMoneda)
                     RadMessageBox.Show("Stock Disponible", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
                 End If
                 fnActualizar_Total()
@@ -6856,5 +6941,80 @@ Public Class frmSalidas
             verificarexistencia = False
         End Try
     End Sub
+
+    Private Sub fnCopiarGrid()
+        Try
+
+            Clipboard.Clear()
+
+            Me.grdlistado.SelectAll()
+
+            Dim dataObj As DataObject
+
+            grdlistado.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText
+            dataObj = grdlistado.GetClipboardContent()
+            If Me.grdlistado.Rows.Count >= 0 Then
+                Clipboard.SetDataObject(dataObj)
+            End If
+
+            Me.grdListado.ClearSelection()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Function fnValidarVencido() As Boolean
+        Try
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim salidas As List(Of tblSalida)
+                Dim d As tblCliente
+                Dim cliente As Integer = Me.cmbCliente.SelectedValue
+                Dim suma As Integer
+                Dim fecha As Date
+
+                d = (From x In conexion.tblClientes Where x.idCliente = cliente And x.habillitado = True Select x).FirstOrDefault
+
+                salidas = (From x In conexion.tblSalidas Where x.idCliente = cliente And x.facturado = True And x.anulado = False Select x).ToList
+
+                For Each s As tblSalida In salidas
+
+                    fecha = DateAdd(DateInterval.Day, CDec(d.diasCredito), CDate(s.fechaFacturado))
+
+                    If fecha < Today Then
+                        suma += 1
+                    End If
+
+                Next
+
+                If suma > 0 Then
+
+                    frmValidacionClave.Text = "Autorizacion"
+                    frmValidacionClave.lblInformacion.Text = "¡Se necesita autorizacion administrativa debido a que el cliente posee saldo vencido!"
+                    frmValidacionClave.StartPosition = FormStartPosition.CenterScreen
+                    frmValidacionClave.WindowState = FormWindowState.Normal
+                    frmValidacionClave.ShowDialog()
+                    frmValidacionClave.Dispose()
+
+                    If mdlPublicVars.ClaveVencidosStatus = True Then
+                        mdlPublicVars.ClaveVencidosStatus = False
+                        Return True
+                    Else
+                        Return False
+                    End If
+                Else
+                    Return True
+                End If
+
+                conn.Close()
+            End Using
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
 
 End Class

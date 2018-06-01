@@ -78,25 +78,33 @@ Public Class frmPriceLista
             Else
                 Dim filtro As String = txtFiltro.Text
 
-                Dim productoInfo = _
-                    From x In ctx.tblInventarios Order By x.tblArticulo.codigo1 Where x.idArticulo > 0 _
-                    And x.tblArticulo.empresa = mdlPublicVars.idEmpresa And x.idTipoInventario = mdlPublicVars.General_idTipoInventario _
-                    And x.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal _
-                    And (x.tblArticulo.nombre1.Contains(filtro) Or CType(x.tblArticulo.codigo1, String).Contains(filtro)) And x.tblArticulo.Habilitado = True _
-                    Group By ID = x.tblArticulo.idArticulo, Codigo = x.tblArticulo.codigo1, Nombre = x.tblArticulo.nombre1, _
-                    Existencia = x.saldo, PrecioPublico = x.tblArticulo.precioPublico, _
-                    PrecioVentaPromedio = (From y In ctx.tblSalidaDetalles Where y.idArticulo = x.idArticulo And y.tblSalida.anulado = False And y.tblSalida.facturado = True
-                    Group By y.idArticulo Into totalP = Sum(y.precio * y.cantidad), contador = Sum(y.cantidad) Select If(contador = 0, 0, totalP / contador)).FirstOrDefault, _
-                    PrecioA = (From z In ctx.tblArticulo_Precio Where z.tipoPrecio = 1 And z.articulo = x.idArticulo Select z.precio).FirstOrDefault, _
-                    PrecioB = (From z In ctx.tblArticulo_Precio Where z.tipoPrecio = 2 And z.articulo = x.idArticulo Select z.precio).FirstOrDefault, _
-                    PrecioOferta = (From z In ctx.tblArticulo_Precio Where z.tipoPrecio = 3 And z.articulo = x.idArticulo Select z.precio).FirstOrDefault, _
-                    CostoPromedio = x.tblArticulo.costoIVA, Total = x.saldo * x.tblArticulo.costoIVA, chmUltimoPrecio = x.tblArticulo.ultimoprecio
-                    Into Group
-                    Select ID, Codigo, Nombre, Existencia, PrecioPublico, PrecioVentaPromedio, PrecioA, PrecioB, PrecioOferta, CostoPromedio,
-                    MargenPromedio = If((PrecioVentaPromedio = 0 Or CostoPromedio = 0), 0, 1 - (CostoPromedio / PrecioVentaPromedio)), chmUltimoPrecio
+                Dim conexion As dsi_pos_demoEntities
+                Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                    conn.Open()
+                    conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                    Dim productoInfo = _
+                        From x In conexion.tblInventarios Order By x.tblArticulo.codigo1 Where x.idArticulo > 0 _
+                        And x.tblArticulo.empresa = mdlPublicVars.idEmpresa And x.idTipoInventario = mdlPublicVars.General_idTipoInventario _
+                        And x.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal _
+                        And (x.tblArticulo.nombre1.Contains(filtro) Or CType(x.tblArticulo.codigo1, String).Contains(filtro)) And x.tblArticulo.Habilitado = True _
+                        Group By ID = x.tblArticulo.idArticulo, Codigo = x.tblArticulo.codigo1, Nombre = x.tblArticulo.nombre1, _
+                        Existencia = x.saldo, PrecioPublico = x.tblArticulo.precioPublico, _
+                        PrecioVentaPromedio = (From y In conexion.tblSalidaDetalles Where y.idArticulo = x.idArticulo And y.tblSalida.anulado = False And y.tblSalida.facturado = True
+                        Group By y.idArticulo Into totalP = Sum(y.precio * y.cantidad), contador = Sum(y.cantidad) Select If(contador = 0, 0, totalP / contador)).FirstOrDefault, _
+                        PrecioA = (From z In conexion.tblArticulo_Precio Where z.tipoPrecio = 1 And z.articulo = x.idArticulo Select z.precio).FirstOrDefault, _
+                        PrecioB = (From z In conexion.tblArticulo_Precio Where z.tipoPrecio = 2 And z.articulo = x.idArticulo Select z.precio).FirstOrDefault, _
+                        PrecioOferta = (From z In conexion.tblArticulo_Precio Where z.tipoPrecio = 3 And z.articulo = x.idArticulo Select z.precio).FirstOrDefault, _
+                        CostoPromedio = x.tblArticulo.costoIVA, Total = x.saldo * x.tblArticulo.costoIVA, chmUltimoPrecio = x.tblArticulo.UltimoPrecio
+                        Into Group
+                        Select ID, Codigo, Nombre, Existencia, PrecioPublico, PrecioVentaPromedio, PrecioA, PrecioB, PrecioOferta, CostoPromedio,
+                        MargenPromedio = If((PrecioVentaPromedio = 0 Or CostoPromedio = 0), 0, 1 - (CostoPromedio / PrecioVentaPromedio)), chmUltimoPrecio
 
                 Me.grdDatos.DataSource = productoInfo ''EntitiToDataTable(productoInfo)
-                fnConfiguracion()
+                    fnConfiguracion()
+
+                    conn.Close()
+                End Using
             End If
 
         Catch ex As Exception

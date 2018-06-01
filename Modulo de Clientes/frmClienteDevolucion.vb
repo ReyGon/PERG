@@ -138,7 +138,7 @@ Public Class frmClienteDevolucion
             Try
                 Dim vend = From x In conexion.tblVendedors Where x.habilitado = True And x.empresa = mdlPublicVars.idEmpresa _
                            Select Codigo = x.idVendedor, Nombre = x.nombre
-                Dim cl = From x In conexion.tblClientes Where x.habillitado = True Select Codigo = x.idCliente, Nombre = x.Negocio
+                Dim cl = From x In conexion.tblClientes Where x.habillitado = True Select Codigo = x.idCliente, Nombre = x.Negocio + " (" + x.nit1 + ")"
 
 
                 With cmbVendedor

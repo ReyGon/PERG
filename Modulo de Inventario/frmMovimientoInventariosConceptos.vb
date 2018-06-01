@@ -111,6 +111,8 @@ Public Class frmMovimientoInventariosConceptos
         Dim favor As Double = 0
         Dim contra As Double = 0
 
+        Try
+
         For Each detalle In listaMovimientos
 
 
@@ -119,7 +121,12 @@ Public Class frmMovimientoInventariosConceptos
             Else
                 contra += detalle.total
             End If
-        Next
+            Next
+
+        Catch ex As Exception
+
+        End Try
+
         total = favor - contra
 
         lblTotal.Text = FormatCurrency(total)
