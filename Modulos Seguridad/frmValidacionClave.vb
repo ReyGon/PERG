@@ -37,6 +37,12 @@ Public Class frmValidacionClave
                 mdlPublicVars.superSearchClaveVencidos = Me.txtClave.Text
 
                 If mdlPublicVars.superSearchClaveVencidos = mdlPublicVars.ClaveVencidos Then
+
+                    Dim c As tblConfiguracion = (From x In conexion.tblConfiguracions Where x.id = 124 Select x).FirstOrDefault
+
+                    c.valor = ""
+                    conexion.SaveChanges()
+
                     Me.Close()
                     mdlPublicVars.ClaveVencidosStatus = True
                 Else
