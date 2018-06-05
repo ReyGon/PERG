@@ -79,6 +79,8 @@ Public Class frmPedidosBodega
             ''cmbRevisado.SelectedValue = revisado
             ''cmbSacado.SelectedValue = sacado
             txtObservacion.Text = bodega.observacion
+            txtErrores.Text = bodega.errores
+
 
         Catch ex As Exception
 
