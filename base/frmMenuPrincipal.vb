@@ -287,28 +287,28 @@ Public Class frmMenuPrincipal
         permiso.PermisoFrmBaseEspeciales(frm, True)
     End Sub
 
-    Private Sub itemTiposTransportes_Click(sender As Object, e As EventArgs) Handles itemTiposTransportes.Click
+    Private Sub itemTiposTransportes_Click(sender As Object, e As EventArgs)
         Dim frm = frmTiposTransportes
         frm.text = "Tipos de Transporte"
         frm.mdiparent = Me
         permiso.PermisoMantenimientoTelerik(frm, True)
     End Sub
 
-    Private Sub itemVehiculos_Click(sender As Object, e As EventArgs) Handles itemVehiculos.Click
+    Private Sub itemVehiculos_Click(sender As Object, e As EventArgs)
         Dim frm = frmTransportes
         frm.text = "Transporte"
         frm.mdiparent = Me
         permiso.PermisoMantenimientoTelerik(frm, True)
     End Sub
 
-    Private Sub itemSectoresTiposTransportes_Click(sender As Object, e As EventArgs) Handles itemSectoresTiposTransportes.Click
+    Private Sub itemSectoresTiposTransportes_Click(sender As Object, e As EventArgs)
         Dim frm = frmSectoresTiposTransportes
         frm.text = "Sectores con Tipos de Transportes"
         frm.mdiparent = Me
         permiso.PermisoMantenimientoTelerik(frm, True)
     End Sub
 
-    Private Sub itemSectores_Click(sender As Object, e As EventArgs) Handles itemSectores.Click
+    Private Sub itemSectores_Click(sender As Object, e As EventArgs)
         Dim frm = frmSector
         frm.text = "Sectores"
         frm.mdiparent = Me
@@ -383,7 +383,7 @@ Public Class frmMenuPrincipal
 
     End Sub
 
-    Private Sub RadMenuItem1_Click(sender As Object, e As EventArgs) Handles RadMenuItem1.Click
+    Private Sub RadMenuItem1_Click(sender As Object, e As EventArgs)
         Dim frm = frmEnvioCorreo
         frm.text = "Correos"
         frm.mdiparent = Me

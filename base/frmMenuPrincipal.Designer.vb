@@ -134,14 +134,9 @@ Partial Class frmMenuPrincipal
         Me.rdmImpuestosPorCobraryMovimientos = New Telerik.WinControls.UI.RadMenuItem()
         Me.itemTipoEmpleado = New Telerik.WinControls.UI.RadMenuItem()
         Me.itemEmpleado = New Telerik.WinControls.UI.RadMenuItem()
-        Me.itemVehiculos = New Telerik.WinControls.UI.RadMenuItem()
-        Me.itemTiposTransportes = New Telerik.WinControls.UI.RadMenuItem()
-        Me.itemSectores = New Telerik.WinControls.UI.RadMenuItem()
-        Me.itemSectoresTiposTransportes = New Telerik.WinControls.UI.RadMenuItem()
         Me.itemSucursales = New Telerik.WinControls.UI.RadMenuItem()
         Me.rdmActualizador = New Telerik.WinControls.UI.RadMenuItem()
         Me.rdmConsultas = New Telerik.WinControls.UI.RadMenuItem()
-        Me.RadMenuItem1 = New Telerik.WinControls.UI.RadMenuItem()
         Me.rdmReportesDinamicos = New Telerik.WinControls.UI.RadMenuItem()
         Me.rdmReportesAdministrativos = New Telerik.WinControls.UI.RadMenuItem()
         Me.RadButtonElement1 = New Telerik.WinControls.UI.RadButtonElement()
@@ -166,11 +161,11 @@ Partial Class frmMenuPrincipal
         Me.itemImportarPagos = New Telerik.WinControls.UI.RadMenuItem()
         Me.itemImportarClientes = New Telerik.WinControls.UI.RadMenuItem()
         Me.itemImportarProveedores = New Telerik.WinControls.UI.RadMenuItem()
-        Me.rme = New Telerik.WinControls.UI.RadMenu()
-        Me.AquaTheme1 = New Telerik.WinControls.Themes.AquaTheme()
         Me.rmdToken = New Telerik.WinControls.UI.RadMenuItem()
-        CType(Me.rme, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.AquaTheme1 = New Telerik.WinControls.Themes.AquaTheme()
+        Me.rme = New Telerik.WinControls.UI.RadMenu()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rme, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ImageList1
@@ -957,7 +952,7 @@ Partial Class frmMenuPrincipal
         'itemMenuTablas
         '
         Me.itemMenuTablas.Font = New System.Drawing.Font("Berlin Sans FB", 11.0!)
-        Me.itemMenuTablas.Items.AddRange(New Telerik.WinControls.RadItem() {Me.itemMenuEmpresa, Me.itemUsuarios, Me.itemGrupoUsuarios, Me.itemGruposFormas, Me.itemImpresoras, Me.itemCorrelativos, Me.itemVendedor, Me.itemReporteVentas, Me.itemReporteInventario, Me.itemConfiguracion, Me.itemReporteVentasMes, Me.itemReporteComprasMes, Me.itemClasificacionBitacora, Me.itemResolucionFactura, Me.itemImpuestos, Me.itemTipoEmpleado, Me.itemEmpleado, Me.itemVehiculos, Me.itemTiposTransportes, Me.itemSectores, Me.itemSectoresTiposTransportes, Me.itemSucursales, Me.rdmConsultas, Me.RadMenuItem1, Me.rdmReportesDinamicos, Me.rdmReportesAdministrativos})
+        Me.itemMenuTablas.Items.AddRange(New Telerik.WinControls.RadItem() {Me.itemMenuEmpresa, Me.itemUsuarios, Me.itemGrupoUsuarios, Me.itemGruposFormas, Me.itemImpresoras, Me.itemCorrelativos, Me.itemVendedor, Me.itemReporteVentas, Me.itemReporteInventario, Me.itemConfiguracion, Me.itemReporteVentasMes, Me.itemReporteComprasMes, Me.itemClasificacionBitacora, Me.itemResolucionFactura, Me.itemImpuestos, Me.itemTipoEmpleado, Me.itemEmpleado, Me.itemSucursales, Me.rdmConsultas, Me.rdmReportesDinamicos, Me.rdmReportesAdministrativos})
         Me.itemMenuTablas.Name = "itemMenuTablas"
         Me.itemMenuTablas.Text = "TABLAS"
         '
@@ -1075,26 +1070,6 @@ Partial Class frmMenuPrincipal
         Me.itemEmpleado.Text = "Empleado"
         Me.itemEmpleado.TextAlignment = System.Drawing.ContentAlignment.BottomLeft
         '
-        'itemVehiculos
-        '
-        Me.itemVehiculos.Name = "itemVehiculos"
-        Me.itemVehiculos.Text = "Transportes"
-        '
-        'itemTiposTransportes
-        '
-        Me.itemTiposTransportes.Name = "itemTiposTransportes"
-        Me.itemTiposTransportes.Text = "Tipos de Transportes"
-        '
-        'itemSectores
-        '
-        Me.itemSectores.Name = "itemSectores"
-        Me.itemSectores.Text = "Sectores"
-        '
-        'itemSectoresTiposTransportes
-        '
-        Me.itemSectoresTiposTransportes.Name = "itemSectoresTiposTransportes"
-        Me.itemSectoresTiposTransportes.Text = "Sectores con Tipos de Transportes"
-        '
         'itemSucursales
         '
         Me.itemSucursales.Items.AddRange(New Telerik.WinControls.RadItem() {Me.rdmActualizador})
@@ -1110,11 +1085,6 @@ Partial Class frmMenuPrincipal
         '
         Me.rdmConsultas.Name = "rdmConsultas"
         Me.rdmConsultas.Text = "Consultas"
-        '
-        'RadMenuItem1
-        '
-        Me.RadMenuItem1.Name = "RadMenuItem1"
-        Me.RadMenuItem1.Text = "Correos"
         '
         'rdmReportesDinamicos
         '
@@ -1288,18 +1258,6 @@ Partial Class frmMenuPrincipal
         Me.itemImportarProveedores.Name = "itemImportarProveedores"
         Me.itemImportarProveedores.Text = "Proveedores"
         '
-        'rme
-        '
-        Me.rme.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.rme.ImageList = Me.ilBarra
-        Me.rme.Items.AddRange(New Telerik.WinControls.RadItem() {Me.itemVistaPrincipal, Me.itemMenuPrincipal, Me.itemMenuTablas, Me.itemMenuUsuarios, Me.RadMenuHeaderItem1, Me.itemUsuario, Me.itemBD, Me.itemMenuImportacion, Me.rmdToken})
-        Me.rme.Location = New System.Drawing.Point(0, 0)
-        Me.rme.Name = "rme"
-        Me.rme.Size = New System.Drawing.Size(1209, 31)
-        Me.rme.TabIndex = 4
-        Me.rme.Text = "RadMenu1"
-        Me.rme.ThemeName = "Office2007Black"
-        '
         'rmdToken
         '
         Me.rmdToken.Name = "rmdToken"
@@ -1314,6 +1272,18 @@ Partial Class frmMenuPrincipal
         Me.BackgroundImage = Global.laFuente.My.Resources.Resources.fondo1
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ClientSize = New System.Drawing.Size(1209, 729)
+        '
+        'rme
+        '
+        Me.rme.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.rme.ImageList = Me.ilBarra
+        Me.rme.Items.AddRange(New Telerik.WinControls.RadItem() {Me.itemVistaPrincipal, Me.itemMenuPrincipal, Me.itemMenuTablas, Me.itemMenuUsuarios, Me.RadMenuHeaderItem1, Me.itemUsuario, Me.itemBD, Me.itemMenuImportacion, Me.rmdToken})
+        Me.rme.Location = New System.Drawing.Point(0, 0)
+        Me.rme.Name = "rme"
+        Me.rme.Size = New System.Drawing.Size(1209, 31)
+        Me.rme.TabIndex = 4
+        Me.rme.Text = "RadMenu1"
+        Me.rme.ThemeName = "Office2007Black"
         Me.Controls.Add(Me.rme)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.IsMdiContainer = True
@@ -1458,23 +1428,18 @@ Partial Class frmMenuPrincipal
     Friend WithEvents itemImpuestos As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents itemTipoEmpleado As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents itemEmpleado As Telerik.WinControls.UI.RadMenuItem
-    Friend WithEvents itemTiposTransportes As Telerik.WinControls.UI.RadMenuItem
-    Friend WithEvents itemVehiculos As Telerik.WinControls.UI.RadMenuItem
-    Friend WithEvents itemSectoresTiposTransportes As Telerik.WinControls.UI.RadMenuItem
-    Friend WithEvents itemSectores As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents itemSucursales As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents rdmImpuestos As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents rdmImpuestosPorPagar As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents rdmImpuestosPorPagaryMovimientos As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents rdmImpuestosPorCobrar As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents rdmImpuestosPorCobraryMovimientos As Telerik.WinControls.UI.RadMenuItem
-    Friend WithEvents rme As Telerik.WinControls.UI.RadMenu
     Friend WithEvents rdmActualizador As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents rdmConsultas As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents AquaTheme1 As Telerik.WinControls.Themes.AquaTheme
-    Friend WithEvents RadMenuItem1 As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents rdmReportesDinamicos As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents rdmReportesAdministrativos As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents rmdToken As Telerik.WinControls.UI.RadMenuItem
+    Friend WithEvents rme As Telerik.WinControls.UI.RadMenu
 End Class
 

@@ -2,6 +2,7 @@
 Imports System.IO
 Imports System.Data
 Imports System.Data.SqlClient
+Imports System.Data.EntityClient
 Imports Telerik.WinControls.UI
 Imports System.Transactions
 Imports Telerik.WinControls
@@ -138,33 +139,38 @@ Public Class frmComprasLista
 
         Try
             Dim estado As Integer = CType(Me.grdDatos.Rows(mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdDatos)).Cells("clrEstado").Value, Integer)
-            Dim preformaimportacion As Integer = CType(Me.grdDatos.Rows(mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdDatos)).Cells("preformaimportacioextranjero").Value, Integer)
+            ''Dim preformaimportacion As Integer = CType(Me.grdDatos.Rows(mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdDatos)).Cells("preformaimportacioextranjero").Value, Integer)
             'Estado: 1 --> Preforma, 5 --> Transito, 4 --> Compra
             
-            If estado = 1 And preformaimportacion = 1 Then
-                frmImportaciones.Text = "Compra Importación"
-                frmImportaciones.MdiParent = frmMenuPrincipal
-                frmImportaciones.codigo = codigo
-                frmImportaciones.bitEditarEntrada = True
-                frmImportaciones.Show()
-            ElseIf estado = 5 And preformaimportacion = 2 Then
-                frmImportaciones.Text = "Compra Importación"
-                frmImportaciones.MdiParent = frmMenuPrincipal
-                frmImportaciones.codigo = codigo
-                frmImportaciones.bitEditarTransito = True
-                'frmproformaimportacion.bitPreformaToEntrada = False
-                'frmproformaimportacion.bitPreformaToTransito = True
-                frmImportaciones.Show()
+            ''If estado = 1 And preformaimportacion = 1 Then
+            ''    frmImportaciones.Text = "Compra Importación"
+            ''    frmImportaciones.MdiParent = frmMenuPrincipal
+            ''    frmImportaciones.codigo = codigo
+            ''    frmImportaciones.bitEditarEntrada = True
+            ''    frmImportaciones.Show()
+            ''ElseIf estado = 5 And preformaimportacion = 2 Then
+            ''    frmImportaciones.Text = "Compra Importación"
+            ''    frmImportaciones.MdiParent = frmMenuPrincipal
+            ''    frmImportaciones.codigo = codigo
+            ''    frmImportaciones.bitEditarTransito = True
+            ''    'frmproformaimportacion.bitPreformaToEntrada = False
+            ''    'frmproformaimportacion.bitPreformaToTransito = True
+            ''    frmImportaciones.Show()
 
-            ElseIf estado = 1 And preformaimportacion <> 1 Then
+            ''Else
+            If estado = 1 Then
                 frmEntrada.Text = "Compras"
                 frmEntrada.MdiParent = frmMenuPrincipal
                 frmEntrada.codigo = codigo
                 frmEntrada.bitEditarEntrada = True
                 permiso.PermisoFrmEspeciales(frmEntrada, True)
             Else
-                alertas.contenido = "No se puede modificar, ya ha sido comprada, realizar un AJUSTE !"
-                alertas.fnErrorContenido()
+
+                If RadMessageBox.Show("No se puede modificar, ya ha sido confirmada la compra. ¿Desea modificar el documento?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    fnModificardocumento()
+                End If
+                ''alertas.contenido = "No se puede modificar, ya ha sido comprada, realizar un AJUSTE !"
+                ''alertas.fnErrorContenido()
             End If
         Catch ex As Exception
         End Try
@@ -401,4 +407,44 @@ Public Class frmComprasLista
             frm_llenarLista()
         End If
     End Sub
+
+    Private Sub fnModificardocumento()
+        Try
+
+                Dim conexion As dsi_pos_demoEntities
+                Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                    conn.Open()
+                    conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                    Dim fila As Integer = 0
+                    fila = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdDatos)
+
+                    Dim id As Integer = Me.grdDatos.Rows(fila).Cells("Codigo").Value
+
+                    Dim doc As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = id Select x).FirstOrDefault
+
+                    ''Dim cadDias As String = InputBox("Ingrese dias de reserva", "Informacion", mdlPublicVars.Salida_ReservaDias)
+
+                    ''Dim serie As String = InputBox("Ingrese la serie del documento", "Compras", doc.serieDocumento)
+                    ''Dim documento As String = InputBox("Ingrese el documento", "Compras", doc.documento)
+                    Dim serie As String = RadInputBox.Show("Ingrese la serie", "Compras", doc.serieDocumento)
+                    Dim documento As String = RadInputBox.Show("Ingrese el documento", "Compras", doc.documento)
+
+                If RadMessageBox.Show("El nuevo documento es: " + CStr(serie + "-" + documento) + " ¿Desea Guardarlo?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    doc.serieDocumento = serie
+                    doc.documento = documento
+                    conexion.SaveChanges()
+
+                    alertas.fnModificar()
+                    llenagrid()
+                End If
+
+                    conn.Close()
+                End Using
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
 End Class
