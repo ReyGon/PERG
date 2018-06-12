@@ -49,8 +49,8 @@ Public Class frmVentaPequenia
     Private _venta As Integer
     Private _tblGuias As New DataTable
 
-    Private _listaTransportes As List(Of tblSalidasTransporte)
-    Private _listaTransportesEliminar As List(Of tblSalidasTransporte)
+    ''Private _listaTransportes As List(Of tblSalidasTransporte)
+    ''Private _listaTransportesEliminar As List(Of tblSalidasTransporte)
     Private _codigoCosteo As String
 
     Public Property tblGuias As DataTable
@@ -155,23 +155,23 @@ Public Class frmVentaPequenia
         End Set
     End Property
 
-    Public Property listaTransportes As List(Of tblSalidasTransporte)
-        Get
-            listaTransportes = _listaTransportes
-        End Get
-        Set(value As List(Of tblSalidasTransporte))
-            _listaTransportes = value
-        End Set
-    End Property
+    ''Public Property listaTransportes As List(Of tblSalidasTransporte)
+    ''    Get
+    ''        listaTransportes = _listaTransportes
+    ''    End Get
+    ''    Set(value As List(Of tblSalidasTransporte))
+    ''        _listaTransportes = value
+    ''    End Set
+    ''End Property
 
-    Public Property listaTransportesEliminar As List(Of tblSalidasTransporte)
-        Get
-            listaTransportesEliminar = _listaTransportesEliminar
-        End Get
-        Set(value As List(Of tblSalidasTransporte))
-            _listaTransportesEliminar = value
-        End Set
-    End Property
+    ''Public Property listaTransportesEliminar As List(Of tblSalidasTransporte)
+    ''    Get
+    ''        listaTransportesEliminar = _listaTransportesEliminar
+    ''    End Get
+    ''    Set(value As List(Of tblSalidasTransporte))
+    ''        _listaTransportesEliminar = value
+    ''    End Set
+    ''End Property
 
 #End Region
 
@@ -601,7 +601,7 @@ Public Class frmVentaPequenia
     'NUEVO PEDIDO
     Private Sub fnNuevo()
         llenarCombos()
-        listaTransportes = New List(Of tblSalidasTransporte)
+        ''listaTransportes = New List(Of tblSalidasTransporte)
         lblTotal.Text = Format(0, mdlPublicVars.formatoMoneda)
         lblSubtotal.Text = Format(0, mdlPublicVars.formatoMoneda)
         lblRecargos.Text = Format(0, mdlPublicVars.formatoMoneda)
@@ -938,7 +938,7 @@ Public Class frmVentaPequenia
                 Next
 
                 '********* TRANSPORTE
-                listaTransportes = salida.tblSalidasTransportes.ToList
+                ''listaTransportes = salida.tblSalidasTransportes.ToList
                 '********* FIN DE TRANSPORTE
                 'fnNuevaFila()
 
@@ -1456,62 +1456,62 @@ Public Class frmVentaPequenia
                     Me.grdProductos.Columns("txmRecargo").IsVisible = False
 
                     ' Recorremos el listado de costeos
-                    For Each salidaTransporte As tblSalidasTransporte In listaTransportes
-                        Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos.AsEnumerable Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo _
-                                                                        Select x).FirstOrDefault()
+                    ''For Each salidaTransporte As tblSalidasTransporte In listaTransportes
+                    ''    Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos.AsEnumerable Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo _
+                    ''                                                    Select x).FirstOrDefault()
 
-                        Select Case transporteCosteo.codigo
+                    ''    Select Case transporteCosteo.codigo
 
-                            ''Case "1"
+                    ''        ''Case "1"
 
-                            ''    ''RadMessageBox.Show("Este es el Case #1", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
-                            ''    totalFlete = CDec(salidaTransporte.precio * salidaTransporte.cantidad)
+                    ''        ''    ''RadMessageBox.Show("Este es el Case #1", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                    ''        ''    totalFlete = CDec(salidaTransporte.precio * salidaTransporte.cantidad)
 
-                            Case "2"
-                                ''Prorratear automaticamente en el precio
-                                ''Variables para calculos
-                                Dim porcentaje As Decimal = 0
-                                Dim cociente As Decimal = 0
-                                Dim porUnidad As Decimal = 0
-                                Dim totalProducto As Decimal = 0
+                    ''        Case "2"
+                    ''            ''Prorratear automaticamente en el precio
+                    ''            ''Variables para calculos
+                    ''            Dim porcentaje As Decimal = 0
+                    ''            Dim cociente As Decimal = 0
+                    ''            Dim porUnidad As Decimal = 0
+                    ''            Dim totalProducto As Decimal = 0
 
-                                Dim totalVentaOriginal As Decimal = (From x As GridViewRowInfo In Me.grdProductos.Rows Where x.Cells("txbProducto").Value IsNot Nothing _
-                                Select CType(x.Cells("txbPrecioBase").Value, Decimal) * CType(x.Cells("txmCantidad").Value, Decimal)).Sum
+                    ''            Dim totalVentaOriginal As Decimal = (From x As GridViewRowInfo In Me.grdProductos.Rows Where x.Cells("txbProducto").Value IsNot Nothing _
+                    ''            Select CType(x.Cells("txbPrecioBase").Value, Decimal) * CType(x.Cells("txmCantidad").Value, Decimal)).Sum
 
-                                ' Recorremos cada una de las filas
-                                totalProrrateoAutomatico = 0
-                                For Each fila As GridViewRowInfo In Me.grdProductos.Rows
-                                    nombre = CType(fila.Cells("txbProducto").Value, String)
-                                    If nombre IsNot Nothing Then
-                                        precio = CType(Replace(fila.Cells("precio").Value.ToString, "Q", ""), Decimal)
+                    ''            ' Recorremos cada una de las filas
+                    ''            totalProrrateoAutomatico = 0
+                    ''            For Each fila As GridViewRowInfo In Me.grdProductos.Rows
+                    ''                nombre = CType(fila.Cells("txbProducto").Value, String)
+                    ''                If nombre IsNot Nothing Then
+                    ''                    precio = CType(Replace(fila.Cells("precio").Value.ToString, "Q", ""), Decimal)
 
-                                        precioOriginal = CType(Replace(fila.Cells("txbPrecioBase").Value.ToString, "Q", ""), Decimal)
-                                        cantidad = CType(fila.Cells("txmCantidad").Value, Double)
+                    ''                    precioOriginal = CType(Replace(fila.Cells("txbPrecioBase").Value.ToString, "Q", ""), Decimal)
+                    ''                    cantidad = CType(fila.Cells("txmCantidad").Value, Double)
 
-                                        totalProducto = CDec(precioOriginal * cantidad)
-                                        porcentaje = (totalProducto * 100) / totalVentaOriginal
-                                        cociente = CDec((porcentaje / 100) * (salidaTransporte.cantidad * salidaTransporte.precio))
-                                        porUnidad = CDec(cociente / cantidad)
+                    ''                    totalProducto = CDec(precioOriginal * cantidad)
+                    ''                    porcentaje = (totalProducto * 100) / totalVentaOriginal
+                    ''                    cociente = CDec((porcentaje / 100) * (salidaTransporte.cantidad * salidaTransporte.precio))
+                    ''                    porUnidad = CDec(cociente / cantidad)
 
-                                        precioOriginal += porUnidad
-                                        precio = precioOriginal
-                                        fila.Cells("precio").Value = Format(precio, mdlPublicVars.formatoMoneda)
-                                        fila.Cells("Total").Value = Format((precio * cantidad), mdlPublicVars.formatoMoneda)
+                    ''                    precioOriginal += porUnidad
+                    ''                    precio = precioOriginal
+                    ''                    fila.Cells("precio").Value = Format(precio, mdlPublicVars.formatoMoneda)
+                    ''                    fila.Cells("Total").Value = Format((precio * cantidad), mdlPublicVars.formatoMoneda)
 
-                                        totalProrrateoAutomatico += CDec(porUnidad * cantidad)
-                                    End If
-                                Next
+                    ''                    totalProrrateoAutomatico += CDec(porUnidad * cantidad)
+                    ''                End If
+                    ''            Next
 
-                                'lblTotal.Text = Format(total, mdlPublicVars.formatoMoneda)
-                            Case "3"
-                                ' Prorrateo manual en el precio
-                                totalProrrateoManual += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
-                                Me.grdProductos.Columns("txmRecargo").IsVisible = True
-                            Case "4"
-                                ' Precio como flete
-                                totalFlete += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
-                        End Select
-                    Next
+                    ''            'lblTotal.Text = Format(total, mdlPublicVars.formatoMoneda)
+                    ''        Case "3"
+                    ''            ' Prorrateo manual en el precio
+                    ''            totalProrrateoManual += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
+                    ''            Me.grdProductos.Columns("txmRecargo").IsVisible = True
+                    ''        Case "4"
+                    ''            ' Precio como flete
+                    ''            totalFlete += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
+                    ''    End Select
+                    ''Next
 
                     totProrrateo = (totalProrrateoAutomatico + totalProrrateoManual + totalFlete)
 
@@ -2292,19 +2292,19 @@ Public Class frmVentaPequenia
     Private Sub fnAgregarTransporte_Click() Handles Me.panel4
         If bitTransportePesado = True Then
 
-            Dim formTransporteLista As New frmVentaPequeniaTransporteLista
-            formTransporteLista.Text = "Agregar Transporte"
-            formTransporteLista.WindowState = FormWindowState.Normal
-            formTransporteLista.StartPosition = FormStartPosition.CenterScreen
-            formTransporteLista.listaTransportes = listaTransportes
-            formTransporteLista.ShowDialog()
+            ''Dim formTransporteLista As New frmVentaPequeniaTransporteLista
+            ''formTransporteLista.Text = "Agregar Transporte"
+            ''formTransporteLista.WindowState = FormWindowState.Normal
+            ''formTransporteLista.StartPosition = FormStartPosition.CenterScreen
+            ''formTransporteLista.listaTransportes = listaTransportes
+            ''formTransporteLista.ShowDialog()
 
-            Me.listaTransportes = formTransporteLista.listaTransportes
-            Me.listaTransportesEliminar = formTransporteLista.listaTransportesEliminar
+            ''Me.listaTransportes = formTransporteLista.listaTransportes
+            ''Me.listaTransportesEliminar = formTransporteLista.listaTransportesEliminar
 
-            fnActualizar_Total()
+            ''fnActualizar_Total()
 
-            formTransporteLista.Dispose()
+            ''formTransporteLista.Dispose()
         ElseIf bitEncomienda = True Then
 
             ''frmGuiasLista.Dispose()
@@ -2646,21 +2646,21 @@ Public Class frmVentaPequenia
 
                         '************** TRANSPORTE
                         Dim totalCosteoCosto As Decimal = 0
-                        For Each salidaTransporte As tblSalidasTransporte In listaTransportes
-                            salidaTransporte.idSalida = codigoSalida
-                            conexion.AddTotblSalidasTransportes(salidaTransporte)
+                        ''For Each salidaTransporte As tblSalidasTransporte In listaTransportes
+                        ''    salidaTransporte.idSalida = codigoSalida
+                        ''    conexion.AddTotblSalidasTransportes(salidaTransporte)
 
-                            ' Prorrateo al costo'
-                            Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
-                                                                           Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
-                                                                           Select x).FirstOrDefault
+                        ''    ' Prorrateo al costo'
+                        ''    Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
+                        ''                                                   Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
+                        ''                                                   Select x).FirstOrDefault
 
-                            If transporteCosteo.codigo = "1" Then
-                                totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
-                            End If
+                        ''    If transporteCosteo.codigo = "1" Then
+                        ''        totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
+                        ''    End If
 
-                            conexion.SaveChanges()
-                        Next
+                        ''    conexion.SaveChanges()
+                        ''Next
                         '************** FIN DE TRANSPORTES
 
                         '************** CALCULAR EL COSTO TOTAL DE LA VENTA
@@ -3019,29 +3019,29 @@ Public Class frmVentaPequenia
 
 
                     Dim totalCosteoCosto As Decimal = 0
-                    For Each salidaTransporte As tblSalidasTransporte In listaTransportes
-                        Dim salidaTransporteModificar As tblSalidasTransporte = (From x In conexion.tblSalidasTransportes Where x.idSalidaTransporte = salidaTransporte.idSalidaTransporte
-                                Select x).FirstOrDefault
+                    ''For Each salidaTransporte As tblSalidasTransporte In listaTransportes
+                    ''    Dim salidaTransporteModificar As tblSalidasTransporte = (From x In conexion.tblSalidasTransportes Where x.idSalidaTransporte = salidaTransporte.idSalidaTransporte
+                    ''            Select x).FirstOrDefault
 
-                        Dim propiedades() As System.Reflection.PropertyInfo = salidaTransporte.GetType().GetProperties()
+                    ''    Dim propiedades() As System.Reflection.PropertyInfo = salidaTransporte.GetType().GetProperties()
 
-                        For Each pi As System.Reflection.PropertyInfo In propiedades
-                            If validos.Contains(pi.Name) Then
-                                CallByName(salidaTransporteModificar, pi.Name, CallType.Set, pi.GetValue(salidaTransporte, Nothing))
-                            End If
-                        Next
+                    ''    For Each pi As System.Reflection.PropertyInfo In propiedades
+                    ''        If validos.Contains(pi.Name) Then
+                    ''            CallByName(salidaTransporteModificar, pi.Name, CallType.Set, pi.GetValue(salidaTransporte, Nothing))
+                    ''        End If
+                    ''    Next
 
-                        ' Prorrateo al costo'
-                        Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
-                                                                       Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
-                                                                       Select x).FirstOrDefault
+                    ''    ' Prorrateo al costo'
+                    ''    Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
+                    ''                                                   Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
+                    ''                                                   Select x).FirstOrDefault
 
-                        If transporteCosteo.codigo = "1" Then
-                            totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
-                        End If
+                    ''    If transporteCosteo.codigo = "1" Then
+                    ''        totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
+                    ''    End If
 
-                        conexion.SaveChanges()
-                    Next
+                    ''    conexion.SaveChanges()
+                    ''Next
                     '************** FIN DE TRANSPORTES
 
                     '************** CALCULAR EL COSTO TOTAL DE LA VENTA
@@ -3407,21 +3407,21 @@ Public Class frmVentaPequenia
 
                         '************** TRANSPORTE
                         Dim totalCosteoCosto As Decimal = 0
-                        For Each salidaTransporte As tblSalidasTransporte In listaTransportes
-                            salidaTransporte.idSalida = salida.idSalida
-                            conexion.AddTotblSalidasTransportes(salidaTransporte)
+                        ''For Each salidaTransporte As tblSalidasTransporte In listaTransportes
+                        ''    salidaTransporte.idSalida = salida.idSalida
+                        ''    conexion.AddTotblSalidasTransportes(salidaTransporte)
 
-                            ' Prorrateo al costo'
-                            Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
-                                                                           Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
-                                                                           Select x).FirstOrDefault
+                        ''    ' Prorrateo al costo'
+                        ''    Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
+                        ''                                                   Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
+                        ''                                                   Select x).FirstOrDefault
 
-                            If transporteCosteo.codigo = "1" Then
-                                totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
-                            End If
+                        ''    If transporteCosteo.codigo = "1" Then
+                        ''        totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
+                        ''    End If
 
-                            conexion.SaveChanges()
-                        Next
+                        ''    conexion.SaveChanges()
+                        ''Next
                         '************** FIN DE TRANSPORTES
 
                         '************** CALCULAR EL COSTO TOTAL DE LA VENTA
@@ -3743,29 +3743,29 @@ Public Class frmVentaPequenia
                         Dim validos As String() = {"idSalidaTransporte", "idSector", "idSucursal", "idTipoTransporte", "idTransporteCosteo", "bitDescuento", "cantidad",
                                                        "contacto", "descuento", "direccion", "estado", "observacion", "precio", "telefono"}
 
-                        For Each salidaTransporte As tblSalidasTransporte In listaTransportes
-                            Dim salidaTransporteModificar As tblSalidasTransporte = (From x In conexion.tblSalidasTransportes Where x.idSalidaTransporte = salidaTransporte.idSalidaTransporte
-                                    Select x).FirstOrDefault
+                        ''For Each salidaTransporte As tblSalidasTransporte In listaTransportes
+                        ''    Dim salidaTransporteModificar As tblSalidasTransporte = (From x In conexion.tblSalidasTransportes Where x.idSalidaTransporte = salidaTransporte.idSalidaTransporte
+                        ''            Select x).FirstOrDefault
 
-                            Dim propiedades() As System.Reflection.PropertyInfo = salidaTransporte.GetType().GetProperties()
+                        ''    Dim propiedades() As System.Reflection.PropertyInfo = salidaTransporte.GetType().GetProperties()
 
-                            For Each pi As System.Reflection.PropertyInfo In propiedades
-                                If validos.Contains(pi.Name) Then
-                                    CallByName(salidaTransporteModificar, pi.Name, CallType.Set, pi.GetValue(salidaTransporte, Nothing))
-                                End If
-                            Next
+                        ''    For Each pi As System.Reflection.PropertyInfo In propiedades
+                        ''        If validos.Contains(pi.Name) Then
+                        ''            CallByName(salidaTransporteModificar, pi.Name, CallType.Set, pi.GetValue(salidaTransporte, Nothing))
+                        ''        End If
+                        ''    Next
 
-                            ' Prorrateo al costo'
-                            Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
-                                                                           Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
-                                                                           Select x).FirstOrDefault
+                        ''    ' Prorrateo al costo'
+                        ''    Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
+                        ''                                                   Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
+                        ''                                                   Select x).FirstOrDefault
 
-                            If transporteCosteo.codigo = "1" Then
-                                totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
-                            End If
+                        ''    If transporteCosteo.codigo = "1" Then
+                        ''        totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
+                        ''    End If
 
-                            conexion.SaveChanges()
-                        Next
+                        ''    conexion.SaveChanges()
+                        ''Next
                         '************** FIN DE TRANSPORTES
 
                         '************** CALCULAR EL COSTO TOTAL DE LA VENTA
@@ -4269,21 +4269,21 @@ Public Class frmVentaPequenia
 
                         '************** TRANSPORTE
                         Dim totalCosteoCosto As Decimal = 0
-                        For Each salidaTransporte As tblSalidasTransporte In listaTransportes
-                            salidaTransporte.idSalida = codigoSalida
-                            conexion.AddTotblSalidasTransportes(salidaTransporte)
+                        ''For Each salidaTransporte As tblSalidasTransporte In listaTransportes
+                        ''    salidaTransporte.idSalida = codigoSalida
+                        ''    conexion.AddTotblSalidasTransportes(salidaTransporte)
 
-                            ' Prorrateo al costo'
-                            Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
-                                                                           Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
-                                                                           Select x).FirstOrDefault
+                        ''    ' Prorrateo al costo'
+                        ''    Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
+                        ''                                                   Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
+                        ''                                                   Select x).FirstOrDefault
 
-                            If transporteCosteo.codigo = "1" Then
-                                totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
-                            End If
+                        ''    If transporteCosteo.codigo = "1" Then
+                        ''        totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
+                        ''    End If
 
-                            conexion.SaveChanges()
-                        Next
+                        ''    conexion.SaveChanges()
+                        ''Next
                         '************** FIN DE TRANSPORTES
 
                         '************** CALCULAR EL COSTO TOTAL DE LA VENTA
@@ -4724,29 +4724,29 @@ Public Class frmVentaPequenia
                         Dim validos As String() = {"idSalidaTransporte", "idSector", "idSucursal", "idTipoTransporte", "idTransporteCosteo", "bitDescuento", "cantidad",
                                                        "contacto", "descuento", "direccion", "estado", "observacion", "precio", "telefono"}
 
-                        For Each salidaTransporte As tblSalidasTransporte In listaTransportes
-                            Dim salidaTransporteModificar As tblSalidasTransporte = (From x In conexion.tblSalidasTransportes Where x.idSalidaTransporte = salidaTransporte.idSalidaTransporte
-                                    Select x).FirstOrDefault
+                        ''For Each salidaTransporte As tblSalidasTransporte In listaTransportes
+                        ''    Dim salidaTransporteModificar As tblSalidasTransporte = (From x In conexion.tblSalidasTransportes Where x.idSalidaTransporte = salidaTransporte.idSalidaTransporte
+                        ''            Select x).FirstOrDefault
 
-                            Dim propiedades() As System.Reflection.PropertyInfo = salidaTransporte.GetType().GetProperties()
+                        ''    Dim propiedades() As System.Reflection.PropertyInfo = salidaTransporte.GetType().GetProperties()
 
-                            For Each pi As System.Reflection.PropertyInfo In propiedades
-                                If validos.Contains(pi.Name) Then
-                                    CallByName(salidaTransporteModificar, pi.Name, CallType.Set, pi.GetValue(salidaTransporte, Nothing))
-                                End If
-                            Next
+                        ''    For Each pi As System.Reflection.PropertyInfo In propiedades
+                        ''        If validos.Contains(pi.Name) Then
+                        ''            CallByName(salidaTransporteModificar, pi.Name, CallType.Set, pi.GetValue(salidaTransporte, Nothing))
+                        ''        End If
+                        ''    Next
 
-                            ' Prorrateo al costo'
-                            Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
-                                                                           Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
-                                                                           Select x).FirstOrDefault
+                        ''    ' Prorrateo al costo'
+                        ''    Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
+                        ''                                                   Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
+                        ''                                                   Select x).FirstOrDefault
 
-                            If transporteCosteo.codigo = "1" Then
-                                totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
-                            End If
+                        ''    If transporteCosteo.codigo = "1" Then
+                        ''        totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
+                        ''    End If
 
-                            conexion.SaveChanges()
-                        Next
+                        ''    conexion.SaveChanges()
+                        ''Next
 
                         '--------------------------------------- fin de crear encabezado. ------------------
                         'paso 6, guardar el detalle

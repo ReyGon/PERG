@@ -172,14 +172,14 @@
 
     Private Sub itemTransporte_Click(sender As Object, e As EventArgs) Handles itemTransporte.Click
         Try
-            Dim frm = frmEmpresaTransporte
-            frm.Text = "Transporte Envio"
-            frm.MdiParent = frmMenuPrincipal
+            ''Dim frm = frmEmpresaTransporte
+            ''frm.Text = "Transporte Envio"
+            ''frm.MdiParent = frmMenuPrincipal
 
-            If permiso.PermisoFrmEspeciales(frm, True) = True Then
-                fnFRMhijos_cerrar(frm)
-                Me.Hide()
-            End If
+            ''If permiso.PermisoFrmEspeciales(frm, True) = True Then
+            ''    fnFRMhijos_cerrar(frm)
+            ''    Me.Hide()
+            ''End If
         Catch ex As Exception
         End Try
     End Sub

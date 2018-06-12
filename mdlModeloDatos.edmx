@@ -73,7 +73,6 @@
           <EntitySet Name="tblClientes_Telefono" EntityType="mdlModeloDatos.Store.tblClientes_Telefono" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblClienteTipoNegocio" EntityType="mdlModeloDatos.Store.tblClienteTipoNegocio" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblClienteTipoPago" EntityType="mdlModeloDatos.Store.tblClienteTipoPago" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblConceptosEntradaTransportes" EntityType="mdlModeloDatos.Store.tblConceptosEntradaTransportes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblConfigRedondeo" EntityType="mdlModeloDatos.Store.tblConfigRedondeo" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblConfiguracion" EntityType="mdlModeloDatos.Store.tblConfiguracion" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblConsultasDinamicas" EntityType="mdlModeloDatos.Store.tblConsultasDinamicas" store:Type="Tables" Schema="dbo" />
@@ -91,8 +90,6 @@
           <EntitySet Name="tblDevolucionClienteDetalle" EntityType="mdlModeloDatos.Store.tblDevolucionClienteDetalle" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblDevolucionProveedor" EntityType="mdlModeloDatos.Store.tblDevolucionProveedor" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblDevolucionProveedorDetalle" EntityType="mdlModeloDatos.Store.tblDevolucionProveedorDetalle" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblDevolucionTransporte" EntityType="mdlModeloDatos.Store.tblDevolucionTransporte" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblDevolucionTransporteDetalle" EntityType="mdlModeloDatos.Store.tblDevolucionTransporteDetalle" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblEmpleado" EntityType="mdlModeloDatos.Store.tblEmpleado" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblEmpresa" EntityType="mdlModeloDatos.Store.tblEmpresa" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblEntradas" EntityType="mdlModeloDatos.Store.tblEntradas" store:Type="Tables" Schema="dbo" />
@@ -167,12 +164,6 @@
           <EntitySet Name="tblsalidabodega_detalle" EntityType="mdlModeloDatos.Store.tblsalidabodega_detalle" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblSalidaDetalle" EntityType="mdlModeloDatos.Store.tblSalidaDetalle" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblSalidaDetalle_Factura" EntityType="mdlModeloDatos.Store.tblSalidaDetalle_Factura" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblSalidasTransportes" EntityType="mdlModeloDatos.Store.tblSalidasTransportes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblSalidasTransportesMedios" EntityType="mdlModeloDatos.Store.tblSalidasTransportesMedios" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblSalidasTransportesMediosDetalles" EntityType="mdlModeloDatos.Store.tblSalidasTransportesMediosDetalles" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblSalidasTransportesMediosEmpleados" EntityType="mdlModeloDatos.Store.tblSalidasTransportesMediosEmpleados" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblSectores" EntityType="mdlModeloDatos.Store.tblSectores" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblSectoresTiposTransportes" EntityType="mdlModeloDatos.Store.tblSectoresTiposTransportes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblSucursales" EntityType="mdlModeloDatos.Store.tblSucursales" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblSurtir" EntityType="mdlModeloDatos.Store.tblSurtir" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblSustituto" EntityType="mdlModeloDatos.Store.tblSustituto" store:Type="Tables" Schema="dbo" />
@@ -187,9 +178,6 @@
           <EntitySet Name="tblTipoPagoGastos" EntityType="mdlModeloDatos.Store.tblTipoPagoGastos" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblTipoPendiente" EntityType="mdlModeloDatos.Store.tblTipoPendiente" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblTipoPrecio_Rango" EntityType="mdlModeloDatos.Store.tblTipoPrecio_Rango" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblTiposTransportes" EntityType="mdlModeloDatos.Store.tblTiposTransportes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblTransporteCosteo" EntityType="mdlModeloDatos.Store.tblTransporteCosteo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblTransportes" EntityType="mdlModeloDatos.Store.tblTransportes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblUnidadMedida" EntityType="mdlModeloDatos.Store.tblUnidadMedida" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblusuarioEmpresa" EntityType="mdlModeloDatos.Store.tblusuarioEmpresa" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblUsuarios" EntityType="mdlModeloDatos.Store.tblUsuarios" store:Type="Tables" Schema="dbo" />
@@ -232,10 +220,6 @@
           <AssociationSet Name="FK_Cliente_Categoria" Association="mdlModeloDatos.Store.FK_Cliente_Categoria">
             <End Role="tblClienteCategoria" EntitySet="tblClienteCategoria" />
             <End Role="tblClientes" EntitySet="tblClientes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ConceptoEntrada" Association="mdlModeloDatos.Store.FK_ConceptoEntrada">
-            <End Role="tblConceptosEntradaTransportes" EntitySet="tblConceptosEntradaTransportes" />
-            <End Role="tblSalidasTransportesMedios" EntitySet="tblSalidasTransportesMedios" />
           </AssociationSet>
           <AssociationSet Name="Fk_Devolucion_Usuario" Association="mdlModeloDatos.Store.Fk_Devolucion_Usuario">
             <End Role="tblUsuarios" EntitySet="tblUsuarios" />
@@ -789,14 +773,6 @@
             <End Role="tblTipoMovimiento" EntitySet="tblTipoMovimiento" />
             <End Role="tblMovimientoInventarioDetalle" EntitySet="tblMovimientoInventarioDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblDevolucion_SalidaTransporte" Association="mdlModeloDatos.Store.FK_tblDevolucion_SalidaTransporte">
-            <End Role="tblSalidasTransportes" EntitySet="tblSalidasTransportes" />
-            <End Role="tblDevolucionTransporte" EntitySet="tblDevolucionTransporte" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblDevolucion_SalidaTransporteMedio" Association="mdlModeloDatos.Store.FK_tblDevolucion_SalidaTransporteMedio">
-            <End Role="tblSalidasTransportesMedios" EntitySet="tblSalidasTransportesMedios" />
-            <End Role="tblDevolucionTransporte" EntitySet="tblDevolucionTransporte" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblDevolucion_tblClientes" Association="mdlModeloDatos.Store.FK_tblDevolucion_tblClientes">
             <End Role="tblClientes" EntitySet="tblClientes" />
             <End Role="tblDevolucionCliente" EntitySet="tblDevolucionCliente" />
@@ -812,10 +788,6 @@
           <AssociationSet Name="FK_tblDevolucion_tblVendedor" Association="mdlModeloDatos.Store.FK_tblDevolucion_tblVendedor">
             <End Role="tblVendedor" EntitySet="tblVendedor" />
             <End Role="tblDevolucionCliente" EntitySet="tblDevolucionCliente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblDevolucionDetalle" Association="mdlModeloDatos.Store.FK_tblDevolucionDetalle">
-            <End Role="tblDevolucionTransporte" EntitySet="tblDevolucionTransporte" />
-            <End Role="tblDevolucionTransporteDetalle" EntitySet="tblDevolucionTransporteDetalle" />
           </AssociationSet>
           <AssociationSet Name="FK_tblDevolucionDetalle_tblArticulo" Association="mdlModeloDatos.Store.FK_tblDevolucionDetalle_tblArticulo">
             <End Role="tblArticulo" EntitySet="tblArticulo" />
@@ -1285,82 +1257,6 @@
             <End Role="tblTipoInventario" EntitySet="tblTipoInventario" />
             <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportes_tblSalida" Association="mdlModeloDatos.Store.FK_tblSalidasTransportes_tblSalida">
-            <End Role="tblSalida" EntitySet="tblSalida" />
-            <End Role="tblSalidasTransportes" EntitySet="tblSalidasTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportes_tblSectores" Association="mdlModeloDatos.Store.FK_tblSalidasTransportes_tblSectores">
-            <End Role="tblSectores" EntitySet="tblSectores" />
-            <End Role="tblSalidasTransportes" EntitySet="tblSalidasTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportes_tblSucursales" Association="mdlModeloDatos.Store.FK_tblSalidasTransportes_tblSucursales">
-            <End Role="tblSucursales" EntitySet="tblSucursales" />
-            <End Role="tblSalidasTransportes" EntitySet="tblSalidasTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportes_tblTransporteCosteo" Association="mdlModeloDatos.Store.FK_tblSalidasTransportes_tblTransporteCosteo">
-            <End Role="tblTransporteCosteo" EntitySet="tblTransporteCosteo" />
-            <End Role="tblSalidasTransportes" EntitySet="tblSalidasTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportes_tblTransportes" Association="mdlModeloDatos.Store.FK_tblSalidasTransportes_tblTransportes">
-            <End Role="tblTiposTransportes" EntitySet="tblTiposTransportes" />
-            <End Role="tblSalidasTransportes" EntitySet="tblSalidasTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMedios_Empresa" Association="mdlModeloDatos.Store.FK_tblSalidasTransportesMedios_Empresa">
-            <End Role="tblEmpresa" EntitySet="tblEmpresa" />
-            <End Role="tblSalidasTransportesMedios" EntitySet="tblSalidasTransportesMedios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMedios_Piloto" Association="mdlModeloDatos.Store.FK_tblSalidasTransportesMedios_Piloto">
-            <End Role="tblEmpleado" EntitySet="tblEmpleado" />
-            <End Role="tblSalidasTransportesMedios" EntitySet="tblSalidasTransportesMedios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMedios_Sucursal" Association="mdlModeloDatos.Store.FK_tblSalidasTransportesMedios_Sucursal">
-            <End Role="tblSucursales" EntitySet="tblSucursales" />
-            <End Role="tblSalidasTransportesMedios" EntitySet="tblSalidasTransportesMedios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMedios_Transporte" Association="mdlModeloDatos.Store.FK_tblSalidasTransportesMedios_Transporte">
-            <End Role="tblTransportes" EntitySet="tblTransportes" />
-            <End Role="tblSalidasTransportesMedios" EntitySet="tblSalidasTransportesMedios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMedios_Usuario" Association="mdlModeloDatos.Store.FK_tblSalidasTransportesMedios_Usuario">
-            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
-            <End Role="tblSalidasTransportesMedios" EntitySet="tblSalidasTransportesMedios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMediosDetalles_Salidas" Association="mdlModeloDatos.Store.FK_tblSalidasTransportesMediosDetalles_Salidas">
-            <End Role="tblSalidasTransportes" EntitySet="tblSalidasTransportes" />
-            <End Role="tblSalidasTransportesMediosDetalles" EntitySet="tblSalidasTransportesMediosDetalles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMediosDetalles_SDetalle" Association="mdlModeloDatos.Store.FK_tblSalidasTransportesMediosDetalles_SDetalle">
-            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalle" />
-            <End Role="tblSalidasTransportesMediosDetalles" EntitySet="tblSalidasTransportesMediosDetalles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMediosDetalles_Transporte" Association="mdlModeloDatos.Store.FK_tblSalidasTransportesMediosDetalles_Transporte">
-            <End Role="tblSalidasTransportesMedios" EntitySet="tblSalidasTransportesMedios" />
-            <End Role="tblSalidasTransportesMediosDetalles" EntitySet="tblSalidasTransportesMediosDetalles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMediosEmpleados_Empleado" Association="mdlModeloDatos.Store.FK_tblSalidasTransportesMediosEmpleados_Empleado">
-            <End Role="tblEmpleado" EntitySet="tblEmpleado" />
-            <End Role="tblSalidasTransportesMediosEmpleados" EntitySet="tblSalidasTransportesMediosEmpleados" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMediosEmpleados_Transporte" Association="mdlModeloDatos.Store.FK_tblSalidasTransportesMediosEmpleados_Transporte">
-            <End Role="tblSalidasTransportesMedios" EntitySet="tblSalidasTransportesMedios" />
-            <End Role="tblSalidasTransportesMediosEmpleados" EntitySet="tblSalidasTransportesMediosEmpleados" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSectores_tblMunicipio" Association="mdlModeloDatos.Store.FK_tblSectores_tblMunicipio">
-            <End Role="tblMunicipio" EntitySet="tblMunicipio" />
-            <End Role="tblSectores" EntitySet="tblSectores" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSTT_tblSectores" Association="mdlModeloDatos.Store.FK_tblSTT_tblSectores">
-            <End Role="tblSectores" EntitySet="tblSectores" />
-            <End Role="tblSectoresTiposTransportes" EntitySet="tblSectoresTiposTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSTT_tblTiposTransportes" Association="mdlModeloDatos.Store.FK_tblSTT_tblTiposTransportes">
-            <End Role="tblTiposTransportes" EntitySet="tblTiposTransportes" />
-            <End Role="tblSectoresTiposTransportes" EntitySet="tblSectoresTiposTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSucursales_tblEmpresas" Association="mdlModeloDatos.Store.FK_tblSucursales_tblEmpresas">
-            <End Role="tblEmpresa" EntitySet="tblEmpresa" />
-            <End Role="tblSucursales" EntitySet="tblSucursales" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblSurtir_tblArticulo" Association="mdlModeloDatos.Store.FK_tblSurtir_tblArticulo">
             <End Role="tblArticulo" EntitySet="tblArticulo" />
             <End Role="tblSurtir" EntitySet="tblSurtir" />
@@ -1416,10 +1312,6 @@
           <AssociationSet Name="FK_tblTipoPrecio_Rango_tblArticuloTipoPrecio" Association="mdlModeloDatos.Store.FK_tblTipoPrecio_Rango_tblArticuloTipoPrecio">
             <End Role="tblArticuloTipoPrecio" EntitySet="tblArticuloTipoPrecio" />
             <End Role="tblTipoPrecio_Rango" EntitySet="tblTipoPrecio_Rango" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblTransportes_tblTiposTransportes" Association="mdlModeloDatos.Store.FK_tblTransportes_tblTiposTransportes">
-            <End Role="tblTiposTransportes" EntitySet="tblTiposTransportes" />
-            <End Role="tblTransportes" EntitySet="tblTransportes" />
           </AssociationSet>
           <AssociationSet Name="FK_tblUsuarios_tblGrupoUsuarios" Association="mdlModeloDatos.Store.FK_tblUsuarios_tblGrupoUsuarios">
             <End Role="tblGrupoUsuarios" EntitySet="tblGrupoUsuarios" />
@@ -1690,6 +1582,8 @@
           <Property Name="CuotaPromocion" Type="int" />
           <Property Name="CantidadPromocion" Type="int" />
           <Property Name="bitPromocion" Type="bit" />
+          <Property Name="bitCrea" Type="bit" />
+          <Property Name="bitModifica" Type="bit" />
         </EntityType>
         <EntityType Name="tblArticulo_Catalogo">
           <Key>
@@ -2391,15 +2285,6 @@
           <Property Name="credito" Type="bit" />
           <Property Name="dias" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="tblConceptosEntradaTransportes">
-          <Key>
-            <PropertyRef Name="codigo" />
-          </Key>
-          <Property Name="codigo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="2000" />
-          <Property Name="combo" Type="bit" />
-          <Property Name="reasignar" Type="bit" />
-        </EntityType>
         <EntityType Name="tblConfigRedondeo">
           <Key>
             <PropertyRef Name="idConfigRedondeo" />
@@ -2627,38 +2512,6 @@
           <Property Name="cantidad" Type="decimal" Scale="2" />
           <Property Name="costo" Type="nchar" MaxLength="10" />
           <Property Name="total" Type="nchar" MaxLength="10" />
-        </EntityType>
-        <EntityType Name="tblDevolucionTransporte">
-          <Key>
-            <PropertyRef Name="idDevolucionTransporte" />
-          </Key>
-          <Property Name="idDevolucionTransporte" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
-          <Property Name="vendedor" Type="int" Nullable="false" />
-          <Property Name="anulado" Type="bit" Nullable="false" />
-          <Property Name="anuladoFecha" Type="datetime" />
-          <Property Name="montoTotal" Type="decimal" Nullable="false" Scale="5" />
-          <Property Name="correlativo" Type="int" Nullable="false" />
-          <Property Name="idSalidaTransporte" Type="int" Nullable="false" />
-          <Property Name="idSalidaTransporteMedio" Type="int" Nullable="false" />
-          <Property Name="tipoMovimiento" Type="int" Nullable="false" />
-          <Property Name="Observacion" Type="varchar" MaxLength="2000" />
-          <Property Name="Confirmado" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblDevolucionTransporteDetalle">
-          <Key>
-            <PropertyRef Name="idDevolucionTransporteDetalle" />
-          </Key>
-          <Property Name="idDevolucionTransporteDetalle" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="idDevolucionTransporte" Type="int" Nullable="false" />
-          <Property Name="idCliente" Type="int" Nullable="false" />
-          <Property Name="idArticulo" Type="int" Nullable="false" />
-          <Property Name="cantidadRecibida" Type="decimal" Nullable="false" Scale="2" />
-          <Property Name="cantidadAceptada" Type="decimal" Nullable="false" Scale="2" />
-          <Property Name="precio" Type="decimal" Scale="5" />
-          <Property Name="total" Type="decimal" Scale="2" />
-          <Property Name="observacion" Type="varchar" MaxLength="200" />
-          <Property Name="inventario" Type="int" />
         </EntityType>
         <EntityType Name="tblEmpleado">
           <Key>
@@ -3637,104 +3490,18 @@
           <Property Name="idSalidaDetalle" Type="int" />
           <Property Name="idFactura" Type="bigint" />
         </EntityType>
-        <EntityType Name="tblSalidasTransportes">
-          <Key>
-            <PropertyRef Name="idSalidaTransporte" />
-          </Key>
-          <Property Name="idSalidaTransporte" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="idSalida" Type="int" />
-          <Property Name="idTipoTransporte" Type="int" />
-          <Property Name="idSector" Type="int" />
-          <Property Name="idTransporteCosteo" Type="int" />
-          <Property Name="idSucursal" Type="int" />
-          <Property Name="contacto" Type="varchar" MaxLength="250" />
-          <Property Name="direccion" Type="varchar" MaxLength="250" />
-          <Property Name="observacion" Type="varchar" MaxLength="250" />
-          <Property Name="cantidad" Type="int" />
-          <Property Name="precio" Type="decimal" Scale="2" />
-          <Property Name="bitDescuento" Type="bit" />
-          <Property Name="descuento" Type="decimal" Scale="2" />
-          <Property Name="estado" Type="int" />
-          <Property Name="telefono" Type="varchar" MaxLength="200" />
-        </EntityType>
-        <EntityType Name="tblSalidasTransportesMedios">
-          <Key>
-            <PropertyRef Name="idSalidaTransporteMedio" />
-          </Key>
-          <Property Name="idSalidaTransporteMedio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="idTransporte" Type="int" />
-          <Property Name="idPiloto" Type="int" />
-          <Property Name="fechaTransporte" Type="datetime" />
-          <Property Name="salida" Type="bit" />
-          <Property Name="observacion" Type="varchar" MaxLength="500" />
-          <Property Name="correlativo" Type="int" />
-          <Property Name="idSucursalSalida" Type="int" />
-          <Property Name="idEmpresa" Type="int" />
-          <Property Name="anulado" Type="bit" />
-          <Property Name="fechaAnulado" Type="datetime" />
-          <Property Name="NumeroViaje" Type="int" />
-          <Property Name="KMGalon" Type="decimal" Scale="2" />
-          <Property Name="idusuario" Type="int" />
-          <Property Name="entrada" Type="bit" />
-          <Property Name="conceptoEntrada" Type="int" />
-          <Property Name="TotalKms" Type="decimal" Scale="2" />
-          <Property Name="CostoCombustible" Type="decimal" Scale="2" />
-          <Property Name="TotalCombustible" Type="decimal" Scale="2" />
-          <Property Name="TotalPlanilla" Type="decimal" Scale="2" />
-          <Property Name="Costo" Type="decimal" Scale="2" />
-          <Property Name="TotalCobro" Type="decimal" Scale="2" />
-          <Property Name="GastosEnvio" Type="bit" />
-        </EntityType>
-        <EntityType Name="tblSalidasTransportesMediosDetalles">
-          <Key>
-            <PropertyRef Name="idSalidaTransporteMedioDetalle" />
-          </Key>
-          <Property Name="idSalidaTransporteMedioDetalle" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="idSalidaTransporteMedio" Type="int" />
-          <Property Name="idSalidaDetalle" Type="int" />
-          <Property Name="cantidad" Type="decimal" Scale="2" />
-          <Property Name="idSalidaTransporte" Type="int" />
-          <Property Name="reenviado" Type="bit" />
-        </EntityType>
-        <EntityType Name="tblSalidasTransportesMediosEmpleados">
-          <Key>
-            <PropertyRef Name="idSalidaTransporteMedioEmpleado" />
-          </Key>
-          <Property Name="idSalidaTransporteMedioEmpleado" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="idSalidaTransporteMedio" Type="int" />
-          <Property Name="idEmpleado" Type="int" />
-        </EntityType>
-        <EntityType Name="tblSectores">
-          <Key>
-            <PropertyRef Name="idSector" />
-          </Key>
-          <Property Name="idSector" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="idMunicipio" Type="int" />
-          <Property Name="descripcion" Type="varchar" MaxLength="150" />
-          <Property Name="distancia" Type="decimal" Scale="2" />
-        </EntityType>
-        <EntityType Name="tblSectoresTiposTransportes">
-          <Key>
-            <PropertyRef Name="idSectoresTiposTransporte" />
-          </Key>
-          <Property Name="idSectoresTiposTransporte" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="idSector" Type="int" />
-          <Property Name="idTipoTransporte" Type="int" />
-          <Property Name="precio" Type="decimal" Scale="2" />
-          <Property Name="preciominimo" Type="decimal" Scale="2" />
-        </EntityType>
         <EntityType Name="tblSucursales">
           <Key>
-            <PropertyRef Name="idSucursal" />
+            <PropertyRef Name="Codigo" />
           </Key>
-          <Property Name="idSucursal" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="idEmpresa" Type="int" />
-          <Property Name="servidor" Type="varchar" MaxLength="50" />
-          <Property Name="codigo" Type="varchar" MaxLength="20" />
-          <Property Name="descripcion" Type="varchar" MaxLength="100" />
-          <Property Name="direccion" Type="varchar" MaxLength="200" />
-          <Property Name="telefono" Type="varchar" MaxLength="50" />
-          <Property Name="bitDefault" Type="bit" />
+          <Property Name="Codigo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Servidor" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="BD" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Observacion" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Central" Type="bit" Nullable="false" />
+          <Property Name="Sucursal" Type="bit" Nullable="false" />
+          <Property Name="habilitado" Type="bit" />
         </EntityType>
         <EntityType Name="tblSurtir">
           <Key>
@@ -3878,33 +3645,6 @@
           <Property Name="inicio" Type="int" />
           <Property Name="fin" Type="int" />
           <Property Name="color" Type="int" />
-        </EntityType>
-        <EntityType Name="tblTiposTransportes">
-          <Key>
-            <PropertyRef Name="idTipoTransporte" />
-          </Key>
-          <Property Name="idTipoTransporte" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="descripcion" Type="varchar" MaxLength="150" />
-        </EntityType>
-        <EntityType Name="tblTransporteCosteo">
-          <Key>
-            <PropertyRef Name="idTransporteCosteo" />
-          </Key>
-          <Property Name="idTransporteCosteo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="codigo" Type="varchar" MaxLength="50" />
-          <Property Name="descripcion" Type="varchar" MaxLength="150" />
-          <Property Name="bitFactura" Type="bit" />
-        </EntityType>
-        <EntityType Name="tblTransportes">
-          <Key>
-            <PropertyRef Name="idTransporte" />
-          </Key>
-          <Property Name="idTransporte" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="idTipoTransporte" Type="int" />
-          <Property Name="descripcion" Type="varchar" MaxLength="100" />
-          <Property Name="placas" Type="varchar" MaxLength="30" />
-          <Property Name="capacidad" Type="varchar" MaxLength="50" />
-          <Property Name="KMGalon" Type="decimal" Scale="2" />
         </EntityType>
         <EntityType Name="tblUnidadMedida">
           <Key>
@@ -4097,18 +3837,6 @@
             </Principal>
             <Dependent Role="tblClientes">
               <PropertyRef Name="idcategoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ConceptoEntrada">
-          <End Role="tblConceptosEntradaTransportes" Type="mdlModeloDatos.Store.tblConceptosEntradaTransportes" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportesMedios" Type="mdlModeloDatos.Store.tblSalidasTransportesMedios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblConceptosEntradaTransportes">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMedios">
-              <PropertyRef Name="conceptoEntrada" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5768,30 +5496,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblDevolucion_SalidaTransporte">
-          <End Role="tblSalidasTransportes" Type="mdlModeloDatos.Store.tblSalidasTransportes" Multiplicity="1" />
-          <End Role="tblDevolucionTransporte" Type="mdlModeloDatos.Store.tblDevolucionTransporte" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidasTransportes">
-              <PropertyRef Name="idSalidaTransporte" />
-            </Principal>
-            <Dependent Role="tblDevolucionTransporte">
-              <PropertyRef Name="idSalidaTransporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblDevolucion_SalidaTransporteMedio">
-          <End Role="tblSalidasTransportesMedios" Type="mdlModeloDatos.Store.tblSalidasTransportesMedios" Multiplicity="1" />
-          <End Role="tblDevolucionTransporte" Type="mdlModeloDatos.Store.tblDevolucionTransporte" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidasTransportesMedios">
-              <PropertyRef Name="idSalidaTransporteMedio" />
-            </Principal>
-            <Dependent Role="tblDevolucionTransporte">
-              <PropertyRef Name="idSalidaTransporteMedio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblDevolucion_tblClientes">
           <End Role="tblClientes" Type="mdlModeloDatos.Store.tblClientes" Multiplicity="0..1" />
           <End Role="tblDevolucionCliente" Type="mdlModeloDatos.Store.tblDevolucionCliente" Multiplicity="*" />
@@ -5837,18 +5541,6 @@
             </Principal>
             <Dependent Role="tblDevolucionCliente">
               <PropertyRef Name="vendedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblDevolucionDetalle">
-          <End Role="tblDevolucionTransporte" Type="mdlModeloDatos.Store.tblDevolucionTransporte" Multiplicity="1" />
-          <End Role="tblDevolucionTransporteDetalle" Type="mdlModeloDatos.Store.tblDevolucionTransporteDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblDevolucionTransporte">
-              <PropertyRef Name="idDevolucionTransporte" />
-            </Principal>
-            <Dependent Role="tblDevolucionTransporteDetalle">
-              <PropertyRef Name="idDevolucionTransporte" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7256,234 +6948,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblSalidasTransportes_tblSalida">
-          <End Role="tblSalida" Type="mdlModeloDatos.Store.tblSalida" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportes" Type="mdlModeloDatos.Store.tblSalidasTransportes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalida">
-              <PropertyRef Name="idSalida" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportes">
-              <PropertyRef Name="idSalida" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportes_tblSectores">
-          <End Role="tblSectores" Type="mdlModeloDatos.Store.tblSectores" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportes" Type="mdlModeloDatos.Store.tblSalidasTransportes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSectores">
-              <PropertyRef Name="idSector" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportes">
-              <PropertyRef Name="idSector" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportes_tblSucursales">
-          <End Role="tblSucursales" Type="mdlModeloDatos.Store.tblSucursales" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportes" Type="mdlModeloDatos.Store.tblSalidasTransportes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSucursales">
-              <PropertyRef Name="idSucursal" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportes">
-              <PropertyRef Name="idSucursal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportes_tblTransporteCosteo">
-          <End Role="tblTransporteCosteo" Type="mdlModeloDatos.Store.tblTransporteCosteo" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportes" Type="mdlModeloDatos.Store.tblSalidasTransportes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblTransporteCosteo">
-              <PropertyRef Name="idTransporteCosteo" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportes">
-              <PropertyRef Name="idTransporteCosteo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportes_tblTransportes">
-          <End Role="tblTiposTransportes" Type="mdlModeloDatos.Store.tblTiposTransportes" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportes" Type="mdlModeloDatos.Store.tblSalidasTransportes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblTiposTransportes">
-              <PropertyRef Name="idTipoTransporte" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportes">
-              <PropertyRef Name="idTipoTransporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMedios_Empresa">
-          <End Role="tblEmpresa" Type="mdlModeloDatos.Store.tblEmpresa" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportesMedios" Type="mdlModeloDatos.Store.tblSalidasTransportesMedios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEmpresa">
-              <PropertyRef Name="idEmpresa" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMedios">
-              <PropertyRef Name="idEmpresa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMedios_Piloto">
-          <End Role="tblEmpleado" Type="mdlModeloDatos.Store.tblEmpleado" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportesMedios" Type="mdlModeloDatos.Store.tblSalidasTransportesMedios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEmpleado">
-              <PropertyRef Name="idEmpleado" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMedios">
-              <PropertyRef Name="idPiloto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMedios_Sucursal">
-          <End Role="tblSucursales" Type="mdlModeloDatos.Store.tblSucursales" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportesMedios" Type="mdlModeloDatos.Store.tblSalidasTransportesMedios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSucursales">
-              <PropertyRef Name="idSucursal" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMedios">
-              <PropertyRef Name="idSucursalSalida" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMedios_Transporte">
-          <End Role="tblTransportes" Type="mdlModeloDatos.Store.tblTransportes" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportesMedios" Type="mdlModeloDatos.Store.tblSalidasTransportesMedios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblTransportes">
-              <PropertyRef Name="idTransporte" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMedios">
-              <PropertyRef Name="idTransporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMedios_Usuario">
-          <End Role="tblUsuarios" Type="mdlModeloDatos.Store.tblUsuarios" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportesMedios" Type="mdlModeloDatos.Store.tblSalidasTransportesMedios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblUsuarios">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMedios">
-              <PropertyRef Name="idusuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMediosDetalles_Salidas">
-          <End Role="tblSalidasTransportes" Type="mdlModeloDatos.Store.tblSalidasTransportes" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportesMediosDetalles" Type="mdlModeloDatos.Store.tblSalidasTransportesMediosDetalles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidasTransportes">
-              <PropertyRef Name="idSalidaTransporte" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMediosDetalles">
-              <PropertyRef Name="idSalidaTransporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMediosDetalles_SDetalle">
-          <End Role="tblSalidaDetalle" Type="mdlModeloDatos.Store.tblSalidaDetalle" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportesMediosDetalles" Type="mdlModeloDatos.Store.tblSalidasTransportesMediosDetalles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidaDetalle">
-              <PropertyRef Name="idSalidaDetalle" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMediosDetalles">
-              <PropertyRef Name="idSalidaDetalle" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMediosDetalles_Transporte">
-          <End Role="tblSalidasTransportesMedios" Type="mdlModeloDatos.Store.tblSalidasTransportesMedios" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportesMediosDetalles" Type="mdlModeloDatos.Store.tblSalidasTransportesMediosDetalles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidasTransportesMedios">
-              <PropertyRef Name="idSalidaTransporteMedio" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMediosDetalles">
-              <PropertyRef Name="idSalidaTransporteMedio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMediosEmpleados_Empleado">
-          <End Role="tblEmpleado" Type="mdlModeloDatos.Store.tblEmpleado" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportesMediosEmpleados" Type="mdlModeloDatos.Store.tblSalidasTransportesMediosEmpleados" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEmpleado">
-              <PropertyRef Name="idEmpleado" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMediosEmpleados">
-              <PropertyRef Name="idEmpleado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMediosEmpleados_Transporte">
-          <End Role="tblSalidasTransportesMedios" Type="mdlModeloDatos.Store.tblSalidasTransportesMedios" Multiplicity="0..1" />
-          <End Role="tblSalidasTransportesMediosEmpleados" Type="mdlModeloDatos.Store.tblSalidasTransportesMediosEmpleados" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidasTransportesMedios">
-              <PropertyRef Name="idSalidaTransporteMedio" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMediosEmpleados">
-              <PropertyRef Name="idSalidaTransporteMedio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSectores_tblMunicipio">
-          <End Role="tblMunicipio" Type="mdlModeloDatos.Store.tblMunicipio" Multiplicity="0..1" />
-          <End Role="tblSectores" Type="mdlModeloDatos.Store.tblSectores" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMunicipio">
-              <PropertyRef Name="idmunicipio" />
-            </Principal>
-            <Dependent Role="tblSectores">
-              <PropertyRef Name="idMunicipio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSTT_tblSectores">
-          <End Role="tblSectores" Type="mdlModeloDatos.Store.tblSectores" Multiplicity="0..1" />
-          <End Role="tblSectoresTiposTransportes" Type="mdlModeloDatos.Store.tblSectoresTiposTransportes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSectores">
-              <PropertyRef Name="idSector" />
-            </Principal>
-            <Dependent Role="tblSectoresTiposTransportes">
-              <PropertyRef Name="idSector" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSTT_tblTiposTransportes">
-          <End Role="tblTiposTransportes" Type="mdlModeloDatos.Store.tblTiposTransportes" Multiplicity="0..1" />
-          <End Role="tblSectoresTiposTransportes" Type="mdlModeloDatos.Store.tblSectoresTiposTransportes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblTiposTransportes">
-              <PropertyRef Name="idTipoTransporte" />
-            </Principal>
-            <Dependent Role="tblSectoresTiposTransportes">
-              <PropertyRef Name="idTipoTransporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSucursales_tblEmpresas">
-          <End Role="tblEmpresa" Type="mdlModeloDatos.Store.tblEmpresa" Multiplicity="0..1" />
-          <End Role="tblSucursales" Type="mdlModeloDatos.Store.tblSucursales" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEmpresa">
-              <PropertyRef Name="idEmpresa" />
-            </Principal>
-            <Dependent Role="tblSucursales">
-              <PropertyRef Name="idEmpresa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblSurtir_tblArticulo">
           <End Role="tblArticulo" Type="mdlModeloDatos.Store.tblArticulo" Multiplicity="0..1" />
           <End Role="tblSurtir" Type="mdlModeloDatos.Store.tblSurtir" Multiplicity="*" />
@@ -7649,18 +7113,6 @@
             </Principal>
             <Dependent Role="tblTipoPrecio_Rango">
               <PropertyRef Name="tipoPrecio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblTransportes_tblTiposTransportes">
-          <End Role="tblTiposTransportes" Type="mdlModeloDatos.Store.tblTiposTransportes" Multiplicity="0..1" />
-          <End Role="tblTransportes" Type="mdlModeloDatos.Store.tblTransportes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblTiposTransportes">
-              <PropertyRef Name="idTipoTransporte" />
-            </Principal>
-            <Dependent Role="tblTransportes">
-              <PropertyRef Name="idTipoTransporte" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -9172,7 +8624,6 @@
           <EntitySet Name="tblClientes_Telefono" EntityType="dsi_pos_demoModel.tblClientes_Telefono" />
           <EntitySet Name="tblClienteTipoNegocios" EntityType="dsi_pos_demoModel.tblClienteTipoNegocio" />
           <EntitySet Name="tblClienteTipoPagoes" EntityType="dsi_pos_demoModel.tblClienteTipoPago" />
-          <EntitySet Name="tblConceptosEntradaTransportes" EntityType="dsi_pos_demoModel.tblConceptosEntradaTransporte" />
           <EntitySet Name="tblConfigRedondeos" EntityType="dsi_pos_demoModel.tblConfigRedondeo" />
           <EntitySet Name="tblConfiguracions" EntityType="dsi_pos_demoModel.tblConfiguracion" />
           <EntitySet Name="tblConsultasDinamicas" EntityType="dsi_pos_demoModel.tblConsultasDinamica" />
@@ -9190,8 +8641,6 @@
           <EntitySet Name="tblDevolucionClienteDetalles" EntityType="dsi_pos_demoModel.tblDevolucionClienteDetalle" />
           <EntitySet Name="tblDevolucionProveedors" EntityType="dsi_pos_demoModel.tblDevolucionProveedor" />
           <EntitySet Name="tblDevolucionProveedorDetalles" EntityType="dsi_pos_demoModel.tblDevolucionProveedorDetalle" />
-          <EntitySet Name="tblDevolucionTransportes" EntityType="dsi_pos_demoModel.tblDevolucionTransporte" />
-          <EntitySet Name="tblDevolucionTransporteDetalles" EntityType="dsi_pos_demoModel.tblDevolucionTransporteDetalle" />
           <EntitySet Name="tblEmpleadoes" EntityType="dsi_pos_demoModel.tblEmpleado" />
           <EntitySet Name="tblEmpresas" EntityType="dsi_pos_demoModel.tblEmpresa" />
           <EntitySet Name="tblEnvios" EntityType="dsi_pos_demoModel.tblEnvio" />
@@ -9257,13 +8706,6 @@
           <EntitySet Name="tblSalida_Factura" EntityType="dsi_pos_demoModel.tblSalida_Factura" />
           <EntitySet Name="tblsalidaBodegas" EntityType="dsi_pos_demoModel.tblsalidaBodega" />
           <EntitySet Name="tblSalidaDetalle_Factura" EntityType="dsi_pos_demoModel.tblSalidaDetalle_Factura" />
-          <EntitySet Name="tblSalidasTransportes" EntityType="dsi_pos_demoModel.tblSalidasTransporte" />
-          <EntitySet Name="tblSalidasTransportesMedios" EntityType="dsi_pos_demoModel.tblSalidasTransportesMedio" />
-          <EntitySet Name="tblSalidasTransportesMediosDetalles" EntityType="dsi_pos_demoModel.tblSalidasTransportesMediosDetalle" />
-          <EntitySet Name="tblSalidasTransportesMediosEmpleados" EntityType="dsi_pos_demoModel.tblSalidasTransportesMediosEmpleado" />
-          <EntitySet Name="tblSectores" EntityType="dsi_pos_demoModel.tblSectore" />
-          <EntitySet Name="tblSectoresTiposTransportes" EntityType="dsi_pos_demoModel.tblSectoresTiposTransporte" />
-          <EntitySet Name="tblSucursales" EntityType="dsi_pos_demoModel.tblSucursale" />
           <EntitySet Name="tblSurtirs" EntityType="dsi_pos_demoModel.tblSurtir" />
           <EntitySet Name="tblSustitutoes" EntityType="dsi_pos_demoModel.tblSustituto" />
           <EntitySet Name="tblSustitutoCategorias" EntityType="dsi_pos_demoModel.tblSustitutoCategoria" />
@@ -9277,9 +8719,6 @@
           <EntitySet Name="tblTipoPagoGastos" EntityType="dsi_pos_demoModel.tblTipoPagoGasto" />
           <EntitySet Name="tblTipoPendientes" EntityType="dsi_pos_demoModel.tblTipoPendiente" />
           <EntitySet Name="tblTipoPrecio_Rango" EntityType="dsi_pos_demoModel.tblTipoPrecio_Rango" />
-          <EntitySet Name="tblTiposTransportes" EntityType="dsi_pos_demoModel.tblTiposTransporte" />
-          <EntitySet Name="tblTransporteCosteos" EntityType="dsi_pos_demoModel.tblTransporteCosteo" />
-          <EntitySet Name="tblTransportes" EntityType="dsi_pos_demoModel.tblTransporte" />
           <EntitySet Name="tblUnidadMedidas" EntityType="dsi_pos_demoModel.tblUnidadMedida" />
           <EntitySet Name="tblusuarioEmpresas" EntityType="dsi_pos_demoModel.tblusuarioEmpresa" />
           <EntitySet Name="tblVendedors" EntityType="dsi_pos_demoModel.tblVendedor" />
@@ -9513,10 +8952,6 @@
             <End Role="tblMunicipio" EntitySet="tblMunicipios" />
             <End Role="tblCliente_UbicacionMercado" EntitySet="tblCliente_UbicacionMercado" />
           </AssociationSet>
-          <AssociationSet Name="FK_ConceptoEntrada" Association="dsi_pos_demoModel.FK_ConceptoEntrada">
-            <End Role="tblConceptosEntradaTransporte" EntitySet="tblConceptosEntradaTransportes" />
-            <End Role="tblSalidasTransportesMedio" EntitySet="tblSalidasTransportesMedios" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblContacto_tblContactoTipo" Association="dsi_pos_demoModel.FK_tblContacto_tblContactoTipo">
             <End Role="tblContactoTipo" EntitySet="tblContactoTipoes" />
             <End Role="tblContacto" EntitySet="tblContactoes" />
@@ -9609,18 +9044,6 @@
             <End Role="tblDevolucionProveedor" EntitySet="tblDevolucionProveedors" />
             <End Role="tblEnvio_DevolucionProveedor" EntitySet="tblEnvio_DevolucionProveedor" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblDevolucion_SalidaTransporte" Association="dsi_pos_demoModel.FK_tblDevolucion_SalidaTransporte">
-            <End Role="tblSalidasTransporte" EntitySet="tblSalidasTransportes" />
-            <End Role="tblDevolucionTransporte" EntitySet="tblDevolucionTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblDevolucion_SalidaTransporteMedio" Association="dsi_pos_demoModel.FK_tblDevolucion_SalidaTransporteMedio">
-            <End Role="tblSalidasTransportesMedio" EntitySet="tblSalidasTransportesMedios" />
-            <End Role="tblDevolucionTransporte" EntitySet="tblDevolucionTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblDevolucionDetalle" Association="dsi_pos_demoModel.FK_tblDevolucionDetalle">
-            <End Role="tblDevolucionTransporte" EntitySet="tblDevolucionTransportes" />
-            <End Role="tblDevolucionTransporteDetalle" EntitySet="tblDevolucionTransporteDetalles" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblEmpleado_tblpuesto" Association="dsi_pos_demoModel.FK_tblEmpleado_tblpuesto">
             <End Role="tblpuesto" EntitySet="tblpuestoes" />
             <End Role="tblEmpleado" EntitySet="tblEmpleadoes" />
@@ -9636,14 +9059,6 @@
           <AssociationSet Name="FK_tblsalidaBodega_tblEmpleado2" Association="dsi_pos_demoModel.FK_tblsalidaBodega_tblEmpleado2">
             <End Role="tblEmpleado" EntitySet="tblEmpleadoes" />
             <End Role="tblsalidaBodega" EntitySet="tblsalidaBodegas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMedios_Piloto" Association="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Piloto">
-            <End Role="tblEmpleado" EntitySet="tblEmpleadoes" />
-            <End Role="tblSalidasTransportesMedio" EntitySet="tblSalidasTransportesMedios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMediosEmpleados_Empleado" Association="dsi_pos_demoModel.FK_tblSalidasTransportesMediosEmpleados_Empleado">
-            <End Role="tblEmpleado" EntitySet="tblEmpleadoes" />
-            <End Role="tblSalidasTransportesMediosEmpleado" EntitySet="tblSalidasTransportesMediosEmpleados" />
           </AssociationSet>
           <AssociationSet Name="FK_tblEmpresa_tblMunicipio" Association="dsi_pos_demoModel.FK_tblEmpresa_tblMunicipio">
             <End Role="tblMunicipio" EntitySet="tblMunicipios" />
@@ -9668,14 +9083,6 @@
           <AssociationSet Name="FK_tblSalida_tblEmpresa" Association="dsi_pos_demoModel.FK_tblSalida_tblEmpresa">
             <End Role="tblEmpresa" EntitySet="tblEmpresas" />
             <End Role="tblSalida" EntitySet="tblSalidas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMedios_Empresa" Association="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Empresa">
-            <End Role="tblEmpresa" EntitySet="tblEmpresas" />
-            <End Role="tblSalidasTransportesMedio" EntitySet="tblSalidasTransportesMedios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSucursales_tblEmpresas" Association="dsi_pos_demoModel.FK_tblSucursales_tblEmpresas">
-            <End Role="tblEmpresa" EntitySet="tblEmpresas" />
-            <End Role="tblSucursale" EntitySet="tblSucursales" />
           </AssociationSet>
           <AssociationSet Name="FK_tblSustituto_tblEmpresa" Association="dsi_pos_demoModel.FK_tblSustituto_tblEmpresa">
             <End Role="tblEmpresa" EntitySet="tblEmpresas" />
@@ -9845,10 +9252,6 @@
             <End Role="tblMunicipio" EntitySet="tblMunicipios" />
             <End Role="tblSalida" EntitySet="tblSalidas" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblSectores_tblMunicipio" Association="dsi_pos_demoModel.FK_tblSectores_tblMunicipio">
-            <End Role="tblMunicipio" EntitySet="tblMunicipios" />
-            <End Role="tblSectore" EntitySet="tblSectores" />
-          </AssociationSet>
           <AssociationSet Name="FK_TipoNotificacion" Association="dsi_pos_demoModel.FK_TipoNotificacion">
             <End Role="tblTipoNotificacion" EntitySet="tblTipoNotificacions" />
             <End Role="tblNotificacione" EntitySet="tblNotificaciones" />
@@ -9949,54 +9352,6 @@
             <End Role="tblSalida" EntitySet="tblSalidas" />
             <End Role="tblsalidaBodega" EntitySet="tblsalidaBodegas" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportes_tblSalida" Association="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSalida">
-            <End Role="tblSalida" EntitySet="tblSalidas" />
-            <End Role="tblSalidasTransporte" EntitySet="tblSalidasTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportes_tblSectores" Association="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSectores">
-            <End Role="tblSectore" EntitySet="tblSectores" />
-            <End Role="tblSalidasTransporte" EntitySet="tblSalidasTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportes_tblSucursales" Association="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSucursales">
-            <End Role="tblSucursale" EntitySet="tblSucursales" />
-            <End Role="tblSalidasTransporte" EntitySet="tblSalidasTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportes_tblTransporteCosteo" Association="dsi_pos_demoModel.FK_tblSalidasTransportes_tblTransporteCosteo">
-            <End Role="tblTransporteCosteo" EntitySet="tblTransporteCosteos" />
-            <End Role="tblSalidasTransporte" EntitySet="tblSalidasTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportes_tblTransportes" Association="dsi_pos_demoModel.FK_tblSalidasTransportes_tblTransportes">
-            <End Role="tblTiposTransporte" EntitySet="tblTiposTransportes" />
-            <End Role="tblSalidasTransporte" EntitySet="tblSalidasTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMediosDetalles_Salidas" Association="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_Salidas">
-            <End Role="tblSalidasTransporte" EntitySet="tblSalidasTransportes" />
-            <End Role="tblSalidasTransportesMediosDetalle" EntitySet="tblSalidasTransportesMediosDetalles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMedios_Sucursal" Association="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Sucursal">
-            <End Role="tblSucursale" EntitySet="tblSucursales" />
-            <End Role="tblSalidasTransportesMedio" EntitySet="tblSalidasTransportesMedios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMedios_Transporte" Association="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Transporte">
-            <End Role="tblTransporte" EntitySet="tblTransportes" />
-            <End Role="tblSalidasTransportesMedio" EntitySet="tblSalidasTransportesMedios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMediosDetalles_Transporte" Association="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_Transporte">
-            <End Role="tblSalidasTransportesMedio" EntitySet="tblSalidasTransportesMedios" />
-            <End Role="tblSalidasTransportesMediosDetalle" EntitySet="tblSalidasTransportesMediosDetalles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMediosEmpleados_Transporte" Association="dsi_pos_demoModel.FK_tblSalidasTransportesMediosEmpleados_Transporte">
-            <End Role="tblSalidasTransportesMedio" EntitySet="tblSalidasTransportesMedios" />
-            <End Role="tblSalidasTransportesMediosEmpleado" EntitySet="tblSalidasTransportesMediosEmpleados" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSTT_tblSectores" Association="dsi_pos_demoModel.FK_tblSTT_tblSectores">
-            <End Role="tblSectore" EntitySet="tblSectores" />
-            <End Role="tblSectoresTiposTransporte" EntitySet="tblSectoresTiposTransportes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSTT_tblTiposTransportes" Association="dsi_pos_demoModel.FK_tblSTT_tblTiposTransportes">
-            <End Role="tblTiposTransporte" EntitySet="tblTiposTransportes" />
-            <End Role="tblSectoresTiposTransporte" EntitySet="tblSectoresTiposTransportes" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblSurtir_tblVendedor" Association="dsi_pos_demoModel.FK_tblSurtir_tblVendedor">
             <End Role="tblVendedor" EntitySet="tblVendedors" />
             <End Role="tblSurtir" EntitySet="tblSurtirs" />
@@ -10012,10 +9367,6 @@
           <AssociationSet Name="FK_TipoMovimiento_TipoInventario" Association="dsi_pos_demoModel.FK_TipoMovimiento_TipoInventario">
             <End Role="tblTipoInventario" EntitySet="tblTipoInventarios" />
             <End Role="tblTipoMovimiento" EntitySet="tblTipoMovimientoes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblTransportes_tblTiposTransportes" Association="dsi_pos_demoModel.FK_tblTransportes_tblTiposTransportes">
-            <End Role="tblTiposTransporte" EntitySet="tblTiposTransportes" />
-            <End Role="tblTransporte" EntitySet="tblTransportes" />
           </AssociationSet>
           <FunctionImport Name="dt_adduserobject" />
           <FunctionImport Name="dt_droppropertiesbyid">
@@ -11329,10 +10680,6 @@
             <End Role="tblUsuario" EntitySet="tblUsuarios" />
             <End Role="tblSalida" EntitySet="tblSalidas" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMedios_Usuario" Association="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Usuario">
-            <End Role="tblUsuario" EntitySet="tblUsuarios" />
-            <End Role="tblSalidasTransportesMedio" EntitySet="tblSalidasTransportesMedios" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblSurtir_tblUsuarios" Association="dsi_pos_demoModel.FK_tblSurtir_tblUsuarios">
             <End Role="tblUsuario" EntitySet="tblUsuarios" />
             <End Role="tblSurtir" EntitySet="tblSurtirs" />
@@ -11630,10 +10977,6 @@
             <End Role="tblTipoInventario" EntitySet="tblTipoInventarios" />
             <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblSalidasTransportesMediosDetalles_SDetalle" Association="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_SDetalle">
-            <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
-            <End Role="tblSalidasTransportesMediosDetalle" EntitySet="tblSalidasTransportesMediosDetalles" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblSurtir_tblSalidaDetalle" Association="dsi_pos_demoModel.FK_tblSurtir_tblSalidaDetalle">
             <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
             <End Role="tblSurtir" EntitySet="tblSurtirs" />
@@ -11798,7 +11141,6 @@
           <Parameter Name="idcliente" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="tblsalidabodega_detalle" EntityType="dsi_pos_demoModel.tblsalidabodega_detalle" />
-          <FunctionImport Name="sp_bodega_lista" ReturnType="Collection(dsi_pos_demoModel.sp_bodega_lista_Result)" />
           <FunctionImport Name="sp_SaldoInicialReservaOtros" ReturnType="Collection(dsi_pos_demoModel.sp_SaldoInicialReservaOtros_Result)">
             <Parameter Name="articulo" Mode="In" Type="Int32" />
             <Parameter Name="cliente" Mode="In" Type="Int32" />
@@ -11809,6 +11151,8 @@
             <Parameter Name="hasta" Mode="In" Type="DateTime" />
             <Parameter Name="empresa" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_bodega_lista" ReturnType="Collection(dsi_pos_demoModel.sp_bodega_lista_Result)" />
+          <EntitySet Name="tblSucursales" EntityType="dsi_pos_demoModel.tblSucursale" />
           </EntityContainer>
         <EntityType Name="dtproperty">
           <Key>
@@ -12738,16 +12082,6 @@
           <Property Type="Int32" Name="dias" Nullable="false" />
           <NavigationProperty Name="tblClientes" Relationship="dsi_pos_demoModel.FK_tblClientes_tblClienteTipoPago" FromRole="tblClienteTipoPago" ToRole="tblCliente" />
         </EntityType>
-        <EntityType Name="tblConceptosEntradaTransporte">
-          <Key>
-            <PropertyRef Name="codigo" />
-          </Key>
-          <Property Type="Int32" Name="codigo" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="combo" />
-          <Property Type="Boolean" Name="reasignar" />
-          <NavigationProperty Name="tblSalidasTransportesMedios" Relationship="dsi_pos_demoModel.FK_ConceptoEntrada" FromRole="tblConceptosEntradaTransporte" ToRole="tblSalidasTransportesMedio" />
-        </EntityType>
         <EntityType Name="tblConfigRedondeo">
           <Key>
             <PropertyRef Name="idConfigRedondeo" />
@@ -13016,42 +12350,6 @@
           <NavigationProperty Name="tblEntradasDetalle" Relationship="dsi_pos_demoModel.FK_tblDevolucionProveedorDetalle_tblEntradasDetalle" FromRole="tblDevolucionProveedorDetalle" ToRole="tblEntradasDetalle" />
           <NavigationProperty Name="tblArticulo" Relationship="dsi_pos_demoModel.FK_tblDevolucionProveedorDetalle_tblArticulo" FromRole="tblDevolucionProveedorDetalle" ToRole="tblArticulo" />
         </EntityType>
-        <EntityType Name="tblDevolucionTransporte">
-          <Key>
-            <PropertyRef Name="idDevolucionTransporte" />
-          </Key>
-          <Property Type="Int32" Name="idDevolucionTransporte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="3" />
-          <Property Type="Int32" Name="vendedor" Nullable="false" />
-          <Property Type="Boolean" Name="anulado" Nullable="false" />
-          <Property Type="DateTime" Name="anuladoFecha" Precision="3" />
-          <Property Type="Decimal" Name="montoTotal" Nullable="false" Precision="18" Scale="5" />
-          <Property Type="Int32" Name="correlativo" Nullable="false" />
-          <Property Type="Int32" Name="idSalidaTransporte" Nullable="false" />
-          <Property Type="Int32" Name="idSalidaTransporteMedio" Nullable="false" />
-          <Property Type="Int32" Name="tipoMovimiento" Nullable="false" />
-          <Property Type="String" Name="Observacion" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Confirmado" Nullable="false" />
-          <NavigationProperty Name="tblSalidasTransporte" Relationship="dsi_pos_demoModel.FK_tblDevolucion_SalidaTransporte" FromRole="tblDevolucionTransporte" ToRole="tblSalidasTransporte" />
-          <NavigationProperty Name="tblSalidasTransportesMedio" Relationship="dsi_pos_demoModel.FK_tblDevolucion_SalidaTransporteMedio" FromRole="tblDevolucionTransporte" ToRole="tblSalidasTransportesMedio" />
-          <NavigationProperty Name="tblDevolucionTransporteDetalles" Relationship="dsi_pos_demoModel.FK_tblDevolucionDetalle" FromRole="tblDevolucionTransporte" ToRole="tblDevolucionTransporteDetalle" />
-        </EntityType>
-        <EntityType Name="tblDevolucionTransporteDetalle">
-          <Key>
-            <PropertyRef Name="idDevolucionTransporteDetalle" />
-          </Key>
-          <Property Type="Int32" Name="idDevolucionTransporteDetalle" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idDevolucionTransporte" Nullable="false" />
-          <Property Type="Int32" Name="idCliente" Nullable="false" />
-          <Property Type="Int32" Name="idArticulo" Nullable="false" />
-          <Property Type="Decimal" Name="cantidadRecibida" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="cantidadAceptada" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="precio" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="total" Precision="18" Scale="2" />
-          <Property Type="String" Name="observacion" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="inventario" />
-          <NavigationProperty Name="tblDevolucionTransporte" Relationship="dsi_pos_demoModel.FK_tblDevolucionDetalle" FromRole="tblDevolucionTransporteDetalle" ToRole="tblDevolucionTransporte" />
-        </EntityType>
         <EntityType Name="tblEmpleado">
           <Key>
             <PropertyRef Name="idEmpleado" />
@@ -13068,8 +12366,6 @@
           <NavigationProperty Name="tblsalidaBodegas" Relationship="dsi_pos_demoModel.FK_tblsalidaBodega_tblEmpleado" FromRole="tblEmpleado" ToRole="tblsalidaBodega" />
           <NavigationProperty Name="tblsalidaBodegas1" Relationship="dsi_pos_demoModel.FK_tblsalidaBodega_tblEmpleado1" FromRole="tblEmpleado" ToRole="tblsalidaBodega" />
           <NavigationProperty Name="tblsalidaBodegas2" Relationship="dsi_pos_demoModel.FK_tblsalidaBodega_tblEmpleado2" FromRole="tblEmpleado" ToRole="tblsalidaBodega" />
-          <NavigationProperty Name="tblSalidasTransportesMedios" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Piloto" FromRole="tblEmpleado" ToRole="tblSalidasTransportesMedio" />
-          <NavigationProperty Name="tblSalidasTransportesMediosEmpleados" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosEmpleados_Empleado" FromRole="tblEmpleado" ToRole="tblSalidasTransportesMediosEmpleado" />
         </EntityType>
         <EntityType Name="tblEmpresa">
           <Key>
@@ -13114,8 +12410,6 @@
           <NavigationProperty Name="tblTipoInventario2" Relationship="dsi_pos_demoModel.FK_tblEmpresa_tblTipoInventario2" FromRole="tblEmpresa" ToRole="tblTipoInventario" />
           <NavigationProperty Name="tblMovimientoInventarios" Relationship="dsi_pos_demoModel.FK_tblMovimientoInventario_tblEmpresa" FromRole="tblEmpresa" ToRole="tblMovimientoInventario" />
           <NavigationProperty Name="tblSalidas" Relationship="dsi_pos_demoModel.FK_tblSalida_tblEmpresa" FromRole="tblEmpresa" ToRole="tblSalida" />
-          <NavigationProperty Name="tblSalidasTransportesMedios" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Empresa" FromRole="tblEmpresa" ToRole="tblSalidasTransportesMedio" />
-          <NavigationProperty Name="tblSucursales" Relationship="dsi_pos_demoModel.FK_tblSucursales_tblEmpresas" FromRole="tblEmpresa" ToRole="tblSucursale" />
           <NavigationProperty Name="tblSustitutoes" Relationship="dsi_pos_demoModel.FK_tblSustituto_tblEmpresa" FromRole="tblEmpresa" ToRole="tblSustituto" />
           <NavigationProperty Name="tblTipoInventarios" Relationship="dsi_pos_demoModel.FK_tblTipoInventario_tblEmpresa" FromRole="tblEmpresa" ToRole="tblTipoInventario" />
           <NavigationProperty Name="tblVendedors" Relationship="dsi_pos_demoModel.FK_tblVendedor_tblEmpresa" FromRole="tblEmpresa" ToRole="tblVendedor" />
@@ -13554,7 +12848,6 @@
           <NavigationProperty Name="tbldepartamento" Relationship="dsi_pos_demoModel.FK_tblMunicipio_tbldepartamento" FromRole="tblMunicipio" ToRole="tbldepartamento" />
           <NavigationProperty Name="tblEmpresas" Relationship="dsi_pos_demoModel.FK_tblEmpresa_tblMunicipio" FromRole="tblMunicipio" ToRole="tblEmpresa" />
           <NavigationProperty Name="tblSalidas" Relationship="dsi_pos_demoModel.FK_tblSalida_tblMunicipio" FromRole="tblMunicipio" ToRole="tblSalida" />
-          <NavigationProperty Name="tblSectores" Relationship="dsi_pos_demoModel.FK_tblSectores_tblMunicipio" FromRole="tblMunicipio" ToRole="tblSectore" />
           <NavigationProperty Name="tblClientes" Relationship="dsi_pos_demoModel.FK_tblClientes_tblMunicipio" FromRole="tblMunicipio" ToRole="tblCliente" />
         </EntityType>
         <EntityType Name="tblNotificacione">
@@ -14014,7 +13307,6 @@
           <NavigationProperty Name="tblTipoMovimiento" Relationship="dsi_pos_demoModel.FK_tblSalida_tblTipoMovimiento" FromRole="tblSalida" ToRole="tblTipoMovimiento" />
           <NavigationProperty Name="tblVendedor" Relationship="dsi_pos_demoModel.FK_tblSalida_tblVendedor" FromRole="tblSalida" ToRole="tblVendedor" />
           <NavigationProperty Name="tblsalidaBodegas" Relationship="dsi_pos_demoModel.FK_tblsalidaBodega_tblSalida" FromRole="tblSalida" ToRole="tblsalidaBodega" />
-          <NavigationProperty Name="tblSalidasTransportes" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSalida" FromRole="tblSalida" ToRole="tblSalidasTransporte" />
           <NavigationProperty Name="tblCajas" Relationship="dsi_pos_demoModel.fk_caja_salida" FromRole="tblSalida" ToRole="tblCaja" />
           <NavigationProperty Name="tblCajas1" Relationship="dsi_pos_demoModel.FK_tblCaja_tblSalida" FromRole="tblSalida" ToRole="tblCaja" />
           <NavigationProperty Name="tblUsuario" Relationship="dsi_pos_demoModel.FK_tblSalida_tblUsuarios" FromRole="tblSalida" ToRole="tblUsuario" />
@@ -14060,134 +13352,6 @@
           <Property Type="Int64" Name="idFactura" />
           <NavigationProperty Name="tblFactura" Relationship="dsi_pos_demoModel.FK__tblSalida__idFac__1C330188" FromRole="tblSalidaDetalle_Factura" ToRole="tblFactura" />
           <NavigationProperty Name="tblSalidaDetalle" Relationship="dsi_pos_demoModel.FK__tblSalida__idSal__1B3EDD4F" FromRole="tblSalidaDetalle_Factura" ToRole="tblSalidaDetalle" />
-        </EntityType>
-        <EntityType Name="tblSalidasTransporte">
-          <Key>
-            <PropertyRef Name="idSalidaTransporte" />
-          </Key>
-          <Property Type="Int32" Name="idSalidaTransporte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idSalida" />
-          <Property Type="Int32" Name="idTipoTransporte" />
-          <Property Type="Int32" Name="idSector" />
-          <Property Type="Int32" Name="idTransporteCosteo" />
-          <Property Type="Int32" Name="idSucursal" />
-          <Property Type="String" Name="contacto" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="direccion" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="observacion" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="cantidad" />
-          <Property Type="Decimal" Name="precio" Precision="18" Scale="2" />
-          <Property Type="Boolean" Name="bitDescuento" />
-          <Property Type="Decimal" Name="descuento" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="estado" />
-          <Property Type="String" Name="telefono" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblDevolucionTransportes" Relationship="dsi_pos_demoModel.FK_tblDevolucion_SalidaTransporte" FromRole="tblSalidasTransporte" ToRole="tblDevolucionTransporte" />
-          <NavigationProperty Name="tblSalida" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSalida" FromRole="tblSalidasTransporte" ToRole="tblSalida" />
-          <NavigationProperty Name="tblSectore" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSectores" FromRole="tblSalidasTransporte" ToRole="tblSectore" />
-          <NavigationProperty Name="tblSucursale" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSucursales" FromRole="tblSalidasTransporte" ToRole="tblSucursale" />
-          <NavigationProperty Name="tblTransporteCosteo" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportes_tblTransporteCosteo" FromRole="tblSalidasTransporte" ToRole="tblTransporteCosteo" />
-          <NavigationProperty Name="tblTiposTransporte" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportes_tblTransportes" FromRole="tblSalidasTransporte" ToRole="tblTiposTransporte" />
-          <NavigationProperty Name="tblSalidasTransportesMediosDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_Salidas" FromRole="tblSalidasTransporte" ToRole="tblSalidasTransportesMediosDetalle" />
-        </EntityType>
-        <EntityType Name="tblSalidasTransportesMedio">
-          <Key>
-            <PropertyRef Name="idSalidaTransporteMedio" />
-          </Key>
-          <Property Type="Int32" Name="idSalidaTransporteMedio" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idTransporte" />
-          <Property Type="Int32" Name="idPiloto" />
-          <Property Type="DateTime" Name="fechaTransporte" Precision="3" />
-          <Property Type="Boolean" Name="salida" />
-          <Property Type="String" Name="observacion" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="correlativo" />
-          <Property Type="Int32" Name="idSucursalSalida" />
-          <Property Type="Int32" Name="idEmpresa" />
-          <Property Type="Boolean" Name="anulado" />
-          <Property Type="DateTime" Name="fechaAnulado" Precision="3" />
-          <Property Type="Int32" Name="NumeroViaje" />
-          <Property Type="Decimal" Name="KMGalon" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="idusuario" />
-          <Property Type="Boolean" Name="entrada" />
-          <Property Type="Int32" Name="conceptoEntrada" />
-          <Property Type="Decimal" Name="TotalKms" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="CostoCombustible" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="TotalCombustible" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="TotalPlanilla" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Costo" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="TotalCobro" Precision="18" Scale="2" />
-          <Property Type="Boolean" Name="GastosEnvio" />
-          <NavigationProperty Name="tblConceptosEntradaTransporte" Relationship="dsi_pos_demoModel.FK_ConceptoEntrada" FromRole="tblSalidasTransportesMedio" ToRole="tblConceptosEntradaTransporte" />
-          <NavigationProperty Name="tblDevolucionTransportes" Relationship="dsi_pos_demoModel.FK_tblDevolucion_SalidaTransporteMedio" FromRole="tblSalidasTransportesMedio" ToRole="tblDevolucionTransporte" />
-          <NavigationProperty Name="tblEmpleado" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Piloto" FromRole="tblSalidasTransportesMedio" ToRole="tblEmpleado" />
-          <NavigationProperty Name="tblEmpresa" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Empresa" FromRole="tblSalidasTransportesMedio" ToRole="tblEmpresa" />
-          <NavigationProperty Name="tblSucursale" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Sucursal" FromRole="tblSalidasTransportesMedio" ToRole="tblSucursale" />
-          <NavigationProperty Name="tblTransporte" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Transporte" FromRole="tblSalidasTransportesMedio" ToRole="tblTransporte" />
-          <NavigationProperty Name="tblSalidasTransportesMediosDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_Transporte" FromRole="tblSalidasTransportesMedio" ToRole="tblSalidasTransportesMediosDetalle" />
-          <NavigationProperty Name="tblSalidasTransportesMediosEmpleados" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosEmpleados_Transporte" FromRole="tblSalidasTransportesMedio" ToRole="tblSalidasTransportesMediosEmpleado" />
-          <NavigationProperty Name="tblUsuario" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Usuario" FromRole="tblSalidasTransportesMedio" ToRole="tblUsuario" />
-        </EntityType>
-        <EntityType Name="tblSalidasTransportesMediosDetalle">
-          <Key>
-            <PropertyRef Name="idSalidaTransporteMedioDetalle" />
-          </Key>
-          <Property Type="Int32" Name="idSalidaTransporteMedioDetalle" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idSalidaTransporteMedio" />
-          <Property Type="Int32" Name="idSalidaDetalle" />
-          <Property Type="Decimal" Name="cantidad" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="idSalidaTransporte" />
-          <Property Type="Boolean" Name="reenviado" />
-          <NavigationProperty Name="tblSalidasTransporte" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_Salidas" FromRole="tblSalidasTransportesMediosDetalle" ToRole="tblSalidasTransporte" />
-          <NavigationProperty Name="tblSalidasTransportesMedio" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_Transporte" FromRole="tblSalidasTransportesMediosDetalle" ToRole="tblSalidasTransportesMedio" />
-          <NavigationProperty Name="tblSalidaDetalle" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_SDetalle" FromRole="tblSalidasTransportesMediosDetalle" ToRole="tblSalidaDetalle" />
-        </EntityType>
-        <EntityType Name="tblSalidasTransportesMediosEmpleado">
-          <Key>
-            <PropertyRef Name="idSalidaTransporteMedioEmpleado" />
-          </Key>
-          <Property Type="Int32" Name="idSalidaTransporteMedioEmpleado" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idSalidaTransporteMedio" />
-          <Property Type="Int32" Name="idEmpleado" />
-          <NavigationProperty Name="tblEmpleado" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosEmpleados_Empleado" FromRole="tblSalidasTransportesMediosEmpleado" ToRole="tblEmpleado" />
-          <NavigationProperty Name="tblSalidasTransportesMedio" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosEmpleados_Transporte" FromRole="tblSalidasTransportesMediosEmpleado" ToRole="tblSalidasTransportesMedio" />
-        </EntityType>
-        <EntityType Name="tblSectore">
-          <Key>
-            <PropertyRef Name="idSector" />
-          </Key>
-          <Property Type="Int32" Name="idSector" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idMunicipio" />
-          <Property Type="String" Name="descripcion" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="distancia" Precision="18" Scale="2" />
-          <NavigationProperty Name="tblMunicipio" Relationship="dsi_pos_demoModel.FK_tblSectores_tblMunicipio" FromRole="tblSectore" ToRole="tblMunicipio" />
-          <NavigationProperty Name="tblSalidasTransportes" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSectores" FromRole="tblSectore" ToRole="tblSalidasTransporte" />
-          <NavigationProperty Name="tblSectoresTiposTransportes" Relationship="dsi_pos_demoModel.FK_tblSTT_tblSectores" FromRole="tblSectore" ToRole="tblSectoresTiposTransporte" />
-        </EntityType>
-        <EntityType Name="tblSectoresTiposTransporte">
-          <Key>
-            <PropertyRef Name="idSectoresTiposTransporte" />
-          </Key>
-          <Property Type="Int32" Name="idSectoresTiposTransporte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idSector" />
-          <Property Type="Int32" Name="idTipoTransporte" />
-          <Property Type="Decimal" Name="precio" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="preciominimo" Precision="18" Scale="2" />
-          <NavigationProperty Name="tblSectore" Relationship="dsi_pos_demoModel.FK_tblSTT_tblSectores" FromRole="tblSectoresTiposTransporte" ToRole="tblSectore" />
-          <NavigationProperty Name="tblTiposTransporte" Relationship="dsi_pos_demoModel.FK_tblSTT_tblTiposTransportes" FromRole="tblSectoresTiposTransporte" ToRole="tblTiposTransporte" />
-        </EntityType>
-        <EntityType Name="tblSucursale">
-          <Key>
-            <PropertyRef Name="idSucursal" />
-          </Key>
-          <Property Type="Int32" Name="idSucursal" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idEmpresa" />
-          <Property Type="String" Name="servidor" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="codigo" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="descripcion" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="direccion" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="telefono" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="bitDefault" />
-          <NavigationProperty Name="tblEmpresa" Relationship="dsi_pos_demoModel.FK_tblSucursales_tblEmpresas" FromRole="tblSucursale" ToRole="tblEmpresa" />
-          <NavigationProperty Name="tblSalidasTransportes" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSucursales" FromRole="tblSucursale" ToRole="tblSalidasTransporte" />
-          <NavigationProperty Name="tblSalidasTransportesMedios" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Sucursal" FromRole="tblSucursale" ToRole="tblSalidasTransportesMedio" />
         </EntityType>
         <EntityType Name="tblSurtir">
           <Key>
@@ -14380,39 +13544,6 @@
           <Property Type="Int32" Name="fin" />
           <Property Type="Int32" Name="color" />
           <NavigationProperty Name="tblArticuloTipoPrecio" Relationship="dsi_pos_demoModel.FK_tblTipoPrecio_Rango_tblArticuloTipoPrecio" FromRole="tblTipoPrecio_Rango" ToRole="tblArticuloTipoPrecio" />
-        </EntityType>
-        <EntityType Name="tblTiposTransporte">
-          <Key>
-            <PropertyRef Name="idTipoTransporte" />
-          </Key>
-          <Property Type="Int32" Name="idTipoTransporte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="descripcion" MaxLength="150" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblSalidasTransportes" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportes_tblTransportes" FromRole="tblTiposTransporte" ToRole="tblSalidasTransporte" />
-          <NavigationProperty Name="tblSectoresTiposTransportes" Relationship="dsi_pos_demoModel.FK_tblSTT_tblTiposTransportes" FromRole="tblTiposTransporte" ToRole="tblSectoresTiposTransporte" />
-          <NavigationProperty Name="tblTransportes" Relationship="dsi_pos_demoModel.FK_tblTransportes_tblTiposTransportes" FromRole="tblTiposTransporte" ToRole="tblTransporte" />
-        </EntityType>
-        <EntityType Name="tblTransporteCosteo">
-          <Key>
-            <PropertyRef Name="idTransporteCosteo" />
-          </Key>
-          <Property Type="Int32" Name="idTransporteCosteo" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="codigo" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="descripcion" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="bitFactura" />
-          <NavigationProperty Name="tblSalidasTransportes" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportes_tblTransporteCosteo" FromRole="tblTransporteCosteo" ToRole="tblSalidasTransporte" />
-        </EntityType>
-        <EntityType Name="tblTransporte">
-          <Key>
-            <PropertyRef Name="idTransporte" />
-          </Key>
-          <Property Type="Int32" Name="idTransporte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idTipoTransporte" />
-          <Property Type="String" Name="descripcion" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="placas" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="capacidad" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="KMGalon" Precision="18" Scale="2" />
-          <NavigationProperty Name="tblSalidasTransportesMedios" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Transporte" FromRole="tblTransporte" ToRole="tblSalidasTransportesMedio" />
-          <NavigationProperty Name="tblTiposTransporte" Relationship="dsi_pos_demoModel.FK_tblTransportes_tblTiposTransportes" FromRole="tblTransporte" ToRole="tblTiposTransporte" />
         </EntityType>
         <EntityType Name="tblUnidadMedida">
           <Key>
@@ -15185,18 +14316,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ConceptoEntrada">
-          <End Type="dsi_pos_demoModel.tblConceptosEntradaTransporte" Role="tblConceptosEntradaTransporte" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMedio" Role="tblSalidasTransportesMedio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblConceptosEntradaTransporte">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMedio">
-              <PropertyRef Name="conceptoEntrada" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblContacto_tblContactoTipo">
           <End Type="dsi_pos_demoModel.tblContactoTipo" Role="tblContactoTipo" Multiplicity="0..1" />
           <End Type="dsi_pos_demoModel.tblContacto" Role="tblContacto" Multiplicity="*" />
@@ -15473,42 +14592,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblDevolucion_SalidaTransporte">
-          <End Type="dsi_pos_demoModel.tblSalidasTransporte" Role="tblSalidasTransporte" Multiplicity="1" />
-          <End Type="dsi_pos_demoModel.tblDevolucionTransporte" Role="tblDevolucionTransporte" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidasTransporte">
-              <PropertyRef Name="idSalidaTransporte" />
-            </Principal>
-            <Dependent Role="tblDevolucionTransporte">
-              <PropertyRef Name="idSalidaTransporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblDevolucion_SalidaTransporteMedio">
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMedio" Role="tblSalidasTransportesMedio" Multiplicity="1" />
-          <End Type="dsi_pos_demoModel.tblDevolucionTransporte" Role="tblDevolucionTransporte" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidasTransportesMedio">
-              <PropertyRef Name="idSalidaTransporteMedio" />
-            </Principal>
-            <Dependent Role="tblDevolucionTransporte">
-              <PropertyRef Name="idSalidaTransporteMedio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblDevolucionDetalle">
-          <End Type="dsi_pos_demoModel.tblDevolucionTransporte" Role="tblDevolucionTransporte" Multiplicity="1" />
-          <End Type="dsi_pos_demoModel.tblDevolucionTransporteDetalle" Role="tblDevolucionTransporteDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblDevolucionTransporte">
-              <PropertyRef Name="idDevolucionTransporte" />
-            </Principal>
-            <Dependent Role="tblDevolucionTransporteDetalle">
-              <PropertyRef Name="idDevolucionTransporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblEmpleado_tblpuesto">
           <End Type="dsi_pos_demoModel.tblpuesto" Role="tblpuesto" Multiplicity="0..1" />
           <End Type="dsi_pos_demoModel.tblEmpleado" Role="tblEmpleado" Multiplicity="*" />
@@ -15554,30 +14637,6 @@
             </Principal>
             <Dependent Role="tblsalidaBodega">
               <PropertyRef Name="empacado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMedios_Piloto">
-          <End Type="dsi_pos_demoModel.tblEmpleado" Role="tblEmpleado" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMedio" Role="tblSalidasTransportesMedio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEmpleado">
-              <PropertyRef Name="idEmpleado" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMedio">
-              <PropertyRef Name="idPiloto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMediosEmpleados_Empleado">
-          <End Type="dsi_pos_demoModel.tblEmpleado" Role="tblEmpleado" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMediosEmpleado" Role="tblSalidasTransportesMediosEmpleado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEmpleado">
-              <PropertyRef Name="idEmpleado" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMediosEmpleado">
-              <PropertyRef Name="idEmpleado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -15649,30 +14708,6 @@
               <PropertyRef Name="idEmpresa" />
             </Principal>
             <Dependent Role="tblSalida">
-              <PropertyRef Name="idEmpresa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMedios_Empresa">
-          <End Type="dsi_pos_demoModel.tblEmpresa" Role="tblEmpresa" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMedio" Role="tblSalidasTransportesMedio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEmpresa">
-              <PropertyRef Name="idEmpresa" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMedio">
-              <PropertyRef Name="idEmpresa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSucursales_tblEmpresas">
-          <End Type="dsi_pos_demoModel.tblEmpresa" Role="tblEmpresa" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSucursale" Role="tblSucursale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEmpresa">
-              <PropertyRef Name="idEmpresa" />
-            </Principal>
-            <Dependent Role="tblSucursale">
               <PropertyRef Name="idEmpresa" />
             </Dependent>
           </ReferentialConstraint>
@@ -16181,18 +15216,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblSectores_tblMunicipio">
-          <End Type="dsi_pos_demoModel.tblMunicipio" Role="tblMunicipio" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSectore" Role="tblSectore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMunicipio">
-              <PropertyRef Name="idmunicipio" />
-            </Principal>
-            <Dependent Role="tblSectore">
-              <PropertyRef Name="idMunicipio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TipoNotificacion">
           <End Type="dsi_pos_demoModel.tblTipoNotificacion" Role="tblTipoNotificacion" Multiplicity="1" />
           <End Type="dsi_pos_demoModel.tblNotificacione" Role="tblNotificacione" Multiplicity="*" />
@@ -16493,150 +15516,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblSalidasTransportes_tblSalida">
-          <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransporte" Role="tblSalidasTransporte" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalida">
-              <PropertyRef Name="idSalida" />
-            </Principal>
-            <Dependent Role="tblSalidasTransporte">
-              <PropertyRef Name="idSalida" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportes_tblSectores">
-          <End Type="dsi_pos_demoModel.tblSectore" Role="tblSectore" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransporte" Role="tblSalidasTransporte" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSectore">
-              <PropertyRef Name="idSector" />
-            </Principal>
-            <Dependent Role="tblSalidasTransporte">
-              <PropertyRef Name="idSector" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportes_tblSucursales">
-          <End Type="dsi_pos_demoModel.tblSucursale" Role="tblSucursale" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransporte" Role="tblSalidasTransporte" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSucursale">
-              <PropertyRef Name="idSucursal" />
-            </Principal>
-            <Dependent Role="tblSalidasTransporte">
-              <PropertyRef Name="idSucursal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportes_tblTransporteCosteo">
-          <End Type="dsi_pos_demoModel.tblTransporteCosteo" Role="tblTransporteCosteo" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransporte" Role="tblSalidasTransporte" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblTransporteCosteo">
-              <PropertyRef Name="idTransporteCosteo" />
-            </Principal>
-            <Dependent Role="tblSalidasTransporte">
-              <PropertyRef Name="idTransporteCosteo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportes_tblTransportes">
-          <End Type="dsi_pos_demoModel.tblTiposTransporte" Role="tblTiposTransporte" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransporte" Role="tblSalidasTransporte" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblTiposTransporte">
-              <PropertyRef Name="idTipoTransporte" />
-            </Principal>
-            <Dependent Role="tblSalidasTransporte">
-              <PropertyRef Name="idTipoTransporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMediosDetalles_Salidas">
-          <End Type="dsi_pos_demoModel.tblSalidasTransporte" Role="tblSalidasTransporte" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMediosDetalle" Role="tblSalidasTransportesMediosDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidasTransporte">
-              <PropertyRef Name="idSalidaTransporte" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMediosDetalle">
-              <PropertyRef Name="idSalidaTransporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMedios_Sucursal">
-          <End Type="dsi_pos_demoModel.tblSucursale" Role="tblSucursale" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMedio" Role="tblSalidasTransportesMedio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSucursale">
-              <PropertyRef Name="idSucursal" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMedio">
-              <PropertyRef Name="idSucursalSalida" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMedios_Transporte">
-          <End Type="dsi_pos_demoModel.tblTransporte" Role="tblTransporte" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMedio" Role="tblSalidasTransportesMedio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblTransporte">
-              <PropertyRef Name="idTransporte" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMedio">
-              <PropertyRef Name="idTransporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMediosDetalles_Transporte">
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMedio" Role="tblSalidasTransportesMedio" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMediosDetalle" Role="tblSalidasTransportesMediosDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidasTransportesMedio">
-              <PropertyRef Name="idSalidaTransporteMedio" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMediosDetalle">
-              <PropertyRef Name="idSalidaTransporteMedio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMediosEmpleados_Transporte">
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMedio" Role="tblSalidasTransportesMedio" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMediosEmpleado" Role="tblSalidasTransportesMediosEmpleado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidasTransportesMedio">
-              <PropertyRef Name="idSalidaTransporteMedio" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMediosEmpleado">
-              <PropertyRef Name="idSalidaTransporteMedio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSTT_tblSectores">
-          <End Type="dsi_pos_demoModel.tblSectore" Role="tblSectore" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSectoresTiposTransporte" Role="tblSectoresTiposTransporte" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSectore">
-              <PropertyRef Name="idSector" />
-            </Principal>
-            <Dependent Role="tblSectoresTiposTransporte">
-              <PropertyRef Name="idSector" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSTT_tblTiposTransportes">
-          <End Type="dsi_pos_demoModel.tblTiposTransporte" Role="tblTiposTransporte" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSectoresTiposTransporte" Role="tblSectoresTiposTransporte" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblTiposTransporte">
-              <PropertyRef Name="idTipoTransporte" />
-            </Principal>
-            <Dependent Role="tblSectoresTiposTransporte">
-              <PropertyRef Name="idTipoTransporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblSurtir_tblVendedor">
           <End Type="dsi_pos_demoModel.tblVendedor" Role="tblVendedor" Multiplicity="0..1" />
           <End Type="dsi_pos_demoModel.tblSurtir" Role="tblSurtir" Multiplicity="*" />
@@ -16682,18 +15561,6 @@
             </Principal>
             <Dependent Role="tblTipoMovimiento">
               <PropertyRef Name="idTipoInventario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblTransportes_tblTiposTransportes">
-          <End Type="dsi_pos_demoModel.tblTiposTransporte" Role="tblTiposTransporte" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblTransporte" Role="tblTransporte" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblTiposTransporte">
-              <PropertyRef Name="idTipoTransporte" />
-            </Principal>
-            <Dependent Role="tblTransporte">
-              <PropertyRef Name="idTipoTransporte" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -18718,7 +17585,6 @@
           <NavigationProperty Name="tblPendientePorPedirs1" Relationship="dsi_pos_demoModel.FK_tblPendientePorPedir_tblUsuariosConfirma" FromRole="tblUsuario" ToRole="tblPendientePorPedir" />
           <NavigationProperty Name="tblSalidas" Relationship="dsi_pos_demoModel.FK_tblSalida_tblUsuarios" FromRole="tblUsuario" ToRole="tblSalida" />
           <NavigationProperty Name="tblSalidas1" Relationship="dsi_pos_demoModel.FK_tblSalida_tblUsuarios1" FromRole="tblUsuario" ToRole="tblSalida" />
-          <NavigationProperty Name="tblSalidasTransportesMedios" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Usuario" FromRole="tblUsuario" ToRole="tblSalidasTransportesMedio" />
           <NavigationProperty Name="tblSurtirs" Relationship="dsi_pos_demoModel.FK_tblSurtir_tblUsuarios" FromRole="tblUsuario" ToRole="tblSurtir" />
           <NavigationProperty Name="tblVendedor" Relationship="dsi_pos_demoModel.FK_tblUsuarios_tblVendedor" FromRole="tblUsuario" ToRole="tblVendedor" />
           <NavigationProperty Name="tblPrecargas" Relationship="dsi_pos_demoModel.FK_Usuario_Precarga" FromRole="tblUsuario" ToRole="tblPrecarga" />
@@ -19143,18 +18009,6 @@
             </Principal>
             <Dependent Role="tblSalida">
               <PropertyRef Name="usuarioAutorizo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMedios_Usuario">
-          <End Type="dsi_pos_demoModel.tblUsuario" Role="tblUsuario" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMedio" Role="tblSalidasTransportesMedio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblUsuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMedio">
-              <PropertyRef Name="idusuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -19735,6 +18589,8 @@
           <NavigationProperty Name="tblSurtirs" Relationship="dsi_pos_demoModel.FK_tblSurtir_tblArticulo" FromRole="tblArticulo" ToRole="tblSurtir" />
           <NavigationProperty Name="tblSustitutoes" Relationship="dsi_pos_demoModel.FK_tblSustituto_tblArticulo" FromRole="tblArticulo" ToRole="tblSustituto" />
           <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblArticulos" FromRole="tblArticulo" ToRole="tblSalidaDetalle" />
+          <Property Type="Boolean" Name="bitCrea" />
+          <Property Type="Boolean" Name="bitModifica" />
         </EntityType>
         <Association Name="FK_Articulo_PrecargaD">
           <End Type="dsi_pos_demoModel.tblArticulo" Role="tblArticulo" Multiplicity="1" />
@@ -20184,7 +19040,6 @@
           <NavigationProperty Name="tblSalidaDetalle1" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalidaDetalle" FromRole="tblSalidaDetalle" ToRole="tblSalidaDetalle1" />
           <NavigationProperty Name="tblSalidaDetalle2" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalidaDetalle" FromRole="tblSalidaDetalle1" ToRole="tblSalidaDetalle" />
           <NavigationProperty Name="tblTipoInventario" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblTipoInventario" FromRole="tblSalidaDetalle" ToRole="tblTipoInventario" />
-          <NavigationProperty Name="tblSalidasTransportesMediosDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_SDetalle" FromRole="tblSalidaDetalle" ToRole="tblSalidasTransportesMediosDetalle" />
           <NavigationProperty Name="tblSurtirs" Relationship="dsi_pos_demoModel.FK_tblSurtir_tblSalidaDetalle" FromRole="tblSalidaDetalle" ToRole="tblSurtir" />
           <NavigationProperty Name="tblUnidadMedida" Relationship="dsi_pos_demoModel.FK_UnidadMedidaVenta" FromRole="tblSalidaDetalle" ToRole="tblUnidadMedida" />
         </EntityType>
@@ -20293,18 +19148,6 @@
             </Principal>
             <Dependent Role="tblSalidaDetalle">
               <PropertyRef Name="tipoInventario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSalidasTransportesMediosDetalles_SDetalle">
-          <End Type="dsi_pos_demoModel.tblSalidaDetalle" Role="tblSalidaDetalle" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalidasTransportesMediosDetalle" Role="tblSalidasTransportesMediosDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalidaDetalle">
-              <PropertyRef Name="idSalidaDetalle" />
-            </Principal>
-            <Dependent Role="tblSalidasTransportesMediosDetalle">
-              <PropertyRef Name="idSalidaDetalle" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -20845,6 +19688,13 @@
           <Property Type="Boolean" Name="empacado" />
           <Property Type="Int32" Name="errores" />
         </EntityType>
+        <ComplexType Name="sp_SaldoInicialReservaOtros_Result">
+          <Property Type="Decimal" Name="SaldoInicial" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="ReservaHistorial" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="ReservaActual" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="AjustesHistorial" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="AjustesActual" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
         <ComplexType Name="sp_bodega_lista_Result">
           <Property Type="Int32" Name="Bodega" Nullable="false" />
           <Property Type="Int32" Name="Salida" Nullable="false" />
@@ -20856,18 +19706,25 @@
           <Property Type="String" Name="HoraEmpacado" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Vendedor" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="txbSacado" Nullable="false" />
+          <Property Type="String" Name="txmErrores" Nullable="false" />
           <Property Type="String" Name="txbRevisado" Nullable="false" />
           <Property Type="String" Name="txbEmpacado" Nullable="false" />
           <Property Type="String" Name="txmObservacion" Nullable="false" MaxLength="400" />
           <Property Type="Int32" Name="Errores" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="sp_SaldoInicialReservaOtros_Result">
-          <Property Type="Decimal" Name="SaldoInicial" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="ReservaHistorial" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="ReservaActual" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="AjustesHistorial" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="AjustesActual" Nullable="true" Precision="18" Scale="2" />
-        </ComplexType>
+        <EntityType Name="tblSucursale">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Type="Int32" Name="Codigo" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Servidor" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BD" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Observacion" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Central" Nullable="false" />
+          <Property Type="Boolean" Name="Sucursal" Nullable="false" />
+          <Property Type="Boolean" Name="habilitado" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -21720,16 +20577,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblConceptosEntradaTransportes">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblConceptosEntradaTransporte">
-              <MappingFragment StoreEntitySet="tblConceptosEntradaTransportes">
-                <ScalarProperty Name="reasignar" ColumnName="reasignar" />
-                <ScalarProperty Name="combo" ColumnName="combo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblConfigRedondeos">
             <EntityTypeMapping TypeName="dsi_pos_demoModel.tblConfigRedondeo">
               <MappingFragment StoreEntitySet="tblConfigRedondeo">
@@ -21972,40 +20819,6 @@
                 <ScalarProperty Name="detalleEntrada" ColumnName="detalleEntrada" />
                 <ScalarProperty Name="devolucionProveedor" ColumnName="devolucionProveedor" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblDevolucionTransportes">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblDevolucionTransporte">
-              <MappingFragment StoreEntitySet="tblDevolucionTransporte">
-                <ScalarProperty Name="Confirmado" ColumnName="Confirmado" />
-                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
-                <ScalarProperty Name="tipoMovimiento" ColumnName="tipoMovimiento" />
-                <ScalarProperty Name="idSalidaTransporteMedio" ColumnName="idSalidaTransporteMedio" />
-                <ScalarProperty Name="idSalidaTransporte" ColumnName="idSalidaTransporte" />
-                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
-                <ScalarProperty Name="montoTotal" ColumnName="montoTotal" />
-                <ScalarProperty Name="anuladoFecha" ColumnName="anuladoFecha" />
-                <ScalarProperty Name="anulado" ColumnName="anulado" />
-                <ScalarProperty Name="vendedor" ColumnName="vendedor" />
-                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
-                <ScalarProperty Name="idDevolucionTransporte" ColumnName="idDevolucionTransporte" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblDevolucionTransporteDetalles">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblDevolucionTransporteDetalle">
-              <MappingFragment StoreEntitySet="tblDevolucionTransporteDetalle">
-                <ScalarProperty Name="inventario" ColumnName="inventario" />
-                <ScalarProperty Name="observacion" ColumnName="observacion" />
-                <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="cantidadAceptada" ColumnName="cantidadAceptada" />
-                <ScalarProperty Name="cantidadRecibida" ColumnName="cantidadRecibida" />
-                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
-                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
-                <ScalarProperty Name="idDevolucionTransporte" ColumnName="idDevolucionTransporte" />
-                <ScalarProperty Name="idDevolucionTransporteDetalle" ColumnName="idDevolucionTransporteDetalle" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -22883,112 +21696,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblSalidasTransportes">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSalidasTransporte">
-              <MappingFragment StoreEntitySet="tblSalidasTransportes">
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="descuento" ColumnName="descuento" />
-                <ScalarProperty Name="bitDescuento" ColumnName="bitDescuento" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="observacion" ColumnName="observacion" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="contacto" ColumnName="contacto" />
-                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
-                <ScalarProperty Name="idTransporteCosteo" ColumnName="idTransporteCosteo" />
-                <ScalarProperty Name="idSector" ColumnName="idSector" />
-                <ScalarProperty Name="idTipoTransporte" ColumnName="idTipoTransporte" />
-                <ScalarProperty Name="idSalida" ColumnName="idSalida" />
-                <ScalarProperty Name="idSalidaTransporte" ColumnName="idSalidaTransporte" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblSalidasTransportesMedios">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSalidasTransportesMedio">
-              <MappingFragment StoreEntitySet="tblSalidasTransportesMedios">
-                <ScalarProperty Name="GastosEnvio" ColumnName="GastosEnvio" />
-                <ScalarProperty Name="TotalCobro" ColumnName="TotalCobro" />
-                <ScalarProperty Name="Costo" ColumnName="Costo" />
-                <ScalarProperty Name="TotalPlanilla" ColumnName="TotalPlanilla" />
-                <ScalarProperty Name="TotalCombustible" ColumnName="TotalCombustible" />
-                <ScalarProperty Name="CostoCombustible" ColumnName="CostoCombustible" />
-                <ScalarProperty Name="TotalKms" ColumnName="TotalKms" />
-                <ScalarProperty Name="conceptoEntrada" ColumnName="conceptoEntrada" />
-                <ScalarProperty Name="entrada" ColumnName="entrada" />
-                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
-                <ScalarProperty Name="KMGalon" ColumnName="KMGalon" />
-                <ScalarProperty Name="NumeroViaje" ColumnName="NumeroViaje" />
-                <ScalarProperty Name="fechaAnulado" ColumnName="fechaAnulado" />
-                <ScalarProperty Name="anulado" ColumnName="anulado" />
-                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
-                <ScalarProperty Name="idSucursalSalida" ColumnName="idSucursalSalida" />
-                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
-                <ScalarProperty Name="observacion" ColumnName="observacion" />
-                <ScalarProperty Name="salida" ColumnName="salida" />
-                <ScalarProperty Name="fechaTransporte" ColumnName="fechaTransporte" />
-                <ScalarProperty Name="idPiloto" ColumnName="idPiloto" />
-                <ScalarProperty Name="idTransporte" ColumnName="idTransporte" />
-                <ScalarProperty Name="idSalidaTransporteMedio" ColumnName="idSalidaTransporteMedio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblSalidasTransportesMediosDetalles">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSalidasTransportesMediosDetalle">
-              <MappingFragment StoreEntitySet="tblSalidasTransportesMediosDetalles">
-                <ScalarProperty Name="reenviado" ColumnName="reenviado" />
-                <ScalarProperty Name="idSalidaTransporte" ColumnName="idSalidaTransporte" />
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="idSalidaDetalle" ColumnName="idSalidaDetalle" />
-                <ScalarProperty Name="idSalidaTransporteMedio" ColumnName="idSalidaTransporteMedio" />
-                <ScalarProperty Name="idSalidaTransporteMedioDetalle" ColumnName="idSalidaTransporteMedioDetalle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblSalidasTransportesMediosEmpleados">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSalidasTransportesMediosEmpleado">
-              <MappingFragment StoreEntitySet="tblSalidasTransportesMediosEmpleados">
-                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
-                <ScalarProperty Name="idSalidaTransporteMedio" ColumnName="idSalidaTransporteMedio" />
-                <ScalarProperty Name="idSalidaTransporteMedioEmpleado" ColumnName="idSalidaTransporteMedioEmpleado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblSectores">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSectore">
-              <MappingFragment StoreEntitySet="tblSectores">
-                <ScalarProperty Name="distancia" ColumnName="distancia" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="idMunicipio" ColumnName="idMunicipio" />
-                <ScalarProperty Name="idSector" ColumnName="idSector" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblSectoresTiposTransportes">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSectoresTiposTransporte">
-              <MappingFragment StoreEntitySet="tblSectoresTiposTransportes">
-                <ScalarProperty Name="preciominimo" ColumnName="preciominimo" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="idTipoTransporte" ColumnName="idTipoTransporte" />
-                <ScalarProperty Name="idSector" ColumnName="idSector" />
-                <ScalarProperty Name="idSectoresTiposTransporte" ColumnName="idSectoresTiposTransporte" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblSucursales">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSucursale">
-              <MappingFragment StoreEntitySet="tblSucursales">
-                <ScalarProperty Name="bitDefault" ColumnName="bitDefault" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="servidor" ColumnName="servidor" />
-                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
-                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblSurtirs">
             <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSurtir">
               <MappingFragment StoreEntitySet="tblSurtir">
@@ -23142,36 +21849,6 @@
                 <ScalarProperty Name="inicio" ColumnName="inicio" />
                 <ScalarProperty Name="tipoPrecio" ColumnName="tipoPrecio" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblTiposTransportes">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblTiposTransporte">
-              <MappingFragment StoreEntitySet="tblTiposTransportes">
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="idTipoTransporte" ColumnName="idTipoTransporte" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblTransporteCosteos">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblTransporteCosteo">
-              <MappingFragment StoreEntitySet="tblTransporteCosteo">
-                <ScalarProperty Name="bitFactura" ColumnName="bitFactura" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="idTransporteCosteo" ColumnName="idTransporteCosteo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblTransportes">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblTransporte">
-              <MappingFragment StoreEntitySet="tblTransportes">
-                <ScalarProperty Name="KMGalon" ColumnName="KMGalon" />
-                <ScalarProperty Name="capacidad" ColumnName="capacidad" />
-                <ScalarProperty Name="placas" ColumnName="placas" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="idTipoTransporte" ColumnName="idTipoTransporte" />
-                <ScalarProperty Name="idTransporte" ColumnName="idTransporte" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -25895,6 +24572,8 @@
           <EntitySetMapping Name="tblArticuloes">
             <EntityTypeMapping TypeName="dsi_pos_demoModel.tblArticulo">
               <MappingFragment StoreEntitySet="tblArticulo">
+                <ScalarProperty Name="bitModifica" ColumnName="bitModifica" />
+                <ScalarProperty Name="bitCrea" ColumnName="bitCrea" />
                 <ScalarProperty Name="bitPromocion" ColumnName="bitPromocion" />
                 <ScalarProperty Name="CantidadPromocion" ColumnName="CantidadPromocion" />
                 <ScalarProperty Name="CuotaPromocion" ColumnName="CuotaPromocion" />
@@ -26231,6 +24910,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_SaldoInicialReservaOtros" FunctionName="mdlModeloDatos.Store.sp_SaldoInicialReservaOtros">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_SaldoInicialReservaOtros_Result">
+                <ScalarProperty Name="SaldoInicial" ColumnName="SaldoInicial" />
+                <ScalarProperty Name="ReservaHistorial" ColumnName="ReservaHistorial" />
+                <ScalarProperty Name="ReservaActual" ColumnName="ReservaActual" />
+                <ScalarProperty Name="AjustesHistorial" ColumnName="AjustesHistorial" />
+                <ScalarProperty Name="AjustesActual" ColumnName="AjustesActual" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_bodega_lista" FunctionName="mdlModeloDatos.Store.sp_bodega_lista">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_bodega_lista_Result">
@@ -26244,6 +24934,7 @@
                 <ScalarProperty Name="HoraEmpacado" ColumnName="HoraEmpacado" />
                 <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
                 <ScalarProperty Name="txbSacado" ColumnName="txbSacado" />
+                <ScalarProperty Name="txmErrores" ColumnName="txmErrores" />
                 <ScalarProperty Name="txbRevisado" ColumnName="txbRevisado" />
                 <ScalarProperty Name="txbEmpacado" ColumnName="txbEmpacado" />
                 <ScalarProperty Name="txmObservacion" ColumnName="txmObservacion" />
@@ -26251,17 +24942,20 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_SaldoInicialReservaOtros" FunctionName="mdlModeloDatos.Store.sp_SaldoInicialReservaOtros">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_SaldoInicialReservaOtros_Result">
-                <ScalarProperty Name="SaldoInicial" ColumnName="SaldoInicial" />
-                <ScalarProperty Name="ReservaHistorial" ColumnName="ReservaHistorial" />
-                <ScalarProperty Name="ReservaActual" ColumnName="ReservaActual" />
-                <ScalarProperty Name="AjustesHistorial" ColumnName="AjustesHistorial" />
-                <ScalarProperty Name="AjustesActual" ColumnName="AjustesActual" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <EntitySetMapping Name="tblSucursales">
+            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSucursale">
+              <MappingFragment StoreEntitySet="tblSucursales">
+                <ScalarProperty Name="habilitado" ColumnName="habilitado" />
+                <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
+                <ScalarProperty Name="Central" ColumnName="Central" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+                <ScalarProperty Name="BD" ColumnName="BD" />
+                <ScalarProperty Name="Servidor" ColumnName="Servidor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

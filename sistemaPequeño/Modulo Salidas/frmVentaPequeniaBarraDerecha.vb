@@ -386,16 +386,16 @@ Public Class frmVentaPequeniaBarraDerecha
                     iddetalle = detalle.idSalidaDetalle
 
 
-                    Dim envdetalle As List(Of tblSalidasTransportesMediosDetalle) = (From x In conexion.tblSalidasTransportesMediosDetalles Where x.idSalidaDetalle = iddetalle Select x).ToList
+                    ''Dim envdetalle As List(Of tblSalidasTransportesMediosDetalle) = (From x In conexion.tblSalidasTransportesMediosDetalles Where x.idSalidaDetalle = iddetalle Select x).ToList
 
-                    For Each envio As tblSalidasTransportesMediosDetalle In envdetalle
+                    ''For Each envio As tblSalidasTransportesMediosDetalle In envdetalle
 
-                        If envio.cantidad > 0 Then
-                            anula = False
-                            Exit For
-                        End If
+                    ''    If envio.cantidad > 0 Then
+                    ''        anula = False
+                    ''        Exit For
+                    ''    End If
 
-                    Next
+                    ''Next
 
                     If anula = False Then
                         Exit For

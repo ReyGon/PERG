@@ -79,18 +79,18 @@ Public Class frmReasignacionProductos
                         conn.Open()
                         conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
-                        Dim contador As Object = (From x In conexion.tblSalidasTransportesMediosDetalles Where x.idSalidaTransporteMedio = transportemedio And x.idSalidaTransporte = transporte And x.reenviado = False Select x).Count
+                        ''Dim contador As Object = (From x In conexion.tblSalidasTransportesMediosDetalles Where x.idSalidaTransporteMedio = transportemedio And x.idSalidaTransporte = transporte And x.reenviado = False Select x).Count
 
-                        For fila As Integer = 0 To contador - 1
+                        ''For fila As Integer = 0 To contador - 1
 
-                            Dim salida As tblSalidasTransportesMediosDetalle = (From x In conexion.tblSalidasTransportesMediosDetalles Where x.idSalidaTransporte = transporte And x.idSalidaTransporteMedio = transportemedio And x.reenviado = False Select x).Take(1).FirstOrDefault
+                        ''    Dim salida As tblSalidasTransportesMediosDetalle = (From x In conexion.tblSalidasTransportesMediosDetalles Where x.idSalidaTransporte = transporte And x.idSalidaTransporteMedio = transportemedio And x.reenviado = False Select x).Take(1).FirstOrDefault
 
-                            salida.cantidad = 0
-                            salida.reenviado = True
+                        ''    salida.cantidad = 0
+                        ''    salida.reenviado = True
 
-                            conexion.SaveChanges()
+                        ''    conexion.SaveChanges()
 
-                        Next
+                        ''Next
                         conn.Close()
                     End Using
 

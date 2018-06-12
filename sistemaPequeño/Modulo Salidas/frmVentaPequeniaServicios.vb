@@ -18,11 +18,11 @@
 #Region "Eventos"
     'CLICK EN EL BOTON TRANSPORTE
     Private Sub btnTransporte_Click(sender As Object, e As EventArgs) Handles btnTransporte.Click
-        Dim formTransporte As New frmVentaPequeniaTransporteAgregar
-        formTransporte.Text = "Agregar transporte"
-        formTransporte.StartPosition = FormStartPosition.CenterScreen
-        formTransporte.ShowDialog()
-        formTransporte.Dispose()
+        ''Dim formTransporte As New frmVentaPequeniaTransporteAgregar
+        ''formTransporte.Text = "Agregar transporte"
+        ''formTransporte.StartPosition = FormStartPosition.CenterScreen
+        ''formTransporte.ShowDialog()
+        ''formTransporte.Dispose()
     End Sub
 
     Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click

@@ -242,14 +242,14 @@
 
     Private Sub itemSectores_Click(sender As Object, e As EventArgs) Handles itemSectores.Click
         Try
-            Dim frm As Form = frmSector
-            frm.Text = "Sectores"
-            frm.MdiParent = frmMenuPrincipal
+            ''Dim frm As Form = frmSector
+            ''frm.Text = "Sectores"
+            ''frm.MdiParent = frmMenuPrincipal
 
-            If permiso.PermisoMantenimientoTelerik(frm, True) = True Then
-                fnFRMhijos_cerrar(frm)
-                Me.Hide()
-            End If
+            ''If permiso.PermisoMantenimientoTelerik(frm, True) = True Then
+            ''    fnFRMhijos_cerrar(frm)
+            ''    Me.Hide()
+            ''End If
         Catch ex As Exception
         End Try
     End Sub

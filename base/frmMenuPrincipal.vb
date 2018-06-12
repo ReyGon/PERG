@@ -186,13 +186,10 @@ Public Class frmMenuPrincipal
         frmComprasVentasMes.Dispose()
     End Sub
 
-    
-    
     Private Sub itemImportarVentas_Click(sender As System.Object, e As System.EventArgs) Handles itemImportarVentas.Click
         frmImportarVentas.Text = "Importar Ventas"
         frmImportarVentas.StartPosition = FormStartPosition.CenterParent
         frmImportarVentas.Show()
-
     End Sub
 
     Private Sub itemImportarCompras_Click(sender As System.Object, e As System.EventArgs) Handles itemImportarCompras.Click
@@ -287,33 +284,33 @@ Public Class frmMenuPrincipal
         permiso.PermisoFrmBaseEspeciales(frm, True)
     End Sub
 
-    Private Sub itemTiposTransportes_Click(sender As Object, e As EventArgs)
-        Dim frm = frmTiposTransportes
-        frm.text = "Tipos de Transporte"
-        frm.mdiparent = Me
-        permiso.PermisoMantenimientoTelerik(frm, True)
-    End Sub
+    ''Private Sub itemTiposTransportes_Click(sender As Object, e As EventArgs)
+    ''    Dim frm = frmTiposTransportes
+    ''    frm.text = "Tipos de Transporte"
+    ''    frm.mdiparent = Me
+    ''    permiso.PermisoMantenimientoTelerik(frm, True)
+    ''End Sub
 
-    Private Sub itemVehiculos_Click(sender As Object, e As EventArgs)
-        Dim frm = frmTransportes
-        frm.text = "Transporte"
-        frm.mdiparent = Me
-        permiso.PermisoMantenimientoTelerik(frm, True)
-    End Sub
+    ''Private Sub itemVehiculos_Click(sender As Object, e As EventArgs)
+    ''    Dim frm = frmTransportes
+    ''    frm.text = "Transporte"
+    ''    frm.mdiparent = Me
+    ''    permiso.PermisoMantenimientoTelerik(frm, True)
+    ''End Sub
 
-    Private Sub itemSectoresTiposTransportes_Click(sender As Object, e As EventArgs)
-        Dim frm = frmSectoresTiposTransportes
-        frm.text = "Sectores con Tipos de Transportes"
-        frm.mdiparent = Me
-        permiso.PermisoMantenimientoTelerik(frm, True)
-    End Sub
+    ''Private Sub itemSectoresTiposTransportes_Click(sender As Object, e As EventArgs)
+    ''    Dim frm = frmSectoresTiposTransportes
+    ''    frm.text = "Sectores con Tipos de Transportes"
+    ''    frm.mdiparent = Me
+    ''    permiso.PermisoMantenimientoTelerik(frm, True)
+    ''End Sub
 
-    Private Sub itemSectores_Click(sender As Object, e As EventArgs)
-        Dim frm = frmSector
-        frm.text = "Sectores"
-        frm.mdiparent = Me
-        permiso.PermisoMantenimientoTelerik(frm, True)
-    End Sub
+    ''Private Sub itemSectores_Click(sender As Object, e As EventArgs)
+    ''    Dim frm = frmSector
+    ''    frm.text = "Sectores"
+    ''    frm.mdiparent = Me
+    ''    permiso.PermisoMantenimientoTelerik(frm, True)
+    ''End Sub
 
     Private Sub itemSucursales_Click(sender As Object, e As EventArgs) Handles itemSucursales.Click
         Dim frm As New frmSucursales

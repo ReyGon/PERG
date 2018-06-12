@@ -539,12 +539,6 @@
     <Compile Include="Modulo de Clientes\frmPagosTranstio.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modulo de Clientes\frmSector.Designer.vb">
-      <DependentUpon>frmSector.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Modulo de Clientes\frmSector.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Modulo de Empresa\frmCajaMovimiento.Designer.vb">
       <DependentUpon>frmCajaMovimiento.vb</DependentUpon>
     </Compile>
@@ -669,12 +663,6 @@
       <DependentUpon>frmPerfilUsuario.vb</DependentUpon>
     </Compile>
     <Compile Include="Modulo de Empresa\frmPerfilUsuario.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modulo de Empresa\frmSectoresTiposTransportes.Designer.vb">
-      <DependentUpon>frmSectoresTiposTransportes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Modulo de Empresa\frmSectoresTiposTransportes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modulo de Empresa\frmSucursales.Designer.vb">
@@ -1173,24 +1161,6 @@
       <DependentUpon>frmListaNotificaciones.vb</DependentUpon>
     </Compile>
     <Compile Include="Modulo Notificaciones\frmListaNotificaciones.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modulo Transporte\frmEmpresaTransporte.Designer.vb">
-      <DependentUpon>frmEmpresaTransporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Modulo Transporte\frmEmpresaTransporte.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modulo Transporte\frmTiposTransportes.Designer.vb">
-      <DependentUpon>frmTiposTransportes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Modulo Transporte\frmTiposTransportes.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modulo Transporte\frmTransportes.Designer.vb">
-      <DependentUpon>frmTransportes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Modulo Transporte\frmTransportes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modulos Dinamicos\frmReportesDinamicos.Designer.vb">
@@ -1717,34 +1687,10 @@
     <Compile Include="sistemaPequeño\Modulo Clientes\frmClientePequenioLista.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmConfirmacionEntradaTransporte.Designer.vb">
-      <DependentUpon>frmConfirmacionEntradaTransporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmConfirmacionEntradaTransporte.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaAsignar.Designer.vb">
-      <DependentUpon>frmDespachoFacturaAsignar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaAsignar.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaBarraDerecha.Designer.vb">
       <DependentUpon>frmDespachoFacturaBarraDerecha.vb</DependentUpon>
     </Compile>
     <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaBarraDerecha.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaListaAsignar.Designer.vb">
-      <DependentUpon>frmDespachoFacturaListaAsignar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaListaAsignar.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaListaTransportes.Designer.vb">
-      <DependentUpon>frmDespachoFacturaListaTransportes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaListaTransportes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaPordilleros.Designer.vb">
@@ -1757,36 +1703,6 @@
       <DependentUpon>frmDespachoFacturaProductos.vb</DependentUpon>
     </Compile>
     <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaProductos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaTransporteConcepto.Designer.vb">
-      <DependentUpon>frmDespachoFacturaTransporteConcepto.vb</DependentUpon>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaTransporteConcepto.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmListaDevolucionesTransporte.Designer.vb">
-      <DependentUpon>frmListaDevolucionesTransporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmListaDevolucionesTransporte.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Devoluciones\frmConceptoDevolucionTransporte.Designer.vb">
-      <DependentUpon>frmConceptoDevolucionTransporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Devoluciones\frmConceptoDevolucionTransporte.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Devoluciones\frmDevolucionTransporte.Designer.vb">
-      <DependentUpon>frmDevolucionTransporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Devoluciones\frmDevolucionTransporte.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Devoluciones\frmListaDevoluciontesTransporte.Designer.vb">
-      <DependentUpon>frmListaDevoluciontesTransporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Devoluciones\frmListaDevoluciontesTransporte.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="sistemaPequeño\Modulo Devoluciones\frmReasignacionProductos.Designer.vb">
@@ -1847,18 +1763,6 @@
       <DependentUpon>frmVentaPequenia.vb</DependentUpon>
     </Compile>
     <Compile Include="sistemaPequeño\Modulo Salidas\frmVentaPequenia.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Salidas\frmVentaPequeniaTransporteAgregar.Designer.vb">
-      <DependentUpon>frmVentaPequeniaTransporteAgregar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Salidas\frmVentaPequeniaTransporteAgregar.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Salidas\frmVentaPequeniaTransporteLista.Designer.vb">
-      <DependentUpon>frmVentaPequeniaTransporteLista.vb</DependentUpon>
-    </Compile>
-    <Compile Include="sistemaPequeño\Modulo Salidas\frmVentaPequeniaTransporteLista.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sucursales\frmActualizadorCreador.Designer.vb">
@@ -2044,9 +1948,6 @@
     <EmbeddedResource Include="Modulo de Clientes\frmPagosTranstio.resx">
       <DependentUpon>frmPagosTranstio.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modulo de Clientes\frmSector.resx">
-      <DependentUpon>frmSector.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Empresa\frmCajaMovimiento.resx">
       <DependentUpon>frmCajaMovimiento.vb</DependentUpon>
     </EmbeddedResource>
@@ -2106,9 +2007,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Empresa\frmPerfilUsuario.resx">
       <DependentUpon>frmPerfilUsuario.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modulo de Empresa\frmSectoresTiposTransportes.resx">
-      <DependentUpon>frmSectoresTiposTransportes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Empresa\frmSucursales.resx">
       <DependentUpon>frmSucursales.vb</DependentUpon>
@@ -2355,15 +2253,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulo Notificaciones\frmListaNotificaciones.resx">
       <DependentUpon>frmListaNotificaciones.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modulo Transporte\frmEmpresaTransporte.resx">
-      <DependentUpon>frmEmpresaTransporte.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modulo Transporte\frmTiposTransportes.resx">
-      <DependentUpon>frmTiposTransportes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modulo Transporte\frmTransportes.resx">
-      <DependentUpon>frmTransportes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos Dinamicos\frmReportesDinamicos.resx">
       <DependentUpon>frmReportesDinamicos.vb</DependentUpon>
@@ -2694,38 +2583,14 @@
     <EmbeddedResource Include="sistemaPequeño\Modulo Clientes\frmClientePequenioLista.resx">
       <DependentUpon>frmClientePequenioLista.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="sistemaPequeño\Modulo Despacho Contra Factura\frmConfirmacionEntradaTransporte.resx">
-      <DependentUpon>frmConfirmacionEntradaTransporte.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaAsignar.resx">
-      <DependentUpon>frmDespachoFacturaAsignar.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaBarraDerecha.resx">
       <DependentUpon>frmDespachoFacturaBarraDerecha.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaListaAsignar.resx">
-      <DependentUpon>frmDespachoFacturaListaAsignar.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaListaTransportes.resx">
-      <DependentUpon>frmDespachoFacturaListaTransportes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaPordilleros.resx">
       <DependentUpon>frmDespachoFacturaPordilleros.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaProductos.resx">
       <DependentUpon>frmDespachoFacturaProductos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaTransporteConcepto.resx">
-      <DependentUpon>frmDespachoFacturaTransporteConcepto.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sistemaPequeño\Modulo Devoluciones\frmConceptoDevolucionTransporte.resx">
-      <DependentUpon>frmConceptoDevolucionTransporte.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sistemaPequeño\Modulo Devoluciones\frmDevolucionTransporte.resx">
-      <DependentUpon>frmDevolucionTransporte.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sistemaPequeño\Modulo Devoluciones\frmListaDevoluciontesTransporte.resx">
-      <DependentUpon>frmListaDevoluciontesTransporte.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="sistemaPequeño\Modulo Devoluciones\frmReasignacionProductos.resx">
       <DependentUpon>frmReasignacionProductos.vb</DependentUpon>
@@ -2756,12 +2621,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="sistemaPequeño\Modulo Salidas\frmVentaPequenia.resx">
       <DependentUpon>frmVentaPequenia.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sistemaPequeño\Modulo Salidas\frmVentaPequeniaTransporteAgregar.resx">
-      <DependentUpon>frmVentaPequeniaTransporteAgregar.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sistemaPequeño\Modulo Salidas\frmVentaPequeniaTransporteLista.resx">
-      <DependentUpon>frmVentaPequeniaTransporteLista.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sucursales\frmActualizadorCreador.resx">
       <DependentUpon>frmActualizadorCreador.vb</DependentUpon>
@@ -4591,7 +4450,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Modulo Transporte\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

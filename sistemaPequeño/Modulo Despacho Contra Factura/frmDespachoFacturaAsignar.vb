@@ -55,83 +55,83 @@ Public Class frmDespachoFacturaAsignar
 
     'GUARDAR LA ASIGNACION
     Private Sub fnGuardar_Click() Handles Me.panel0
-        If RadMessageBox.Show("¿Desea guardar el transporte?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
-            Dim conexion As dsi_pos_demoEntities
-            Dim success As Boolean = True
-            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
-                conn.Open()
-                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
-                Using transaction As New TransactionScope
-                    Try
-                        '---- ENCABEZADO TRANSPORTE
-                        Dim salidaTransporteMedio As New tblSalidasTransportesMedio
-                        salidaTransporteMedio.idTransporte = CInt(cmbTransporte.SelectedValue)
-                        salidaTransporteMedio.idPiloto = CInt(cmbPiloto.SelectedValue)
-                        salidaTransporteMedio.idSucursalSalida = CInt(cmbSucursalSalida.SelectedValue)
-                        salidaTransporteMedio.idEmpresa = mdlPublicVars.idEmpresa
-                        salidaTransporteMedio.fechaTransporte = CDate(txtFecha.Text)
-                        salidaTransporteMedio.salida = False
-                        ''salidaTransporteMedio.costo = CDec(nm2Costo.Value)
-                        salidaTransporteMedio.observacion = txtObservacion.Text
-                        salidaTransporteMedio.correlativo = CInt(lblCorrelativo.Text)
-                        salidaTransporteMedio.NumeroViaje = CInt(txtNoViaje.Text)
-                        salidaTransporteMedio.KMGalon = CDec(lblKMGalon.Text)
-                        salidaTransporteMedio.entrada = False
-                        salidaTransporteMedio.conceptoEntrada = 1
-                        salidaTransporteMedio.TotalKms = 0
-                        salidaTransporteMedio.CostoCombustible = 0
-                        salidaTransporteMedio.TotalCombustible = 0
-                        salidaTransporteMedio.TotalPlanilla = 0
-                        salidaTransporteMedio.Costo = 0
-                        salidaTransporteMedio.TotalCobro = 0
-                        salidaTransporteMedio.idusuario = mdlPublicVars.idUsuario
-                        salidaTransporteMedio.GastosEnvio = False
+        ''If RadMessageBox.Show("¿Desea guardar el transporte?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+        ''    Dim conexion As dsi_pos_demoEntities
+        ''    Dim success As Boolean = True
+        ''    Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+        ''        conn.Open()
+        ''        conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+        ''        Using transaction As New TransactionScope
+        ''            Try
+        ''                '---- ENCABEZADO TRANSPORTE
+        ''                Dim salidaTransporteMedio As New tblSalidasTransportesMedio
+        ''                salidaTransporteMedio.idTransporte = CInt(cmbTransporte.SelectedValue)
+        ''                salidaTransporteMedio.idPiloto = CInt(cmbPiloto.SelectedValue)
+        ''                salidaTransporteMedio.idSucursalSalida = CInt(cmbSucursalSalida.SelectedValue)
+        ''                salidaTransporteMedio.idEmpresa = mdlPublicVars.idEmpresa
+        ''                salidaTransporteMedio.fechaTransporte = CDate(txtFecha.Text)
+        ''                salidaTransporteMedio.salida = False
+        ''                ''salidaTransporteMedio.costo = CDec(nm2Costo.Value)
+        ''                salidaTransporteMedio.observacion = txtObservacion.Text
+        ''                salidaTransporteMedio.correlativo = CInt(lblCorrelativo.Text)
+        ''                salidaTransporteMedio.NumeroViaje = CInt(txtNoViaje.Text)
+        ''                salidaTransporteMedio.KMGalon = CDec(lblKMGalon.Text)
+        ''                salidaTransporteMedio.entrada = False
+        ''                salidaTransporteMedio.conceptoEntrada = 1
+        ''                salidaTransporteMedio.TotalKms = 0
+        ''                salidaTransporteMedio.CostoCombustible = 0
+        ''                salidaTransporteMedio.TotalCombustible = 0
+        ''                salidaTransporteMedio.TotalPlanilla = 0
+        ''                salidaTransporteMedio.Costo = 0
+        ''                salidaTransporteMedio.TotalCobro = 0
+        ''                salidaTransporteMedio.idusuario = mdlPublicVars.idUsuario
+        ''                salidaTransporteMedio.GastosEnvio = False
 
-                        conexion.AddTotblSalidasTransportesMedios(salidaTransporteMedio)
-                        conexion.SaveChanges()
+        ''                conexion.AddTotblSalidasTransportesMedios(salidaTransporteMedio)
+        ''                conexion.SaveChanges()
 
-                        '---- DETALLE TRANSPORTE -> PRODUCTOS
-                        'For Each dato As Tuple(Of Integer, Integer, Integer, String, String, String, Tuple(Of String, String)) In listaProductos
-                        For Each fila As GridViewRowInfo In Me.grdProductos.Rows
-                            Dim salidaTransporteMedioDetalle As New tblSalidasTransportesMediosDetalle
-                            salidaTransporteMedioDetalle.idSalidaTransporteMedio = salidaTransporteMedio.idSalidaTransporteMedio
-                            salidaTransporteMedioDetalle.idSalidaDetalle = CInt(fila.Cells("idSalidaDetalle").Value)
-                            salidaTransporteMedioDetalle.idSalidaTransporte = CInt(fila.Cells("idSalidaTransporte").Value)
-                            salidaTransporteMedioDetalle.cantidad = CDec(fila.Cells("cantidad").Value)
-                            salidaTransporteMedioDetalle.reenviado = False
-                            conexion.AddTotblSalidasTransportesMediosDetalles(salidaTransporteMedioDetalle)
-                            conexion.SaveChanges()
-                        Next
+        ''                '---- DETALLE TRANSPORTE -> PRODUCTOS
+        ''                'For Each dato As Tuple(Of Integer, Integer, Integer, String, String, String, Tuple(Of String, String)) In listaProductos
+        ''                For Each fila As GridViewRowInfo In Me.grdProductos.Rows
+        ''                    Dim salidaTransporteMedioDetalle As New tblSalidasTransportesMediosDetalle
+        ''                    salidaTransporteMedioDetalle.idSalidaTransporteMedio = salidaTransporteMedio.idSalidaTransporteMedio
+        ''                    salidaTransporteMedioDetalle.idSalidaDetalle = CInt(fila.Cells("idSalidaDetalle").Value)
+        ''                    salidaTransporteMedioDetalle.idSalidaTransporte = CInt(fila.Cells("idSalidaTransporte").Value)
+        ''                    salidaTransporteMedioDetalle.cantidad = CDec(fila.Cells("cantidad").Value)
+        ''                    salidaTransporteMedioDetalle.reenviado = False
+        ''                    conexion.AddTotblSalidasTransportesMediosDetalles(salidaTransporteMedioDetalle)
+        ''                    conexion.SaveChanges()
+        ''                Next
 
-                        '---- DETALLE TRANSPORTE -> EMPLEADOS
-                        For Each dato As Tuple(Of Integer, String) In listaEmpleados
-                            Dim salidaTransporteMedioEmpleado As New tblSalidasTransportesMediosEmpleado
-                            salidaTransporteMedioEmpleado.idSalidaTransporteMedio = salidaTransporteMedio.idSalidaTransporteMedio
-                            salidaTransporteMedioEmpleado.idEmpleado = dato.Item1
+        ''                '---- DETALLE TRANSPORTE -> EMPLEADOS
+        ''                For Each dato As Tuple(Of Integer, String) In listaEmpleados
+        ''                    Dim salidaTransporteMedioEmpleado As New tblSalidasTransportesMediosEmpleado
+        ''                    salidaTransporteMedioEmpleado.idSalidaTransporteMedio = salidaTransporteMedio.idSalidaTransporteMedio
+        ''                    salidaTransporteMedioEmpleado.idEmpleado = dato.Item1
 
-                            conexion.AddTotblSalidasTransportesMediosEmpleados(salidaTransporteMedioEmpleado)
-                            conexion.SaveChanges()
-                        Next
+        ''                    conexion.AddTotblSalidasTransportesMediosEmpleados(salidaTransporteMedioEmpleado)
+        ''                    conexion.SaveChanges()
+        ''                Next
 
-                        transaction.Complete()
-                    Catch ex As Exception
-                        success = False
-                    End Try
-                    conn.Close()
-                End Using
-            End Using
+        ''                transaction.Complete()
+        ''            Catch ex As Exception
+        ''                success = False
+        ''            End Try
+        ''            conn.Close()
+        ''        End Using
+        ''    End Using
 
-            If success Then
-                alerta.fnGuardar()
+        ''    If success Then
+        ''        alerta.fnGuardar()
 
-                RadMessageBox.Show("Transporte guardado exitosamente", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Info)
+        ''        RadMessageBox.Show("Transporte guardado exitosamente", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Info)
 
-                Me.Close()
-            Else
-                alerta.contenido = "Ocurrio un error"
-                alerta.fnErrorContenido()
-            End If
-        End If
+        ''        Me.Close()
+        ''    Else
+        ''        alerta.contenido = "Ocurrio un error"
+        ''        alerta.fnErrorContenido()
+        ''    End If
+        ''End If
     End Sub
 
     'SALIR DEL FORMULARIO

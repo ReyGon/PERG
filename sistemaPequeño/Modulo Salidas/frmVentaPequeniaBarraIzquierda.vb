@@ -63,13 +63,13 @@ Public Class frmVentaPequeniaBarraIzquierda
                 Me.Hide()
             End If
         ElseIf bitTransportePesado Then
-            frmDespachoFacturaListaTransportes.Text = "Despachos vs Facturas"
-            frmDespachoFacturaListaTransportes.MdiParent = frmMenuPrincipal
-            frmDespachoFacturaListaTransportes.WindowState = FormWindowState.Maximized
-            If permiso.PermisoMantenimientoLista(frmDespachoFacturaListaTransportes, True) = True Then
-                fnFRMhijos_cerrar(frmDespachoFacturaListaTransportes)
-                Me.Hide()
-            End If
+            ''frmDespachoFacturaListaTransportes.Text = "Despachos vs Facturas"
+            ''frmDespachoFacturaListaTransportes.MdiParent = frmMenuPrincipal
+            ''frmDespachoFacturaListaTransportes.WindowState = FormWindowState.Maximized
+            ''If permiso.PermisoMantenimientoLista(frmDespachoFacturaListaTransportes, True) = True Then
+            ''    fnFRMhijos_cerrar(frmDespachoFacturaListaTransportes)
+            ''    Me.Hide()
+            ''End If
         End If
 
     End Sub

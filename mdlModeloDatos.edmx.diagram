@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f51f2e233df74f5a928f6a5291d94d56" Name="Diagrama1" ZoomLevel="64" >
+      <Diagram DiagramId="f51f2e233df74f5a928f6a5291d94d56" Name="Diagrama1" ZoomLevel="54" >
         <EntityTypeShape EntityType="dsi_pos_demoModel.dtproperty" Width="1.5" PointX="9.5450934011233475" PointY="14.776421509113359" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.macora_exportacion" Width="1.5" PointX="9.6395527281051283" PointY="19.384697654929337" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.miarticulo" Width="1.5" PointX="5.230843827701567" PointY="31.659012958248617" />
@@ -69,7 +69,6 @@
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblClientes_Telefono" Width="1.5" PointX="3.0866719703593626" PointY="7.1489517275006289" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblClienteTipoNegocio" Width="1.5" PointX="4.3455971257507793" PointY="9.77112323500734" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblClienteTipoPago" Width="1.5" PointX="5.548318373760357" PointY="17.754267760438037" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblConceptosEntradaTransporte" Width="1.5" PointX="4.0058731474009681" PointY="3.30307619427474" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblConfigRedondeo" Width="1.5" PointX="8.0020601786682661" PointY="27.695974288366724" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblConfiguracion" Width="1.5" PointX="8.6173414255573135" PointY="2.0561611810960625" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblConsultasDinamica" Width="1.5" PointX="10.024867431272226" PointY="7.5836470013408208" />
@@ -87,8 +86,6 @@
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblDevolucionClienteDetalle" Width="1.5" PointX="5.7685416088293033" PointY="12.373285463253636" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblDevolucionProveedor" Width="1.5" PointX="11.087923261843585" PointY="16.272279940672348" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblDevolucionProveedorDetalle" Width="1.5" PointX="6.9971217266270518" PointY="10.701210772013855" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblDevolucionTransporte" Width="1.5" PointX="10.689684613928984" PointY="31.382993071984032" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblDevolucionTransporteDetalle" Width="1.5" PointX="9.3035200225671382" PointY="14.234458780956668" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblEmpleado" Width="1.5" PointX="7.1849993593920942" PointY="25.399943452980342" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblEmpresa" Width="1.5" PointX="11.209149838988274" PointY="20.796613688020322" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblEnvio" Width="1.5" PointX="1.4075476813165229" PointY="14.960466630272785" />
@@ -154,13 +151,6 @@
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalida_Factura" Width="1.5" PointX="5.6078469909764115" PointY="20.219678098438159" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblsalidaBodega" Width="1.5" PointX="2.1461270591924557" PointY="18.335055672719633" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalidaDetalle_Factura" Width="1.5" PointX="5.6240896217637184" PointY="6.9352698805440545" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalidasTransporte" Width="1.5" PointX="9.6928073846235918" PointY="4.9642144762744262" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalidasTransportesMedio" Width="1.5" PointX="4.04608831743062" PointY="5.9078385559412832" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalidasTransportesMediosDetalle" Width="1.5" PointX="7.1080991193224214" PointY="16.317872561662398" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalidasTransportesMediosEmpleado" Width="1.5" PointX="7.4684285370020334" PointY="29.00751186767943" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblSectore" Width="1.5" PointX="1.5073239344671947" PointY="27.981916246927305" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblSectoresTiposTransporte" Width="1.5" PointX="10.854523082661686" PointY="23.170762654007767" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblSucursale" Width="1.5" PointX="0.33195554666777866" PointY="27.77635419172065" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblSurtir" Width="1.5" PointX="10.269313712729753" PointY="11.058421795749302" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblSustituto" Width="1.5" PointX="7.9087154548190135" PointY="6.6078678102269155" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblSustitutoCategoria" Width="1.5" PointX="9.458064536311694" PointY="27.749496577190932" />
@@ -174,9 +164,6 @@
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblTipoPagoGasto" Width="1.5" PointX="3.686407284665111" PointY="12.655944979123746" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblTipoPendiente" Width="1.5" PointX="3.8599007166269703" PointY="0.53865942384053922" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblTipoPrecio_Rango" Width="1.5" PointX="7.1852746155044418" PointY="12.40493247490606" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblTiposTransporte" Width="1.5" PointX="7.3541124311062109" PointY="11.552635362163482" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblTransporteCosteo" Width="1.5" PointX="10.00420734193372" PointY="29.255223332557467" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblTransporte" Width="1.5" PointX="0.96785394519933221" PointY="23.783495988595995" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblUnidadMedida" Width="1.5" PointX="7.25042374024653" PointY="9.9466512994592318" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblusuarioEmpresa" Width="1.5" PointX="8.60633216454011" PointY="1.2403490251118079" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblVendedor" Width="1.5" PointX="6.9104686001830125" PointY="19.248075747512317" />
@@ -239,7 +226,6 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCierreCajaDetalleCheque_tblCierreCaja" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCliente_FacturaTipoImpresion_tblTipoImpresion" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCliente_DireccionEnvio_tblMunicipio" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_ConceptoEntrada" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblContacto_tblContactoTipo" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCorrelativos_tblEmpresa" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCorrelativos_tblTipoMovimiento" />
@@ -263,23 +249,16 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblDevolucionProveedor_tblTipoMovimiento" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblDevolucionProveedorDetalle_tblDevolucionProveedor" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblEnvio_DevolucionProveedor_tblDevolucionProveedor" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblDevolucion_SalidaTransporte" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblDevolucion_SalidaTransporteMedio" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblDevolucionDetalle" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblEmpleado_tblpuesto" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblsalidaBodega_tblEmpleado" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblsalidaBodega_tblEmpleado1" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblsalidaBodega_tblEmpleado2" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Piloto" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportesMediosEmpleados_Empleado" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblEmpresa_tblMunicipio" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblEmpresa_tblTipoInventario" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblEmpresa_tblTipoInventario1" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblEmpresa_tblTipoInventario2" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblMovimientoInventario_tblEmpresa" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblEmpresa" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Empresa" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSucursales_tblEmpresas" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSustituto_tblEmpresa" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblTipoInventario_tblEmpresa" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblVendedor_tblEmpresa" />
@@ -322,7 +301,6 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblDetalleMovimientoInventario_tblTipoMovimiento" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_UnidadMedidaMovInventario" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblMunicipio" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSectores_tblMunicipio" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_TipoNotificacion" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblregion_tblpais" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_Clasificacion_Partida" />
@@ -348,23 +326,10 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblTipoMovimiento" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblVendedor" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblsalidaBodega_tblSalida" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSalida" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSectores" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportes_tblSucursales" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportes_tblTransporteCosteo" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportes_tblTransportes" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_Salidas" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Sucursal" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Transporte" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_Transporte" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportesMediosEmpleados_Transporte" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSTT_tblSectores" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSTT_tblTiposTransportes" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSurtir_tblVendedor" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSustituto_tblSustitutoCategoria" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSustituto_tblTipoInventario" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_TipoMovimiento_TipoInventario" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblTransportes_tblTiposTransportes" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblCaja" Width="1.5" PointX="6.6327203803848107" PointY="29.846319078396224" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCaja_tblBanco_Cuenta" />
         <AssociationConnector Association="dsi_pos_demoModel.fk_caja_salida" />
@@ -412,7 +377,6 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblPendientePorPedir_tblUsuariosConfirma" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblUsuarios" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblUsuarios1" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportesMedios_Usuario" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSurtir_tblUsuarios" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblUsuarios_tblVendedor" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblNacionalizacion" Width="1.5" PointX="7.7210990021569188" PointY="8.88150600012462" />
@@ -484,7 +448,6 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK__tblSalida__idSal__1B3EDD4F" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalidaDetalle" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblTipoInventario" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidasTransportesMediosDetalles_SDetalle" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSurtir_tblSalidaDetalle" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_UnidadMedidaVenta" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblCliente" Width="1.5" PointX="1.032041900340487" PointY="25.459610354834986" />
@@ -516,6 +479,7 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblClientes" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSurtir_tblClientes" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblsalidabodega_detalle" Width="1.5" PointX="9.00771966996031" PointY="2.5488447260804681" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblSucursale" Width="1.5" PointX="11.376003903977576" PointY="24.439594533499143" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
