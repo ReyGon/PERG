@@ -179,5 +179,4 @@ Public Class frmIniciarSesion
     Private Sub btnIniciar_Click(sender As Object, e As EventArgs) Handles btnIniciar.Click
         fnIniciarSesion()
     End Sub
-
 End Class

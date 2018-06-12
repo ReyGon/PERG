@@ -280,7 +280,7 @@ Public Class frmProductoPrecio
         Try
             'Realizamos la consulta
             Dim cons = (From x In ctx.tblArticuloes _
-            Select Codigo = x.idArticulo, Nombre = x.nombre1 + " - " + x.codigo1)
+            Select Codigo = x.idArticulo, Nombre = x.nombre1.Trim() + "-(" + x.codigo1.Trim() + ")")
 
             'Llenamos el combo1
             With Me.cmbNombre1
