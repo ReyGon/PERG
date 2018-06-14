@@ -56,4 +56,8 @@ Public Class frmValidacionClave
 
         End Try
     End Sub
+
+    Private Sub lblInformacion_Click(sender As Object, e As EventArgs) Handles lblInformacion.Click
+
+    End Sub
 End Class

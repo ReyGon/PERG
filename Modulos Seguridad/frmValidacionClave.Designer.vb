@@ -80,7 +80,7 @@ Partial Class frmValidacionClave
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(473, 260)
+        Me.ClientSize = New System.Drawing.Size(464, 304)
         Me.Controls.Add(Me.lblInformacion)
         Me.Controls.Add(Me.txtClave)
         Me.Controls.Add(Me.Label2)

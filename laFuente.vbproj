@@ -1169,6 +1169,12 @@
     <Compile Include="Modulos Dinamicos\frmReportesDinamicos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modulos Seguridad\frmClientesAlternos.Designer.vb">
+      <DependentUpon>frmClientesAlternos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos Seguridad\frmClientesAlternos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modulos Seguridad\frmValidacionClave.Designer.vb">
       <DependentUpon>frmValidacionClave.vb</DependentUpon>
     </Compile>
@@ -2256,6 +2262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos Dinamicos\frmReportesDinamicos.resx">
       <DependentUpon>frmReportesDinamicos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos Seguridad\frmClientesAlternos.resx">
+      <DependentUpon>frmClientesAlternos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos Seguridad\frmValidacionClave.resx">
       <DependentUpon>frmValidacionClave.vb</DependentUpon>
