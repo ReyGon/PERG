@@ -290,6 +290,9 @@ Public Module mdlPublicVars
     Public ClaveVencidos As String
     Public ClaveVencidosStatus As Boolean = False
 
+    Public superSearchNombreAlterno As String
+    Public superSearchDireccionAlterno As String
+
     Public Activar_Impuestos As Boolean
 
     ' Venta Pequenia

@@ -84,6 +84,7 @@ Public Class frmClientes
                     Me.cmbCategoriaCliente.SelectedValue = cliente.idcategoria
                     Me.dtpFechaNac.Value = CDate(cliente.fechanac).ToShortDateString
                     Me.chkPromociones.Checked = cliente.bitPromociones
+                    Me.chkSubcliente.CheckAlign = cliente.BITSUBCLIENTE
                 End If
 
                 conn.Close()
@@ -480,6 +481,7 @@ Public Class frmClientes
                 m.direccionEnvio2 = txtDirEnvio2.Text
                 m.idcategoria = Me.cmbCategoriaCliente.SelectedValue
                 m.bitPromociones = Me.chkPromociones.Checked
+                m.BITSUBCLIENTE = Me.chkSubcliente.Checked
                 'm.competencias = nm0Competencias.Value
                 'm.motos = nm0Motos.Value
 
@@ -681,6 +683,7 @@ Public Class frmClientes
                     m.idcategoria = Me.cmbCategoriaCliente.SelectedValue
                     m.fechanac = dtpFechaNac.Value.ToShortDateString
                     m.bitPromociones = Me.chkPromociones.Checked
+                    m.BITSUBCLIENTE = Me.chkSubcliente.Checked
                     'm.competencias = nm0Competencias.Value
                     'm.motos = nm0Motos.Value
 

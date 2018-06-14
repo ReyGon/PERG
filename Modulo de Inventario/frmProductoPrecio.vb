@@ -97,6 +97,8 @@ Public Class frmProductoPrecio
         Me.grdDatos.Visible = False
         lblRegistros.Visible = False
 
+        fnPrecioC()
+
     End Sub
 
     Private Sub llenagrid()
@@ -1004,6 +1006,13 @@ Public Class frmProductoPrecio
     Private Sub grdPrecios_CellEndEdit(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs) Handles grdPrecios.CellEndEdit
         Try
             fnCalculaNormales()
+
+            Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdPrecios)
+
+            If fila = 1 Then
+                fnPrecioC()
+            End If
+
         Catch ex As Exception
         End Try
     End Sub
@@ -1152,6 +1161,12 @@ Public Class frmProductoPrecio
     Private Sub grdOtrosPrecios_CellEndEdit(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs) Handles grdOtrosPrecios.CellEndEdit
         Try
             fnCalculaOtros()
+
+            Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdOtrosPrecios)
+
+            If fila = 0 Or fila = 1 Then
+                fnPrecioC()
+            End If
         Catch ex As Exception
 
         End Try
@@ -2667,4 +2682,84 @@ Public Class frmProductoPrecio
 
         End Try
     End Sub
+<<<<<<< HEAD
+=======
+
+    Private Sub fnPrecioC()
+        Try
+
+            Dim filad, filaa, filab, filac As Integer
+
+            For i As Integer = 0 To Me.grdPrecios.Rows.Count - 1
+                If Me.grdPrecios.Rows(i).Cells("tipoNegocio").Value = "Distribuidor (A)" Then
+                    filad = i
+                End If
+            Next
+
+            For i As Integer = 0 To Me.grdOtrosPrecios.Rows.Count - 1
+                If Me.grdOtrosPrecios.Rows(i).Cells("tipoPrecio").Value = "Precio A" Then
+                    filaa = i
+                ElseIf Me.grdOtrosPrecios.Rows(i).Cells("tipoPrecio").Value = "Precio B" Then
+                    filab = i
+                ElseIf Me.grdOtrosPrecios.Rows(i).Cells("tipoPrecio").Value = "Precio C" Then
+                    filac = i
+                End If
+            Next
+
+            Dim precioD, PrecioA, PrecioB, PrecioC As Decimal
+
+            precioD = Me.grdPrecios.Rows(filad).Cells("precionormal").Value
+
+            If Me.grdOtrosPrecios.Rows(filaa).Cells("chmActiva").Value = True Then
+                PrecioA = Me.grdOtrosPrecios.Rows(filaa).Cells("txmPrecio").Value
+            Else
+                PrecioA = 0
+            End If
+            If Me.grdOtrosPrecios.Rows(filab).Cells("chmActiva").Value = True Then
+                PrecioB = Me.grdOtrosPrecios.Rows(filab).Cells("txmPrecio").Value
+            Else
+                PrecioB = 0
+            End If
+
+            Dim acum As Decimal = 0
+            Dim nm As Decimal = 0
+            ''Dim lista As Decimal() ''= {precioD, PrecioA, PrecioB}
+            Dim lista As New List(Of Decimal)
+
+            If precioD <> 0 Then
+                lista.Add(precioD)
+            End If
+            If PrecioB <> 0 Then
+                lista.Add(PrecioB)
+            End If
+            If PrecioA <> 0 Then
+                lista.Add(PrecioA)
+            End If
+
+            For Each a As Object In lista
+                ''If a <> 0 Then
+                If acum = 0 Then
+                    acum = nm
+                End If
+                nm = Convert.ToDecimal(a)
+                If nm < acum Then
+                    acum = nm
+                End If
+                ''End If
+            Next
+
+            If acum <> 0 Then
+                PrecioC = acum
+            Else
+                PrecioC = nm
+            End If
+
+            Me.grdOtrosPrecios.Rows(filac).Cells("txmPrecio").Value = PrecioC + (PrecioC * 0.2)
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+>>>>>>> f682ac74f7b285dc645f4fbb0f9bc5cb6f920556
 End Class

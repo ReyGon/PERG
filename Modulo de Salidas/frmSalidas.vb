@@ -122,6 +122,11 @@ Public Class frmSalidas
 
     Public esventa As Boolean
 
+    Private Sub frmSalidas_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        mdlPublicVars.superSearchNombreAlterno = ""
+        mdlPublicVars.superSearchDireccionAlterno = ""
+    End Sub
+
     Private Sub frmSalidas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Clave = False
@@ -358,6 +363,7 @@ Public Class frmSalidas
     'End Sub
 
     'Funcion que se utliza para llenar los datos de unqa salida cuando se esta en modificar
+
     Private Sub fnLlenarDatos()
         Try
             grdProductos.Rows.Clear()
@@ -372,6 +378,9 @@ Public Class frmSalidas
                 Dim cliente As Integer
 
                 Dim salida As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = codigo Select x).First()
+
+                mdlPublicVars.superSearchNombreAlterno = salida.NOMBREALTERNO
+                mdlPublicVars.superSearchDireccionAlterno = salida.DIRECCIONALTERNA
 
                 inventario = salida.idTipoInventario
                 txtCodigo.Text = salida.idSalida
@@ -954,6 +963,20 @@ Public Class frmSalidas
                 txtNit.Text = c.nit1
                 lblObservacionCliente.Text = c.observacion
                 txtCreditoDisponible.Text = "0.00"
+
+                If c.BITSUBCLIENTE = True Then
+
+                    While mdlPublicVars.superSearchNombreAlterno = "" Or mdlPublicVars.superSearchDireccionAlterno = ""
+                        frmClientesAlternos.Text = "Datos Cliente"
+                        frmClientesAlternos.lblInformacion.Text = "El cliente seleccionado es un cliente dependiente, por favor ingresar la informacion solicitada."
+                        frmClientesAlternos.StartPosition = FormStartPosition.CenterScreen
+                        frmClientesAlternos.WindowState = FormWindowState.Normal
+                        frmClientesAlternos.ShowDialog()
+                        frmClientesAlternos.Dispose()
+                    End While
+
+                End If
+
 
                 ''Dim clientetipopago As tblClienteTipoPago = (From x In conexion.tblClienteTipoPagoes Where x.idtipoPago = c.idTipoPago Select x).FirstOrDefault
 
@@ -1841,6 +1864,8 @@ Public Class frmSalidas
 
                             salidaCredito.pagado = 0
                             salidaCredito.saldo = 0
+                            salidaCredito.NOMBREALTERNO = mdlPublicVars.superSearchNombreAlterno
+                            salidaCredito.DIRECCIONALTERNA = mdlPublicVars.superSearchDireccionAlterno
 
                             salidaCredito.contado = False
                             salidaCredito.credito = True
@@ -1901,6 +1926,8 @@ Public Class frmSalidas
                             salida.total = totalContado
                             salida.pagado = 0
                             salida.saldo = 0
+                            salida.NOMBREALTERNO = mdlPublicVars.superSearchNombreAlterno
+                            salida.DIRECCIONALTERNA = mdlPublicVars.superSearchDireccionAlterno
                             'salida.direccionFacturacion = cmbDireccionFacturacion.Text
                             salida.direccionFacturacion = txtDireccionFacturacion.Text
                             salida.direccionEnvio = cmbDirEnvios.Text
@@ -2206,6 +2233,9 @@ Public Class frmSalidas
                 conexion.AcceptAllChanges()
                 alerta.fnGuardar()
                 bitEditarSalida = False
+
+                mdlPublicVars.superSearchNombreAlterno = ""
+                mdlPublicVars.superSearchDireccionAlterno = ""
 
             End If
 
@@ -2650,6 +2680,8 @@ Public Class frmSalidas
                             salidaCredito.pagado = 0
                             salidaCredito.saldo = 0
                             salidaCredito.bitguia = False
+                            salidaCredito.NOMBREALTERNO = mdlPublicVars.superSearchNombreAlterno
+                            salidaCredito.DIRECCIONALTERNA = mdlPublicVars.superSearchDireccionAlterno
 
                             salidaCredito.documento = correlativo.correlativo + 1
                             correlativo.correlativo = correlativo.correlativo + 1
@@ -2727,6 +2759,9 @@ Public Class frmSalidas
                             salida.empacado = False
                             salida.anulado = False
                             salida.fechaAnulado = Nothing
+                            salida.NOMBREALTERNO = mdlPublicVars.superSearchNombreAlterno
+                            salida.DIRECCIONALTERNA = mdlPublicVars.superSearchDireccionAlterno
+
 
                             ' salida.direccionFacturacion = cmbDireccionFacturacion.Text
                             salida.direccionFacturacion = txtDireccionFacturacion.Text
@@ -3120,6 +3155,8 @@ Public Class frmSalidas
             If success = True Then
                 alerta.fnGuardar()
                 bitEditarSalida = False
+                mdlPublicVars.superSearchNombreAlterno = ""
+                mdlPublicVars.superSearchDireccionAlterno = ""
                 'Mostramos la ventana de Bitacora, Usando la Variable global de configuración para conocer si se pide bitacora o No.
                 AgregaBitacora(mdlPublicVars.Salida_BitaraAlReservar)
 
@@ -3665,6 +3702,8 @@ Public Class frmSalidas
                             salidaCredito.total = totalCredito
                             salidaCredito.pagado = 0
                             salidaCredito.saldo = totalCredito
+                            salidaCredito.NOMBREALTERNO = mdlPublicVars.superSearchNombreAlterno
+                            salidaCredito.DIRECCIONALTERNA = mdlPublicVars.superSearchDireccionAlterno
 
                             salidaCredito.contado = False
                             salidaCredito.credito = True
@@ -3757,6 +3796,8 @@ Public Class frmSalidas
                             salida.saldo = totalContado
                             'salida.direccionFacturacion = cmbDireccionFacturacion.Text
                             salida.direccionFacturacion = txtDireccionFacturacion.Text
+                            salida.NOMBREALTERNO = mdlPublicVars.superSearchNombreAlterno
+                            salida.DIRECCIONALTERNA = mdlPublicVars.superSearchDireccionAlterno
 
                             salida.direccionEnvio = cmbDirEnvios.Text
                             salida.contado = True
@@ -4278,6 +4319,9 @@ Public Class frmSalidas
             alerta.contenido = "Registro guardado correctamente"
             alerta.fnGuardar()
             bitEditarSalida = False
+
+            mdlPublicVars.superSearchNombreAlterno = ""
+            mdlPublicVars.superSearchDireccionAlterno = ""
 
             'Mostramos la ventana de Bitacora, Usando la Variable global de configuración para conocer si se pide bitacora o No.
             AgregaBitacora(mdlPublicVars.Salida_BitaAlDespachar)
