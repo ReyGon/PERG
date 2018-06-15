@@ -34,9 +34,9 @@ Partial Class frmReportesDinamicos
         Me.dtpDesde = New System.Windows.Forms.DateTimePicker()
         Me.Progreso = New Telerik.WinControls.UI.RadProgressBar()
         Me.RadGroupBox1 = New Telerik.WinControls.UI.RadGroupBox()
+        Me.rbtSurtirI = New System.Windows.Forms.RadioButton()
         Me.RadioButton5 = New System.Windows.Forms.RadioButton()
         Me.rbtCreditoClientes = New System.Windows.Forms.RadioButton()
-        Me.RadioButton7 = New System.Windows.Forms.RadioButton()
         Me.rbtFacturaPagos = New System.Windows.Forms.RadioButton()
         Me.rbtClientesFacturas = New System.Windows.Forms.RadioButton()
         Me.rbtPagosGeneral = New System.Windows.Forms.RadioButton()
@@ -252,9 +252,9 @@ Partial Class frmReportesDinamicos
         '
         'RadGroupBox1
         '
+        Me.RadGroupBox1.Controls.Add(Me.rbtSurtirI)
         Me.RadGroupBox1.Controls.Add(Me.RadioButton5)
         Me.RadGroupBox1.Controls.Add(Me.rbtCreditoClientes)
-        Me.RadGroupBox1.Controls.Add(Me.RadioButton7)
         Me.RadGroupBox1.Controls.Add(Me.rbtFacturaPagos)
         Me.RadGroupBox1.Controls.Add(Me.rbtClientesFacturas)
         Me.RadGroupBox1.Controls.Add(Me.rbtPagosGeneral)
@@ -293,6 +293,17 @@ Partial Class frmReportesDinamicos
         Me.RadGroupBox1.TabIndex = 248
         Me.RadGroupBox1.Text = "Reportes"
         '
+        'rbtSurtirI
+        '
+        Me.rbtSurtirI.AutoSize = True
+        Me.rbtSurtirI.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.rbtSurtirI.Location = New System.Drawing.Point(239, 140)
+        Me.rbtSurtirI.Name = "rbtSurtirI"
+        Me.rbtSurtirI.Size = New System.Drawing.Size(69, 19)
+        Me.rbtSurtirI.TabIndex = 241
+        Me.rbtSurtirI.Text = "P. SurtirI"
+        Me.rbtSurtirI.UseVisualStyleBackColor = True
+        '
         'RadioButton5
         '
         Me.RadioButton5.AutoSize = True
@@ -314,17 +325,6 @@ Partial Class frmReportesDinamicos
         Me.rbtCreditoClientes.TabIndex = 237
         Me.rbtCreditoClientes.Text = "Credito Clientes"
         Me.rbtCreditoClientes.UseVisualStyleBackColor = True
-        '
-        'RadioButton7
-        '
-        Me.RadioButton7.AutoSize = True
-        Me.RadioButton7.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.RadioButton7.Location = New System.Drawing.Point(239, 140)
-        Me.RadioButton7.Name = "RadioButton7"
-        Me.RadioButton7.Size = New System.Drawing.Size(77, 19)
-        Me.RadioButton7.TabIndex = 238
-        Me.RadioButton7.Text = "Sin Efecto"
-        Me.RadioButton7.UseVisualStyleBackColor = True
         '
         'rbtFacturaPagos
         '
@@ -866,7 +866,6 @@ Partial Class frmReportesDinamicos
     Friend WithEvents RadGroupBox1 As Telerik.WinControls.UI.RadGroupBox
     Friend WithEvents RadioButton5 As System.Windows.Forms.RadioButton
     Friend WithEvents rbtCreditoClientes As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton7 As System.Windows.Forms.RadioButton
     Friend WithEvents rbtFacturaPagos As System.Windows.Forms.RadioButton
     Friend WithEvents rbtClientesFacturas As System.Windows.Forms.RadioButton
     Friend WithEvents rbtPagosGeneral As System.Windows.Forms.RadioButton
@@ -909,6 +908,7 @@ Partial Class frmReportesDinamicos
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents cmbDepartamento As System.Windows.Forms.ComboBox
     Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents rbtSurtirI As System.Windows.Forms.RadioButton
 
 
 End Class

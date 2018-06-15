@@ -351,6 +351,17 @@ Public Class frmReportesDinamicos
                 Me.cmbMunicipio.Enabled = False
                 Me.cmbTipoPrecio.Enabled = False
                 Me.cmbClienteCategoria.Enabled = False
+            ElseIf Me.rbtSurtirI.Checked Then
+                Me.cmbVendedor.Enabled = True
+                Me.cmbCliente.Enabled = True
+                Me.cmbMarcaRepuesto.Enabled = False
+                Me.cmbTipoVehiculo.Enabled = False
+                Me.cmbProducto.Enabled = False
+                Me.cmbPais.Enabled = False
+                Me.cmbDepartamento.Enabled = False
+                Me.cmbMunicipio.Enabled = False
+                Me.cmbTipoPrecio.Enabled = False
+                Me.cmbClienteCategoria.Enabled = False
             End If
 
         Catch ex As Exception
@@ -433,6 +444,8 @@ Public Class frmReportesDinamicos
                         dt = EntitiToDataTable(conexion.sp_ReporteCreditosClientes(CDate(Me.dtpHasta.Value)))
                     ElseIf Me.rbtFacturaPagos.Checked Then
                         dt = EntitiToDataTable(conexion.sp_FacturasPagos(CDate(Me.dtpDesde.Value), CDate(Me.dtpHasta.Value), CInt(Me.cmbCliente.SelectedValue), CInt(Me.cmbVendedor.SelectedValue)))
+                        ''ElseIf Me.rbtSurtirI.Checked Then
+                        ''  dt = EntitiToDataTable(conexion.sp_ReportePendientesSurtirInventario(fechainicio, fechafin, CInt(Me.cmbVendedor.SelectedValue), CInt(Me.cmbCliente.SelectedValue)))
                     Else
                         RadMessageBox.Show("Seleccione una opcion valida!!!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
                         Exit Sub
@@ -826,7 +839,7 @@ Public Class frmReportesDinamicos
         End Try
     End Sub
 
-    Private Sub RadioButton7_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton7.CheckedChanged
+    Private Sub RadioButton7_CheckedChanged(sender As Object, e As EventArgs)
         Try
             fnCargarCombos()
         Catch ex As Exception

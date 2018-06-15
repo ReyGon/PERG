@@ -2682,8 +2682,6 @@ Public Class frmProductoPrecio
 
         End Try
     End Sub
-<<<<<<< HEAD
-=======
 
     Private Sub fnPrecioC()
         Try
@@ -2760,6 +2758,4 @@ Public Class frmProductoPrecio
 
         End Try
     End Sub
-
->>>>>>> f682ac74f7b285dc645f4fbb0f9bc5cb6f920556
 End Class
