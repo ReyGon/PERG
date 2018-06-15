@@ -114,6 +114,7 @@ Public Class frmProductoPrecio
                            CostoLocal = x.costoIVA, CostoImportacion = 0, Costo = (x.costoIVA + 0), Observaciones = x.observacionPrecio, _
                            Codigo2 = x.codigo2, Nombre2 = x.nombre2, Obser = x.Observacion, marcarepuesto = x.tblArticuloMarcaRepuesto.nombre, tiporepuesto = x.tblArticuloRepuesto.nombre Order By Codigo
 
+
             Me.grdDatos.DataSource = consulta
             fnLlenaPrecios()
             fnCalculaNormales()
@@ -296,7 +297,7 @@ Public Class frmProductoPrecio
             End With
 
             Dim cons2 = (From x In ctx.tblArticuloes _
-                       Select Codigo = x.idArticulo, Nombre = x.codigo1)
+                       Select Codigo = x.idArticulo, Nombre = x.codigo1.Trim())
 
             'Llenamos el combo1
             With Me.cmbCodigo1
@@ -2684,6 +2685,8 @@ Public Class frmProductoPrecio
 
         End Try
     End Sub
+<<<<<<< HEAD
+=======
 
     Private Sub fnPrecioC()
         Try
@@ -2761,4 +2764,5 @@ Public Class frmProductoPrecio
         End Try
     End Sub
 
+>>>>>>> f682ac74f7b285dc645f4fbb0f9bc5cb6f920556
 End Class

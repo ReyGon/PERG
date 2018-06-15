@@ -19,47 +19,47 @@ Partial Class frmProductoPrecio
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridViewCheckBoxColumn1 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn1 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn2 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn3 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn2 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn4 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn5 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn6 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn7 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn8 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn1 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn9 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn10 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn2 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewCheckBoxColumn3 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn11 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn4 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn12 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn13 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn14 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn3 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn15 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn16 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn4 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewCheckBoxColumn5 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn17 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn6 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewCheckBoxColumn5 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn18 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn19 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn6 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
+        Dim GridViewCheckBoxColumn7 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn20 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn8 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn21 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn22 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn23 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn7 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn24 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn25 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn8 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
-        Dim GridViewCheckBoxColumn9 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn26 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
-        Dim GridViewCheckBoxColumn10 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn27 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn28 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn9 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn29 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn30 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn31 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewCheckBoxColumn10 As Telerik.WinControls.UI.GridViewCheckBoxColumn = New Telerik.WinControls.UI.GridViewCheckBoxColumn()
         Dim GridViewTextBoxColumn32 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn33 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn34 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
@@ -87,34 +87,6 @@ Partial Class frmProductoPrecio
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtPrecioPublicoMotriza = New System.Windows.Forms.TextBox()
         Me.cmbCodigo1 = New System.Windows.Forms.ComboBox()
-        Me.Pgclasificacion = New Telerik.WinControls.UI.RadPageViewPage()
-        Me.ButtonGuardar = New System.Windows.Forms.Button()
-        Me.Label23 = New System.Windows.Forms.Label()
-        Me.txtCodigoM1 = New System.Windows.Forms.TextBox()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.txtCodigoM2 = New System.Windows.Forms.TextBox()
-        Me.txtProductoM1 = New System.Windows.Forms.TextBox()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.txtProductoM2 = New System.Windows.Forms.TextBox()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.grdModeloVehiculo = New Telerik.WinControls.UI.RadGridView()
-        Me.chkUnidadMedida = New System.Windows.Forms.CheckBox()
-        Me.chkServicio = New System.Windows.Forms.CheckBox()
-        Me.chkProducto = New System.Windows.Forms.CheckBox()
-        Me.chkKit = New System.Windows.Forms.CheckBox()
-        Me.chkTodosModelo = New System.Windows.Forms.CheckBox()
-        Me.chkTodosVehiculo = New System.Windows.Forms.CheckBox()
-        Me.lblRecuentoModelo = New System.Windows.Forms.Label()
-        Me.lblRecuentoTipoVehiculo = New System.Windows.Forms.Label()
-        Me.grdTipoVehiculo = New Telerik.WinControls.UI.RadGridView()
-        Me.txtObs = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.cmbMarcaRepuesto = New System.Windows.Forms.ComboBox()
-        Me.lblGrid2 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.cmbTipoRepuesto = New System.Windows.Forms.ComboBox()
-        Me.lblGrid1 = New System.Windows.Forms.Label()
-        Me.cmbImportancia = New System.Windows.Forms.ComboBox()
         Me.PgBodega = New Telerik.WinControls.UI.RadPageViewPage()
         Me.grdFotos = New Telerik.WinControls.UI.RadGridView()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -136,6 +108,29 @@ Partial Class frmProductoPrecio
         Me.txtObservacion = New System.Windows.Forms.TextBox()
         Me.grdPrecios = New Telerik.WinControls.UI.RadGridView()
         Me.rpv = New Telerik.WinControls.UI.RadPageView()
+        Me.Pgclasificacion = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.ButtonGuardar = New System.Windows.Forms.Button()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.grdModeloVehiculo = New Telerik.WinControls.UI.RadGridView()
+        Me.chkUnidadMedida = New System.Windows.Forms.CheckBox()
+        Me.chkServicio = New System.Windows.Forms.CheckBox()
+        Me.chkProducto = New System.Windows.Forms.CheckBox()
+        Me.chkKit = New System.Windows.Forms.CheckBox()
+        Me.chkTodosModelo = New System.Windows.Forms.CheckBox()
+        Me.chkTodosVehiculo = New System.Windows.Forms.CheckBox()
+        Me.lblRecuentoModelo = New System.Windows.Forms.Label()
+        Me.lblRecuentoTipoVehiculo = New System.Windows.Forms.Label()
+        Me.grdTipoVehiculo = New Telerik.WinControls.UI.RadGridView()
+        Me.txtObs = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.cmbMarcaRepuesto = New System.Windows.Forms.ComboBox()
+        Me.lblGrid2 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.cmbTipoRepuesto = New System.Windows.Forms.ComboBox()
+        Me.lblGrid1 = New System.Windows.Forms.Label()
+        Me.cmbImportancia = New System.Windows.Forms.ComboBox()
         Me.grdOtrosPrecios2 = New Telerik.WinControls.UI.RadGridView()
         Me.RadGroupBox3 = New Telerik.WinControls.UI.RadGroupBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
@@ -171,13 +166,13 @@ Partial Class frmProductoPrecio
         Me.Button3 = New System.Windows.Forms.Button()
         Me.lblCosto = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.txtCodigoM1 = New System.Windows.Forms.TextBox()
+        Me.txtCodigoM2 = New System.Windows.Forms.TextBox()
+        Me.txtProductoM1 = New System.Windows.Forms.TextBox()
+        Me.txtProductoM2 = New System.Windows.Forms.TextBox()
         CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Pgclasificacion.SuspendLayout()
-        CType(Me.grdModeloVehiculo, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.grdModeloVehiculo.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.grdTipoVehiculo, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.grdTipoVehiculo.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PgBodega.SuspendLayout()
         CType(Me.grdFotos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdFotos.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -200,6 +195,11 @@ Partial Class frmProductoPrecio
         CType(Me.grdPrecios.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rpv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.rpv.SuspendLayout()
+        Me.Pgclasificacion.SuspendLayout()
+        CType(Me.grdModeloVehiculo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdModeloVehiculo.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdTipoVehiculo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdTipoVehiculo.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdOtrosPrecios2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdOtrosPrecios2.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadGroupBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -430,368 +430,6 @@ Partial Class frmProductoPrecio
         Me.cmbCodigo1.Size = New System.Drawing.Size(133, 21)
         Me.cmbCodigo1.TabIndex = 178
         '
-        'Pgclasificacion
-        '
-        Me.Pgclasificacion.Controls.Add(Me.ButtonGuardar)
-        Me.Pgclasificacion.Controls.Add(Me.Label23)
-        Me.Pgclasificacion.Controls.Add(Me.txtCodigoM1)
-        Me.Pgclasificacion.Controls.Add(Me.Label19)
-        Me.Pgclasificacion.Controls.Add(Me.txtCodigoM2)
-        Me.Pgclasificacion.Controls.Add(Me.txtProductoM1)
-        Me.Pgclasificacion.Controls.Add(Me.Label12)
-        Me.Pgclasificacion.Controls.Add(Me.txtProductoM2)
-        Me.Pgclasificacion.Controls.Add(Me.Label21)
-        Me.Pgclasificacion.Controls.Add(Me.grdModeloVehiculo)
-        Me.Pgclasificacion.Controls.Add(Me.chkUnidadMedida)
-        Me.Pgclasificacion.Controls.Add(Me.chkServicio)
-        Me.Pgclasificacion.Controls.Add(Me.chkProducto)
-        Me.Pgclasificacion.Controls.Add(Me.chkKit)
-        Me.Pgclasificacion.Controls.Add(Me.chkTodosModelo)
-        Me.Pgclasificacion.Controls.Add(Me.chkTodosVehiculo)
-        Me.Pgclasificacion.Controls.Add(Me.lblRecuentoModelo)
-        Me.Pgclasificacion.Controls.Add(Me.lblRecuentoTipoVehiculo)
-        Me.Pgclasificacion.Controls.Add(Me.grdTipoVehiculo)
-        Me.Pgclasificacion.Controls.Add(Me.txtObs)
-        Me.Pgclasificacion.Controls.Add(Me.Label5)
-        Me.Pgclasificacion.Controls.Add(Me.cmbMarcaRepuesto)
-        Me.Pgclasificacion.Controls.Add(Me.lblGrid2)
-        Me.Pgclasificacion.Controls.Add(Me.Label6)
-        Me.Pgclasificacion.Controls.Add(Me.cmbTipoRepuesto)
-        Me.Pgclasificacion.Controls.Add(Me.lblGrid1)
-        Me.Pgclasificacion.Controls.Add(Me.cmbImportancia)
-        Me.Pgclasificacion.Location = New System.Drawing.Point(10, 44)
-        Me.Pgclasificacion.Name = "Pgclasificacion"
-        Me.Pgclasificacion.Size = New System.Drawing.Size(1023, 439)
-        Me.Pgclasificacion.Text = "Clasificación"
-        '
-        'ButtonGuardar
-        '
-        Me.ButtonGuardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ButtonGuardar.BackColor = System.Drawing.Color.SteelBlue
-        Me.ButtonGuardar.FlatAppearance.BorderSize = 0
-        Me.ButtonGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
-        Me.ButtonGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.ButtonGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonGuardar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonGuardar.ForeColor = System.Drawing.Color.Transparent
-        Me.ButtonGuardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.ButtonGuardar.Location = New System.Drawing.Point(825, 5)
-        Me.ButtonGuardar.Name = "ButtonGuardar"
-        Me.ButtonGuardar.Size = New System.Drawing.Size(101, 24)
-        Me.ButtonGuardar.TabIndex = 195
-        Me.ButtonGuardar.Text = "Guardar"
-        Me.ButtonGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.ButtonGuardar.UseVisualStyleBackColor = False
-        '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label23.Location = New System.Drawing.Point(22, 13)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(60, 13)
-        Me.Label23.TabIndex = 194
-        Me.Label23.Text = "Codigo 1 :"
-        '
-        'txtCodigoM1
-        '
-        Me.txtCodigoM1.Enabled = False
-        Me.txtCodigoM1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.txtCodigoM1.Location = New System.Drawing.Point(86, 9)
-        Me.txtCodigoM1.Name = "txtCodigoM1"
-        Me.txtCodigoM1.Size = New System.Drawing.Size(169, 22)
-        Me.txtCodigoM1.TabIndex = 193
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label19.Location = New System.Drawing.Point(22, 39)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(60, 13)
-        Me.Label19.TabIndex = 192
-        Me.Label19.Text = "Codigo 2 :"
-        '
-        'txtCodigoM2
-        '
-        Me.txtCodigoM2.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.txtCodigoM2.Location = New System.Drawing.Point(86, 35)
-        Me.txtCodigoM2.Name = "txtCodigoM2"
-        Me.txtCodigoM2.Size = New System.Drawing.Size(169, 22)
-        Me.txtCodigoM2.TabIndex = 188
-        '
-        'txtProductoM1
-        '
-        Me.txtProductoM1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.txtProductoM1.Location = New System.Drawing.Point(329, 9)
-        Me.txtProductoM1.Name = "txtProductoM1"
-        Me.txtProductoM1.Size = New System.Drawing.Size(454, 22)
-        Me.txtProductoM1.TabIndex = 187
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label12.Location = New System.Drawing.Point(261, 13)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(65, 13)
-        Me.Label12.TabIndex = 191
-        Me.Label12.Text = "Nombre 1 :"
-        '
-        'txtProductoM2
-        '
-        Me.txtProductoM2.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.txtProductoM2.Location = New System.Drawing.Point(329, 35)
-        Me.txtProductoM2.Name = "txtProductoM2"
-        Me.txtProductoM2.Size = New System.Drawing.Size(454, 22)
-        Me.txtProductoM2.TabIndex = 189
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label21.Location = New System.Drawing.Point(261, 39)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(65, 13)
-        Me.Label21.TabIndex = 190
-        Me.Label21.Text = "Nombre 2 :"
-        '
-        'grdModeloVehiculo
-        '
-        Me.grdModeloVehiculo.BackColor = System.Drawing.Color.White
-        Me.grdModeloVehiculo.Cursor = System.Windows.Forms.Cursors.Default
-        Me.grdModeloVehiculo.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.grdModeloVehiculo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.grdModeloVehiculo.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.grdModeloVehiculo.Location = New System.Drawing.Point(695, 111)
-        '
-        '
-        '
-        Me.grdModeloVehiculo.MasterTemplate.AllowAddNewRow = False
-        GridViewCheckBoxColumn1.HeaderText = "Agregar"
-        GridViewCheckBoxColumn1.MinWidth = 20
-        GridViewCheckBoxColumn1.Name = "Agregar"
-        GridViewCheckBoxColumn1.Width = 40
-        GridViewTextBoxColumn1.HeaderText = "Id"
-        GridViewTextBoxColumn1.IsVisible = False
-        GridViewTextBoxColumn1.Name = "Id"
-        GridViewTextBoxColumn2.HeaderText = "Codigo"
-        GridViewTextBoxColumn2.IsVisible = False
-        GridViewTextBoxColumn2.Name = "Codigo"
-        GridViewTextBoxColumn3.HeaderText = "Nombre"
-        GridViewTextBoxColumn3.Name = "Nombre"
-        GridViewTextBoxColumn3.ReadOnly = True
-        GridViewTextBoxColumn3.Width = 152
-        Me.grdModeloVehiculo.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn1, GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3})
-        Me.grdModeloVehiculo.MasterTemplate.EnableGrouping = False
-        Me.grdModeloVehiculo.Name = "grdModeloVehiculo"
-        Me.grdModeloVehiculo.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdModeloVehiculo.ReadOnly = True
-        Me.grdModeloVehiculo.RightToLeft = System.Windows.Forms.RightToLeft.No
-        '
-        '
-        '
-        Me.grdModeloVehiculo.RootElement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.grdModeloVehiculo.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdModeloVehiculo.Size = New System.Drawing.Size(298, 320)
-        Me.grdModeloVehiculo.TabIndex = 177
-        Me.grdModeloVehiculo.Text = "RadGridView3"
-        Me.grdModeloVehiculo.ThemeName = "Office2007Black"
-        '
-        'chkUnidadMedida
-        '
-        Me.chkUnidadMedida.AutoSize = True
-        Me.chkUnidadMedida.Location = New System.Drawing.Point(149, 176)
-        Me.chkUnidadMedida.Name = "chkUnidadMedida"
-        Me.chkUnidadMedida.Size = New System.Drawing.Size(147, 25)
-        Me.chkUnidadMedida.TabIndex = 186
-        Me.chkUnidadMedida.Text = "Unidad Medida"
-        Me.chkUnidadMedida.UseVisualStyleBackColor = True
-        '
-        'chkServicio
-        '
-        Me.chkServicio.AutoSize = True
-        Me.chkServicio.Location = New System.Drawing.Point(146, 128)
-        Me.chkServicio.Name = "chkServicio"
-        Me.chkServicio.Size = New System.Drawing.Size(90, 25)
-        Me.chkServicio.TabIndex = 185
-        Me.chkServicio.Text = "Servicio"
-        Me.chkServicio.UseVisualStyleBackColor = True
-        '
-        'chkProducto
-        '
-        Me.chkProducto.AutoSize = True
-        Me.chkProducto.Location = New System.Drawing.Point(35, 176)
-        Me.chkProducto.Name = "chkProducto"
-        Me.chkProducto.Size = New System.Drawing.Size(99, 25)
-        Me.chkProducto.TabIndex = 184
-        Me.chkProducto.Text = "Producto"
-        Me.chkProducto.UseVisualStyleBackColor = True
-        '
-        'chkKit
-        '
-        Me.chkKit.AutoSize = True
-        Me.chkKit.Location = New System.Drawing.Point(35, 128)
-        Me.chkKit.Name = "chkKit"
-        Me.chkKit.Size = New System.Drawing.Size(50, 25)
-        Me.chkKit.TabIndex = 183
-        Me.chkKit.Text = "Kit"
-        Me.chkKit.UseVisualStyleBackColor = True
-        '
-        'chkTodosModelo
-        '
-        Me.chkTodosModelo.AutoSize = True
-        Me.chkTodosModelo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkTodosModelo.Location = New System.Drawing.Point(854, 81)
-        Me.chkTodosModelo.Name = "chkTodosModelo"
-        Me.chkTodosModelo.Size = New System.Drawing.Size(59, 19)
-        Me.chkTodosModelo.TabIndex = 182
-        Me.chkTodosModelo.Text = "Todos"
-        Me.chkTodosModelo.UseVisualStyleBackColor = True
-        '
-        'chkTodosVehiculo
-        '
-        Me.chkTodosVehiculo.AutoSize = True
-        Me.chkTodosVehiculo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkTodosVehiculo.Location = New System.Drawing.Point(543, 79)
-        Me.chkTodosVehiculo.Name = "chkTodosVehiculo"
-        Me.chkTodosVehiculo.Size = New System.Drawing.Size(59, 19)
-        Me.chkTodosVehiculo.TabIndex = 181
-        Me.chkTodosVehiculo.Text = "Todos"
-        Me.chkTodosVehiculo.UseVisualStyleBackColor = True
-        '
-        'lblRecuentoModelo
-        '
-        Me.lblRecuentoModelo.AutoSize = True
-        Me.lblRecuentoModelo.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.lblRecuentoModelo.Location = New System.Drawing.Point(970, 80)
-        Me.lblRecuentoModelo.Name = "lblRecuentoModelo"
-        Me.lblRecuentoModelo.Size = New System.Drawing.Size(17, 19)
-        Me.lblRecuentoModelo.TabIndex = 180
-        Me.lblRecuentoModelo.Text = "0"
-        '
-        'lblRecuentoTipoVehiculo
-        '
-        Me.lblRecuentoTipoVehiculo.AutoSize = True
-        Me.lblRecuentoTipoVehiculo.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.lblRecuentoTipoVehiculo.Location = New System.Drawing.Point(655, 80)
-        Me.lblRecuentoTipoVehiculo.Name = "lblRecuentoTipoVehiculo"
-        Me.lblRecuentoTipoVehiculo.Size = New System.Drawing.Size(17, 19)
-        Me.lblRecuentoTipoVehiculo.TabIndex = 179
-        Me.lblRecuentoTipoVehiculo.Text = "0"
-        '
-        'grdTipoVehiculo
-        '
-        Me.grdTipoVehiculo.Location = New System.Drawing.Point(400, 111)
-        '
-        '
-        '
-        Me.grdTipoVehiculo.MasterTemplate.AllowAddNewRow = False
-        Me.grdTipoVehiculo.MasterTemplate.AutoGenerateColumns = False
-        GridViewCheckBoxColumn2.FormatString = ""
-        GridViewCheckBoxColumn2.HeaderText = "Agregar"
-        GridViewCheckBoxColumn2.Name = "Agregar"
-        GridViewCheckBoxColumn2.Width = 48
-        GridViewTextBoxColumn4.HeaderText = "Id"
-        GridViewTextBoxColumn4.IsVisible = False
-        GridViewTextBoxColumn4.Name = "Id"
-        GridViewTextBoxColumn5.FormatString = ""
-        GridViewTextBoxColumn5.HeaderText = "Codigo"
-        GridViewTextBoxColumn5.IsVisible = False
-        GridViewTextBoxColumn5.Name = "Codigo"
-        GridViewTextBoxColumn5.ReadOnly = True
-        GridViewTextBoxColumn6.FormatString = ""
-        GridViewTextBoxColumn6.HeaderText = "Nombre"
-        GridViewTextBoxColumn6.Name = "Nombre"
-        GridViewTextBoxColumn6.ReadOnly = True
-        GridViewTextBoxColumn6.Width = 225
-        Me.grdTipoVehiculo.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn2, GridViewTextBoxColumn4, GridViewTextBoxColumn5, GridViewTextBoxColumn6})
-        Me.grdTipoVehiculo.MasterTemplate.EnableGrouping = False
-        Me.grdTipoVehiculo.Name = "grdTipoVehiculo"
-        Me.grdTipoVehiculo.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        '
-        '
-        '
-        Me.grdTipoVehiculo.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdTipoVehiculo.Size = New System.Drawing.Size(289, 320)
-        Me.grdTipoVehiculo.TabIndex = 178
-        Me.grdTipoVehiculo.Text = "RadGridView2"
-        Me.grdTipoVehiculo.ThemeName = "Office2007Black"
-        '
-        'txtObs
-        '
-        Me.txtObs.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.txtObs.Location = New System.Drawing.Point(58, 406)
-        Me.txtObs.Multiline = True
-        Me.txtObs.Name = "txtObs"
-        Me.txtObs.Size = New System.Drawing.Size(276, 30)
-        Me.txtObs.TabIndex = 172
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label5.Location = New System.Drawing.Point(146, 375)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(77, 13)
-        Me.Label5.TabIndex = 173
-        Me.Label5.Text = "Observacion :"
-        '
-        'cmbMarcaRepuesto
-        '
-        Me.cmbMarcaRepuesto.FormattingEnabled = True
-        Me.cmbMarcaRepuesto.Location = New System.Drawing.Point(150, 269)
-        Me.cmbMarcaRepuesto.Name = "cmbMarcaRepuesto"
-        Me.cmbMarcaRepuesto.Size = New System.Drawing.Size(184, 21)
-        Me.cmbMarcaRepuesto.TabIndex = 170
-        '
-        'lblGrid2
-        '
-        Me.lblGrid2.AutoSize = True
-        Me.lblGrid2.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.lblGrid2.Location = New System.Drawing.Point(727, 78)
-        Me.lblGrid2.Name = "lblGrid2"
-        Me.lblGrid2.Size = New System.Drawing.Size(69, 20)
-        Me.lblGrid2.TabIndex = 176
-        Me.lblGrid2.Text = "Modelos"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label6.Location = New System.Drawing.Point(44, 332)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(75, 13)
-        Me.Label6.TabIndex = 174
-        Me.Label6.Text = "Importancia :"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'cmbTipoRepuesto
-        '
-        Me.cmbTipoRepuesto.FormattingEnabled = True
-        Me.cmbTipoRepuesto.Location = New System.Drawing.Point(150, 220)
-        Me.cmbTipoRepuesto.Name = "cmbTipoRepuesto"
-        Me.cmbTipoRepuesto.Size = New System.Drawing.Size(184, 21)
-        Me.cmbTipoRepuesto.TabIndex = 169
-        '
-        'lblGrid1
-        '
-        Me.lblGrid1.AutoSize = True
-        Me.lblGrid1.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.lblGrid1.Location = New System.Drawing.Point(405, 76)
-        Me.lblGrid1.Name = "lblGrid1"
-        Me.lblGrid1.Size = New System.Drawing.Size(104, 20)
-        Me.lblGrid1.TabIndex = 175
-        Me.lblGrid1.Text = "Tipo Vehiculo"
-        '
-        'cmbImportancia
-        '
-        Me.cmbImportancia.FormattingEnabled = True
-        Me.cmbImportancia.Location = New System.Drawing.Point(151, 323)
-        Me.cmbImportancia.Name = "cmbImportancia"
-        Me.cmbImportancia.Size = New System.Drawing.Size(183, 21)
-        Me.cmbImportancia.TabIndex = 171
-        '
         'PgBodega
         '
         Me.PgBodega.Controls.Add(Me.grdFotos)
@@ -818,20 +456,20 @@ Partial Class frmProductoPrecio
         '
         '
         Me.grdFotos.MasterTemplate.AllowAddNewRow = False
-        GridViewTextBoxColumn7.HeaderText = "Codigo"
-        GridViewTextBoxColumn7.Name = "codigo"
-        GridViewTextBoxColumn7.Width = 95
-        GridViewTextBoxColumn8.HeaderText = "Direccion"
-        GridViewTextBoxColumn8.IsVisible = False
-        GridViewTextBoxColumn8.Name = "direccion"
-        GridViewTextBoxColumn8.Width = 254
-        GridViewTextBoxColumn9.HeaderText = "elimina"
-        GridViewTextBoxColumn9.IsVisible = False
-        GridViewTextBoxColumn9.Name = "elimina"
-        GridViewTextBoxColumn10.HeaderText = "Nombre"
-        GridViewTextBoxColumn10.Name = "nombre"
-        GridViewTextBoxColumn10.Width = 217
-        Me.grdFotos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn7, GridViewTextBoxColumn8, GridViewTextBoxColumn9, GridViewTextBoxColumn10})
+        GridViewTextBoxColumn1.HeaderText = "Codigo"
+        GridViewTextBoxColumn1.Name = "codigo"
+        GridViewTextBoxColumn1.Width = 95
+        GridViewTextBoxColumn2.HeaderText = "Direccion"
+        GridViewTextBoxColumn2.IsVisible = False
+        GridViewTextBoxColumn2.Name = "direccion"
+        GridViewTextBoxColumn2.Width = 254
+        GridViewTextBoxColumn3.HeaderText = "elimina"
+        GridViewTextBoxColumn3.IsVisible = False
+        GridViewTextBoxColumn3.Name = "elimina"
+        GridViewTextBoxColumn4.HeaderText = "Nombre"
+        GridViewTextBoxColumn4.Name = "nombre"
+        GridViewTextBoxColumn4.Width = 217
+        Me.grdFotos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4})
         Me.grdFotos.MasterTemplate.EnableGrouping = False
         Me.grdFotos.Name = "grdFotos"
         Me.grdFotos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
@@ -953,64 +591,64 @@ Partial Class frmProductoPrecio
         '
         '
         Me.grdPreciosSustitutos.MasterTemplate.AllowAddNewRow = False
-        GridViewTextBoxColumn11.HeaderText = "Codigo"
-        GridViewTextBoxColumn11.IsVisible = False
-        GridViewTextBoxColumn11.Name = "codigo"
-        GridViewTextBoxColumn12.HeaderText = "codPrecio"
-        GridViewTextBoxColumn12.IsVisible = False
-        GridViewTextBoxColumn12.Name = "codPrecio"
-        GridViewTextBoxColumn13.HeaderText = "Tipo Precio"
-        GridViewTextBoxColumn13.Name = "tipoPrecio"
+        GridViewTextBoxColumn5.HeaderText = "Codigo"
+        GridViewTextBoxColumn5.IsVisible = False
+        GridViewTextBoxColumn5.Name = "codigo"
+        GridViewTextBoxColumn6.HeaderText = "codPrecio"
+        GridViewTextBoxColumn6.IsVisible = False
+        GridViewTextBoxColumn6.Name = "codPrecio"
+        GridViewTextBoxColumn7.HeaderText = "Tipo Precio"
+        GridViewTextBoxColumn7.Name = "tipoPrecio"
+        GridViewTextBoxColumn7.ReadOnly = True
+        GridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn7.Width = 87
+        GridViewTextBoxColumn8.HeaderText = "Precio Base"
+        GridViewTextBoxColumn8.Name = "txmPrecio"
+        GridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn8.Width = 77
+        GridViewCheckBoxColumn1.HeaderText = "Activar"
+        GridViewCheckBoxColumn1.MinWidth = 20
+        GridViewCheckBoxColumn1.Name = "chmActiva"
+        GridViewCheckBoxColumn1.Width = 62
+        GridViewTextBoxColumn9.HeaderText = "Margen Utilidad"
+        GridViewTextBoxColumn9.Name = "MargenUtilidad"
+        GridViewTextBoxColumn9.ReadOnly = True
+        GridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn9.Width = 100
+        GridViewTextBoxColumn10.HeaderText = "Precio"
+        GridViewTextBoxColumn10.IsVisible = False
+        GridViewTextBoxColumn10.Name = "precio"
+        GridViewTextBoxColumn10.ReadOnly = True
+        GridViewTextBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn10.Width = 73
+        GridViewCheckBoxColumn2.HeaderText = "Perdida"
+        GridViewCheckBoxColumn2.MinWidth = 20
+        GridViewCheckBoxColumn2.Name = "chmPerdida"
+        GridViewCheckBoxColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewCheckBoxColumn2.Width = 88
+        GridViewCheckBoxColumn3.HeaderText = "Cant. Estado"
+        GridViewCheckBoxColumn3.MinWidth = 20
+        GridViewCheckBoxColumn3.Name = "chmCantEstado"
+        GridViewCheckBoxColumn3.Width = 91
+        GridViewTextBoxColumn11.HeaderText = "Minima"
+        GridViewTextBoxColumn11.Name = "txmMinima"
+        GridViewTextBoxColumn11.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn11.Width = 72
+        GridViewCheckBoxColumn4.HeaderText = "Fecha Estado"
+        GridViewCheckBoxColumn4.MinWidth = 20
+        GridViewCheckBoxColumn4.Name = "chmFechaEstado"
+        GridViewCheckBoxColumn4.Width = 100
+        GridViewTextBoxColumn12.HeaderText = "Fecha Inicio"
+        GridViewTextBoxColumn12.Name = "txbFechaInicio"
+        GridViewTextBoxColumn12.ReadOnly = True
+        GridViewTextBoxColumn12.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn12.Width = 109
+        GridViewTextBoxColumn13.HeaderText = "Fecha Final"
+        GridViewTextBoxColumn13.Name = "txbFechaFinal"
         GridViewTextBoxColumn13.ReadOnly = True
         GridViewTextBoxColumn13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn13.Width = 87
-        GridViewTextBoxColumn14.HeaderText = "Precio Base"
-        GridViewTextBoxColumn14.Name = "txmPrecio"
-        GridViewTextBoxColumn14.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn14.Width = 77
-        GridViewCheckBoxColumn3.HeaderText = "Activar"
-        GridViewCheckBoxColumn3.MinWidth = 20
-        GridViewCheckBoxColumn3.Name = "chmActiva"
-        GridViewCheckBoxColumn3.Width = 62
-        GridViewTextBoxColumn15.HeaderText = "Margen Utilidad"
-        GridViewTextBoxColumn15.Name = "MargenUtilidad"
-        GridViewTextBoxColumn15.ReadOnly = True
-        GridViewTextBoxColumn15.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn15.Width = 100
-        GridViewTextBoxColumn16.HeaderText = "Precio"
-        GridViewTextBoxColumn16.IsVisible = False
-        GridViewTextBoxColumn16.Name = "precio"
-        GridViewTextBoxColumn16.ReadOnly = True
-        GridViewTextBoxColumn16.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn16.Width = 73
-        GridViewCheckBoxColumn4.HeaderText = "Perdida"
-        GridViewCheckBoxColumn4.MinWidth = 20
-        GridViewCheckBoxColumn4.Name = "chmPerdida"
-        GridViewCheckBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewCheckBoxColumn4.Width = 88
-        GridViewCheckBoxColumn5.HeaderText = "Cant. Estado"
-        GridViewCheckBoxColumn5.MinWidth = 20
-        GridViewCheckBoxColumn5.Name = "chmCantEstado"
-        GridViewCheckBoxColumn5.Width = 91
-        GridViewTextBoxColumn17.HeaderText = "Minima"
-        GridViewTextBoxColumn17.Name = "txmMinima"
-        GridViewTextBoxColumn17.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn17.Width = 72
-        GridViewCheckBoxColumn6.HeaderText = "Fecha Estado"
-        GridViewCheckBoxColumn6.MinWidth = 20
-        GridViewCheckBoxColumn6.Name = "chmFechaEstado"
-        GridViewCheckBoxColumn6.Width = 100
-        GridViewTextBoxColumn18.HeaderText = "Fecha Inicio"
-        GridViewTextBoxColumn18.Name = "txbFechaInicio"
-        GridViewTextBoxColumn18.ReadOnly = True
-        GridViewTextBoxColumn18.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn18.Width = 109
-        GridViewTextBoxColumn19.HeaderText = "Fecha Final"
-        GridViewTextBoxColumn19.Name = "txbFechaFinal"
-        GridViewTextBoxColumn19.ReadOnly = True
-        GridViewTextBoxColumn19.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn19.Width = 109
-        Me.grdPreciosSustitutos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn11, GridViewTextBoxColumn12, GridViewTextBoxColumn13, GridViewTextBoxColumn14, GridViewCheckBoxColumn3, GridViewTextBoxColumn15, GridViewTextBoxColumn16, GridViewCheckBoxColumn4, GridViewCheckBoxColumn5, GridViewTextBoxColumn17, GridViewCheckBoxColumn6, GridViewTextBoxColumn18, GridViewTextBoxColumn19})
+        GridViewTextBoxColumn13.Width = 109
+        Me.grdPreciosSustitutos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn5, GridViewTextBoxColumn6, GridViewTextBoxColumn7, GridViewTextBoxColumn8, GridViewCheckBoxColumn1, GridViewTextBoxColumn9, GridViewTextBoxColumn10, GridViewCheckBoxColumn2, GridViewCheckBoxColumn3, GridViewTextBoxColumn11, GridViewCheckBoxColumn4, GridViewTextBoxColumn12, GridViewTextBoxColumn13})
         Me.grdPreciosSustitutos.MasterTemplate.EnableGrouping = False
         Me.grdPreciosSustitutos.Name = "grdPreciosSustitutos"
         Me.grdPreciosSustitutos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
@@ -1115,64 +753,64 @@ Partial Class frmProductoPrecio
         'grdOtrosPrecios
         '
         Me.grdOtrosPrecios.MasterTemplate.AllowAddNewRow = False
-        GridViewTextBoxColumn20.HeaderText = "Codigo"
-        GridViewTextBoxColumn20.IsVisible = False
-        GridViewTextBoxColumn20.Name = "codigo"
-        GridViewTextBoxColumn21.HeaderText = "codPrecio"
-        GridViewTextBoxColumn21.IsVisible = False
-        GridViewTextBoxColumn21.Name = "codPrecio"
-        GridViewTextBoxColumn22.HeaderText = "Tipo Precio"
-        GridViewTextBoxColumn22.Name = "tipoPrecio"
+        GridViewTextBoxColumn14.HeaderText = "Codigo"
+        GridViewTextBoxColumn14.IsVisible = False
+        GridViewTextBoxColumn14.Name = "codigo"
+        GridViewTextBoxColumn15.HeaderText = "codPrecio"
+        GridViewTextBoxColumn15.IsVisible = False
+        GridViewTextBoxColumn15.Name = "codPrecio"
+        GridViewTextBoxColumn16.HeaderText = "Tipo Precio"
+        GridViewTextBoxColumn16.Name = "tipoPrecio"
+        GridViewTextBoxColumn16.ReadOnly = True
+        GridViewTextBoxColumn16.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn16.Width = 87
+        GridViewTextBoxColumn17.HeaderText = "Precio Base"
+        GridViewTextBoxColumn17.Name = "txmPrecio"
+        GridViewTextBoxColumn17.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn17.Width = 77
+        GridViewCheckBoxColumn5.HeaderText = "Activar"
+        GridViewCheckBoxColumn5.MinWidth = 20
+        GridViewCheckBoxColumn5.Name = "chmActiva"
+        GridViewCheckBoxColumn5.Width = 62
+        GridViewTextBoxColumn18.HeaderText = "Margen Utilidad"
+        GridViewTextBoxColumn18.Name = "MargenUtilidad"
+        GridViewTextBoxColumn18.ReadOnly = True
+        GridViewTextBoxColumn18.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn18.Width = 100
+        GridViewTextBoxColumn19.HeaderText = "Precio"
+        GridViewTextBoxColumn19.IsVisible = False
+        GridViewTextBoxColumn19.Name = "precio"
+        GridViewTextBoxColumn19.ReadOnly = True
+        GridViewTextBoxColumn19.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn19.Width = 73
+        GridViewCheckBoxColumn6.HeaderText = "Perdida"
+        GridViewCheckBoxColumn6.MinWidth = 20
+        GridViewCheckBoxColumn6.Name = "chmPerdida"
+        GridViewCheckBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewCheckBoxColumn6.Width = 88
+        GridViewCheckBoxColumn7.HeaderText = "Cant. Estado"
+        GridViewCheckBoxColumn7.MinWidth = 20
+        GridViewCheckBoxColumn7.Name = "chmCantEstado"
+        GridViewCheckBoxColumn7.Width = 91
+        GridViewTextBoxColumn20.HeaderText = "Minima"
+        GridViewTextBoxColumn20.Name = "txmMinima"
+        GridViewTextBoxColumn20.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn20.Width = 72
+        GridViewCheckBoxColumn8.HeaderText = "Fecha Estado"
+        GridViewCheckBoxColumn8.MinWidth = 20
+        GridViewCheckBoxColumn8.Name = "chmFechaEstado"
+        GridViewCheckBoxColumn8.Width = 100
+        GridViewTextBoxColumn21.HeaderText = "Fecha Inicio"
+        GridViewTextBoxColumn21.Name = "txbFechaInicio"
+        GridViewTextBoxColumn21.ReadOnly = True
+        GridViewTextBoxColumn21.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn21.Width = 109
+        GridViewTextBoxColumn22.HeaderText = "Fecha Final"
+        GridViewTextBoxColumn22.Name = "txbFechaFinal"
         GridViewTextBoxColumn22.ReadOnly = True
         GridViewTextBoxColumn22.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn22.Width = 87
-        GridViewTextBoxColumn23.HeaderText = "Precio Base"
-        GridViewTextBoxColumn23.Name = "txmPrecio"
-        GridViewTextBoxColumn23.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn23.Width = 77
-        GridViewCheckBoxColumn7.HeaderText = "Activar"
-        GridViewCheckBoxColumn7.MinWidth = 20
-        GridViewCheckBoxColumn7.Name = "chmActiva"
-        GridViewCheckBoxColumn7.Width = 62
-        GridViewTextBoxColumn24.HeaderText = "Margen Utilidad"
-        GridViewTextBoxColumn24.Name = "MargenUtilidad"
-        GridViewTextBoxColumn24.ReadOnly = True
-        GridViewTextBoxColumn24.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn24.Width = 100
-        GridViewTextBoxColumn25.HeaderText = "Precio"
-        GridViewTextBoxColumn25.IsVisible = False
-        GridViewTextBoxColumn25.Name = "precio"
-        GridViewTextBoxColumn25.ReadOnly = True
-        GridViewTextBoxColumn25.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn25.Width = 73
-        GridViewCheckBoxColumn8.HeaderText = "Perdida"
-        GridViewCheckBoxColumn8.MinWidth = 20
-        GridViewCheckBoxColumn8.Name = "chmPerdida"
-        GridViewCheckBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewCheckBoxColumn8.Width = 88
-        GridViewCheckBoxColumn9.HeaderText = "Cant. Estado"
-        GridViewCheckBoxColumn9.MinWidth = 20
-        GridViewCheckBoxColumn9.Name = "chmCantEstado"
-        GridViewCheckBoxColumn9.Width = 91
-        GridViewTextBoxColumn26.HeaderText = "Minima"
-        GridViewTextBoxColumn26.Name = "txmMinima"
-        GridViewTextBoxColumn26.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn26.Width = 72
-        GridViewCheckBoxColumn10.HeaderText = "Fecha Estado"
-        GridViewCheckBoxColumn10.MinWidth = 20
-        GridViewCheckBoxColumn10.Name = "chmFechaEstado"
-        GridViewCheckBoxColumn10.Width = 100
-        GridViewTextBoxColumn27.HeaderText = "Fecha Inicio"
-        GridViewTextBoxColumn27.Name = "txbFechaInicio"
-        GridViewTextBoxColumn27.ReadOnly = True
-        GridViewTextBoxColumn27.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn27.Width = 109
-        GridViewTextBoxColumn28.HeaderText = "Fecha Final"
-        GridViewTextBoxColumn28.Name = "txbFechaFinal"
-        GridViewTextBoxColumn28.ReadOnly = True
-        GridViewTextBoxColumn28.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn28.Width = 109
-        Me.grdOtrosPrecios.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn20, GridViewTextBoxColumn21, GridViewTextBoxColumn22, GridViewTextBoxColumn23, GridViewCheckBoxColumn7, GridViewTextBoxColumn24, GridViewTextBoxColumn25, GridViewCheckBoxColumn8, GridViewCheckBoxColumn9, GridViewTextBoxColumn26, GridViewCheckBoxColumn10, GridViewTextBoxColumn27, GridViewTextBoxColumn28})
+        GridViewTextBoxColumn22.Width = 109
+        Me.grdOtrosPrecios.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn14, GridViewTextBoxColumn15, GridViewTextBoxColumn16, GridViewTextBoxColumn17, GridViewCheckBoxColumn5, GridViewTextBoxColumn18, GridViewTextBoxColumn19, GridViewCheckBoxColumn6, GridViewCheckBoxColumn7, GridViewTextBoxColumn20, GridViewCheckBoxColumn8, GridViewTextBoxColumn21, GridViewTextBoxColumn22})
         Me.grdOtrosPrecios.MasterTemplate.EnableGrouping = False
         Me.grdOtrosPrecios.Name = "grdOtrosPrecios"
         Me.grdOtrosPrecios.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
@@ -1222,32 +860,32 @@ Partial Class frmProductoPrecio
         '
         Me.grdPrecios.MasterTemplate.AllowAddNewRow = False
         Me.grdPrecios.MasterTemplate.AllowColumnReorder = False
-        GridViewTextBoxColumn29.HeaderText = "Codigo"
-        GridViewTextBoxColumn29.IsVisible = False
-        GridViewTextBoxColumn29.Name = "codigo"
-        GridViewTextBoxColumn30.HeaderText = "codigoTipo"
-        GridViewTextBoxColumn30.IsVisible = False
-        GridViewTextBoxColumn30.Name = "codTipoNegocio"
-        GridViewTextBoxColumn31.HeaderText = "Tipo de Negocio"
-        GridViewTextBoxColumn31.Name = "tipoNegocio"
-        GridViewTextBoxColumn31.ReadOnly = True
-        GridViewTextBoxColumn31.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn31.Width = 176
-        GridViewTextBoxColumn32.HeaderText = "Descuento"
-        GridViewTextBoxColumn32.Name = "txmDescuento"
-        GridViewTextBoxColumn32.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn32.Width = 110
-        GridViewTextBoxColumn33.HeaderText = "Precio Normal"
-        GridViewTextBoxColumn33.Name = "precioNormal"
-        GridViewTextBoxColumn33.ReadOnly = True
-        GridViewTextBoxColumn33.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn33.Width = 102
-        GridViewTextBoxColumn34.HeaderText = "Margen Utilidad"
-        GridViewTextBoxColumn34.Name = "utilidad"
-        GridViewTextBoxColumn34.ReadOnly = True
-        GridViewTextBoxColumn34.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        GridViewTextBoxColumn34.Width = 97
-        Me.grdPrecios.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn29, GridViewTextBoxColumn30, GridViewTextBoxColumn31, GridViewTextBoxColumn32, GridViewTextBoxColumn33, GridViewTextBoxColumn34})
+        GridViewTextBoxColumn23.HeaderText = "Codigo"
+        GridViewTextBoxColumn23.IsVisible = False
+        GridViewTextBoxColumn23.Name = "codigo"
+        GridViewTextBoxColumn24.HeaderText = "codigoTipo"
+        GridViewTextBoxColumn24.IsVisible = False
+        GridViewTextBoxColumn24.Name = "codTipoNegocio"
+        GridViewTextBoxColumn25.HeaderText = "Tipo de Negocio"
+        GridViewTextBoxColumn25.Name = "tipoNegocio"
+        GridViewTextBoxColumn25.ReadOnly = True
+        GridViewTextBoxColumn25.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn25.Width = 176
+        GridViewTextBoxColumn26.HeaderText = "Descuento"
+        GridViewTextBoxColumn26.Name = "txmDescuento"
+        GridViewTextBoxColumn26.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn26.Width = 110
+        GridViewTextBoxColumn27.HeaderText = "Precio Normal"
+        GridViewTextBoxColumn27.Name = "precioNormal"
+        GridViewTextBoxColumn27.ReadOnly = True
+        GridViewTextBoxColumn27.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn27.Width = 102
+        GridViewTextBoxColumn28.HeaderText = "Margen Utilidad"
+        GridViewTextBoxColumn28.Name = "utilidad"
+        GridViewTextBoxColumn28.ReadOnly = True
+        GridViewTextBoxColumn28.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        GridViewTextBoxColumn28.Width = 97
+        Me.grdPrecios.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn23, GridViewTextBoxColumn24, GridViewTextBoxColumn25, GridViewTextBoxColumn26, GridViewTextBoxColumn27, GridViewTextBoxColumn28})
         Me.grdPrecios.MasterTemplate.EnableGrouping = False
         Me.grdPrecios.Name = "grdPrecios"
         Me.grdPrecios.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
@@ -1280,6 +918,325 @@ Partial Class frmProductoPrecio
         Me.rpv.TabIndex = 88
         Me.rpv.Text = "Motriza"
         CType(Me.rpv.GetChildAt(0), Telerik.WinControls.UI.RadPageViewStripElement).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll
+        '
+        'Pgclasificacion
+        '
+        Me.Pgclasificacion.Controls.Add(Me.txtProductoM2)
+        Me.Pgclasificacion.Controls.Add(Me.txtProductoM1)
+        Me.Pgclasificacion.Controls.Add(Me.txtCodigoM2)
+        Me.Pgclasificacion.Controls.Add(Me.txtCodigoM1)
+        Me.Pgclasificacion.Controls.Add(Me.ButtonGuardar)
+        Me.Pgclasificacion.Controls.Add(Me.Label23)
+        Me.Pgclasificacion.Controls.Add(Me.Label19)
+        Me.Pgclasificacion.Controls.Add(Me.Label12)
+        Me.Pgclasificacion.Controls.Add(Me.Label21)
+        Me.Pgclasificacion.Controls.Add(Me.grdModeloVehiculo)
+        Me.Pgclasificacion.Controls.Add(Me.chkUnidadMedida)
+        Me.Pgclasificacion.Controls.Add(Me.chkServicio)
+        Me.Pgclasificacion.Controls.Add(Me.chkProducto)
+        Me.Pgclasificacion.Controls.Add(Me.chkKit)
+        Me.Pgclasificacion.Controls.Add(Me.chkTodosModelo)
+        Me.Pgclasificacion.Controls.Add(Me.chkTodosVehiculo)
+        Me.Pgclasificacion.Controls.Add(Me.lblRecuentoModelo)
+        Me.Pgclasificacion.Controls.Add(Me.lblRecuentoTipoVehiculo)
+        Me.Pgclasificacion.Controls.Add(Me.grdTipoVehiculo)
+        Me.Pgclasificacion.Controls.Add(Me.txtObs)
+        Me.Pgclasificacion.Controls.Add(Me.Label5)
+        Me.Pgclasificacion.Controls.Add(Me.cmbMarcaRepuesto)
+        Me.Pgclasificacion.Controls.Add(Me.lblGrid2)
+        Me.Pgclasificacion.Controls.Add(Me.Label6)
+        Me.Pgclasificacion.Controls.Add(Me.cmbTipoRepuesto)
+        Me.Pgclasificacion.Controls.Add(Me.lblGrid1)
+        Me.Pgclasificacion.Controls.Add(Me.cmbImportancia)
+        Me.Pgclasificacion.Location = New System.Drawing.Point(10, 44)
+        Me.Pgclasificacion.Name = "Pgclasificacion"
+        Me.Pgclasificacion.Size = New System.Drawing.Size(1023, 439)
+        Me.Pgclasificacion.Text = "Clasificación"
+        '
+        'ButtonGuardar
+        '
+        Me.ButtonGuardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ButtonGuardar.BackColor = System.Drawing.Color.SteelBlue
+        Me.ButtonGuardar.FlatAppearance.BorderSize = 0
+        Me.ButtonGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.CornflowerBlue
+        Me.ButtonGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.ButtonGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonGuardar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonGuardar.ForeColor = System.Drawing.Color.Transparent
+        Me.ButtonGuardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.ButtonGuardar.Location = New System.Drawing.Point(825, 5)
+        Me.ButtonGuardar.Name = "ButtonGuardar"
+        Me.ButtonGuardar.Size = New System.Drawing.Size(101, 24)
+        Me.ButtonGuardar.TabIndex = 195
+        Me.ButtonGuardar.Text = "Guardar"
+        Me.ButtonGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonGuardar.UseVisualStyleBackColor = False
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label19.Location = New System.Drawing.Point(22, 39)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(60, 13)
+        Me.Label19.TabIndex = 192
+        Me.Label19.Text = "Codigo 2 :"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label12.Location = New System.Drawing.Point(261, 13)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(65, 13)
+        Me.Label12.TabIndex = 191
+        Me.Label12.Text = "Nombre 1 :"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label21.Location = New System.Drawing.Point(261, 39)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(65, 13)
+        Me.Label21.TabIndex = 190
+        Me.Label21.Text = "Nombre 2 :"
+        '
+        'grdModeloVehiculo
+        '
+        Me.grdModeloVehiculo.BackColor = System.Drawing.Color.White
+        Me.grdModeloVehiculo.Cursor = System.Windows.Forms.Cursors.Default
+        Me.grdModeloVehiculo.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.grdModeloVehiculo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.grdModeloVehiculo.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.grdModeloVehiculo.Location = New System.Drawing.Point(695, 111)
+        '
+        'grdModeloVehiculo
+        '
+        Me.grdModeloVehiculo.MasterTemplate.AllowAddNewRow = False
+        GridViewCheckBoxColumn9.HeaderText = "Agregar"
+        GridViewCheckBoxColumn9.MinWidth = 20
+        GridViewCheckBoxColumn9.Name = "Agregar"
+        GridViewCheckBoxColumn9.Width = 40
+        GridViewTextBoxColumn29.HeaderText = "Id"
+        GridViewTextBoxColumn29.IsVisible = False
+        GridViewTextBoxColumn29.Name = "Id"
+        GridViewTextBoxColumn30.HeaderText = "Codigo"
+        GridViewTextBoxColumn30.IsVisible = False
+        GridViewTextBoxColumn30.Name = "Codigo"
+        GridViewTextBoxColumn31.HeaderText = "Nombre"
+        GridViewTextBoxColumn31.Name = "Nombre"
+        GridViewTextBoxColumn31.ReadOnly = True
+        GridViewTextBoxColumn31.Width = 152
+        Me.grdModeloVehiculo.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn9, GridViewTextBoxColumn29, GridViewTextBoxColumn30, GridViewTextBoxColumn31})
+        Me.grdModeloVehiculo.MasterTemplate.EnableGrouping = False
+        Me.grdModeloVehiculo.Name = "grdModeloVehiculo"
+        Me.grdModeloVehiculo.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdModeloVehiculo.ReadOnly = True
+        Me.grdModeloVehiculo.RightToLeft = System.Windows.Forms.RightToLeft.No
+        '
+        '
+        '
+        Me.grdModeloVehiculo.RootElement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.grdModeloVehiculo.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdModeloVehiculo.Size = New System.Drawing.Size(298, 320)
+        Me.grdModeloVehiculo.TabIndex = 177
+        Me.grdModeloVehiculo.Text = "RadGridView3"
+        Me.grdModeloVehiculo.ThemeName = "Office2007Black"
+        '
+        'chkUnidadMedida
+        '
+        Me.chkUnidadMedida.AutoSize = True
+        Me.chkUnidadMedida.Location = New System.Drawing.Point(149, 176)
+        Me.chkUnidadMedida.Name = "chkUnidadMedida"
+        Me.chkUnidadMedida.Size = New System.Drawing.Size(147, 25)
+        Me.chkUnidadMedida.TabIndex = 186
+        Me.chkUnidadMedida.Text = "Unidad Medida"
+        Me.chkUnidadMedida.UseVisualStyleBackColor = True
+        '
+        'chkServicio
+        '
+        Me.chkServicio.AutoSize = True
+        Me.chkServicio.Location = New System.Drawing.Point(146, 128)
+        Me.chkServicio.Name = "chkServicio"
+        Me.chkServicio.Size = New System.Drawing.Size(90, 25)
+        Me.chkServicio.TabIndex = 185
+        Me.chkServicio.Text = "Servicio"
+        Me.chkServicio.UseVisualStyleBackColor = True
+        '
+        'chkProducto
+        '
+        Me.chkProducto.AutoSize = True
+        Me.chkProducto.Location = New System.Drawing.Point(35, 176)
+        Me.chkProducto.Name = "chkProducto"
+        Me.chkProducto.Size = New System.Drawing.Size(99, 25)
+        Me.chkProducto.TabIndex = 184
+        Me.chkProducto.Text = "Producto"
+        Me.chkProducto.UseVisualStyleBackColor = True
+        '
+        'chkKit
+        '
+        Me.chkKit.AutoSize = True
+        Me.chkKit.Location = New System.Drawing.Point(35, 128)
+        Me.chkKit.Name = "chkKit"
+        Me.chkKit.Size = New System.Drawing.Size(50, 25)
+        Me.chkKit.TabIndex = 183
+        Me.chkKit.Text = "Kit"
+        Me.chkKit.UseVisualStyleBackColor = True
+        '
+        'chkTodosModelo
+        '
+        Me.chkTodosModelo.AutoSize = True
+        Me.chkTodosModelo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkTodosModelo.Location = New System.Drawing.Point(854, 81)
+        Me.chkTodosModelo.Name = "chkTodosModelo"
+        Me.chkTodosModelo.Size = New System.Drawing.Size(59, 19)
+        Me.chkTodosModelo.TabIndex = 182
+        Me.chkTodosModelo.Text = "Todos"
+        Me.chkTodosModelo.UseVisualStyleBackColor = True
+        '
+        'chkTodosVehiculo
+        '
+        Me.chkTodosVehiculo.AutoSize = True
+        Me.chkTodosVehiculo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkTodosVehiculo.Location = New System.Drawing.Point(543, 79)
+        Me.chkTodosVehiculo.Name = "chkTodosVehiculo"
+        Me.chkTodosVehiculo.Size = New System.Drawing.Size(59, 19)
+        Me.chkTodosVehiculo.TabIndex = 181
+        Me.chkTodosVehiculo.Text = "Todos"
+        Me.chkTodosVehiculo.UseVisualStyleBackColor = True
+        '
+        'lblRecuentoModelo
+        '
+        Me.lblRecuentoModelo.AutoSize = True
+        Me.lblRecuentoModelo.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRecuentoModelo.Location = New System.Drawing.Point(970, 80)
+        Me.lblRecuentoModelo.Name = "lblRecuentoModelo"
+        Me.lblRecuentoModelo.Size = New System.Drawing.Size(17, 19)
+        Me.lblRecuentoModelo.TabIndex = 180
+        Me.lblRecuentoModelo.Text = "0"
+        '
+        'lblRecuentoTipoVehiculo
+        '
+        Me.lblRecuentoTipoVehiculo.AutoSize = True
+        Me.lblRecuentoTipoVehiculo.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRecuentoTipoVehiculo.Location = New System.Drawing.Point(655, 80)
+        Me.lblRecuentoTipoVehiculo.Name = "lblRecuentoTipoVehiculo"
+        Me.lblRecuentoTipoVehiculo.Size = New System.Drawing.Size(17, 19)
+        Me.lblRecuentoTipoVehiculo.TabIndex = 179
+        Me.lblRecuentoTipoVehiculo.Text = "0"
+        '
+        'grdTipoVehiculo
+        '
+        Me.grdTipoVehiculo.Location = New System.Drawing.Point(400, 111)
+        '
+        'grdTipoVehiculo
+        '
+        Me.grdTipoVehiculo.MasterTemplate.AllowAddNewRow = False
+        Me.grdTipoVehiculo.MasterTemplate.AutoGenerateColumns = False
+        GridViewCheckBoxColumn10.FormatString = ""
+        GridViewCheckBoxColumn10.HeaderText = "Agregar"
+        GridViewCheckBoxColumn10.Name = "Agregar"
+        GridViewCheckBoxColumn10.Width = 48
+        GridViewTextBoxColumn32.HeaderText = "Id"
+        GridViewTextBoxColumn32.IsVisible = False
+        GridViewTextBoxColumn32.Name = "Id"
+        GridViewTextBoxColumn33.FormatString = ""
+        GridViewTextBoxColumn33.HeaderText = "Codigo"
+        GridViewTextBoxColumn33.IsVisible = False
+        GridViewTextBoxColumn33.Name = "Codigo"
+        GridViewTextBoxColumn33.ReadOnly = True
+        GridViewTextBoxColumn34.FormatString = ""
+        GridViewTextBoxColumn34.HeaderText = "Nombre"
+        GridViewTextBoxColumn34.Name = "Nombre"
+        GridViewTextBoxColumn34.ReadOnly = True
+        GridViewTextBoxColumn34.Width = 225
+        Me.grdTipoVehiculo.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn10, GridViewTextBoxColumn32, GridViewTextBoxColumn33, GridViewTextBoxColumn34})
+        Me.grdTipoVehiculo.MasterTemplate.EnableGrouping = False
+        Me.grdTipoVehiculo.Name = "grdTipoVehiculo"
+        Me.grdTipoVehiculo.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        '
+        '
+        '
+        Me.grdTipoVehiculo.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdTipoVehiculo.Size = New System.Drawing.Size(289, 320)
+        Me.grdTipoVehiculo.TabIndex = 178
+        Me.grdTipoVehiculo.Text = "RadGridView2"
+        Me.grdTipoVehiculo.ThemeName = "Office2007Black"
+        '
+        'txtObs
+        '
+        Me.txtObs.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtObs.Location = New System.Drawing.Point(58, 406)
+        Me.txtObs.Multiline = True
+        Me.txtObs.Name = "txtObs"
+        Me.txtObs.Size = New System.Drawing.Size(276, 30)
+        Me.txtObs.TabIndex = 172
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label5.Location = New System.Drawing.Point(146, 375)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(77, 13)
+        Me.Label5.TabIndex = 173
+        Me.Label5.Text = "Observacion :"
+        '
+        'cmbMarcaRepuesto
+        '
+        Me.cmbMarcaRepuesto.FormattingEnabled = True
+        Me.cmbMarcaRepuesto.Location = New System.Drawing.Point(150, 269)
+        Me.cmbMarcaRepuesto.Name = "cmbMarcaRepuesto"
+        Me.cmbMarcaRepuesto.Size = New System.Drawing.Size(184, 21)
+        Me.cmbMarcaRepuesto.TabIndex = 170
+        '
+        'lblGrid2
+        '
+        Me.lblGrid2.AutoSize = True
+        Me.lblGrid2.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.lblGrid2.Location = New System.Drawing.Point(727, 78)
+        Me.lblGrid2.Name = "lblGrid2"
+        Me.lblGrid2.Size = New System.Drawing.Size(69, 20)
+        Me.lblGrid2.TabIndex = 176
+        Me.lblGrid2.Text = "Modelos"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label6.Location = New System.Drawing.Point(44, 332)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(75, 13)
+        Me.Label6.TabIndex = 174
+        Me.Label6.Text = "Importancia :"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'cmbTipoRepuesto
+        '
+        Me.cmbTipoRepuesto.FormattingEnabled = True
+        Me.cmbTipoRepuesto.Location = New System.Drawing.Point(150, 220)
+        Me.cmbTipoRepuesto.Name = "cmbTipoRepuesto"
+        Me.cmbTipoRepuesto.Size = New System.Drawing.Size(184, 21)
+        Me.cmbTipoRepuesto.TabIndex = 169
+        '
+        'lblGrid1
+        '
+        Me.lblGrid1.AutoSize = True
+        Me.lblGrid1.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.lblGrid1.Location = New System.Drawing.Point(405, 76)
+        Me.lblGrid1.Name = "lblGrid1"
+        Me.lblGrid1.Size = New System.Drawing.Size(104, 20)
+        Me.lblGrid1.TabIndex = 175
+        Me.lblGrid1.Text = "Tipo Vehiculo"
+        '
+        'cmbImportancia
+        '
+        Me.cmbImportancia.FormattingEnabled = True
+        Me.cmbImportancia.Location = New System.Drawing.Point(151, 323)
+        Me.cmbImportancia.Name = "cmbImportancia"
+        Me.cmbImportancia.Size = New System.Drawing.Size(183, 21)
+        Me.cmbImportancia.TabIndex = 171
         '
         'grdOtrosPrecios2
         '
@@ -1715,6 +1672,49 @@ Partial Class frmProductoPrecio
         Me.Label24.Text = "Promedio :"
         Me.Label24.Visible = False
         '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label23.Location = New System.Drawing.Point(22, 13)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(60, 13)
+        Me.Label23.TabIndex = 194
+        Me.Label23.Text = "Codigo 1 :"
+        '
+        'txtCodigoM1
+        '
+        Me.txtCodigoM1.Enabled = False
+        Me.txtCodigoM1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtCodigoM1.Location = New System.Drawing.Point(86, 9)
+        Me.txtCodigoM1.Name = "txtCodigoM1"
+        Me.txtCodigoM1.Size = New System.Drawing.Size(169, 22)
+        Me.txtCodigoM1.TabIndex = 196
+        '
+        'txtCodigoM2
+        '
+        Me.txtCodigoM2.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtCodigoM2.Location = New System.Drawing.Point(86, 37)
+        Me.txtCodigoM2.Name = "txtCodigoM2"
+        Me.txtCodigoM2.Size = New System.Drawing.Size(169, 22)
+        Me.txtCodigoM2.TabIndex = 197
+        '
+        'txtProductoM1
+        '
+        Me.txtProductoM1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtProductoM1.Location = New System.Drawing.Point(329, 9)
+        Me.txtProductoM1.Name = "txtProductoM1"
+        Me.txtProductoM1.Size = New System.Drawing.Size(454, 22)
+        Me.txtProductoM1.TabIndex = 198
+        '
+        'txtProductoM2
+        '
+        Me.txtProductoM2.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtProductoM2.Location = New System.Drawing.Point(329, 36)
+        Me.txtProductoM2.Name = "txtProductoM2"
+        Me.txtProductoM2.Size = New System.Drawing.Size(454, 22)
+        Me.txtProductoM2.TabIndex = 199
+        '
         'frmProductoPrecio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1773,18 +1773,12 @@ Partial Class frmProductoPrecio
         Me.Controls.SetChildIndex(Me.Label9, 0)
         Me.Controls.SetChildIndex(Me.cmbCodigo1, 0)
         Me.Controls.SetChildIndex(Me.grdOtrosPrecios2, 0)
-        Me.Controls.SetChildIndex(Me.rgbDatos, 0)
         Me.Controls.SetChildIndex(Me.Button3, 0)
         Me.Controls.SetChildIndex(Me.Label24, 0)
         Me.Controls.SetChildIndex(Me.lblCosto, 0)
+        Me.Controls.SetChildIndex(Me.rgbDatos, 0)
         CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Pgclasificacion.ResumeLayout(False)
-        Me.Pgclasificacion.PerformLayout()
-        CType(Me.grdModeloVehiculo.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.grdModeloVehiculo, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.grdTipoVehiculo.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.grdTipoVehiculo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PgBodega.ResumeLayout(False)
         Me.PgBodega.PerformLayout()
         CType(Me.grdFotos.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1809,6 +1803,12 @@ Partial Class frmProductoPrecio
         CType(Me.grdPrecios, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rpv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.rpv.ResumeLayout(False)
+        Me.Pgclasificacion.ResumeLayout(False)
+        Me.Pgclasificacion.PerformLayout()
+        CType(Me.grdModeloVehiculo.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdModeloVehiculo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdTipoVehiculo.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdTipoVehiculo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdOtrosPrecios2.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdOtrosPrecios2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RadGroupBox3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1845,25 +1845,6 @@ Partial Class frmProductoPrecio
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents txtPrecioPublicoMotriza As System.Windows.Forms.TextBox
     Friend WithEvents cmbCodigo1 As System.Windows.Forms.ComboBox
-    Friend WithEvents Pgclasificacion As Telerik.WinControls.UI.RadPageViewPage
-    Friend WithEvents chkUnidadMedida As System.Windows.Forms.CheckBox
-    Friend WithEvents chkServicio As System.Windows.Forms.CheckBox
-    Friend WithEvents chkProducto As System.Windows.Forms.CheckBox
-    Friend WithEvents chkKit As System.Windows.Forms.CheckBox
-    Friend WithEvents chkTodosModelo As System.Windows.Forms.CheckBox
-    Friend WithEvents chkTodosVehiculo As System.Windows.Forms.CheckBox
-    Friend WithEvents lblRecuentoModelo As System.Windows.Forms.Label
-    Friend WithEvents lblRecuentoTipoVehiculo As System.Windows.Forms.Label
-    Friend WithEvents grdTipoVehiculo As Telerik.WinControls.UI.RadGridView
-    Friend WithEvents grdModeloVehiculo As Telerik.WinControls.UI.RadGridView
-    Friend WithEvents txtObs As System.Windows.Forms.TextBox
-    Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents cmbMarcaRepuesto As System.Windows.Forms.ComboBox
-    Friend WithEvents lblGrid2 As System.Windows.Forms.Label
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents cmbTipoRepuesto As System.Windows.Forms.ComboBox
-    Friend WithEvents lblGrid1 As System.Windows.Forms.Label
-    Friend WithEvents cmbImportancia As System.Windows.Forms.ComboBox
     Friend WithEvents PgBodega As Telerik.WinControls.UI.RadPageViewPage
     Friend WithEvents grdFotos As Telerik.WinControls.UI.RadGridView
     Friend WithEvents Label4 As System.Windows.Forms.Label
@@ -1918,16 +1899,35 @@ Partial Class frmProductoPrecio
     Friend WithEvents cmbArticulo As System.Windows.Forms.ComboBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents txtProductoM1 As System.Windows.Forms.TextBox
-    Friend WithEvents Label12 As System.Windows.Forms.Label
-    Friend WithEvents txtProductoM2 As System.Windows.Forms.TextBox
-    Friend WithEvents Label21 As System.Windows.Forms.Label
-    Friend WithEvents Label23 As System.Windows.Forms.Label
-    Friend WithEvents txtCodigoM1 As System.Windows.Forms.TextBox
-    Friend WithEvents Label19 As System.Windows.Forms.Label
-    Friend WithEvents txtCodigoM2 As System.Windows.Forms.TextBox
-    Friend WithEvents ButtonGuardar As System.Windows.Forms.Button
     Friend WithEvents lblCosto As System.Windows.Forms.Label
     Friend WithEvents Label24 As System.Windows.Forms.Label
+    Friend WithEvents Pgclasificacion As Telerik.WinControls.UI.RadPageViewPage
+    Friend WithEvents ButtonGuardar As System.Windows.Forms.Button
+    Friend WithEvents Label19 As System.Windows.Forms.Label
+    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents grdModeloVehiculo As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents chkUnidadMedida As System.Windows.Forms.CheckBox
+    Friend WithEvents chkServicio As System.Windows.Forms.CheckBox
+    Friend WithEvents chkProducto As System.Windows.Forms.CheckBox
+    Friend WithEvents chkKit As System.Windows.Forms.CheckBox
+    Friend WithEvents chkTodosModelo As System.Windows.Forms.CheckBox
+    Friend WithEvents chkTodosVehiculo As System.Windows.Forms.CheckBox
+    Friend WithEvents lblRecuentoModelo As System.Windows.Forms.Label
+    Friend WithEvents lblRecuentoTipoVehiculo As System.Windows.Forms.Label
+    Friend WithEvents grdTipoVehiculo As Telerik.WinControls.UI.RadGridView
+    Friend WithEvents txtObs As System.Windows.Forms.TextBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents cmbMarcaRepuesto As System.Windows.Forms.ComboBox
+    Friend WithEvents lblGrid2 As System.Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents cmbTipoRepuesto As System.Windows.Forms.ComboBox
+    Friend WithEvents lblGrid1 As System.Windows.Forms.Label
+    Friend WithEvents cmbImportancia As System.Windows.Forms.ComboBox
+    Friend WithEvents txtProductoM2 As System.Windows.Forms.TextBox
+    Friend WithEvents txtProductoM1 As System.Windows.Forms.TextBox
+    Friend WithEvents txtCodigoM2 As System.Windows.Forms.TextBox
+    Friend WithEvents txtCodigoM1 As System.Windows.Forms.TextBox
+    Friend WithEvents Label23 As System.Windows.Forms.Label
 
 End Class
