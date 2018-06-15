@@ -71,6 +71,9 @@ Public Class frmProductoPrecio
         fnLlenarCombo()
         fnLlenarCombo2()
 
+        Me.cmbNombre1.SelectedValue = mdlPublicVars.superSearchId
+        Me.cmbCodigo1.SelectedValue = mdlPublicVars.superSearchId
+
         llenagrid()
 
 
@@ -282,7 +285,7 @@ Public Class frmProductoPrecio
         Try
             'Realizamos la consulta
             Dim cons = (From x In ctx.tblArticuloes _
-            Select Codigo = x.idArticulo, Nombre = x.nombre1.Trim() + "-(" + x.codigo1.Trim() + ")")
+            Select Codigo = x.idArticulo, Nombre = x.nombre1.Trim() + "- (" + x.codigo1.Trim() + ")")
 
             'Llenamos el combo1
             With Me.cmbNombre1
@@ -1459,7 +1462,7 @@ Public Class frmProductoPrecio
     'Funcion utilizada para llenar las ultimas compras del producto
     Private Sub fnUltimasCompras()
         Try
-            Dim codArt As Integer = CInt(cmbNombre1.SelectedValue)
+            Dim codArt As Integer = Me.txtCodigo.Text ''Me.cmbNombre1.SelectedValue
             Dim lista = (From x In ctx.tblEntradasDetalles Where x.tblEntrada.anulado = False And x.tblEntrada.compra = True And x.idArticulo = codArt _
                         Select Fecha = x.tblEntrada.fechaRegistro, Proveedor = x.tblEntrada.tblProveedor.negocio, Cantidad = x.cantidad, Costo = x.costoIVA _
                         Order By Fecha Descending)
