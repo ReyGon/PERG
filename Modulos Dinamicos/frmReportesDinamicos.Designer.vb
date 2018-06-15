@@ -299,9 +299,9 @@ Partial Class frmReportesDinamicos
         Me.rbtSurtirI.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.rbtSurtirI.Location = New System.Drawing.Point(239, 140)
         Me.rbtSurtirI.Name = "rbtSurtirI"
-        Me.rbtSurtirI.Size = New System.Drawing.Size(69, 19)
+        Me.rbtSurtirI.Size = New System.Drawing.Size(75, 19)
         Me.rbtSurtirI.TabIndex = 241
-        Me.rbtSurtirI.Text = "P. SurtirI"
+        Me.rbtSurtirI.Text = "P. Surtir I."
         Me.rbtSurtirI.UseVisualStyleBackColor = True
         '
         'RadioButton5

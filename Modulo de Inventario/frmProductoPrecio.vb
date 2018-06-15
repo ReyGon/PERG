@@ -2657,7 +2657,6 @@ Public Class frmProductoPrecio
         End If
     End Sub
 
-
     Private Sub ButtonGuardar_Click(sender As Object, e As EventArgs) Handles ButtonGuardar.Click
         Try
             Dim conexion As dsi_pos_demoEntities
