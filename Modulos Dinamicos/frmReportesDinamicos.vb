@@ -444,8 +444,8 @@ Public Class frmReportesDinamicos
                         dt = EntitiToDataTable(conexion.sp_ReporteCreditosClientes(CDate(Me.dtpHasta.Value)))
                     ElseIf Me.rbtFacturaPagos.Checked Then
                         dt = EntitiToDataTable(conexion.sp_FacturasPagos(CDate(Me.dtpDesde.Value), CDate(Me.dtpHasta.Value), CInt(Me.cmbCliente.SelectedValue), CInt(Me.cmbVendedor.SelectedValue)))
-                        ''ElseIf Me.rbtSurtirI.Checked Then
-                        ''  dt = EntitiToDataTable(conexion.sp_ReportePendientesSurtirInventario(fechainicio, fechafin, CInt(Me.cmbVendedor.SelectedValue), CInt(Me.cmbCliente.SelectedValue)))
+                    ElseIf Me.rbtSurtirI.Checked Then
+                        dt = EntitiToDataTable(conexion.sp_ReportePendientesSurtirInventario(fechainicio, fechafin, CInt(Me.cmbVendedor.SelectedValue), CInt(Me.cmbCliente.SelectedValue)))
                     Else
                         RadMessageBox.Show("Seleccione una opcion valida!!!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
                         Exit Sub
