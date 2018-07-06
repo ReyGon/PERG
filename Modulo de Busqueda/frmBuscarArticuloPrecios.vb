@@ -613,9 +613,32 @@ Public Class frmBuscarArticuloPrecios
         End Try
     End Sub
 
+    Private Function fnValidarPrecioUMA() As Boolean
+        Try
+            Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdModelos)
+
+            Dim val As String = Me.grdModelos.Rows(fila).Cells("tipoPrecio").Value
+
+            If val = "Precio UMA" Then
+                Me.grdModelos.Rows(fila).Cells("txmCantidad").Value = 0
+                Return True
+                Exit Function
+            End If
+
+            Return False
+
+        Catch ex As Exception
+            Return True
+        End Try
+    End Function
+
     Private Sub grdModelos_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles grdModelos.KeyPress
         Try
             If e.KeyChar = ChrW(Keys.Enter) Then
+                If fnValidarPrecioUMA() = True Then
+                    RadMessageBox.Show("Este precio es solo de referencia, ¡No se puede agregar!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                    Exit Sub
+                End If
                 fnAgregarPrecio()
             End If
         Catch ex As Exception
@@ -624,7 +647,15 @@ Public Class frmBuscarArticuloPrecios
     End Sub
 
     Private Sub pnlAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
-        fnAgregarPrecio()
+        Try
+            If fnValidarPrecioUMA() = True Then
+                RadMessageBox.Show("Este precio es solo de referencia", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                Exit Sub
+            End If
+            fnAgregarPrecio()
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     'Funcion utilizada para llenar el grid de ultimas ventas de un producot

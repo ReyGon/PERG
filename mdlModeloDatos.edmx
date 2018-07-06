@@ -10195,10 +10195,6 @@
             <Parameter Name="idusuario" Mode="In" Type="Int32" />
             <Parameter Name="idcliente" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_reportePickingPedido" ReturnType="Collection(dsi_pos_demoModel.sp_reportePickingPedido_Result)">
-            <Parameter Name="filtro" Mode="In" Type="String" />
-            <Parameter Name="salida" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_ReporteProductosOfertasVendedor" ReturnType="Collection(dsi_pos_demoModel.sp_ReporteProductosOfertasVendedor_Result)">
             <Parameter Name="fechainicio" Mode="In" Type="DateTime" />
             <Parameter Name="fechafin" Mode="In" Type="DateTime" />
@@ -11167,6 +11163,10 @@
             <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
             <Parameter Name="IdCliente" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_reportePickingPedido" ReturnType="Collection(dsi_pos_demoModel.sp_reportePickingPedido_Result)">
+            <Parameter Name="filtro" Mode="In" Type="String" />
+            <Parameter Name="salida" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="dtproperty">
@@ -16693,24 +16693,6 @@
           <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="precio" Nullable="false" Precision="18" Scale="5" />
         </ComplexType>
-        <ComplexType Name="sp_reportePickingPedido_Result">
-          <Property Type="String" Name="Empresa" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="DireccionEmpresa" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="NitEmpresa" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="TelefonoEmpresa" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="1000" />
-          <Property Type="String" Name="Documento" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Observacion" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="Estanteria" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Cajas" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="TipoVehiculo" Nullable="true" MaxLength="103" />
-          <Property Type="Int16" Name="orden" Nullable="false" />
-          <Property Type="String" Name="CodProducto" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="codigo1" Nullable="false" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="sp_ReporteProductosOfertasVendedor_Result">
           <Property Type="String" Name="Fecha" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Cliente" Nullable="true" MaxLength="1000" />
@@ -19751,6 +19733,25 @@
           <Property Type="String" Name="Vendedor" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="cantidad" Nullable="true" />
           <Property Type="Decimal" Name="Existencia" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="5" />
+        </ComplexType>
+        <ComplexType Name="sp_reportePickingPedido_Result">
+          <Property Type="String" Name="Empresa" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DireccionEmpresa" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="NitEmpresa" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TelefonoEmpresa" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="Documento" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Observacion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Estanteria" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Cajas" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TipoVehiculo" Nullable="true" MaxLength="103" />
+          <Property Type="Int16" Name="orden" Nullable="false" />
+          <Property Type="String" Name="CodProducto" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="codigo1" Nullable="false" MaxLength="50" />
           <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="5" />
         </ComplexType>
         </Schema>
@@ -23672,28 +23673,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_reportePickingPedido" FunctionName="mdlModeloDatos.Store.sp_reportePickingPedido">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_reportePickingPedido_Result">
-                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
-                <ScalarProperty Name="DireccionEmpresa" ColumnName="DireccionEmpresa" />
-                <ScalarProperty Name="NitEmpresa" ColumnName="NitEmpresa" />
-                <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
-                <ScalarProperty Name="Documento" ColumnName="Documento" />
-                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
-                <ScalarProperty Name="Estanteria" ColumnName="Estanteria" />
-                <ScalarProperty Name="Cajas" ColumnName="Cajas" />
-                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
-                <ScalarProperty Name="orden" ColumnName="orden" />
-                <ScalarProperty Name="CodProducto" ColumnName="CodProducto" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="codigo1" ColumnName="codigo1" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_ReporteProductosOfertasVendedor" FunctionName="mdlModeloDatos.Store.sp_ReporteProductosOfertasVendedor">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_ReporteProductosOfertasVendedor_Result">
@@ -24997,6 +24976,29 @@
                 <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_reportePickingPedido" FunctionName="mdlModeloDatos.Store.sp_reportePickingPedido">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_reportePickingPedido_Result">
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="DireccionEmpresa" ColumnName="DireccionEmpresa" />
+                <ScalarProperty Name="NitEmpresa" ColumnName="NitEmpresa" />
+                <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+                <ScalarProperty Name="Estanteria" ColumnName="Estanteria" />
+                <ScalarProperty Name="Cajas" ColumnName="Cajas" />
+                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="CodProducto" ColumnName="CodProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="codigo1" ColumnName="codigo1" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
               </ComplexTypeMapping>
             </ResultMapping>

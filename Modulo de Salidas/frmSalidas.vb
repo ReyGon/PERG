@@ -11,6 +11,9 @@ Public Class frmSalidas
     Dim dt As New clsDevuelveTabla
     Dim grdlistado As New DataGridView
 
+    Public codigoSalida As Integer = 0
+    Private codigoSalidaAFacturar As Integer
+
     Private _bitEditarBodega As Boolean
     Private _bitEditarSalida As Boolean
     Private _bitFactura As Boolean
@@ -129,6 +132,10 @@ Public Class frmSalidas
 
     Private Sub frmSalidas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
+        If mdlPublicVars.PuntoVentaPequeno_Activado Then
+            Me.lbl3Despachar.Text = "Facturar"
+        End If
+
         Clave = False
 
         mdlPublicVars.fnFormatoGridMovimientos(grdProductos)
@@ -180,116 +187,120 @@ Public Class frmSalidas
 
     'Funcion utilizada para ver los indicadores
     Private Sub fnIndicadores()
+        Try
 
-        If IsNumeric(cmbCliente.SelectedValue) Then
-            If cmbCliente.SelectedValue > 0 Then
-                Dim fechaActual As DateTime = CType(mdlPublicVars.fnFecha_horaServidor, DateTime)
-                Dim diferenciaMes As String = Format(fechaActual.AddDays(-mdlPublicVars.Empresa_DiasUltimosProductos), "dd/MM/yyyy") & " 00:00:00"
-                Dim PrefiltroTipoVehiculo As String = fnClienteTipoVehiculo(cmbCliente.SelectedValue)
+            If IsNumeric(cmbCliente.SelectedValue) Then
+                If cmbCliente.SelectedValue > 0 Then
+                    Dim fechaActual As DateTime = CType(mdlPublicVars.fnFecha_horaServidor, DateTime)
+                    Dim diferenciaMes As String = Format(fechaActual.AddDays(-mdlPublicVars.Empresa_DiasUltimosProductos), "dd/MM/yyyy") & " 00:00:00"
+                    Dim PrefiltroTipoVehiculo As String = fnClienteTipoVehiculo(cmbCliente.SelectedValue)
 
-                'conexion nueva.
-                Dim conexion As New dsi_pos_demoEntities
-                Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
-                    conn.Open()
-                    conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+                    'conexion nueva.
+                    Dim conexion As New dsi_pos_demoEntities
+                    Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                        conn.Open()
+                        conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
-                    Dim indi = conexion.sp_IndicadoresVenta(mdlPublicVars.idEmpresa, diferenciaMes, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, "1,2,5,4", CInt(Me.cmbCliente.SelectedValue), True, False, "", venta, PrefiltroTipoVehiculo)
+                        Dim indi = conexion.sp_IndicadoresVenta(mdlPublicVars.idEmpresa, diferenciaMes, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, "1,2,5,4", CInt(Me.cmbCliente.SelectedValue), True, False, "", venta, PrefiltroTipoVehiculo)
 
-                    For Each indicador As sp_IndicadoresVenta_Result In indi
-                        lblConteoNuevo.Text = indicador.Nuevos
-                        If indicador.Nuevos > 0 Then
-                            lblFondoNuevo.BackColor = Color.Green
-                        Else
-                            lblFondoNuevo.BackColor = Color.White
-                        End If
+                        For Each indicador As sp_IndicadoresVenta_Result In indi
+                            lblConteoNuevo.Text = indicador.Nuevos
+                            If indicador.Nuevos > 0 Then
+                                lblFondoNuevo.BackColor = Color.Green
+                            Else
+                                lblFondoNuevo.BackColor = Color.White
+                            End If
 
-                        lblConteoPendiente.Text = indicador.Surtir
-                        If indicador.Surtir > 0 Then
-                            lblFondoPendienteSurtir.BackColor = Color.Green
-                        Else
-                            lblFondoPendienteSurtir.BackColor = Color.White
-                        End If
+                            lblConteoPendiente.Text = indicador.Surtir
+                            If indicador.Surtir > 0 Then
+                                lblFondoPendienteSurtir.BackColor = Color.Green
+                            Else
+                                lblFondoPendienteSurtir.BackColor = Color.White
+                            End If
 
-                        lblConteoOfertas.Text = indicador.Ofertas
-                        If indicador.Ofertas > 0 Then
-                            lblFondoOferta.BackColor = Color.Green
-                        Else
-                            lblFondoOferta.BackColor = Color.White
-                        End If
+                            lblConteoOfertas.Text = indicador.Ofertas
+                            If indicador.Ofertas > 0 Then
+                                lblFondoOferta.BackColor = Color.Green
+                            Else
+                                lblFondoOferta.BackColor = Color.White
+                            End If
 
-                        lblConteoSugeridos.Text = indicador.Sugeridos
-                        If indicador.Sugeridos > 0 Then
-                            lblFondoSugeridos.BackColor = Color.Green
-                        Else
-                            lblFondoSugeridos.BackColor = Color.White
-                        End If
-                    Next
+                            lblConteoSugeridos.Text = indicador.Sugeridos
+                            If indicador.Sugeridos > 0 Then
+                                lblFondoSugeridos.BackColor = Color.Green
+                            Else
+                                lblFondoSugeridos.BackColor = Color.White
+                            End If
+                        Next
 
-                    ''Try
-                    ''    'NUEVO
-                    ''    'ulo.tblUnidadMedida.nombre, txmSurtir = 0)
-                    ''    Dim nuevos = (From x In conexion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, diferenciaMes, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, PrefiltroTipoVehiculo, "", CInt(cmbCliente.SelectedValue), 9, True, False, "", venta) Select x).Count
+                        ''Try
+                        ''    'NUEVO
+                        ''    'ulo.tblUnidadMedida.nombre, txmSurtir = 0)
+                        ''    Dim nuevos = (From x In conexion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, diferenciaMes, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, PrefiltroTipoVehiculo, "", CInt(cmbCliente.SelectedValue), 9, True, False, "", venta) Select x).Count
 
-                    ''    lblConteoNuevo.Text = nuevos
-                    ''    If nuevos > 0 Then
-                    ''        lblFondoNuevo.BackColor = Color.Green
-                    ''    Else
-                    ''        lblFondoNuevo.BackColor = Color.White
-                    ''    End If
+                        ''    lblConteoNuevo.Text = nuevos
+                        ''    If nuevos > 0 Then
+                        ''        lblFondoNuevo.BackColor = Color.Green
+                        ''    Else
+                        ''        lblFondoNuevo.BackColor = Color.White
+                        ''    End If
 
-                    ''Catch ex As Exception
-                    ''    lblConteoNuevo.Text = "0"
-                    ''    lblFondoNuevo.BackColor = Color.White
-                    ''End Try
+                        ''Catch ex As Exception
+                        ''    lblConteoNuevo.Text = "0"
+                        ''    lblFondoNuevo.BackColor = Color.White
+                        ''End Try
 
-                    ''Try
-                    ''    'OFERTAS
-                    ''    Dim ofertas2 = (From x In conexion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, diferenciaMes, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, PrefiltroTipoVehiculo, "", CInt(cmbCliente.SelectedValue), 11, True, False, "", venta) Select x).Count
+                        ''Try
+                        ''    'OFERTAS
+                        ''    Dim ofertas2 = (From x In conexion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, diferenciaMes, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, PrefiltroTipoVehiculo, "", CInt(cmbCliente.SelectedValue), 11, True, False, "", venta) Select x).Count
 
-                    ''    lblConteoOfertas.Text = ofertas2
-                    ''    If ofertas2 > 0 Then
-                    ''        lblFondoOferta.BackColor = Color.Green
-                    ''    Else
-                    ''        lblFondoOferta.BackColor = Color.White
-                    ''    End If
-
-
-                    ''Catch ex As Exception
-                    ''    MessageBox.Show("Error en Indicadores : " + ex.ToString)
-                    ''End Try
-
-                    ''Try
-                    ''    'indicador de pendientes por surtir
-                    ''    Dim consulta As Integer = (From x In conexion.sp_PendientesPorSurtir(mdlPublicVars.idEmpresa, diferenciaMes, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, PrefiltroTipoVehiculo, "", CType(cmbCliente.SelectedValue, Integer), 1, True, False, "", venta) Select x).Count
-                    ''    lblConteoPendiente.Text = consulta
-                    ''    If consulta = 0 Then
-                    ''        lblFondoPendienteSurtir.BackColor = Color.White
-                    ''    Else
-                    ''        lblFondoPendienteSurtir.BackColor = Color.Green
-                    ''    End If
-                    ''Catch ex As Exception
-                    ''    lblConteoPendiente.Text = "0"
-                    ''    lblFondoPendienteSurtir.BackColor = Color.White
-                    ''End Try
+                        ''    lblConteoOfertas.Text = ofertas2
+                        ''    If ofertas2 > 0 Then
+                        ''        lblFondoOferta.BackColor = Color.Green
+                        ''    Else
+                        ''        lblFondoOferta.BackColor = Color.White
+                        ''    End If
 
 
-                    ''Try
-                    ''    ''Indicador de Sugeridos
-                    ''    Dim sugeridos As Integer = (From x In conexion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, diferenciaMes, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, "1,2,5,4", "34,35,24,26,31,1,40,30,27,2,39,38,36,3,6,37,33,7,8,42,28,9,10,43,29,4,41,22,11,13,12,14,21,15,23,16,17,18,19,20,25,32,5", CInt(cmbCliente.SelectedValue), 5, True, False, "", venta) Select x).Count
-                    ''    lblConteoSugeridos.Text = sugeridos
-                    ''    If sugeridos = 0 Then
-                    ''        lblFondoSugeridos.BackColor = Color.White
-                    ''    Else
-                    ''        lblFondoSugeridos.BackColor = Color.Green
-                    ''    End If
-                    ''Catch ex As Exception
-                    ''    lblConteoSugeridos.Text = "0"
-                    ''    lblFondoSugeridos.BackColor = Color.White
-                    ''End Try
-                    conn.Close()
-                End Using
+                        ''Catch ex As Exception
+                        ''    MessageBox.Show("Error en Indicadores : " + ex.ToString)
+                        ''End Try
+
+                        ''Try
+                        ''    'indicador de pendientes por surtir
+                        ''    Dim consulta As Integer = (From x In conexion.sp_PendientesPorSurtir(mdlPublicVars.idEmpresa, diferenciaMes, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, PrefiltroTipoVehiculo, "", CType(cmbCliente.SelectedValue, Integer), 1, True, False, "", venta) Select x).Count
+                        ''    lblConteoPendiente.Text = consulta
+                        ''    If consulta = 0 Then
+                        ''        lblFondoPendienteSurtir.BackColor = Color.White
+                        ''    Else
+                        ''        lblFondoPendienteSurtir.BackColor = Color.Green
+                        ''    End If
+                        ''Catch ex As Exception
+                        ''    lblConteoPendiente.Text = "0"
+                        ''    lblFondoPendienteSurtir.BackColor = Color.White
+                        ''End Try
+
+
+                        ''Try
+                        ''    ''Indicador de Sugeridos
+                        ''    Dim sugeridos As Integer = (From x In conexion.sp_buscar_Articulo(mdlPublicVars.idEmpresa, diferenciaMes, mdlPublicVars.General_idTipoInventario, mdlPublicVars.General_idAlmacenPrincipal, "1,2,5,4", "34,35,24,26,31,1,40,30,27,2,39,38,36,3,6,37,33,7,8,42,28,9,10,43,29,4,41,22,11,13,12,14,21,15,23,16,17,18,19,20,25,32,5", CInt(cmbCliente.SelectedValue), 5, True, False, "", venta) Select x).Count
+                        ''    lblConteoSugeridos.Text = sugeridos
+                        ''    If sugeridos = 0 Then
+                        ''        lblFondoSugeridos.BackColor = Color.White
+                        ''    Else
+                        ''        lblFondoSugeridos.BackColor = Color.Green
+                        ''    End If
+                        ''Catch ex As Exception
+                        ''    lblConteoSugeridos.Text = "0"
+                        ''    lblFondoSugeridos.BackColor = Color.White
+                        ''End Try
+                        conn.Close()
+                    End Using
+                End If
             End If
-        End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Function fnClienteTipoVehiculo(id As Integer)
@@ -3809,9 +3820,8 @@ Public Class frmSalidas
 
                             'agregar salida al modelo
                             conexion.AddTotblSalidas(salida)
-
                             'Actualizamos la fecha de ultima compra del cliente
-                            cli.FechaUltimaCompra = salida.fechaDespachado
+                            cli.FechaUltimaCompra = CDate(salida.fechaDespachado.ToString)
 
                             'guardar cambios
                             conexion.SaveChanges()
@@ -4221,6 +4231,7 @@ Public Class frmSalidas
                             salidaCredito.total = totalSalida - totaldesc
                             salidaCredito.subtotal = totalSalida - totaldesc
                             conexion.SaveChanges()
+                            mdlPublicVars.superSearchId = codigoSalidaCredito
                         End If
 
                         If totalContado > 0 Then
@@ -4235,6 +4246,7 @@ Public Class frmSalidas
                             sContado.total = totalSalida - totaldesc
                             sContado.subtotal = totalSalida - totaldesc
                             conexion.SaveChanges()
+                            mdlPublicVars.superSearchId = codigoSalidaContado
                         End If
 
                         'guardar todos los cambios.
@@ -4329,24 +4341,30 @@ Public Class frmSalidas
 
             'preguntar si desea imprimir guias.
 
-            'si imprime guia colocar estado de impreso.
-            If codigoSalidaContado > 0 Then
-                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                    fnImprimirPiking(codigoSalidaContado)
+            If mdlPublicVars.PuntoVentaPequeno_Activado Then
+
+            Else
+                If codigoSalidaContado > 0 Then
+                    If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                        fnImprimirPiking(codigoSalidaContado)
+                    End If
+                    If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                        fnImprimirDespacho(codigoSalidaContado)
+                    End If
                 End If
-                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                    fnImprimirDespacho(codigoSalidaContado)
+
+                If codigoSalidaCredito > 0 Then
+                    If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                        fnImprimirPiking(codigoSalidaCredito)
+                    End If
+                    If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                        fnImprimirDespacho(codigoSalidaCredito)
+                    End If
                 End If
             End If
 
-            If codigoSalidaCredito > 0 Then
-                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                    fnImprimirPiking(codigoSalidaCredito)
-                End If
-                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                    fnImprimirDespacho(codigoSalidaCredito)
-                End If
-            End If
+            'si imprime guia colocar estado de impreso.
+            
         Else
 
             If autorizaCredito = True Then
@@ -5420,44 +5438,49 @@ Public Class frmSalidas
 
     'DESPACHAR
     Private Sub pbGuardar_Click() Handles Me.panel3
-        If bitEditarBodega Or bitEditarSalida And Not bitSugerirDespacho And Not bitEditarSalida Then
-            alerta.fnUtiliceModificar()
-            Exit Sub
-        End If
-
-        If bitSugerirDespacho = True Then
-            fnModificarCotizacion()
-
-            'Obtenemos la salida
-            Dim salida As tblSalida
-
-            'conexion nueva.
-            Dim conexion As New dsi_pos_demoEntities
-
-            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
-                conn.Open()
-                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
-                salida = (From x In conexion.tblSalidas Where x.idSalida = codigo Select x).FirstOrDefault
-                conn.Close()
-            End Using
-
-            If CambiacotizarAdespacho(salida.idSalida, salida.credito, salida.idCliente) Then
-                'Mandar a imprimir el despacho
-                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                    fnImprimirPiking(salida.idSalida)
-                End If
-                If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                    fnImprimirDespacho(salida.idSalida)
-                End If
-                fnNuevo()
-                Me.Close()
-                bitEditarSalida = False
-                bitSugerirDespacho = False
-                bitSugerirReserva = False
+            If bitEditarBodega Or bitEditarSalida And Not bitSugerirDespacho And Not bitEditarSalida Then
+                alerta.fnUtiliceModificar()
+                Exit Sub
             End If
+
+            If bitSugerirDespacho = True Then
+                fnModificarCotizacion()
+
+                'Obtenemos la salida
+                Dim salida As tblSalida
+
+                'conexion nueva.
+                Dim conexion As New dsi_pos_demoEntities
+
+                Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                    conn.Open()
+                    conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+                    salida = (From x In conexion.tblSalidas Where x.idSalida = codigo Select x).FirstOrDefault
+                    conn.Close()
+                End Using
+
+                If CambiacotizarAdespacho(salida.idSalida, salida.credito, salida.idCliente) Then
+                    'Mandar a imprimir el despacho
+                    If RadMessageBox.Show("¿Desea Visualizar e imprimir el Picking?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                        fnImprimirPiking(salida.idSalida)
+                    End If
+                    If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                        fnImprimirDespacho(salida.idSalida)
+                    End If
+                    fnNuevo()
+                    Me.Close()
+                    bitEditarSalida = False
+                    bitSugerirDespacho = False
+                    bitSugerirReserva = False
+                End If
         ElseIf fnErrores() = False Then
-            If RadMessageBox.Show("¿Desea realizar despacho?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = vbYes Then
-                fnGuardarDespacho()
+
+            If mdlPublicVars.PuntoVentaPequeno_Activado Then
+                fnDespachar_Click()
+            Else
+                If RadMessageBox.Show("¿Desea realizar despacho?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = vbYes Then
+                    fnGuardarDespacho()
+                End If
             End If
         End If
     End Sub
@@ -7060,5 +7083,965 @@ Public Class frmSalidas
         End Try
     End Function
 
+#Region "Ventas Pequenias"
+    Private Sub fnDespachar_Click()
+        Dim codigocliente As Integer = Me.cmbCliente.SelectedValue
+        fnActualizar_Total()
+        Dim ejecutaPago As Boolean
+        Dim tipopago As Object
+
+        If bitSugerirDespacho = True Then
+            fnModificarCotizacion()
+            'Obtenemos la salida
+            Dim salida As tblSalida
+
+            'conexion nueva.
+            Dim conexion As New dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+                salida = (From x In conexion.tblSalidas Where x.idSalida = codigo Select x).FirstOrDefault
+                conn.Close()
+            End Using
+
+            If CambiacotizarAdespacho(salida.idSalida, CBool(salida.credito), CInt(salida.idCliente)) Then
+                fnImprimir(salida.idSalida)
+                fnNuevo()
+                Me.Close()
+                bitEditarSalida = False
+                bitSugerirDespacho = False
+                bitSugerirReserva = False
+            End If
+        ElseIf fnErrores() = False Then
+
+            Dim clave As String
+            clave = txtClave.Text
+            'conexion nueva.
+            Dim conexion1 As New dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion1 = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+                Dim idtipopag = (From x In conexion1.tblClientes Where x.clave = clave Select x.idTipoPago).FirstOrDefault
+
+                Dim idpago As Integer = idtipopag
+
+                tipopago = (From x In conexion1.tblClienteTipoPagoes Where x.idtipoPago = idpago Select x.idtipoPago).FirstOrDefault
+                conn.Close()
+
+            End Using
+
+            If RadMessageBox.Show("¿Desea Facturar la Venta?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = vbYes Then
+                Dim bitTransporte As Boolean = False
+                Dim idSalida As Integer
+
+                If tipopago <> mdlPublicVars.PuntoVentaPequeno_tipoPago Then
+                    If RadMessageBox.Show("¿Desea Realizar la venta al Contado?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+
+                        idSalida = fnGuardarDespachoPequenio(True)
+
+                        If idSalida > 0 Then
+                            Dim conexion As New dsi_pos_demoEntities
+                            Dim salida As tblSalida
+                            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                                conn.Open()
+                                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+                                salida = (From x In conexion.tblSalidas Where x.idSalida = idSalida Select x).FirstOrDefault
+                                ''    conn.Close()
+                                ''End Using
+
+                                ejecutaPago = fnCalculoSaldos(idSalida, salida.idCliente)
+
+                                mdlPublicVars.GuardarFacturacion(idSalida)
+                                ''Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                                ''conn.Open()
+                                ''conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+                                valida.fnConsumirPagos(salida.idSalida, conexion)
+                                conn.Close()
+                            End Using
+
+                            ''Cobro de la Venta
+                            Dim salidamo As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = idSalida Select x).FirstOrDefault
+
+                            If ejecutaPago = True Then
+                                frmPagoVentaPequenia.Text = "Realizar pago"
+                                frmPagoVentaPequenia.idCliente = salidamo.idCliente
+                                frmPagoVentaPequenia.idSalida = idSalida
+                                frmPagoVentaPequenia.bitDocumentoCliente = True
+                                frmPagoVentaPequenia.bitCliente = False
+                                frmPagoVentaPequenia.ShowDialog()
+                                frmPagoVentaPequenia.Dispose()
+                            End If
+
+                            fnAsignarResolucion(idSalida)
+
+                            Dim salidamodificar As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = idSalida Select x).FirstOrDefault
+
+                            salidamodificar.contado = True
+                            salidamodificar.credito = False
+
+                            conexion.SaveChanges()
+
+                            ''impresion de la factura si el pago fue realizado
+                            ''If supersearchPagado = True Then
+                            ''    If RadMessageBox.Show("Desea Imprimir la Factura", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                            ''valida.fnFacturarImprimir(idSalida)
+                            ''    End If
+                            ''End If
+
+                            ''fnImprimirPequenio(codigoSalida, True)
+                            fnNuevo()
+                            fnNuevaFila()
+                        End If
+                    Else
+                        idSalida = fnGuardarDespachoPequenio(False)
+
+                        If idSalida > 0 Then
+                            Dim conexion As New dsi_pos_demoEntities
+                            Dim salida As tblSalida
+                            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                                conn.Open()
+                                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+                                salida = (From x In conexion.tblSalidas Where x.idSalida = idSalida Select x).FirstOrDefault
+                                ''    conn.Close()
+                                ''End Using
+
+                                If mdlPublicVars.bitTransportePesado = True Then
+
+                                    Dim totalventa As Double = CDec(Replace(Me.lblSaldoFinal.Text, "Q", ""))
+                                    Dim saldocliente As Double = 0
+                                    Dim cliente As tblCliente = (From x In conexion.tblClientes Where x.idCliente = codigocliente Select x).FirstOrDefault
+
+                                    If cliente.saldo > 0 Then
+                                        saldocliente = cliente.saldo
+                                    End If
+
+                                    If (saldocliente + totalventa) > cliente.limiteCredito Then
+
+                                        Dim lcredito As Double = cliente.limiteCredito
+                                        Dim cantpago As Double
+                                        Dim valventavalida As Double
+
+                                        valventavalida = lcredito - saldocliente
+
+                                        cantpago = totalventa - valventavalida
+
+                                        ''Guardado del Pago Pendiente de Confirmacion
+                                        Dim pagotipo As Integer = mdlPublicVars.Pagos_codigoEfectivo
+                                        Dim documento As String = ""
+                                        Dim fecha As DateTime = CType(fnFecha_horaServidor(), DateTime)
+
+                                        'TIPO DE PAGO
+                                        Dim tipoPagos As tblTipoPago = (From x In conexion.tblTipoPagoes Where x.codigo = pagotipo Select x).FirstOrDefault
+
+                                        Dim pago As New tblCaja
+                                        pago.documento = If(documento Is Nothing, "", documento)
+                                        pago.anulado = False
+                                        pago.codigoSalida = idSalida
+                                        pago.fecha = CDate(dtpFechaRegistro.Text & " " & fecha.ToLongTimeString)
+                                        pago.fechaTransaccion = fecha
+                                        pago.fechaCobro = CDate(dtpFechaRegistro.Text & " " & fecha.ToLongTimeString)
+                                        ''pago.monto = If(nm2TotalPagar.Value > 0, If(nm2Cambio.Value > 0, nm2MontoRecibido.Value - nm2Cambio.Value, nm2MontoRecibido.Value), nm2MontoRecibido.Value)
+                                        ''pago.monto = If(nm2Cambio.Value > 0, nm2MontoRecibido.Value - nm2Cambio.Value, nm2MontoRecibido.Value)
+                                        pago.monto = cantpago
+                                        pago.tipoCambio = 1
+                                        pago.tipoPago = pagotipo
+                                        pago.empresa = mdlPublicVars.idEmpresa
+                                        pago.usuario = mdlPublicVars.idUsuario
+                                        pago.observacion = Observacion
+                                        pago.descripcion = tipoPagos.nombre
+                                        pago.bitRechazado = False
+                                        pago.consumido = cantpago
+                                        pago.afavor = 0
+                                        pago.confirmado = False
+                                        pago.transito = False
+                                        pago.cliente = codigocliente
+                                        pago.bitEntrada = True
+                                        pago.bitSalida = False
+
+                                        conexion.AddTotblCajas(pago)
+                                        conexion.SaveChanges()
+
+                                    End If
+
+                                End If
+
+                                ejecutaPago = fnCalculoSaldos(idSalida, salida.idCliente)
+
+                                ''mdlPublicVars.GuardarFacturacion(idSalida)
+                                ''Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                                ''conn.Open()
+                                ''conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+                                valida.fnConsumirPagos(salida.idSalida, conexion)
+                                conn.Close()
+                            End Using
+
+                            ''Cobro de la Venta
+                            ''Dim salidamo As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = idSalida Select x).FirstOrDefault
+
+                            ''If ejecutaPago = True Then
+                            ''    frmPagoVentaPequenia.Text = "Realizar pago"
+                            ''    frmPagoVentaPequenia.idCliente = salidamo.idCliente
+                            ''    frmPagoVentaPequenia.idSalida = idSalida
+                            ''    frmPagoVentaPequenia.bitDocumentoCliente = True
+                            ''    frmPagoVentaPequenia.bitCliente = False
+                            ''    frmPagoVentaPequenia.ShowDialog()
+                            ''    frmPagoVentaPequenia.Dispose()
+                            ''End If
+
+                            ''impresion de la factura si el pago fue realizado
+                            ''If supersearchPagado = True Then
+
+
+                            fnCorrelativoFac()
+
+                            ''    If RadMessageBox.Show("Desea Imprimir la Factura", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                            valida.fnFacturarImprimir(idSalida)
+                            ''    End If
+                            ''End If
+
+                            ''fnImprimirPequenio(codigoSalida, True)
+                            fnAsignarResolucion(idSalida)
+                            fnNuevo()
+                            fnNuevaFila()
+                        End If
+                    End If
+                Else
+                    idSalida = fnGuardarDespachoPequenio(True)
+                    ''idSalida = mdlPublicVars.superSearchId
+
+                    If idSalida > 0 Then
+                        Dim conexion As New dsi_pos_demoEntities
+                        Dim salida As tblSalida
+                        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                            conn.Open()
+
+                            ''Verificacion de Saldo para la venta al credito
+
+                            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+                            salida = (From x In conexion.tblSalidas Where x.idSalida = idSalida Select x).FirstOrDefault
+                            ''    conn.Close()
+                            ''End Using
+
+                            ejecutaPago = fnCalculoSaldos(idSalida, salida.idCliente)
+
+                            mdlPublicVars.GuardarFacturacion(idSalida)
+                            ''Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                            ''conn.Open()
+                            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+                            valida.fnConsumirPagos(salida.idSalida, conexion)
+                            conn.Close()
+                        End Using
+                        If mdlPublicVars.VentaPequenia_bitCaja Then
+
+                            ''Cobro de la Venta
+                            Dim salidamo As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = idSalida Select x).FirstOrDefault
+
+
+                            If ejecutaPago = True Then
+                                frmPagoVentaPequenia.Text = "Realizar pago"
+                                frmPagoVentaPequenia.idCliente = salidamo.idCliente
+                                frmPagoVentaPequenia.idSalida = idSalida
+                                frmPagoVentaPequenia.bitDocumentoCliente = True
+                                frmPagoVentaPequenia.bitCliente = False
+                                frmPagoVentaPequenia.ShowDialog()
+                                frmPagoVentaPequenia.Dispose()
+                            End If
+
+                        End If
+                        fnAsignarResolucion(idSalida)
+
+                        fnNuevo()
+                        fnNuevaFila()
+                    End If
+
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub fnAsignarResolucion(ByVal codigo As Integer)
+        Try
+
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim codresolucion As Integer
+                Dim correlativor As Integer
+                Dim codfac As Integer
+                Dim seriefac As String
+
+                codresolucion = (From x In conexion.tblResolucionFacturas Where x.habilitado = True Select x.idResolucion).FirstOrDefault
+
+                correlativor = (From x In conexion.tblResolucionFacturas Where x.idResolucion = codresolucion Select x.correlativo).FirstOrDefault
+
+                codfac = (From x In conexion.tblSalida_Factura Where x.salida = codigo Select x.factura).FirstOrDefault
+
+                seriefac = (From x In conexion.tblResolucionFacturas Where x.idResolucion = codresolucion Select x.serie).FirstOrDefault
+
+                Dim fact As tblFactura = (From x In conexion.tblFacturas Where x.IdFactura = codfac Select x).FirstOrDefault
+
+                fact.idResolucion = codresolucion
+                fact.serieFactura = seriefac
+                fact.DocumentoFactura = correlativor + 1
+
+                conexion.SaveChanges()
+
+                Dim resol As tblResolucionFactura = (From x In conexion.tblResolucionFacturas Where x.idResolucion = codresolucion Select x).FirstOrDefault
+
+                resol.correlativo += 1
+
+                conexion.SaveChanges()
+
+                conn.Close()
+            End Using
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Function fnCalculoSaldos(ByVal idsalida As Integer, ByVal idcliente As Integer)
+
+        Dim ejecutapago As Boolean
+
+        Try
+
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim cliente As tblCliente = (From x In conexion.tblClientes Where x.idCliente = idcliente Select x).FirstOrDefault
+
+                If cliente.saldo >= 0 Then
+                    ejecutapago = True
+                ElseIf cliente.saldo < 0 Then
+
+                    Dim salpago As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = idsalida Select x).FirstOrDefault
+
+                    Dim saldofavor As Integer = (cliente.saldo * -1)
+
+                    If saldofavor >= salpago.total Then
+
+                        salpago.saldo = 0
+                        salpago.pagado = salpago.total
+                        ejecutapago = False
+
+                        ''fnGuardarPagoCaja(salpago.total, salpago.idSalida)
+
+                        supersearchPagado = True
+                        conexion.SaveChanges()
+
+                    ElseIf saldofavor < salpago.total Then
+
+                        salpago.saldo -= saldofavor
+                        salpago.pagado += saldofavor
+                        ejecutapago = True
+
+                        ''fnGuardarPagoCaja(saldofavor, salpago.idSalida)
+
+                        supersearchPagado = False
+                        conexion.SaveChanges()
+                    End If
+
+                    conn.Close()
+
+                End If
+
+            End Using
+        Catch ex As Exception
+            ejecutapago = False
+        End Try
+        If ejecutapago = True Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Private Sub fnCorrelativoFac()
+        Try
+            frmCorrelativoFactura.Text = "Correlativo Factura"
+            frmCorrelativoFactura.StartPosition = FormStartPosition.CenterScreen
+            frmCorrelativoFactura.WindowState = FormWindowState.Normal
+            frmCorrelativoFactura.ShowDialog()
+            frmCorrelativoFactura.Dispose()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub fnImprimir(ByVal codSalida As Integer)
+        Try
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim c As New clsReporte
+                If mdlPublicVars.bitTransportePesado Then
+                    c.tabla = EntitiToDataTable(conexion.sp_ReporteEnvioPequenio("", codSalida))
+                Else
+                    c.tabla = EntitiToDataTable(conexion.sp_reportePickingPedido("", codSalida))
+                End If
+
+                If mdlPublicVars.bitTransportePesado Then
+                    c.reporte = "rptEnvioPequenio.rpt"
+                Else
+                    c.nombreParametro = "@filtro"
+                    c.reporte = "ventas_Picking.rpt"
+                    c.parametro = ""
+                End If
+                c.verReporte()
+
+                conn.Close()
+            End Using
+        Catch ex As Exception
+            RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+        End Try
+    End Sub
+
+    Private Function fnGuardarDespachoPequenio(ByVal ventacontado As Boolean) As Integer
+        Dim codcliente As Integer = Me.cmbCliente.SelectedValue
+        Dim cliente As String = Me.cmbCliente.Text
+        Dim codmovimiento As Integer = mdlPublicVars.Salida_TipoMovimientoVenta
+        Dim codvendedor As Integer = CInt(cmbVendedor.SelectedValue)
+
+        Dim fecha As DateTime = CType(fnFecha_horaServidor(), DateTime)
+        Dim hora As String = fnHoraServidor().ToString
+        Dim success As Boolean = True
+        Dim errContenido As String = ""
+        Dim autorizaCredito As Boolean = False    'variable que se utiliza para saber si se despliega la fnErrorAutorizacionCredito
+        Dim idunidamedi
+
+        'contador de pendientes por surtir, automaticamente envia el restante de cantidad y saldo a pendientes por surtir.
+        Dim contadorSurtir As Integer = 0
+        Dim cantidadSurtir As Double = 0
+
+        'conexion nueva.
+        Dim conexion As New dsi_pos_demoEntities
+
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+
+            Dim cli As tblCliente = (From x In conexion.tblClientes Where x.idCliente = codcliente Select x).First
+            Dim usr As tblUsuario = (From x In conexion.tblUsuarios Where x.idUsuario = mdlPublicVars.idUsuario).FirstOrDefault
+            If success Then
+                Using transaction As New TransactionScope
+                    Try
+                        'GUARDAR REGISTRO DE SALIDA.
+                        Dim totalSalida As Decimal = 0
+                        Try
+                            totalSalida = CDec(Replace(lblSaldoFinal.Text, "Q", "").Trim)
+                        Catch ex As Exception
+                            totalSalida = 0
+                        End Try
+
+                        Dim salida As New tblSalida
+                        ''''Dim totalCostoSalida As Decimal = 0
+                        'Sustraemos el correlativo
+                        Dim correlativo As tblCorrelativo = (From x In conexion.tblCorrelativos Where x.idEmpresa = mdlPublicVars.idEmpresa And x.idTipoMovimiento = codmovimiento _
+                                                             Select x).First
+
+                        salida.idEmpresa = CType(mdlPublicVars.idEmpresa, Integer)
+                        salida.idUsuario = CType(mdlPublicVars.idUsuario, Integer)
+                        salida.idTipoInventario = CType(mdlPublicVars.General_idTipoInventario, Integer)
+                        salida.idAlmacen = CType(mdlPublicVars.General_idAlmacenPrincipal, Integer)
+                        salida.idTipoMovimiento = CShort(codmovimiento)
+                        salida.idVendedor = CShort(usr.idVendedor)
+                        salida.idCliente = codcliente
+                        salida.idMunicipio = mdlPublicVars.General_MunicipioLocal
+                        If mdlPublicVars.bitTransportePesado = True Then
+                            salida.cliente = cmbNombre.Text
+                        Else
+                            salida.cliente = cmbCliente.Text
+                        End If
+                        salida.nit = txtNit.Text
+                        salida.fechaTransaccion = fecha
+                        salida.fechaRegistro = CDate(dtpFechaRegistro.Text & " " & hora)
+                        salida.fechaDespachado = CDate(dtpFechaRegistro.Text & " " & hora)
+                        salida.cotizado = False
+                        salida.reservado = False
+                        salida.despachar = True
+                        salida.facturado = False
+                        salida.empacado = True        ' ponemos true para ver si nos permite facturar
+                        salida.anulado = False
+                        salida.fechaAnulado = Nothing
+
+                        salida.descuento = 0
+                        salida.subtotal = totalSalida
+                        salida.total = totalSalida
+                        salida.pagado = 0
+                        salida.saldo = salida.total
+                        salida.devoluciones = 0
+                        salida.bitFacReimpreso = False
+
+                        If ventacontado = True Then
+                            salida.contado = True
+                            salida.credito = False
+                        ElseIf ventacontado = False Then
+                            salida.contado = False
+                            salida.credito = True
+                        End If
+
+                        ''salida.contado = rbnContado.Checked
+                        ''salida.credito = rbnCredito.Checked
+
+                        salida.documento = (correlativo.correlativo + 1).ToString
+                        correlativo.correlativo = correlativo.correlativo + 1
+
+                        'agregar salida al modelo
+                        conexion.AddTotblSalidas(salida)
+
+                        'guardar cambios
+                        conexion.SaveChanges()
+                        codigoSalida = salida.idSalida
+                        codigoSalidaAFacturar = salida.idSalida 'para saber cual se va a facturar en venta pequenia
+
+                        '************** TRANSPORTE
+                        Dim totalCosteoCosto As Decimal = 0
+                        ''For Each salidaTransporte As tblSalidasTransporte In listaTransportes
+                        ''    salidaTransporte.idSalida = codigoSalida
+                        ''    conexion.AddTotblSalidasTransportes(salidaTransporte)
+
+                        ''    ' Prorrateo al costo'
+                        ''    Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
+                        ''                                                   Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
+                        ''                                                   Select x).FirstOrDefault
+
+                        ''    If transporteCosteo.codigo = "1" Then
+                        ''        totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
+                        ''    End If
+
+                        ''    conexion.SaveChanges()
+                        ''Next
+                        '************** FIN DE TRANSPORTES
+
+                        '************** CALCULAR EL COSTO TOTAL DE LA VENTA
+
+                        ''''totalCostoSalida = (From x In Me.grdProductos.Rows Where x.Cells("txbProducto").Value IsNot Nothing Select x).Select(Function(x) CType(x.Cells("txmCantidad").Value, Decimal) * CType(x.Cells("costo").Value, Decimal)).Sum
+                        '************** FIN DE CALCULAR EL COSTO TOTAL DE LA VENTA
+
+                        '--------------------------------------- fin de crear encabezado. ------------------
+                        'paso 6, guardar el detall
+                        Dim index As Integer
+                        Dim cantidad As Double = 0.0
+                        Dim precio As Decimal = 0
+                        Dim precioOriginal As Decimal = 0
+                        Dim total As Decimal = 0
+                        Dim idarticulo As Integer = 0
+                        Dim nombre As String = ""
+                        Dim cantSurtir As Integer = 0 ' sirve cuando el usuario ingresa el pendiente por surtir a comparacion de cantidadSurtir que es automatico.
+                        Dim idSurtir As Integer = 0
+                        Dim contado As Boolean = True
+                        Dim idInventario As Integer = 0
+                        Dim tipoPrecio As Integer = 0
+                        Dim observacion As String = ""
+                        'crear registro de salida bodega.
+                        If codigoSalida > 0 Then
+                            Dim sb As New tblsalidaBodega
+                            sb.idsalida = codigoSalida
+                            conexion.AddTotblsalidaBodegas(sb)
+                            conexion.SaveChanges()
+                        End If
+
+                        ' Variables para transporte
+                        Dim totalCosto As Decimal
+                        Dim porcentajeCosto As Decimal
+                        Dim cociente As Decimal
+                        Dim porUnidad As Decimal
+                        Dim valmedida As Double
+                        Dim idmedida As Integer = 0
+                        Dim inventariosalida As Integer = 0
+                        ''Dim bodegasalida As Integer = 0
+
+
+                        For index = 0 To Me.grdProductos.Rows.Count - 1
+                            idarticulo = CInt(Me.grdProductos.Rows(index).Cells("Id").Value) ' id articulo
+                            nombre = CStr(Me.grdProductos.Rows(index).Cells("txbProducto").Value) ' codigo
+
+                            Dim articulof As Integer = CType(Me.grdProductos.Rows(index).Cells("id").Value, Integer)
+                            Dim cantidadf As Double = CType(Me.grdProductos.Rows(index).Cells("txmCantidad").Value, Integer)
+                            Dim tipomovimiento As Integer = 0
+                            idunidamedi = mdlPublicVars.UnidadMedidaDefault ''Me.grdProductos.Rows(index).Cells("IdUnidadMedida").Value
+
+
+                            '' ''VERIFICACION DE QUE TIPO DE PRODUCTO ES KIT, UNIDAD MEDIDA, PRODUCTO, SERVICIO--------------------------------------
+
+                            ''Dim bikit = (From x In conexion.tblArticuloes Where x.idArticulo = articulof Select x.bitKit).FirstOrDefault
+
+                            ''Dim biunidadmedida = (From x In conexion.tblArticuloes Where x.idArticulo = articulof Select x.bitUnidadMedida).FirstOrDefault
+
+                            ''Dim biproducto = (From x In conexion.tblArticuloes Where x.idArticulo = articulof Select x.bitProducto).FirstOrDefault
+
+
+                            '' ''VERIFICAMOS SI ES KIT
+                            '' ''If bikit Then
+
+                            ''Dim detallekit As List(Of GridViewRowInfo) = Nothing
+
+                            ''Dim detallekit = (From x In conexion.tblArticulo_Kit, y In conexion.tblArticuloes Where y.idArticulo = x.articulo And x.articuloBase = articulof
+                            ''                    Select codigo = x.articulo, cantida = x.cantidad, cost = y.costoIVA,
+                            ''                    codigomedida = CType(If(x.idArticulo_UnidadMedida > 0, x.idArticulo_UnidadMedida, 0), String),
+                            ''                    idunidadmedida = CType(If(x.idArticulo_UnidadMedida > 0, (From z In conexion.tblArticulo_UnidadMedida Where x.idArticulo_UnidadMedida = z.idArticulo_UnidadMedida Select z.idUnidadMedida).FirstOrDefault, 1), String),
+                            ''                    valo = CType(If(x.idArticulo_UnidadMedida > 0, (From m In conexion.tblArticulo_UnidadMedida Where x.idArticulo_UnidadMedida = m.idArticulo_UnidadMedida Select m.valor).FirstOrDefault, 1), String))
+
+                            ''Dim lkit As DataTable = mdlPublicVars.EntitiToDataTable(detallekit)
+                            ''Dim val As String = 0
+
+                            ''    Dim idunidadmedid As String
+                            ''    Dim fila
+                            ''    For Each fila In lkit.Rows
+
+                            ''        If fila.item(4).ToString.Length > 0 Then
+                            ''            idunidadmedid = "'" & fila.item(4) & "'"
+                            ''        Else
+                            ''            idunidadmedid = "null"
+                            ''        End If
+
+                            ''        If fila.item(5).ToString.Length > 0 Then
+                            ''            val = "'" & fila.item(5) & "'"
+                            ''        Else
+                            ''            val = "null"
+                            ''        End If
+
+                            ''        Dim articulo As String
+
+                            ''        articulo = fila.item(0)
+
+                            ''        If val = "null" Then
+
+                            ''            Dim inve As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = articulo And x.tblArticulo.empresa = mdlPublicVars.idEmpresa _
+                            ''                                      And x.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal And x.idTipoInventario = mdlPublicVars.General_idTipoInventario Select x).FirstOrDefault
+                            ''            If inve.saldo >= (fila.item(1) * fila.item(5)) Then
+                            ''                inve.saldo -= CType((fila.item(1) * fila.item(5)), Decimal)
+                            ''                inve.salida += CType((fila.item(1) * fila.item(5).Value), Decimal)
+                            ''            End If
+
+                            ''        Else
+
+                            ''            Dim inve As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = articulo And x.tblArticulo.empresa = mdlPublicVars.idEmpresa _
+                            ''                                            And x.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal And x.idTipoInventario = mdlPublicVars.General_idTipoInventario Select x).FirstOrDefault
+                            '' ''            If inve.saldo >= (cantidadf * fila.item(1) * fila.item(5)) Then
+                            ''                inve.saldo -= CType((fila.item(1) * cantidadf * fila.item(5)), Decimal)
+                            ''                inve.salida += CType((fila.item(1) * cantidadf * fila.item(5)), Decimal)
+                            ''            End If
+
+                            ''        End If
+                            ''        conexion.SaveChanges()
+                            ''Next
+
+                            ''VERIFICAMOS SI ES UNIDAD MEDIDA
+                            ''ElseIf biunidadmedida = True Then
+
+                            ''    Dim consulta = (From x In conexion.tblArticulo_UnidadMedida, y In conexion.tblArticuloes Where x.idArticulo = y.idArticulo And y.idArticulo = articulof And x.idUnidadMedida = idunidamedi Select resultado = CType(If(x.kit = True, 1, 0), String)).FirstOrDefault
+
+                            ''    If CType(consulta, Integer) = 0 Then
+
+
+
+                            ''    End If
+
+
+                            ''End If
+
+                            ''FIN DE LA VERIFICACION DE QUE TIPO DE PRODUCTO ES EL QUE SE ESTA DANDO DE BAJA--------------------------------------
+
+                            If nombre IsNot Nothing Then
+                                Dim transporte As Boolean = False
+                                cantidad = CDec(Me.grdProductos.Rows(index).Cells("txmCantidad").Value) ' cantidad
+                                precio = CDec(Replace(Me.grdProductos.Rows(index).Cells("txbPrecio").Value.ToString, "Q", "").Trim) ' precio
+                                ''precioOriginal = CDec(Replace(Me.grdProductos.Rows(index).Cells("txbPrecioBase").Value.ToString, "Q", "").Trim) ' precio original
+                                total = CDec(Replace(Me.grdProductos.Rows(index).Cells("Total").Value.ToString, "Q", "").Trim) ' total
+                                cantSurtir = CInt(Me.grdProductos.Rows(index).Cells("txmCantidadSurtir").Value) 'surtir
+                                idSurtir = CInt(Me.grdProductos.Rows(index).Cells("idSurtir").Value)
+                                idInventario = CInt(Me.grdProductos.Rows(index).Cells("idInventario").Value)
+                                tipoPrecio = CInt(Me.grdProductos.Rows(index).Cells("tipoPrecio").Value)
+                                observacion = Me.grdProductos.Rows(index).Cells("txbObservacion").Value.ToString
+                                valmedida = 1 ''Me.grdProductos.Rows(index).Cells("ValorUnidadMedida").Value
+                                ''transporte = Me.grdProductos.Rows(index).Cells("chmTransporte").Value
+                                idmedida = mdlPublicVars.UnidadMedidaDefault
+                                ''bodegasalida = CType(Me.grdProductos.Rows(index).Cells("idBodega").Value, Integer)
+
+                                Dim articulo As tblArticulo = (From x In conexion.tblArticuloes Where x.idArticulo = idarticulo Select x).First
+
+                                Dim detalle As New tblSalidaDetalle
+                                detalle.idSalida = codigoSalida
+                                detalle.anulado = False
+                                detalle.idArticulo = idarticulo
+                                detalle.cantidad = CDec(cantidad)
+                                detalle.precio = precio
+                                detalle.precioOriginal = precioOriginal
+                                detalle.costo = articulo.costoIVA
+                                detalle.tipoInventario = idInventario
+                                detalle.tipoPrecio = tipoPrecio
+                                detalle.comentario = observacion
+                                detalle.precioFactura = precio 'se agrego precio factura
+                                detalle.otrosCostos = 0
+                                detalle.agregarTransporte = transporte
+                                detalle.idunidadmedida = idmedida
+                                detalle.valormedida = valmedida
+                                detalle.tipobodega = mdlPublicVars.General_idAlmacenPrincipal
+                                '************** COSTEO
+                                '' ''If totalCosteoCosto > 0 Then
+                                '' ''    'Proceso para el prorrateo por costo
+                                '' ''    totalCosto = CDec(detalle.costo * detalle.cantidad)
+                                '' ''    porcentajeCosto = CDec((totalCosto * 100) / totalCostoSalida)
+                                '' ''    cociente = CDec((porcentajeCosto / 100) * (totalCosteoCosto))
+                                '' ''    porUnidad = CDec(cociente / cantidad)
+
+                                '' ''    detalle.otrosCostos = porUnidad
+                                '' ''End If
+                                '************** FIN DE COSTEO
+
+                                conexion.AddTotblSalidaDetalles(detalle)
+                                conexion.SaveChanges()
+
+
+                                If articulo.bitKit Then
+                                    'Obtenemos la lista de los productos asociados a ese kit
+                                    Dim lDetalleKit As List(Of tblArticulo_Kit) = (From x In conexion.tblArticulo_Kit Where x.articuloBase = articulo.idArticulo _
+                                                                                   Select x).ToList
+
+                                    For Each detallekit As tblArticulo_Kit In lDetalleKit
+                                        Dim salidaKit As New tblSalidaDetalle
+                                        salidaKit.anulado = False
+                                        salidaKit.idArticulo = CInt(detallekit.articulo)
+                                        salidaKit.cantidad = CDec(cantidad * detallekit.cantidad)
+                                        salidaKit.precio = 0
+                                        salidaKit.precioOriginal = 0
+                                        salidaKit.otrosCostos = 0
+                                        salidaKit.costo = detallekit.tblArticulo1.costoIVA
+                                        salidaKit.tipoInventario = idInventario
+                                        salidaKit.tipoPrecio = detalle.tipoPrecio
+                                        salidaKit.comentario = observacion
+                                        salidaKit.kitSalidaDetalle = detalle.idSalidaDetalle
+                                        salidaKit.idSalida = detalle.idSalida
+                                        salidaKit.agregarTransporte = detalle.agregarTransporte
+                                        salidaKit.idunidadmedida = detalle.idunidadmedida
+                                        salidaKit.valormedida = detalle.valormedida
+                                        conexion.AddTotblSalidaDetalles(salidaKit)
+                                        conexion.SaveChanges()
+
+                                        'descontar existencias.
+                                        Dim codArtKit As Integer = CInt(detallekit.articulo)
+                                        Dim inve As tblInventario = (From x In conexion.tblInventarios Where x.tblArticulo.empresa = mdlPublicVars.idEmpresa _
+                                                                     And x.idTipoInventario = idInventario And x.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal _
+                                                                     And x.idArticulo = codArtKit Select x).FirstOrDefault
+
+                                        'si es reserva, incrementar la reserva , y decrementar el saldo
+                                        If inve.saldo >= (salidaKit.cantidad) Then
+                                            inve.saldo = inve.saldo - (salidaKit.cantidad)
+                                            inve.salida = inve.salida + (salidaKit.cantidad)
+                                            conexion.SaveChanges()
+                                        Else
+
+                                            errContenido = "Error !!!, Existencia insuficiente en Kit, articulo: " + articulo.nombre1
+                                            success = False
+                                            Exit Try
+                                        End If
+                                    Next
+                                ElseIf articulo.bitProducto Or articulo.bitUnidadMedida Then
+
+                                    'descontar existencias.
+                                    Dim inve As tblInventario = (From x In conexion.tblInventarios Where x.tblArticulo.empresa = mdlPublicVars.idEmpresa _
+                                                                 And x.idTipoInventario = idInventario And x.IdAlmacen = mdlPublicVars.General_idAlmacenPrincipal _
+                                                                 And x.idArticulo = idarticulo Select x).FirstOrDefault
+
+                                    'descontamos del inventario
+                                    If inve.saldo >= cantidad * valmedida Or mdlPublicVars.ExistenciaCero = True Then
+                                        inve.saldo = inve.saldo - CDec(cantidad * valmedida)
+                                        inve.salida += CDec(cantidad * valmedida)
+                                        conexion.SaveChanges()
+
+                                    Else
+                                        'cantidad a surtir.
+                                        cantidadSurtir = CDbl((cantidad * valmedida) - inve.saldo)
+                                        contadorSurtir = contadorSurtir + 1
+
+                                        'descontar el saldo y enviar a pendientes por surtir.
+                                        inve.salida = inve.salida + (inve.saldo)
+                                        inve.saldo = 0
+
+                                        Dim pendiente As New tblSurtir
+                                        pendiente.salidaDetalle = detalle.idSalidaDetalle
+                                        pendiente.articulo = detalle.idArticulo
+                                        pendiente.cantidad = CDec(cantidadSurtir)
+                                        pendiente.saldo = CDec(cantidadSurtir)
+                                        pendiente.fechaTransaccion = fecha
+                                        pendiente.anulado = False
+                                        pendiente.usuario = mdlPublicVars.idUsuario
+                                        pendiente.vendedor = CShort(mdlPublicVars.idVendedor)
+                                        pendiente.cliente = salida.idCliente
+                                        conexion.AddTotblSurtirs(pendiente)
+                                        conexion.SaveChanges()
+
+                                        If contadorSurtir = 1 Then
+                                            errContenido += " Saldo Insuficiente, Desea Surtir :" + vbCrLf & articulo.nombre1 + vbCrLf
+                                        ElseIf contadorSurtir > 1 Then
+                                            errContenido += ", " & articulo.nombre1
+                                        End If
+
+                                        'success = False
+                                        'Exit Try
+                                    End If
+                                End If
+
+                                'Verifiamos si es surtir
+                                If idSurtir > 0 Then
+
+                                    'Modificamos el pendiente por surtir, para descontar de los pendientes por surtir del cliente.
+                                    Dim pendiente As List(Of tblSurtir) = (From x In conexion.tblSurtirs Where (x.cliente = salida.idCliente) _
+                                                                           And x.saldo > 0 And x.articulo = detalle.idArticulo Select x Order By x.fechaTransaccion Ascending).ToList
+                                    Dim cantidadDescontar2 As Integer = CInt(cantidad)
+                                    For Each p As tblSurtir In pendiente
+                                        If cantidadDescontar2 > p.saldo Then
+                                            cantidadDescontar2 -= CDec(p.saldo)
+                                            p.saldo = 0
+                                        Else
+                                            p.saldo -= cantidadDescontar2
+                                            cantidadDescontar2 = 0
+                                        End If
+                                        conexion.SaveChanges()
+                                        If cantidadDescontar2 = 0 Then
+                                            Exit For
+                                        End If
+                                    Next
+                                ElseIf cantSurtir > 0 Then
+                                    'Creamos el pendiente por surtir
+                                    Dim pendiente As New tblSurtir
+                                    pendiente.salidaDetalle = detalle.idSalidaDetalle
+                                    pendiente.articulo = detalle.idArticulo
+                                    pendiente.cantidad = cantSurtir
+                                    pendiente.saldo = cantSurtir
+                                    pendiente.fechaTransaccion = fecha
+                                    pendiente.anulado = False
+                                    pendiente.usuario = mdlPublicVars.idUsuario
+                                    pendiente.vendedor = CShort(mdlPublicVars.idVendedor)
+                                    pendiente.cliente = salida.idCliente
+                                    conexion.AddTotblSurtirs(pendiente)
+                                    conexion.SaveChanges()
+                                End If
+
+                                'Verificamos si tiene pendientes por pedir
+                                Dim lPendientes As List(Of tblSurtir) = (From x In conexion.tblSurtirs
+                                                                                     Where Not x.anulado And x.saldo > 0 And x.articulo = idarticulo
+                                                                                     Select x).ToList
+                                Dim cantidadDescontar As Integer = CInt(cantidad)
+                                'Recorremos la lista de pendientes
+                                For Each pendiente As tblSurtir In lPendientes
+
+                                    If cantidadDescontar > pendiente.saldo Then
+                                        cantidadDescontar -= CInt(pendiente.saldo)
+                                        pendiente.saldo = 0
+                                    Else
+                                        pendiente.saldo -= cantidadDescontar
+                                        cantidadDescontar = 0
+                                    End If
+                                    conexion.SaveChanges()
+                                    If cantidadDescontar = 0 Then
+                                        Exit For
+                                    End If
+                                Next
+                            End If
+                        Next
+                        conexion.SaveChanges()
+                        If contadorSurtir > 0 Then
+                            If RadMessageBox.Show(errContenido + vbCrLf + " Desea Continuar...", "Articulos pendientes por Surtir", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.No Then
+                                errContenido = "No se pudo Guardar"
+                                success = False
+                                Exit Try
+                            End If
+                        End If
+
+                        Dim resultado As Integer = 0
+
+                        resultado = fnEvaluarResolucion(codigoSalida, conexion
+                                                        )
+                        If resultado = 1 Then
+                            RadMessageBox.Show("Debe verificar el Estado de la Resolucion Actual!!!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                        ElseIf resultado = 2 Then
+                            RadMessageBox.Show("La Resolucion actual ya no permite mas Facturas!!!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+                            success = False
+                            Exit Function
+                        ElseIf resultado = 3 Then
+                            RadMessageBox.Show("Es el Final de la Resolucion, Cambiela para poder seguir Facturando!!!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                        End If
+
+                        'paso 8, completar la transaccion.
+                        transaction.Complete()
+
+                    Catch ex As System.Data.EntityException
+                        success = False
+                    Catch ex As Exception
+                        If ex.[GetType]() <> GetType(UpdateException) Then
+                            success = False
+                            Console.WriteLine(("An error occured. " & "The operation cannot be retried.") + ex.Message)
+                            alerta.fnErrorGuardar()
+                            Exit Try
+                            ' If we get to this point, the operation will be retried. 
+                        End If
+                    End Try
+                End Using
+            End If
+
+            If success = True Then
+                conexion.AcceptAllChanges()
+                conexion.Dispose()
+            End If
+            'cerrar la conexion.
+            conn.Close()
+        End Using
+
+        If success Then
+            conexion.AcceptAllChanges()
+            alerta.contenido = "Registro guardado correctamente"
+            alerta.fnGuardar()
+            bitEditarSalida = False
+            'fnImprimirPequenio(codigoSalida, ventacontado)
+
+            'Mostramos la ventana de Bitacora, Usando la Variable global de configuración para conocer si se pide bitacora o No.
+            AgregaBitacora(mdlPublicVars.Salida_BitaAlDespachar)
+            Return codigoSalida
+            fnNuevaFila()
+        Else
+            If autorizaCredito = True Then
+                alerta.fnErrorAutorizacionCredito()
+            Else
+                alerta.contenido = errContenido
+                alerta.fnErrorContenido()
+                Console.WriteLine("La operacion no pudo ser completada")
+            End If
+            Return -1
+        End If
+    End Function
+
+    Private Function fnEvaluarResolucion(ByVal codigo As Integer, ByVal conexion As dsi_pos_demoEntities) As Integer
+        Try
+            Dim fin As Integer
+            Dim correl As Integer
+
+            fin = (From x In conexion.tblResolucionFacturas Where x.habilitado = True Select x.final).FirstOrDefault
+            correl = (From x In conexion.tblResolucionFacturas Where x.habilitado = True Select x.correlativo).FirstOrDefault
+
+            If (fin - correl) = 0 Then
+                Return 3
+            ElseIf (fin - correl) < 0 Then
+                Return 2
+            ElseIf (fin - correl) <= 5 And (fin - correl) > 0 Then
+                Return 1
+            Else
+                Return 0
+            End If
+
+        Catch ex As Exception
+            Return 1
+        End Try
+
+    End Function
+
+#End Region
 
 End Class

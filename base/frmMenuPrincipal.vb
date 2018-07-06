@@ -13,24 +13,25 @@ Public Class frmMenuPrincipal
 
 
     Private Sub FrmInicio_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Try
+            Dim fechahoy As Date = fnFechaServidor()
 
-        'MenuReportes.Visibility = Telerik.WinControls.ElementVisibility.Hidden
+            Dim usuario As tblUsuario = (From x In ctx.tblUsuarios Where x.idUsuario = mdlPublicVars.idUsuario Select x).FirstOrDefault
 
-        Dim fechahoy As Date = fnFechaServidor()
-
-        Dim usuario As tblUsuario = (From x In ctx.tblUsuarios Where x.idUsuario = mdlPublicVars.idUsuario Select x).FirstOrDefault
-
-        If Day(usuario.fechaNac) = Day(fechahoy) Then
-            If Month(usuario.fechaNac) = Month(fechahoy) Then
-                frmCumpleanios.ShowDialog()
-                frmCumpleanios.Dispose()
+            If Day(usuario.fechaNac) = Day(fechahoy) Then
+                If Month(usuario.fechaNac) = Month(fechahoy) Then
+                    frmCumpleanios.ShowDialog()
+                    frmCumpleanios.Dispose()
+                End If
             End If
-        End If
 
-        itemUsuario.Text = mdlPublicVars.usuario
-        itemBD.Text = mdlPublicVars.BaseDatosNombre
-        FnLoad()
-        fnCrearCarpetas()
+            itemUsuario.Text = mdlPublicVars.usuario
+            itemBD.Text = mdlPublicVars.BaseDatosNombre
+            FnLoad()
+            fnCrearCarpetas()
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     'Funcion utilizada para crear carpetas

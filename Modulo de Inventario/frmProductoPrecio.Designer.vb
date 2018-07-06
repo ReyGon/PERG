@@ -82,11 +82,11 @@ Partial Class frmProductoPrecio
         Me.Label13 = New System.Windows.Forms.Label()
         Me.lblCostoProm = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.cmbNombre1 = New System.Windows.Forms.ComboBox()
+        Me.cmbProducto = New System.Windows.Forms.ComboBox()
         Me.btnActualizarCosto = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtPrecioPublicoMotriza = New System.Windows.Forms.TextBox()
-        Me.cmbCodigo1 = New System.Windows.Forms.ComboBox()
+        Me.cmbCodigoProducto = New System.Windows.Forms.ComboBox()
         Me.PgBodega = New Telerik.WinControls.UI.RadPageViewPage()
         Me.grdFotos = New Telerik.WinControls.UI.RadGridView()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -109,7 +109,12 @@ Partial Class frmProductoPrecio
         Me.grdPrecios = New Telerik.WinControls.UI.RadGridView()
         Me.rpv = New Telerik.WinControls.UI.RadPageView()
         Me.Pgclasificacion = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.txtProductoM2 = New System.Windows.Forms.TextBox()
+        Me.txtProductoM1 = New System.Windows.Forms.TextBox()
+        Me.txtCodigoM2 = New System.Windows.Forms.TextBox()
+        Me.txtCodigoM1 = New System.Windows.Forms.TextBox()
         Me.ButtonGuardar = New System.Windows.Forms.Button()
+        Me.Label23 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
@@ -166,11 +171,6 @@ Partial Class frmProductoPrecio
         Me.Button3 = New System.Windows.Forms.Button()
         Me.lblCosto = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
-        Me.Label23 = New System.Windows.Forms.Label()
-        Me.txtCodigoM1 = New System.Windows.Forms.TextBox()
-        Me.txtCodigoM2 = New System.Windows.Forms.TextBox()
-        Me.txtProductoM1 = New System.Windows.Forms.TextBox()
-        Me.txtProductoM2 = New System.Windows.Forms.TextBox()
         CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PgBodega.SuspendLayout()
@@ -377,13 +377,13 @@ Partial Class frmProductoPrecio
         Me.Label3.TabIndex = 172
         Me.Label3.Text = "Costo Promedio :"
         '
-        'cmbNombre1
+        'cmbProducto
         '
-        Me.cmbNombre1.FormattingEnabled = True
-        Me.cmbNombre1.Location = New System.Drawing.Point(371, 95)
-        Me.cmbNombre1.Name = "cmbNombre1"
-        Me.cmbNombre1.Size = New System.Drawing.Size(415, 21)
-        Me.cmbNombre1.TabIndex = 174
+        Me.cmbProducto.FormattingEnabled = True
+        Me.cmbProducto.Location = New System.Drawing.Point(371, 95)
+        Me.cmbProducto.Name = "cmbProducto"
+        Me.cmbProducto.Size = New System.Drawing.Size(415, 21)
+        Me.cmbProducto.TabIndex = 174
         '
         'btnActualizarCosto
         '
@@ -422,13 +422,13 @@ Partial Class frmProductoPrecio
         Me.txtPrecioPublicoMotriza.TabIndex = 176
         Me.txtPrecioPublicoMotriza.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'cmbCodigo1
+        'cmbCodigoProducto
         '
-        Me.cmbCodigo1.FormattingEnabled = True
-        Me.cmbCodigo1.Location = New System.Drawing.Point(132, 86)
-        Me.cmbCodigo1.Name = "cmbCodigo1"
-        Me.cmbCodigo1.Size = New System.Drawing.Size(133, 21)
-        Me.cmbCodigo1.TabIndex = 178
+        Me.cmbCodigoProducto.FormattingEnabled = True
+        Me.cmbCodigoProducto.Location = New System.Drawing.Point(132, 86)
+        Me.cmbCodigoProducto.Name = "cmbCodigoProducto"
+        Me.cmbCodigoProducto.Size = New System.Drawing.Size(133, 21)
+        Me.cmbCodigoProducto.TabIndex = 178
         '
         'PgBodega
         '
@@ -953,6 +953,39 @@ Partial Class frmProductoPrecio
         Me.Pgclasificacion.Size = New System.Drawing.Size(1023, 439)
         Me.Pgclasificacion.Text = "Clasificación"
         '
+        'txtProductoM2
+        '
+        Me.txtProductoM2.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtProductoM2.Location = New System.Drawing.Point(329, 36)
+        Me.txtProductoM2.Name = "txtProductoM2"
+        Me.txtProductoM2.Size = New System.Drawing.Size(454, 22)
+        Me.txtProductoM2.TabIndex = 199
+        '
+        'txtProductoM1
+        '
+        Me.txtProductoM1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtProductoM1.Location = New System.Drawing.Point(329, 9)
+        Me.txtProductoM1.Name = "txtProductoM1"
+        Me.txtProductoM1.Size = New System.Drawing.Size(454, 22)
+        Me.txtProductoM1.TabIndex = 198
+        '
+        'txtCodigoM2
+        '
+        Me.txtCodigoM2.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtCodigoM2.Location = New System.Drawing.Point(86, 37)
+        Me.txtCodigoM2.Name = "txtCodigoM2"
+        Me.txtCodigoM2.Size = New System.Drawing.Size(169, 22)
+        Me.txtCodigoM2.TabIndex = 197
+        '
+        'txtCodigoM1
+        '
+        Me.txtCodigoM1.Enabled = False
+        Me.txtCodigoM1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtCodigoM1.Location = New System.Drawing.Point(86, 9)
+        Me.txtCodigoM1.Name = "txtCodigoM1"
+        Me.txtCodigoM1.Size = New System.Drawing.Size(169, 22)
+        Me.txtCodigoM1.TabIndex = 196
+        '
         'ButtonGuardar
         '
         Me.ButtonGuardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -971,6 +1004,16 @@ Partial Class frmProductoPrecio
         Me.ButtonGuardar.Text = "Guardar"
         Me.ButtonGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.ButtonGuardar.UseVisualStyleBackColor = False
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label23.Location = New System.Drawing.Point(22, 13)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(60, 13)
+        Me.Label23.TabIndex = 194
+        Me.Label23.Text = "Codigo 1 :"
         '
         'Label19
         '
@@ -1011,7 +1054,7 @@ Partial Class frmProductoPrecio
         Me.grdModeloVehiculo.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.grdModeloVehiculo.Location = New System.Drawing.Point(695, 111)
         '
-        'grdModeloVehiculo
+        '
         '
         Me.grdModeloVehiculo.MasterTemplate.AllowAddNewRow = False
         GridViewCheckBoxColumn9.HeaderText = "Agregar"
@@ -1130,7 +1173,7 @@ Partial Class frmProductoPrecio
         '
         Me.grdTipoVehiculo.Location = New System.Drawing.Point(400, 111)
         '
-        'grdTipoVehiculo
+        '
         '
         Me.grdTipoVehiculo.MasterTemplate.AllowAddNewRow = False
         Me.grdTipoVehiculo.MasterTemplate.AutoGenerateColumns = False
@@ -1672,49 +1715,6 @@ Partial Class frmProductoPrecio
         Me.Label24.Text = "Promedio :"
         Me.Label24.Visible = False
         '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label23.Location = New System.Drawing.Point(22, 13)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(60, 13)
-        Me.Label23.TabIndex = 194
-        Me.Label23.Text = "Codigo 1 :"
-        '
-        'txtCodigoM1
-        '
-        Me.txtCodigoM1.Enabled = False
-        Me.txtCodigoM1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.txtCodigoM1.Location = New System.Drawing.Point(86, 9)
-        Me.txtCodigoM1.Name = "txtCodigoM1"
-        Me.txtCodigoM1.Size = New System.Drawing.Size(169, 22)
-        Me.txtCodigoM1.TabIndex = 196
-        '
-        'txtCodigoM2
-        '
-        Me.txtCodigoM2.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.txtCodigoM2.Location = New System.Drawing.Point(86, 37)
-        Me.txtCodigoM2.Name = "txtCodigoM2"
-        Me.txtCodigoM2.Size = New System.Drawing.Size(169, 22)
-        Me.txtCodigoM2.TabIndex = 197
-        '
-        'txtProductoM1
-        '
-        Me.txtProductoM1.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.txtProductoM1.Location = New System.Drawing.Point(329, 9)
-        Me.txtProductoM1.Name = "txtProductoM1"
-        Me.txtProductoM1.Size = New System.Drawing.Size(454, 22)
-        Me.txtProductoM1.TabIndex = 198
-        '
-        'txtProductoM2
-        '
-        Me.txtProductoM2.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.txtProductoM2.Location = New System.Drawing.Point(329, 36)
-        Me.txtProductoM2.Name = "txtProductoM2"
-        Me.txtProductoM2.Size = New System.Drawing.Size(454, 22)
-        Me.txtProductoM2.TabIndex = 199
-        '
         'frmProductoPrecio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1723,11 +1723,11 @@ Partial Class frmProductoPrecio
         Me.Controls.Add(Me.Label24)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.grdOtrosPrecios2)
-        Me.Controls.Add(Me.cmbCodigo1)
+        Me.Controls.Add(Me.cmbCodigoProducto)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.txtPrecioPublicoMotriza)
         Me.Controls.Add(Me.btnActualizarCosto)
-        Me.Controls.Add(Me.cmbNombre1)
+        Me.Controls.Add(Me.cmbProducto)
         Me.Controls.Add(Me.lblCostoProm)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label13)
@@ -1767,11 +1767,11 @@ Partial Class frmProductoPrecio
         Me.Controls.SetChildIndex(Me.Label13, 0)
         Me.Controls.SetChildIndex(Me.Label3, 0)
         Me.Controls.SetChildIndex(Me.lblCostoProm, 0)
-        Me.Controls.SetChildIndex(Me.cmbNombre1, 0)
+        Me.Controls.SetChildIndex(Me.cmbProducto, 0)
         Me.Controls.SetChildIndex(Me.btnActualizarCosto, 0)
         Me.Controls.SetChildIndex(Me.txtPrecioPublicoMotriza, 0)
         Me.Controls.SetChildIndex(Me.Label9, 0)
-        Me.Controls.SetChildIndex(Me.cmbCodigo1, 0)
+        Me.Controls.SetChildIndex(Me.cmbCodigoProducto, 0)
         Me.Controls.SetChildIndex(Me.grdOtrosPrecios2, 0)
         Me.Controls.SetChildIndex(Me.Button3, 0)
         Me.Controls.SetChildIndex(Me.Label24, 0)
@@ -1840,11 +1840,11 @@ Partial Class frmProductoPrecio
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents lblCostoProm As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents cmbNombre1 As System.Windows.Forms.ComboBox
+    Friend WithEvents cmbProducto As System.Windows.Forms.ComboBox
     Friend WithEvents btnActualizarCosto As System.Windows.Forms.Button
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents txtPrecioPublicoMotriza As System.Windows.Forms.TextBox
-    Friend WithEvents cmbCodigo1 As System.Windows.Forms.ComboBox
+    Friend WithEvents cmbCodigoProducto As System.Windows.Forms.ComboBox
     Friend WithEvents PgBodega As Telerik.WinControls.UI.RadPageViewPage
     Friend WithEvents grdFotos As Telerik.WinControls.UI.RadGridView
     Friend WithEvents Label4 As System.Windows.Forms.Label

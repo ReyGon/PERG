@@ -2646,21 +2646,21 @@ Public Class frmVentaPequenia
 
                         '************** TRANSPORTE
                         Dim totalCosteoCosto As Decimal = 0
-                        ''For Each salidaTransporte As tblSalidasTransporte In listaTransportes
-                        ''    salidaTransporte.idSalida = codigoSalida
-                        ''    conexion.AddTotblSalidasTransportes(salidaTransporte)
+                        'For Each salidaTransporte As tblSalidasTransporte In listaTransportes
+                        '    salidaTransporte.idSalida = codigoSalida
+                        '    conexion.AddTotblSalidasTransportes(salidaTransporte)
 
-                        ''    ' Prorrateo al costo'
-                        ''    Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
-                        ''                                                   Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
-                        ''                                                   Select x).FirstOrDefault
+                        '    ' Prorrateo al costo'
+                        '    Dim transporteCosteo As tblTransporteCosteo = (From x In conexion.tblTransporteCosteos
+                        '                                                   Where x.idTransporteCosteo = salidaTransporte.idTransporteCosteo
+                        '                                                   Select x).FirstOrDefault
 
-                        ''    If transporteCosteo.codigo = "1" Then
-                        ''        totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
-                        ''    End If
+                        '    If transporteCosteo.codigo = "1" Then
+                        '        totalCosteoCosto += CDec(salidaTransporte.precio * salidaTransporte.cantidad)
+                        '    End If
 
-                        ''    conexion.SaveChanges()
-                        ''Next
+                        '    conexion.SaveChanges()
+                        'Next
                         '************** FIN DE TRANSPORTES
 
                         '************** CALCULAR EL COSTO TOTAL DE LA VENTA

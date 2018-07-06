@@ -511,9 +511,6 @@ Public Class frmPedidosLista
     End Sub
 
     Private Function fnGrid_valueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles grdDatos.Click
-
-
-
         If Me.grdDatos.Rows.Count > 0 Then
             'obtener el indice seleccionado.
             Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdDatos)
@@ -610,9 +607,6 @@ Public Class frmPedidosLista
                                 If estado IsNot Nothing Then
 
                                     fnFacturar(idSalida, conexion)
-
-                                    alerta.contenido = "Ya Guardo Facturacion"
-                                    alerta.fnErrorContenido()
 
                                 End If
 

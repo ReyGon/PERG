@@ -20,36 +20,37 @@ Public Class frmProductoPrecio
     Public posicion As Integer = 0
     Public bitNuevoEntrada As Boolean = False
     Public bitNuevoPendiente As Boolean = False
+    Private XCombo As Boolean = False
+
+    Private Sub fnEspeciales()
+        Try
+            mdlPublicVars.fnFormatoGridEspeciales(grdOtrosPrecios)
+            mdlPublicVars.fnFormatoGridEspeciales(grdPrecios)
+            mdlPublicVars.fnFormatoGridMovimientos(grdTipoVehiculo)
+            mdlPublicVars.fnFormatoGridMovimientos(grdModeloVehiculo)
+            mdlPublicVars.fnFormatoGridEspeciales(grdSustitutos)
+            mdlPublicVars.fnFormatoGridEspeciales(grdPreciosSustitutos)
+            mdlPublicVars.fnFormatoGridEspeciales(grdUltimasCompras)
+            mdlPublicVars.fnFormatoGridMovimientos(grdTipoVehiculo)
+            mdlPublicVars.fnFormatoGridMovimientos(grdModeloVehiculo)
+            mdlPublicVars.fnFormatoGridEspeciales(grdUltimasVentas)
+            mdlPublicVars.fnGrid_iconos(grdOtrosPrecios)
+            mdlPublicVars.fnGrid_iconos(grdPrecios)
+            mdlPublicVars.fnFormatoGridMovimientos(grdUltimasCompras)
+            mdlPublicVars.comboActivarFiltro(cmbProducto)
+            mdlPublicVars.comboActivarFiltro(cmbCodigoProducto)
+            mdlPublicVars.comboActivarFiltro(cmbImportancia)
+            mdlPublicVars.comboActivarFiltro(cmbMarcaRepuesto)
+            mdlPublicVars.comboActivarFiltro(cmbTipoRepuesto)
+            mdlPublicVars.fnFormatoGridEspeciales(Me.grdFotos)
+            mdlPublicVars.fnFormatoGridMovimientos(Me.grdFotos)
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
     Private Sub frmProductoPrecio_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        mdlPublicVars.fnFormatoGridEspeciales(grdOtrosPrecios)
-        'mdlPublicVars.fnFormatoGridEspeciales(grdOtrosPreciosSucursal)
-        mdlPublicVars.fnFormatoGridEspeciales(grdPrecios)
-        mdlPublicVars.fnFormatoGridMovimientos(grdTipoVehiculo)
-        mdlPublicVars.fnFormatoGridMovimientos(grdModeloVehiculo)
-        mdlPublicVars.fnFormatoGridEspeciales(grdSustitutos)
-        mdlPublicVars.fnFormatoGridEspeciales(grdPreciosSustitutos)
-        mdlPublicVars.fnFormatoGridEspeciales(grdUltimasCompras)
-        mdlPublicVars.fnFormatoGridMovimientos(grdTipoVehiculo)
-        mdlPublicVars.fnFormatoGridMovimientos(grdModeloVehiculo)
-
-        'mdlPublicVars.fnFormatoGridEspeciales(grdPreciosCompe)
-        mdlPublicVars.fnFormatoGridEspeciales(grdUltimasVentas)
-        'mdlPublicVars.fnFormatoGridEspeciales(grdPreciosMotriza)
-        'mdlPublicVars.fnGrid_iconos(grdPreciosMotriza)
-        mdlPublicVars.fnGrid_iconos(grdOtrosPrecios)
-        'mdlPublicVars.fnGrid_iconos(grdOtrosPreciosSucursal)
-        mdlPublicVars.fnGrid_iconos(grdPrecios)
-        mdlPublicVars.fnFormatoGridMovimientos(grdUltimasCompras)
-        mdlPublicVars.comboActivarFiltro(cmbNombre1)
-        mdlPublicVars.comboActivarFiltro(cmbCodigo1)
-
-        mdlPublicVars.comboActivarFiltro(cmbImportancia)
-        mdlPublicVars.comboActivarFiltro(cmbMarcaRepuesto)
-        mdlPublicVars.comboActivarFiltro(cmbTipoRepuesto)
-
-        mdlPublicVars.fnFormatoGridEspeciales(Me.grdFotos)
-        mdlPublicVars.fnFormatoGridMovimientos(Me.grdFotos)
+        fnEspeciales()
 
         lbl1Modificar.Text = "Guardar"
 
@@ -65,14 +66,13 @@ Public Class frmProductoPrecio
         'activa/desactiva opciones extendidas del grid, como botones, imagenes, y otros.
         ActivarOpcionesExtendidasGrid = False
 
-        'Me.errores.Controls.Add(Me.txtCodigo1, "Codigo1")
-        'Me.errores.SummaryMessage = "Faltan datos"
-
         fnLlenarCombo()
         fnLlenarCombo2()
 
-        Me.cmbNombre1.SelectedValue = mdlPublicVars.superSearchId
-        Me.cmbCodigo1.SelectedValue = mdlPublicVars.superSearchId
+        XCombo = True
+
+        Me.cmbProducto.SelectedValue = mdlPublicVars.superSearchId
+        Me.cmbCodigoProducto.SelectedValue = mdlPublicVars.superSearchId
 
         llenagrid()
 
@@ -272,7 +272,7 @@ Public Class frmProductoPrecio
 
     'Ultimas Ventas
     Private Sub fnUltimasVentas()
-        Dim codArt As Integer = CInt(cmbNombre1.SelectedValue)
+        Dim codArt As Integer = CInt(cmbProducto.SelectedValue)
         Dim general = (From x In ctx.tblSalidaDetalles Where x.tblSalida.anulado = False And x.tblSalida.empacado = True And x.idArticulo = codArt _
                         Select Fecha = x.tblSalida.fechaRegistro, Cliente = x.tblSalida.tblCliente.Negocio, Documento = x.tblSalida.documento, Cantidad = x.cantidad, Precio = x.precio, _
                          TipoPrecio = (From y In ctx.tblArticuloTipoPrecios Where x.tipoPrecio = y.codigo Select y.nombre).FirstOrDefault _
@@ -289,7 +289,7 @@ Public Class frmProductoPrecio
             Select Codigo = x.idArticulo, Nombre = x.nombre1.Trim() + "- (" + x.codigo1.Trim() + ")")
 
             'Llenamos el combo1
-            With Me.cmbNombre1
+            With Me.cmbProducto
                 .DataSource = Nothing
                 .ValueMember = "Codigo"
                 .DisplayMember = "Nombre"
@@ -300,7 +300,7 @@ Public Class frmProductoPrecio
                        Select Codigo = x.idArticulo, Nombre = x.codigo1.Trim())
 
             'Llenamos el combo1
-            With Me.cmbCodigo1
+            With Me.cmbCodigoProducto
                 .DataSource = Nothing
                 .ValueMember = "Codigo"
                 .DisplayMember = "Nombre"
@@ -1234,26 +1234,7 @@ Public Class frmProductoPrecio
         End If
     End Sub
 
-    'Private Sub fnFechasSucursal()
-    'Dim fil = Me.grdOtrosPreciosSucursal.CurrentRow.Index
-    'Dim col = Me.grdOtrosPreciosSucursal.CurrentColumn.Index
 
-    'Dim acFecha As Boolean = CType(Me.grdOtrosPreciosSucursal.Rows(fil).Cells("chmFechaEstado").Value, Boolean)
-
-    'If acFecha = True And col > 10 Then
-    'frmFecha.Text = "Fecha"
-    'If col = 11 Then
-    '    frmFecha.opcionRetorno = "precioInicio"
-    '   frmFecha.bitgrid1 = False
-    '  ElseIf col = 12 Then
-    ' frmFecha.opcionRetorno = "precioFinal"
-    'frmFecha.bitgrid1 = False
-    'End If
-    'frmFecha.StartPosition = FormStartPosition.CenterScreen
-    'frmFecha.ShowDialog()
-    'End If
-    'End Sub
-    'Funcion para agregar la fecha seleecionada
     Public Sub fnAgregarFecha()
         Try
             If mdlPublicVars.superSearchId = 1 Then
@@ -1265,18 +1246,6 @@ Public Class frmProductoPrecio
 
         End Try
     End Sub
-
-    'Public Sub fnAgregarFechaSucursal()
-    ' Try
-    '    If mdlPublicVars.superSearchId = 1 Then
-    '       Me.grdOtrosPreciosSucursal.Rows(Me.grdOtrosPreciosSucursal.CurrentRow.Index).Cells("txbFechaInicio").Value = mdlPublicVars.superSearchFecha.ToShortDateString
-    '  ElseIf mdlPublicVars.superSearchId = 2 Then
-    '     Me.grdOtrosPreciosSucursal.Rows(Me.grdOtrosPreciosSucursal.CurrentRow.Index).Cells("txbFechaFinal").Value = mdlPublicVars.superSearchFecha.ToShortDateString
-    'End If
-    '    Catch ex As Exception
-    '
-    '   End Try
-    'End Sub
 
     Private Sub lblCosto_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblCosto.TextChanged
         Try
@@ -1385,28 +1354,32 @@ Public Class frmProductoPrecio
     End Sub
 
     'Evento que se utiliza para manejar el cambio de articulo
-    Private Sub cmbNombre1_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbNombre1.SelectedValueChanged
+    Private Sub cmbProducto_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbProducto.SelectedValueChanged
         Try
-            'Obtenemos el id del articulo
-            Dim codArt As Integer = CType(cmbNombre1.SelectedValue, Integer)
-            fnBuscaArticulo(codArt)
-            fnUltimasVentas()
-            fnUltimasCompras()
-            fnClasificacion()
+            If Me.cmbProducto.SelectedValue > 0 And XCombo = True Then
+                Dim id As Integer = CType(cmbProducto.SelectedValue, Integer)
+                Me.cmbCodigoProducto.SelectedValue = id
+                fnBuscaArticulo(id)
+                fnUltimasVentas()
+                fnUltimasCompras()
+                fnClasificacion()
+            End If
         Catch ex As Exception
 
         End Try
     End Sub
 
     'Evento que se utiliza para manejar el cambio de articulo
-    Private Sub cmbCodigo1_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbCodigo1.SelectedValueChanged
+    Private Sub cmbCodigo_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbCodigoProducto.SelectedValueChanged
         Try
-            'Obtenemos el id del articulo
-            Dim codArt As Integer = CType(cmbCodigo1.SelectedValue, Integer)
-            fnBuscaArticulo(codArt)
-            fnUltimasVentas()
-            fnUltimasCompras()
-            fnClasificacion()
+            If Me.cmbCodigoProducto.SelectedValue > 0 And XCombo = True Then
+                Dim id As Integer = CType(cmbCodigoProducto.SelectedValue, Integer)
+                Me.cmbProducto.SelectedValue = id
+                fnBuscaArticulo(id)
+                fnUltimasVentas()
+                fnUltimasCompras()
+                fnClasificacion()
+            End If
         Catch ex As Exception
 
         End Try
@@ -1419,7 +1392,7 @@ Public Class frmProductoPrecio
                 conn.Open()
                 conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
-                Dim id As Integer = Me.cmbNombre1.SelectedValue
+                Dim id As Integer = Me.cmbProducto.SelectedValue
 
                 Dim a As tblArticulo = (From x In conexion.tblArticuloes Where x.idArticulo = id Select x).FirstOrDefault
 
@@ -1463,7 +1436,7 @@ Public Class frmProductoPrecio
     'Funcion utilizada para llenar las ultimas compras del producto
     Private Sub fnUltimasCompras()
         Try
-            Dim codArt As Integer = Me.txtCodigo.Text ''Me.cmbNombre1.SelectedValue
+            Dim codArt As Integer = CInt(Me.cmbProducto.SelectedValue)
             Dim lista = (From x In ctx.tblEntradasDetalles Where x.tblEntrada.anulado = False And x.tblEntrada.compra = True And x.idArticulo = codArt _
                         Select Fecha = x.tblEntrada.fechaRegistro, Proveedor = x.tblEntrada.tblProveedor.negocio, Cantidad = x.cantidad, Costo = x.costoIVA _
                         Order By Fecha Descending)
@@ -1475,26 +1448,10 @@ Public Class frmProductoPrecio
         End Try
     End Sub
 
-    'Funcion utilizada para llenar las ultimas compras del producto
-    'Private Sub fnUltimasCompras2()
-    '    Try
-    ' Dim codArt As Integer = CInt(cmbCodigo1.SelectedValue)
-    'Dim lista = (From x In ctx.tblEntradasDetalles Where x.tblEntrada.anulado = False And x.tblEntrada.compra = True And x.idArticulo = codArt _
-    '          Select Fecha = x.tblEntrada.fechaRegistro, Proveedor = x.tblEntrada.tblProveedor.negocio, Cantidad = x.cantidad, Costo = x.costoIVA _
-    '            Order By Fecha Descending)
-    'Order By Fecha Descending Take mdlPublicVars.buscarArticulo_cantidadUltimasVentas)
-
-    '       Me.grdUltimasCompras.DataSource = lista
-    '   Catch ex As Exception
-
-    '   End Try
-    ' End Sub
-
-    'Funcion utilizada para llenar los precios de la competencia
     Private Sub fnPreciosCompetencia()
         Try
             'Obtenemos los precios de la competencia en base a el articulo
-            Dim codArt As Integer = CInt(cmbNombre1.SelectedValue)
+            Dim codArt As Integer = CInt(cmbProducto.SelectedValue)
 
             Dim cons = (From x In ctx.tblPrecioCompetencias Where x.articulo = codArt _
                         Select Fecha = x.fechaRegistro, Cliente = x.tblCliente.Negocio, Precio = x.precio, Observacion = x.observacion _
@@ -1509,7 +1466,7 @@ Public Class frmProductoPrecio
     'Private Sub fnPreciosCompetencia2()
     'Try
     'Obtenemos los precios de la competencia en base a el articulo
-    ' Dim codArt As Integer = CInt(cmbCodigo1.SelectedValue)
+    ' Dim codArt As Integer = CInt(cmbCodigo.SelectedValue)
 
     'Dim cons = (From x In ctx.tblPrecioCompetencias Where x.articulo = codArt _
     '         Select Fecha = x.fechaRegistro, Cliente = x.tblCliente.Negocio, Precio = x.precio, Observacion = x.observacion _
@@ -1537,7 +1494,7 @@ Public Class frmProductoPrecio
         frmIngresaClave.Dispose()
         If mdlPublicVars.fnAutorizaClave(mdlPublicVars.superSearchClave) Then
             frmEditaCosto.Text = "Edita Costo"
-            frmEditaCosto.articulo = CInt(cmbNombre1.SelectedValue)
+            frmEditaCosto.articulo = CInt(cmbProducto.SelectedValue)
             frmEditaCosto.StartPosition = FormStartPosition.CenterParent
             frmEditaCosto.ShowDialog()
             frmEditaCosto.Dispose()
@@ -1590,13 +1547,13 @@ Public Class frmProductoPrecio
     End Sub
 
     Private Sub frm_focoDatos() Handles MyBase.focoDatos
-        cmbCodigo1.Focus()
+        cmbCodigoProducto.Focus()
     End Sub
 
     'Funcion que se utiliza para poder crear un nuevo campo
     Private Sub frm_nuevoRegistro() Handles MyBase.nuevoRegistro
         limpiaCampos()
-        cmbCodigo1.Focus()
+        cmbCodigoProducto.Focus()
         If pctFoto.Image IsNot Nothing Then
             pctFoto.Image = Nothing
         End If
@@ -1606,7 +1563,7 @@ Public Class frmProductoPrecio
         End If
     End Sub
 
-    Private Sub frm_cmbCodigo1() Handles txtCodigo.TextChanged
+    Private Sub frm_cmbCodigo() Handles txtCodigo.TextChanged
         fnLlenar_Listas()
         'llenar lista de modelo, marcas, tipo de vehiculo.
         fngrd_contador(grdTipoVehiculo, lblRecuentoTipoVehiculo)
@@ -1724,7 +1681,7 @@ Public Class frmProductoPrecio
                     'recuento de numero de transacciones en salida, entrada.
                     Dim noSalidas As Integer = (From x In ctx.tblSalidaDetalles Where x.idArticulo = m.idArticulo).Count + (From x In ctx.tblEntradasDetalles Where x.idArticulo = m.idArticulo).Count
 
-                    If m.codigo1.Equals(cmbCodigo1.Text) Then
+                    If m.codigo1.Equals(cmbCodigoProducto.Text) Then
                         'no hay problemas
                     ElseIf noSalidas > 0 Then
                         'asignar el contenido del error.
@@ -1740,10 +1697,10 @@ Public Class frmProductoPrecio
                     m.idArticuloRepuesto = cmbTipoRepuesto.SelectedValue
 
                     m.idUsuario = mdlPublicVars.idUsuario
-                    m.nombre1 = cmbNombre1.Text 'antes combo
+                    m.nombre1 = cmbProducto.Text 'antes combo
 
-                    m.nombre1 = cmbNombre1.Text
-                    m.codigo1 = cmbCodigo1.Text
+                    m.nombre1 = cmbProducto.Text
+                    m.codigo1 = cmbCodigoProducto.Text
 
 
 
@@ -1911,8 +1868,8 @@ Public Class frmProductoPrecio
         End If
 
         'Verificamos si aun no existe el codigo
-        If fnVerificaCodigo(cmbCodigo1.Text) = True Then
-            RadMessageBox.Show("El codigo " & cmbCodigo1.Text & " ya existe !!!", nombreSistema)
+        If fnVerificaCodigo(cmbCodigoProducto.Text) = True Then
+            RadMessageBox.Show("El codigo " & cmbCodigoProducto.Text & " ya existe !!!", nombreSistema)
 
             If RadMessageBox.Show("Desea Habilitarlo?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
                 Dim conexion As dsi_pos_demoEntities
@@ -1920,7 +1877,7 @@ Public Class frmProductoPrecio
                     conn.Open()
                     conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
-                    Dim articulo As tblArticulo = (From x In conexion.tblArticuloes Where x.codigo1 = cmbCodigo1.Text And x.empresa = mdlPublicVars.idEmpresa Select x).FirstOrDefault
+                    Dim articulo As tblArticulo = (From x In conexion.tblArticuloes Where x.codigo1 = cmbCodigoProducto.Text And x.empresa = mdlPublicVars.idEmpresa Select x).FirstOrDefault
 
                     articulo.Habilitado = True
 
@@ -1949,9 +1906,9 @@ Public Class frmProductoPrecio
                 m.idArticuloRepuesto = cmbTipoRepuesto.SelectedValue
                 m.empresa = mdlPublicVars.idEmpresa
                 m.idUsuario = mdlPublicVars.idUsuario
-                m.nombre1 = cmbNombre1.Text
+                m.nombre1 = cmbProducto.Text
 
-                m.codigo1 = cmbCodigo1.Text
+                m.codigo1 = cmbCodigoProducto.Text
                 m.costoIVA = 0
                 m.costoSinIVA = 0
                 m.Observacion = txtObservacion.Text
@@ -2165,12 +2122,12 @@ Public Class frmProductoPrecio
         Dim objeto As String = "Producto"
 
         'Verificamos que tenga nombre y codigo
-        If cmbNombre1.Text = 0 Then
+        If cmbProducto.Text = 0 Then
             coleccion.Add("Nombre de " & objeto)
         End If
 
 
-        If cmbCodigo1.Text = 0 Then
+        If cmbCodigoProducto.Text = 0 Then
             coleccion.Add("Codigo de " & objeto)
         End If
 
@@ -2554,8 +2511,8 @@ Public Class frmProductoPrecio
 
         Try
             Dim indice As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grd)
-            cmbNombre1.Focus()
-            cmbNombre1.Select()
+            cmbProducto.Focus()
+            cmbProducto.Select()
 
             Dim index
             Dim contador As Integer = 0
@@ -2664,7 +2621,7 @@ Public Class frmProductoPrecio
                 conn.Open()
                 conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
-                Dim id As Integer = Me.cmbNombre1.SelectedValue
+                Dim id As Integer = Me.cmbProducto.SelectedValue
 
                 Dim a As tblArticulo = (From x In conexion.tblArticuloes Where x.idArticulo = id Select x).FirstOrDefault
 
@@ -2688,7 +2645,11 @@ Public Class frmProductoPrecio
     Private Sub fnPrecioC()
         Try
 
-            Dim filad, filaa, filab, filac As Integer
+            Dim filad As Integer = Nothing
+            Dim filaa As Integer = Nothing
+            Dim filab As Integer = Nothing
+            Dim filac As Integer = Nothing
+            Dim filau As Integer = Nothing
 
             For i As Integer = 0 To Me.grdPrecios.Rows.Count - 1
                 If Me.grdPrecios.Rows(i).Cells("tipoNegocio").Value = "Distribuidor (A)" Then
@@ -2703,10 +2664,12 @@ Public Class frmProductoPrecio
                     filab = i
                 ElseIf Me.grdOtrosPrecios.Rows(i).Cells("tipoPrecio").Value = "Precio C" Then
                     filac = i
+                ElseIf Me.grdOtrosPrecios.Rows(i).Cells("tipoPrecio").Value = "Precio UMA" Then
+                    filau = i
                 End If
             Next
 
-            Dim precioD, PrecioA, PrecioB, PrecioC As Decimal
+            Dim precioD, PrecioA, PrecioB, PrecioC, PrecioU As Decimal
 
             precioD = Me.grdPrecios.Rows(filad).Cells("precionormal").Value
 
@@ -2719,6 +2682,11 @@ Public Class frmProductoPrecio
                 PrecioB = Me.grdOtrosPrecios.Rows(filab).Cells("txmPrecio").Value
             Else
                 PrecioB = 0
+            End If
+            If Me.grdOtrosPrecios.Rows(filau).Cells("chmActiva").Value = True Then
+                PrecioU = Me.grdOtrosPrecios.Rows(filau).Cells("txmPrecio").Value
+            Else
+                PrecioU = 0
             End If
 
             Dim acum As Decimal = 0
@@ -2734,6 +2702,9 @@ Public Class frmProductoPrecio
             End If
             If PrecioA <> 0 Then
                 lista.Add(PrecioA)
+            End If
+            If PrecioU <> 0 Then
+                lista.Add(PrecioU)
             End If
 
             For Each a As Object In lista
@@ -2754,7 +2725,7 @@ Public Class frmProductoPrecio
                 PrecioC = nm
             End If
 
-            Me.grdOtrosPrecios.Rows(filac).Cells("txmPrecio").Value = PrecioC + (PrecioC * 0.2)
+            Me.grdOtrosPrecios.Rows(filac).Cells("txmPrecio").Value = Format(PrecioC / 0.78, formatoNumero)
 
         Catch ex As Exception
 

@@ -67,8 +67,8 @@ Public Class frmVentaPequeniaBarraIzquierda
             ''frmDespachoFacturaListaTransportes.MdiParent = frmMenuPrincipal
             ''frmDespachoFacturaListaTransportes.WindowState = FormWindowState.Maximized
             ''If permiso.PermisoMantenimientoLista(frmDespachoFacturaListaTransportes, True) = True Then
-            ''    fnFRMhijos_cerrar(frmDespachoFacturaListaTransportes)
-            ''    Me.Hide()
+            ''fnFRMhijos_cerrar(frmDespachoFacturaListaTransportes)
+            ''Me.Hide()
             ''End If
         End If
 

@@ -206,11 +206,18 @@ Public Class frmVentaPequeniaLista
     Private Sub frm_nuevo() Handles Me.nuevoRegistro
         Try
 
-            frmVentaPequenia.Text = "Ventas"
-            frmVentaPequenia.bitEditarBodega = False
-            frmVentaPequenia.bitEditarSalida = False
-            frmVentaPequenia.MdiParent = frmMenuPrincipal
-            permiso.PermisoFrmEspeciales(frmVentaPequenia, False)
+            ''frmVentaPequenia.Text = "Ventas"
+            ''frmVentaPequenia.bitEditarBodega = False
+            ''frmVentaPequenia.bitEditarSalida = False
+            ''frmVentaPequenia.MdiParent = frmMenuPrincipal
+            ''permiso.PermisoFrmEspeciales(frmVentaPequenia, False)
+
+            Dim formPedido As New frmSalidas
+            formPedido.Text = "Ventas"
+            formPedido.bitEditarBodega = False
+            formPedido.bitEditarSalida = False
+            formPedido.MdiParent = frmMenuPrincipal
+            permiso.PermisoFrmEspeciales(formPedido, False)
 
         Catch ex As Exception
             alertas.fnError()
@@ -236,21 +243,44 @@ Public Class frmVentaPequeniaLista
                 Dim tipoSalida As String = mdlPublicVars.superSearchNombre
                 Dim codigo As Integer = mdlPublicVars.superSearchId
 
+                ''If tipoSalida = "Cotizado" Or tipoSalida = "Reservado" Then
+                ''    frmVentaPequenia.Text = "Editar Ventas"
+                ''    frmVentaPequenia.codigo = codigo
+                ''    frmVentaPequenia.bitEditarBodega = False
+                ''    frmVentaPequenia.bitEditarSalida = True
+                ''    frmVentaPequenia.MdiParent = frmMenuPrincipal
+                ''    permiso.PermisoFrmEspeciales(frmVentaPequenia, False)
+                ''ElseIf tipoSalida = "Despachado" Then
+                ''    Try
+                ''        frmVentaPequenia.Text = "Revision en bodega "
+                ''        frmVentaPequenia.codigo = codigo
+                ''        frmVentaPequenia.bitEditarBodega = True
+                ''        frmVentaPequenia.bitEditarSalida = False
+                ''        frmVentaPequenia.MdiParent = frmMenuPrincipal
+                ''        permiso.PermisoFrmEspeciales(frmVentaPequenia, False)
+                ''    Catch ex As Exception
+                ''        alertas.fnError()
+                ''    End Try
+                ''Else
+                ''    alertas.contenido = "El pedido ya ha sido " & tipoSalida
+                ''    alertas.fnErrorContenido()
+                ''End If
+
                 If tipoSalida = "Cotizado" Or tipoSalida = "Reservado" Then
-                    frmVentaPequenia.Text = "Editar Ventas"
-                    frmVentaPequenia.codigo = codigo
-                    frmVentaPequenia.bitEditarBodega = False
-                    frmVentaPequenia.bitEditarSalida = True
-                    frmVentaPequenia.MdiParent = frmMenuPrincipal
-                    permiso.PermisoFrmEspeciales(frmVentaPequenia, False)
+                    frmSalidas.Text = "Editar Ventas"
+                    frmSalidas.codigo = codigo
+                    frmSalidas.bitEditarBodega = False
+                    frmSalidas.bitEditarSalida = True
+                    frmSalidas.MdiParent = frmMenuPrincipal
+                    permiso.PermisoFrmEspeciales(frmSalidas, False)
                 ElseIf tipoSalida = "Despachado" Then
                     Try
-                        frmVentaPequenia.Text = "Revision en bodega "
-                        frmVentaPequenia.codigo = codigo
-                        frmVentaPequenia.bitEditarBodega = True
-                        frmVentaPequenia.bitEditarSalida = False
-                        frmVentaPequenia.MdiParent = frmMenuPrincipal
-                        permiso.PermisoFrmEspeciales(frmVentaPequenia, False)
+                        frmSalidas.Text = "Revision en bodega "
+                        frmSalidas.codigo = codigo
+                        frmSalidas.bitEditarBodega = True
+                        frmSalidas.bitEditarSalida = False
+                        frmSalidas.MdiParent = frmMenuPrincipal
+                        permiso.PermisoFrmEspeciales(frmSalidas, False)
                     Catch ex As Exception
                         alertas.fnError()
                     End Try
@@ -258,6 +288,7 @@ Public Class frmVentaPequeniaLista
                     alertas.contenido = "El pedido ya ha sido " & tipoSalida
                     alertas.fnErrorContenido()
                 End If
+
                 mdlPublicVars.superSearchNombre = ""
             End If
         Catch ex As Exception

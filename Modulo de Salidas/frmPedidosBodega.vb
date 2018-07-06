@@ -409,7 +409,7 @@ Public Class frmPedidosBodega
 
         If success = True Then
             ctx.AcceptAllChanges()
-            alerta.fnGuardar()
+            ''alerta.fnGuardar()
             fnLlenarDatos()
             Me.Close()
         Else

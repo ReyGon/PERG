@@ -48,9 +48,9 @@ Public Module mdlPublicVars
     Public superSearchCodigo As String
     Public superSearchPrecio As Decimal
     Public superSearchCantidad As Double
-    Public superSearchPromocion As Double
-    Public superSearchCantidadPromocion As Double
-    Public superSearchCuotaPromocion As Double
+    Public superSearchPromocion As Double = 0
+    Public superSearchCantidadPromocion As Double = 0
+    Public superSearchCuotaPromocion As Double = 0
     Public superSearchFecha As DateTime
     Public superSearchCosto As Decimal
     Public superSearchUnidadMedidaValor As Decimal
