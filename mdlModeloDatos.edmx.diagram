@@ -433,16 +433,11 @@
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblsalidabodega_detalle" Width="1.5" PointX="9.00771966996031" PointY="2.5488447260804681" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblSucursale" Width="1.5" PointX="11.376003903977576" PointY="24.439594533499143" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblCliente" Width="1.5" PointX="1.1630752092055396" PointY="19.596644887512848" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalida" Width="1.5" PointX="7.177619138349602" PointY="10.338346009300251" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblAlmacen" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblArticuloPrecioCompetencia_tblClientes" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblBitacora_tblClientes" />
-        <AssociationConnector Association="dsi_pos_demoModel.fk_caja_salida" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCaja_tblClientes" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblCaja_tblSalida" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblcaja_temp_tblclientes" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCajaSalidas_tblCliente" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblCajaSalidas_tblSalidas" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCliente_FacturaTipoImpresion_tblClientes" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCliente_ModeloVehiculo_tblClientes" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCliente_Precio_tblClientes" />
@@ -463,8 +458,13 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblPendientePorPedir_tblClientes" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblPrecioCompetencia_tblClientes" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblReciboCaja_tblReciboCaja1" />
-        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblClientes" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSurtir_tblClientes" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalida" Width="1.5" PointX="8.64581000089916" PointY="11.882916023900227" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblAlmacen" />
+        <AssociationConnector Association="dsi_pos_demoModel.fk_caja_salida" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblCaja_tblSalida" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblCajaSalidas_tblSalidas" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblClientes" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCtaCobrar_tblSalida" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblEmpresa" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_Salidaenvio_Salida" />

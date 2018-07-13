@@ -23,6 +23,21 @@ Public Class frmPedidosListaBarraDerecha
         pnl8.Focus()
     End Sub
 
+    Private Sub fnGuardarClienteTransporte(ByVal idsalida As Integer)
+        Try
+
+            frmClienteTransporte.Text = "Impresion Guias"
+            frmClienteTransporte.idSalida = idsalida
+            frmClienteTransporte.WindowState = FormWindowState.Normal
+            frmClienteTransporte.StartPosition = FormStartPosition.CenterScreen
+            frmClienteTransporte.ShowDialog()
+            frmClienteTransporte.Dispose()
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
     'DESPACHAR
     Private Sub fnPanel1() Handles Me.panel1
         If mdlPublicVars.superSearchFilasGrid > 0 Then
@@ -57,7 +72,7 @@ Public Class frmPedidosListaBarraDerecha
                             If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
                                 fnImprimirDespacho(salida.idSalida)
                             End If
-
+                            fnGuardarClienteTransporte(salida.idSalida)
                         End If
                     End If
                 ElseIf tipoSalida = "Reservado" Then
@@ -69,6 +84,7 @@ Public Class frmPedidosListaBarraDerecha
                         If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
                             fnImprimirDespacho(salida.idSalida)
                         End If
+                        fnGuardarClienteTransporte(salida.idSalida)
                     End If
                 Else
                     alerta.contenido = "El pedido ya ha sido " & tipoSalida & " no se puede Despachar"

@@ -1037,6 +1037,12 @@
     <Compile Include="Modulo de Proveedores\frmProveedorListaImportacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modulo de Salidas\frmClienteTransporte.Designer.vb">
+      <DependentUpon>frmClienteTransporte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo de Salidas\frmClienteTransporte.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modulo de Salidas\frmImpresionFacturas.Designer.vb">
       <DependentUpon>frmImpresionFacturas.vb</DependentUpon>
     </Compile>
@@ -1445,6 +1451,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptReporteInventario.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\Sistema Pequeño\rptReporteListaGuiasImpresion.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptReporteListaGuiasImpresion.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\Sistema Pequeño\rptReporteVentasLineaMeses.vb">
@@ -2194,6 +2206,9 @@
     <EmbeddedResource Include="Modulo de Proveedores\frmProveedorFiltro.resx">
       <DependentUpon>frmProveedorFiltro.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulo de Salidas\frmClienteTransporte.resx">
+      <DependentUpon>frmClienteTransporte.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Salidas\frmImpresionFacturas.resx">
       <DependentUpon>frmImpresionFacturas.vb</DependentUpon>
     </EmbeddedResource>
@@ -2436,6 +2451,10 @@
     <EmbeddedResource Include="Reportes\Nuevos\rptReporteInventario.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptReporteInventario.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Sistema Pequeño\rptReporteListaGuiasImpresion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptReporteListaGuiasImpresion.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Sistema Pequeño\rptReporteVentasLineaMeses.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

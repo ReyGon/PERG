@@ -7,6 +7,8 @@ Imports System.Transactions
 Imports Telerik.WinControls.UI
 Imports System.Data.Objects.DataClasses
 Imports System.Data.EntityClient
+Imports CrystalDecisions.Shared
+Imports CrystalDecisions.CrystalReports.Engine
 
 Public Class frmPedidosLista
     Private permiso As New clsPermisoUsuario
@@ -1268,6 +1270,36 @@ Public Class frmPedidosLista
 
                     conn.Close()
                 End Using
+            ElseIf e.KeyCode = Keys.F11 Then
+                Try
+
+                    Dim conexion As dsi_pos_demoEntities
+                    Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                        conn.Open()
+                        conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                        Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdDatos)
+
+                        Dim idsalida As Integer = Me.grdDatos.Rows(fila).Cells("Codigo").Value
+
+                        Dim idclie As Integer = (From x In conexion.tblSalidas Where x.idSalida = idsalida Select x.idCliente).FirstOrDefault
+
+                        Dim fecha As Date = fnFechaServidor()
+
+                        Dim contador As Integer = (From x In conexion.tblSalidas Where x.BITTRANSPORTE = True And x.bitguia = False And x.fechaDespachado >= fecha Select x).Count
+
+                        If contador > 0 Then
+                            RadMessageBox.Show("Aún quedan " + CStr(contador) + " guia(s) por realizar!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                            Exit Sub
+                        Else
+                            fnImprimirListaGuias(idclie, idsalida)
+                        End If
+
+                        conn.Close()
+                    End Using
+                Catch ex As Exception
+
+                End Try
             ElseIf e.KeyCode = Keys.F10 Then
 
                 Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdDatos)
@@ -1383,10 +1415,6 @@ Public Class frmPedidosLista
     ''    End If
     ''End Sub
 
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
-
-    End Sub
-
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         Try
             llenagrid()
@@ -1394,4 +1422,100 @@ Public Class frmPedidosLista
 
         End Try
     End Sub
+
+    Private Sub fnImprimirListaGuias(ByVal cliente As Integer, ByVal salida As Integer)
+        Dim conexion As dsi_pos_demoEntities
+        Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+            conn.Open()
+            conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+            Dim fechaServidor As DateTime = mdlPublicVars.fnFecha_horaServidor
+            Dim tablaParametros As New DataTable
+
+            Dim reporteBase As ReportDocument
+
+            Dim path As String = System.AppDomain.CurrentDomain.BaseDirectory
+            Dim archivo As String = ""
+            Dim msj As String = ""
+
+            ''Variables
+            Dim x As New tblImpresion
+            Dim r As New clsReporte
+            Dim listacorreos As New Hashtable
+            Dim tabladatos As New DataTable
+            Dim dsr As New dsReporte
+
+            r.tabla = mdlPublicVars.EntitiToDataTable(conexion.sp_ReporteListaGuiasImpresion)
+            r.reporte = "rptReporteListaGuiasImpresion.rpt"
+            reporteBase = r.DocumentoReporte()
+
+            Try
+                ''Guardar registro en el sistema
+                x.bitImpreso = True
+                x.tipoImpresion = 5
+                x.usuarioRegistro = mdlPublicVars.idUsuario
+                x.fechaImpresion = fechaServidor
+                x.cliente = cliente
+                x.descripcion = "Lista de Guias Transporte " + CStr(Today.ToShortDateString)
+                x.url = archivo
+
+                ctx.AddTotblImpresions(x)
+                ctx.SaveChanges()
+
+                x.url = fnExportar(x.codigo, path, reporteBase, tablaParametros)
+
+                If x.url IsNot Nothing Then
+
+                    '' If RadMessageBox.Show("Abrir", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    Process.Start(x.url.ToString)
+                    ''End If
+                Else
+                alerta.contenido = "No pudo crear el reporte !!!"
+                alerta.fnErrorContenido()
+                End If
+
+            Catch ex As Exception
+
+            End Try
+            conn.Close()
+        End Using
+    End Sub
+
+    Public Function fnExportar(ByVal codigo As String, ByVal path As String, ByVal reporteExportar As ReportDocument, ByVal tblparametros As DataTable) As String
+        Dim carpeta As String = "DocImpresion\" + mdlPublicVars.idEmpresa.ToString + "\"
+        Dim archivo As String = ""
+        path = path & carpeta
+
+        Try
+            Dim CrExportOptions As ExportOptions
+            Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions()
+
+            Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions()
+            Dim CrFormatTypeOptionsXls As New ExcelFormatOptions
+
+            ''CrDiskFileDestinationOptions.DiskFileName = path & codigo.ToString & ".pdf"
+            CrDiskFileDestinationOptions.DiskFileName = path & "ListaGuias-" & codigo.ToString & ".pdf"
+            archivo = CrDiskFileDestinationOptions.DiskFileName
+
+            CrExportOptions = reporteExportar.ExportOptions
+
+            With CrExportOptions
+                .ExportDestinationType = ExportDestinationType.DiskFile
+                .ExportFormatType = ExportFormatType.PortableDocFormat
+                .FormatOptions = CrFormatTypeOptions
+
+                .DestinationOptions = CrDiskFileDestinationOptions
+            End With
+
+            reporteExportar.Export()
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            archivo = ""
+        End Try
+
+        Return archivo
+
+    End Function
+
 End Class

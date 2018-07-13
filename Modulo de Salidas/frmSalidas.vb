@@ -4351,6 +4351,7 @@ Public Class frmSalidas
                     If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
                         fnImprimirDespacho(codigoSalidaContado)
                     End If
+                    fnGuardarClienteTransporte(codigoSalidaContado)
                 End If
 
                 If codigoSalidaCredito > 0 Then
@@ -4360,6 +4361,7 @@ Public Class frmSalidas
                     If RadMessageBox.Show("¿Desea Visualizar e imprimir el Despacho?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
                         fnImprimirDespacho(codigoSalidaCredito)
                     End If
+                    fnGuardarClienteTransporte(codigoSalidaCredito)
                 End If
             End If
 
@@ -4375,6 +4377,22 @@ Public Class frmSalidas
             End If
         End If
     End Sub
+
+    Private Sub fnGuardarClienteTransporte(ByVal idsalida As Integer)
+        Try
+
+            frmClienteTransporte.Text = "Impresion Guias"
+            frmClienteTransporte.idSalida = idsalida
+            frmClienteTransporte.WindowState = FormWindowState.Normal
+            frmClienteTransporte.StartPosition = FormStartPosition.CenterScreen
+            frmClienteTransporte.ShowDialog()
+            frmClienteTransporte.Dispose()
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
 
     Private Function fnModificarDespacho()
         Try

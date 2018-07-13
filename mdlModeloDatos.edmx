@@ -3418,6 +3418,7 @@
           <Property Name="bitguia" Type="bit" />
           <Property Name="NOMBREALTERNO" Type="varchar" MaxLength="100" />
           <Property Name="DIRECCIONALTERNA" Type="varchar" MaxLength="400" />
+          <Property Name="BITTRANSPORTE" Type="bit" />
         </EntityType>
         <EntityType Name="tblSalida_Factura">
           <Key>
@@ -8257,6 +8258,7 @@
           <Parameter Name="hasta" Type="datetime" Mode="In" />
           <Parameter Name="empresa" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_ReporteListaGuiasImpresion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_reporteMovimientoInventario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="filtro" Type="varchar" Mode="In" />
           <Parameter Name="movimiento" Type="int" Mode="In" />
@@ -10973,11 +10975,6 @@
           <FunctionImport Name="sp_bodega_lista" ReturnType="Collection(dsi_pos_demoModel.sp_bodega_lista_Result)" />
           <EntitySet Name="tblSucursales" EntityType="dsi_pos_demoModel.tblSucursale" />
           <EntitySet Name="tblClientes" EntityType="dsi_pos_demoModel.tblCliente" />
-          <EntitySet Name="tblSalidas" EntityType="dsi_pos_demoModel.tblSalida" />
-          <AssociationSet Name="FK_tblSalida_tblAlmacen" Association="dsi_pos_demoModel.FK_tblSalida_tblAlmacen">
-            <End Role="tblAlmacen" EntitySet="tblAlmacens" />
-            <End Role="tblSalida" EntitySet="tblSalidas" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblArticuloPrecioCompetencia_tblClientes" Association="dsi_pos_demoModel.FK_tblArticuloPrecioCompetencia_tblClientes">
             <End Role="tblCliente" EntitySet="tblClientes" />
             <End Role="tblArticuloPrecioCompetencia" EntitySet="tblArticuloPrecioCompetencias" />
@@ -10986,16 +10983,8 @@
             <End Role="tblCliente" EntitySet="tblClientes" />
             <End Role="tblBitacora" EntitySet="tblBitacoras" />
           </AssociationSet>
-          <AssociationSet Name="fk_caja_salida" Association="dsi_pos_demoModel.fk_caja_salida">
-            <End Role="tblSalida" EntitySet="tblSalidas" />
-            <End Role="tblCaja" EntitySet="tblCajas" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblCaja_tblClientes" Association="dsi_pos_demoModel.FK_tblCaja_tblClientes">
             <End Role="tblCliente" EntitySet="tblClientes" />
-            <End Role="tblCaja" EntitySet="tblCajas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblCaja_tblSalida" Association="dsi_pos_demoModel.FK_tblCaja_tblSalida">
-            <End Role="tblSalida" EntitySet="tblSalidas" />
             <End Role="tblCaja" EntitySet="tblCajas" />
           </AssociationSet>
           <AssociationSet Name="FK_tblcaja_temp_tblclientes" Association="dsi_pos_demoModel.FK_tblcaja_temp_tblclientes">
@@ -11004,10 +10993,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_tblCajaSalidas_tblCliente" Association="dsi_pos_demoModel.FK_tblCajaSalidas_tblCliente">
             <End Role="tblCliente" EntitySet="tblClientes" />
-            <End Role="tblCajaSalida" EntitySet="tblCajaSalidas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblCajaSalidas_tblSalidas" Association="dsi_pos_demoModel.FK_tblCajaSalidas_tblSalidas">
-            <End Role="tblSalida" EntitySet="tblSalidas" />
             <End Role="tblCajaSalida" EntitySet="tblCajaSalidas" />
           </AssociationSet>
           <AssociationSet Name="FK_tblCliente_FacturaTipoImpresion_tblClientes" Association="dsi_pos_demoModel.FK_tblCliente_FacturaTipoImpresion_tblClientes">
@@ -11090,13 +11075,40 @@
             <End Role="tblCliente" EntitySet="tblClientes" />
             <End Role="tblReciboCaja" EntitySet="tblReciboCajas" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblSalida_tblClientes" Association="dsi_pos_demoModel.FK_tblSalida_tblClientes">
-            <End Role="tblCliente" EntitySet="tblClientes" />
-            <End Role="tblSalida" EntitySet="tblSalidas" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblSurtir_tblClientes" Association="dsi_pos_demoModel.FK_tblSurtir_tblClientes">
             <End Role="tblCliente" EntitySet="tblClientes" />
             <End Role="tblSurtir" EntitySet="tblSurtirs" />
+          </AssociationSet>
+          <FunctionImport Name="sp_ReportePendientesSurtirInventario" ReturnType="Collection(dsi_pos_demoModel.sp_ReportePendientesSurtirInventario_Result)">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="IdCliente" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_reportePickingPedido" ReturnType="Collection(dsi_pos_demoModel.sp_reportePickingPedido_Result)">
+            <Parameter Name="filtro" Mode="In" Type="String" />
+            <Parameter Name="salida" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tblSalidas" EntityType="dsi_pos_demoModel.tblSalida" />
+          <AssociationSet Name="FK_tblSalida_tblAlmacen" Association="dsi_pos_demoModel.FK_tblSalida_tblAlmacen">
+            <End Role="tblAlmacen" EntitySet="tblAlmacens" />
+            <End Role="tblSalida" EntitySet="tblSalidas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_caja_salida" Association="dsi_pos_demoModel.fk_caja_salida">
+            <End Role="tblSalida" EntitySet="tblSalidas" />
+            <End Role="tblCaja" EntitySet="tblCajas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCaja_tblSalida" Association="dsi_pos_demoModel.FK_tblCaja_tblSalida">
+            <End Role="tblSalida" EntitySet="tblSalidas" />
+            <End Role="tblCaja" EntitySet="tblCajas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCajaSalidas_tblSalidas" Association="dsi_pos_demoModel.FK_tblCajaSalidas_tblSalidas">
+            <End Role="tblSalida" EntitySet="tblSalidas" />
+            <End Role="tblCajaSalida" EntitySet="tblCajaSalidas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSalida_tblClientes" Association="dsi_pos_demoModel.FK_tblSalida_tblClientes">
+            <End Role="tblCliente" EntitySet="tblClientes" />
+            <End Role="tblSalida" EntitySet="tblSalidas" />
           </AssociationSet>
           <AssociationSet Name="FK_tblCtaCobrar_tblSalida" Association="dsi_pos_demoModel.FK_tblCtaCobrar_tblSalida">
             <End Role="tblSalida" EntitySet="tblSalidas" />
@@ -11158,16 +11170,7 @@
             <End Role="tblSalida" EntitySet="tblSalidas" />
             <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
           </AssociationSet>
-          <FunctionImport Name="sp_ReportePendientesSurtirInventario" ReturnType="Collection(dsi_pos_demoModel.sp_ReportePendientesSurtirInventario_Result)">
-            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
-            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
-            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-            <Parameter Name="IdCliente" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_reportePickingPedido" ReturnType="Collection(dsi_pos_demoModel.sp_reportePickingPedido_Result)">
-            <Parameter Name="filtro" Mode="In" Type="String" />
-            <Parameter Name="salida" Mode="In" Type="Int32" />
-          </FunctionImport>
+          <FunctionImport Name="sp_ReporteListaGuiasImpresion" ReturnType="Collection(dsi_pos_demoModel.sp_ReporteListaGuiasImpresion_Result)" />
           </EntityContainer>
         <EntityType Name="dtproperty">
           <Key>
@@ -17145,8 +17148,8 @@
           <NavigationProperty Name="tblCierreCajaDetalleCajas" Relationship="dsi_pos_demoModel.FK_tblCierreCajaDetalleCheque_tbCaja" FromRole="tblCaja" ToRole="tblCierreCajaDetalleCaja" />
           <NavigationProperty Name="tblUsuario" Relationship="dsi_pos_demoModel.FK_tblCaja_tblUsuarioRechazado" FromRole="tblCaja" ToRole="tblUsuario" />
           <NavigationProperty Name="tblUsuario1" Relationship="dsi_pos_demoModel.FK_tblCaja_tblUsuarios" FromRole="tblCaja" ToRole="tblUsuario" />
-          <NavigationProperty Name="tblSalida" Relationship="dsi_pos_demoModel.fk_caja_salida" FromRole="tblCaja" ToRole="tblSalida" />
           <NavigationProperty Name="tblCliente" Relationship="dsi_pos_demoModel.FK_tblCaja_tblClientes" FromRole="tblCaja" ToRole="tblCliente" />
+          <NavigationProperty Name="tblSalida" Relationship="dsi_pos_demoModel.fk_caja_salida" FromRole="tblCaja" ToRole="tblSalida" />
           <NavigationProperty Name="tblSalida1" Relationship="dsi_pos_demoModel.FK_tblCaja_tblSalida" FromRole="tblCaja" ToRole="tblSalida" />
         </EntityType>
         <Association Name="FK_tblCaja_tblBanco_Cuenta">
@@ -19096,95 +19099,9 @@
           <NavigationProperty Name="tblPendientePorPedirs" Relationship="dsi_pos_demoModel.FK_tblPendientePorPedir_tblClientes" FromRole="tblCliente" ToRole="tblPendientePorPedir" />
           <NavigationProperty Name="tblPrecioCompetencias" Relationship="dsi_pos_demoModel.FK_tblPrecioCompetencia_tblClientes" FromRole="tblCliente" ToRole="tblPrecioCompetencia" />
           <NavigationProperty Name="tblReciboCajas" Relationship="dsi_pos_demoModel.FK_tblReciboCaja_tblReciboCaja1" FromRole="tblCliente" ToRole="tblReciboCaja" />
-          <NavigationProperty Name="tblSalidas" Relationship="dsi_pos_demoModel.FK_tblSalida_tblClientes" FromRole="tblCliente" ToRole="tblSalida" />
           <NavigationProperty Name="tblSurtirs" Relationship="dsi_pos_demoModel.FK_tblSurtir_tblClientes" FromRole="tblCliente" ToRole="tblSurtir" />
+          <NavigationProperty Name="tblSalidas" Relationship="dsi_pos_demoModel.FK_tblSalida_tblClientes" FromRole="tblCliente" ToRole="tblSalida" />
         </EntityType>
-        <EntityType Name="tblSalida">
-          <Key>
-            <PropertyRef Name="idSalida" />
-          </Key>
-          <Property Type="Int32" Name="idSalida" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idEmpresa" Nullable="false" />
-          <Property Type="Int32" Name="idUsuario" Nullable="false" />
-          <Property Type="Int32" Name="idCliente" />
-          <Property Type="Int16" Name="idTipoMovimiento" Nullable="false" />
-          <Property Type="Int16" Name="idVendedor" Nullable="false" />
-          <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="fechaTransaccion" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="fechaAnulado" Precision="3" />
-          <Property Type="DateTime" Name="fechaFacturado" Precision="3" />
-          <Property Type="String" Name="documento" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="documentoFactura" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="observacion" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="cliente" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="nit" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="direccionFacturacion" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="direccionEnvio" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="anulado" />
-          <Property Type="Boolean" Name="cotizado" />
-          <Property Type="Boolean" Name="reservado" />
-          <Property Type="Boolean" Name="despachar" />
-          <Property Type="Boolean" Name="facturado" />
-          <Property Type="Decimal" Name="descuento" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="total" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="subtotal" Precision="18" Scale="5" />
-          <Property Type="Boolean" Name="contado" />
-          <Property Type="Boolean" Name="credito" />
-          <Property Type="DateTime" Name="fechaVencimientoCredito" Precision="3" />
-          <Property Type="Int64" Name="IdFactura" />
-          <Property Type="Int32" Name="idTipoInventario" />
-          <Property Type="Int32" Name="idAlmacen" />
-          <Property Type="DateTime" Name="fechaVencimientoReserva" Precision="3" />
-          <Property Type="Boolean" Name="devolucion" />
-          <Property Type="Boolean" Name="empacado" />
-          <Property Type="DateTime" Name="fechaDespachado" Precision="3" />
-          <Property Type="Int32" Name="idMunicipio" />
-          <Property Type="Boolean" Name="autorizado" />
-          <Property Type="Int32" Name="usuarioAutorizo" />
-          <Property Type="DateTime" Name="fechaAutorizado" Precision="3" />
-          <Property Type="Decimal" Name="efectividaVenta" Precision="18" Scale="5" />
-          <Property Type="DateTime" Name="fechaFiltro" Precision="0" />
-          <Property Type="Decimal" Name="pagado" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="saldo" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="devoluciones" Precision="18" Scale="5" />
-          <Property Type="Boolean" Name="bitFacReimpreso" />
-          <Property Type="Int32" Name="codigocomprasucursal" />
-          <Property Type="Boolean" Name="bitguia" />
-          <Property Type="String" Name="NOMBREALTERNO" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="DIRECCIONALTERNA" MaxLength="400" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblAlmacen" Relationship="dsi_pos_demoModel.FK_tblSalida_tblAlmacen" FromRole="tblSalida" ToRole="tblAlmacen" />
-          <NavigationProperty Name="tblCajas" Relationship="dsi_pos_demoModel.fk_caja_salida" FromRole="tblSalida" ToRole="tblCaja" />
-          <NavigationProperty Name="tblCajas1" Relationship="dsi_pos_demoModel.FK_tblCaja_tblSalida" FromRole="tblSalida" ToRole="tblCaja" />
-          <NavigationProperty Name="tblCajaSalidas" Relationship="dsi_pos_demoModel.FK_tblCajaSalidas_tblSalidas" FromRole="tblSalida" ToRole="tblCajaSalida" />
-          <NavigationProperty Name="tblCliente" Relationship="dsi_pos_demoModel.FK_tblSalida_tblClientes" FromRole="tblSalida" ToRole="tblCliente" />
-          <NavigationProperty Name="tblCtaCobrars" Relationship="dsi_pos_demoModel.FK_tblCtaCobrar_tblSalida" FromRole="tblSalida" ToRole="tblCtaCobrar" />
-          <NavigationProperty Name="tblEmpresa" Relationship="dsi_pos_demoModel.FK_tblSalida_tblEmpresa" FromRole="tblSalida" ToRole="tblEmpresa" />
-          <NavigationProperty Name="tblEnvio_Salida" Relationship="dsi_pos_demoModel.FK_Salidaenvio_Salida" FromRole="tblSalida" ToRole="tblEnvio_Salida" />
-          <NavigationProperty Name="tblFactura" Relationship="dsi_pos_demoModel.FK_tblSalida_tblFactura" FromRole="tblSalida" ToRole="tblFactura" />
-          <NavigationProperty Name="tblImpuesto_Salida" Relationship="dsi_pos_demoModel.FK_tblImpuesto_Salida_tblSalida" FromRole="tblSalida" ToRole="tblImpuesto_Salida" />
-          <NavigationProperty Name="tblMovimientoInventarios" Relationship="dsi_pos_demoModel.FK_tblMovimientoInventario_tblSalida" FromRole="tblSalida" ToRole="tblMovimientoInventario" />
-          <NavigationProperty Name="tblMunicipio" Relationship="dsi_pos_demoModel.FK_tblSalida_tblMunicipio" FromRole="tblSalida" ToRole="tblMunicipio" />
-          <NavigationProperty Name="tblSalida_Factura" Relationship="dsi_pos_demoModel.FK__tblSalida__salid__3F7C3DC5" FromRole="tblSalida" ToRole="tblSalida_Factura" />
-          <NavigationProperty Name="tblTipoInventario" Relationship="dsi_pos_demoModel.FK_tblSalida_tblTipoInventario" FromRole="tblSalida" ToRole="tblTipoInventario" />
-          <NavigationProperty Name="tblTipoMovimiento" Relationship="dsi_pos_demoModel.FK_tblSalida_tblTipoMovimiento" FromRole="tblSalida" ToRole="tblTipoMovimiento" />
-          <NavigationProperty Name="tblUsuario" Relationship="dsi_pos_demoModel.FK_tblSalida_tblUsuarios" FromRole="tblSalida" ToRole="tblUsuario" />
-          <NavigationProperty Name="tblUsuario1" Relationship="dsi_pos_demoModel.FK_tblSalida_tblUsuarios1" FromRole="tblSalida" ToRole="tblUsuario" />
-          <NavigationProperty Name="tblVendedor" Relationship="dsi_pos_demoModel.FK_tblSalida_tblVendedor" FromRole="tblSalida" ToRole="tblVendedor" />
-          <NavigationProperty Name="tblsalidaBodegas" Relationship="dsi_pos_demoModel.FK_tblsalidaBodega_tblSalida" FromRole="tblSalida" ToRole="tblsalidaBodega" />
-          <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalida" FromRole="tblSalida" ToRole="tblSalidaDetalle" />
-        </EntityType>
-        <Association Name="FK_tblSalida_tblAlmacen">
-          <End Type="dsi_pos_demoModel.tblAlmacen" Role="tblAlmacen" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblAlmacen">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="tblSalida">
-              <PropertyRef Name="idAlmacen" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblArticuloPrecioCompetencia_tblClientes">
           <End Type="dsi_pos_demoModel.tblCliente" Role="tblCliente" Multiplicity="0..1" />
           <End Type="dsi_pos_demoModel.tblArticuloPrecioCompetencia" Role="tblArticuloPrecioCompetencia" Multiplicity="*" />
@@ -19209,18 +19126,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_caja_salida">
-          <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblCaja" Role="tblCaja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalida">
-              <PropertyRef Name="idSalida" />
-            </Principal>
-            <Dependent Role="tblCaja">
-              <PropertyRef Name="idsalidapago" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblCaja_tblClientes">
           <End Type="dsi_pos_demoModel.tblCliente" Role="tblCliente" Multiplicity="0..1" />
           <End Type="dsi_pos_demoModel.tblCaja" Role="tblCaja" Multiplicity="*" />
@@ -19230,18 +19135,6 @@
             </Principal>
             <Dependent Role="tblCaja">
               <PropertyRef Name="cliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblCaja_tblSalida">
-          <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblCaja" Role="tblCaja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalida">
-              <PropertyRef Name="idSalida" />
-            </Principal>
-            <Dependent Role="tblCaja">
-              <PropertyRef Name="codigoSalida" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -19266,18 +19159,6 @@
             </Principal>
             <Dependent Role="tblCajaSalida">
               <PropertyRef Name="idCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblCajaSalidas_tblSalidas">
-          <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblCajaSalida" Role="tblCajaSalida" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSalida">
-              <PropertyRef Name="idSalida" />
-            </Principal>
-            <Dependent Role="tblCajaSalida">
-              <PropertyRef Name="idSalida" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -19521,18 +19402,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblSalida_tblClientes">
-          <End Type="dsi_pos_demoModel.tblCliente" Role="tblCliente" Multiplicity="0..1" />
-          <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCliente">
-              <PropertyRef Name="idCliente" />
-            </Principal>
-            <Dependent Role="tblSalida">
-              <PropertyRef Name="idCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblSurtir_tblClientes">
           <End Type="dsi_pos_demoModel.tblCliente" Role="tblCliente" Multiplicity="0..1" />
           <End Type="dsi_pos_demoModel.tblSurtir" Role="tblSurtir" Multiplicity="*" />
@@ -19542,6 +19411,170 @@
             </Principal>
             <Dependent Role="tblSurtir">
               <PropertyRef Name="cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_ReportePendientesSurtirInventario_Result">
+          <Property Type="String" Name="Fecha" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Artículo" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Cliente" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Vendedor" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="cantidad" Nullable="true" />
+          <Property Type="Decimal" Name="Existencia" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="5" />
+        </ComplexType>
+        <ComplexType Name="sp_reportePickingPedido_Result">
+          <Property Type="String" Name="Empresa" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DireccionEmpresa" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="NitEmpresa" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TelefonoEmpresa" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="Documento" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Observacion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Estanteria" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Cajas" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TipoVehiculo" Nullable="true" MaxLength="103" />
+          <Property Type="Int16" Name="orden" Nullable="false" />
+          <Property Type="String" Name="CodProducto" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="codigo1" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="5" />
+        </ComplexType>
+        <EntityType Name="tblSalida">
+          <Key>
+            <PropertyRef Name="idSalida" />
+          </Key>
+          <Property Type="Int32" Name="idSalida" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="idEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="Int32" Name="idCliente" />
+          <Property Type="Int16" Name="idTipoMovimiento" Nullable="false" />
+          <Property Type="Int16" Name="idVendedor" Nullable="false" />
+          <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="fechaTransaccion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="fechaAnulado" Precision="3" />
+          <Property Type="DateTime" Name="fechaFacturado" Precision="3" />
+          <Property Type="String" Name="documento" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="documentoFactura" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="observacion" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cliente" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="nit" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="direccionFacturacion" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="direccionEnvio" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="anulado" />
+          <Property Type="Boolean" Name="cotizado" />
+          <Property Type="Boolean" Name="reservado" />
+          <Property Type="Boolean" Name="despachar" />
+          <Property Type="Boolean" Name="facturado" />
+          <Property Type="Decimal" Name="descuento" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="total" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="subtotal" Precision="18" Scale="5" />
+          <Property Type="Boolean" Name="contado" />
+          <Property Type="Boolean" Name="credito" />
+          <Property Type="DateTime" Name="fechaVencimientoCredito" Precision="3" />
+          <Property Type="Int64" Name="IdFactura" />
+          <Property Type="Int32" Name="idTipoInventario" />
+          <Property Type="Int32" Name="idAlmacen" />
+          <Property Type="DateTime" Name="fechaVencimientoReserva" Precision="3" />
+          <Property Type="Boolean" Name="devolucion" />
+          <Property Type="Boolean" Name="empacado" />
+          <Property Type="DateTime" Name="fechaDespachado" Precision="3" />
+          <Property Type="Int32" Name="idMunicipio" />
+          <Property Type="Boolean" Name="autorizado" />
+          <Property Type="Int32" Name="usuarioAutorizo" />
+          <Property Type="DateTime" Name="fechaAutorizado" Precision="3" />
+          <Property Type="Decimal" Name="efectividaVenta" Precision="18" Scale="5" />
+          <Property Type="DateTime" Name="fechaFiltro" Precision="0" />
+          <Property Type="Decimal" Name="pagado" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="saldo" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="devoluciones" Precision="18" Scale="5" />
+          <Property Type="Boolean" Name="bitFacReimpreso" />
+          <Property Type="Int32" Name="codigocomprasucursal" />
+          <Property Type="Boolean" Name="bitguia" />
+          <Property Type="String" Name="NOMBREALTERNO" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DIRECCIONALTERNA" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="BITTRANSPORTE" />
+          <NavigationProperty Name="tblAlmacen" Relationship="dsi_pos_demoModel.FK_tblSalida_tblAlmacen" FromRole="tblSalida" ToRole="tblAlmacen" />
+          <NavigationProperty Name="tblCajas" Relationship="dsi_pos_demoModel.fk_caja_salida" FromRole="tblSalida" ToRole="tblCaja" />
+          <NavigationProperty Name="tblCajas1" Relationship="dsi_pos_demoModel.FK_tblCaja_tblSalida" FromRole="tblSalida" ToRole="tblCaja" />
+          <NavigationProperty Name="tblCajaSalidas" Relationship="dsi_pos_demoModel.FK_tblCajaSalidas_tblSalidas" FromRole="tblSalida" ToRole="tblCajaSalida" />
+          <NavigationProperty Name="tblCliente" Relationship="dsi_pos_demoModel.FK_tblSalida_tblClientes" FromRole="tblSalida" ToRole="tblCliente" />
+          <NavigationProperty Name="tblCtaCobrars" Relationship="dsi_pos_demoModel.FK_tblCtaCobrar_tblSalida" FromRole="tblSalida" ToRole="tblCtaCobrar" />
+          <NavigationProperty Name="tblEmpresa" Relationship="dsi_pos_demoModel.FK_tblSalida_tblEmpresa" FromRole="tblSalida" ToRole="tblEmpresa" />
+          <NavigationProperty Name="tblEnvio_Salida" Relationship="dsi_pos_demoModel.FK_Salidaenvio_Salida" FromRole="tblSalida" ToRole="tblEnvio_Salida" />
+          <NavigationProperty Name="tblFactura" Relationship="dsi_pos_demoModel.FK_tblSalida_tblFactura" FromRole="tblSalida" ToRole="tblFactura" />
+          <NavigationProperty Name="tblImpuesto_Salida" Relationship="dsi_pos_demoModel.FK_tblImpuesto_Salida_tblSalida" FromRole="tblSalida" ToRole="tblImpuesto_Salida" />
+          <NavigationProperty Name="tblMovimientoInventarios" Relationship="dsi_pos_demoModel.FK_tblMovimientoInventario_tblSalida" FromRole="tblSalida" ToRole="tblMovimientoInventario" />
+          <NavigationProperty Name="tblMunicipio" Relationship="dsi_pos_demoModel.FK_tblSalida_tblMunicipio" FromRole="tblSalida" ToRole="tblMunicipio" />
+          <NavigationProperty Name="tblSalida_Factura" Relationship="dsi_pos_demoModel.FK__tblSalida__salid__3F7C3DC5" FromRole="tblSalida" ToRole="tblSalida_Factura" />
+          <NavigationProperty Name="tblTipoInventario" Relationship="dsi_pos_demoModel.FK_tblSalida_tblTipoInventario" FromRole="tblSalida" ToRole="tblTipoInventario" />
+          <NavigationProperty Name="tblTipoMovimiento" Relationship="dsi_pos_demoModel.FK_tblSalida_tblTipoMovimiento" FromRole="tblSalida" ToRole="tblTipoMovimiento" />
+          <NavigationProperty Name="tblUsuario" Relationship="dsi_pos_demoModel.FK_tblSalida_tblUsuarios" FromRole="tblSalida" ToRole="tblUsuario" />
+          <NavigationProperty Name="tblUsuario1" Relationship="dsi_pos_demoModel.FK_tblSalida_tblUsuarios1" FromRole="tblSalida" ToRole="tblUsuario" />
+          <NavigationProperty Name="tblVendedor" Relationship="dsi_pos_demoModel.FK_tblSalida_tblVendedor" FromRole="tblSalida" ToRole="tblVendedor" />
+          <NavigationProperty Name="tblsalidaBodegas" Relationship="dsi_pos_demoModel.FK_tblsalidaBodega_tblSalida" FromRole="tblSalida" ToRole="tblsalidaBodega" />
+          <NavigationProperty Name="tblSalidaDetalles" Relationship="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalida" FromRole="tblSalida" ToRole="tblSalidaDetalle" />
+        </EntityType>
+        <Association Name="FK_tblSalida_tblAlmacen">
+          <End Type="dsi_pos_demoModel.tblAlmacen" Role="tblAlmacen" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAlmacen">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="tblSalida">
+              <PropertyRef Name="idAlmacen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_caja_salida">
+          <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblCaja" Role="tblCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSalida">
+              <PropertyRef Name="idSalida" />
+            </Principal>
+            <Dependent Role="tblCaja">
+              <PropertyRef Name="idsalidapago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCaja_tblSalida">
+          <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblCaja" Role="tblCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSalida">
+              <PropertyRef Name="idSalida" />
+            </Principal>
+            <Dependent Role="tblCaja">
+              <PropertyRef Name="codigoSalida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCajaSalidas_tblSalidas">
+          <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblCajaSalida" Role="tblCajaSalida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSalida">
+              <PropertyRef Name="idSalida" />
+            </Principal>
+            <Dependent Role="tblCajaSalida">
+              <PropertyRef Name="idSalida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSalida_tblClientes">
+          <End Type="dsi_pos_demoModel.tblCliente" Role="tblCliente" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="tblSalida">
+              <PropertyRef Name="idCliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -19725,34 +19758,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="sp_ReportePendientesSurtirInventario_Result">
+        <ComplexType Name="sp_ReporteListaGuiasImpresion_Result">
           <Property Type="String" Name="Fecha" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Artículo" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="Cliente" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Vendedor" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="cantidad" Nullable="true" />
-          <Property Type="Decimal" Name="Existencia" Nullable="true" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="5" />
-        </ComplexType>
-        <ComplexType Name="sp_reportePickingPedido_Result">
-          <Property Type="String" Name="Empresa" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="DireccionEmpresa" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="NitEmpresa" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="TelefonoEmpresa" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
           <Property Type="String" Name="Cliente" Nullable="true" MaxLength="1000" />
-          <Property Type="String" Name="Documento" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Observacion" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="Estanteria" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Cajas" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="TipoVehiculo" Nullable="true" MaxLength="103" />
-          <Property Type="Int16" Name="orden" Nullable="false" />
-          <Property Type="String" Name="CodProducto" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="codigo1" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="5" />
+          <Property Type="String" Name="Negocio" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="NIT" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="FechaImpresion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HoraImpresion" Nullable="true" MaxLength="50" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -24911,9 +24923,47 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_ReportePendientesSurtirInventario" FunctionName="mdlModeloDatos.Store.sp_ReportePendientesSurtirInventario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_ReportePendientesSurtirInventario_Result">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Artículo" ColumnName="Artículo" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_reportePickingPedido" FunctionName="mdlModeloDatos.Store.sp_reportePickingPedido">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_reportePickingPedido_Result">
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="DireccionEmpresa" ColumnName="DireccionEmpresa" />
+                <ScalarProperty Name="NitEmpresa" ColumnName="NitEmpresa" />
+                <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+                <ScalarProperty Name="Estanteria" ColumnName="Estanteria" />
+                <ScalarProperty Name="Cajas" ColumnName="Cajas" />
+                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="CodProducto" ColumnName="CodProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="codigo1" ColumnName="codigo1" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="tblSalidas">
             <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSalida">
               <MappingFragment StoreEntitySet="tblSalida">
+                <ScalarProperty Name="BITTRANSPORTE" ColumnName="BITTRANSPORTE" />
                 <ScalarProperty Name="DIRECCIONALTERNA" ColumnName="DIRECCIONALTERNA" />
                 <ScalarProperty Name="NOMBREALTERNO" ColumnName="NOMBREALTERNO" />
                 <ScalarProperty Name="bitguia" ColumnName="bitguia" />
@@ -24966,40 +25016,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_ReportePendientesSurtirInventario" FunctionName="mdlModeloDatos.Store.sp_ReportePendientesSurtirInventario">
+          <FunctionImportMapping FunctionImportName="sp_ReporteListaGuiasImpresion" FunctionName="mdlModeloDatos.Store.sp_ReporteListaGuiasImpresion">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_ReportePendientesSurtirInventario_Result">
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Artículo" ColumnName="Artículo" />
-                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
-                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="Existencia" ColumnName="Existencia" />
-                <ScalarProperty Name="Precio" ColumnName="Precio" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_reportePickingPedido" FunctionName="mdlModeloDatos.Store.sp_reportePickingPedido">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_reportePickingPedido_Result">
-                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
-                <ScalarProperty Name="DireccionEmpresa" ColumnName="DireccionEmpresa" />
-                <ScalarProperty Name="NitEmpresa" ColumnName="NitEmpresa" />
-                <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_ReporteListaGuiasImpresion_Result">
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="Cliente" ColumnName="Cliente" />
-                <ScalarProperty Name="Documento" ColumnName="Documento" />
-                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
-                <ScalarProperty Name="Estanteria" ColumnName="Estanteria" />
-                <ScalarProperty Name="Cajas" ColumnName="Cajas" />
-                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
-                <ScalarProperty Name="orden" ColumnName="orden" />
-                <ScalarProperty Name="CodProducto" ColumnName="CodProducto" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="codigo1" ColumnName="codigo1" />
-                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Negocio" ColumnName="Negocio" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="FechaImpresion" ColumnName="FechaImpresion" />
+                <ScalarProperty Name="HoraImpresion" ColumnName="HoraImpresion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
