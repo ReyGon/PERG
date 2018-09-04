@@ -433,6 +433,7 @@ Public Class frmComprasLista
                 If RadMessageBox.Show("El nuevo documento es: " + CStr(serie + "-" + documento) + " ¿Desea Guardarlo?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
                     doc.serieDocumento = serie
                     doc.documento = documento
+
                     conexion.SaveChanges()
 
                     alertas.fnModificar()

@@ -10,6 +10,8 @@ Imports System.Data.EntityClient
 Public Class frmPagosLista
 
     Private _listaSalidas As List(Of Tuple(Of Integer, String, Decimal))
+    Private _listaEntradas As List(Of Tuple(Of Integer, String, Decimal))
+    Private lista As List(Of Tuple(Of Integer, String, Decimal))
 
     Public Property listaSalidas As List(Of Tuple(Of Integer, String, Decimal))
         Get
@@ -17,6 +19,15 @@ Public Class frmPagosLista
         End Get
         Set(value As List(Of Tuple(Of Integer, String, Decimal)))
             _listaSalidas = value
+        End Set
+    End Property
+
+    Public Property listaEntradas As List(Of Tuple(Of Integer, String, Decimal))
+        Get
+            listaEntradas = _listaEntradas
+        End Get
+        Set(value As List(Of Tuple(Of Integer, String, Decimal)))
+            _listaEntradas = value
         End Set
     End Property
 
@@ -310,6 +321,56 @@ Public Class frmPagosLista
 
                         End Try
 
+                    ElseIf bitProveedor Or bitCompra Then
+
+                        Dim filas As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdDatos)
+                        Dim idpago As Integer = Me.grdDatos.Rows(filas).Cells("Codigo").Value
+                        Dim totalmovimiento As Decimal = Me.grdDatos.Rows(filas).Cells("Total").Value
+
+
+                        Dim idproveedor As Integer = (From x In conexion.tblCajas Where x.codigo = idpago Select x.proveedor).FirstOrDefault
+
+                        Try
+                            mdlPublicVars.superSearchLista3 = Nothing
+
+                            listaEntradas = New List(Of Tuple(Of Integer, String, Decimal))
+
+                            Dim form As New frmFacturasElegir
+                            form.listaSalidas = listaEntradas
+                            form.Text = "Facturas Proveedor"
+                            form.StartPosition = FormStartPosition.CenterScreen
+                            form.WindowState = FormWindowState.Normal
+                            form.idproveedor = idproveedor
+                            form.txtAcreditacionTotal.Text = totalmovimiento
+                            form.ShowDialog()
+                            form.Dispose()
+                            listaEntradas = mdlPublicVars.superSearchLista3
+
+                            Dim contador As Integer
+
+                            contador = CStr(listaEntradas.Count)
+
+                            Dim totalpago As Decimal = 0
+
+                            For Each empleado As Tuple(Of Integer, String, Decimal) In listaEntradas
+                                ''txtFacturas.Text += empleado.Item2 & ", "
+                                totalpago += empleado.Item3
+                                ''txtTotalFacturas.Text = Format(total, formatoMoneda)
+                            Next
+
+                            If totalpago > totalmovimiento Then
+                                alertas.contenido = "El monto ingresado en facturas es mayor al total registado del pago!!!"
+                                alertas.fnErrorContenido()
+                                Return False
+                                Exit Function
+                            End If
+
+                            fnAsociarPagos(idpago)
+                            llenagrid()
+                        Catch
+
+                        End Try
+
                     End If
 
                     conn.Close()
@@ -324,7 +385,7 @@ Public Class frmPagosLista
 
     Private Sub fnAsociarPagos(ByVal idpago As Integer)
         Try
-
+            Dim proveedor As Boolean = False
             Dim conexion As dsi_pos_demoEntities
             Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
                 conn.Open()
@@ -335,7 +396,13 @@ Public Class frmPagosLista
 
                 Dim codpago As Integer
 
-                For Each salida As Tuple(Of Integer, String, Decimal) In listaSalidas
+                If pagom.cliente Is Nothing Then
+                    lista = listaEntradas
+                ElseIf pagom.proveedor Is Nothing Then
+                    lista = listaSalidas
+                End If
+
+                For Each salida As Tuple(Of Integer, String, Decimal) In lista
 
                     If pagom.tipoPago > 0 Then
                         Dim pago As New tblCaja
@@ -350,10 +417,17 @@ Public Class frmPagosLista
                         pago.documento = pagom.documento
                         pago.usuario = mdlPublicVars.idUsuario
                         pago.anulado = 0
-                        pago.idsalidapago = salida.Item1
-                        pago.cliente = pagom.cliente
+                        If pagom.cliente Is Nothing Or pagom.cliente = 0 Then
+                            pago.identradapago = salida.Item1
+                            pago.proveedor = pagom.proveedor
+                            proveedor = True
+                        ElseIf pagom.proveedor Is Nothing Or pagom.proveedor = 0 Then
+                            pago.idsalidapago = salida.Item1
+                            pago.cliente = pagom.cliente
+                            proveedor = False
+                        End If
                         pago.observacion = pagom.observacion
-                        pago.descripcion = pagoTipo.nombre
+                        pago.descripcion = pagotipo.nombre
                         pago.bitRechazado = False
                         pago.bitEntrada = 1
                         pago.bitSalida = 0
@@ -372,14 +446,21 @@ Public Class frmPagosLista
 
 
                     End If
+                    If proveedor = False Then
+                        Dim salidamod As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = salida.Item1 Select x).FirstOrDefault
 
-                    Dim salidamod As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = salida.Item1 Select x).FirstOrDefault
+                        salidamod.saldo -= salida.Item3
+                        salidamod.pagado += salida.Item3
 
-                    salidamod.saldo -= salida.Item3
-                    salidamod.pagado += salida.Item3
+                        conexion.SaveChanges()
+                    ElseIf proveedor = True Then
+                        Dim entradamod As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = salida.Item1 Select x).FirstOrDefault
 
-                    conexion.SaveChanges()
+                        entradamod.saldo -= salida.Item3
+                        entradamod.pagos += salida.Item3
 
+                        conexion.SaveChanges()
+                    End If
                     Dim pagomod As tblCaja = (From x In conexion.tblCajas Where x.codigo = pagom.codigo Select x).FirstOrDefault
 
                     pagomod.monto -= salida.Item3
@@ -496,11 +577,12 @@ Public Class frmPagosLista
                     '  and (@diasFiltro =-1 OR (@diasFiltro>=0 AND  f.Fecha> DATEADD(day,-@diasFiltro,GETDATE())))
                 ElseIf bitProveedor = True Or bitCompra = True Then
                     companyInfo = From x In conexion.tblCajas _
-                               Where x.proveedor > 0 And (x.tblProveedor.negocio.Contains(filtro) Or CType(x.tblTipoPago.nombre, String).Contains(filtro)) _
-                                                          Select Codigo = x.codigo, Fecha = x.fechaFiltro, ID = x.tblProveedor.idProveedor, Clave = x.tblProveedor.clave, Negocio = x.tblProveedor.negocio, TipoPago = x.tblTipoPago.nombre, _
+                                  Where x.proveedor > 0 And (x.tblProveedor.negocio.Contains(filtro) Or CType(x.tblTipoPago.nombre, String).Contains(filtro)) _
+                                 Order By x.fecha Descending Select Codigo = x.codigo, Fecha = x.fechaFiltro, ID = x.tblProveedor.idProveedor, Clave = x.tblProveedor.clave, Negocio = x.tblProveedor.negocio, TipoPago = x.tblTipoPago.nombre, _
                                Doc = x.documento, Total = x.monto, clrEstado = CType(If(x.anulado = True, "0", If(x.confirmado = False, "1", If(x.confirmado = True, "4", "0"))), Int32), chkAnulado = x.anulado,
-                               FechaConfirmado = x.fechaCobro, chmConfirmar = x.confirmado
-                               Order By Fecha Descending
+                               FechaConfirmado = x.fechaCobro, chmConfirmar = x.confirmado, _
+                               chmAsociado = If(x.identradapago Is Nothing, False, True)
+
 
                 ElseIf bitCompra = True Then
                     companyInfo = From x In conexion.tblCajas Join y In conexion.tblEntradas On x.codigoSalida Equals y.idEntrada _

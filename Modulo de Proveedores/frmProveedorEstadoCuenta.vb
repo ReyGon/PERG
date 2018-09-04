@@ -36,7 +36,7 @@ Public Class frmProveedorEstadoCuenta
 
         mdlPublicVars.comboActivarFiltro(Me.cmbProveedor)
         'colocar la fecha.
-        dtpFechaInicio.Text = fechaServidor.AddMonths(-1)
+        dtpFechaInicio.Text = fechaServidor.AddDays(-7)
         dtpFechaFin.Text = fechaServidor
 
         fnLlenaCombo()

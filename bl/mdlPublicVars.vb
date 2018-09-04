@@ -288,6 +288,7 @@ Public Module mdlPublicVars
     ''Validacion para Ventas Vencidas
     Public superSearchClaveVencidos As String = ""
     Public ClaveVencidos As String
+    Public MetricaPromociones As Decimal = 0
     Public ClaveVencidosStatus As Boolean = False
 
     Public superSearchNombreAlterno As String
@@ -421,6 +422,7 @@ Public Module mdlPublicVars
             If config.id = 122 Then Notificacion_Clientes15Dias = config.valor
             If config.id = 123 Then Notificacion_Otro = config.valor
             If config.id = 124 Then ClaveVencidos = config.valor
+            If config.id = 125 Then MetricaPromociones = config.valor
 
         Next
 

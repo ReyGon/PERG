@@ -23,7 +23,7 @@ Public Class frmProductoKardex
 
     Private Sub frmProductoKardex_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim fechaServidor As DateTime = CType(mdlPublicVars.fnFecha_horaServidor, DateTime)
-        dtpFechaInicio.Text = fechaServidor.AddMonths(-1)
+        dtpFechaInicio.Text = fechaServidor.AddDays(-7)
         mdlPublicVars.fnFormatoGridMovimientos(grdDatos)
         mdlPublicVars.comboActivarFiltro(cmbArticulo)
         mdlPublicVars.comboActivarFiltro(cmbClientes)

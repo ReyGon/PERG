@@ -48,6 +48,12 @@ Public Class frmVentaPequeniaLista
         cargo = True
         grdDatos.Focus()
         llenagrid()
+
+        Me.cmbFiltroFecha.Visible = False
+        Me.lblFiltroFecha.Visible = False
+        Me.txtFiltro.Visible = False
+        Me.Label2.Visible = False
+
     End Sub
 
     'LLENAR COMBO
@@ -71,7 +77,13 @@ Public Class frmVentaPequeniaLista
                 conn.Open()
                 conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
-                Dim consulta = conexion.sp_salida_mov_lista_pequenia(mdlPublicVars.idEmpresa, Now, Now, txtFiltro.Text, CInt(cmbFiltroFecha.SelectedValue))
+                Dim fechainicio As DateTime
+                Dim fechafin As DateTime
+
+                fechainicio = dtpFechaInicio.Value.ToShortDateString + " 01:00:00.000"
+                fechafin = dtpFechaFin.Value.ToShortDateString + " 22:59:59.999"
+
+                Dim consulta = conexion.sp_salida_mov_lista_pequenia(mdlPublicVars.idEmpresa, fechainicio, fechafin, txtFiltro.Text, 0)
 
                 Me.grdDatos.DataSource = EntitiToDataTable(consulta)
                 mdlPublicVars.fnGrid_iconos(Me.grdDatos)
@@ -706,7 +718,7 @@ Public Class frmVentaPequeniaLista
 
 
     'CAMBIO DE FILTRO FECHA
-    Public Overloads Sub cmbFiltroFecha_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cmbFiltroFecha.SelectedValueChanged
+    Public Overloads Sub cmbFiltroFecha_SelectedValueChanged(sender As System.Object, e As System.EventArgs)
         If cargo Then
             frm_llenarLista()
         End If
@@ -726,7 +738,7 @@ Public Class frmVentaPequeniaLista
         llenagrid()
     End Sub
 
-    Private Sub grdDatos_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles grdDatos.KeyDown
+    Private Sub grdDatos_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs)
         If e.KeyCode = Keys.F8 Then
 
             Dim idsalida As Integer
@@ -934,6 +946,14 @@ Public Class frmVentaPequeniaLista
             End Using
         Catch ex As Exception
             RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
+        Try
+            llenagrid()
+        Catch ex As Exception
+
         End Try
     End Sub
 

@@ -39,7 +39,7 @@ Public Class frmClienteEstadoCuenta
         mdlPublicVars.comboActivarFiltro(Me.cmbCliente)
         'colocar la fecha.
         Dim fechaServidor As DateTime = CType(mdlPublicVars.fnFecha_horaServidor, DateTime)
-        dtpFechaInicio.Text = fechaServidor.AddMonths(-1)
+        dtpFechaInicio.Text = fechaServidor.AddDays(-7)
         dtpFechaFin.Text = mdlPublicVars.fnFecha_horaServidor
 
         fnLlenaCombo()

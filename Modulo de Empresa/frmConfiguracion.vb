@@ -150,6 +150,7 @@ Public Class frmConfiguracion
         txtCorreoHost.Text = Empresa_CorreoHost
         nm0CorreoPuerto.Value = Empresa_CorreoPuerto
         nm0DecimalesCompras.Value = Entrada_numeroDecimales.Length
+        nudpromocionestotal.Value = MetricaPromociones
 
         'Agregados
         nm0ItemsFactura.Value = mdlPublicVars.numeroDeItemsDeFactura
@@ -224,6 +225,7 @@ Public Class frmConfiguracion
         ProductoCombo2 = txtCombo2.Text
         ProductoGrid1 = txtGrid1.Text
         ProductoGrid2 = txtGrid2.Text
+        MetricaPromociones = nudpromocionestotal.Value
 
         'Agregados
         mdlPublicVars.numeroDeItemsDeFactura = nm0ItemsFactura.Value
@@ -292,6 +294,8 @@ Public Class frmConfiguracion
             If config.id = 91 Then config.valor = ProductoCombo2
             If config.id = 92 Then config.valor = ProductoGrid1
             If config.id = 93 Then config.valor = ProductoGrid2
+
+            If config.id = 125 Then config.valor = MetricaPromociones
 
             ctx.SaveChanges()
         Next

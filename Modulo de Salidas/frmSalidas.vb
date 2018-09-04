@@ -1524,8 +1524,12 @@ Public Class frmSalidas
                     Me.txtCreditoDisponible.Text = (limitec + sobregiro) - saldo
 
                     If saldo > (cli.limiteCredito + sobregiro) Then
-                        alerta.contenido = "Cliente Excede el Limite de Credito!!!"
-                        alerta.fnErrorContenido()
+                        ''alerta.contenido = "Cliente Excede el Limite de Credito!!!"
+                        ''alerta.fnErrorContenido()
+
+                        frmNotificacion.lblNotificacion.Text = "¡Cliente Excede el Limite de Credito!"
+                        frmNotificacion.Show()
+
                     End If
                 End If
 
@@ -1881,6 +1885,7 @@ Public Class frmSalidas
                             salidaCredito.contado = False
                             salidaCredito.credito = True
                             salidaCredito.bitguia = False
+                            salidaCredito.bitGuiaImpresa = False
 
                             salidaCredito.documento = correlativo.correlativo + 1
                             correlativo.correlativo = correlativo.correlativo + 1
@@ -1975,9 +1980,9 @@ Public Class frmSalidas
                             Dim bitNuevo As Integer
                             Dim bitOferta As Integer
                             Dim codigoSurtir As Integer
-                            Dim promocion As Double
-                            Dim cantidadpromocion As Double
-                            Dim cuotapromocion As Double
+                            Dim promocion As Double = 0
+                            Dim cantidadpromocion As Double = 0
+                            Dim cuotapromocion As Double = 0
 
                             For index = 0 To Me.grdProductos.Rows.Count - 1
 
@@ -2691,6 +2696,7 @@ Public Class frmSalidas
                             salidaCredito.pagado = 0
                             salidaCredito.saldo = 0
                             salidaCredito.bitguia = False
+                            salidaCredito.bitGuiaImpresa = False
                             salidaCredito.NOMBREALTERNO = mdlPublicVars.superSearchNombreAlterno
                             salidaCredito.DIRECCIONALTERNA = mdlPublicVars.superSearchDireccionAlterno
 
@@ -2782,7 +2788,8 @@ Public Class frmSalidas
                             salida.subtotal = totalContado
                             salida.total = totalContado
                             salida.pagado = 0
-                            salida.bitguia = 0
+                            salida.bitguia = False
+                            salida.bitGuiaImpresa = False
                             salida.saldo = 0
 
                             salida.contado = True
@@ -2844,9 +2851,9 @@ Public Class frmSalidas
                             Dim bitNuevo As Integer
                             Dim bitOferta As Integer
                             Dim codigoSurtir As Integer
-                            Dim promocion As Double
-                            Dim cantidadpromocion As Double
-                            Dim cuotapromocion As Double
+                            Dim promocion As Double = 0
+                            Dim cantidadpromocion As Double = 0
+                            Dim cuotapromocion As Double = 0
 
                             For index = 0 To Me.grdProductos.Rows.Count - 1
 
@@ -3719,6 +3726,7 @@ Public Class frmSalidas
                             salidaCredito.contado = False
                             salidaCredito.credito = True
                             salidaCredito.bitguia = False
+                            salidaCredito.bitGuiaImpresa = False
 
                             salidaCredito.bitFacReimpreso = False
 
@@ -3813,7 +3821,8 @@ Public Class frmSalidas
                             salida.direccionEnvio = cmbDirEnvios.Text
                             salida.contado = True
                             salida.credito = False
-                            salida.bitguia = 0
+                            salida.bitguia = False
+                            salida.bitGuiaImpresa = False
 
                             salida.documento = correlativo.correlativo + 1
                             correlativo.correlativo = correlativo.correlativo + 1
@@ -3880,9 +3889,9 @@ Public Class frmSalidas
                             Dim bitNuevo As Integer
                             Dim bitOferta As Integer
                             Dim codigoSurtir As Integer
-                            Dim promocion As Double
-                            Dim cuotapromocion As Double
-                            Dim cantidadpromocion As Double
+                            Dim promocion As Double = 0
+                            Dim cuotapromocion As Double = 0
+                            Dim cantidadpromocion As Double = 0
 
                             'crear registro de salida bodega.
                             If codigoSalidaContado > 0 Then
@@ -4328,7 +4337,6 @@ Public Class frmSalidas
         End Using
 
         If success = True Then
-            alerta.contenido = "Registro guardado correctamente"
             alerta.fnGuardar()
             bitEditarSalida = False
 
@@ -7107,6 +7115,7 @@ Public Class frmSalidas
         fnActualizar_Total()
         Dim ejecutaPago As Boolean
         Dim tipopago As Object
+        Dim idSalida As Integer
 
         If bitSugerirDespacho = True Then
             fnModificarCotizacion()
@@ -7150,7 +7159,6 @@ Public Class frmSalidas
 
             If RadMessageBox.Show("¿Desea Facturar la Venta?", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = vbYes Then
                 Dim bitTransporte As Boolean = False
-                Dim idSalida As Integer
 
                 If tipopago <> mdlPublicVars.PuntoVentaPequeno_tipoPago Then
                     If RadMessageBox.Show("¿Desea Realizar la venta al Contado?", nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = Windows.Forms.DialogResult.Yes Then
@@ -7368,6 +7376,8 @@ Public Class frmSalidas
                         End If
                         fnAsignarResolucion(idSalida)
 
+
+
                         fnNuevo()
                         fnNuevaFila()
                     End If
@@ -7375,6 +7385,60 @@ Public Class frmSalidas
                 End If
             End If
         End If
+
+        fnCalcularTickets(idSalida)
+
+    End Sub
+
+    Private Sub fnCalcularTickets(ByVal idsalida As Integer)
+        Try
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                ''If Cantidad >= a.CuotaPromocion Then
+                ''    cx = Math.Floor(CDec(Cantidad / a.CuotaPromocion))
+                ''    mdlPublicVars.superSearchCuotaPromocion = a.CuotaPromocion
+                ''    mdlPublicVars.superSearchCantidadPromocion = cx
+                ''    cr = cx * a.CantidadPromocion
+                ''End If
+
+                Dim NumeroTickets As Integer
+
+                Dim s As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = idsalida Select x).FirstOrDefault
+
+                If s.total > MetricaPromociones Then
+                    NumeroTickets = Math.Floor(CDec(s.total / MetricaPromociones))
+                End If
+
+                If NumeroTickets > 0 Then
+
+                    For ticket As Integer = 1 To NumeroTickets
+
+                        Dim t As New tblTICKETSVENTA
+
+                        t.FECHACREACION = fnFecha_horaServidor()
+                        t.IDSALIDA = idsalida
+                        t.IDCLIENTE = s.idCliente
+                        t.BITAPLICADO = False
+                        t.MONTOVALIDACION = MetricaPromociones
+
+                        conexion.AddTotblTICKETSVENTAS(t)
+                        conexion.SaveChanges()
+
+                    Next
+
+                    frmNotificacion.lblNotificacion.Text = "Se crearon " + CStr(NumeroTickets) + " Tickets"
+                    frmNotificacion.Show()
+
+                End If
+
+                conn.Close()
+            End Using
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub fnAsignarResolucion(ByVal codigo As Integer)
@@ -8015,7 +8079,6 @@ Public Class frmSalidas
 
         If success Then
             conexion.AcceptAllChanges()
-            alerta.contenido = "Registro guardado correctamente"
             alerta.fnGuardar()
             bitEditarSalida = False
             'fnImprimirPequenio(codigoSalida, ventacontado)

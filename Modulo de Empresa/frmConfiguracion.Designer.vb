@@ -120,6 +120,11 @@ Partial Class frmConfiguracion
         Me.chkBitacoraReservar = New System.Windows.Forms.CheckBox()
         Me.chkBitacoraDespachar = New System.Windows.Forms.CheckBox()
         Me.pageOtros = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.PictureBox13 = New System.Windows.Forms.PictureBox()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.RadGroupBox5 = New Telerik.WinControls.UI.RadGroupBox()
+        Me.nm2ToleranciaQuetzales = New System.Windows.Forms.NumericUpDown()
+        Me.Label46 = New System.Windows.Forms.Label()
         Me.PictureBox10 = New System.Windows.Forms.PictureBox()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.RadGroupBox2 = New Telerik.WinControls.UI.RadGroupBox()
@@ -134,15 +139,14 @@ Partial Class frmConfiguracion
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.RadGroupBox1 = New Telerik.WinControls.UI.RadGroupBox()
+        Me.nmTotalPromocion = New System.Windows.Forms.NumericUpDown()
+        Me.Label47 = New System.Windows.Forms.Label()
         Me.nm0DiasFrecuencia = New System.Windows.Forms.NumericUpDown()
         Me.nm0MesesFrecuencia = New System.Windows.Forms.NumericUpDown()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
-        Me.PictureBox13 = New System.Windows.Forms.PictureBox()
-        Me.Label42 = New System.Windows.Forms.Label()
-        Me.RadGroupBox5 = New Telerik.WinControls.UI.RadGroupBox()
-        Me.nm2ToleranciaQuetzales = New System.Windows.Forms.NumericUpDown()
-        Me.Label46 = New System.Windows.Forms.Label()
+        Me.Label48 = New System.Windows.Forms.Label()
+        Me.nudpromocionestotal = New System.Windows.Forms.NumericUpDown()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
         Me.pnx1Salir.SuspendLayout()
@@ -191,18 +195,20 @@ Partial Class frmConfiguracion
         CType(Me.RadGroupBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.RadGroupBox3.SuspendLayout()
         Me.pageOtros.SuspendLayout()
+        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RadGroupBox5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.RadGroupBox5.SuspendLayout()
+        CType(Me.nm2ToleranciaQuetzales, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadGroupBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.RadGroupBox2.SuspendLayout()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.RadGroupBox1.SuspendLayout()
+        CType(Me.nmTotalPromocion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nm0DiasFrecuencia, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nm0MesesFrecuencia, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RadGroupBox5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.RadGroupBox5.SuspendLayout()
-        CType(Me.nm2ToleranciaQuetzales, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudpromocionestotal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -303,7 +309,7 @@ Partial Class frmConfiguracion
         Me.rpv.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.rpv.Location = New System.Drawing.Point(12, 54)
         Me.rpv.Name = "rpv"
-        Me.rpv.SelectedPage = Me.pageDatos
+        Me.rpv.SelectedPage = Me.pageVentas
         Me.rpv.Size = New System.Drawing.Size(973, 314)
         Me.rpv.TabIndex = 130
         Me.rpv.Text = "Datos"
@@ -462,7 +468,7 @@ Partial Class frmConfiguracion
         Me.Label8.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
         Me.Label8.Location = New System.Drawing.Point(158, 75)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(30, 13)
+        Me.Label8.Size = New System.Drawing.Size(31, 13)
         Me.Label8.TabIndex = 41
         Me.Label8.Text = "IVA :"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -525,7 +531,7 @@ Partial Class frmConfiguracion
         Me.chkHabilitarVendedor.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.chkHabilitarVendedor.Location = New System.Drawing.Point(342, 15)
         Me.chkHabilitarVendedor.Name = "chkHabilitarVendedor"
-        Me.chkHabilitarVendedor.Size = New System.Drawing.Size(130, 19)
+        Me.chkHabilitarVendedor.Size = New System.Drawing.Size(131, 19)
         Me.chkHabilitarVendedor.TabIndex = 0
         Me.chkHabilitarVendedor.Text = "Habilitar Vendedor"
         Me.chkHabilitarVendedor.UseVisualStyleBackColor = True
@@ -536,7 +542,7 @@ Partial Class frmConfiguracion
         Me.chkAjusteTraslado_RevisarDescontarSaldo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.chkAjusteTraslado_RevisarDescontarSaldo.Location = New System.Drawing.Point(342, 65)
         Me.chkAjusteTraslado_RevisarDescontarSaldo.Name = "chkAjusteTraslado_RevisarDescontarSaldo"
-        Me.chkAjusteTraslado_RevisarDescontarSaldo.Size = New System.Drawing.Size(242, 34)
+        Me.chkAjusteTraslado_RevisarDescontarSaldo.Size = New System.Drawing.Size(243, 34)
         Me.chkAjusteTraslado_RevisarDescontarSaldo.TabIndex = 34
         Me.chkAjusteTraslado_RevisarDescontarSaldo.Text = "Descontar Saldo en Ajustes o Traslados," & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Hata que se revise el documento"
         Me.chkAjusteTraslado_RevisarDescontarSaldo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -548,7 +554,7 @@ Partial Class frmConfiguracion
         Me.chkValidaVentaMaxima.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.chkValidaVentaMaxima.Location = New System.Drawing.Point(342, 40)
         Me.chkValidaVentaMaxima.Name = "chkValidaVentaMaxima"
-        Me.chkValidaVentaMaxima.Size = New System.Drawing.Size(209, 19)
+        Me.chkValidaVentaMaxima.Size = New System.Drawing.Size(211, 19)
         Me.chkValidaVentaMaxima.TabIndex = 33
         Me.chkValidaVentaMaxima.Text = "Validar Venta Maxima por Cliente"
         Me.chkValidaVentaMaxima.UseVisualStyleBackColor = True
@@ -1191,7 +1197,7 @@ Partial Class frmConfiguracion
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
         Me.Label4.Location = New System.Drawing.Point(25, 50)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(203, 13)
+        Me.Label4.Size = New System.Drawing.Size(204, 13)
         Me.Label4.TabIndex = 39
         Me.Label4.Text = "Número de Últimas Ventas a mostrar :"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1264,6 +1270,8 @@ Partial Class frmConfiguracion
         '
         Me.RadGroupBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RadGroupBox4.Controls.Add(Me.nudpromocionestotal)
+        Me.RadGroupBox4.Controls.Add(Me.Label48)
         Me.RadGroupBox4.Controls.Add(Me.nm0ItemsFactura)
         Me.RadGroupBox4.Controls.Add(Me.cmbPrecioUltimasVentas)
         Me.RadGroupBox4.Controls.Add(Me.Label35)
@@ -1281,7 +1289,7 @@ Partial Class frmConfiguracion
         '
         '
         Me.RadGroupBox4.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        Me.RadGroupBox4.Size = New System.Drawing.Size(338, 111)
+        Me.RadGroupBox4.Size = New System.Drawing.Size(723, 225)
         Me.RadGroupBox4.TabIndex = 103
         '
         'nm0ItemsFactura
@@ -1308,7 +1316,7 @@ Partial Class frmConfiguracion
         Me.Label35.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
         Me.Label35.Location = New System.Drawing.Point(42, 66)
         Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(89, 26)
+        Me.Label35.Size = New System.Drawing.Size(90, 26)
         Me.Label35.TabIndex = 28
         Me.Label35.Text = "Tipo de Precio" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ultimas Ventas :"
         Me.Label35.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -1366,7 +1374,7 @@ Partial Class frmConfiguracion
         '
         '
         Me.RadGroupBox3.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        Me.RadGroupBox3.Size = New System.Drawing.Size(199, 111)
+        Me.RadGroupBox3.Size = New System.Drawing.Size(199, 225)
         Me.RadGroupBox3.TabIndex = 99
         '
         'chkBitacoraCotizar
@@ -1418,6 +1426,69 @@ Partial Class frmConfiguracion
         Me.pageOtros.Name = "pageOtros"
         Me.pageOtros.Size = New System.Drawing.Size(952, 259)
         Me.pageOtros.Text = "Otros"
+        '
+        'PictureBox13
+        '
+        Me.PictureBox13.Image = Global.laFuente.My.Resources.Resources.detalles
+        Me.PictureBox13.Location = New System.Drawing.Point(682, 14)
+        Me.PictureBox13.Name = "PictureBox13"
+        Me.PictureBox13.Size = New System.Drawing.Size(40, 29)
+        Me.PictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox13.TabIndex = 98
+        Me.PictureBox13.TabStop = False
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.BackColor = System.Drawing.Color.Transparent
+        Me.Label42.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label42.ForeColor = System.Drawing.Color.DimGray
+        Me.Label42.Location = New System.Drawing.Point(722, 15)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(183, 29)
+        Me.Label42.TabIndex = 97
+        Me.Label42.Text = "Cierre de Caja"
+        '
+        'RadGroupBox5
+        '
+        Me.RadGroupBox5.Controls.Add(Me.nm2ToleranciaQuetzales)
+        Me.RadGroupBox5.Controls.Add(Me.Label46)
+        Me.RadGroupBox5.FooterImageIndex = -1
+        Me.RadGroupBox5.FooterImageKey = ""
+        Me.RadGroupBox5.HeaderImageIndex = -1
+        Me.RadGroupBox5.HeaderImageKey = ""
+        Me.RadGroupBox5.HeaderMargin = New System.Windows.Forms.Padding(0)
+        Me.RadGroupBox5.HeaderText = ""
+        Me.RadGroupBox5.Location = New System.Drawing.Point(662, 32)
+        Me.RadGroupBox5.Name = "RadGroupBox5"
+        Me.RadGroupBox5.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        '
+        '
+        '
+        Me.RadGroupBox5.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
+        Me.RadGroupBox5.Size = New System.Drawing.Size(274, 138)
+        Me.RadGroupBox5.TabIndex = 96
+        '
+        'nm2ToleranciaQuetzales
+        '
+        Me.nm2ToleranciaQuetzales.DecimalPlaces = 2
+        Me.nm2ToleranciaQuetzales.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.nm2ToleranciaQuetzales.Location = New System.Drawing.Point(154, 22)
+        Me.nm2ToleranciaQuetzales.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.nm2ToleranciaQuetzales.Name = "nm2ToleranciaQuetzales"
+        Me.nm2ToleranciaQuetzales.Size = New System.Drawing.Size(104, 21)
+        Me.nm2ToleranciaQuetzales.TabIndex = 31
+        Me.nm2ToleranciaQuetzales.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label46
+        '
+        Me.Label46.AutoSize = True
+        Me.Label46.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label46.Location = New System.Drawing.Point(13, 22)
+        Me.Label46.Name = "Label46"
+        Me.Label46.Size = New System.Drawing.Size(79, 26)
+        Me.Label46.TabIndex = 26
+        Me.Label46.Text = "Tolerancia en " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Quetzales :"
         '
         'PictureBox10
         '
@@ -1563,6 +1634,8 @@ Partial Class frmConfiguracion
         '
         'RadGroupBox1
         '
+        Me.RadGroupBox1.Controls.Add(Me.nmTotalPromocion)
+        Me.RadGroupBox1.Controls.Add(Me.Label47)
         Me.RadGroupBox1.Controls.Add(Me.nm0DiasFrecuencia)
         Me.RadGroupBox1.Controls.Add(Me.nm0MesesFrecuencia)
         Me.RadGroupBox1.Controls.Add(Me.Label26)
@@ -1582,6 +1655,26 @@ Partial Class frmConfiguracion
         Me.RadGroupBox1.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
         Me.RadGroupBox1.Size = New System.Drawing.Size(274, 138)
         Me.RadGroupBox1.TabIndex = 90
+        '
+        'nmTotalPromocion
+        '
+        Me.nmTotalPromocion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.nmTotalPromocion.Location = New System.Drawing.Point(188, 91)
+        Me.nmTotalPromocion.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.nmTotalPromocion.Name = "nmTotalPromocion"
+        Me.nmTotalPromocion.Size = New System.Drawing.Size(70, 21)
+        Me.nmTotalPromocion.TabIndex = 34
+        Me.nmTotalPromocion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label47
+        '
+        Me.Label47.AutoSize = True
+        Me.Label47.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label47.Location = New System.Drawing.Point(13, 85)
+        Me.Label47.Name = "Label47"
+        Me.Label47.Size = New System.Drawing.Size(144, 39)
+        Me.Label47.TabIndex = 33
+        Me.Label47.Text = "Cantidad representada en " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "quetzales para validar la " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "promocion:"
         '
         'nm0DiasFrecuencia
         '
@@ -1623,68 +1716,24 @@ Partial Class frmConfiguracion
         Me.Label27.TabIndex = 30
         Me.Label27.Text = "Dias de margen para " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "validar frecuencia de compra:"
         '
-        'PictureBox13
+        'Label48
         '
-        Me.PictureBox13.Image = Global.laFuente.My.Resources.Resources.detalles
-        Me.PictureBox13.Location = New System.Drawing.Point(682, 14)
-        Me.PictureBox13.Name = "PictureBox13"
-        Me.PictureBox13.Size = New System.Drawing.Size(40, 29)
-        Me.PictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox13.TabIndex = 98
-        Me.PictureBox13.TabStop = False
+        Me.Label48.AutoSize = True
+        Me.Label48.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Label48.Location = New System.Drawing.Point(31, 115)
+        Me.Label48.Name = "Label48"
+        Me.Label48.Size = New System.Drawing.Size(99, 13)
+        Me.Label48.TabIndex = 46
+        Me.Label48.Text = "Total Promocion :"
         '
-        'Label42
+        'nudpromocionestotal
         '
-        Me.Label42.AutoSize = True
-        Me.Label42.BackColor = System.Drawing.Color.Transparent
-        Me.Label42.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label42.ForeColor = System.Drawing.Color.DimGray
-        Me.Label42.Location = New System.Drawing.Point(722, 15)
-        Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(183, 29)
-        Me.Label42.TabIndex = 97
-        Me.Label42.Text = "Cierre de Caja"
-        '
-        'RadGroupBox5
-        '
-        Me.RadGroupBox5.Controls.Add(Me.nm2ToleranciaQuetzales)
-        Me.RadGroupBox5.Controls.Add(Me.Label46)
-        Me.RadGroupBox5.FooterImageIndex = -1
-        Me.RadGroupBox5.FooterImageKey = ""
-        Me.RadGroupBox5.HeaderImageIndex = -1
-        Me.RadGroupBox5.HeaderImageKey = ""
-        Me.RadGroupBox5.HeaderMargin = New System.Windows.Forms.Padding(0)
-        Me.RadGroupBox5.HeaderText = ""
-        Me.RadGroupBox5.Location = New System.Drawing.Point(662, 32)
-        Me.RadGroupBox5.Name = "RadGroupBox5"
-        Me.RadGroupBox5.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        '
-        '
-        '
-        Me.RadGroupBox5.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        Me.RadGroupBox5.Size = New System.Drawing.Size(274, 138)
-        Me.RadGroupBox5.TabIndex = 96
-        '
-        'nm2ToleranciaQuetzales
-        '
-        Me.nm2ToleranciaQuetzales.DecimalPlaces = 2
-        Me.nm2ToleranciaQuetzales.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-        Me.nm2ToleranciaQuetzales.Location = New System.Drawing.Point(154, 22)
-        Me.nm2ToleranciaQuetzales.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.nm2ToleranciaQuetzales.Name = "nm2ToleranciaQuetzales"
-        Me.nm2ToleranciaQuetzales.Size = New System.Drawing.Size(104, 21)
-        Me.nm2ToleranciaQuetzales.TabIndex = 31
-        Me.nm2ToleranciaQuetzales.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Label46
-        '
-        Me.Label46.AutoSize = True
-        Me.Label46.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Label46.Location = New System.Drawing.Point(13, 22)
-        Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(78, 26)
-        Me.Label46.TabIndex = 26
-        Me.Label46.Text = "Tolerancia en " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Quetzales :"
+        Me.nudpromocionestotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.nudpromocionestotal.Location = New System.Drawing.Point(137, 111)
+        Me.nudpromocionestotal.Name = "nudpromocionestotal"
+        Me.nudpromocionestotal.Size = New System.Drawing.Size(105, 21)
+        Me.nudpromocionestotal.TabIndex = 48
+        Me.nudpromocionestotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'frmConfiguracion
         '
@@ -1762,6 +1811,11 @@ Partial Class frmConfiguracion
         Me.RadGroupBox3.PerformLayout()
         Me.pageOtros.ResumeLayout(False)
         Me.pageOtros.PerformLayout()
+        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RadGroupBox5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.RadGroupBox5.ResumeLayout(False)
+        Me.RadGroupBox5.PerformLayout()
+        CType(Me.nm2ToleranciaQuetzales, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RadGroupBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.RadGroupBox2.ResumeLayout(False)
@@ -1770,13 +1824,10 @@ Partial Class frmConfiguracion
         CType(Me.RadGroupBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.RadGroupBox1.ResumeLayout(False)
         Me.RadGroupBox1.PerformLayout()
+        CType(Me.nmTotalPromocion, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nm0DiasFrecuencia, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nm0MesesFrecuencia, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RadGroupBox5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.RadGroupBox5.ResumeLayout(False)
-        Me.RadGroupBox5.PerformLayout()
-        CType(Me.nm2ToleranciaQuetzales, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudpromocionestotal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -1904,5 +1955,9 @@ Partial Class frmConfiguracion
     Friend WithEvents RadGroupBox5 As Telerik.WinControls.UI.RadGroupBox
     Friend WithEvents nm2ToleranciaQuetzales As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label46 As System.Windows.Forms.Label
+    Friend WithEvents nmTotalPromocion As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Label47 As System.Windows.Forms.Label
+    Friend WithEvents nudpromocionestotal As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Label48 As System.Windows.Forms.Label
 
 End Class

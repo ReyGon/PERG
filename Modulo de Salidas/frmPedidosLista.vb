@@ -529,6 +529,7 @@ Public Class frmPedidosLista
                     If descripcion = "Despachado" Then
 
                         If RadMessageBox.Show("Desea confirmar que se ha revisado el Pedido", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo, RadMessageIcon.Question) = vbYes Then
+
                             registroActual = fila
                             'conexion nueva.
                             Dim conexion As New dsi_pos_demoEntities
@@ -536,6 +537,20 @@ Public Class frmPedidosLista
                             Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
                                 conn.Open()
                                 conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
+
+
+                                Dim val As Boolean = (From x In conexion.tblUsuarios Where x.idUsuario = mdlPublicVars.idUsuario Select If(x.bitAutorizaPrecios Is Nothing, False, x.bitAutorizaPrecios)).FirstOrDefault
+
+                                If val = False Then
+                                    RadMessageBox.Show("No posee permisos para realizar esta accion", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+                                    conn.Close()
+
+                                    Me.grdDatos.Rows(Me.grdDatos.CurrentRow.Index).Cells("chmRevisado").Value = False
+
+                                    Return False
+                                    Exit Function
+                                End If
+
                                 'Obtenemos la salida a modificar
                                 Dim salida As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = idSalida Select x).FirstOrDefault
                                 salida.empacado = True
@@ -1289,11 +1304,12 @@ Public Class frmPedidosLista
                         Dim contador As Integer = (From x In conexion.tblSalidas Where x.BITTRANSPORTE = True And x.bitguia = False And x.fechaDespachado >= fecha Select x).Count
 
                         If contador > 0 Then
-                            RadMessageBox.Show("Aún quedan " + CStr(contador) + " guia(s) por realizar!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
-                            Exit Sub
-                        Else
-                            fnImprimirListaGuias(idclie, idsalida)
+                            ''RadMessageBox.Show("Aún quedan " + CStr(contador) + " guia(s) por realizar!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                            frmNotificacion.lblNotificacion.Text = "¡Aún quedan " + CStr(contador) + " guia(s) por realizar!"
+                            frmNotificacion.Show()
                         End If
+
+                        fnImprimirListaGuias(idclie)
 
                         conn.Close()
                     End Using
@@ -1423,7 +1439,7 @@ Public Class frmPedidosLista
         End Try
     End Sub
 
-    Private Sub fnImprimirListaGuias(ByVal cliente As Integer, ByVal salida As Integer)
+    Private Sub fnImprimirListaGuias(ByVal cliente As Integer)
         Dim conexion As dsi_pos_demoEntities
         Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
             conn.Open()
@@ -1470,8 +1486,8 @@ Public Class frmPedidosLista
                     Process.Start(x.url.ToString)
                     ''End If
                 Else
-                alerta.contenido = "No pudo crear el reporte !!!"
-                alerta.fnErrorContenido()
+                    alerta.contenido = "No pudo crear el reporte !!!"
+                    alerta.fnErrorContenido()
                 End If
 
             Catch ex As Exception
@@ -1479,6 +1495,39 @@ Public Class frmPedidosLista
             End Try
             conn.Close()
         End Using
+
+        fnActualizarImpresion()
+
+    End Sub
+
+    Private Sub fnActualizarImpresion()
+        Try
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim fecha As Date = fnFechaServidor()
+
+                Dim lista As List(Of tblSalida) = (From x In conexion.tblSalidas Where x.bitguia = True And x.BITTRANSPORTE = True And x.bitGuiaImpresa = False _
+                                                And x.fechaDespachado >= fecha And x.despachar = True And x.anulado = False _
+                                                Select x).ToList
+
+                For Each g As tblSalida In lista
+
+                    Dim guia As tblSalida = (From x In conexion.tblSalidas Where x.idSalida = g.idSalida Select x).FirstOrDefault
+
+                    guia.bitGuiaImpresa = True
+
+                    conexion.SaveChanges()
+
+                Next
+
+                conn.Close()
+            End Using
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Public Function fnExportar(ByVal codigo As String, ByVal path As String, ByVal reporteExportar As ReportDocument, ByVal tblparametros As DataTable) As String

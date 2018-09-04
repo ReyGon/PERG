@@ -28,6 +28,9 @@ Partial Class frmClientePequenioBarraDerecha
         Me.pnl3 = New System.Windows.Forms.Panel()
         Me.pbx3 = New System.Windows.Forms.PictureBox()
         Me.lbl3 = New System.Windows.Forms.Label()
+        Me.pnl4 = New System.Windows.Forms.Panel()
+        Me.pbx4 = New System.Windows.Forms.PictureBox()
+        Me.lbl4 = New System.Windows.Forms.Label()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl1.SuspendLayout()
@@ -36,6 +39,8 @@ Partial Class frmClientePequenioBarraDerecha
         CType(Me.pbx2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl3.SuspendLayout()
         CType(Me.pbx3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnl4.SuspendLayout()
+        CType(Me.pbx4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -144,12 +149,45 @@ Partial Class frmClientePequenioBarraDerecha
         Me.lbl3.Text = "Ctas. Cobrar"
         Me.lbl3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'pnl4
+        '
+        Me.pnl4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.pnl4.Controls.Add(Me.pbx4)
+        Me.pnl4.Controls.Add(Me.lbl4)
+        Me.pnl4.Location = New System.Drawing.Point(17, 442)
+        Me.pnl4.Name = "pnl4"
+        Me.pnl4.Size = New System.Drawing.Size(100, 77)
+        Me.pnl4.TabIndex = 75
+        '
+        'pbx4
+        '
+        Me.pbx4.Image = Global.laFuente.My.Resources.Resources.estadoCuenta_Blanco
+        Me.pbx4.Location = New System.Drawing.Point(26, 7)
+        Me.pbx4.Name = "pbx4"
+        Me.pbx4.Size = New System.Drawing.Size(46, 39)
+        Me.pbx4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx4.TabIndex = 68
+        Me.pbx4.TabStop = False
+        '
+        'lbl4
+        '
+        Me.lbl4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbl4.AutoSize = True
+        Me.lbl4.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl4.ForeColor = System.Drawing.Color.White
+        Me.lbl4.Location = New System.Drawing.Point(22, 49)
+        Me.lbl4.Name = "lbl4"
+        Me.lbl4.Size = New System.Drawing.Size(55, 19)
+        Me.lbl4.TabIndex = 67
+        Me.lbl4.Text = "Tickets"
+        '
         'frmClientePequenioBarraDerecha
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.BackColor = System.Drawing.Color.SteelBlue
         Me.ClientSize = New System.Drawing.Size(135, 740)
         Me.ControlBox = False
+        Me.Controls.Add(Me.pnl4)
         Me.Controls.Add(Me.pnl3)
         Me.Controls.Add(Me.pnl2)
         Me.Controls.Add(Me.pnl1)
@@ -169,6 +207,7 @@ Partial Class frmClientePequenioBarraDerecha
         Me.Controls.SetChildIndex(Me.pnl1, 0)
         Me.Controls.SetChildIndex(Me.pnl2, 0)
         Me.Controls.SetChildIndex(Me.pnl3, 0)
+        Me.Controls.SetChildIndex(Me.pnl4, 0)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl1.ResumeLayout(False)
@@ -180,6 +219,9 @@ Partial Class frmClientePequenioBarraDerecha
         Me.pnl3.ResumeLayout(False)
         Me.pnl3.PerformLayout()
         CType(Me.pbx3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnl4.ResumeLayout(False)
+        Me.pnl4.PerformLayout()
+        CType(Me.pbx4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -194,5 +236,8 @@ Partial Class frmClientePequenioBarraDerecha
     Friend WithEvents pnl3 As System.Windows.Forms.Panel
     Friend WithEvents pbx3 As System.Windows.Forms.PictureBox
     Public WithEvents lbl3 As System.Windows.Forms.Label
+    Friend WithEvents pnl4 As System.Windows.Forms.Panel
+    Friend WithEvents pbx4 As System.Windows.Forms.PictureBox
+    Public WithEvents lbl4 As System.Windows.Forms.Label
 
 End Class

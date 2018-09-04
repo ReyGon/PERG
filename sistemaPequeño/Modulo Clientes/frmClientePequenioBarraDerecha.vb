@@ -52,7 +52,13 @@
         ''Me.Hide()
     End Sub
 
-    Private Sub pnl2_Paint(sender As Object, e As PaintEventArgs) Handles pnl2.Paint
-
+    Private Sub fnPanel4() Handles Me.panel4
+        frmTicketsCliente.Text = "Tickets Cliente"
+        frmTicketsCliente.WindowState = FormWindowState.Normal
+        frmTicketsCliente.StartPosition = FormStartPosition.CenterScreen
+        frmTicketsCliente.idCliente = CInt(mdlPublicVars.superSearchId)
+        frmTicketsCliente.ShowDialog()
+        frmTicketsCliente.Dispose()
     End Sub
+
 End Class

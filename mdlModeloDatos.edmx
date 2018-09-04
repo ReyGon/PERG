@@ -168,6 +168,7 @@
           <EntitySet Name="tblSurtir" EntityType="mdlModeloDatos.Store.tblSurtir" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblSustituto" EntityType="mdlModeloDatos.Store.tblSustituto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblSustitutoCategoria" EntityType="mdlModeloDatos.Store.tblSustitutoCategoria" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblTICKETSVENTAS" EntityType="mdlModeloDatos.Store.tblTICKETSVENTAS" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblTipoCompra" EntityType="mdlModeloDatos.Store.tblTipoCompra" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblTipoGasto" EntityType="mdlModeloDatos.Store.tblTipoGasto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblTipoImpresion" EntityType="mdlModeloDatos.Store.tblTipoImpresion" store:Type="Tables" Schema="dbo" />
@@ -236,6 +237,14 @@
           <AssociationSet Name="fk_idbodega_venta" Association="mdlModeloDatos.Store.fk_idbodega_venta">
             <End Role="tblAlmacen" EntitySet="tblAlmacen" />
             <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDCLIENTE_TICKET" Association="mdlModeloDatos.Store.FK_IDCLIENTE_TICKET">
+            <End Role="tblClientes" EntitySet="tblClientes" />
+            <End Role="tblTICKETSVENTAS" EntitySet="tblTICKETSVENTAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDSALIDA_TICKET" Association="mdlModeloDatos.Store.FK_IDSALIDA_TICKET">
+            <End Role="tblSalida" EntitySet="tblSalida" />
+            <End Role="tblTICKETSVENTAS" EntitySet="tblTICKETSVENTAS" />
           </AssociationSet>
           <AssociationSet Name="Fk_idtipomovimien_devolucionclientedetalle" Association="mdlModeloDatos.Store.Fk_idtipomovimien_devolucionclientedetalle">
             <End Role="tblTipoMovimiento" EntitySet="tblTipoMovimiento" />
@@ -3419,6 +3428,7 @@
           <Property Name="NOMBREALTERNO" Type="varchar" MaxLength="100" />
           <Property Name="DIRECCIONALTERNA" Type="varchar" MaxLength="400" />
           <Property Name="BITTRANSPORTE" Type="bit" />
+          <Property Name="bitGuiaImpresa" Type="bit" />
         </EntityType>
         <EntityType Name="tblSalida_Factura">
           <Key>
@@ -3540,6 +3550,17 @@
           </Key>
           <Property Name="idSustitutoCategoria" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblTICKETSVENTAS">
+          <Key>
+            <PropertyRef Name="IDTICKET" />
+          </Key>
+          <Property Name="IDTICKET" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FECHACREACION" Type="datetime" Nullable="false" />
+          <Property Name="IDCLIENTE" Type="int" Nullable="false" />
+          <Property Name="IDSALIDA" Type="int" Nullable="false" />
+          <Property Name="BITAPLICADO" Type="bit" Nullable="false" />
+          <Property Name="MONTOVALIDACION" Type="decimal" Nullable="false" Scale="2" />
         </EntityType>
         <EntityType Name="tblTipoCompra">
           <Key>
@@ -3889,6 +3910,30 @@
             </Principal>
             <Dependent Role="tblSalidaDetalle">
               <PropertyRef Name="tipobodega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDCLIENTE_TICKET">
+          <End Role="tblClientes" Type="mdlModeloDatos.Store.tblClientes" Multiplicity="1" />
+          <End Role="tblTICKETSVENTAS" Type="mdlModeloDatos.Store.tblTICKETSVENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblClientes">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="tblTICKETSVENTAS">
+              <PropertyRef Name="IDCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDSALIDA_TICKET">
+          <End Role="tblSalida" Type="mdlModeloDatos.Store.tblSalida" Multiplicity="1" />
+          <End Role="tblTICKETSVENTAS" Type="mdlModeloDatos.Store.tblTICKETSVENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSalida">
+              <PropertyRef Name="idSalida" />
+            </Principal>
+            <Dependent Role="tblTICKETSVENTAS">
+              <PropertyRef Name="IDSALIDA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11089,6 +11134,12 @@
             <Parameter Name="filtro" Mode="In" Type="String" />
             <Parameter Name="salida" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_ReporteListaGuiasImpresion" ReturnType="Collection(dsi_pos_demoModel.sp_ReporteListaGuiasImpresion_Result)" />
+          <EntitySet Name="tblTICKETSVENTAS" EntityType="dsi_pos_demoModel.tblTICKETSVENTA" />
+          <AssociationSet Name="FK_IDCLIENTE_TICKET" Association="dsi_pos_demoModel.FK_IDCLIENTE_TICKET">
+            <End Role="tblCliente" EntitySet="tblClientes" />
+            <End Role="tblTICKETSVENTA" EntitySet="tblTICKETSVENTAS" />
+          </AssociationSet>
           <EntitySet Name="tblSalidas" EntityType="dsi_pos_demoModel.tblSalida" />
           <AssociationSet Name="FK_tblSalida_tblAlmacen" Association="dsi_pos_demoModel.FK_tblSalida_tblAlmacen">
             <End Role="tblAlmacen" EntitySet="tblAlmacens" />
@@ -11142,6 +11193,10 @@
             <End Role="tblSalida" EntitySet="tblSalidas" />
             <End Role="tblSalida_Factura" EntitySet="tblSalida_Factura" />
           </AssociationSet>
+          <AssociationSet Name="FK_IDSALIDA_TICKET" Association="dsi_pos_demoModel.FK_IDSALIDA_TICKET">
+            <End Role="tblSalida" EntitySet="tblSalidas" />
+            <End Role="tblTICKETSVENTA" EntitySet="tblTICKETSVENTAS" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblSalida_tblTipoInventario" Association="dsi_pos_demoModel.FK_tblSalida_tblTipoInventario">
             <End Role="tblTipoInventario" EntitySet="tblTipoInventarios" />
             <End Role="tblSalida" EntitySet="tblSalidas" />
@@ -11170,7 +11225,6 @@
             <End Role="tblSalida" EntitySet="tblSalidas" />
             <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
           </AssociationSet>
-          <FunctionImport Name="sp_ReporteListaGuiasImpresion" ReturnType="Collection(dsi_pos_demoModel.sp_ReporteListaGuiasImpresion_Result)" />
           </EntityContainer>
         <EntityType Name="dtproperty">
           <Key>
@@ -17151,7 +17205,7 @@
           <NavigationProperty Name="tblCliente" Relationship="dsi_pos_demoModel.FK_tblCaja_tblClientes" FromRole="tblCaja" ToRole="tblCliente" />
           <NavigationProperty Name="tblSalida" Relationship="dsi_pos_demoModel.fk_caja_salida" FromRole="tblCaja" ToRole="tblSalida" />
           <NavigationProperty Name="tblSalida1" Relationship="dsi_pos_demoModel.FK_tblCaja_tblSalida" FromRole="tblCaja" ToRole="tblSalida" />
-        </EntityType>
+          </EntityType>
         <Association Name="FK_tblCaja_tblBanco_Cuenta">
           <End Type="dsi_pos_demoModel.tblBanco_Cuenta" Role="tblBanco_Cuenta" Multiplicity="0..1" />
           <End Type="dsi_pos_demoModel.tblCaja" Role="tblCaja" Multiplicity="*" />
@@ -19100,6 +19154,7 @@
           <NavigationProperty Name="tblPrecioCompetencias" Relationship="dsi_pos_demoModel.FK_tblPrecioCompetencia_tblClientes" FromRole="tblCliente" ToRole="tblPrecioCompetencia" />
           <NavigationProperty Name="tblReciboCajas" Relationship="dsi_pos_demoModel.FK_tblReciboCaja_tblReciboCaja1" FromRole="tblCliente" ToRole="tblReciboCaja" />
           <NavigationProperty Name="tblSurtirs" Relationship="dsi_pos_demoModel.FK_tblSurtir_tblClientes" FromRole="tblCliente" ToRole="tblSurtir" />
+          <NavigationProperty Name="tblTICKETSVENTAS" Relationship="dsi_pos_demoModel.FK_IDCLIENTE_TICKET" FromRole="tblCliente" ToRole="tblTICKETSVENTA" />
           <NavigationProperty Name="tblSalidas" Relationship="dsi_pos_demoModel.FK_tblSalida_tblClientes" FromRole="tblCliente" ToRole="tblSalida" />
         </EntityType>
         <Association Name="FK_tblArticuloPrecioCompetencia_tblClientes">
@@ -19443,6 +19498,39 @@
           <Property Type="String" Name="codigo1" Nullable="false" MaxLength="50" />
           <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="5" />
         </ComplexType>
+        <ComplexType Name="sp_ReporteListaGuiasImpresion_Result">
+          <Property Type="String" Name="Fecha" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="Negocio" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="NIT" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="FechaImpresion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HoraImpresion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="tblTICKETSVENTA">
+          <Key>
+            <PropertyRef Name="IDTICKET" />
+          </Key>
+          <Property Type="Int32" Name="IDTICKET" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="FECHACREACION" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IDCLIENTE" Nullable="false" />
+          <Property Type="Int32" Name="IDSALIDA" Nullable="false" />
+          <Property Type="Boolean" Name="BITAPLICADO" Nullable="false" />
+          <Property Type="Decimal" Name="MONTOVALIDACION" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="tblCliente" Relationship="dsi_pos_demoModel.FK_IDCLIENTE_TICKET" FromRole="tblTICKETSVENTA" ToRole="tblCliente" />
+          <NavigationProperty Name="tblSalida" Relationship="dsi_pos_demoModel.FK_IDSALIDA_TICKET" FromRole="tblTICKETSVENTA" ToRole="tblSalida" />
+        </EntityType>
+        <Association Name="FK_IDCLIENTE_TICKET">
+          <End Type="dsi_pos_demoModel.tblCliente" Role="tblCliente" Multiplicity="1" />
+          <End Type="dsi_pos_demoModel.tblTICKETSVENTA" Role="tblTICKETSVENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="tblTICKETSVENTA">
+              <PropertyRef Name="IDCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="tblSalida">
           <Key>
             <PropertyRef Name="idSalida" />
@@ -19497,6 +19585,7 @@
           <Property Type="String" Name="NOMBREALTERNO" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="DIRECCIONALTERNA" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="BITTRANSPORTE" />
+          <Property Type="Boolean" Name="bitGuiaImpresa" />
           <NavigationProperty Name="tblAlmacen" Relationship="dsi_pos_demoModel.FK_tblSalida_tblAlmacen" FromRole="tblSalida" ToRole="tblAlmacen" />
           <NavigationProperty Name="tblCajas" Relationship="dsi_pos_demoModel.fk_caja_salida" FromRole="tblSalida" ToRole="tblCaja" />
           <NavigationProperty Name="tblCajas1" Relationship="dsi_pos_demoModel.FK_tblCaja_tblSalida" FromRole="tblSalida" ToRole="tblCaja" />
@@ -19510,6 +19599,7 @@
           <NavigationProperty Name="tblMovimientoInventarios" Relationship="dsi_pos_demoModel.FK_tblMovimientoInventario_tblSalida" FromRole="tblSalida" ToRole="tblMovimientoInventario" />
           <NavigationProperty Name="tblMunicipio" Relationship="dsi_pos_demoModel.FK_tblSalida_tblMunicipio" FromRole="tblSalida" ToRole="tblMunicipio" />
           <NavigationProperty Name="tblSalida_Factura" Relationship="dsi_pos_demoModel.FK__tblSalida__salid__3F7C3DC5" FromRole="tblSalida" ToRole="tblSalida_Factura" />
+          <NavigationProperty Name="tblTICKETSVENTAS" Relationship="dsi_pos_demoModel.FK_IDSALIDA_TICKET" FromRole="tblSalida" ToRole="tblTICKETSVENTA" />
           <NavigationProperty Name="tblTipoInventario" Relationship="dsi_pos_demoModel.FK_tblSalida_tblTipoInventario" FromRole="tblSalida" ToRole="tblTipoInventario" />
           <NavigationProperty Name="tblTipoMovimiento" Relationship="dsi_pos_demoModel.FK_tblSalida_tblTipoMovimiento" FromRole="tblSalida" ToRole="tblTipoMovimiento" />
           <NavigationProperty Name="tblUsuario" Relationship="dsi_pos_demoModel.FK_tblSalida_tblUsuarios" FromRole="tblSalida" ToRole="tblUsuario" />
@@ -19674,6 +19764,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_IDSALIDA_TICKET">
+          <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="1" />
+          <End Type="dsi_pos_demoModel.tblTICKETSVENTA" Role="tblTICKETSVENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSalida">
+              <PropertyRef Name="idSalida" />
+            </Principal>
+            <Dependent Role="tblTICKETSVENTA">
+              <PropertyRef Name="IDSALIDA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblSalida_tblTipoInventario">
           <End Type="dsi_pos_demoModel.tblTipoInventario" Role="tblTipoInventario" Multiplicity="0..1" />
           <End Type="dsi_pos_demoModel.tblSalida" Role="tblSalida" Multiplicity="*" />
@@ -19758,14 +19860,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="sp_ReporteListaGuiasImpresion_Result">
-          <Property Type="String" Name="Fecha" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="1000" />
-          <Property Type="String" Name="Negocio" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="NIT" Nullable="true" MaxLength="75" />
-          <Property Type="String" Name="FechaImpresion" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="HoraImpresion" Nullable="true" MaxLength="50" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -24960,9 +25054,34 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ReporteListaGuiasImpresion" FunctionName="mdlModeloDatos.Store.sp_ReporteListaGuiasImpresion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_ReporteListaGuiasImpresion_Result">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Negocio" ColumnName="Negocio" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="FechaImpresion" ColumnName="FechaImpresion" />
+                <ScalarProperty Name="HoraImpresion" ColumnName="HoraImpresion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblTICKETSVENTAS">
+            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblTICKETSVENTA">
+              <MappingFragment StoreEntitySet="tblTICKETSVENTAS">
+                <ScalarProperty Name="MONTOVALIDACION" ColumnName="MONTOVALIDACION" />
+                <ScalarProperty Name="BITAPLICADO" ColumnName="BITAPLICADO" />
+                <ScalarProperty Name="IDSALIDA" ColumnName="IDSALIDA" />
+                <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+                <ScalarProperty Name="FECHACREACION" ColumnName="FECHACREACION" />
+                <ScalarProperty Name="IDTICKET" ColumnName="IDTICKET" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblSalidas">
             <EntityTypeMapping TypeName="dsi_pos_demoModel.tblSalida">
               <MappingFragment StoreEntitySet="tblSalida">
+                <ScalarProperty Name="bitGuiaImpresa" ColumnName="bitGuiaImpresa" />
                 <ScalarProperty Name="BITTRANSPORTE" ColumnName="BITTRANSPORTE" />
                 <ScalarProperty Name="DIRECCIONALTERNA" ColumnName="DIRECCIONALTERNA" />
                 <ScalarProperty Name="NOMBREALTERNO" ColumnName="NOMBREALTERNO" />
@@ -25016,18 +25135,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_ReporteListaGuiasImpresion" FunctionName="mdlModeloDatos.Store.sp_ReporteListaGuiasImpresion">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_ReporteListaGuiasImpresion_Result">
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
-                <ScalarProperty Name="Negocio" ColumnName="Negocio" />
-                <ScalarProperty Name="NIT" ColumnName="NIT" />
-                <ScalarProperty Name="FechaImpresion" ColumnName="FechaImpresion" />
-                <ScalarProperty Name="HoraImpresion" ColumnName="HoraImpresion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

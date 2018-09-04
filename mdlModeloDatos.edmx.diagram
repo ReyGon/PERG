@@ -459,7 +459,9 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblPrecioCompetencia_tblClientes" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblReciboCaja_tblReciboCaja1" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSurtir_tblClientes" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalida" Width="1.5" PointX="8.64581000089916" PointY="11.882916023900227" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblTICKETSVENTA" Width="1.5" PointX="0.15342674784056226" PointY="20.210584769123507" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_IDCLIENTE_TICKET" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblSalida" Width="1.5" PointX="5.14088212938089" PointY="21.029924760120885" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblAlmacen" />
         <AssociationConnector Association="dsi_pos_demoModel.fk_caja_salida" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblCaja_tblSalida" />
@@ -473,6 +475,7 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblMovimientoInventario_tblSalida" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblMunicipio" />
         <AssociationConnector Association="dsi_pos_demoModel.FK__tblSalida__salid__3F7C3DC5" />
+        <AssociationConnector Association="dsi_pos_demoModel.FK_IDSALIDA_TICKET" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblTipoInventario" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblTipoMovimiento" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblUsuarios" />

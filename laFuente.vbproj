@@ -1169,6 +1169,12 @@
     <Compile Include="Modulo Notificaciones\frmListaNotificaciones.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modulo Notificaciones\frmNotificacion.Designer.vb">
+      <DependentUpon>frmNotificacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo Notificaciones\frmNotificacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modulos Dinamicos\frmReportesDinamicos.Designer.vb">
       <DependentUpon>frmReportesDinamicos.vb</DependentUpon>
     </Compile>
@@ -1703,6 +1709,12 @@
       <DependentUpon>frmClientePequenioLista.vb</DependentUpon>
     </Compile>
     <Compile Include="sistemaPequeño\Modulo Clientes\frmClientePequenioLista.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sistemaPequeño\Modulo Clientes\frmTicketsCliente.Designer.vb">
+      <DependentUpon>frmTicketsCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="sistemaPequeño\Modulo Clientes\frmTicketsCliente.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaBarraDerecha.Designer.vb">
@@ -2275,6 +2287,9 @@
     <EmbeddedResource Include="Modulo Notificaciones\frmListaNotificaciones.resx">
       <DependentUpon>frmListaNotificaciones.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulo Notificaciones\frmNotificacion.resx">
+      <DependentUpon>frmNotificacion.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos Dinamicos\frmReportesDinamicos.resx">
       <DependentUpon>frmReportesDinamicos.vb</DependentUpon>
     </EmbeddedResource>
@@ -2610,6 +2625,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="sistemaPequeño\Modulo Clientes\frmClientePequenioLista.resx">
       <DependentUpon>frmClientePequenioLista.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sistemaPequeño\Modulo Clientes\frmTicketsCliente.resx">
+      <DependentUpon>frmTicketsCliente.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="sistemaPequeño\Modulo Despacho Contra Factura\frmDespachoFacturaBarraDerecha.resx">
       <DependentUpon>frmDespachoFacturaBarraDerecha.vb</DependentUpon>

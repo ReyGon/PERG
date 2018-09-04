@@ -939,7 +939,7 @@ Public Class frmPagoProveedores
 
                                     pago.docboletadeposito = Me.txtdocumentoboleta.Text
 
-                                    If Me.cmbDocumento.Visible = True Then
+                                    If Me.cmbDocumento.Visible = True And Me.cmbDocumento.SelectedValue <> 0 Then
 
                                         pago.identradapago = CInt(Me.cmbDocumento.SelectedValue())
 

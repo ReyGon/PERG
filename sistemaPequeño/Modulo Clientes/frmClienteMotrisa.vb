@@ -481,6 +481,7 @@ Public Class frmClienteMotrisa
                 'm.email = txtCorreo.Text
                 'm.observacion = txtObservacion.Text
                 m.direccionEnvio1 = txtDireccion1.Text
+                m.habillitado = chkHabilitado.Checked
                 'm.direccionEnvio2 = txtDirEnvio2.Text
 
                 m.bitMostrador = chkMostrador.Checked
