@@ -1200,6 +1200,25 @@ Public Class frmSalidas
 
         End Try
     End Sub
+    'Funcion que agrega los pendientes por surtir desde el formulario de busqueda
+    Public Sub fnAgregar_Pendientes()
+        'agregar productos a grid.
+        Dim filas() As String
+
+        'id, codigo,nombre,precio,cantidad
+        filas = {"0", mdlPublicVars.superSearchId, mdlPublicVars.superSearchCodigo, mdlPublicVars.superSearchNombre, mdlPublicVars.superSearchCantidad,
+                 Format(mdlPublicVars.superSearchPrecio, mdlPublicVars.formatoMoneda), "0", False, "", 0, "", 0, 0,
+                 mdlPublicVars.superSearchCodSurtir, mdlPublicVars.superSearchSurtir, mdlPublicVars.General_idTipoInventario,
+                 mdlPublicVars.superSearchTipoPrecio, mdlPublicVars.superSearchEstado, mdlPublicVars.superSearchCodigoSurtir, mdlPublicVars.superSearchBitSurtir,
+                 mdlPublicVars.superSearchBitNuevo, mdlPublicVars.superSearchBitOferta, mdlPublicVars.superSearchPromocion, mdlPublicVars.superSearchCuotaPromocion, mdlPublicVars.superSearchCantidadPromocion}
+        grdProductos.Rows.Add(filas)
+
+        grdProductos.Columns(4).IsCurrent = True
+        grdProductos.Rows(grdProductos.Rows.Count - 1).IsCurrent = True
+
+
+        fnActualizar_Total()
+    End Sub
 
     'Funcion que se utiliza para agregar articulos
     Public Sub fnAgregar_Articulos(ByVal surtir As Boolean)
@@ -1333,24 +1352,7 @@ Public Class frmSalidas
         End Try
     End Sub
 
-    'Funcion que agrega los pendientes por surtir desde el formulario de busqueda
-    Public Sub fnAgregar_Pendientes()
-        'agregar productos a grid.
-        Dim filas() As String
-
-        'id, codigo,nombre,precio,cantidad
-        filas = {"0", mdlPublicVars.superSearchId, mdlPublicVars.superSearchCodigo, mdlPublicVars.superSearchNombre, mdlPublicVars.superSearchCantidad,
-                 Format(mdlPublicVars.superSearchPrecio, mdlPublicVars.formatoMoneda), "0", False, "", 0, "", 0, 0,
-                 mdlPublicVars.superSearchCodSurtir, mdlPublicVars.superSearchSurtir, mdlPublicVars.General_idTipoInventario,
-                 mdlPublicVars.superSearchTipoPrecio, mdlPublicVars.superSearchEstado}
-        grdProductos.Rows.Add(filas)
-
-        grdProductos.Columns(4).IsCurrent = True
-        grdProductos.Rows(grdProductos.Rows.Count - 1).IsCurrent = True
-
-
-        fnActualizar_Total()
-    End Sub
+    
 
     'Funcion utilizada para calcular el total de la venta
     Public Sub fnActualizar_Total()

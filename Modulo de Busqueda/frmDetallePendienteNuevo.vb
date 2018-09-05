@@ -833,7 +833,6 @@ Public Class frmDetallePendienteNuevo
         End Try
     End Function
 
-
     'Funcion ingreso de cantidad
     Private Sub fnIngresoCantidad(grid As RadGridView, e As KeyEventArgs)
         Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grid)
@@ -923,8 +922,6 @@ Public Class frmDetallePendienteNuevo
             End Try
 
             surtir = grd.Rows(index).Cells("txmSurtir").Value
-
-
 
             ''Validador de Promociones
             If bitOferta = True Then
@@ -1080,7 +1077,6 @@ Public Class frmDetallePendienteNuevo
     Private Sub grdDatos_CellDoubleClick(sender As Object, e As GridViewCellEventArgs) Handles grdDatos.CellDoubleClick
         fnCambioPrecio(grdDatos, e)
     End Sub
-
 
     Private Sub grdDatos2_CellDoubleClick(sender As Object, e As GridViewCellEventArgs) Handles grdDatos2.CellDoubleClick
         fnCambioPrecio(grdDatos2, e)
