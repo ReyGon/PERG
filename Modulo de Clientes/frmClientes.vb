@@ -84,7 +84,7 @@ Public Class frmClientes
                     Me.cmbCategoriaCliente.SelectedValue = cliente.idcategoria
                     Me.dtpFechaNac.Value = CDate(cliente.fechanac).ToShortDateString
                     Me.chkPromociones.Checked = cliente.bitPromociones
-                    Me.chkSubcliente.CheckAlign = cliente.BITSUBCLIENTE
+                    Me.chkSubcliente.Checked = cliente.BITSUBCLIENTE
                 End If
 
                 conn.Close()
