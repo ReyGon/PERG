@@ -436,6 +436,7 @@ Public Class frmPagosLista
                         pago.fechaFiltro = CDate(fnFechaServidor())
                         pago.consumido = 0
                         pago.afavor = 0
+                        pago.estadocuenta = True
                         pago.confirmado = True
                         pago.codutilizado = False
                         pago.docboletadeposito = pagom.docboletadeposito

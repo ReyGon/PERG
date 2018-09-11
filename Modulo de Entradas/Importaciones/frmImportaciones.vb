@@ -1858,6 +1858,7 @@ Public Class frmImportaciones
                 Me.grdproductos.Rows.AddNew()
             End If
         Catch ex As Exception
+            RadMessageBox.Show(ex.Message)
         End Try
     End Sub
 

@@ -49,7 +49,7 @@ Public Class frmVerificarTransito
                     .DataSource = invoice
                 End With
 
-                Dim prefor = (From x In conexion.tblEntradas Where x.idEntrada = idPreforma And x.anulado = True Select Codigo = x.idEntrada, Nombre = CStr(x.serieDocumento & "-" & x.documento))
+                Dim prefor = (From x In conexion.tblEntradas Where x.idEntrada = idPreforma And x.anulado = False Select Codigo = x.idEntrada, Nombre = CStr(x.serieDocumento & "-" & x.documento))
 
                 With cmbPreforma
                     .DataSource = Nothing
@@ -59,6 +59,10 @@ Public Class frmVerificarTransito
                 End With
 
                 Me.cmbPreforma.Enabled = False
+
+                If idPreforma > 0 Then
+                    Me.cmbPreforma.SelectedValue = idPreforma
+                End If
 
                 conn.Close()
             End Using
