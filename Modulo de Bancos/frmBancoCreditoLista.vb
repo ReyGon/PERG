@@ -155,6 +155,13 @@ Public Class frmBancoCreditoLista
                 credito.bitAnulado = True
                 ctx.SaveChanges()
 
+                'Obtenemos la cuenta
+                Dim cuenta As tblBanco_Cuenta = (From x In ctx.tblBanco_Cuenta Where x.codigo = credito.cuenta
+                   Select x).FirstOrDefault
+
+                cuenta.saldo -= credito.total
+                ctx.SaveChanges()
+
                 transaction.Complete()
             Catch ex As Exception
                 success = False

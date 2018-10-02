@@ -205,7 +205,7 @@ Public Class frmBancoChequesLista
         llenagrid()
     End Sub
 
-    Private Sub fnGrid_valueChanged(ByVal sender As Object, ByVal e As System.EventArgs)
+    Private Sub fnGrid_valueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles grdDatos.Click
 
         If Me.grdDatos.Rows.Count > 0 Then
             Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdDatos)

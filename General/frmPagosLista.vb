@@ -452,12 +452,14 @@ Public Class frmPagosLista
                         salidamod.saldo -= salida.Item3
                         salidamod.pagado += salida.Item3
 
+
                         conexion.SaveChanges()
                     ElseIf proveedor = True Then
                         Dim entradamod As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = salida.Item1 Select x).FirstOrDefault
 
                         entradamod.saldo -= salida.Item3
                         entradamod.pagos += salida.Item3
+
 
                         conexion.SaveChanges()
                     End If

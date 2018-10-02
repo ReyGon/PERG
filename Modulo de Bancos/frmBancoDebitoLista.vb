@@ -153,6 +153,15 @@ Public Class frmBancoDebitoLista
                 debito.bitAnulado = True
                 ctx.SaveChanges()
 
+                'obtenemos la cuenta del debito
+                Dim cuenta As tblBanco_Cuenta = (From x In ctx.tblBanco_Cuenta Where x.codigo = debito.cuenta _
+                   Select x).FirstOrDefault
+
+                cuenta.pagosTransito += debito.monto
+                cuenta.saldo += debito.monto
+
+                ctx.SaveChanges()
+
                 transaction.Complete()
             Catch ex As Exception
                 success = False
@@ -166,6 +175,7 @@ Public Class frmBancoDebitoLista
         Else
             alertas.fnErrorGuardar()
         End If
+        
     End Sub
 
     Private Sub fnDocSalida() Handles Me.imprimir
