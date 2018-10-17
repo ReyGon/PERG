@@ -310,5 +310,4 @@ Public Class frmBancoDebito
             cmbBeneficiario.SelectedValue = ultimo
         End If
     End Sub
-
 End Class

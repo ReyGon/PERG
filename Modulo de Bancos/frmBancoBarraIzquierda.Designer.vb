@@ -35,9 +35,13 @@ Partial Class frmBancoBarraIzquierda
         Me.radMenu = New Telerik.WinControls.UI.RadMenu()
         Me.menus = New Telerik.WinControls.UI.RadMenuItem()
         Me.itemBeneficiario = New Telerik.WinControls.UI.RadMenuItem()
+        Me.itemAcreditatores = New Telerik.WinControls.UI.RadMenuItem()
         Me.itemBancos = New Telerik.WinControls.UI.RadMenuItem()
         Me.itemConceptos = New Telerik.WinControls.UI.RadMenuItem()
-        Me.itemAcreditatores = New Telerik.WinControls.UI.RadMenuItem()
+        Me.itemConceptoAjuste = New Telerik.WinControls.UI.RadMenuItem()
+        Me.pnl6 = New System.Windows.Forms.Panel()
+        Me.pbx6 = New System.Windows.Forms.PictureBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl1.SuspendLayout()
@@ -50,6 +54,8 @@ Partial Class frmBancoBarraIzquierda
         CType(Me.pbx4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl5.SuspendLayout()
         CType(Me.radMenu, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnl6.SuspendLayout()
+        CType(Me.pbx6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -209,7 +215,7 @@ Partial Class frmBancoBarraIzquierda
         '
         Me.pnl5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.pnl5.Controls.Add(Me.radMenu)
-        Me.pnl5.Location = New System.Drawing.Point(14, 414)
+        Me.pnl5.Location = New System.Drawing.Point(14, 497)
         Me.pnl5.Name = "pnl5"
         Me.pnl5.Size = New System.Drawing.Size(100, 77)
         Me.pnl5.TabIndex = 75
@@ -251,7 +257,7 @@ Partial Class frmBancoBarraIzquierda
         Me.menus.DisplayStyle = Telerik.WinControls.DisplayStyle.ImageAndText
         Me.menus.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.menus.Image = Global.laFuente.My.Resources.Resources.settings1
-        Me.menus.Items.AddRange(New Telerik.WinControls.RadItem() {Me.itemBeneficiario, Me.itemAcreditatores, Me.itemBancos, Me.itemConceptos})
+        Me.menus.Items.AddRange(New Telerik.WinControls.RadItem() {Me.itemBeneficiario, Me.itemAcreditatores, Me.itemBancos, Me.itemConceptos, Me.itemConceptoAjuste})
         Me.menus.Name = "menus"
         Me.menus.Text = "Tablas"
         Me.menus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
@@ -260,6 +266,11 @@ Partial Class frmBancoBarraIzquierda
         '
         Me.itemBeneficiario.Name = "itemBeneficiario"
         Me.itemBeneficiario.Text = "Beneficiarios"
+        '
+        'itemAcreditatores
+        '
+        Me.itemAcreditatores.Name = "itemAcreditatores"
+        Me.itemAcreditatores.Text = "Acreditadores"
         '
         'itemBancos
         '
@@ -271,10 +282,43 @@ Partial Class frmBancoBarraIzquierda
         Me.itemConceptos.Name = "itemConceptos"
         Me.itemConceptos.Text = "Conceptos"
         '
-        'itemAcreditatores
+        'itemConceptoAjuste
         '
-        Me.itemAcreditatores.Name = "itemAcreditatores"
-        Me.itemAcreditatores.Text = "Acreditadores"
+        Me.itemConceptoAjuste.Name = "itemConceptoAjuste"
+        Me.itemConceptoAjuste.Text = "Concepto Ajustes"
+        '
+        'pnl6
+        '
+        Me.pnl6.BackColor = System.Drawing.Color.SteelBlue
+        Me.pnl6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.pnl6.Controls.Add(Me.pbx6)
+        Me.pnl6.Controls.Add(Me.Label3)
+        Me.pnl6.Location = New System.Drawing.Point(14, 414)
+        Me.pnl6.Name = "pnl6"
+        Me.pnl6.Size = New System.Drawing.Size(100, 77)
+        Me.pnl6.TabIndex = 75
+        '
+        'pbx6
+        '
+        Me.pbx6.Image = Global.laFuente.My.Resources.Resources.cuentaCredito
+        Me.pbx6.Location = New System.Drawing.Point(26, 9)
+        Me.pbx6.Name = "pbx6"
+        Me.pbx6.Size = New System.Drawing.Size(46, 39)
+        Me.pbx6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx6.TabIndex = 70
+        Me.pbx6.TabStop = False
+        '
+        'Label3
+        '
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(19, 51)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(56, 19)
+        Me.Label3.TabIndex = 69
+        Me.Label3.Text = "Ajustes"
         '
         'frmBancoBarraIzquierda
         '
@@ -282,6 +326,7 @@ Partial Class frmBancoBarraIzquierda
         Me.BackColor = System.Drawing.Color.SteelBlue
         Me.ClientSize = New System.Drawing.Size(135, 740)
         Me.ControlBox = False
+        Me.Controls.Add(Me.pnl6)
         Me.Controls.Add(Me.pnl5)
         Me.Controls.Add(Me.pnl4)
         Me.Controls.Add(Me.pnl3)
@@ -305,6 +350,7 @@ Partial Class frmBancoBarraIzquierda
         Me.Controls.SetChildIndex(Me.pnl3, 0)
         Me.Controls.SetChildIndex(Me.pnl4, 0)
         Me.Controls.SetChildIndex(Me.pnl5, 0)
+        Me.Controls.SetChildIndex(Me.pnl6, 0)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl1.ResumeLayout(False)
@@ -321,6 +367,9 @@ Partial Class frmBancoBarraIzquierda
         CType(Me.pbx4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl5.ResumeLayout(False)
         CType(Me.radMenu, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnl6.ResumeLayout(False)
+        Me.pnl6.PerformLayout()
+        CType(Me.pbx6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -345,5 +394,9 @@ Partial Class frmBancoBarraIzquierda
     Friend WithEvents itemBancos As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents itemConceptos As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents itemAcreditatores As Telerik.WinControls.UI.RadMenuItem
+    Friend WithEvents pnl6 As System.Windows.Forms.Panel
+    Friend WithEvents pbx6 As System.Windows.Forms.PictureBox
+    Public WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents itemConceptoAjuste As Telerik.WinControls.UI.RadMenuItem
 
 End Class

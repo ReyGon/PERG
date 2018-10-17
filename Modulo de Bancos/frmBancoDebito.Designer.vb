@@ -28,6 +28,7 @@ Partial Class frmBancoDebito
         Me.lbl0Guardar = New System.Windows.Forms.Label()
         Me.pbx0Guardar = New System.Windows.Forms.PictureBox()
         Me.rgbInformacion = New Telerik.WinControls.UI.RadGroupBox()
+        Me.chkProgramado = New System.Windows.Forms.CheckBox()
         Me.cmbConcepto = New System.Windows.Forms.ComboBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.lblCorrelativo = New System.Windows.Forms.Label()
@@ -47,7 +48,6 @@ Partial Class frmBancoDebito
         Me.cmbBanco = New System.Windows.Forms.ComboBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.chkProgramado = New System.Windows.Forms.CheckBox()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
         Me.pnx1Salir.SuspendLayout()
@@ -69,7 +69,7 @@ Partial Class frmBancoDebito
         'pnlBarra
         '
         Me.pnlBarra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlBarra.BackColor = System.Drawing.Color.SteelBlue
         Me.pnlBarra.Controls.Add(Me.pnx1Salir)
         Me.pnlBarra.Controls.Add(Me.pnx0Guardar)
@@ -181,6 +181,16 @@ Partial Class frmBancoDebito
         Me.rgbInformacion.Size = New System.Drawing.Size(688, 251)
         Me.rgbInformacion.TabIndex = 108
         '
+        'chkProgramado
+        '
+        Me.chkProgramado.AutoSize = True
+        Me.chkProgramado.Location = New System.Drawing.Point(373, 27)
+        Me.chkProgramado.Name = "chkProgramado"
+        Me.chkProgramado.Size = New System.Drawing.Size(103, 21)
+        Me.chkProgramado.TabIndex = 151
+        Me.chkProgramado.Text = "Programado"
+        Me.chkProgramado.UseVisualStyleBackColor = True
+        '
         'cmbConcepto
         '
         Me.cmbConcepto.FormattingEnabled = True
@@ -203,7 +213,7 @@ Partial Class frmBancoDebito
         'lblCorrelativo
         '
         Me.lblCorrelativo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblCorrelativo.AutoSize = True
         Me.lblCorrelativo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.lblCorrelativo.Location = New System.Drawing.Point(136, 47)
@@ -379,17 +389,7 @@ Partial Class frmBancoDebito
         Me.Label9.TabIndex = 113
         Me.Label9.Text = "Información"
         '
-        'chkProgramado
-        '
-        Me.chkProgramado.AutoSize = True
-        Me.chkProgramado.Location = New System.Drawing.Point(373, 27)
-        Me.chkProgramado.Name = "chkProgramado"
-        Me.chkProgramado.Size = New System.Drawing.Size(103, 21)
-        Me.chkProgramado.TabIndex = 151
-        Me.chkProgramado.Text = "Programado"
-        Me.chkProgramado.UseVisualStyleBackColor = True
-        '
-        'frmBancoDebitoCredito
+        'frmBancoDebito
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(711, 339)
@@ -398,7 +398,7 @@ Partial Class frmBancoDebito
         Me.Controls.Add(Me.rgbInformacion)
         Me.Controls.Add(Me.pnlBarra)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "frmBancoDebitoCredito"
+        Me.Name = "frmBancoDebito"
         '
         '
         '
