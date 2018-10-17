@@ -1,204 +1,165 @@
-﻿''Option Strict On
+﻿Option Strict On
 
-''Imports System.Data
-''Imports System.Data.EntityClient
-''Imports Telerik.WinControls
-''Imports Telerik.WinControls.UI
-''Imports Telerik.WinControls.Data
-''Imports System.Linq
-''Imports System.Transactions
+Imports System.Data
+Imports System.Data.EntityClient
+Imports Telerik.WinControls
+Imports Telerik.WinControls.UI
+Imports Telerik.WinControls.Data
+Imports System.Linq
+Imports System.Transactions
 
-''Public Class frmHistorialPagos
-''    Private permiso As New clsPermisoUsuario
-''    Private _idproveedor As Integer
+Public Class frmHistorialPagos
+    Private permiso As New clsPermisoUsuario
+    Private _idproveedor As Integer
 
-''    Public Property idproveedor As Integer
-''        Get
-''            idproveedor = _idproveedor
-''        End Get
-''        Set(ByVal value As Integer)
-''            _idproveedor = value
-''        End Set
-''    End Property
+    Public Property idproveedor As Integer
+        Get
+            idproveedor = _idproveedor
+        End Get
+        Set(ByVal value As Integer)
+            _idproveedor = value
+        End Set
+    End Property
 
-''#Region "Eventos"
-''    'LOAD
-''    Private Sub frmFacturasElegir_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-''        mdlPublicVars.fnFormatoGridMovimientos(grdPagos)
-''        mdlPublicVars.fnFormatoGridEspeciales(grdPagos)
+#Region "Eventos"
 
-''        fnLlenarGrid()
-''        mdlPublicVars.fnGrid_iconos(grdPagos)
-''    End Sub
+    Private Property listaEntradas As Object
 
-''    'CLIC EN ACEPTAR PARA AGREGAR EMPLEADOS
+    'LOAD
+    Private Sub frmFacturasElegir_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        mdlPublicVars.fnFormatoGridMovimientos(grdPagos)
+        mdlPublicVars.fnFormatoGridEspeciales(grdPagos)
 
-''    Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
+        Me.rbListado.Checked = True
 
-''        If idproveedor > 0 Then
+        fnLlenarGrid()
+        mdlPublicVars.fnGrid_iconos(grdPagos)
+    End Sub
 
-''            Dim entradas As List(Of GridViewRowInfo) = (From x In grdPagos.Rows Where CBool(x.Cells("chmElegir").Value) Select x).ToList
+    'CLIC EN ACEPTAR PARA AGREGAR EMPLEADOS
 
-''            For Each entrada As GridViewRowInfo In entradas
-
-''                listaEntradas.Add(New Tuple(Of Integer, String, Decimal)(CInt(entrada.Cells("Id").Value), CStr2(entrada.Cells("Factura").Value), CDec(entrada.Cells("txmMontoPagar").Value)))
-
-''            Next
-''            mdlPublicVars.superSearchLista3 = listaEntradas
-''        ElseIf idcliente > 0 Then
-''            listaSalidas = New List(Of Tuple(Of Integer, String, Decimal))
-
-''            Dim salidas As List(Of GridViewRowInfo) = (From x In grdPagos.Rows Where CBool(x.Cells("chmElegir").Value) Select x).ToList
-
-''            For Each salida As GridViewRowInfo In salidas
-
-''                listaSalidas.Add(New Tuple(Of Integer, String, Decimal)(CInt(salida.Cells("id").Value), CStr(salida.Cells("Facturas").Value), CDec(salida.Cells("txmMontoPagar").Value)))
-
-''            Next
-
-''            mdlPublicVars.superSearchLista3 = listaSalidas
-''        End If
-
-''        Me.Close()
-''    End Sub
-
-''    'SALIR DEL FORMULARIO
-''    Private Sub fnLlenarGrid()
-''        Try
-''            Dim dt As New DataTable
-''            Dim conexion As dsi_pos_demoEntities
-''            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
-''                conn.Open()
-''                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
-''                Dim elegir As Boolean = False
-
-''                If idproveedor > 0 Then
+    Private Sub btnAceptar_Click(sender As Object, e As EventArgs)
 
 
-''                    dt = EntitiToDataTable(conexion.sp_ConsultafacturasCompras(idproveedor))
+        Me.Close()
+    End Sub
+
+    'SALIR DEL FORMULARIO
+    Private Sub fnLlenarGrid()
+        Try
+            Dim dt As New DataTable
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+                Dim elegir As Boolean = False
+
+                If idproveedor > 0 Then
 
 
+                    dt = EntitiToDataTable(conexion.sp_PagosProveedoresImportacion(idproveedor))
 
-''                    Me.grdPagos.DataSource = dt
+                    Me.grdPagos.DataSource = dt
 
-''                    ' Dim entradas As List(Of tblEntrada) = (From x In conexion.tblEntradas.AsEnumerable Where x.idProveedor = idproveedor Where x.saldo > 0 Select x Order By x.fechaRegistro Descending).ToList()
+                    conn.Close()
 
-''                    'For Each entrada As tblEntrada In entradas
-''                    'elegir = If((From x In listaEntradas Where x.Item1 = entrada.idEntrada Select x).Count() > 0, True, False)
-''                    'Me.grdFacturas.Rows.Add({elegir, entrada.idEntrada, CStr(entrada.serieDocumento + "-" + entrada.documento), entrada.saldo, 0, entrada.fechaRegistro.ToShortDateString})
-''                    'Next
-''                    conn.Close()
+                End If
 
-''                ElseIf idcliente > 0 Then
+                fnConfiguracion()
 
-''                    dt = EntitiToDataTable(conexion.sp_ConsultafacturasVentas(idcliente))
-''                    Me.grdPagos.DataSource = dt
+            End Using
+        Catch
 
-''                    ' Dim salidas As List(Of tblSalida) = (From x In conexion.tblSalidas Where x.idCliente = idcliente Where x.saldo > 0 And (x.facturado = True Or x.despachar = True Or x.empacado = True) And x.anulado = False Select x Order By x.fechaRegistro Descending).ToList
+        End Try
 
-''                    'For Each salida As tblSalida In salidas
-''                    'elegir = If((From x In listaSalidas Where x.Item1 = salida.idSalida Select x).Count() > 0, True, False)
-''                    'Me.grdFacturas.Rows.Add({elegir, salida.idSalida, CStr(salida.documento), salida.saldo, 0, salida.fechaRegistro.ToShortDateString})
-''                    'Next
+    End Sub
 
+    Public Sub fnConfiguracion()
+        Try
+            ''Me.grdPagos.Columns("Id").IsVisible = False
+            Me.grdPagos.Columns("chmElegir").IsVisible = False
+            Me.grdPagos.Columns("chmElegir").ReadOnly = True
+            Me.grdPagos.Columns("TipoPago").Width = 75
+            Me.grdPagos.Columns("Proveedor").Width = 75
+            Me.grdPagos.Columns("DocPago").ReadOnly = True
+            Me.grdPagos.Columns("FechaPago").Width = 75
+            Me.grdPagos.Columns("PagoQ").Width = 60
+            Me.grdPagos.Columns("TasaCambio").Width = 50
+            Me.grdPagos.Columns("PagoD").Width = 50
+            Me.grdPagos.Columns("DocumentoAfectado").Width = 60
+            Me.grdPagos.Columns("chmElegir").ReadOnly = True
+        Catch ex As Exception
 
-''                    conn.Close()
+        End Try
+    End Sub
 
-''                End If
+#End Region
 
-''                fnConfiguracion()
+    Private Sub grdPagos_Click(sender As Object, e As EventArgs) Handles grdPagos.Click
+        Try
+            Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdPagos)
+            If Me.rbListado.Checked = True Then
+                Me.txtTasaCambio.Text = CStr(Me.grdPagos.Rows(fila).Cells("TasaCambio").Value)
+            Else
+                Me.txtTasaCambio.Focus()
+            End If
+        Catch ex As Exception
 
-''            End Using
-''        Catch
+        End Try
+    End Sub
 
-''        End Try
+    Private Sub grdFacturas_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles grdPagos.MouseDoubleClick
+        Try
 
-''    End Sub
+            Dim index As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdPagos)
+            Dim salida As Integer = CInt(Me.grdPagos.Rows(index).Cells("id").Value)
+            frmPedidoConcepto.Text = "Ventas"
+            frmPedidoConcepto.idSalida = salida
+            frmPedidoConcepto.WindowState = FormWindowState.Normal
+            frmPedidoConcepto.StartPosition = FormStartPosition.CenterScreen
+            permiso.PermisoDialogEspeciales(frmPedidoConcepto)
+            frmPedidoConcepto.Dispose()
 
+        Catch ex As Exception
 
-''    Public Sub fnConfiguracion()
-''        Try
-''            Me.grdPagos.Columns("Id").IsVisible = False
-''            Me.grdPagos.Columns("chmElegir").Width = 75
-''            Me.grdPagos.Columns("chmElegir").ReadOnly = True
-''            Me.grdPagos.Columns("Saldo").Width = 75
-''            Me.grdPagos.Columns("Factura").Width = 75
-''            Me.grdPagos.Columns("Factura").ReadOnly = True
-''            Me.grdPagos.Columns("Fecha").Width = 75
-''            Me.grdPagos.Columns("chmElegir").ReadOnly = True
-''        Catch ex As Exception
+        End Try
 
-''        End Try
-''    End Sub
+    End Sub
 
-''#End Region
+    Private Sub fnSalir() Handles Me.panel0
+        Try
+            Me.Close()
+        Catch ex As Exception
 
-''    Private Sub grdFacturas_CellEndEdit(sender As Object, e As GridViewCellEventArgs) Handles grdPagos.CellEndEdit
-''        Try
+        End Try
+    End Sub
 
-''            Dim fila As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdPagos)
+    Private Sub rbListado_CheckedChanged(sender As Object, e As EventArgs) Handles rbListado.CheckedChanged
+        Try
+            If rbListado.Checked = True Then
+                rbManual.Checked = False
+                Me.txtTasaCambio.Enabled = False
+            Else
+                rbManual.Checked = True
+                Me.txtTasaCambio.Enabled = True
+                Me.txtTasaCambio.Focus()
+            End If
+        Catch ex As Exception
 
-''            Dim saldo As Decimal = CDec(Me.grdPagos.Rows(fila).Cells("Saldo").Value)
-''            Dim monto As Decimal = CDec(Me.grdPagos.Rows(fila).Cells("txmMontoPagar").Value)
+        End Try
+    End Sub
 
-''            If monto > saldo Then
-''                alerta.contenido = "El monto ingresado es mayor al saldo del documento!"
-''                alerta.fnErrorContenido()
+    Private Sub btnAceptar_Click_1(sender As Object, e As EventArgs) Handles btnAceptar.Click
+        Try
+            If Me.txtTasaCambio.Text <> "" Or CDec(Me.txtTasaCambio.Text) > 0 Then
+                frmNacionalizacion.tasaCambio = CDec(Me.txtTasaCambio.Text)
+                Me.Close()
+            Else
+                frmNotificacion.lblNotificacion.Text = "La tasa de cambio" + vbLf + "no es valida"
+                frmNotificacion.Show()
+            End If
+        Catch ex As Exception
 
-''                Me.grdPagos.Rows(fila).Cells("txmMontoPagar").Value = 0
-''            End If
-
-''            For i As Integer = 0 To Me.grdPagos.Rows.Count - 1
-''                If CInt(Me.grdPagos.Rows(i).Cells("txmMontoPagar").Value) > 0 Then
-''                    Me.grdPagos.Rows(i).Cells("chmElegir").Value = True
-''                End If
-''            Next
-
-''            fnTotales()
-''        Catch ex As Exception
-
-''        End Try
-''    End Sub
-
-''    Private Sub fntotales()
-''        Try
-''            Dim acreditacion As Decimal = CDec(Me.txtAcreditacionTotal.Text)
-
-''            For Index As Integer = 0 To Me.grdPagos.Rows.Count - 1
-''                acreditacion -= CDec(Me.grdPagos.Rows(Index).Cells("txmMontoPagar").Value)
-''            Next
-
-''            Me.txtAcreditacionPendiente.Text = CStr(acreditacion)
-
-''        Catch ex As Exception
-
-''        End Try
-''    End Sub
-
-''    Private Sub grdFacturas_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles grdPagos.MouseDoubleClick
-''        Try
-
-''            Dim index As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdPagos)
-''            Dim salida As Integer = CInt(Me.grdPagos.Rows(index).Cells("id").Value)
-''            frmPedidoConcepto.Text = "Ventas"
-''            frmPedidoConcepto.idSalida = salida
-''            frmPedidoConcepto.WindowState = FormWindowState.Normal
-''            frmPedidoConcepto.StartPosition = FormStartPosition.CenterScreen
-''            permiso.PermisoDialogEspeciales(frmPedidoConcepto)
-''            frmPedidoConcepto.Dispose()
-
-''        Catch ex As Exception
-
-''        End Try
-
-''    End Sub
-
-''    Private Sub fnSalir() Handles Me.panel0
-''        Try
-''            Me.Close()
-''        Catch ex As Exception
-
-''        End Try
-''    End Sub
-
-''End Class
+        End Try
+    End Sub
+End Class

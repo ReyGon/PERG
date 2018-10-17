@@ -10,6 +10,7 @@ Imports System.Linq
 Public Class frmNacionalizacion
 
     Dim _idinvoice As Integer
+    Public tasaCambio As Decimal
 
     Public Property idinvoice As Integer
         Get
@@ -36,18 +37,18 @@ Public Class frmNacionalizacion
                 Dim contadorproductos As Integer = (From x In conexion.tblEntradasDetalles Where x.idEntrada = idinvoice Select x).Count
                 Dim sumatasaproveedor As Decimal
                 Dim contadortasaproveedor As Integer
-                Try
-                    sumatasaproveedor = (From x In conexion.tblCajas Where x.proveedor = CInt(invoice.idProveedor) And x.anulado = False Select CDec(x.tipoCambio)).Sum
-                    contadortasaproveedor = (From x In conexion.tblCajas Where x.proveedor = CInt(invoice.idProveedor) And x.anulado = False Select x).Count
-                Catch ex As Exception
-                    sumatasaproveedor = CDec(InputBox("¡No existe registro de tasa de cambio, Digitela manualmente por favor!", nombreSistema))
-                    contadortasaproveedor = 1
-                End Try
-                
+
+                frmHistorialPagos.Text = "Pagos/Anticipos a Proveedor"
+                frmHistorialPagos.WindowState = FormWindowState.Normal
+                frmHistorialPagos.StartPosition = FormStartPosition.CenterScreen
+                frmHistorialPagos.idproveedor = CInt(invoice.idProveedor)
+                frmHistorialPagos.ShowDialog()
+                frmHistorialPagos.Dispose()
+
                 Me.lblDocumentoImportacion.Text = CStr(invoice.serieDocumento + "-" + invoice.documento)
                 Me.lblCantidadProductos.Text = CStr(contadorproductos)
                 Me.lblTotalImportacionDolar.Text = Format(CDec(invoice.total), formatoMonedaDolar)
-                Me.lblTasaCambio.Text = Format(CDec(sumatasaproveedor / contadortasaproveedor), formatoMoneda)
+                Me.lblTasaCambio.Text = Format(tasaCambio, formatoMoneda)
                 Me.lblValorMercaderiaQ.Text = Format(CDec(CDec(Replace(Me.lblTotalImportacionDolar.Text, "$", "")) * CDec(Replace(Me.lblTasaCambio.Text, "Q", ""))), formatoMoneda)
 
                 conn.Close()
@@ -370,6 +371,10 @@ Public Class frmNacionalizacion
         End Try
         Return codigo
     End Function
+
+    Private Sub fnSalir() Handles Me.panel0
+        Me.Close()
+    End Sub
 
 #End Region
 

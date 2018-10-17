@@ -1,4 +1,4 @@
-Imports System.Linq
+﻿Imports System.Linq
 Imports System.IO
 Imports System.Data
 Imports System.Data.SqlClient
@@ -1296,7 +1296,7 @@ Public Class frmPagosLista
 
                             End If
 
-                            End If
+                        End If
 
                     End If
 
