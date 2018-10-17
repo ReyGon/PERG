@@ -107,7 +107,9 @@ Public Module mdlPublicVars
     Public formatoCantidad As String = "#####0"
 
     Public formatoPorcentaje As String = formatoNumero + " %"
+    Public formatoPorcentaje5dec As String = formatoNumero5dec + " %"
     Public formatoFecha As String = "dd/MM/yyyy"
+    Public formatoNumero5dec As String = "###,##0.00000"
     Public MonedaSimbolo As String = "Q"
     Public MonedaSimboloDolar As String = "$"
     Public SimboloSuma As String = "Σ"

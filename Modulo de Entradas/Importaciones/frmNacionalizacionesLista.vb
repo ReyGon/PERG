@@ -91,7 +91,7 @@ Public Class frmNacionalizacionesLista
             For x As Integer = 0 To filas
                 ''preformaimportacion = Me.grdDatos.Rows(x).Cells("preformaimportacioextranjero").Value
                 If preformaimportacion = 0 Then
-                    mdlPublicVars.fnGridTelerik_formatoMonedaDolar(Me.grdDatos, "Total")
+                    mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdDatos, "Total")
                 ElseIf preformaimportacion = 1 Or preformaimportacion = 2 Then
                     mdlPublicVars.fnGridTelerik_formatoMonedaDolar(Me.grdDatos, "Total")
                     ''Format(CDec(Me.grdDatos.Rows(x).Cells("Total").Value), mdlPublicVars.fnGridTelerik_formatoMonedaDolar)
@@ -173,7 +173,7 @@ Public Class frmNacionalizacionesLista
                     frmImportaciones.Text = "Compra Importación"
                     frmImportaciones.MdiParent = frmMenuPrincipal
                     frmImportaciones.codigo = codigo
-                    frmImportaciones.bitEditarTransito = True
+                    frmImportaciones.bitModificarTransito = True
                     'frmproformaimportacion.bitPreformaToEntrada = False
                     'frmproformaimportacion.bitPreformaToTransito = True
                     frmImportaciones.Show()

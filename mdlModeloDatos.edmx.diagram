@@ -483,6 +483,11 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalida_tblVendedor" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblsalidaBodega_tblSalida" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSalidaDetalle_tblSalida" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblajuste_bancarios" Width="1.5" PointX="6.1532464167816787" PointY="7.324216816259649" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblconcepto_ajustebancario" Width="1.5" PointX="1.8412411314627348" PointY="9.08719917064868" />
+        <AssociationConnector Association="dsi_pos_demoModel.fk_banco" />
+        <AssociationConnector Association="dsi_pos_demoModel.fk_cuentabancaria" />
+        <AssociationConnector Association="dsi_pos_demoModel.fk_idconcepto" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

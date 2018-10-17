@@ -65,8 +65,10 @@ Public Class frmNacionalizacion
                   CDec(Me.txtTransporte.Text) + CDec(Me.txtSeguridad.Text) + CDec(Me.txtComisiones.Text) + CDec(Me.txtOtrosGastos.Text) + CDec(Me.txtFleteNaviera.Text)
 
             Me.lblTotalGastos.Text = Format(totalGastos, formatoMoneda)
-            Me.lblTasaIncremento.Text = Format((CDec((Replace(Me.lblTotalGastos.Text, "Q", ""))) / CDec(Replace(Me.lblValorMercaderiaQ.Text, "Q", ""))), formatoMoneda)
+            Me.lblTasaIncremento.Text = Format((CDec((Replace(Me.lblTotalGastos.Text, "Q", ""))) / CDec(Replace(Me.lblValorMercaderiaQ.Text, "Q", ""))), formatoNumero5dec) + " %"
             fnTotalMercaderiaQuetzalez()
+
+
 
         Catch ex As Exception
 
@@ -80,7 +82,7 @@ Public Class frmNacionalizacion
                 conn.Open()
                 conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
-                Dim tasaincremento As Decimal = CDec(Replace(Me.lblTasaIncremento.Text, "Q", "")) + 1
+                Dim tasaincremento As Decimal = CDec(Replace(Me.lblTasaIncremento.Text, "%", "")) + 1
                 Dim tasapromedio As Decimal = CDec(Replace(Me.lblTasaCambio.Text, "Q", ""))
                 Dim totalmercaderiaquetzalez As Decimal = 0
 
@@ -90,7 +92,7 @@ Public Class frmNacionalizacion
                     totalmercaderiaquetzalez += ((articulos.costoIVA * tasaincremento * tasapromedio) * CDec(articulos.cantidad))
                 Next
 
-                Me.lblTotalMercaderiaQ.Text = Format(totalmercaderiaquetzalez + CDec(Replace(Me.lblTotalGastos.Text, "Q", "")), formatoMoneda)
+                Me.lblTotalMercaderiaQ.Text = Format(totalmercaderiaquetzalez, formatoMoneda)
 
                 conn.Close()
             End Using
@@ -221,16 +223,18 @@ Public Class frmNacionalizacion
                 n.otrosgastos = CDec(Me.txtOtrosGastos.Text)
                 n.fletenaviera = CDec(Me.txtFleteNaviera.Text)
                 n.numeropoliza = Me.txtNumeroPoliza.Text
-                n.tasaincremento = CDec(Me.lblTasaIncremento.Text)
+                n.tasaincremento = CDec(Replace(Me.lblTasaIncremento.Text, "%", ""))
 
                 conexion.AddTotblNacionalizacions(n)
                 conexion.SaveChanges()
 
-                fnModificarCostosNacionalizados(idnacionalizacion, idinvoice)
+                ''fnModificarCostosNacionalizados(idnacionalizacion, idinvoice)
 
                 conn.Close()
 
-                alerta.fnGuardar()
+                frmNotificacion.lblNotificacion.Text = "Registro Guardado Correctamente"
+                frmNotificacion.Show()
+
                 Me.Close()
             End Using
         Catch ex As Exception
@@ -260,8 +264,8 @@ Public Class frmNacionalizacion
 
                     Dim d As tblEntradasDetalle = (From x In conexion.tblEntradasDetalles Where x.idEntradaDetalle = c.idEntradaDetalle Select x).FirstOrDefault
 
-                    d.costoIVA = (d.costoIVA * tasaincremento * tasapromedio)
-                    d.costoSinIVA = (d.costoSinIVA * tasaincremento * tasapromedio)
+                    d.costoIVA = (d.costoIVA * tasaincremento * tasapromedio) + d.costoIVA
+                    d.costoSinIVA = (d.costoSinIVA * tasaincremento * tasapromedio) + d.costoSinIVA
 
                     conexion.SaveChanges()
 
@@ -277,6 +281,8 @@ Public Class frmNacionalizacion
     Private Function fnCrearNacionalizacion(ByVal identrada As Integer) As Integer
 
         Dim codigo As Integer
+        Dim tasaincremento As Decimal = CDec(Replace(Me.lblTasaIncremento.Text, "%", "")) + 1
+        Dim tasapromedio As Decimal = CDec(Replace(Me.lblTasaCambio.Text, "Q", ""))
 
         Try
 
@@ -341,8 +347,8 @@ Public Class frmNacionalizacion
                     r.idEntrada = codigo
                     r.idArticulo = w.idArticulo
                     r.cantidad = w.cantidad
-                    r.costoIVA = w.costoIVA
-                    r.costoSinIVA = w.costoSinIVA
+                    r.costoIVA = w.costoIVA * tasaincremento * tasapromedio
+                    r.costoSinIVA = w.costoSinIVA * tasaincremento * tasapromedio
                     r.preformaCantidad = w.preformaCantidad
                     r.preformaCostoIVA = w.preformaCostoIVA
                     r.preformaCostoSinIVA = w.preformaCostoSinIVA

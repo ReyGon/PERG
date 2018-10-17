@@ -695,6 +695,12 @@
     <Compile Include="Modulo de Entradas\frmComprasGuia.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modulo de Entradas\Importaciones\frmCargaSelectivaCantidad.Designer.vb">
+      <DependentUpon>frmCargaSelectivaCantidad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo de Entradas\Importaciones\frmCargaSelectivaCantidad.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modulo de Entradas\Importaciones\frmCargaSelectivaImportacion.Designer.vb">
       <DependentUpon>frmCargaSelectivaImportacion.vb</DependentUpon>
     </Compile>
@@ -707,6 +713,10 @@
     <Compile Include="Modulo de Entradas\Importaciones\frmCargasImportaciones.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modulo de Entradas\Importaciones\frmHistorialPagos.Designer.vb">
+      <DependentUpon>frmHistorialPagos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo de Entradas\Importaciones\frmHistorialPagos.vb" />
     <Compile Include="Modulo de Entradas\Importaciones\frmgastosimportacion.Designer.vb">
       <DependentUpon>frmgastosimportacion.vb</DependentUpon>
     </Compile>
@@ -2053,11 +2063,17 @@
     <EmbeddedResource Include="Modulo de Entradas\frmComprasGuia.resx">
       <DependentUpon>frmComprasGuia.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulo de Entradas\Importaciones\frmCargaSelectivaCantidad.resx">
+      <DependentUpon>frmCargaSelectivaCantidad.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Entradas\Importaciones\frmCargaSelectivaImportacion.resx">
       <DependentUpon>frmCargaSelectivaImportacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Entradas\Importaciones\frmCargasImportaciones.resx">
       <DependentUpon>frmCargasImportaciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo de Entradas\Importaciones\frmHistorialPagos.resx">
+      <DependentUpon>frmHistorialPagos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Entradas\Importaciones\frmgastosimportacion.resx">
       <DependentUpon>frmgastosimportacion.vb</DependentUpon>

@@ -345,6 +345,7 @@ Public Class frmCargasImportaciones
                     c.IdInvoiceNacionalizacion = 0
                     c.Nacionalizacion = False
                     c.finalizada = 1
+                    c.IdNacionalizacion = Invoice
 
                     conexion.AddTotblEntradas(c)
                     conexion.SaveChanges()
@@ -460,6 +461,7 @@ Public Class frmCargasImportaciones
                                 inventario.entrada += cantidad * valmedida
                                 'Aumentamos saldo
                                 inventario.saldo += cantidad * valmedida
+                                inventario.transito -= cantidad * valmedida
                                 conexion.SaveChanges()
                             End If
 
@@ -544,7 +546,95 @@ Public Class frmCargasImportaciones
             frmCargaSelectivaImportacion.WindowState = FormWindowState.Normal
             frmCargaSelectivaImportacion.id = Invoice
             frmCargaSelectivaImportacion.ShowDialog()
+
+            Dim tblR As DataTable = frmCargaSelectivaImportacion.tblRetorno
+
             frmCargaSelectivaImportacion.Dispose()
+
+            If tblR.Rows.Count > 0 Then
+
+                'buscar fila con id en blanco.
+                Dim filaBlanco As Integer = -1
+
+                Dim index
+                For index = 0 To Me.grdProductos.Rows.Count - 1
+                    If Me.grdProductos.Rows(index).Cells(1).Value Is Nothing Then
+                        Me.grdProductos.Rows.RemoveAt(index)
+                    ElseIf LTrim(RTrim(Me.grdProductos.Rows(index).Cells(1).Value.ToString)).Length = 0 Then
+                        filaBlanco = index
+                    ElseIf LTrim(RTrim(Me.grdProductos.Rows(index).Cells(1).Value.ToString)).Length = 1 And LTrim(RTrim(Me.grdProductos.Rows(index).Cells(1).Value.ToString)) = 0 Then
+                        filaBlanco = index
+                    End If
+                Next
+
+                Dim inicio As Integer = 0
+
+                If filaBlanco = -1 Then
+                Else
+                    'agregar al grid si nueva fila.
+                    Me.grdProductos.Rows(filaBlanco).Cells(1).Value = tblR.Rows(0).Item(0)
+                    Me.grdProductos.Rows(filaBlanco).Cells(2).Value = tblR.Rows(0).Item(1)
+                    Me.grdProductos.Rows(filaBlanco).Cells(3).Value = tblR.Rows(0).Item(2)
+                    Me.grdProductos.Rows(filaBlanco).Cells(4).Value = tblR.Rows(0).Item(3)
+                    Me.grdProductos.Rows(filaBlanco).Cells(5).Value = tblR.Rows(0).Item(4)
+
+                    inicio = 1
+                End If
+
+                Dim idarticulo As Integer
+                Dim cajano As String
+                Dim costo As Decimal
+
+                Dim conexion As dsi_pos_demoEntities
+                Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                    conn.Open()
+                    conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                    'agregar los elementos restantes al grid.
+                    For index = inicio To tblR.Rows.Count - 1
+
+                        idarticulo = tblR.Rows(index).Item(0)
+                        cajano = tblR.Rows(index).Item(1)
+
+                        costo = (From x In conexion.tblEntradasDetalles Where x.idEntrada = Invoice And x.nocaja.Equals(cajano) And x.idArticulo = idarticulo Select x.costoIVA).FirstOrDefault
+
+                        Me.grdProductos.Rows.Add(tblR.Rows(index).Item(0), tblR.Rows(index).Item(1), tblR.Rows(index).Item(2), tblR.Rows(index).Item(3), tblR.Rows(index).Item(4), Format(CType(costo, Double), formatoNumero), Format(tblR.Rows(index).Item(4) * CDec(costo), formatoNumero))
+                    Next
+
+                    conn.Close()
+                End Using
+
+                Dim j As Integer
+                Dim filas As Integer
+                Dim costod As Decimal
+                Dim cantidad As Integer
+                filas = grdProductos.Rows.Count - 1
+
+                For m As Integer = 0 To filas
+                    costod = grdProductos.Rows(m).Cells("CostoTotal").Value
+
+                    Dim lbtotalcarga As Decimal
+                    Try
+                        lbtotalcarga = Replace(lblTotalCarga.Text, "Q", "")
+                    Catch ex As Exception
+                        lbtotalcarga = 0
+                    End Try
+
+                    'lbltotaldolares.Text = lbltotaldolares.Text + costod
+                    lblTotalCarga.Text = Format(CDec(If(lbtotalcarga = 0, 0, CDec(lbtotalcarga))) + (CDec(grdProductos.Rows(m).Cells("CostoTotal").Value)), mdlPublicVars.formatoMoneda)
+
+                    ''''fnTotalProrrateo()
+                    fnActualizar_Total()
+                    ''Me.grdproductos.Rows.AddNew()
+
+                Next
+
+                fnEliminaVacias()
+                fnConfiguracion()
+                fnActivarFiltro()
+                Me.grdProductos.Rows.AddNew()
+            End If
+
         Catch ex As Exception
 
         End Try

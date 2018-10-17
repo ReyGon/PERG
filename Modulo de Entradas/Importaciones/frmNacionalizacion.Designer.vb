@@ -204,6 +204,8 @@ Partial Class frmNacionalizacion
         Me.rgbInformacion.Controls.Add(Me.lblTasaCambio)
         Me.rgbInformacion.Controls.Add(Me.Label3)
         Me.rgbInformacion.Controls.Add(Me.lblTotalImportacionDolar)
+        Me.rgbInformacion.Controls.Add(Me.txtNumeroPoliza)
+        Me.rgbInformacion.Controls.Add(Me.Label17)
         Me.rgbInformacion.Controls.Add(Me.Label2)
         Me.rgbInformacion.Controls.Add(Me.lblCantidadProductos)
         Me.rgbInformacion.Controls.Add(Me.Label4)
@@ -221,7 +223,7 @@ Partial Class frmNacionalizacion
         '
         '
         Me.rgbInformacion.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        Me.rgbInformacion.Size = New System.Drawing.Size(687, 47)
+        Me.rgbInformacion.Size = New System.Drawing.Size(687, 68)
         Me.rgbInformacion.TabIndex = 186
         '
         'Label6
@@ -229,7 +231,7 @@ Partial Class frmNacionalizacion
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.DimGray
-        Me.Label6.Location = New System.Drawing.Point(518, 18)
+        Me.Label6.Location = New System.Drawing.Point(455, 11)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(103, 19)
         Me.Label6.TabIndex = 153
@@ -240,7 +242,7 @@ Partial Class frmNacionalizacion
         Me.lblTasaCambio.AutoSize = True
         Me.lblTasaCambio.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTasaCambio.ForeColor = System.Drawing.Color.Black
-        Me.lblTasaCambio.Location = New System.Drawing.Point(627, 18)
+        Me.lblTasaCambio.Location = New System.Drawing.Point(564, 11)
         Me.lblTasaCambio.Name = "lblTasaCambio"
         Me.lblTasaCambio.Size = New System.Drawing.Size(47, 19)
         Me.lblTasaCambio.TabIndex = 154
@@ -251,7 +253,7 @@ Partial Class frmNacionalizacion
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.DimGray
-        Me.Label3.Location = New System.Drawing.Point(310, 18)
+        Me.Label3.Location = New System.Drawing.Point(319, 26)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(51, 19)
         Me.Label3.TabIndex = 151
@@ -262,7 +264,7 @@ Partial Class frmNacionalizacion
         Me.lblTotalImportacionDolar.AutoSize = True
         Me.lblTotalImportacionDolar.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotalImportacionDolar.ForeColor = System.Drawing.Color.Black
-        Me.lblTotalImportacionDolar.Location = New System.Drawing.Point(359, 18)
+        Me.lblTotalImportacionDolar.Location = New System.Drawing.Point(368, 26)
         Me.lblTotalImportacionDolar.Name = "lblTotalImportacionDolar"
         Me.lblTotalImportacionDolar.Size = New System.Drawing.Size(43, 19)
         Me.lblTotalImportacionDolar.TabIndex = 152
@@ -273,7 +275,7 @@ Partial Class frmNacionalizacion
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.DimGray
-        Me.Label2.Location = New System.Drawing.Point(172, 18)
+        Me.Label2.Location = New System.Drawing.Point(181, 26)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(85, 19)
         Me.Label2.TabIndex = 149
@@ -284,7 +286,7 @@ Partial Class frmNacionalizacion
         Me.lblCantidadProductos.AutoSize = True
         Me.lblCantidadProductos.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCantidadProductos.ForeColor = System.Drawing.Color.Black
-        Me.lblCantidadProductos.Location = New System.Drawing.Point(254, 18)
+        Me.lblCantidadProductos.Location = New System.Drawing.Point(263, 26)
         Me.lblCantidadProductos.Name = "lblCantidadProductos"
         Me.lblCantidadProductos.Size = New System.Drawing.Size(89, 19)
         Me.lblCantidadProductos.TabIndex = 150
@@ -295,7 +297,7 @@ Partial Class frmNacionalizacion
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.DimGray
-        Me.Label4.Location = New System.Drawing.Point(7, 18)
+        Me.Label4.Location = New System.Drawing.Point(16, 26)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(65, 19)
         Me.Label4.TabIndex = 147
@@ -306,7 +308,7 @@ Partial Class frmNacionalizacion
         Me.lblDocumentoImportacion.AutoSize = True
         Me.lblDocumentoImportacion.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDocumentoImportacion.ForeColor = System.Drawing.Color.Black
-        Me.lblDocumentoImportacion.Location = New System.Drawing.Point(71, 18)
+        Me.lblDocumentoImportacion.Location = New System.Drawing.Point(80, 26)
         Me.lblDocumentoImportacion.Name = "lblDocumentoImportacion"
         Me.lblDocumentoImportacion.Size = New System.Drawing.Size(86, 19)
         Me.lblDocumentoImportacion.TabIndex = 148
@@ -317,7 +319,7 @@ Partial Class frmNacionalizacion
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label5.ForeColor = System.Drawing.Color.Gray
-        Me.Label5.Location = New System.Drawing.Point(51, 117)
+        Me.Label5.Location = New System.Drawing.Point(51, 140)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(93, 19)
         Me.Label5.TabIndex = 191
@@ -327,7 +329,7 @@ Partial Class frmNacionalizacion
         '
         Me.PictureBox3.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox3.Image = Global.laFuente.My.Resources.Resources.informacion
-        Me.PictureBox3.Location = New System.Drawing.Point(25, 115)
+        Me.PictureBox3.Location = New System.Drawing.Point(25, 138)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(25, 22)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -342,8 +344,6 @@ Partial Class frmNacionalizacion
         Me.RadGroupBox1.Controls.Add(Me.lblValorMercaderiaQ)
         Me.RadGroupBox1.Controls.Add(Me.Label27)
         Me.RadGroupBox1.Controls.Add(Me.lblTotalGastos)
-        Me.RadGroupBox1.Controls.Add(Me.txtNumeroPoliza)
-        Me.RadGroupBox1.Controls.Add(Me.Label17)
         Me.RadGroupBox1.Controls.Add(Me.txtFleteNaviera)
         Me.RadGroupBox1.Controls.Add(Me.Label16)
         Me.RadGroupBox1.Controls.Add(Me.txtOtrosGastos)
@@ -368,7 +368,7 @@ Partial Class frmNacionalizacion
         Me.RadGroupBox1.HeaderImageKey = ""
         Me.RadGroupBox1.HeaderMargin = New System.Windows.Forms.Padding(0)
         Me.RadGroupBox1.HeaderText = ""
-        Me.RadGroupBox1.Location = New System.Drawing.Point(12, 130)
+        Me.RadGroupBox1.Location = New System.Drawing.Point(12, 153)
         Me.RadGroupBox1.Name = "RadGroupBox1"
         Me.RadGroupBox1.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
         '
@@ -425,10 +425,10 @@ Partial Class frmNacionalizacion
         'txtNumeroPoliza
         '
         Me.txtNumeroPoliza.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.txtNumeroPoliza.Location = New System.Drawing.Point(546, 132)
+        Me.txtNumeroPoliza.Location = New System.Drawing.Point(568, 33)
         Me.txtNumeroPoliza.Name = "txtNumeroPoliza"
         Me.txtNumeroPoliza.Size = New System.Drawing.Size(106, 22)
-        Me.txtNumeroPoliza.TabIndex = 166
+        Me.txtNumeroPoliza.TabIndex = 0
         Me.txtNumeroPoliza.Text = "0.00"
         Me.txtNumeroPoliza.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -437,7 +437,7 @@ Partial Class frmNacionalizacion
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label17.ForeColor = System.Drawing.Color.DimGray
-        Me.Label17.Location = New System.Drawing.Point(389, 132)
+        Me.Label17.Location = New System.Drawing.Point(441, 33)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(117, 19)
         Me.Label17.TabIndex = 165
@@ -449,7 +449,7 @@ Partial Class frmNacionalizacion
         Me.txtFleteNaviera.Location = New System.Drawing.Point(546, 104)
         Me.txtFleteNaviera.Name = "txtFleteNaviera"
         Me.txtFleteNaviera.Size = New System.Drawing.Size(106, 22)
-        Me.txtFleteNaviera.TabIndex = 164
+        Me.txtFleteNaviera.TabIndex = 8
         Me.txtFleteNaviera.Text = "0.00"
         Me.txtFleteNaviera.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -470,7 +470,7 @@ Partial Class frmNacionalizacion
         Me.txtOtrosGastos.Location = New System.Drawing.Point(546, 76)
         Me.txtOtrosGastos.Name = "txtOtrosGastos"
         Me.txtOtrosGastos.Size = New System.Drawing.Size(106, 22)
-        Me.txtOtrosGastos.TabIndex = 162
+        Me.txtOtrosGastos.TabIndex = 7
         Me.txtOtrosGastos.Text = "0.00"
         Me.txtOtrosGastos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -491,7 +491,7 @@ Partial Class frmNacionalizacion
         Me.txtComisiones.Location = New System.Drawing.Point(546, 48)
         Me.txtComisiones.Name = "txtComisiones"
         Me.txtComisiones.Size = New System.Drawing.Size(106, 22)
-        Me.txtComisiones.TabIndex = 160
+        Me.txtComisiones.TabIndex = 6
         Me.txtComisiones.Text = "0.00"
         Me.txtComisiones.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -512,7 +512,7 @@ Partial Class frmNacionalizacion
         Me.txtSeguridad.Location = New System.Drawing.Point(546, 20)
         Me.txtSeguridad.Name = "txtSeguridad"
         Me.txtSeguridad.Size = New System.Drawing.Size(106, 22)
-        Me.txtSeguridad.TabIndex = 158
+        Me.txtSeguridad.TabIndex = 5
         Me.txtSeguridad.Text = "0.00"
         Me.txtSeguridad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -533,7 +533,7 @@ Partial Class frmNacionalizacion
         Me.txtTransporte.Location = New System.Drawing.Point(167, 132)
         Me.txtTransporte.Name = "txtTransporte"
         Me.txtTransporte.Size = New System.Drawing.Size(106, 22)
-        Me.txtTransporte.TabIndex = 156
+        Me.txtTransporte.TabIndex = 4
         Me.txtTransporte.Text = "0.00"
         Me.txtTransporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -554,7 +554,7 @@ Partial Class frmNacionalizacion
         Me.txtTramitesAduanales.Location = New System.Drawing.Point(167, 104)
         Me.txtTramitesAduanales.Name = "txtTramitesAduanales"
         Me.txtTramitesAduanales.Size = New System.Drawing.Size(106, 22)
-        Me.txtTramitesAduanales.TabIndex = 154
+        Me.txtTramitesAduanales.TabIndex = 3
         Me.txtTramitesAduanales.Text = "0.00"
         Me.txtTramitesAduanales.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -575,7 +575,7 @@ Partial Class frmNacionalizacion
         Me.txtImpuestoImportacion.Location = New System.Drawing.Point(167, 76)
         Me.txtImpuestoImportacion.Name = "txtImpuestoImportacion"
         Me.txtImpuestoImportacion.Size = New System.Drawing.Size(106, 22)
-        Me.txtImpuestoImportacion.TabIndex = 152
+        Me.txtImpuestoImportacion.TabIndex = 2
         Me.txtImpuestoImportacion.Text = "0.00"
         Me.txtImpuestoImportacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -596,7 +596,7 @@ Partial Class frmNacionalizacion
         Me.txtIvaImportacion.Location = New System.Drawing.Point(167, 48)
         Me.txtIvaImportacion.Name = "txtIvaImportacion"
         Me.txtIvaImportacion.Size = New System.Drawing.Size(106, 22)
-        Me.txtIvaImportacion.TabIndex = 150
+        Me.txtIvaImportacion.TabIndex = 1
         Me.txtIvaImportacion.Text = "0.00"
         Me.txtIvaImportacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -617,7 +617,7 @@ Partial Class frmNacionalizacion
         Me.txtGastosNaviera.Location = New System.Drawing.Point(167, 20)
         Me.txtGastosNaviera.Name = "txtGastosNaviera"
         Me.txtGastosNaviera.Size = New System.Drawing.Size(106, 22)
-        Me.txtGastosNaviera.TabIndex = 148
+        Me.txtGastosNaviera.TabIndex = 0
         Me.txtGastosNaviera.Text = "0.00"
         Me.txtGastosNaviera.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -637,7 +637,7 @@ Partial Class frmNacionalizacion
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label18.ForeColor = System.Drawing.Color.Gray
-        Me.Label18.Location = New System.Drawing.Point(51, 339)
+        Me.Label18.Location = New System.Drawing.Point(51, 362)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(81, 19)
         Me.Label18.TabIndex = 194
@@ -647,7 +647,7 @@ Partial Class frmNacionalizacion
         '
         Me.PictureBox5.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox5.Image = Global.laFuente.My.Resources.Resources.informacion
-        Me.PictureBox5.Location = New System.Drawing.Point(25, 337)
+        Me.PictureBox5.Location = New System.Drawing.Point(25, 360)
         Me.PictureBox5.Name = "PictureBox5"
         Me.PictureBox5.Size = New System.Drawing.Size(25, 22)
         Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -668,7 +668,7 @@ Partial Class frmNacionalizacion
         Me.RadGroupBox2.HeaderImageKey = ""
         Me.RadGroupBox2.HeaderMargin = New System.Windows.Forms.Padding(0)
         Me.RadGroupBox2.HeaderText = ""
-        Me.RadGroupBox2.Location = New System.Drawing.Point(12, 352)
+        Me.RadGroupBox2.Location = New System.Drawing.Point(12, 375)
         Me.RadGroupBox2.Name = "RadGroupBox2"
         Me.RadGroupBox2.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
         '
@@ -725,7 +725,7 @@ Partial Class frmNacionalizacion
         'frmNacionalizacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(711, 425)
+        Me.ClientSize = New System.Drawing.Size(711, 445)
         Me.Controls.Add(Me.Label18)
         Me.Controls.Add(Me.PictureBox5)
         Me.Controls.Add(Me.RadGroupBox2)

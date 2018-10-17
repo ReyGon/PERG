@@ -37,6 +37,7 @@ Partial Class frmCargasImportaciones
         Me.Label2 = New System.Windows.Forms.Label()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.RadGroupBox1 = New Telerik.WinControls.UI.RadGroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtFiltroArticulo = New System.Windows.Forms.TextBox()
         Me.btnImportacion = New System.Windows.Forms.Button()
@@ -47,7 +48,6 @@ Partial Class frmCargasImportaciones
         Me.Label27 = New System.Windows.Forms.Label()
         Me.lblTotalCargas = New System.Windows.Forms.Label()
         Me.grdProductos = New Telerik.WinControls.UI.RadGridView()
-        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
         Me.pnx1Salir.SuspendLayout()
@@ -196,6 +196,25 @@ Partial Class frmCargasImportaciones
         Me.RadGroupBox1.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
         Me.RadGroupBox1.Size = New System.Drawing.Size(944, 500)
         Me.RadGroupBox1.TabIndex = 198
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.SteelBlue
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue
+        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.Transparent
+        Me.Button1.Image = Global.laFuente.My.Resources.Resources.import_blanco24
+        Me.Button1.Location = New System.Drawing.Point(223, 37)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(157, 31)
+        Me.Button1.TabIndex = 172
+        Me.Button1.Text = "Selectiva"
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'Label4
         '
@@ -352,25 +371,6 @@ Partial Class frmCargasImportaciones
         Me.grdProductos.TabIndex = 162
         Me.grdProductos.Text = "RadGridView1"
         Me.grdProductos.ThemeName = "Office2007Black"
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.SteelBlue
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue
-        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.Transparent
-        Me.Button1.Image = Global.laFuente.My.Resources.Resources.import_blanco24
-        Me.Button1.Location = New System.Drawing.Point(223, 37)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(157, 31)
-        Me.Button1.TabIndex = 172
-        Me.Button1.Text = "Selectiva"
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button1.UseVisualStyleBackColor = False
         '
         'frmCargasImportaciones
         '
