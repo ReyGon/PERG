@@ -545,7 +545,7 @@ Public Class frmPedidosLista
                                     RadMessageBox.Show("No posee permisos para realizar esta accion", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
                                     conn.Close()
 
-                                    Me.grdDatos.Rows(Me.grdDatos.CurrentRow.Index).Cells("chmRevisado").Value = False
+                                    Me.grdDatos.Rows(Me.grdDatos.CurrentRow.Index).Cells("chmRevisado").Value = True
 
                                     Return False
                                     Exit Function

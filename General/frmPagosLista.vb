@@ -1,4 +1,4 @@
-﻿Imports System.Linq
+Imports System.Linq
 Imports System.IO
 Imports System.Data
 Imports System.Data.SqlClient
@@ -436,7 +436,6 @@ Public Class frmPagosLista
                         pago.fechaFiltro = CDate(fnFechaServidor())
                         pago.consumido = 0
                         pago.afavor = 0
-                        pago.estadocuenta = True
                         pago.confirmado = True
                         pago.codutilizado = False
                         pago.docboletadeposito = pagom.docboletadeposito
@@ -453,12 +452,14 @@ Public Class frmPagosLista
                         salidamod.saldo -= salida.Item3
                         salidamod.pagado += salida.Item3
 
+
                         conexion.SaveChanges()
                     ElseIf proveedor = True Then
                         Dim entradamod As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = salida.Item1 Select x).FirstOrDefault
 
                         entradamod.saldo -= salida.Item3
                         entradamod.pagos += salida.Item3
+
 
                         conexion.SaveChanges()
                     End If
@@ -1090,8 +1091,6 @@ Public Class frmPagosLista
                                 conexion.SaveChanges()
                             End If
 
-
-
                             'Si es un proveedor
                         ElseIf pago.proveedor > 0 Then
 
@@ -1105,6 +1104,107 @@ Public Class frmPagosLista
                                 proveedor.saldoActual -= pago.monto
 
                                 'guardar los cambios.
+                                conexion.SaveChanges()
+
+
+                                Dim numeroCorrelativo As Integer = 0
+
+                                ' ''CORRELATIVO
+                                Dim correlativo As tblCorrelativo = (From x In conexion.tblCorrelativos Where x.idTipoMovimiento = mdlPublicVars.Credito_CodigoMovimiento
+                                                                    Select x).FirstOrDefault
+
+                                correlativo.correlativo += 1
+                                numeroCorrelativo = correlativo.correlativo
+                                conexion.SaveChanges()
+
+                                ' ''Obtenemos el acreditador 
+                                Dim acreditador As tblBanco_Beneficiario = (From x In conexion.tblBanco_Beneficiario Where x.bitCredito And x.nombre.Equals(pago.tblProveedor.negocio)
+                                Select x).FirstOrDefault
+
+                                Dim idAcreditador As Integer = 0
+                                Dim nombreAcreditador As String = ""
+
+                                If acreditador IsNot Nothing Then
+                                    idAcreditador = acreditador.codigo
+                                    nombreAcreditador = acreditador.nombre
+                                Else
+                                    'Creamos el acreditador
+                                    Dim nuevoAcreditador As New tblBanco_Beneficiario
+                                    nuevoAcreditador.bitCredito = True
+                                    nuevoAcreditador.bitDebitoCheque = False
+                                    nuevoAcreditador.nombre = pago.tblProveedor.negocio
+
+                                    conexion.AddTotblBanco_Beneficiario(nuevoAcreditador)
+                                    conexion.SaveChanges()
+
+                                    idAcreditador = nuevoAcreditador.codigo
+                                    nombreAcreditador = nuevoAcreditador.nombre
+                                End If
+
+                                ' ''Creamos el encabezado de la acreditacion
+                                Dim movimiento As New tblBanco_Creditos
+                                movimiento.bitAnulado = False
+                                movimiento.correlativo = numeroCorrelativo
+                                movimiento.documento = pago.documento
+                                movimiento.fechaRegistro = pago.fecha
+                                movimiento.total = pago.monto
+                                movimiento.usuarioRegistra = mdlPublicVars.idUsuario
+
+                                If superSearchFechaString IsNot Nothing Then
+                                    movimiento.fechaConfirmado = superSearchFechaString
+                                Else
+                                    movimiento.fechaConfirmado = fechaServer
+                                End If
+
+                                movimiento.cuenta = CInt(pago.cuenta)
+                                conexion.AddTotblBanco_Creditos(movimiento)
+                                conexion.SaveChanges()
+
+                                ' ''Verificamos si existe el concepto
+                                Dim concepto As tblBanco_MovimientoConcepto = (From x In conexion.tblBanco_MovimientoConcepto Where x.nombre.Equals(pago.tblTipoPago.nombre) Select x).FirstOrDefault
+                                Dim idConcepto As Integer = 0
+
+                                If concepto IsNot Nothing Then
+                                    idConcepto = concepto.codigo
+                                Else
+                                    Dim nuevoConcepto As New tblBanco_MovimientoConcepto
+                                    nuevoConcepto.nombre = pago.tblTipoPago.nombre
+                                    nuevoConcepto.bitCredito = True
+                                    nuevoConcepto.bitCheque = False
+                                    nuevoConcepto.bitDebito = False
+
+                                    'agregar el movimiento de banco
+                                    conexion.AddTotblBanco_MovimientoConcepto(nuevoConcepto)
+
+                                    ''    'guarda los cambios
+                                    conexion.SaveChanges()
+
+                                    idConcepto = nuevoConcepto.codigo
+                                End If
+
+                                ' ''creamos el detalle de la acreditacion
+                                Dim detalle As New tblBanco_CreditosDetalle
+                                detalle.credito = movimiento.codigo
+                                detalle.acreditador = idAcreditador
+                                detalle.concepto = idConcepto
+                                detalle.descripcion = pago.tblProveedor.negocio & "-" & pago.tblTipoPago.nombre & "-"
+                                detalle.monto = movimiento.total
+                                detalle.nombre = nombreAcreditador
+                                '
+                                conexion.AddTotblBanco_CreditosDetalle(detalle)
+                                conexion.SaveChanges()
+
+                                'Aumentamos el saldo de la cuenta a la que se confirmo el cierre 
+                                Dim cuenta As tblBanco_Cuenta = (From x In conexion.tblBanco_Cuenta Where x.codigo = movimiento.cuenta
+                                                Select x).FirstOrDefault
+
+                                If cuenta.saldo Is Nothing Then
+                                    cuenta.saldo = pago.monto
+                                Else
+                                    cuenta.saldo -= pago.monto
+                                End If
+
+                                ' ''guardar los cambios
                                 conexion.SaveChanges()
 
                                 Dim listaCtaPagar As List(Of tblCtaPagar) = (From x In conexion.tblCtaPagars Where x.idProveedor = pago.proveedor And x.cancelada = 0 Select x Order By x.fecha Ascending).ToList
@@ -1196,7 +1296,7 @@ Public Class frmPagosLista
 
                             End If
 
-                        End If
+                            End If
 
                     End If
 

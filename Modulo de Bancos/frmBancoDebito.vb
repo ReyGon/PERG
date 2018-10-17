@@ -1,4 +1,8 @@
-﻿Imports System.Linq
+﻿
+
+
+
+Imports System.Linq
 Imports Telerik.WinControls
 Imports Telerik.WinControls.UI
 Imports System.Transactions
@@ -289,7 +293,11 @@ Public Class frmBancoDebito
     'LLENA COMBO BENEFICIARIOS
     Private Sub fnLlenaBeneficiarios(ByVal ultimo As Integer)
         'Obtenemos la lista de los beneficiarios0
-        Dim beneficiario = (From x In ctx.tblBanco_Beneficiario Where x.bitDebitoCheque Select x.codigo, x.nombre)
+        ''Dim beneficiario = (From x In ctx.tblBanco_Beneficiario
+        ''Where x.bitDebitoCheque Select x.codigo, x.nombre)
+
+        Dim beneficiario = (From x In ctx.tblBanco_Beneficiario
+                            Select x.codigo, x.nombre)
 
         With cmbBeneficiario
             .DataSource = Nothing
