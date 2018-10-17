@@ -53,6 +53,17 @@
         End If
     End Sub
 
+    'PANEL6 - Ajustes -
+    Private Sub fnPanel6() Handles Me.panel6
+        frmAjustesBancariosLista.Text = "Lista de Ajustes"
+        frmAjustesBancariosLista.MdiParent = frmMenuPrincipal
+        frmAjustesBancariosLista.WindowState = FormWindowState.Maximized
+        If permiso.PermisoMantenimientoLista(frmAjustesBancariosLista, True) = True Then
+            fnFRMhijos_cerrar(frmAjustesBancariosLista)
+            Me.Hide()
+        End If
+    End Sub
+
     'BANCOS
     Private Sub itemBancos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles itemBancos.Click
         Dim frm = frmBanco
@@ -84,6 +95,18 @@
         frm.MdiParent = frmMenuPrincipal
 
         If permiso.PermisoFrmEspeciales(frm, True) = True Then
+            fnFRMhijos_cerrar(frm)
+            Me.Hide()
+        End If
+    End Sub
+
+    'CONCEPTOS AJUSTES
+    Private Sub itemConceptoAjuste_CLick(ByVal sender As System.Object, ByVal e As EventArgs) Handles itemConceptoAjuste.Click
+        Dim frm = frmBancoConceptoAjuste
+        frm.Text = "Conceptos de Ajustes"
+        frm.MdiParent = frmMenuPrincipal
+
+        If permiso.PermisoFrmEspeciales(frm, True) Then
             fnFRMhijos_cerrar(frm)
             Me.Hide()
         End If

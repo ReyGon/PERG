@@ -293,6 +293,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>mdlModeloDatos.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Modulo de Bancos\frmAjustesBancarios.Designer.vb">
+      <DependentUpon>frmAjustesBancarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo de Bancos\frmAjustesBancarios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo de Bancos\frmAjustesBancariosLista.Designer.vb">
+      <DependentUpon>frmAjustesBancariosLista.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo de Bancos\frmAjustesBancariosLista.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modulo de Bancos\frmBancoAcreditadores.Designer.vb">
       <DependentUpon>frmBancoAcreditadores.vb</DependentUpon>
     </Compile>
@@ -321,6 +333,12 @@
       <DependentUpon>frmBancoChequesLista.vb</DependentUpon>
     </Compile>
     <Compile Include="Modulo de Bancos\frmBancoChequesLista.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo de Bancos\frmBancoConceptoAjuste.Designer.vb">
+      <DependentUpon>frmBancoConceptoAjuste.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo de Bancos\frmBancoConceptoAjuste.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modulo de Bancos\frmBancoConceptos.Designer.vb">
@@ -1870,6 +1888,9 @@
     <EmbeddedResource Include="General\frmSeleccion.resx">
       <DependentUpon>frmSeleccion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulo de Bancos\frmAjustesBancarios.resx">
+      <DependentUpon>frmAjustesBancarios.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Bancos\frmBancoAcreditadores.resx">
       <DependentUpon>frmBancoAcreditadores.vb</DependentUpon>
     </EmbeddedResource>
@@ -1884,6 +1905,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Bancos\frmBancoChequesLista.resx">
       <DependentUpon>frmBancoChequesLista.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo de Bancos\frmBancoConceptoAjuste.resx">
+      <DependentUpon>frmBancoConceptoAjuste.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Bancos\frmBancoConceptos.resx">
       <DependentUpon>frmBancoConceptos.vb</DependentUpon>
