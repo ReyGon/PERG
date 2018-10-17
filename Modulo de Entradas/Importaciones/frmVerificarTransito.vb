@@ -116,7 +116,7 @@ Public Class frmVerificarTransito
                 Dim fila As Object()
 
                 For Each invoice As tblEntradasDetalle In Invoices
-                    fila = {invoice.tblArticulo.codigo1, invoice.tblArticulo.nombre1, invoice.cantidad}
+                    fila = {invoice.tblArticulo.codigo1, invoice.tblArticulo.nombre1, invoice.cantidad, invoice.costoIVA}
                     Me.grdInvoice.Rows.Add(fila)
                 Next
 
@@ -131,7 +131,7 @@ Public Class frmVerificarTransito
                     ''Preformas = (From x In conexion.tblEntradasDetalles Where x.tblEntrada.idEntrada = idpreforma And x.tblEntrada.anulado = False).ToList
 
                     For Each preforma As tblEntradasDetalle In Preformas
-                        fila = {preforma.tblArticulo.codigo1, preforma.tblArticulo.nombre1, preforma.cantidad, 0}
+                        fila = {preforma.tblArticulo.codigo1, preforma.tblArticulo.nombre1, preforma.cantidad, preforma.costoIVA, 0}
                         Me.grdPreforma.Rows.Add(fila)
                     Next
 
@@ -180,11 +180,13 @@ Public Class frmVerificarTransito
             Me.grdInvoice.Columns("Codigo").Width = 50
             Me.grdInvoice.Columns("Producto").Width = 100
             Me.grdInvoice.Columns("Cantidad").Width = 50
+            Me.grdInvoice.Columns("Costo").Width = 50
             Me.grdPreforma.Columns("Codigo").Width = 50
             Me.grdPreforma.Columns("Producto").Width = 100
             Me.grdPreforma.Columns("Cantidad").Width = 50
             Me.grdPreforma.Columns("Faltante").Width = 50
             Me.grdPreforma.Columns("Invoice").Width = 50
+            Me.grdPreforma.Columns("Costo").Width = 50
         Catch ex As Exception
 
         End Try

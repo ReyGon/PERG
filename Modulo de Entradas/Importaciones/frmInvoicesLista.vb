@@ -23,6 +23,9 @@ Public Class frmInvoicesLista
 
         Catch ex As Exception
         End Try
+
+        fnSumarios()
+
         fnLlenarCombo()
         llenagrid()
 
@@ -32,6 +35,21 @@ Public Class frmInvoicesLista
         cargo = True
         lblFiltroFecha.Visible = True
         cmbFiltroFecha.Visible = True
+    End Sub
+
+    Private Sub fnSumarios()
+        Try
+            grdDatos.SummaryRowsTop.Clear()
+
+            Dim summaryCantidad As New GridViewSummaryItem("Total", mdlPublicVars.SimboloSuma + "=" + mdlPublicVars.formatoMonedaDolarGridTelerik, GridAggregateFunction.Sum)
+
+            'agregar la fila de operaciones aritmeticas
+            Dim summaryRowItem As New GridViewSummaryRowItem(New GridViewSummaryItem() {summaryCantidad})
+
+            grdDatos.SummaryRowsTop.Add(summaryRowItem)
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub fnLlenarCombo()
@@ -49,6 +67,9 @@ Public Class frmInvoicesLista
     Private Sub llenagrid()
 
         Try
+
+            fnSumarios()
+
             Me.grdDatos.DataSource = Nothing
             Dim diasFiltro As Integer = CInt(cmbFiltroFecha.SelectedValue)
             Dim fechaFiltro As DateTime = Today.AddDays(-diasFiltro)
@@ -165,47 +186,27 @@ Public Class frmInvoicesLista
         End If
 
         Try
-            Dim estado As Integer = CType(Me.grdDatos.Rows(mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdDatos)).Cells("clrEstado").Value, Integer)
-            Dim preformaimportacion As Integer = CType(Me.grdDatos.Rows(mdlPublicVars.fnGrid_codigoFilaSeleccionada(grdDatos)).Cells("preformaimportacioextranjero").Value, Integer)
 
             Dim conexion As dsi_pos_demoEntities
             Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
                 conn.Open()
                 conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
-                Dim p As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = codigo Select x).FirstOrDefault
+                Dim i As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = codigo Select x).FirstOrDefault
 
-
-                If estado = 1 And preformaimportacion = 1 Then
-                    frmImportaciones.Text = "Compra Importación"
+                If i.IdNacionalizacion <= 0 Or i.IdNacionalizacion Is Nothing Then
+                    frmImportaciones.Text = "Modificacion Invoice"
                     frmImportaciones.MdiParent = frmMenuPrincipal
-                    frmImportaciones.codigo = codigo
-                    frmImportaciones.bitEditarEntrada = True
+                    frmImportaciones.codigo = mdlPublicVars.superSearchId
+                    frmImportaciones.bitModificarTransito = True
                     frmImportaciones.Show()
-                ElseIf estado = 5 And preformaimportacion = 2 Then
-                    frmImportaciones.Text = "Compra Importación"
-                    frmImportaciones.MdiParent = frmMenuPrincipal
-                    frmImportaciones.codigo = codigo
-                    frmImportaciones.bitEditarTransito = True
-                    'frmproformaimportacion.bitPreformaToEntrada = False
-                    'frmproformaimportacion.bitPreformaToTransito = True
-                    frmImportaciones.Show()
-
-                ElseIf estado = 1 And preformaimportacion <> 1 Then
-                    frmEntrada.Text = "Compras"
-                    frmEntrada.MdiParent = frmMenuPrincipal
-                    frmEntrada.codigo = codigo
-                    frmEntrada.bitEditarEntrada = True
-                    permiso.PermisoFrmEspeciales(frmEntrada, True)
                 Else
-                    alertas.contenido = "No se puede modificar, ya ha sido comprada, realizar un AJUSTE !"
-                    alertas.fnErrorContenido()
+                    frmNotificacion.lblNotificacion.Text = "Invoice ya Nacionalizada"
+                    frmNotificacion.Show()
                 End If
 
                 conn.Close()
             End Using
-
-            'Estado: 1 --> Preforma, 5 --> Transito, 4 --> Compra
 
         Catch ex As Exception
         End Try

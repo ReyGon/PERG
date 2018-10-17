@@ -213,7 +213,7 @@ Public Class frmFacturasElegir
 
     Private Sub grdFacturas_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles grdFacturas.MouseDoubleClick
         Try
- 
+
             Dim index As Integer = mdlPublicVars.fnGrid_codigoFilaSeleccionada(Me.grdFacturas)
             Dim salida As Integer = CInt(Me.grdFacturas.Rows(index).Cells("id").Value)
             frmPedidoConcepto.Text = "Ventas"

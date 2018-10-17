@@ -26,8 +26,6 @@ Public Class frmPreformasLista
         fnLlenarCombo()
         llenagrid()
 
-        ''Dim summary As GridViewSummaryItem
-
         Me.grdDatos.Font = New System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         cargo = True
         lblFiltroFecha.Visible = True
@@ -46,9 +44,25 @@ Public Class frmPreformasLista
         End With
     End Sub
 
+    Private Sub fnSumarios()
+        Try
+            grdDatos.SummaryRowsTop.Clear()
+
+            Dim summaryCantidad As New GridViewSummaryItem("Total", mdlPublicVars.SimboloSuma + "=" + mdlPublicVars.formatoMonedaDolarGridTelerik, GridAggregateFunction.Sum)
+
+            'agregar la fila de operaciones aritmeticas
+            Dim summaryRowItem As New GridViewSummaryRowItem(New GridViewSummaryItem() {summaryCantidad})
+
+            grdDatos.SummaryRowsTop.Add(summaryRowItem)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
     Private Sub llenagrid()
 
         Try
+            fnSumarios()
             Me.grdDatos.DataSource = Nothing
             Dim diasFiltro As Integer = CInt(cmbFiltroFecha.SelectedValue)
             Dim fechaFiltro As DateTime = Today.AddDays(-diasFiltro)
@@ -64,8 +78,8 @@ Public Class frmPreformasLista
                            Select Codigo = x.idEntrada, Fecha = x.fechaFiltro, Proveedor = x.tblProveedor.negocio, Correlativo = x.correlativo, _
                             Documento = x.serieDocumento & " - " & x.documento, Total = (From a In conexion.tblEntradasDetalles Where a.idEntrada = x.idEntrada Select a.costoIVA * a.cantidad).Sum,
                             chkAnulado = x.anulado, PreformaImportacion = x.preformaimportacion, _
-                            clrEstado = If(x.anulado = True, 0, If(x.nacionalizacion = True, 4, If(x.Invoice = True, 5, If(x.preformaimportacion = True, 1, 0)))), _
-                            Descripcion = If(x.anulado = True, "Anulado", If(x.nacionalizacion = True, "Nacionalizado", If(x.Invoice = True, "Invoice", If(x.preformaimportacion = True, "Preforma Invoice", "Ninguno"))))
+                            clrEstado = If(x.anulado = True, 0, If(x.Nacionalizacion = True, 4, If(x.Invoice = True, 5, If(x.preformaimportacion = True, 1, 0)))), _
+                            Descripcion = If(x.anulado = True, "Anulado", If(x.Nacionalizacion = True, "Nacionalizado", If(x.Invoice = True, "Invoice", If(x.preformaimportacion = True, "Preforma Invoice", "Ninguno"))))
                             Order By Fecha Descending, Codigo Descending)
 
                 Me.grdDatos.DataSource = consulta
@@ -172,7 +186,7 @@ Public Class frmPreformasLista
                     frmImportaciones.Text = "Compra Importación"
                     frmImportaciones.MdiParent = frmMenuPrincipal
                     frmImportaciones.codigo = codigo
-                    frmImportaciones.bitEditarTransito = True
+                    frmImportaciones.bitModificarTransito = True
                     'frmproformaimportacion.bitPreformaToEntrada = False
                     'frmproformaimportacion.bitPreformaToTransito = True
                     frmImportaciones.Show()

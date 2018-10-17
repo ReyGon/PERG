@@ -27,6 +27,8 @@ Partial Class frmVerificarTransito
         Dim GridViewTextBoxColumn5 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn6 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn7 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn8 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn9 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmVerificarTransito))
         Me.pnlBarra = New System.Windows.Forms.Panel()
         Me.pnx0Validar = New System.Windows.Forms.Panel()
@@ -215,9 +217,11 @@ Partial Class frmVerificarTransito
         GridViewTextBoxColumn2.Name = "Producto"
         GridViewTextBoxColumn3.HeaderText = "Cantidad"
         GridViewTextBoxColumn3.Name = "Cantidad"
-        GridViewTextBoxColumn4.HeaderText = "Faltante"
-        GridViewTextBoxColumn4.Name = "Faltante"
-        Me.grdPreforma.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4})
+        GridViewTextBoxColumn4.HeaderText = "Costo"
+        GridViewTextBoxColumn4.Name = "Costo"
+        GridViewTextBoxColumn5.HeaderText = "Faltante"
+        GridViewTextBoxColumn5.Name = "Faltante"
+        Me.grdPreforma.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4, GridViewTextBoxColumn5})
         Me.grdPreforma.MasterTemplate.EnableAlternatingRowColor = True
         Me.grdPreforma.MasterTemplate.EnableGrouping = False
         Me.grdPreforma.MasterTemplate.HorizontalScrollState = Telerik.WinControls.UI.ScrollState.AlwaysShow
@@ -312,13 +316,15 @@ Partial Class frmVerificarTransito
         Me.grdInvoice.MasterTemplate.AllowAddNewRow = False
         Me.grdInvoice.MasterTemplate.AllowDeleteRow = False
         Me.grdInvoice.MasterTemplate.AllowEditRow = False
-        GridViewTextBoxColumn5.HeaderText = "Codigo"
-        GridViewTextBoxColumn5.Name = "Codigo"
-        GridViewTextBoxColumn6.HeaderText = "Producto"
-        GridViewTextBoxColumn6.Name = "Producto"
-        GridViewTextBoxColumn7.HeaderText = "Cantidad"
-        GridViewTextBoxColumn7.Name = "Cantidad"
-        Me.grdInvoice.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn5, GridViewTextBoxColumn6, GridViewTextBoxColumn7})
+        GridViewTextBoxColumn6.HeaderText = "Codigo"
+        GridViewTextBoxColumn6.Name = "Codigo"
+        GridViewTextBoxColumn7.HeaderText = "Producto"
+        GridViewTextBoxColumn7.Name = "Producto"
+        GridViewTextBoxColumn8.HeaderText = "Cantidad"
+        GridViewTextBoxColumn8.Name = "Cantidad"
+        GridViewTextBoxColumn9.HeaderText = "Costo"
+        GridViewTextBoxColumn9.Name = "Costo"
+        Me.grdInvoice.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn6, GridViewTextBoxColumn7, GridViewTextBoxColumn8, GridViewTextBoxColumn9})
         Me.grdInvoice.MasterTemplate.EnableAlternatingRowColor = True
         Me.grdInvoice.MasterTemplate.EnableGrouping = False
         Me.grdInvoice.MasterTemplate.HorizontalScrollState = Telerik.WinControls.UI.ScrollState.AlwaysShow

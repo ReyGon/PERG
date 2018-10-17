@@ -19,7 +19,6 @@ Public Class frmImportaciones
     Public tblCodigos As New DataTable
     Dim listo As Boolean = False
 
-    Private _bitEditarTransito As Boolean
     Private _bitEntrada As Boolean
     Private _bitSalida As Boolean
     Private _bitMovInventario As Boolean
@@ -42,6 +41,7 @@ Public Class frmImportaciones
     Public _compra As Boolean
     Public _entrada As frmEntrada
     Public _bitCrearTransito As Boolean
+    Public _bitModificarTransito As Boolean
     Private permiso As New clsPermisoUsuario
 
 
@@ -60,6 +60,15 @@ Public Class frmImportaciones
         End Get
         Set(value As Boolean)
             _bitCrearTransito = value
+        End Set
+    End Property
+
+    Public Property bitModificarTransito As Boolean
+        Get
+            bitModificarTransito = _bitModificarTransito
+        End Get
+        Set(value As Boolean)
+            _bitModificarTransito = value
         End Set
     End Property
 
@@ -97,15 +106,6 @@ Public Class frmImportaciones
         End Get
         Set(ByVal value As Boolean)
             _bitPreformaToTransito = value
-        End Set
-    End Property
-
-    Property bitEditarTransito() As Boolean
-        Get
-            bitEditarTransito = _bitEditarTransito
-        End Get
-        Set(ByVal value As Boolean)
-            _bitEditarTransito = value
         End Set
     End Property
 
@@ -202,16 +202,19 @@ Public Class frmImportaciones
             fnLlenarDatos()
         End If
 
-        If bitEditarTransito = True And bitCrearTransito = False Then
+        If bitModificarTransito = True And bitCrearTransito = False Then
             lbl1Guardar.Text = "Modificar Transito"
-            pnx5transito.Visible = True
+            pnx5transito.Visible = False
+            Me.dtpFechaIngresoEstimado.Enabled = True
+            Me.cmbProveedores.Enabled = False
 
             chkTransito.Visible = True
+            pnx1Guardar.Visible = True
             fnLlenarDatos()
             chkTransito.Checked = True
         End If
 
-        If bitEditarEntrada = False And bitEditarTransito = False And bitCrearTransito = False Then
+        If bitEditarEntrada = False And bitModificarTransito = False And bitCrearTransito = False Then
             pnx5transito.Visible = False
             pnx3Gasto.Visible = False
             pnx2Compra.Visible = False
@@ -292,6 +295,7 @@ Public Class frmImportaciones
 
     Private Sub fnsalir() Handles Me.panel4
         Me.Close()
+        frmInvoicesLista.WindowState = FormWindowState.Maximized
     End Sub
 
     Private Sub fncargarpromediotipocambio()
@@ -386,16 +390,15 @@ Public Class frmImportaciones
                 conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ConnectionString)
 
                 'Obtenemos la entrada
-                Dim entrada As tblEntrada = (From x In ctx.tblEntradas Where x.idEntrada = codigo Select x).FirstOrDefault
+                Dim entrada As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = codigo Select x).FirstOrDefault
 
                 dtpFechaRegistro.Value = entrada.fechaRegistro
+                dtpFechaIngresoEstimado.Value = entrada.FechaIngresoTransito
                 txtDocumento.Text = entrada.documento
                 txtSerie.Text = entrada.serieDocumento
                 txtCorrelativo.Text = entrada.correlativo
                 cmbProveedores.Text = entrada.tblProveedor.negocio
                 txtObservacion.Text = entrada.observacion
-
-
 
                 'Bloqueamos los controles
                 dtpFechaRegistro.Enabled = False
@@ -416,7 +419,7 @@ Public Class frmImportaciones
 
                     Dim fila As Object()
                     fila = {detalle.idEntradaDetalle, detalle.idArticulo, detalle.tblArticulo.codigo1, detalle.tblArticulo.nombre1, _
-                         detalle.cantidad, detalle.costoIVA, detalle.idunidadmedida, unidadm.nombre, detalle.valormedida, "0", detalle.costoprorrateo, "0", "0", "0", detalle.cantidad, detalle.costoIVA, "0"}
+                         detalle.cantidad, detalle.costoIVA, detalle.idunidadmedida, unidadm.nombre, detalle.valormedida, "0", detalle.costoprorrateo, "0", "0", "0", detalle.cantidad, detalle.costoIVA, "0", detalle.nocaja}
 
                     'idDetalle,id,txmCodigo,txbProducto,txmCantidad,txmCosto,Total,elimina,txmCantidadCompra,txmCostoCompra,TotalCompra
 
@@ -689,6 +692,8 @@ Public Class frmImportaciones
                 ''RadMessageBox.Show("Registro Guardado", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
                 alerta.fnGuardar()
                 ''MessageBox.Show("Registro Guardado")
+                frmNotificacion.lblNotificacion.Text = "Registro Guardado" + vbLf + "Correctamente"
+                frmNotificacion.Show()
             End If
 
             'cerrar la conexion()
@@ -716,7 +721,7 @@ Public Class frmImportaciones
                         codigo = compra.idEntrada
                         bitPreformaToEntrada = False
                         bitPreformaToTransito = True
-                        bitEditarTransito = True
+                        bitModificarTransito = True
                         bitEditarEntrada = False
 
                     End If
@@ -1286,13 +1291,9 @@ Public Class frmImportaciones
                         'nuevaCompra.idUsuario = mdlPublicVars.idUsuario
                         'nuevaCompra.idTipoMovimiento = mdlPublicVars.Entrada_CodigoMovimiento
 
-                        nuevaCompra.idProveedor = cmbProveedores.SelectedValue
-                        nuevaCompra.fechaRegistro = dtpFechaRegistro.Text
-                        nuevaCompra.documento = txtDocumento.Text
-                        nuevaCompra.serieDocumento = txtSerie.Text
-                        nuevaCompra.observacion = txtObservacion.Text
-                        nuevaCompra.anulado = 0
-                        nuevaCompra.flete = 0
+                        nuevaCompra.documento = Me.txtDocumento.Text
+                        nuevaCompra.serieDocumento = Me.txtSerie.Text
+                        nuevaCompra.FechaIngresoTransito = CDate(Me.dtpFechaIngresoEstimado.Value)
 
                         Dim lbtotal As Decimal
                         lbtotal = Replace(lbltotaldolares.Text, "$", "")
@@ -1314,6 +1315,7 @@ Public Class frmImportaciones
                         Dim elimina As Integer = 0
                         Dim valmedida As Double = 0
                         Dim idmedida As Integer = 0
+                        Dim cajano As String = ""
                         'Recorremos el grid de productos 
                         For index = 0 To Me.grdproductos.Rows.Count - 1
                             'Creamos la fila de detalle
@@ -1325,6 +1327,7 @@ Public Class frmImportaciones
                             elimina = Me.grdproductos.Rows(index).Cells("elimina").Value
                             valmedida = Me.grdproductos.Rows(index).Cells("valormedida").Value
                             idmedida = Me.grdproductos.Rows(index).Cells("idmedida").Value
+                            cajano = Me.grdproductos.Rows(index).Cells("cajano").Value
 
                             If nombreArticulo IsNot Nothing Then
                                 If elimina > 0 Then
@@ -1348,6 +1351,7 @@ Public Class frmImportaciones
                                     detalleEntrada.idArticulo = idArticulo
                                     detalleEntrada.cantidad = cantidad
                                     detalleEntrada.costoIVA = costo
+                                    detalleEntrada.nocaja = cajano
                                     conexion.SaveChanges()
                                 Else
                                     'Si es un registro nuevo
@@ -1364,30 +1368,30 @@ Public Class frmImportaciones
 
 
 
-                                'Aumentos las existencias, y entradas en el inventario
-                                Dim inventario As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = idArticulo _
-                                                                   And x.tblArticulo.empresa = mdlPublicVars.idEmpresa _
-                                                                   And x.idTipoInventario = nuevaCompra.idtipoInventario And x.IdAlmacen = nuevaCompra.idalmacen _
-                                                                   Select x).FirstOrDefault
+                                ' ''Aumentos las existencias, y entradas en el inventario
+                                ''Dim inventario As tblInventario = (From x In conexion.tblInventarios Where x.idArticulo = idArticulo _
+                                ''                                   And x.tblArticulo.empresa = mdlPublicVars.idEmpresa _
+                                ''                                   And x.idTipoInventario = nuevaCompra.idtipoInventario And x.IdAlmacen = nuevaCompra.idalmacen _
+                                ''                                   Select x).FirstOrDefault
 
 
-                                If inventario Is Nothing Then
-                                    'crear el registro en inventario.
-                                    Dim inveNuevo As New tblInventario
+                                ''If inventario Is Nothing Then
+                                ''    'crear el registro en inventario.
+                                ''    Dim inveNuevo As New tblInventario
 
-                                    inveNuevo.idInventario = nuevaCompra.idtipoInventario
-                                    inveNuevo.IdAlmacen = nuevaCompra.idalmacen
-                                    inveNuevo.entrada = cantidad * valmedida
-                                    inveNuevo.saldo = cantidad * valmedida
-                                    inveNuevo.salida = 0
-                                    inveNuevo.transito = cantidad
-                                    conexion.AddTotblInventarios(inveNuevo)
-                                    conexion.SaveChanges()
-                                Else
+                                ''    inveNuevo.idInventario = nuevaCompra.idtipoInventario
+                                ''    inveNuevo.IdAlmacen = nuevaCompra.idalmacen
+                                ''    inveNuevo.entrada = cantidad * valmedida
+                                ''    inveNuevo.saldo = cantidad * valmedida
+                                ''    inveNuevo.salida = 0
+                                ''    inveNuevo.transito = cantidad
+                                ''    conexion.AddTotblInventarios(inveNuevo)
+                                ''    conexion.SaveChanges()
+                                ''Else
 
-                                    inventario.transito = cantidad
-                                    conexion.SaveChanges()
-                                End If
+                                ''    inventario.transito = cantidad
+                                ''    conexion.SaveChanges()
+                                ''End If
 
                                 'guardar los cambios
                                 conexion.SaveChanges()
@@ -1418,7 +1422,9 @@ Public Class frmImportaciones
                 If success = True Then
                     ctx.AcceptAllChanges()
                     fnLlenarDatos()
-                    MessageBox.Show("Registro Guardado")
+                    ''MessageBox.Show("Registro Guardado")
+                    frmNotificacion.lblNotificacion.Text = "Invoice Modificada" + vbLf + "Correctamente"
+                    frmNotificacion.Show()
                     fnNuevo()
                 End If
 
@@ -1430,7 +1436,8 @@ Public Class frmImportaciones
 
 
         End If
-
+        Me.Close()
+        frmInvoicesLista.WindowState = FormWindowState.Maximized
     End Sub
 
     Private Sub fnModificarPreformatoTransito()
@@ -1950,7 +1957,6 @@ Public Class frmImportaciones
                     nuevaCompra.IdInvoiceNacionalizacion = 0
                     nuevaCompra.finalizada = 0
 
-
                     'Estados de la compra
                     nuevaCompra.transito = False
                     nuevaCompra.compra = False
@@ -2041,7 +2047,9 @@ Public Class frmImportaciones
                 listo = False
                 fnNuevo()
                 ''MessageBox.Show("Registro Guardado")
-                alerta.fnGuardar()
+                ''alerta.fnGuardar()
+                frmNotificacion.lblNotificacion.Text = "Registro Guardado" + vbLf + "Correctamente"
+                frmNotificacion.Show()
 
             End If
             'cerrar la conexion()
@@ -2261,7 +2269,7 @@ Public Class frmImportaciones
 
                             If transito = True Then
                                 bitPreformaToTransito = True
-                                bitEditarTransito = True
+                                bitModificarTransito = True
                             Else
 
                                 bitPreformaToEntrada = True
@@ -2278,7 +2286,7 @@ Public Class frmImportaciones
 
                             If transito = True Then
                                 bitPreformaToTransito = True
-                                bitEditarTransito = True
+                                bitModificarTransito = True
                             Else
 
                                 bitPreformaToEntrada = True

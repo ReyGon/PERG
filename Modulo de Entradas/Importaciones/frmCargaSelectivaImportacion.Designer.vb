@@ -32,6 +32,8 @@ Partial Class frmCargaSelectivaImportacion
         Dim GridViewTextBoxColumn10 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn11 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim GridViewTextBoxColumn12 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn13 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
+        Dim GridViewTextBoxColumn14 As Telerik.WinControls.UI.GridViewTextBoxColumn = New Telerik.WinControls.UI.GridViewTextBoxColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCargaSelectivaImportacion))
         Me.pnlBarra = New System.Windows.Forms.Panel()
         Me.pnx1Salir = New System.Windows.Forms.Panel()
@@ -46,12 +48,12 @@ Partial Class frmCargaSelectivaImportacion
         Me.lblContadorProductos = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.lblInvoice = New System.Windows.Forms.Label()
-        Me.grdProductos = New Telerik.WinControls.UI.RadGridView()
+        Me.grdNacionalizado = New Telerik.WinControls.UI.RadGridView()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.RadGroupBox2 = New Telerik.WinControls.UI.RadGroupBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.RadGridView1 = New Telerik.WinControls.UI.RadGridView()
+        Me.grdCarga = New Telerik.WinControls.UI.RadGridView()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
         Me.pnx1Salir.SuspendLayout()
@@ -60,12 +62,12 @@ Partial Class frmCargaSelectivaImportacion
         CType(Me.pbx0Facturar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.RadGroupBox1.SuspendLayout()
-        CType(Me.grdProductos, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.grdProductos.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdNacionalizado, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdNacionalizado.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadGroupBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.RadGroupBox2.SuspendLayout()
-        CType(Me.RadGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RadGridView1.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdCarga, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdCarga.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -83,7 +85,7 @@ Partial Class frmCargaSelectivaImportacion
         Me.pnlBarra.Controls.Add(Me.pnx0Facturar)
         Me.pnlBarra.Location = New System.Drawing.Point(466, 0)
         Me.pnlBarra.Name = "pnlBarra"
-        Me.pnlBarra.Size = New System.Drawing.Size(691, 48)
+        Me.pnlBarra.Size = New System.Drawing.Size(1099, 48)
         Me.pnlBarra.TabIndex = 156
         '
         'pnx1Salir
@@ -170,7 +172,7 @@ Partial Class frmCargaSelectivaImportacion
         Me.RadGroupBox1.Controls.Add(Me.lblContadorProductos)
         Me.RadGroupBox1.Controls.Add(Me.Label3)
         Me.RadGroupBox1.Controls.Add(Me.lblInvoice)
-        Me.RadGroupBox1.Controls.Add(Me.grdProductos)
+        Me.RadGroupBox1.Controls.Add(Me.grdNacionalizado)
         Me.RadGroupBox1.FooterImageIndex = -1
         Me.RadGroupBox1.FooterImageKey = ""
         Me.RadGroupBox1.HeaderImageIndex = -1
@@ -184,7 +186,7 @@ Partial Class frmCargaSelectivaImportacion
         '
         '
         Me.RadGroupBox1.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        Me.RadGroupBox1.Size = New System.Drawing.Size(570, 375)
+        Me.RadGroupBox1.Size = New System.Drawing.Size(765, 598)
         Me.RadGroupBox1.TabIndex = 201
         '
         'Label7
@@ -231,24 +233,24 @@ Partial Class frmCargaSelectivaImportacion
         Me.lblInvoice.TabIndex = 166
         Me.lblInvoice.Text = "Invoice"
         '
-        'grdProductos
+        'grdNacionalizado
         '
-        Me.grdProductos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.grdNacionalizado.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grdProductos.AutoScroll = True
-        Me.grdProductos.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.grdProductos.Cursor = System.Windows.Forms.Cursors.Default
-        Me.grdProductos.Font = New System.Drawing.Font("Segoe UI", 11.25!)
-        Me.grdProductos.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.grdProductos.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.grdProductos.Location = New System.Drawing.Point(13, 34)
+        Me.grdNacionalizado.AutoScroll = True
+        Me.grdNacionalizado.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.grdNacionalizado.Cursor = System.Windows.Forms.Cursors.Default
+        Me.grdNacionalizado.Font = New System.Drawing.Font("Segoe UI", 11.25!)
+        Me.grdNacionalizado.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.grdNacionalizado.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.grdNacionalizado.Location = New System.Drawing.Point(13, 34)
         '
-        'grdProductos
+        'grdNacionalizado
         '
-        Me.grdProductos.MasterTemplate.AllowAddNewRow = False
-        Me.grdProductos.MasterTemplate.AllowDeleteRow = False
-        Me.grdProductos.MasterTemplate.AllowEditRow = False
+        Me.grdNacionalizado.MasterTemplate.AllowAddNewRow = False
+        Me.grdNacionalizado.MasterTemplate.AllowDeleteRow = False
+        Me.grdNacionalizado.MasterTemplate.AllowEditRow = False
         GridViewCheckBoxColumn1.HeaderText = "Agregar"
         GridViewCheckBoxColumn1.Name = "chmAgregar"
         GridViewTextBoxColumn1.HeaderText = "IdArticulo"
@@ -262,29 +264,35 @@ Partial Class frmCargaSelectivaImportacion
         GridViewTextBoxColumn4.Name = "Producto"
         GridViewTextBoxColumn5.HeaderText = "Cantidad"
         GridViewTextBoxColumn5.Name = "Cantidad"
-        Me.grdProductos.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn1, GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4, GridViewTextBoxColumn5})
-        Me.grdProductos.MasterTemplate.EnableAlternatingRowColor = True
-        Me.grdProductos.MasterTemplate.EnableGrouping = False
-        Me.grdProductos.MasterTemplate.HorizontalScrollState = Telerik.WinControls.UI.ScrollState.AlwaysShow
-        Me.grdProductos.Name = "grdProductos"
-        Me.grdProductos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdProductos.RightToLeft = System.Windows.Forms.RightToLeft.No
+        GridViewTextBoxColumn6.HeaderText = "Costo"
+        GridViewTextBoxColumn6.IsVisible = False
+        GridViewTextBoxColumn6.Name = "Costo"
+        GridViewTextBoxColumn7.HeaderText = "Eliminar"
+        GridViewTextBoxColumn7.IsVisible = False
+        GridViewTextBoxColumn7.Name = "Eliminar"
+        Me.grdNacionalizado.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewCheckBoxColumn1, GridViewTextBoxColumn1, GridViewTextBoxColumn2, GridViewTextBoxColumn3, GridViewTextBoxColumn4, GridViewTextBoxColumn5, GridViewTextBoxColumn6, GridViewTextBoxColumn7})
+        Me.grdNacionalizado.MasterTemplate.EnableAlternatingRowColor = True
+        Me.grdNacionalizado.MasterTemplate.EnableGrouping = False
+        Me.grdNacionalizado.MasterTemplate.HorizontalScrollState = Telerik.WinControls.UI.ScrollState.AlwaysShow
+        Me.grdNacionalizado.Name = "grdNacionalizado"
+        Me.grdNacionalizado.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdNacionalizado.RightToLeft = System.Windows.Forms.RightToLeft.No
         '
         '
         '
-        Me.grdProductos.RootElement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.grdProductos.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdProductos.Size = New System.Drawing.Size(552, 328)
-        Me.grdProductos.TabIndex = 162
-        Me.grdProductos.Text = "RadGridView1"
-        Me.grdProductos.ThemeName = "Office2007Black"
+        Me.grdNacionalizado.RootElement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.grdNacionalizado.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdNacionalizado.Size = New System.Drawing.Size(739, 557)
+        Me.grdNacionalizado.TabIndex = 162
+        Me.grdNacionalizado.Text = "RadGridView1"
+        Me.grdNacionalizado.ThemeName = "Office2007Black"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.Label4.ForeColor = System.Drawing.Color.Gray
-        Me.Label4.Location = New System.Drawing.Point(596, 51)
+        Me.Label4.Location = New System.Drawing.Point(806, 51)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(243, 25)
         Me.Label4.TabIndex = 205
@@ -297,21 +305,21 @@ Partial Class frmCargaSelectivaImportacion
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RadGroupBox2.Controls.Add(Me.Label5)
         Me.RadGroupBox2.Controls.Add(Me.Label6)
-        Me.RadGroupBox2.Controls.Add(Me.RadGridView1)
+        Me.RadGroupBox2.Controls.Add(Me.grdCarga)
         Me.RadGroupBox2.FooterImageIndex = -1
         Me.RadGroupBox2.FooterImageKey = ""
         Me.RadGroupBox2.HeaderImageIndex = -1
         Me.RadGroupBox2.HeaderImageKey = ""
         Me.RadGroupBox2.HeaderMargin = New System.Windows.Forms.Padding(0)
         Me.RadGroupBox2.HeaderText = ""
-        Me.RadGroupBox2.Location = New System.Drawing.Point(580, 65)
+        Me.RadGroupBox2.Location = New System.Drawing.Point(791, 65)
         Me.RadGroupBox2.Name = "RadGroupBox2"
         Me.RadGroupBox2.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
         '
         '
         '
         Me.RadGroupBox2.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        Me.RadGroupBox2.Size = New System.Drawing.Size(570, 375)
+        Me.RadGroupBox2.Size = New System.Drawing.Size(765, 598)
         Me.RadGroupBox2.TabIndex = 204
         '
         'Label5
@@ -336,60 +344,60 @@ Partial Class frmCargaSelectivaImportacion
         Me.Label6.TabIndex = 166
         Me.Label6.Text = "Invoice"
         '
-        'RadGridView1
+        'grdCarga
         '
-        Me.RadGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.grdCarga.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.RadGridView1.AutoScroll = True
-        Me.RadGridView1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.RadGridView1.Cursor = System.Windows.Forms.Cursors.Default
-        Me.RadGridView1.Font = New System.Drawing.Font("Segoe UI", 11.25!)
-        Me.RadGridView1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.RadGridView1.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.RadGridView1.Location = New System.Drawing.Point(13, 34)
+        Me.grdCarga.AutoScroll = True
+        Me.grdCarga.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.grdCarga.Cursor = System.Windows.Forms.Cursors.Default
+        Me.grdCarga.Font = New System.Drawing.Font("Segoe UI", 11.25!)
+        Me.grdCarga.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.grdCarga.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.grdCarga.Location = New System.Drawing.Point(13, 34)
         '
-        'RadGridView1
+        'grdCarga
         '
-        Me.RadGridView1.MasterTemplate.AllowAddNewRow = False
-        Me.RadGridView1.MasterTemplate.AllowDeleteRow = False
-        Me.RadGridView1.MasterTemplate.AllowEditRow = False
-        GridViewTextBoxColumn6.HeaderText = "IdArticulo"
-        GridViewTextBoxColumn6.IsVisible = False
-        GridViewTextBoxColumn6.Name = "IdArticulo"
-        GridViewTextBoxColumn7.HeaderText = "No. Caja"
-        GridViewTextBoxColumn7.Name = "cajano"
-        GridViewTextBoxColumn8.HeaderText = "Codigo"
-        GridViewTextBoxColumn8.Name = "Codigo"
-        GridViewTextBoxColumn9.HeaderText = "Producto"
-        GridViewTextBoxColumn9.Name = "Producto"
-        GridViewTextBoxColumn10.HeaderText = "Cantidad"
-        GridViewTextBoxColumn10.Name = "Cantidad"
-        GridViewTextBoxColumn11.HeaderText = "Costo"
-        GridViewTextBoxColumn11.Name = "Costo"
-        GridViewTextBoxColumn12.HeaderText = "Costo Total"
-        GridViewTextBoxColumn12.Name = "CostoTotal"
-        Me.RadGridView1.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn6, GridViewTextBoxColumn7, GridViewTextBoxColumn8, GridViewTextBoxColumn9, GridViewTextBoxColumn10, GridViewTextBoxColumn11, GridViewTextBoxColumn12})
-        Me.RadGridView1.MasterTemplate.EnableAlternatingRowColor = True
-        Me.RadGridView1.MasterTemplate.EnableGrouping = False
-        Me.RadGridView1.MasterTemplate.HorizontalScrollState = Telerik.WinControls.UI.ScrollState.AlwaysShow
-        Me.RadGridView1.Name = "RadGridView1"
-        Me.RadGridView1.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.RadGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.grdCarga.MasterTemplate.AllowAddNewRow = False
+        Me.grdCarga.MasterTemplate.AllowDeleteRow = False
+        Me.grdCarga.MasterTemplate.AllowEditRow = False
+        GridViewTextBoxColumn8.HeaderText = "IdArticulo"
+        GridViewTextBoxColumn8.IsVisible = False
+        GridViewTextBoxColumn8.Name = "IdArticulo"
+        GridViewTextBoxColumn9.HeaderText = "No. Caja"
+        GridViewTextBoxColumn9.Name = "cajano"
+        GridViewTextBoxColumn10.HeaderText = "Codigo"
+        GridViewTextBoxColumn10.Name = "Codigo"
+        GridViewTextBoxColumn11.HeaderText = "Producto"
+        GridViewTextBoxColumn11.Name = "Producto"
+        GridViewTextBoxColumn12.HeaderText = "Cantidad"
+        GridViewTextBoxColumn12.Name = "Cantidad"
+        GridViewTextBoxColumn13.HeaderText = "Costo"
+        GridViewTextBoxColumn13.Name = "Costo"
+        GridViewTextBoxColumn14.HeaderText = "Costo Total"
+        GridViewTextBoxColumn14.Name = "CostoTotal"
+        Me.grdCarga.MasterTemplate.Columns.AddRange(New Telerik.WinControls.UI.GridViewDataColumn() {GridViewTextBoxColumn8, GridViewTextBoxColumn9, GridViewTextBoxColumn10, GridViewTextBoxColumn11, GridViewTextBoxColumn12, GridViewTextBoxColumn13, GridViewTextBoxColumn14})
+        Me.grdCarga.MasterTemplate.EnableAlternatingRowColor = True
+        Me.grdCarga.MasterTemplate.EnableGrouping = False
+        Me.grdCarga.MasterTemplate.HorizontalScrollState = Telerik.WinControls.UI.ScrollState.AlwaysShow
+        Me.grdCarga.Name = "grdCarga"
+        Me.grdCarga.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdCarga.RightToLeft = System.Windows.Forms.RightToLeft.No
         '
         '
         '
-        Me.RadGridView1.RootElement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.RadGridView1.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.RadGridView1.Size = New System.Drawing.Size(552, 328)
-        Me.RadGridView1.TabIndex = 162
-        Me.RadGridView1.Text = "RadGridView1"
-        Me.RadGridView1.ThemeName = "Office2007Black"
+        Me.grdCarga.RootElement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.grdCarga.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdCarga.Size = New System.Drawing.Size(739, 557)
+        Me.grdCarga.TabIndex = 162
+        Me.grdCarga.Text = "RadGridView1"
+        Me.grdCarga.ThemeName = "Office2007Black"
         '
         'frmCargaSelectivaImportacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(1155, 445)
+        Me.ClientSize = New System.Drawing.Size(1563, 668)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.RadGroupBox2)
         Me.Controls.Add(Me.Label2)
@@ -417,13 +425,13 @@ Partial Class frmCargaSelectivaImportacion
         CType(Me.RadGroupBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.RadGroupBox1.ResumeLayout(False)
         Me.RadGroupBox1.PerformLayout()
-        CType(Me.grdProductos.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.grdProductos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdNacionalizado.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdNacionalizado, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RadGroupBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.RadGroupBox2.ResumeLayout(False)
         Me.RadGroupBox2.PerformLayout()
-        CType(Me.RadGridView1.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RadGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdCarga.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdCarga, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -440,13 +448,13 @@ Partial Class frmCargaSelectivaImportacion
     Friend WithEvents RadGroupBox1 As Telerik.WinControls.UI.RadGroupBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents lblInvoice As System.Windows.Forms.Label
-    Public WithEvents grdProductos As Telerik.WinControls.UI.RadGridView
+    Public WithEvents grdNacionalizado As Telerik.WinControls.UI.RadGridView
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents lblContadorProductos As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents RadGroupBox2 As Telerik.WinControls.UI.RadGroupBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Public WithEvents RadGridView1 As Telerik.WinControls.UI.RadGridView
+    Public WithEvents grdCarga As Telerik.WinControls.UI.RadGridView
 
 End Class
