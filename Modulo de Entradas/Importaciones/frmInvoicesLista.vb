@@ -159,11 +159,11 @@ Public Class frmInvoicesLista
 
     Private Sub frm_nuevo() Handles Me.nuevoRegistro
 
-        frmPreformasImportacion.Text = "Preformas Importacion"
-        frmPreformasImportacion.WindowState = FormWindowState.Normal
-        frmPreformasImportacion.StartPosition = FormStartPosition.CenterScreen
-        frmPreformasImportacion.ShowDialog()
-        frmPreformasImportacion.Dispose()
+        ''frmPreformasImportacion.Text = "Preformas Importacion"
+        ''frmPreformasImportacion.WindowState = FormWindowState.Normal
+        ''frmPreformasImportacion.StartPosition = FormStartPosition.CenterScreen
+        ''frmPreformasImportacion.ShowDialog()
+        ''frmPreformasImportacion.Dispose()
 
         If mdlPublicVars.superSearchId = 0 Then
             alertas.contenido = "No selecciono ninguna preforma de importacion"

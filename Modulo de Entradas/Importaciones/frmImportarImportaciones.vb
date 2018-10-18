@@ -334,7 +334,8 @@ Public Class frmImportarImportaciones
     Private Sub fnGuardar() Handles Me.panel0
         Try
             If Me.tblRetorno.Rows.Count > 0 Then
-                alerta.fnGuardar()
+                frmNotificacion.lblNotificacion.Text = "Importacion de Articulos" + vbLf + "Exitosa"
+                frmNotificacion.Show()
 
                 Me.Close()
             Else

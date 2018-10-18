@@ -102,6 +102,7 @@ Public Class frmComprasBarraDerecha
         Catch ex As Exception
 
         End Try
+        Me.Close()
     End Sub
      
     'PENDIENTES
