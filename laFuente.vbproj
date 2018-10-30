@@ -731,14 +731,16 @@
     <Compile Include="Modulo de Entradas\Importaciones\frmCargasImportaciones.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modulo de Entradas\Importaciones\frmHistorialPagos.Designer.vb">
-      <DependentUpon>frmHistorialPagos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Modulo de Entradas\Importaciones\frmHistorialPagos.vb" />
     <Compile Include="Modulo de Entradas\Importaciones\frmgastosimportacion.Designer.vb">
       <DependentUpon>frmgastosimportacion.vb</DependentUpon>
     </Compile>
     <Compile Include="Modulo de Entradas\Importaciones\frmgastosimportacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo de Entradas\Importaciones\frmHistorialPagos.Designer.vb">
+      <DependentUpon>frmHistorialPagos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo de Entradas\Importaciones\frmHistorialPagos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modulo de Entradas\Importaciones\frmImportaciones.Designer.vb">
@@ -2096,11 +2098,11 @@
     <EmbeddedResource Include="Modulo de Entradas\Importaciones\frmCargasImportaciones.resx">
       <DependentUpon>frmCargasImportaciones.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modulo de Entradas\Importaciones\frmHistorialPagos.resx">
-      <DependentUpon>frmHistorialPagos.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Entradas\Importaciones\frmgastosimportacion.resx">
       <DependentUpon>frmgastosimportacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo de Entradas\Importaciones\frmHistorialPagos.resx">
+      <DependentUpon>frmHistorialPagos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulo de Entradas\Importaciones\frmImportaciones.resx">
       <DependentUpon>frmImportaciones.vb</DependentUpon>

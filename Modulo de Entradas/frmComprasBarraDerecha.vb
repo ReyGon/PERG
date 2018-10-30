@@ -57,8 +57,11 @@ Public Class frmComprasBarraDerecha
                     Dim entrada As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = codigo Select x).FirstOrDefault
 
                     If entrada.finalizada = True Then
-                        RadMessageBox.Show("¡La Invoice ya fue Nacionalizada, No se puede operar!", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+
+                        frmNotificacion.lblNotificacion.Text = "La Invoice ya esta" + vbLf + "Nacionalizada"
+                        frmNotificacion.Show()
                         Exit Sub
+                        conn.Close()
                         Me.Close()
                     End If
 
@@ -70,36 +73,36 @@ Public Class frmComprasBarraDerecha
                         frmNacionalizacion.ShowDialog()
                         frmNacionalizacion.Dispose()
 
-                        Dim nac As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = CInt(mdlPublicVars.superSearchId) Select x).FirstOrDefault
+                        If superSearchId = codigo Then
+                            frmNotificacion.lblNotificacion.Text = "Proceso Nacionalizacion" + vbLf + "Cancelado"
+                            frmNotificacion.Show()
+                        Else
+                            Dim nac As tblEntrada = (From x In conexion.tblEntradas Where x.idEntrada = CInt(mdlPublicVars.superSearchId) Select x).FirstOrDefault
 
-                        nac.Nacionalizacion = True
-                        nac.finalizada = False
-                        nac.IdInvoiceNacionalizacion = codigo
-                        conexion.SaveChanges()
+                            nac.Nacionalizacion = True
+                            nac.finalizada = False
+                            nac.IdInvoiceNacionalizacion = codigo
+                            conexion.SaveChanges()
+
+                            entrada.IdInvoiceNacionalizacion = 0
+                            entrada.finalizada = True
+                            conexion.SaveChanges()
+                        End If
+                        
 
                     Else
-                        alerta.contenido = "No es una Invoice o la Invoice esta anulada"
-                        alerta.fnErrorContenido()
+                        frmNotificacion.lblNotificacion.Text = "No es una Invoice" + vbLf + "o esta Anulada"
+                        frmNotificacion.Show()
                     End If
-
-                    entrada.IdInvoiceNacionalizacion = 0
-                    entrada.finalizada = True
-                    conexion.SaveChanges()
 
                     conn.Close()
                 End Using
-
-                ''Dim codigo As Integer = mdlPublicVars.superSearchId
-                ''frmComprasGuia.Text = "Guias"
-                ''frmComprasGuia.Codigo = codigo
-                ''frmComprasGuia.StartPosition = FormStartPosition.CenterScreen
-                ''permiso.PermisoFrmEspeciales(frmComprasGuia, False)
-
 
             End If
         Catch ex As Exception
 
         End Try
+        Me.Close()
     End Sub
      
     'PENDIENTES

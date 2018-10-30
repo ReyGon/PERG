@@ -225,8 +225,8 @@ Public Class frmBuscarArticuloPrecios
 
                 Dim pPublico = (From x In conexion.sp_Articulo_PrecioPublico(codigo, codClie) Select x).FirstOrDefault
 
-                Dim pre As Double
-                pre = pPublico.PrecioPublico
+                Dim pre As Decimal
+                pre = pPublico
 
 
                 Dim pr = (From x In conexion.sp_redondearPrecio(pre)).FirstOrDefault

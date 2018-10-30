@@ -26,11 +26,11 @@ Partial Class frmHistorialPagos
         Me.pbx0Salir = New System.Windows.Forms.PictureBox()
         Me.rgbEmpleados = New Telerik.WinControls.UI.RadGroupBox()
         Me.grdPagos = New Telerik.WinControls.UI.RadGridView()
-        Me.btnAceptar = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtAcreditacionTotal = New System.Windows.Forms.TextBox()
-        Me.txtAcreditacionPendiente = New System.Windows.Forms.TextBox()
+        Me.txtTasaCambio = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.btnAceptar = New System.Windows.Forms.Button()
+        Me.rbListado = New System.Windows.Forms.RadioButton()
+        Me.rbManual = New System.Windows.Forms.RadioButton()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
         Me.pnx0Salir.SuspendLayout()
@@ -102,8 +102,8 @@ Partial Class frmHistorialPagos
         Me.rgbEmpleados.HeaderImageIndex = -1
         Me.rgbEmpleados.HeaderImageKey = ""
         Me.rgbEmpleados.HeaderMargin = New System.Windows.Forms.Padding(0)
-        Me.rgbEmpleados.HeaderText = "Empleados"
-        Me.rgbEmpleados.Location = New System.Drawing.Point(12, 54)
+        Me.rgbEmpleados.HeaderText = "Pagos Proveedor"
+        Me.rgbEmpleados.Location = New System.Drawing.Point(12, 103)
         Me.rgbEmpleados.Name = "rgbEmpleados"
         Me.rgbEmpleados.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
         '
@@ -112,7 +112,7 @@ Partial Class frmHistorialPagos
         Me.rgbEmpleados.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
         Me.rgbEmpleados.Size = New System.Drawing.Size(891, 322)
         Me.rgbEmpleados.TabIndex = 110
-        Me.rgbEmpleados.Text = "Empleados"
+        Me.rgbEmpleados.Text = "Pagos Proveedor"
         Me.rgbEmpleados.ThemeName = "Office2007Black"
         '
         'grdPagos
@@ -131,6 +131,7 @@ Partial Class frmHistorialPagos
         Me.grdPagos.MasterTemplate.AllowColumnReorder = False
         Me.grdPagos.Name = "grdPagos"
         Me.grdPagos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdPagos.ReadOnly = True
         Me.grdPagos.RightToLeft = System.Windows.Forms.RightToLeft.No
         '
         '
@@ -141,6 +142,25 @@ Partial Class frmHistorialPagos
         Me.grdPagos.TabIndex = 0
         Me.grdPagos.Text = "Empleados"
         Me.grdPagos.ThemeName = "Office2007Black"
+        '
+        'txtTasaCambio
+        '
+        Me.txtTasaCambio.Enabled = False
+        Me.txtTasaCambio.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.txtTasaCambio.Location = New System.Drawing.Point(436, 68)
+        Me.txtTasaCambio.Name = "txtTasaCambio"
+        Me.txtTasaCambio.Size = New System.Drawing.Size(206, 25)
+        Me.txtTasaCambio.TabIndex = 185
+        Me.txtTasaCambio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(353, 74)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(77, 13)
+        Me.Label3.TabIndex = 184
+        Me.Label3.Text = "Tasa Cambio :"
         '
         'btnAceptar
         '
@@ -153,60 +173,44 @@ Partial Class frmHistorialPagos
         Me.btnAceptar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAceptar.ForeColor = System.Drawing.Color.Transparent
         Me.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnAceptar.Location = New System.Drawing.Point(799, 388)
+        Me.btnAceptar.Location = New System.Drawing.Point(683, 58)
         Me.btnAceptar.Name = "btnAceptar"
         Me.btnAceptar.Size = New System.Drawing.Size(104, 43)
-        Me.btnAceptar.TabIndex = 178
+        Me.btnAceptar.TabIndex = 183
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnAceptar.UseVisualStyleBackColor = False
         '
-        'Label2
+        'rbListado
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(30, 400)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(102, 13)
-        Me.Label2.TabIndex = 179
-        Me.Label2.Text = "Acreditacion Total:"
+        Me.rbListado.AutoSize = True
+        Me.rbListado.Location = New System.Drawing.Point(82, 72)
+        Me.rbListado.Name = "rbListado"
+        Me.rbListado.Size = New System.Drawing.Size(62, 17)
+        Me.rbListado.TabIndex = 186
+        Me.rbListado.TabStop = True
+        Me.rbListado.Text = "Listado"
+        Me.rbListado.UseVisualStyleBackColor = True
         '
-        'txtAcreditacionTotal
+        'rbManual
         '
-        Me.txtAcreditacionTotal.Enabled = False
-        Me.txtAcreditacionTotal.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtAcreditacionTotal.Location = New System.Drawing.Point(134, 396)
-        Me.txtAcreditacionTotal.Name = "txtAcreditacionTotal"
-        Me.txtAcreditacionTotal.Size = New System.Drawing.Size(248, 25)
-        Me.txtAcreditacionTotal.TabIndex = 180
-        Me.txtAcreditacionTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'txtAcreditacionPendiente
-        '
-        Me.txtAcreditacionPendiente.Enabled = False
-        Me.txtAcreditacionPendiente.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtAcreditacionPendiente.Location = New System.Drawing.Point(552, 398)
-        Me.txtAcreditacionPendiente.Name = "txtAcreditacionPendiente"
-        Me.txtAcreditacionPendiente.Size = New System.Drawing.Size(206, 25)
-        Me.txtAcreditacionPendiente.TabIndex = 182
-        Me.txtAcreditacionPendiente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(422, 402)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(129, 13)
-        Me.Label3.TabIndex = 181
-        Me.Label3.Text = "Acreditacion Pendiente:"
+        Me.rbManual.AutoSize = True
+        Me.rbManual.Location = New System.Drawing.Point(192, 72)
+        Me.rbManual.Name = "rbManual"
+        Me.rbManual.Size = New System.Drawing.Size(64, 17)
+        Me.rbManual.TabIndex = 187
+        Me.rbManual.TabStop = True
+        Me.rbManual.Text = "Manual"
+        Me.rbManual.UseVisualStyleBackColor = True
         '
         'frmHistorialPagos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(914, 437)
-        Me.Controls.Add(Me.txtAcreditacionPendiente)
+        Me.Controls.Add(Me.rbManual)
+        Me.Controls.Add(Me.rbListado)
+        Me.Controls.Add(Me.txtTasaCambio)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.txtAcreditacionTotal)
-        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.btnAceptar)
         Me.Controls.Add(Me.rgbEmpleados)
         Me.Controls.Add(Me.pnlBarra)
@@ -219,10 +223,10 @@ Partial Class frmHistorialPagos
         Me.Controls.SetChildIndex(Me.pnlBarra, 0)
         Me.Controls.SetChildIndex(Me.rgbEmpleados, 0)
         Me.Controls.SetChildIndex(Me.btnAceptar, 0)
-        Me.Controls.SetChildIndex(Me.Label2, 0)
-        Me.Controls.SetChildIndex(Me.txtAcreditacionTotal, 0)
         Me.Controls.SetChildIndex(Me.Label3, 0)
-        Me.Controls.SetChildIndex(Me.txtAcreditacionPendiente, 0)
+        Me.Controls.SetChildIndex(Me.txtTasaCambio, 0)
+        Me.Controls.SetChildIndex(Me.rbListado, 0)
+        Me.Controls.SetChildIndex(Me.rbManual, 0)
         CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlBarra.ResumeLayout(False)
         Me.pnx0Salir.ResumeLayout(False)
@@ -243,10 +247,10 @@ Partial Class frmHistorialPagos
     Friend WithEvents pbx0Salir As System.Windows.Forms.PictureBox
     Friend WithEvents rgbEmpleados As Telerik.WinControls.UI.RadGroupBox
     Friend WithEvents grdPagos As Telerik.WinControls.UI.RadGridView
-    Friend WithEvents btnAceptar As System.Windows.Forms.Button
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents txtAcreditacionTotal As System.Windows.Forms.TextBox
-    Friend WithEvents txtAcreditacionPendiente As System.Windows.Forms.TextBox
+    Friend WithEvents txtTasaCambio As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents btnAceptar As System.Windows.Forms.Button
+    Friend WithEvents rbListado As System.Windows.Forms.RadioButton
+    Friend WithEvents rbManual As System.Windows.Forms.RadioButton
 
 End Class
