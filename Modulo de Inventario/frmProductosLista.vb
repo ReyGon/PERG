@@ -26,7 +26,7 @@ Public Class frmProductoLista
             ActivarBarraLateral = True
 
             fnLlenaCombo()
-
+            llenagrid()
         Catch ex As Exception
         End Try
         Me.grdDatos.ImageList = frmControles.ImageListAdministracion
@@ -253,7 +253,7 @@ Public Class frmProductoLista
         llenagrid()
     End Sub
 
-    Private Sub cmbTipoInventario_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbTipoInventario.SelectedValueChanged
+    Private Sub cmbTipoInventario_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbTipoInventario.SelectionChangeCommitted
         Try
             llenagrid()
         Catch ex As Exception

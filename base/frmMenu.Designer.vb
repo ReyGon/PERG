@@ -43,6 +43,12 @@ Partial Class frmMenu
         Me.pnl7 = New System.Windows.Forms.Panel()
         Me.pbx7 = New System.Windows.Forms.PictureBox()
         Me.lbl7 = New System.Windows.Forms.Label()
+        Me.pnl9 = New System.Windows.Forms.Panel()
+        Me.pbx9 = New System.Windows.Forms.PictureBox()
+        Me.lbl9 = New System.Windows.Forms.Label()
+        Me.pnl8 = New System.Windows.Forms.Panel()
+        Me.pbx8 = New System.Windows.Forms.PictureBox()
+        Me.lbl8 = New System.Windows.Forms.Label()
         Me.pnl0.SuspendLayout()
         CType(Me.pbx0, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl6.SuspendLayout()
@@ -59,6 +65,10 @@ Partial Class frmMenu
         CType(Me.pbx3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl7.SuspendLayout()
         CType(Me.pbx7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnl9.SuspendLayout()
+        CType(Me.pbx9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnl8.SuspendLayout()
+        CType(Me.pbx8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -66,7 +76,7 @@ Partial Class frmMenu
         '
         Me.lbTituloFrm.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lbTituloFrm.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbTituloFrm.Location = New System.Drawing.Point(333, 54)
+        Me.lbTituloFrm.Location = New System.Drawing.Point(371, 52)
         Me.lbTituloFrm.Size = New System.Drawing.Size(290, 45)
         Me.lbTituloFrm.Text = "MENU PRINCIPAL"
         '
@@ -77,7 +87,7 @@ Partial Class frmMenu
         Me.pnl0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.pnl0.Controls.Add(Me.pbx0)
         Me.pnl0.Controls.Add(Me.lbl0)
-        Me.pnl0.Location = New System.Drawing.Point(84, 184)
+        Me.pnl0.Location = New System.Drawing.Point(132, 124)
         Me.pnl0.Name = "pnl0"
         Me.pnl0.Size = New System.Drawing.Size(153, 113)
         Me.pnl0.TabIndex = 73
@@ -111,7 +121,7 @@ Partial Class frmMenu
         Me.pnl6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.pnl6.Controls.Add(Me.pbx6)
         Me.pnl6.Controls.Add(Me.lbl6)
-        Me.pnl6.Location = New System.Drawing.Point(482, 351)
+        Me.pnl6.Location = New System.Drawing.Point(530, 291)
         Me.pnl6.Name = "pnl6"
         Me.pnl6.Size = New System.Drawing.Size(146, 113)
         Me.pnl6.TabIndex = 73
@@ -145,7 +155,7 @@ Partial Class frmMenu
         Me.pnl2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.pnl2.Controls.Add(Me.pbx2)
         Me.pnl2.Controls.Add(Me.lbl2)
-        Me.pnl2.Location = New System.Drawing.Point(482, 184)
+        Me.pnl2.Location = New System.Drawing.Point(530, 124)
         Me.pnl2.Name = "pnl2"
         Me.pnl2.Size = New System.Drawing.Size(146, 113)
         Me.pnl2.TabIndex = 73
@@ -180,7 +190,7 @@ Partial Class frmMenu
         Me.pnl4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.pnl4.Controls.Add(Me.pbx4)
         Me.pnl4.Controls.Add(Me.lbl4)
-        Me.pnl4.Location = New System.Drawing.Point(84, 351)
+        Me.pnl4.Location = New System.Drawing.Point(132, 291)
         Me.pnl4.Name = "pnl4"
         Me.pnl4.Size = New System.Drawing.Size(153, 113)
         Me.pnl4.TabIndex = 73
@@ -214,7 +224,7 @@ Partial Class frmMenu
         Me.pnl5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.pnl5.Controls.Add(Me.pbx5)
         Me.pnl5.Controls.Add(Me.lbl5)
-        Me.pnl5.Location = New System.Drawing.Point(278, 351)
+        Me.pnl5.Location = New System.Drawing.Point(326, 291)
         Me.pnl5.Name = "pnl5"
         Me.pnl5.Size = New System.Drawing.Size(153, 113)
         Me.pnl5.TabIndex = 74
@@ -248,7 +258,7 @@ Partial Class frmMenu
         Me.pnl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.pnl1.Controls.Add(Me.pbx1)
         Me.pnl1.Controls.Add(Me.lbl1)
-        Me.pnl1.Location = New System.Drawing.Point(285, 184)
+        Me.pnl1.Location = New System.Drawing.Point(333, 124)
         Me.pnl1.Name = "pnl1"
         Me.pnl1.Size = New System.Drawing.Size(146, 113)
         Me.pnl1.TabIndex = 75
@@ -282,7 +292,7 @@ Partial Class frmMenu
         Me.pnl3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.pnl3.Controls.Add(Me.pbx3)
         Me.pnl3.Controls.Add(Me.lbl3)
-        Me.pnl3.Location = New System.Drawing.Point(679, 184)
+        Me.pnl3.Location = New System.Drawing.Point(727, 124)
         Me.pnl3.Name = "pnl3"
         Me.pnl3.Size = New System.Drawing.Size(146, 113)
         Me.pnl3.TabIndex = 74
@@ -317,14 +327,14 @@ Partial Class frmMenu
         Me.pnl7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.pnl7.Controls.Add(Me.pbx7)
         Me.pnl7.Controls.Add(Me.lbl7)
-        Me.pnl7.Location = New System.Drawing.Point(679, 351)
+        Me.pnl7.Location = New System.Drawing.Point(727, 291)
         Me.pnl7.Name = "pnl7"
         Me.pnl7.Size = New System.Drawing.Size(146, 113)
         Me.pnl7.TabIndex = 74
         '
         'pbx7
         '
-        Me.pbx7.Image = Global.laFuente.My.Resources.Resources.buscar_Blanco
+        Me.pbx7.Image = Global.laFuente.My.Resources.Resources.inventarioBlanco
         Me.pbx7.Location = New System.Drawing.Point(44, 12)
         Me.pbx7.Name = "pbx7"
         Me.pbx7.Size = New System.Drawing.Size(65, 54)
@@ -338,21 +348,91 @@ Partial Class frmMenu
         Me.lbl7.AutoSize = True
         Me.lbl7.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl7.ForeColor = System.Drawing.Color.White
-        Me.lbl7.Location = New System.Drawing.Point(3, 80)
+        Me.lbl7.Location = New System.Drawing.Point(46, 83)
         Me.lbl7.Name = "lbl7"
-        Me.lbl7.Size = New System.Drawing.Size(104, 19)
+        Me.lbl7.Size = New System.Drawing.Size(63, 19)
         Me.lbl7.TabIndex = 63
-        Me.lbl7.Text = "Notificaciones"
+        Me.lbl7.Text = "Insumos"
         Me.lbl7.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'pnl9
+        '
+        Me.pnl9.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.pnl9.BackColor = System.Drawing.Color.SteelBlue
+        Me.pnl9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.pnl9.Controls.Add(Me.pbx9)
+        Me.pnl9.Controls.Add(Me.lbl9)
+        Me.pnl9.Location = New System.Drawing.Point(523, 459)
+        Me.pnl9.Name = "pnl9"
+        Me.pnl9.Size = New System.Drawing.Size(153, 113)
+        Me.pnl9.TabIndex = 78
+        '
+        'pbx9
+        '
+        Me.pbx9.Image = Global.laFuente.My.Resources.Resources.add
+        Me.pbx9.Location = New System.Drawing.Point(45, 13)
+        Me.pbx9.Name = "pbx9"
+        Me.pbx9.Size = New System.Drawing.Size(65, 54)
+        Me.pbx9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx9.TabIndex = 64
+        Me.pbx9.TabStop = False
+        '
+        'lbl9
+        '
+        Me.lbl9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbl9.AutoSize = True
+        Me.lbl9.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl9.ForeColor = System.Drawing.Color.White
+        Me.lbl9.Location = New System.Drawing.Point(34, 79)
+        Me.lbl9.Name = "lbl9"
+        Me.lbl9.Size = New System.Drawing.Size(86, 21)
+        Me.lbl9.TabIndex = 63
+        Me.lbl9.Text = "Sin Efecto"
+        '
+        'pnl8
+        '
+        Me.pnl8.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.pnl8.BackColor = System.Drawing.Color.SteelBlue
+        Me.pnl8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.pnl8.Controls.Add(Me.pbx8)
+        Me.pnl8.Controls.Add(Me.lbl8)
+        Me.pnl8.Location = New System.Drawing.Point(326, 459)
+        Me.pnl8.Name = "pnl8"
+        Me.pnl8.Size = New System.Drawing.Size(153, 113)
+        Me.pnl8.TabIndex = 75
+        '
+        'pbx8
+        '
+        Me.pbx8.Image = Global.laFuente.My.Resources.Resources.pedidos_Blanco
+        Me.pbx8.Location = New System.Drawing.Point(45, 13)
+        Me.pbx8.Name = "pbx8"
+        Me.pbx8.Size = New System.Drawing.Size(65, 54)
+        Me.pbx8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx8.TabIndex = 64
+        Me.pbx8.TabStop = False
+        '
+        'lbl8
+        '
+        Me.lbl8.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbl8.AutoSize = True
+        Me.lbl8.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl8.ForeColor = System.Drawing.Color.White
+        Me.lbl8.Location = New System.Drawing.Point(32, 70)
+        Me.lbl8.Name = "lbl8"
+        Me.lbl8.Size = New System.Drawing.Size(96, 42)
+        Me.lbl8.TabIndex = 63
+        Me.lbl8.Text = "Analizador" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Inventarios" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'frmMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.BackColor = System.Drawing.Color.SteelBlue
-        Me.ClientSize = New System.Drawing.Size(903, 537)
+        Me.ClientSize = New System.Drawing.Size(1023, 613)
         Me.ControlBox = False
         Me.Controls.Add(Me.pnl7)
+        Me.Controls.Add(Me.pnl9)
         Me.Controls.Add(Me.pnl3)
+        Me.Controls.Add(Me.pnl8)
         Me.Controls.Add(Me.pnl1)
         Me.Controls.Add(Me.pnl5)
         Me.Controls.Add(Me.pnl4)
@@ -375,7 +455,9 @@ Partial Class frmMenu
         Me.Controls.SetChildIndex(Me.pnl4, 0)
         Me.Controls.SetChildIndex(Me.pnl5, 0)
         Me.Controls.SetChildIndex(Me.pnl1, 0)
+        Me.Controls.SetChildIndex(Me.pnl8, 0)
         Me.Controls.SetChildIndex(Me.pnl3, 0)
+        Me.Controls.SetChildIndex(Me.pnl9, 0)
         Me.Controls.SetChildIndex(Me.pnl7, 0)
         Me.pnl0.ResumeLayout(False)
         Me.pnl0.PerformLayout()
@@ -401,6 +483,12 @@ Partial Class frmMenu
         Me.pnl7.ResumeLayout(False)
         Me.pnl7.PerformLayout()
         CType(Me.pbx7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnl9.ResumeLayout(False)
+        Me.pnl9.PerformLayout()
+        CType(Me.pbx9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnl8.ResumeLayout(False)
+        Me.pnl8.PerformLayout()
+        CType(Me.pbx8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -430,5 +518,11 @@ Partial Class frmMenu
     Friend WithEvents pnl7 As System.Windows.Forms.Panel
     Friend WithEvents pbx7 As System.Windows.Forms.PictureBox
     Public WithEvents lbl7 As System.Windows.Forms.Label
+    Friend WithEvents pnl9 As System.Windows.Forms.Panel
+    Friend WithEvents pbx9 As System.Windows.Forms.PictureBox
+    Public WithEvents lbl9 As System.Windows.Forms.Label
+    Friend WithEvents pnl8 As System.Windows.Forms.Panel
+    Friend WithEvents pbx8 As System.Windows.Forms.PictureBox
+    Public WithEvents lbl8 As System.Windows.Forms.Label
 
 End Class

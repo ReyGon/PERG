@@ -220,6 +220,10 @@
             <End Role="tblBanco" EntitySet="tblBanco" />
             <End Role="tblajuste_bancarios" EntitySet="tblajuste_bancarios" />
           </AssociationSet>
+          <AssociationSet Name="fk_banco2" Association="mdlModeloDatos.Store.fk_banco2">
+            <End Role="tblBanco" EntitySet="tblBanco" />
+            <End Role="tblajuste_bancarios" EntitySet="tblajuste_bancarios" />
+          </AssociationSet>
           <AssociationSet Name="fk_caja_salida" Association="mdlModeloDatos.Store.fk_caja_salida">
             <End Role="tblSalida" EntitySet="tblSalida" />
             <End Role="tblCaja" EntitySet="tblCaja" />
@@ -229,6 +233,10 @@
             <End Role="tblClientes" EntitySet="tblClientes" />
           </AssociationSet>
           <AssociationSet Name="fk_cuentabancaria" Association="mdlModeloDatos.Store.fk_cuentabancaria">
+            <End Role="tblBanco_Cuenta" EntitySet="tblBanco_Cuenta" />
+            <End Role="tblajuste_bancarios" EntitySet="tblajuste_bancarios" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cuentabancaria2" Association="mdlModeloDatos.Store.fk_cuentabancaria2">
             <End Role="tblBanco_Cuenta" EntitySet="tblBanco_Cuenta" />
             <End Role="tblajuste_bancarios" EntitySet="tblajuste_bancarios" />
           </AssociationSet>
@@ -1549,6 +1557,9 @@
           <Property Name="fechaAprobacion" Type="datetime" />
           <Property Name="fechaAnulacion" Type="datetime" />
           <Property Name="observacion" Type="varchar" MaxLength="500" />
+          <Property Name="banco2" Type="int" />
+          <Property Name="cuentabancaria2" Type="int" />
+          <Property Name="usuarioregistra" Type="int" />
         </EntityType>
         <EntityType Name="tblAjusteCategoria">
           <Key>
@@ -3897,6 +3908,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_banco2">
+          <End Role="tblBanco" Type="mdlModeloDatos.Store.tblBanco" Multiplicity="0..1" />
+          <End Role="tblajuste_bancarios" Type="mdlModeloDatos.Store.tblajuste_bancarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBanco">
+              <PropertyRef Name="idbanco" />
+            </Principal>
+            <Dependent Role="tblajuste_bancarios">
+              <PropertyRef Name="banco2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_caja_salida">
           <End Role="tblSalida" Type="mdlModeloDatos.Store.tblSalida" Multiplicity="0..1" />
           <End Role="tblCaja" Type="mdlModeloDatos.Store.tblCaja" Multiplicity="*" />
@@ -3930,6 +3953,18 @@
             </Principal>
             <Dependent Role="tblajuste_bancarios">
               <PropertyRef Name="cuentabancaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cuentabancaria2">
+          <End Role="tblBanco_Cuenta" Type="mdlModeloDatos.Store.tblBanco_Cuenta" Multiplicity="0..1" />
+          <End Role="tblajuste_bancarios" Type="mdlModeloDatos.Store.tblajuste_bancarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBanco_Cuenta">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="tblajuste_bancarios">
+              <PropertyRef Name="cuentabancaria2" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -8051,6 +8086,7 @@
         <Function Name="sp_lista_proveedores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idempresa" Type="int" Mode="In" />
           <Parameter Name="filtro" Type="varchar" Mode="In" />
+          <Parameter Name="idprocedencia" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_listadoAnular" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="opcion" Type="smallint" Mode="In" />
@@ -8121,6 +8157,8 @@
         </Function>
         <Function Name="sp_PagosProveedoresImportacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idproveedor" Type="int" Mode="In" />
+          <Parameter Name="idinvoice" Type="int" Mode="In" />
+          <Parameter Name="idpreforma" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_panelCompras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="opcion" Type="smallint" Mode="In" />
@@ -9992,10 +10030,6 @@
             <Parameter Name="idempresa" Mode="In" Type="Int32" />
             <Parameter Name="filtro" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_lista_proveedores" ReturnType="Collection(dsi_pos_demoModel.sp_lista_proveedores_Result)">
-            <Parameter Name="idempresa" Mode="In" Type="Int32" />
-            <Parameter Name="filtro" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="sp_listadoAnular">
             <Parameter Name="opcion" Mode="In" Type="Int16" />
             <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
@@ -11308,9 +11342,23 @@
             <End Role="tblSalida" EntitySet="tblSalidas" />
             <End Role="tblSalidaDetalle" EntitySet="tblSalidaDetalles" />
           </AssociationSet>
-          <EntitySet Name="tblajuste_bancarios" EntityType="dsi_pos_demoModel.tblajuste_bancarios" />
           <EntitySet Name="tblconcepto_ajustebancario" EntityType="dsi_pos_demoModel.tblconcepto_ajustebancario" />
+          <FunctionImport Name="sp_lista_proveedores" ReturnType="Collection(dsi_pos_demoModel.sp_lista_proveedores_Result)">
+            <Parameter Name="idempresa" Mode="In" Type="Int32" />
+            <Parameter Name="filtro" Mode="In" Type="String" />
+            <Parameter Name="idprocedencia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PagosProveedoresImportacion" ReturnType="Collection(dsi_pos_demoModel.sp_PagosProveedoresImportacion_Result)">
+            <Parameter Name="idproveedor" Mode="In" Type="Int32" />
+            <Parameter Name="idinvoice" Mode="In" Type="Int32" />
+            <Parameter Name="idpreforma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tblajuste_bancarios" EntityType="dsi_pos_demoModel.tblajuste_bancarios" />
           <AssociationSet Name="fk_banco" Association="dsi_pos_demoModel.fk_banco">
+            <End Role="tblBanco" EntitySet="tblBancoes" />
+            <End Role="tblajuste_bancarios" EntitySet="tblajuste_bancarios" />
+          </AssociationSet>
+          <AssociationSet Name="fk_banco2" Association="dsi_pos_demoModel.fk_banco2">
             <End Role="tblBanco" EntitySet="tblBancoes" />
             <End Role="tblajuste_bancarios" EntitySet="tblajuste_bancarios" />
           </AssociationSet>
@@ -11318,13 +11366,14 @@
             <End Role="tblBanco_Cuenta" EntitySet="tblBanco_Cuenta" />
             <End Role="tblajuste_bancarios" EntitySet="tblajuste_bancarios" />
           </AssociationSet>
+          <AssociationSet Name="fk_cuentabancaria2" Association="dsi_pos_demoModel.fk_cuentabancaria2">
+            <End Role="tblBanco_Cuenta" EntitySet="tblBanco_Cuenta" />
+            <End Role="tblajuste_bancarios" EntitySet="tblajuste_bancarios" />
+          </AssociationSet>
           <AssociationSet Name="fk_idconcepto" Association="dsi_pos_demoModel.fk_idconcepto">
             <End Role="tblconcepto_ajustebancario" EntitySet="tblconcepto_ajustebancario" />
             <End Role="tblajuste_bancarios" EntitySet="tblajuste_bancarios" />
           </AssociationSet>
-          <FunctionImport Name="sp_PagosProveedoresImportacion" ReturnType="Collection(dsi_pos_demoModel.sp_PagosProveedoresImportacion_Result)">
-            <Parameter Name="idproveedor" Mode="In" Type="Int32" />
-          </FunctionImport>
           </EntityContainer>
         <EntityType Name="dtproperty">
           <Key>
@@ -11762,6 +11811,7 @@
           <NavigationProperty Name="tblBanco_Cuenta" Relationship="dsi_pos_demoModel.FK_tblBanco_tblBanco_Cuenta" FromRole="tblBanco" ToRole="tblBanco_Cuenta" />
           <NavigationProperty Name="tblProveedor_cuenta" Relationship="dsi_pos_demoModel.FK_tblProveedor_cuenta_tblBanco" FromRole="tblBanco" ToRole="tblProveedor_cuenta" />
           <NavigationProperty Name="tblajuste_bancarios" Relationship="dsi_pos_demoModel.fk_banco" FromRole="tblBanco" ToRole="tblajuste_bancarios" />
+          <NavigationProperty Name="tblajuste_bancarios1" Relationship="dsi_pos_demoModel.fk_banco2" FromRole="tblBanco" ToRole="tblajuste_bancarios" />
         </EntityType>
         <EntityType Name="tblBanco_Beneficiario">
           <Key>
@@ -11898,6 +11948,7 @@
           <NavigationProperty Name="tblTipoPagoes" Relationship="dsi_pos_demoModel.FK_tblTipoPago_tblBanco_Cuenta" FromRole="tblBanco_Cuenta" ToRole="tblTipoPago" />
           <NavigationProperty Name="tblCajas" Relationship="dsi_pos_demoModel.FK_tblCaja_tblBanco_Cuenta" FromRole="tblBanco_Cuenta" ToRole="tblCaja" />
           <NavigationProperty Name="tblajuste_bancarios" Relationship="dsi_pos_demoModel.fk_cuentabancaria" FromRole="tblBanco_Cuenta" ToRole="tblajuste_bancarios" />
+          <NavigationProperty Name="tblajuste_bancarios1" Relationship="dsi_pos_demoModel.fk_cuentabancaria2" FromRole="tblBanco_Cuenta" ToRole="tblajuste_bancarios" />
         </EntityType>
         <EntityType Name="tblBanco_Debitos">
           <Key>
@@ -16195,21 +16246,6 @@
           <Property Type="Boolean" Name="chmPordillero" Nullable="true" />
           <Property Type="Boolean" Name="chmPiloto" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="sp_lista_proveedores_Result">
-          <Property Type="Int32" Name="Codigo" Nullable="false" />
-          <Property Type="String" Name="Clave" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="Clasificacion" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="chkHabilitado" Nullable="true" />
-          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="UltimaCompra" Nullable="true" Precision="23" />
-          <Property Type="Decimal" Name="SaldoFisico" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="SaldoTransito" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="Procedencia" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="ProximaFechaPago" Nullable="true" Precision="23" />
-          <Property Type="String" Name="TipoPago" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="TipoGasto" Nullable="true" MaxLength="100" />
-        </ComplexType>
         <ComplexType Name="sp_ListadoDevolucionesTransporte_Result">
           <Property Type="Int32" Name="Codigo" Nullable="false" />
           <Property Type="String" Name="Fecha" Nullable="true" MaxLength="50" />
@@ -19963,6 +19999,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tblconcepto_ajustebancario">
+          <Key>
+            <PropertyRef Name="idconcepto" />
+          </Key>
+          <Property Type="Int32" Name="idconcepto" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="concepto" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="bitAumento" />
+          <Property Type="Boolean" Name="bitDecremento" />
+          <Property Type="Boolean" Name="habilitado" />
+          <NavigationProperty Name="tblajuste_bancarios" Relationship="dsi_pos_demoModel.fk_idconcepto" FromRole="tblconcepto_ajustebancario" ToRole="tblajuste_bancarios" />
+        </EntityType>
+        <ComplexType Name="sp_lista_proveedores_Result">
+          <Property Type="Int32" Name="Codigo" Nullable="false" />
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Clasificacion" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="chkHabilitado" Nullable="true" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UltimaCompra" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="SaldoFisico" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SaldoTransito" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Procedencia" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="ProximaFechaPago" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TipoPago" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TipoGasto" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_PagosProveedoresImportacion_Result">
+          <Property Type="Boolean" Name="chmElegir" Nullable="true" />
+          <Property Type="String" Name="Fecha_Pago" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Proveedor" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Documento_Pago" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Banco" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Tipo_Pago" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Cuenta" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="Pago_D" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Tasa_Cambio" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Pago_Q" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Documento_Asociado" Nullable="false" MaxLength="101" />
+          <Property Type="Decimal" Name="Consumido" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Disponible" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="txmConsumir" Nullable="false" MaxLength="1" />
+        </ComplexType>
         <EntityType Name="tblajuste_bancarios">
           <Key>
             <PropertyRef Name="idajuste" />
@@ -19981,20 +20059,14 @@
           <Property Type="DateTime" Name="fechaAprobacion" Precision="3" />
           <Property Type="DateTime" Name="fechaAnulacion" Precision="3" />
           <Property Type="String" Name="observacion" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="banco2" />
+          <Property Type="Int32" Name="cuentabancaria2" />
+          <Property Type="Int32" Name="usuarioregistra" />
           <NavigationProperty Name="tblBanco" Relationship="dsi_pos_demoModel.fk_banco" FromRole="tblajuste_bancarios" ToRole="tblBanco" />
+          <NavigationProperty Name="tblBanco1" Relationship="dsi_pos_demoModel.fk_banco2" FromRole="tblajuste_bancarios" ToRole="tblBanco" />
           <NavigationProperty Name="tblBanco_Cuenta" Relationship="dsi_pos_demoModel.fk_cuentabancaria" FromRole="tblajuste_bancarios" ToRole="tblBanco_Cuenta" />
+          <NavigationProperty Name="tblBanco_Cuenta1" Relationship="dsi_pos_demoModel.fk_cuentabancaria2" FromRole="tblajuste_bancarios" ToRole="tblBanco_Cuenta" />
           <NavigationProperty Name="tblconcepto_ajustebancario" Relationship="dsi_pos_demoModel.fk_idconcepto" FromRole="tblajuste_bancarios" ToRole="tblconcepto_ajustebancario" />
-        </EntityType>
-        <EntityType Name="tblconcepto_ajustebancario">
-          <Key>
-            <PropertyRef Name="idconcepto" />
-          </Key>
-          <Property Type="Int32" Name="idconcepto" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="concepto" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="bitAumento" />
-          <Property Type="Boolean" Name="bitDecremento" />
-          <Property Type="Boolean" Name="habilitado" />
-          <NavigationProperty Name="tblajuste_bancarios" Relationship="dsi_pos_demoModel.fk_idconcepto" FromRole="tblconcepto_ajustebancario" ToRole="tblajuste_bancarios" />
         </EntityType>
         <Association Name="fk_banco">
           <End Type="dsi_pos_demoModel.tblBanco" Role="tblBanco" Multiplicity="0..1" />
@@ -20005,6 +20077,18 @@
             </Principal>
             <Dependent Role="tblajuste_bancarios">
               <PropertyRef Name="banco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_banco2">
+          <End Type="dsi_pos_demoModel.tblBanco" Role="tblBanco" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblajuste_bancarios" Role="tblajuste_bancarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBanco">
+              <PropertyRef Name="idbanco" />
+            </Principal>
+            <Dependent Role="tblajuste_bancarios">
+              <PropertyRef Name="banco2" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -20020,6 +20104,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_cuentabancaria2">
+          <End Type="dsi_pos_demoModel.tblBanco_Cuenta" Role="tblBanco_Cuenta" Multiplicity="0..1" />
+          <End Type="dsi_pos_demoModel.tblajuste_bancarios" Role="tblajuste_bancarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBanco_Cuenta">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="tblajuste_bancarios">
+              <PropertyRef Name="cuentabancaria2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_idconcepto">
           <End Type="dsi_pos_demoModel.tblconcepto_ajustebancario" Role="tblconcepto_ajustebancario" Multiplicity="0..1" />
           <End Type="dsi_pos_demoModel.tblajuste_bancarios" Role="tblajuste_bancarios" Multiplicity="*" />
@@ -20032,17 +20128,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="sp_PagosProveedoresImportacion_Result">
-          <Property Type="Boolean" Name="chmElegir" Nullable="true" />
-          <Property Type="String" Name="FechaPago" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="TipoPago" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Proveedor" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="DocPago" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="PagoQ" Nullable="false" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="TasaCambio" Nullable="true" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="PagoD" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="DocumentoAfectado" Nullable="false" MaxLength="101" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -23117,25 +23202,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_lista_proveedores" FunctionName="mdlModeloDatos.Store.sp_lista_proveedores">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_lista_proveedores_Result">
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Clave" ColumnName="Clave" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
-                <ScalarProperty Name="chkHabilitado" ColumnName="chkHabilitado" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="UltimaCompra" ColumnName="UltimaCompra" />
-                <ScalarProperty Name="SaldoFisico" ColumnName="SaldoFisico" />
-                <ScalarProperty Name="SaldoTransito" ColumnName="SaldoTransito" />
-                <ScalarProperty Name="Procedencia" ColumnName="Procedencia" />
-                <ScalarProperty Name="ProximaFechaPago" ColumnName="ProximaFechaPago" />
-                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
-                <ScalarProperty Name="TipoGasto" ColumnName="TipoGasto" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_listadoAnular" FunctionName="mdlModeloDatos.Store.sp_listadoAnular" />
           <FunctionImportMapping FunctionImportName="sp_ListadoDevolucionesTransporte" FunctionName="mdlModeloDatos.Store.sp_ListadoDevolucionesTransporte">
             <ResultMapping>
@@ -25319,9 +25385,62 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblconcepto_ajustebancario">
+            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblconcepto_ajustebancario">
+              <MappingFragment StoreEntitySet="tblconcepto_ajustebancario">
+                <ScalarProperty Name="habilitado" ColumnName="habilitado" />
+                <ScalarProperty Name="bitDecremento" ColumnName="bitDecremento" />
+                <ScalarProperty Name="bitAumento" ColumnName="bitAumento" />
+                <ScalarProperty Name="concepto" ColumnName="concepto" />
+                <ScalarProperty Name="idconcepto" ColumnName="idconcepto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_lista_proveedores" FunctionName="mdlModeloDatos.Store.sp_lista_proveedores">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_lista_proveedores_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+                <ScalarProperty Name="chkHabilitado" ColumnName="chkHabilitado" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="UltimaCompra" ColumnName="UltimaCompra" />
+                <ScalarProperty Name="SaldoFisico" ColumnName="SaldoFisico" />
+                <ScalarProperty Name="SaldoTransito" ColumnName="SaldoTransito" />
+                <ScalarProperty Name="Procedencia" ColumnName="Procedencia" />
+                <ScalarProperty Name="ProximaFechaPago" ColumnName="ProximaFechaPago" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="TipoGasto" ColumnName="TipoGasto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_PagosProveedoresImportacion" FunctionName="mdlModeloDatos.Store.sp_PagosProveedoresImportacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_PagosProveedoresImportacion_Result">
+                <ScalarProperty Name="chmElegir" ColumnName="chmElegir" />
+                <ScalarProperty Name="Fecha_Pago" ColumnName="Fecha Pago" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="Documento_Pago" ColumnName="Documento Pago" />
+                <ScalarProperty Name="Banco" ColumnName="Banco" />
+                <ScalarProperty Name="Tipo_Pago" ColumnName="Tipo Pago" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="Pago_D" ColumnName="Pago D" />
+                <ScalarProperty Name="Tasa_Cambio" ColumnName="Tasa Cambio" />
+                <ScalarProperty Name="Pago_Q" ColumnName="Pago Q" />
+                <ScalarProperty Name="Documento_Asociado" ColumnName="Documento Asociado" />
+                <ScalarProperty Name="Consumido" ColumnName="Consumido" />
+                <ScalarProperty Name="Disponible" ColumnName="Disponible" />
+                <ScalarProperty Name="txmConsumir" ColumnName="txmConsumir" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="tblajuste_bancarios">
             <EntityTypeMapping TypeName="dsi_pos_demoModel.tblajuste_bancarios">
               <MappingFragment StoreEntitySet="tblajuste_bancarios">
+                <ScalarProperty Name="usuarioregistra" ColumnName="usuarioregistra" />
+                <ScalarProperty Name="cuentabancaria2" ColumnName="cuentabancaria2" />
+                <ScalarProperty Name="banco2" ColumnName="banco2" />
                 <ScalarProperty Name="observacion" ColumnName="observacion" />
                 <ScalarProperty Name="fechaAnulacion" ColumnName="fechaAnulacion" />
                 <ScalarProperty Name="fechaAprobacion" ColumnName="fechaAprobacion" />
@@ -25339,32 +25458,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblconcepto_ajustebancario">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblconcepto_ajustebancario">
-              <MappingFragment StoreEntitySet="tblconcepto_ajustebancario">
-                <ScalarProperty Name="habilitado" ColumnName="habilitado" />
-                <ScalarProperty Name="bitDecremento" ColumnName="bitDecremento" />
-                <ScalarProperty Name="bitAumento" ColumnName="bitAumento" />
-                <ScalarProperty Name="concepto" ColumnName="concepto" />
-                <ScalarProperty Name="idconcepto" ColumnName="idconcepto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_PagosProveedoresImportacion" FunctionName="mdlModeloDatos.Store.sp_PagosProveedoresImportacion">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_PagosProveedoresImportacion_Result">
-                <ScalarProperty Name="chmElegir" ColumnName="chmElegir" />
-                <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
-                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
-                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
-                <ScalarProperty Name="DocPago" ColumnName="DocPago" />
-                <ScalarProperty Name="PagoQ" ColumnName="PagoQ" />
-                <ScalarProperty Name="TasaCambio" ColumnName="TasaCambio" />
-                <ScalarProperty Name="PagoD" ColumnName="PagoD" />
-                <ScalarProperty Name="DocumentoAfectado" ColumnName="DocumentoAfectado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

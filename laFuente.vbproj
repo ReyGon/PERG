@@ -977,6 +977,12 @@
     <Compile Include="Modulo de Inventario\frmProductoPreciosCompeLista.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modulo de Inventario\Insumos\frmInventarioInsumos.Designer.vb">
+      <DependentUpon>frmInventarioInsumos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo de Inventario\Insumos\frmInventarioInsumos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modulo de Inventario\Promociones\frmFiltrosInventarios.Designer.vb">
       <DependentUpon>frmFiltrosInventarios.vb</DependentUpon>
     </Compile>

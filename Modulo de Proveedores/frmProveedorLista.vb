@@ -23,19 +23,67 @@ Public Class frmProveedorLista
             ActivarBarraLateral = True
         Catch ex As Exception
         End Try
+        fnLlenarCombo()
         llenagrid()
 
+    End Sub
+
+    Private Sub fnLlenarCombo()
+        Try
+
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
+
+                Dim pro = (From x In conexion.tblProveedorProcedencias Where x.bitLocal = True Select Codigo = x.codigo, Nombre = x.nombre)
+
+                With cmbTipoProveedor
+                    .DataSource = Nothing
+                    .DisplayMember = "Nombre"
+                    .ValueMember = "Codigo"
+                    .DataSource = pro
+                End With
+
+                conn.Close()
+            End Using
+
+            ''Dim dt As DataTable = New DataTable("Tabla")
+
+            ''dt.Columns.Add("Codigo")
+            ''dt.Columns.Add("Descripcion")
+
+            ''Dim dr As DataRow
+
+            ''dr = dt.NewRow()
+            ''dr("Codigo") = "0"
+            ''dr("Descripcion") = "Mercaderia"
+            ''dt.Rows.Add(dr)
+
+            ''dr = dt.NewRow()
+            ''dr("Codigo") = "1"
+            ''dr("Descripcion") = "Insumos"
+            ''dt.Rows.Add(dr)
+
+            ''cmbTipoProveedor.DataSource = dt
+            ''cmbTipoProveedor.ValueMember = "Codigo"
+            ''cmbTipoProveedor.DisplayMember = "Descripcion"
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub llenagrid()
         Try
             Dim filtro As String = txtFiltro.Text
+            Dim procedencia As Integer = Me.cmbTipoProveedor.SelectedValue
             Dim conexion As dsi_pos_demoEntities
 
             Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
                 conn.Open()
                 conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
-                Dim consulta As DataTable = EntitiToDataTable(From x In conexion.sp_lista_proveedores(mdlPublicVars.idEmpresa, filtro))
+                Dim consulta As DataTable = EntitiToDataTable(From x In conexion.sp_lista_proveedores(mdlPublicVars.idEmpresa, filtro, procedencia))
                 Me.grdDatos.DataSource = consulta
                 'Para saber cuantas filas tiene el grid
                 mdlPublicVars.superSearchFilasGrid = Me.grdDatos.Rows.Count
@@ -125,6 +173,8 @@ Public Class frmProveedorLista
             frmProveedor.Text = "Modulo de Proveedores"
             frmProveedor.NuevoIniciar = True
             frmProveedor.proveedorlocal = True
+            frmProveedor.StartPosition = FormStartPosition.CenterScreen
+            frmProveedor.WindowState = FormWindowState.Normal
             permiso.PermisoDialogMantenimientoTelerik2(frmProveedor)
             frmProveedor.Dispose()
         Catch ex As Exception
@@ -245,5 +295,15 @@ Public Class frmProveedorLista
         frmDocumentosSalida.bitCliente = False
         frmDocumentosSalida.bitGenerico = True
         permiso.PermisoFrmEspeciales(frmDocumentosSalida, False)
+    End Sub
+
+    Private Sub cmbTipoProveedor_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbTipoProveedor.SelectedValueChanged
+        Try
+            If Me.cmbTipoProveedor.SelectedValue >= 0 Then
+                llenagrid()
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

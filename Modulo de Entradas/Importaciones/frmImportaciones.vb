@@ -1,4 +1,5 @@
-﻿Imports System.Data.OleDb
+﻿
+Imports System.Data.OleDb
 Imports System.Linq
 Imports System.Data.SqlClient
 Imports Telerik.WinControls
@@ -180,6 +181,10 @@ Public Class frmImportaciones
             _total1 = value
         End Set
     End Property
+
+    Private Sub frmImportaciones_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        mdlPublicVars.fnMenu_Hijos(Me)
+    End Sub
     Private Sub frmproformaimportacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         listo = False
         bitEntrada = True
@@ -295,7 +300,7 @@ Public Class frmImportaciones
 
     Private Sub fnsalir() Handles Me.panel4
         Me.Close()
-        frmInvoicesLista.WindowState = FormWindowState.Maximized
+        ''frmInvoicesLista.WindowState = FormWindowState.Maximized
     End Sub
 
     Private Sub fncargarpromediotipocambio()
@@ -690,7 +695,7 @@ Public Class frmImportaciones
                 listo = False
                 fnNuevo()
                 ''RadMessageBox.Show("Registro Guardado", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
-                alerta.fnGuardar()
+                ''alerta.fnGuardar()
                 ''MessageBox.Show("Registro Guardado")
                 frmNotificacion.lblNotificacion.Text = "Registro Guardado" + vbLf + "Correctamente"
                 frmNotificacion.Show()
@@ -699,6 +704,7 @@ Public Class frmImportaciones
             'cerrar la conexion()
             conn.Close()
             Me.Close()
+            ''frmInvoicesLista.WindowState = FormWindowState.Maximized
             'finalizar el proceso
         End Using
     End Sub
@@ -1247,7 +1253,6 @@ Public Class frmImportaciones
     End Sub
 
     Private Sub fnguardarcompra_click() Handles Me.panel2
-
         fnGuardarCompra()
     End Sub
 
@@ -1581,7 +1586,9 @@ Public Class frmImportaciones
                     ctx.AcceptAllChanges()
                     fnLlenarDatos()
                     ''MessageBox.Show("Registro Guardado")
-                    alerta.fnGuardar()
+                    ''alerta.fnGuardar()
+                    frmNotificacion.lblNotificacion.Text = "Registro Guardado" + vbLf + "Correctamente"
+                    frmNotificacion.Show()
                     listo = False
                     ''fnNuevo()
                 End If
@@ -1739,7 +1746,7 @@ Public Class frmImportaciones
                     ctx.AcceptAllChanges()
                     fnLlenarDatos()
                     ''MessageBox.Show("Registro Guardado")
-                    alerta.fnGuardar()
+                    ''alerta.fnGuardar()
                     listo = False
                     fnNuevo()
                 End If
@@ -2046,8 +2053,8 @@ Public Class frmImportaciones
                 conexion.AcceptAllChanges()
                 listo = False
                 fnNuevo()
-                ''MessageBox.Show("Registro Guardado")
-                ''alerta.fnGuardar()
+
+                frmNotificacion.Close()
                 frmNotificacion.lblNotificacion.Text = "Registro Guardado" + vbLf + "Correctamente"
                 frmNotificacion.Show()
 

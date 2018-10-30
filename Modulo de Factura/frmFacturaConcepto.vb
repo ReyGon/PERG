@@ -297,7 +297,7 @@ Public Class frmFacturaConcepto
                     factura.Fecha = dtpFecha.Text
                     factura.fechaFiltro = dtpFecha.Text
                     factura.DocumentoFactura = txtFacElectronica.Text
-                    factura.bitImpreso = True
+                    ''factura.bitImpreso = True
                     'guardar los cambios
                     conexion.SaveChanges()
                     Dim codigoSalidaDetalle As Integer = 0

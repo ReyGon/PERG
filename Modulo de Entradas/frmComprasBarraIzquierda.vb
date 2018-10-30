@@ -49,7 +49,7 @@
 
         frmPreformasLista.Text = "Preformas Importacion"
         frmPreformasLista.MdiParent = frmMenuPrincipal
-        ''frmPreformasLista.WindowState = FormWindowState.Maximized
+        frmPreformasLista.WindowState = FormWindowState.Maximized
         If permiso.PermisoMantenimientoLista(frmPreformasLista, True) = True Then
             fnFRMhijos_cerrar(frmPreformasLista)
             Me.Close()
@@ -73,7 +73,7 @@
 
         frmInvoicesLista.Text = "Invoices"
         frmInvoicesLista.MdiParent = frmMenuPrincipal
-        ''frmInvoicesLista.WindowState = FormWindowState.Maximized
+        frmInvoicesLista.WindowState = FormWindowState.Maximized
         If permiso.PermisoMantenimientoLista(frmInvoicesLista, True) = True Then
             fnFRMhijos_cerrar(frmInvoicesLista)
             Me.Close()
@@ -98,7 +98,7 @@
 
         frmNacionalizacionesLista.Text = "Nacionalizaciones"
         frmNacionalizacionesLista.MdiParent = frmMenuPrincipal
-        ''frmNacionalizacionesLista.WindowState = FormWindowState.Maximized
+        frmNacionalizacionesLista.WindowState = FormWindowState.Maximized
         If permiso.PermisoMantenimientoLista(frmNacionalizacionesLista, True) = True Then
             fnFRMhijos_cerrar(frmNacionalizacionesLista)
             Me.Close()

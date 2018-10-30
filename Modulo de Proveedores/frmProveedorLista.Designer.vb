@@ -19,6 +19,8 @@ Partial Class frmProveedorLista
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.cmbTipoProveedor = New System.Windows.Forms.ComboBox()
         CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -36,18 +38,47 @@ Partial Class frmProveedorLista
         '
         'pnlOpciones
         '
-        Me.pnlOpciones.Location = New System.Drawing.Point(38, 0)
+        Me.pnlOpciones.Location = New System.Drawing.Point(25, 0)
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Location = New System.Drawing.Point(798, 52)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(90, 13)
+        Me.Label9.TabIndex = 168
+        Me.Label9.Text = "Tipo Proveedor :"
+        '
+        'cmbTipoProveedor
+        '
+        Me.cmbTipoProveedor.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbTipoProveedor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbTipoProveedor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbTipoProveedor.FormattingEnabled = True
+        Me.cmbTipoProveedor.Location = New System.Drawing.Point(903, 49)
+        Me.cmbTipoProveedor.Name = "cmbTipoProveedor"
+        Me.cmbTipoProveedor.Size = New System.Drawing.Size(228, 21)
+        Me.cmbTipoProveedor.TabIndex = 167
         '
         'frmProveedorLista
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(1145, 529)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.cmbTipoProveedor)
         Me.Name = "frmProveedorLista"
         '
         '
         '
         Me.RootElement.ApplyShapeToControl = True
         Me.RootElement.ForeColor = System.Drawing.Color.Gray
+        Me.Controls.SetChildIndex(Me.rgbDatos, 0)
+        Me.Controls.SetChildIndex(Me.Label2, 0)
+        Me.Controls.SetChildIndex(Me.lblFiltroFecha, 0)
+        Me.Controls.SetChildIndex(Me.cmbTipoProveedor, 0)
+        Me.Controls.SetChildIndex(Me.Label9, 0)
         CType(Me.rgbDatos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
@@ -55,5 +86,7 @@ Partial Class frmProveedorLista
         Me.PerformLayout()
 
     End Sub
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents cmbTipoProveedor As System.Windows.Forms.ComboBox
 
 End Class

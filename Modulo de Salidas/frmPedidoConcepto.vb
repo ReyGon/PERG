@@ -307,148 +307,153 @@ Public Class frmPedidoConcepto
 
     Private Sub fnRecotizar()
         Try
-            Dim fechaServidor As DateTime = fnFecha_horaServidor()
-            Dim s As tblSalida = (From x In ctx.tblSalidas Where x.idSalida = idSalida Select x).FirstOrDefault()
-            Dim documento As String = ""
-            If s.anulado = True Then
 
-                If RadMessageBox.Show("Desea Re Cotizar", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
-                    Dim success As Boolean = False
+            Dim conexion As dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
-                    'crear el encabezado de la transaccion
-                    Using transaction As New TransactionScope
-                        'inicio de excepcion
-                        Try
-                            '1ro. Crear el correlativo del documento.
-                            Dim codMovimiento As Integer = mdlPublicVars.Salida_TipoMovimientoVenta
-                            Dim correlativo As tblCorrelativo = (From x In ctx.tblCorrelativos Where x.idEmpresa = mdlPublicVars.idEmpresa And x.idTipoMovimiento = codMovimiento _
-                                                                 Select x).FirstOrDefault
+                Dim fechaServidor As DateTime = fnFecha_horaServidor()
+                Dim s As tblSalida = (From x In ctx.tblSalidas Where x.idSalida = idSalida Select x).FirstOrDefault()
+                Dim documento As String = ""
+                If s.anulado = True Then
 
-                            Dim usuario As tblUsuario = (From x In ctx.tblUsuarios Where x.idUsuario = mdlPublicVars.idUsuario Select x).FirstOrDefault
+                    If RadMessageBox.Show("Desea Re Cotizar", mdlPublicVars.nombreSistema, MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+                        Dim success As Boolean = False
 
-                            '2do. crer el encabezado de la salida.
-                            Dim salidaNueva As New tblSalida
+                        'crear el encabezado de la transaccion
+                        Using transaction As New TransactionScope
+                            'inicio de excepcion
+                            Try
+                                '1ro. Crear el correlativo del documento.
+                                Dim codMovimiento As Integer = mdlPublicVars.Salida_TipoMovimientoVenta
+                                Dim correlativo As tblCorrelativo = (From x In ctx.tblCorrelativos Where x.idEmpresa = mdlPublicVars.idEmpresa And x.idTipoMovimiento = codMovimiento _
+                                                                     Select x).FirstOrDefault
 
-                            salidaNueva.idEmpresa = CType(mdlPublicVars.idEmpresa, Integer)
-                            salidaNueva.idUsuario = CType(mdlPublicVars.idUsuario, Integer)
-                            salidaNueva.idTipoInventario = s.idTipoInventario
-                            salidaNueva.idAlmacen = s.idAlmacen
-                            salidaNueva.idTipoMovimiento = s.idTipoMovimiento
-                            salidaNueva.idVendedor = usuario.idVendedor
+                                Dim usuario As tblUsuario = (From x In ctx.tblUsuarios Where x.idUsuario = mdlPublicVars.idUsuario Select x).FirstOrDefault
 
-                            salidaNueva.idCliente = s.idCliente
-                            salidaNueva.cliente = s.cliente
-                            salidaNueva.nit = s.nit
+                                '2do. crer el encabezado de la salida.
+                                Dim salidaNueva As New tblSalida
 
-                            salidaNueva.fechaTransaccion = fechaServidor
-                            salidaNueva.fechaRegistro = fechaServidor
-                            salidaNueva.fechaDespachado = Nothing
-                            salidaNueva.observacion = s.observacion
+                                salidaNueva.idEmpresa = CType(mdlPublicVars.idEmpresa, Integer)
+                                salidaNueva.idUsuario = CType(mdlPublicVars.idUsuario, Integer)
+                                salidaNueva.idTipoInventario = s.idTipoInventario
+                                salidaNueva.idAlmacen = s.idAlmacen
+                                salidaNueva.idTipoMovimiento = s.idTipoMovimiento
+                                salidaNueva.idVendedor = usuario.idVendedor
 
-                            salidaNueva.cotizado = True
-                            salidaNueva.reservado = False
-                            salidaNueva.despachar = False
-                            salidaNueva.facturado = False
-                            salidaNueva.empacado = False
-                            salidaNueva.anulado = False
-                            salidaNueva.fechaAnulado = Nothing
-                            salidaNueva.idMunicipio = s.idMunicipio
-                            salidaNueva.descuento = 0
-                            salidaNueva.subtotal = s.total
-                            salidaNueva.total = s.total
+                                salidaNueva.idCliente = s.idCliente
+                                salidaNueva.cliente = s.cliente
+                                salidaNueva.nit = s.nit
 
+                                salidaNueva.fechaTransaccion = fechaServidor
+                                salidaNueva.fechaRegistro = fechaServidor
+                                salidaNueva.fechaDespachado = Nothing
+                                salidaNueva.observacion = s.observacion
 
-                            salidaNueva.direccionFacturacion = s.direccionFacturacion
-                            salidaNueva.direccionEnvio = s.direccionEnvio
-
-                            salidaNueva.contado = True
-                            salidaNueva.credito = False
-
-                            salidaNueva.documento = correlativo.correlativo + 1
-                            correlativo.correlativo = correlativo.correlativo + 1
-                            documento = salidaNueva.documento
-                            'agregar salida al modelo
-                            ctx.AddTotblSalidas(salidaNueva)
-
-                            'guardar cambios
-                            ctx.SaveChanges()
-                            Dim codigoSalidaNuevo = salidaNueva.idSalida
-
-                            '3ro. seleccionar el detalle de la salida
-                            Dim lDetalle As List(Of tblSalidaDetalle) = (From x In ctx.tblSalidaDetalles
-                                                                         Where x.idSalida = s.idSalida _
-                                                                         And ((x.tblSalida.cotizado = True And x.tblSalida.reservado = False And x.tblSalida.despachar = False And x.anulado = False) Or (x.tblSalida.cotizado = 0 And x.anulado = True Or (x.tblSalida.reservado = 1 Or x.tblSalida.despachar = True))) Select x).ToList()
+                                salidaNueva.cotizado = True
+                                salidaNueva.reservado = False
+                                salidaNueva.despachar = False
+                                salidaNueva.facturado = False
+                                salidaNueva.empacado = False
+                                salidaNueva.anulado = False
+                                salidaNueva.fechaAnulado = Nothing
+                                salidaNueva.idMunicipio = s.idMunicipio
+                                salidaNueva.descuento = 0
+                                salidaNueva.subtotal = s.total
+                                salidaNueva.total = s.total
 
 
-                            '4to. guardar el nuevo detalle.
-                            Dim fila As tblSalidaDetalle
+                                salidaNueva.direccionFacturacion = s.direccionFacturacion
+                                salidaNueva.direccionEnvio = s.direccionEnvio
 
-                            For Each fila In lDetalle
+                                salidaNueva.contado = True
+                                salidaNueva.credito = False
 
-                                Dim filaNueva As New tblSalidaDetalle
-                                filaNueva.idArticulo = fila.idArticulo
-                                filaNueva.idSalida = codigoSalidaNuevo
-                                filaNueva.precio = fila.precio
-                                filaNueva.comentario = fila.comentario
-                                filaNueva.costo = fila.costo
-                                filaNueva.anulado = False
-                                filaNueva.cantidad = fila.cantidad
-                                filaNueva.tipoInventario = fila.tipoInventario
-                                filaNueva.tipoPrecio = fila.tipoPrecio
-                                filaNueva.kitSalidaDetalle = fila.kitSalidaDetalle
-                                filaNueva.idunidadmedida = 1
-                                filaNueva.valormedida = 1
+                                salidaNueva.documento = correlativo.correlativo + 1
+                                correlativo.correlativo = correlativo.correlativo + 1
+                                documento = salidaNueva.documento
+                                'agregar salida al modelo
+                                ctx.AddTotblSalidas(salidaNueva)
+
+                                'guardar cambios
+                                ctx.SaveChanges()
+                                Dim codigoSalidaNuevo = salidaNueva.idSalida
+
+                                '3ro. seleccionar el detalle de la salida
+                                Dim lDetalle As List(Of tblSalidaDetalle) = (From x In ctx.tblSalidaDetalles
+                                                                             Where x.idSalida = s.idSalida _
+                                                                             And ((x.tblSalida.cotizado = True And x.tblSalida.reservado = False And x.tblSalida.despachar = False And x.anulado = False) Or (x.tblSalida.cotizado = False And x.anulado = True Or (x.tblSalida.reservado = True Or x.tblSalida.despachar = True))) Select x).ToList()
 
 
-                                If fila.cantidad > 0 Then
-                                    If (s.cotizado = True And (s.reservado = False Or s.despachar = False) And fila.anulado = True) Or (s.cotizado = True And s.reservado = False And s.despachar = False And fila.anulado = False) Or (s.cotizado = False And (s.reservado = True Or s.despachar = True) And fila.anulado = True) Then
-                                        'agregar los registro no anulados, porque fue una cotizacion.
-                                        ctx.AddTotblSalidaDetalles(filaNueva)
-                                        ctx.SaveChanges()
-                                    Else
-                                        RadMessageBox.Show("Producto anulado no agregado " + fila.tblArticulo.nombre1)
+                                '4to. guardar el nuevo detalle.
+                                Dim fila As tblSalidaDetalle
+
+                                For Each fila In lDetalle
+
+                                    Dim filaNueva As New tblSalidaDetalle
+                                    filaNueva.idArticulo = fila.idArticulo
+                                    filaNueva.idSalida = codigoSalidaNuevo
+                                    filaNueva.precio = fila.precio
+                                    filaNueva.comentario = fila.comentario
+                                    filaNueva.costo = fila.costo
+                                    filaNueva.anulado = False
+                                    filaNueva.cantidad = fila.cantidad
+                                    filaNueva.tipoInventario = fila.tipoInventario
+                                    filaNueva.tipoPrecio = fila.tipoPrecio
+                                    filaNueva.kitSalidaDetalle = fila.kitSalidaDetalle
+                                    filaNueva.idunidadmedida = 1
+                                    filaNueva.valormedida = 1
+
+
+                                    If fila.cantidad > 0 Then
+                                        If (s.cotizado = True And (s.reservado = False Or s.despachar = False) And fila.anulado = True) Or (s.cotizado = True And s.reservado = False And s.despachar = False And fila.anulado = False) Or (s.cotizado = False And (s.reservado = True Or s.despachar = True) And fila.anulado = True) Then
+                                            'agregar los registro no anulados, porque fue una cotizacion.
+                                            ctx.AddTotblSalidaDetalles(filaNueva)
+                                            ctx.SaveChanges()
+                                        Else
+                                            RadMessageBox.Show("Producto anulado no agregado " + fila.tblArticulo.nombre1)
+                                        End If
                                     End If
+
+                                Next
+
+                                alerta.fnGuardar()
+
+                                'paso 8, completar la transaccion.
+                                transaction.Complete()
+                                success = True
+
+                            Catch ex As System.Data.EntityException
+                                success = False
+                            Catch ex As Exception
+                                success = False
+                                RadMessageBox.Show(ex.Message + vbCrLf + ex.InnerException.ToString, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
+                                ' Handle errors and deadlocks here and retry if needed. 
+                                ' Allow an UpdateException to pass through and 
+                                ' retry, otherwise stop the execution. 
+                                If ex.[GetType]() <> GetType(UpdateException) Then
+                                    Console.WriteLine(("An error occured. " & "The operation cannot be retried.") + ex.Message)
+                                    alerta.fnErrorGuardar()
+                                    Exit Try
+                                    ' If we get to this point, the operation will be retried. 
                                 End If
-                                
-                            Next
+                            End Try
+                        End Using
 
+                        If success = True Then
+                            ctx.AcceptAllChanges()
+                            RadMessageBox.Show("Pedido Creado con Documento: " + documento, mdlPublicVars.nombreSistema)
+                        Else
+                            alerta.fnError()
+                        End If
 
-                            alerta.fnGuardar()
-
-                            'paso 8, completar la transaccion.
-                            transaction.Complete()
-                            success = True
-
-                        Catch ex As System.Data.EntityException
-                            success = False
-                        Catch ex As Exception
-                            success = False
-                            RadMessageBox.Show(ex.Message + vbCrLf + ex.InnerException.ToString, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
-                            ' Handle errors and deadlocks here and retry if needed. 
-                            ' Allow an UpdateException to pass through and 
-                            ' retry, otherwise stop the execution. 
-                            If ex.[GetType]() <> GetType(UpdateException) Then
-                                Console.WriteLine(("An error occured. " & "The operation cannot be retried.") + ex.Message)
-                                alerta.fnErrorGuardar()
-                                Exit Try
-                                ' If we get to this point, the operation will be retried. 
-                            End If
-                        End Try
-                    End Using
-
-                    If success = True Then
-                        ctx.AcceptAllChanges()
-                        RadMessageBox.Show("Pedido Creado con Documento: " + documento, mdlPublicVars.nombreSistema)
-                    Else
-                        alerta.fnError()
                     End If
-
-
+                Else
+                    RadMessageBox.Show("Pedido no anulado !!!")
                 End If
-            Else
-                RadMessageBox.Show("Pedido no anulado !!!")
-            End If
-
+                conn.Close()
+            End Using
         Catch ex As Exception
 
         End Try

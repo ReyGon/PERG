@@ -89,7 +89,7 @@ Public Class frmProveedorListaImportacion
         Try
             If Me.grdDatos.Rows.Count >= 0 Then
                 mdlPublicVars.fnGridTelerik_formatoFecha(Me.grdDatos, "UltimaCompra")
-                mdlPublicVars.fnGridTelerik_formatoMoneda(Me.grdDatos, "SaldoTransito")
+                mdlPublicVars.fnGridTelerik_formatoMonedaDolar(Me.grdDatos, "SaldoTransito")
                 mdlPublicVars.fnGridTelerik_formatoMonedaDolar(Me.grdDatos, "SaldoFisico")
 
                 mdlPublicVars.fnGridTelerik_formatoMonedaDolar(Me.grdDatos, "SaldoDolar")

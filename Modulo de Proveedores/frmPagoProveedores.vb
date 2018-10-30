@@ -179,18 +179,16 @@ Public Class frmPagoProveedores
                     lblCambio.Visible = True
                     nm5Cambio.Visible = True
 
-                    lblDocumento.Visible = False
-                    ''lblPago.Visible = True
-                    ''lblPagos.Visible = True
-                    ''cmbDocumento.Visible = True
-                    '' lblSal.Visible = True
-                    ''lblSaldos.Visible = True
-                    ''lbldocumentofactura.Visible = True
-                    ''txtdocfactura.Visible = True
-                    lblPreformaD.Visible = True
-                    txtPreformaD.Visible = True
-                    lblInvoiceD.Visible = True
-                    txtInvoiceD.Visible = True
+                    lblDocumento.Visible = True
+                    lblPago.Visible = True
+                    lblPagos.Visible = True
+                    cmbDocumento.Visible = True
+                    lblSal.Visible = True
+                    lblSaldos.Visible = True
+                    ''lblPreformaD.Visible = True
+                    ''txtpreformaD.Visible = True
+                    ''lblInvoiceD.Visible = True
+                    ''txtInvoiceD.Visible = True
 
                     fnLlenaComboMovimientos()
                 Else
@@ -361,10 +359,10 @@ Public Class frmPagoProveedores
 
                 Dim mov = (From x In conexion.tblEntradas Select Codigo = CInt(0), Nombre = "Ningun Documento").Union(From x In conexion.tblEntradas Where x.idProveedor = proveedor And _
                    x.saldo > 0 And x.anulado = False Order By x.idEntrada Select Codigo = CInt(x.idEntrada), _
-                   Nombre = CStr(If((x.preformaimportacion = 1 And x.transito = False), CStr("Proforma Invoice: " & x.serieDocumento & "-" & x.documento), _
-                    If((x.preforma = True And x.preformaimportacion = 0 And x.compra = False), CStr("Preforma: " & x.serieDocumento & "-" & x.documento), _
+                   Nombre = CStr(If((x.preformaimportacion = True And x.Invoice = False), CStr("Proforma Importacion: " & x.serieDocumento & "-" & x.documento), _
+                    If((x.preforma = True And x.preformaimportacion = False And x.compra = False), CStr("Preforma: " & x.serieDocumento & "-" & x.documento), _
                     If((x.compra = True), CStr("Compra: " & x.serieDocumento & "-" & x.documento), _
-                    If((x.compra = True And x.preformaimportacion = 1), CStr("Invoice: " & x.serieDocumento & "-" & x.documento), "S/D: "))))))
+                    If((x.Invoice = True And x.preformaimportacion = False), CStr("Invoice: " & x.serieDocumento & "-" & x.documento), "S/D: "))))))
 
                 ''If((x.preformaimportacion > 0 And x.transito = True And x.preformatotransito = True), CStr("Transito Invoice: " & x.serieDocumento & "-" & x.documento), _
 
@@ -706,7 +704,7 @@ Public Class frmPagoProveedores
                 Me.txtNumeroFacturas.Enabled = False
                 Me.lblPreformaD.Visible = False
                 Me.lblInvoiceD.Visible = False
-                Me.txtPreformaD.Visible = False
+                Me.txtpreformaD.Visible = False
                 Me.txtInvoiceD.Visible = False
             Else
                 Me.lblDocumento.Visible = False
@@ -724,7 +722,7 @@ Public Class frmPagoProveedores
                 Me.txtNumeroFacturas.Enabled = True
                 Me.lblPreformaD.Visible = False
                 Me.lblInvoiceD.Visible = False
-                Me.txtPreformaD.Visible = False
+                Me.txtpreformaD.Visible = False
                 Me.txtInvoiceD.Visible = False
             End If
         Catch ex As Exception
@@ -930,7 +928,7 @@ Public Class frmPagoProveedores
                                     pago.consumido = 0
                                     pago.afavor = monto
                                     pago.codutilizado = 0
-                                    pago.docpreforma = Me.txtPreformaD.Text
+                                    pago.docpreforma = Me.txtpreformaD.Text
                                     pago.docinvoice = Me.txtInvoiceD.Text
 
                                     If Me.cmbDocumento.Visible = True Then
@@ -1321,7 +1319,7 @@ Public Class frmPagoProveedores
                             pago.afavor = 0
                             pago.codutilizado = False
                             pago.docboletadeposito = txtdocumentoboleta.Text
-                            pago.docpreforma = Me.txtPreformaD.Text
+                            pago.docpreforma = Me.txtpreformaD.Text
                             pago.docinvoice = Me.txtInvoiceD.Text
 
                             conexion.AddTotblCajas(pago)

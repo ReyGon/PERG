@@ -155,8 +155,8 @@ Public Class frmProductoKardex
                 conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
                 conexion.CommandTimeout = 100000
 
-                Dim fechaInicio As DateTime = dtpFechaInicio.Text + " 00:00:00"
-                Dim fechaFinal As DateTime = dtpFechaFin.Text + " 23:59:59"
+                Dim fechaInicio As DateTime = dtpFechaInicio.Text + " 01:00:00.000"
+                Dim fechaFinal As DateTime = dtpFechaFin.Text + " 22:59:59.000"
                 Dim cli As Integer = CType(cmbClientes.SelectedValue, Integer)
                 Dim pro As Integer = CType(cmbProveedor.SelectedValue, Integer)
                 Dim tipo As Integer = CType(cmbMovimientos.SelectedValue, Integer)

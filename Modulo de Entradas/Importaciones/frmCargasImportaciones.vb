@@ -519,8 +519,10 @@ Public Class frmCargasImportaciones
                     'paso 8, completar la transaccion.
                     transaction.Complete()
 
-                    alerta.fnGuardar()
-                    conn.Close()
+                    ''alerta.fnGuardar()
+                    ''conn.Close()
+                    frmNotificacion.lblNotificacion.Text = "Registro Guardado" + vbLf + "Correctamente"
+                    frmNotificacion.Show()
                 End Using
 
             End Using

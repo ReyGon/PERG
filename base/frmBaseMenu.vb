@@ -12,6 +12,7 @@ Public Class FrmBaseMenu
     Public Event panel8()
     Public Event panel9()
     Public Event panel10()
+    Public Event panel11()
 
     Public paneles As Panel()
     Dim contador As Integer = 0
@@ -21,8 +22,6 @@ Public Class FrmBaseMenu
     Public izquierda As Boolean = False
     Public derecha As Boolean = False
     Public contadorOpen As Integer = 0
-
-
 
     Private Sub FrmBaseMenu_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
@@ -44,6 +43,7 @@ Public Class FrmBaseMenu
                 paneles(0).BackColor = Color.BlueViolet
                 actual = 0
             Catch ex As Exception
+
             End Try
 
         Catch ex As Exception
@@ -146,6 +146,8 @@ Public Class FrmBaseMenu
                 AddHandler pnl.Click, AddressOf fnPanel9
             Case 10
                 AddHandler pnl.Click, AddressOf fnPanel10
+            Case 11
+                AddHandler pnl.Click, AddressOf fnPanel11
         End Select
 
 
@@ -258,6 +260,14 @@ Public Class FrmBaseMenu
                                 pbx = ctl
                                 AddHandler pbx.Click, AddressOf fnPanel10
                             End If
+                        Case 11
+                            If iniciales = "lbl" Then
+                                lbl = ctl
+                                AddHandler lbl.Click, AddressOf fnPanel11
+                            ElseIf iniciales = "pbx" Then
+                                pbx = ctl
+                                AddHandler pbx.Click, AddressOf fnPanel11
+                            End If
 
                         Case Else
 
@@ -316,6 +326,10 @@ Public Class FrmBaseMenu
 
     Private Sub fnPanel10()
         RaiseEvent panel10()
+    End Sub
+
+    Private Sub fnPanel11()
+        RaiseEvent panel11()
     End Sub
 
     Private Sub paneles_leave_mouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -413,6 +427,8 @@ Public Class FrmBaseMenu
                     fnPanel9()
                 Case 10
                     fnPanel10()
+                Case 11
+                    fnPanel11()
             End Select
         End If
 

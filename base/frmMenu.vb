@@ -119,10 +119,10 @@ Public Class frmMenu
 
     Private Sub fnPanel7() Handles Me.panel7
         Try
-            Dim frm As Form = frmListaNotificaciones
-            frm.Text = "Lista de Notificaciones"
-            frm.MdiParent = frmMenuPrincipal
-            permiso.PermisoFrmEspeciales(frm, True)
+            ''Dim frm As Form = frmListaNotificaciones
+            ''frm.Text = "Lista de Notificaciones"
+            ''frm.MdiParent = frmMenuPrincipal
+            ''permiso.PermisoFrmEspeciales(frm, True)
         Catch ex As Exception
 
         End Try
