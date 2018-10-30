@@ -54,7 +54,7 @@
     End Sub
 
     'PANEL6 - Ajustes -
-    Private Sub fnPanel6() Handles Me.panel6
+    Private Sub fnPanel5() Handles Me.panel5
         frmAjustesBancariosLista.Text = "Lista de Ajustes"
         frmAjustesBancariosLista.MdiParent = frmMenuPrincipal
         frmAjustesBancariosLista.WindowState = FormWindowState.Maximized

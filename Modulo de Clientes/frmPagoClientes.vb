@@ -132,7 +132,6 @@ Public Class frmPagoClientes
             conn.Close()
         End Using
 
-
         'agregar columna de tipo combo.
         Dim tipoPago As New GridViewComboBoxColumn()
         tipoPago.FieldName = "txmTipoPago"
@@ -326,7 +325,7 @@ Public Class frmPagoClientes
                     Dim monto = Me.grdProductos.Rows(Me.grdProductos.CurrentRow.Index).Cells("txmMonto").Value
 
                     If monto Is Nothing Or monto = 0 Then
-                        RadMessageBox.Show("Debe ingresar una monto", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
+                        RadMessageBox.Show("Debe ingresar un monto", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
                         Me.grdProductos.Rows(Me.grdProductos.CurrentRow.Index).IsCurrent = True
                         Me.grdProductos.Columns("txmMonto").IsCurrent = True
                     Else
@@ -1354,4 +1353,5 @@ Public Class frmPagoClientes
 
         End Try
     End Sub
+
 End Class

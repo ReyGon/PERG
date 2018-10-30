@@ -1,8 +1,4 @@
-﻿
-
-
-
-Imports System.Linq
+﻿Imports System.Linq
 Imports Telerik.WinControls
 Imports Telerik.WinControls.UI
 Imports System.Transactions
