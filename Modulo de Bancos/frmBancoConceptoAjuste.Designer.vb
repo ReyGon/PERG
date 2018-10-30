@@ -21,6 +21,7 @@ Partial Class frmBancoConceptoAjuste
     Private Sub InitializeComponent()
         Me.rpv = New Telerik.WinControls.UI.RadPageView()
         Me.pageDatos = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.chkEstado = New System.Windows.Forms.CheckBox()
         Me.chkDebito = New System.Windows.Forms.CheckBox()
         Me.chkCredito = New System.Windows.Forms.CheckBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -49,6 +50,9 @@ Partial Class frmBancoConceptoAjuste
         Me.lbTituloFrm.Size = New System.Drawing.Size(125, 32)
         Me.lbTituloFrm.Text = "FrmBaseT"
         '
+        'pbx4Reporte
+        '
+        '
         'rpv
         '
         Me.rpv.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -67,6 +71,7 @@ Partial Class frmBancoConceptoAjuste
         'pageDatos
         '
         Me.pageDatos.BackColor = System.Drawing.Color.White
+        Me.pageDatos.Controls.Add(Me.chkEstado)
         Me.pageDatos.Controls.Add(Me.chkDebito)
         Me.pageDatos.Controls.Add(Me.chkCredito)
         Me.pageDatos.Controls.Add(Me.Label3)
@@ -77,6 +82,17 @@ Partial Class frmBancoConceptoAjuste
         Me.pageDatos.Name = "pageDatos"
         Me.pageDatos.Size = New System.Drawing.Size(1114, 138)
         Me.pageDatos.Text = " Información "
+        '
+        'chkEstado
+        '
+        Me.chkEstado.AutoSize = True
+        Me.chkEstado.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.chkEstado.Location = New System.Drawing.Point(91, 112)
+        Me.chkEstado.Name = "chkEstado"
+        Me.chkEstado.Size = New System.Drawing.Size(82, 19)
+        Me.chkEstado.TabIndex = 11
+        Me.chkEstado.Text = "Habilitado"
+        Me.chkEstado.UseVisualStyleBackColor = True
         '
         'chkDebito
         '
@@ -171,5 +187,6 @@ Partial Class frmBancoConceptoAjuste
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents txtNombre As System.Windows.Forms.TextBox
     Friend WithEvents txtCodigo As System.Windows.Forms.TextBox
+    Friend WithEvents chkEstado As System.Windows.Forms.CheckBox
 
 End Class

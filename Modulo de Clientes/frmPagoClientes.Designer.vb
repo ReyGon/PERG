@@ -45,6 +45,7 @@ Partial Class frmPagoClientes
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.rgbEncabezado = New Telerik.WinControls.UI.RadGroupBox()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.btnBuscarCliente = New System.Windows.Forms.Button()
         Me.txtTotalFacturas = New System.Windows.Forms.TextBox()
         Me.lblTotalFacturas = New System.Windows.Forms.Label()
@@ -63,10 +64,10 @@ Partial Class frmPagoClientes
         Me.lblPago = New System.Windows.Forms.Label()
         Me.cmbDocumento = New System.Windows.Forms.ComboBox()
         Me.lblDocumento = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.dtpFechaInicio = New System.Windows.Forms.DateTimePicker()
         Me.lblCP = New System.Windows.Forms.Label()
         Me.cmbClientes = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.pnlBarra = New System.Windows.Forms.Panel()
         Me.pnx3BoletasNoConfirmadas = New System.Windows.Forms.Panel()
         Me.lbl3BoletasNoConfiramdas = New System.Windows.Forms.Label()
@@ -83,6 +84,7 @@ Partial Class frmPagoClientes
         Me.pnx0Facturar = New System.Windows.Forms.Panel()
         Me.lbl0Facturar = New System.Windows.Forms.Label()
         Me.pbx0Facturar = New System.Windows.Forms.PictureBox()
+        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rgbDetalle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,6 +108,7 @@ Partial Class frmPagoClientes
         CType(Me.pbx4Salir, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnx0Facturar.SuspendLayout()
         CType(Me.pbx0Facturar, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -401,6 +404,7 @@ Partial Class frmPagoClientes
         '
         Me.rgbEncabezado.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rgbEncabezado.Controls.Add(Me.Label8)
         Me.rgbEncabezado.Controls.Add(Me.btnBuscarCliente)
         Me.rgbEncabezado.Controls.Add(Me.txtTotalFacturas)
         Me.rgbEncabezado.Controls.Add(Me.lblTotalFacturas)
@@ -419,7 +423,6 @@ Partial Class frmPagoClientes
         Me.rgbEncabezado.Controls.Add(Me.lblPago)
         Me.rgbEncabezado.Controls.Add(Me.cmbDocumento)
         Me.rgbEncabezado.Controls.Add(Me.lblDocumento)
-        Me.rgbEncabezado.Controls.Add(Me.Label3)
         Me.rgbEncabezado.Controls.Add(Me.dtpFechaInicio)
         Me.rgbEncabezado.Controls.Add(Me.lblCP)
         Me.rgbEncabezado.Controls.Add(Me.cmbClientes)
@@ -439,6 +442,16 @@ Partial Class frmPagoClientes
         Me.rgbEncabezado.Size = New System.Drawing.Size(643, 157)
         Me.rgbEncabezado.TabIndex = 116
         Me.rgbEncabezado.ThemeName = "Office2007Black"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(96, 34)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(42, 13)
+        Me.Label8.TabIndex = 231
+        Me.Label8.Text = "Fecha :"
         '
         'btnBuscarCliente
         '
@@ -638,16 +651,6 @@ Partial Class frmPagoClientes
         Me.lblDocumento.Text = "Documento :"
         Me.lblDocumento.Visible = False
         '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(90, 31)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(42, 13)
-        Me.Label3.TabIndex = 3
-        Me.Label3.Text = "Fecha :"
-        '
         'dtpFechaInicio
         '
         Me.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
@@ -673,6 +676,18 @@ Partial Class frmPagoClientes
         Me.cmbClientes.Name = "cmbClientes"
         Me.cmbClientes.Size = New System.Drawing.Size(282, 21)
         Me.cmbClientes.TabIndex = 1
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(46, 4)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(47, 30)
+        Me.Label3.TabIndex = 72
+        Me.Label3.Text = "Detalle" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Saldo"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'pnlBarra
         '
@@ -852,6 +867,16 @@ Partial Class frmPagoClientes
         Me.pbx0Facturar.TabIndex = 71
         Me.pbx0Facturar.TabStop = False
         '
+        'PictureBox3
+        '
+        Me.PictureBox3.Image = Global.laFuente.My.Resources.Resources.detalle_Blanco
+        Me.PictureBox3.Location = New System.Drawing.Point(2, 2)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(40, 33)
+        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox3.TabIndex = 71
+        Me.PictureBox3.TabStop = False
+        '
         'frmPagoClientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -912,6 +937,7 @@ Partial Class frmPagoClientes
         Me.pnx0Facturar.ResumeLayout(False)
         Me.pnx0Facturar.PerformLayout()
         CType(Me.pbx0Facturar, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -961,9 +987,6 @@ Partial Class frmPagoClientes
     Friend WithEvents pnx3BoletasNoConfirmadas As System.Windows.Forms.Panel
     Friend WithEvents lbl3BoletasNoConfiramdas As System.Windows.Forms.Label
     Friend WithEvents pbx3BoletasNoConfirmadas As System.Windows.Forms.PictureBox
-    Friend WithEvents pnx1Detalle As System.Windows.Forms.Panel
-    Friend WithEvents lbl1Detalle As System.Windows.Forms.Label
-    Friend WithEvents pbx1Detalle As System.Windows.Forms.PictureBox
     Friend WithEvents pnx2Estado As System.Windows.Forms.Panel
     Friend WithEvents lbl2Estado As System.Windows.Forms.Label
     Friend WithEvents pbx2Estado As System.Windows.Forms.PictureBox
@@ -974,5 +997,10 @@ Partial Class frmPagoClientes
     Friend WithEvents lbl0Facturar As System.Windows.Forms.Label
     Friend WithEvents pbx0Facturar As System.Windows.Forms.PictureBox
     Friend WithEvents btnBuscarCliente As System.Windows.Forms.Button
+    Friend WithEvents pnx1Detalle As System.Windows.Forms.Panel
+    Friend WithEvents lbl1Detalle As System.Windows.Forms.Label
+    Friend WithEvents pbx1Detalle As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
 
 End Class

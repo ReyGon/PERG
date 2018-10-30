@@ -31,7 +31,7 @@ Partial Class frmBancoBarraIzquierda
         Me.pnl4 = New System.Windows.Forms.Panel()
         Me.pbx4 = New System.Windows.Forms.PictureBox()
         Me.lbl4 = New System.Windows.Forms.Label()
-        Me.pnl5 = New System.Windows.Forms.Panel()
+        Me.pnl6 = New System.Windows.Forms.Panel()
         Me.radMenu = New Telerik.WinControls.UI.RadMenu()
         Me.menus = New Telerik.WinControls.UI.RadMenuItem()
         Me.itemBeneficiario = New Telerik.WinControls.UI.RadMenuItem()
@@ -39,9 +39,9 @@ Partial Class frmBancoBarraIzquierda
         Me.itemBancos = New Telerik.WinControls.UI.RadMenuItem()
         Me.itemConceptos = New Telerik.WinControls.UI.RadMenuItem()
         Me.itemConceptoAjuste = New Telerik.WinControls.UI.RadMenuItem()
-        Me.pnl6 = New System.Windows.Forms.Panel()
-        Me.pbx6 = New System.Windows.Forms.PictureBox()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.pnl5 = New System.Windows.Forms.Panel()
+        Me.pbx5 = New System.Windows.Forms.PictureBox()
+        Me.lbl5 = New System.Windows.Forms.Label()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl1.SuspendLayout()
@@ -52,10 +52,10 @@ Partial Class frmBancoBarraIzquierda
         CType(Me.pbx3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl4.SuspendLayout()
         CType(Me.pbx4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnl5.SuspendLayout()
-        CType(Me.radMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl6.SuspendLayout()
-        CType(Me.pbx6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.radMenu, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnl5.SuspendLayout()
+        CType(Me.pbx5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -211,14 +211,14 @@ Partial Class frmBancoBarraIzquierda
         Me.lbl4.TabIndex = 69
         Me.lbl4.Text = "Creditos"
         '
-        'pnl5
+        'pnl6
         '
-        Me.pnl5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.pnl5.Controls.Add(Me.radMenu)
-        Me.pnl5.Location = New System.Drawing.Point(14, 497)
-        Me.pnl5.Name = "pnl5"
-        Me.pnl5.Size = New System.Drawing.Size(100, 77)
-        Me.pnl5.TabIndex = 75
+        Me.pnl6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.pnl6.Controls.Add(Me.radMenu)
+        Me.pnl6.Location = New System.Drawing.Point(14, 497)
+        Me.pnl6.Name = "pnl6"
+        Me.pnl6.Size = New System.Drawing.Size(100, 77)
+        Me.pnl6.TabIndex = 75
         '
         'radMenu
         '
@@ -285,40 +285,40 @@ Partial Class frmBancoBarraIzquierda
         'itemConceptoAjuste
         '
         Me.itemConceptoAjuste.Name = "itemConceptoAjuste"
-        Me.itemConceptoAjuste.Text = "Concepto Ajustes"
+        Me.itemConceptoAjuste.Text = "Concepto Ajustes Bancarios"
         '
-        'pnl6
+        'pnl5
         '
-        Me.pnl6.BackColor = System.Drawing.Color.SteelBlue
-        Me.pnl6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.pnl6.Controls.Add(Me.pbx6)
-        Me.pnl6.Controls.Add(Me.Label3)
-        Me.pnl6.Location = New System.Drawing.Point(14, 414)
-        Me.pnl6.Name = "pnl6"
-        Me.pnl6.Size = New System.Drawing.Size(100, 77)
-        Me.pnl6.TabIndex = 75
+        Me.pnl5.BackColor = System.Drawing.Color.SteelBlue
+        Me.pnl5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.pnl5.Controls.Add(Me.pbx5)
+        Me.pnl5.Controls.Add(Me.lbl5)
+        Me.pnl5.Location = New System.Drawing.Point(14, 414)
+        Me.pnl5.Name = "pnl5"
+        Me.pnl5.Size = New System.Drawing.Size(100, 77)
+        Me.pnl5.TabIndex = 75
         '
-        'pbx6
+        'pbx5
         '
-        Me.pbx6.Image = Global.laFuente.My.Resources.Resources.cuentaCredito
-        Me.pbx6.Location = New System.Drawing.Point(26, 9)
-        Me.pbx6.Name = "pbx6"
-        Me.pbx6.Size = New System.Drawing.Size(46, 39)
-        Me.pbx6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbx6.TabIndex = 70
-        Me.pbx6.TabStop = False
+        Me.pbx5.Image = Global.laFuente.My.Resources.Resources.cuentaCredito
+        Me.pbx5.Location = New System.Drawing.Point(26, 9)
+        Me.pbx5.Name = "pbx5"
+        Me.pbx5.Size = New System.Drawing.Size(46, 39)
+        Me.pbx5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbx5.TabIndex = 70
+        Me.pbx5.TabStop = False
         '
-        'Label3
+        'lbl5
         '
-        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(19, 51)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(56, 19)
-        Me.Label3.TabIndex = 69
-        Me.Label3.Text = "Ajustes"
+        Me.lbl5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbl5.AutoSize = True
+        Me.lbl5.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl5.ForeColor = System.Drawing.Color.White
+        Me.lbl5.Location = New System.Drawing.Point(19, 51)
+        Me.lbl5.Name = "lbl5"
+        Me.lbl5.Size = New System.Drawing.Size(56, 19)
+        Me.lbl5.TabIndex = 69
+        Me.lbl5.Text = "Ajustes"
         '
         'frmBancoBarraIzquierda
         '
@@ -326,8 +326,8 @@ Partial Class frmBancoBarraIzquierda
         Me.BackColor = System.Drawing.Color.SteelBlue
         Me.ClientSize = New System.Drawing.Size(135, 740)
         Me.ControlBox = False
-        Me.Controls.Add(Me.pnl6)
         Me.Controls.Add(Me.pnl5)
+        Me.Controls.Add(Me.pnl6)
         Me.Controls.Add(Me.pnl4)
         Me.Controls.Add(Me.pnl3)
         Me.Controls.Add(Me.pnl2)
@@ -349,8 +349,8 @@ Partial Class frmBancoBarraIzquierda
         Me.Controls.SetChildIndex(Me.pnl2, 0)
         Me.Controls.SetChildIndex(Me.pnl3, 0)
         Me.Controls.SetChildIndex(Me.pnl4, 0)
-        Me.Controls.SetChildIndex(Me.pnl5, 0)
         Me.Controls.SetChildIndex(Me.pnl6, 0)
+        Me.Controls.SetChildIndex(Me.pnl5, 0)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl1.ResumeLayout(False)
@@ -365,11 +365,11 @@ Partial Class frmBancoBarraIzquierda
         Me.pnl4.ResumeLayout(False)
         Me.pnl4.PerformLayout()
         CType(Me.pbx4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnl5.ResumeLayout(False)
-        CType(Me.radMenu, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl6.ResumeLayout(False)
-        Me.pnl6.PerformLayout()
-        CType(Me.pbx6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.radMenu, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnl5.ResumeLayout(False)
+        Me.pnl5.PerformLayout()
+        CType(Me.pbx5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -387,16 +387,16 @@ Partial Class frmBancoBarraIzquierda
     Friend WithEvents pnl4 As System.Windows.Forms.Panel
     Friend WithEvents pbx4 As System.Windows.Forms.PictureBox
     Public WithEvents lbl4 As System.Windows.Forms.Label
-    Friend WithEvents pnl5 As System.Windows.Forms.Panel
+    Friend WithEvents pnl6 As System.Windows.Forms.Panel
     Friend WithEvents radMenu As Telerik.WinControls.UI.RadMenu
     Friend WithEvents menus As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents itemBeneficiario As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents itemBancos As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents itemConceptos As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents itemAcreditatores As Telerik.WinControls.UI.RadMenuItem
-    Friend WithEvents pnl6 As System.Windows.Forms.Panel
-    Friend WithEvents pbx6 As System.Windows.Forms.PictureBox
-    Public WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents pnl5 As System.Windows.Forms.Panel
+    Friend WithEvents pbx5 As System.Windows.Forms.PictureBox
+    Public WithEvents lbl5 As System.Windows.Forms.Label
     Friend WithEvents itemConceptoAjuste As Telerik.WinControls.UI.RadMenuItem
 
 End Class
