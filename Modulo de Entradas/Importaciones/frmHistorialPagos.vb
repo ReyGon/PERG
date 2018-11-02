@@ -57,7 +57,7 @@ Public Class frmHistorialPagos
                 If idproveedor > 0 Then
 
 
-                    dt = EntitiToDataTable(conexion.sp_PagosProveedoresImportacion(idproveedor))
+                    dt = EntitiToDataTable(conexion.sp_PagosProveedoresImportacion(idproveedor, 0, 0))
 
                     Me.grdPagos.DataSource = dt
 

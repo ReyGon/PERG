@@ -221,7 +221,7 @@ Public Class frmAjustesBancarios
 
     'Combo de cuentas para la obtencion de saldos cuando sea traslado
 
-    Private Sub cmbCuentas_selectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub cmbCuentas2_selectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbCuentas2.SelectedValueChanged
 
         'Conexion nueva
         Dim conexion As New dsi_pos_demoEntities
@@ -248,17 +248,54 @@ Public Class frmAjustesBancarios
 
         End Using
     End Sub
+    
 
     'Funcionn utilizada para verificar errores
 
     Private Function fnErrores() As Boolean
 
-        Dim cuenta As Integer = 0
+        Try
+            Dim idajuste As Integer = CInt(cmbAjuste.SelectedValue)
+            Dim idcuenta As Integer = CInt(cmbCuenta.SelectedValue)
+            Dim saldoInsuficiente As Boolean = True
+            Dim conexion As New dsi_pos_demoEntities
+            Using conn As EntityConnection = New EntityConnection(mdlPublicVars.entityBuilder.ToString)
+                conn.Open()
+                conexion = New dsi_pos_demoEntities(mdlPublicVars.entityBuilder.ToString)
 
-        If CDec(txtMonto.text) <= 0 Then
-            RadMessageBox.Show("El monto debe de ser mayor a 0", mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
-            Return True
-        End If
+                If CDec(txtMonto.Text) <= 0 Then
+                    frmNotificacion.lblNotificacion.Text = "Ingrese monto" + vbLf + "mayor a 0"
+                    frmNotificacion.Show()
+                    Return True
+                End If
+
+                'Obtenemos la cuenta 
+                Dim cuenta As tblBanco_Cuenta = (From x In conexion.tblBanco_Cuenta Where x.codigo = idcuenta _
+                   Select x).FirstOrDefault
+
+                'Obtenemos los conceptos
+                Dim Ajustes As tblconcepto_ajustebancario = (From x In conexion.tblconcepto_ajustebancario Where x.idconcepto = idajuste And x.bitDecremento _
+                           Select x).FirstOrDefault
+
+                'Verificamos si contamos con saldo en la cuenta
+
+                If Ajustes.bitDecremento = True Then
+                    If CDec(txtMonto.Text) > cuenta.saldo Then
+                        saldoInsuficiente = True
+                        frmNotificacion.lblNotificacion.Text = "El saldo" + vbLf + "es insuficiente"
+                        frmNotificacion.Show()
+                        Return True
+                        Exit Try
+                    End If
+                End If
+
+                conn.Close()
+
+            End Using
+
+        Catch ex As Exception
+
+        End Try
 
         Return False
     End Function
@@ -268,9 +305,8 @@ Public Class frmAjustesBancarios
     Public Sub fnGuardarMovimiento()
 
         Try
-
-            Dim saldoInsuficiente As Boolean = True
             Dim idcuenta As Integer = CInt(cmbCuenta.SelectedValue)
+            Dim idcuenta2 As Integer = CInt(cmbCuentas2.SelectedValue)
             Dim idConcepto As Integer = CInt(cmbAjuste.SelectedValue)
             Dim movimiento As New tblajuste_bancarios
             Dim hora As String = fnHoraServidor()
@@ -283,36 +319,29 @@ Public Class frmAjustesBancarios
 
                 movimiento.banco = CInt(cmbBanco.SelectedValue)
                 movimiento.anulado = False
+                movimiento.aprobado = False
                 movimiento.transaccion = txtTransaccion.Text
+                movimiento.observacion = txtObservacion.Text
                 movimiento.fechaRegitro = dtpFechaRegistro.Text & " " & hora
                 movimiento.monto = CDec(txtMonto.text)
                 movimiento.cuentabancaria = idcuenta
                 movimiento.idconcepto = idConcepto
-                'movimiento.usuarioRegistra = mdlPublicVars.idUsuario agregar despues
+                movimiento.usuarioregistra = mdlPublicVars.idUsuario
 
+                If rbtTransferencia.Checked = True Then
+                    movimiento.banco = CInt(cmbBanco.SelectedValue)
+                    movimiento.anulado = False
+                    movimiento.transaccion = txtTransaccion.Text
+                    movimiento.observacion = txtObservacion.Text
+                    movimiento.fechaRegitro = dtpFechaRegistro.Text & " " & hora
+                    movimiento.monto = CDec(txtMonto.Text)
+                    movimiento.cuentabancaria = idcuenta
+                    movimiento.idconcepto = idConcepto
+                    movimiento.usuarioregistra = mdlPublicVars.idUsuario
+                    movimiento.banco2 = CInt(cmbBancos.SelectedValue)
+                    movimiento.cuentabancaria2 = idcuenta2
+                End If
 
-                'Obtenemos la cuenta 
-                Dim cuenta As tblBanco_Cuenta = (From x In conexion.tblBanco_Cuenta Where x.codigo = idcuenta _
-                   Select x).FirstOrDefault
-
-                'Verificamos si contamos con saldo en la cuenta
-                'If CDec(txtMonto.text) > cuenta.saldo Then
-                '    saldoInsuficiente = True
-                '    Exit Try
-                'End If
-
-                'Descontamos el saldo de la cuenta esto despues
-
-                'Dim concepto As tblconcepto_ajustebancario = (From x In conexion.tblconcepto_ajustebancario Where x.idconcepto = idConcepto _
-                '   Select x).FirstOrDefault
-
-                ''Si es un Aumento
-                'If concepto.bitAumento = True Then
-                '    cuenta.saldo += CDec(txtMonto.text)
-                'Else
-                '    cuenta.saldo -= CDec(txtMonto.text)
-                '    conexion.SaveChanges()
-                'End If
 
                 conexion.AddTotblajuste_bancarios(movimiento)
                 conexion.SaveChanges()
