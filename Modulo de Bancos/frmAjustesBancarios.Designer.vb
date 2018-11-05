@@ -219,9 +219,10 @@ Partial Class frmAjustesBancarios
         '
         'txtMonto
         '
+        Me.txtMonto.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMonto.Location = New System.Drawing.Point(135, 185)
         Me.txtMonto.Name = "txtMonto"
-        Me.txtMonto.Size = New System.Drawing.Size(202, 20)
+        Me.txtMonto.Size = New System.Drawing.Size(202, 22)
         Me.txtMonto.TabIndex = 231
         Me.txtMonto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -367,9 +368,10 @@ Partial Class frmAjustesBancarios
         '
         'txtTransaccion
         '
+        Me.txtTransaccion.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTransaccion.Location = New System.Drawing.Point(134, 159)
         Me.txtTransaccion.Name = "txtTransaccion"
-        Me.txtTransaccion.Size = New System.Drawing.Size(203, 20)
+        Me.txtTransaccion.Size = New System.Drawing.Size(203, 22)
         Me.txtTransaccion.TabIndex = 194
         Me.txtTransaccion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
