@@ -11348,11 +11348,6 @@
             <Parameter Name="filtro" Mode="In" Type="String" />
             <Parameter Name="idprocedencia" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_PagosProveedoresImportacion" ReturnType="Collection(dsi_pos_demoModel.sp_PagosProveedoresImportacion_Result)">
-            <Parameter Name="idproveedor" Mode="In" Type="Int32" />
-            <Parameter Name="idinvoice" Mode="In" Type="Int32" />
-            <Parameter Name="idpreforma" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="tblajuste_bancarios" EntityType="dsi_pos_demoModel.tblajuste_bancarios" />
           <AssociationSet Name="fk_banco" Association="dsi_pos_demoModel.fk_banco">
             <End Role="tblBanco" EntitySet="tblBancoes" />
@@ -11374,6 +11369,11 @@
             <End Role="tblconcepto_ajustebancario" EntitySet="tblconcepto_ajustebancario" />
             <End Role="tblajuste_bancarios" EntitySet="tblajuste_bancarios" />
           </AssociationSet>
+          <FunctionImport Name="sp_PagosProveedoresImportacion" ReturnType="Collection(dsi_pos_demoModel.sp_PagosProveedoresImportacion_Result)">
+            <Parameter Name="idproveedor" Mode="In" Type="Int32" />
+            <Parameter Name="idinvoice" Mode="In" Type="Int32" />
+            <Parameter Name="idpreforma" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="dtproperty">
           <Key>
@@ -20025,22 +20025,6 @@
           <Property Type="String" Name="TipoPago" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="TipoGasto" Nullable="true" MaxLength="100" />
         </ComplexType>
-        <ComplexType Name="sp_PagosProveedoresImportacion_Result">
-          <Property Type="Boolean" Name="chmElegir" Nullable="true" />
-          <Property Type="String" Name="Fecha_Pago" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Proveedor" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="Documento_Pago" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Banco" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Tipo_Pago" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Cuenta" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="Pago_D" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Tasa_Cambio" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Pago_Q" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="Documento_Asociado" Nullable="false" MaxLength="101" />
-          <Property Type="Decimal" Name="Consumido" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Disponible" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="txmConsumir" Nullable="false" MaxLength="1" />
-        </ComplexType>
         <EntityType Name="tblajuste_bancarios">
           <Key>
             <PropertyRef Name="idajuste" />
@@ -20128,6 +20112,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="sp_PagosProveedoresImportacion_Result">
+          <Property Type="Int32" Name="IdPago" Nullable="false" />
+          <Property Type="String" Name="Fecha_Pago" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Proveedor" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Documento_Pago" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Banco" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Tipo_Pago" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Cuenta" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="Pago_D" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Tasa_Cambio" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Pago_Q" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Documento_Asociado" Nullable="false" MaxLength="101" />
+          <Property Type="Decimal" Name="Consumido" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Disponible" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="txmConsumir" Nullable="false" MaxLength="1" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -25415,26 +25415,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_PagosProveedoresImportacion" FunctionName="mdlModeloDatos.Store.sp_PagosProveedoresImportacion">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_PagosProveedoresImportacion_Result">
-                <ScalarProperty Name="chmElegir" ColumnName="chmElegir" />
-                <ScalarProperty Name="Fecha_Pago" ColumnName="Fecha Pago" />
-                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
-                <ScalarProperty Name="Documento_Pago" ColumnName="Documento Pago" />
-                <ScalarProperty Name="Banco" ColumnName="Banco" />
-                <ScalarProperty Name="Tipo_Pago" ColumnName="Tipo Pago" />
-                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
-                <ScalarProperty Name="Pago_D" ColumnName="Pago D" />
-                <ScalarProperty Name="Tasa_Cambio" ColumnName="Tasa Cambio" />
-                <ScalarProperty Name="Pago_Q" ColumnName="Pago Q" />
-                <ScalarProperty Name="Documento_Asociado" ColumnName="Documento Asociado" />
-                <ScalarProperty Name="Consumido" ColumnName="Consumido" />
-                <ScalarProperty Name="Disponible" ColumnName="Disponible" />
-                <ScalarProperty Name="txmConsumir" ColumnName="txmConsumir" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="tblajuste_bancarios">
             <EntityTypeMapping TypeName="dsi_pos_demoModel.tblajuste_bancarios">
               <MappingFragment StoreEntitySet="tblajuste_bancarios">
@@ -25458,6 +25438,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_PagosProveedoresImportacion" FunctionName="mdlModeloDatos.Store.sp_PagosProveedoresImportacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dsi_pos_demoModel.sp_PagosProveedoresImportacion_Result">
+                <ScalarProperty Name="IdPago" ColumnName="IdPago" />
+                <ScalarProperty Name="Fecha_Pago" ColumnName="Fecha Pago" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="Documento_Pago" ColumnName="Documento Pago" />
+                <ScalarProperty Name="Banco" ColumnName="Banco" />
+                <ScalarProperty Name="Tipo_Pago" ColumnName="Tipo Pago" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="Pago_D" ColumnName="Pago D" />
+                <ScalarProperty Name="Tasa_Cambio" ColumnName="Tasa Cambio" />
+                <ScalarProperty Name="Pago_Q" ColumnName="Pago Q" />
+                <ScalarProperty Name="Documento_Asociado" ColumnName="Documento Asociado" />
+                <ScalarProperty Name="Consumido" ColumnName="Consumido" />
+                <ScalarProperty Name="Disponible" ColumnName="Disponible" />
+                <ScalarProperty Name="txmConsumir" ColumnName="txmConsumir" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -697,6 +697,7 @@ Public Class frmImportaciones
                 ''RadMessageBox.Show("Registro Guardado", nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Exclamation)
                 ''alerta.fnGuardar()
                 ''MessageBox.Show("Registro Guardado")
+                frmNotificacion.Dispose()
                 frmNotificacion.lblNotificacion.Text = "Registro Guardado" + vbLf + "Correctamente"
                 frmNotificacion.Show()
             End If
@@ -1428,6 +1429,7 @@ Public Class frmImportaciones
                     ctx.AcceptAllChanges()
                     fnLlenarDatos()
                     ''MessageBox.Show("Registro Guardado")
+                    frmNotificacion.Dispose()
                     frmNotificacion.lblNotificacion.Text = "Invoice Modificada" + vbLf + "Correctamente"
                     frmNotificacion.Show()
                     fnNuevo()
@@ -1587,6 +1589,7 @@ Public Class frmImportaciones
                     fnLlenarDatos()
                     ''MessageBox.Show("Registro Guardado")
                     ''alerta.fnGuardar()
+                    frmNotificacion.Dispose()
                     frmNotificacion.lblNotificacion.Text = "Registro Guardado" + vbLf + "Correctamente"
                     frmNotificacion.Show()
                     listo = False

@@ -249,6 +249,7 @@ Partial Class frmgastosimportacion
         Me.grdproductos.MasterTemplate.HorizontalScrollState = Telerik.WinControls.UI.ScrollState.AlwaysShow
         Me.grdproductos.Name = "grdproductos"
         Me.grdproductos.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
+        Me.grdproductos.ReadOnly = True
         Me.grdproductos.RightToLeft = System.Windows.Forms.RightToLeft.No
         '
         '

@@ -31,6 +31,10 @@ Partial Class frmHistorialPagos
         Me.btnAceptar = New System.Windows.Forms.Button()
         Me.rbListado = New System.Windows.Forms.RadioButton()
         Me.rbManual = New System.Windows.Forms.RadioButton()
+        Me.txtTotalInvoice = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtPagosInvoice = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         CType(Me.errores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlBarra.SuspendLayout()
         Me.pnx0Salir.SuspendLayout()
@@ -55,7 +59,7 @@ Partial Class frmHistorialPagos
         Me.pnlBarra.Controls.Add(Me.pnx0Salir)
         Me.pnlBarra.Location = New System.Drawing.Point(466, 0)
         Me.pnlBarra.Name = "pnlBarra"
-        Me.pnlBarra.Size = New System.Drawing.Size(452, 48)
+        Me.pnlBarra.Size = New System.Drawing.Size(961, 48)
         Me.pnlBarra.TabIndex = 109
         '
         'pnx0Salir
@@ -65,7 +69,7 @@ Partial Class frmHistorialPagos
         Me.pnx0Salir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pnx0Salir.Controls.Add(Me.lbl0Salir)
         Me.pnx0Salir.Controls.Add(Me.pbx0Salir)
-        Me.pnx0Salir.Location = New System.Drawing.Point(330, 4)
+        Me.pnx0Salir.Location = New System.Drawing.Point(839, 4)
         Me.pnx0Salir.Name = "pnx0Salir"
         Me.pnx0Salir.Size = New System.Drawing.Size(107, 40)
         Me.pnx0Salir.TabIndex = 177
@@ -110,7 +114,7 @@ Partial Class frmHistorialPagos
         '
         '
         Me.rgbEmpleados.RootElement.Padding = New System.Windows.Forms.Padding(10, 20, 10, 10)
-        Me.rgbEmpleados.Size = New System.Drawing.Size(891, 322)
+        Me.rgbEmpleados.Size = New System.Drawing.Size(1400, 423)
         Me.rgbEmpleados.TabIndex = 110
         Me.rgbEmpleados.Text = "Pagos Proveedor"
         Me.rgbEmpleados.ThemeName = "Office2007Black"
@@ -138,7 +142,7 @@ Partial Class frmHistorialPagos
         '
         Me.grdPagos.RootElement.ForeColor = System.Drawing.Color.Black
         Me.grdPagos.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.grdPagos.Size = New System.Drawing.Size(871, 292)
+        Me.grdPagos.Size = New System.Drawing.Size(1380, 393)
         Me.grdPagos.TabIndex = 0
         Me.grdPagos.Text = "Empleados"
         Me.grdPagos.ThemeName = "Office2007Black"
@@ -146,17 +150,17 @@ Partial Class frmHistorialPagos
         'txtTasaCambio
         '
         Me.txtTasaCambio.Enabled = False
-        Me.txtTasaCambio.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtTasaCambio.Location = New System.Drawing.Point(436, 68)
+        Me.txtTasaCambio.Font = New System.Drawing.Font("Segoe UI", 16.0!, System.Drawing.FontStyle.Bold)
+        Me.txtTasaCambio.Location = New System.Drawing.Point(1054, 61)
         Me.txtTasaCambio.Name = "txtTasaCambio"
-        Me.txtTasaCambio.Size = New System.Drawing.Size(206, 25)
+        Me.txtTasaCambio.Size = New System.Drawing.Size(224, 36)
         Me.txtTasaCambio.TabIndex = 185
         Me.txtTasaCambio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(353, 74)
+        Me.Label3.Location = New System.Drawing.Point(971, 74)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(77, 13)
         Me.Label3.TabIndex = 184
@@ -173,7 +177,7 @@ Partial Class frmHistorialPagos
         Me.btnAceptar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAceptar.ForeColor = System.Drawing.Color.Transparent
         Me.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnAceptar.Location = New System.Drawing.Point(683, 58)
+        Me.btnAceptar.Location = New System.Drawing.Point(1305, 58)
         Me.btnAceptar.Name = "btnAceptar"
         Me.btnAceptar.Size = New System.Drawing.Size(104, 43)
         Me.btnAceptar.TabIndex = 183
@@ -203,10 +207,52 @@ Partial Class frmHistorialPagos
         Me.rbManual.Text = "Manual"
         Me.rbManual.UseVisualStyleBackColor = True
         '
+        'txtTotalInvoice
+        '
+        Me.txtTotalInvoice.Enabled = False
+        Me.txtTotalInvoice.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.txtTotalInvoice.Location = New System.Drawing.Point(414, 68)
+        Me.txtTotalInvoice.Name = "txtTotalInvoice"
+        Me.txtTotalInvoice.Size = New System.Drawing.Size(168, 25)
+        Me.txtTotalInvoice.TabIndex = 189
+        Me.txtTotalInvoice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(331, 74)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(77, 13)
+        Me.Label2.TabIndex = 188
+        Me.Label2.Text = "Total Invoice :"
+        '
+        'txtPagosInvoice
+        '
+        Me.txtPagosInvoice.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.txtPagosInvoice.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.txtPagosInvoice.Location = New System.Drawing.Point(744, 68)
+        Me.txtPagosInvoice.Name = "txtPagosInvoice"
+        Me.txtPagosInvoice.Size = New System.Drawing.Size(168, 25)
+        Me.txtPagosInvoice.TabIndex = 191
+        Me.txtPagosInvoice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(628, 74)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(110, 13)
+        Me.Label4.TabIndex = 190
+        Me.Label4.Text = "Pago Seleccionado :"
+        '
         'frmHistorialPagos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(914, 437)
+        Me.ClientSize = New System.Drawing.Size(1423, 538)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.txtPagosInvoice)
+        Me.Controls.Add(Me.txtTotalInvoice)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.rbManual)
         Me.Controls.Add(Me.rbListado)
         Me.Controls.Add(Me.txtTasaCambio)
@@ -227,6 +273,10 @@ Partial Class frmHistorialPagos
         Me.Controls.SetChildIndex(Me.txtTasaCambio, 0)
         Me.Controls.SetChildIndex(Me.rbListado, 0)
         Me.Controls.SetChildIndex(Me.rbManual, 0)
+        Me.Controls.SetChildIndex(Me.Label2, 0)
+        Me.Controls.SetChildIndex(Me.txtTotalInvoice, 0)
+        Me.Controls.SetChildIndex(Me.txtPagosInvoice, 0)
+        Me.Controls.SetChildIndex(Me.Label4, 0)
         CType(Me.errores, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlBarra.ResumeLayout(False)
         Me.pnx0Salir.ResumeLayout(False)
@@ -252,5 +302,9 @@ Partial Class frmHistorialPagos
     Friend WithEvents btnAceptar As System.Windows.Forms.Button
     Friend WithEvents rbListado As System.Windows.Forms.RadioButton
     Friend WithEvents rbManual As System.Windows.Forms.RadioButton
+    Friend WithEvents txtTotalInvoice As System.Windows.Forms.TextBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents txtPagosInvoice As System.Windows.Forms.TextBox
+    Friend WithEvents Label4 As System.Windows.Forms.Label
 
 End Class

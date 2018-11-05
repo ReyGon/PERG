@@ -41,6 +41,7 @@ Public Class frmNacionalizacion
                 frmHistorialPagos.Text = "Pagos/Anticipos a Proveedor"
                 frmHistorialPagos.WindowState = FormWindowState.Normal
                 frmHistorialPagos.StartPosition = FormStartPosition.CenterScreen
+                frmHistorialPagos.idInvoice = CInt(idinvoice)
                 frmHistorialPagos.idproveedor = CInt(invoice.idProveedor)
                 frmHistorialPagos.ShowDialog()
                 frmHistorialPagos.Dispose()
@@ -48,7 +49,7 @@ Public Class frmNacionalizacion
                 Me.lblDocumentoImportacion.Text = CStr(invoice.serieDocumento + "-" + invoice.documento)
                 Me.lblCantidadProductos.Text = CStr(contadorproductos)
                 Me.lblTotalImportacionDolar.Text = Format(CDec(invoice.total), formatoMonedaDolar)
-                Me.lblTasaCambio.Text = Format(tasaCambio, formatoMoneda)
+                Me.lblTasaCambio.Text = Format(tasaCambio, formatoMoneda5dec)
                 Me.lblValorMercaderiaQ.Text = Format(CDec(CDec(Replace(Me.lblTotalImportacionDolar.Text, "$", "")) * CDec(Replace(Me.lblTasaCambio.Text, "Q", ""))), formatoMoneda)
 
                 conn.Close()
@@ -378,4 +379,7 @@ Public Class frmNacionalizacion
 
 #End Region
 
+    Private Sub rgbInformacion_Click(sender As Object, e As EventArgs) Handles rgbInformacion.Click
+
+    End Sub
 End Class

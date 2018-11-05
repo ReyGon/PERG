@@ -34,6 +34,8 @@ Partial Class frmNacionalizacion
         Me.lblTasaCambio = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.lblTotalImportacionDolar = New System.Windows.Forms.Label()
+        Me.txtNumeroPoliza = New System.Windows.Forms.TextBox()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.lblCantidadProductos = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -45,8 +47,6 @@ Partial Class frmNacionalizacion
         Me.lblValorMercaderiaQ = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.lblTotalGastos = New System.Windows.Forms.Label()
-        Me.txtNumeroPoliza = New System.Windows.Forms.TextBox()
-        Me.Label17 = New System.Windows.Forms.Label()
         Me.txtFleteNaviera = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.txtOtrosGastos = New System.Windows.Forms.TextBox()
@@ -253,7 +253,7 @@ Partial Class frmNacionalizacion
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.DimGray
-        Me.Label3.Location = New System.Drawing.Point(319, 26)
+        Me.Label3.Location = New System.Drawing.Point(210, 39)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(51, 19)
         Me.Label3.TabIndex = 151
@@ -264,18 +264,39 @@ Partial Class frmNacionalizacion
         Me.lblTotalImportacionDolar.AutoSize = True
         Me.lblTotalImportacionDolar.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotalImportacionDolar.ForeColor = System.Drawing.Color.Black
-        Me.lblTotalImportacionDolar.Location = New System.Drawing.Point(368, 26)
+        Me.lblTotalImportacionDolar.Location = New System.Drawing.Point(258, 39)
         Me.lblTotalImportacionDolar.Name = "lblTotalImportacionDolar"
         Me.lblTotalImportacionDolar.Size = New System.Drawing.Size(43, 19)
         Me.lblTotalImportacionDolar.TabIndex = 152
         Me.lblTotalImportacionDolar.Text = "Total"
+        '
+        'txtNumeroPoliza
+        '
+        Me.txtNumeroPoliza.Font = New System.Drawing.Font("Segoe UI", 8.0!)
+        Me.txtNumeroPoliza.Location = New System.Drawing.Point(568, 33)
+        Me.txtNumeroPoliza.Name = "txtNumeroPoliza"
+        Me.txtNumeroPoliza.Size = New System.Drawing.Size(106, 22)
+        Me.txtNumeroPoliza.TabIndex = 0
+        Me.txtNumeroPoliza.Text = "0.00"
+        Me.txtNumeroPoliza.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.ForeColor = System.Drawing.Color.DimGray
+        Me.Label17.Location = New System.Drawing.Point(441, 33)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(117, 19)
+        Me.Label17.TabIndex = 165
+        Me.Label17.Text = "Numero Poliza :"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.DimGray
-        Me.Label2.Location = New System.Drawing.Point(181, 26)
+        Me.Label2.Location = New System.Drawing.Point(176, 11)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(85, 19)
         Me.Label2.TabIndex = 149
@@ -286,7 +307,7 @@ Partial Class frmNacionalizacion
         Me.lblCantidadProductos.AutoSize = True
         Me.lblCantidadProductos.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCantidadProductos.ForeColor = System.Drawing.Color.Black
-        Me.lblCantidadProductos.Location = New System.Drawing.Point(263, 26)
+        Me.lblCantidadProductos.Location = New System.Drawing.Point(258, 11)
         Me.lblCantidadProductos.Name = "lblCantidadProductos"
         Me.lblCantidadProductos.Size = New System.Drawing.Size(89, 19)
         Me.lblCantidadProductos.TabIndex = 150
@@ -421,27 +442,6 @@ Partial Class frmNacionalizacion
         Me.lblTotalGastos.Size = New System.Drawing.Size(91, 19)
         Me.lblTotalGastos.TabIndex = 156
         Me.lblTotalGastos.Text = "Total Gastos"
-        '
-        'txtNumeroPoliza
-        '
-        Me.txtNumeroPoliza.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.txtNumeroPoliza.Location = New System.Drawing.Point(568, 33)
-        Me.txtNumeroPoliza.Name = "txtNumeroPoliza"
-        Me.txtNumeroPoliza.Size = New System.Drawing.Size(106, 22)
-        Me.txtNumeroPoliza.TabIndex = 0
-        Me.txtNumeroPoliza.Text = "0.00"
-        Me.txtNumeroPoliza.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.ForeColor = System.Drawing.Color.DimGray
-        Me.Label17.Location = New System.Drawing.Point(441, 33)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(117, 19)
-        Me.Label17.TabIndex = 165
-        Me.Label17.Text = "Numero Poliza :"
         '
         'txtFleteNaviera
         '
