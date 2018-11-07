@@ -50,7 +50,7 @@ Public Class frmNacionalizacion
                 Me.lblCantidadProductos.Text = CStr(contadorproductos)
                 Me.lblTotalImportacionDolar.Text = Format(CDec(invoice.total), formatoMonedaDolar)
                 Me.lblTasaCambio.Text = Format(tasaCambio, formatoMoneda5dec)
-                Me.lblValorMercaderiaQ.Text = Format(CDec(CDec(Replace(Me.lblTotalImportacionDolar.Text, "$", "")) * CDec(Replace(Me.lblTasaCambio.Text, "Q", ""))), formatoMoneda)
+                Me.lblValorMercaderiaQ.Text = Format(CDec(CDec(Replace(Me.lblTotalImportacionDolar.Text, "$", "")) * CDec(Replace(Me.lblTasaCambio.Text, "Q", ""))), formatoMoneda5dec)
 
                 conn.Close()
             End Using
@@ -91,10 +91,10 @@ Public Class frmNacionalizacion
                 Dim productos As List(Of tblEntradasDetalle) = (From x In conexion.tblEntradasDetalles Where x.idEntrada = idinvoice Select x).ToList
 
                 For Each articulos As tblEntradasDetalle In productos
-                    totalmercaderiaquetzalez += ((articulos.costoIVA * tasaincremento * tasapromedio) * CDec(articulos.cantidad))
+                    totalmercaderiaquetzalez += CDec(Format(((articulos.costoIVA * tasaincremento * tasapromedio) * CDec(articulos.cantidad)), formatoNumero5dec))
                 Next
 
-                Me.lblTotalMercaderiaQ.Text = Format(totalmercaderiaquetzalez, formatoMoneda)
+                Me.lblTotalMercaderiaQ.Text = Format(totalmercaderiaquetzalez, formatoMoneda5dec)
 
                 conn.Close()
             End Using
@@ -103,86 +103,7 @@ Public Class frmNacionalizacion
         End Try
     End Sub
 
-#Region "Eventos Enter"
 
-    Private Sub txtGastosNaviera_KeyDown(sender As Object, e As KeyEventArgs) Handles txtGastosNaviera.KeyDown
-        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
-            Me.txtGastosNaviera.Text = Format(CDec(Me.txtGastosNaviera.Text), formatoMoneda)
-            fnTotal()
-            Me.txtIvaImportacion.Focus()
-        End If
-    End Sub
-
-    Private Sub txtIvaImportacion_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtIvaImportacion.KeyDown
-        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
-            Me.txtIvaImportacion.Text = Format(CDec(Me.txtIvaImportacion.Text), formatoMoneda)
-            fnTotal()
-            Me.txtImpuestoImportacion.Focus()
-        End If
-    End Sub
-
-    Private Sub txtImpuestoImportacion_KeyDown(sender As Object, e As KeyEventArgs) Handles txtImpuestoImportacion.KeyDown
-        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
-            Me.txtImpuestoImportacion.Text = Format(CDec(Me.txtImpuestoImportacion.Text), formatoMoneda)
-            fnTotal()
-            Me.txtTramitesAduanales.Focus()
-        End If
-    End Sub
-
-    Private Sub txtTramitesAduanales_KeyDown(sender As Object, e As KeyEventArgs) Handles txtTramitesAduanales.KeyDown
-        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
-            Me.txtTramitesAduanales.Text = Format(CDec(Me.txtTramitesAduanales.Text), formatoMoneda)
-            fnTotal()
-            Me.txtTransporte.Focus()
-        End If
-    End Sub
-
-    Private Sub txtTransporte_KeyDown(sender As Object, e As KeyEventArgs) Handles txtTransporte.KeyDown
-        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
-            Me.txtTransporte.Text = Format(CDec(Me.txtTransporte.Text), formatoMoneda)
-            fnTotal()
-            Me.txtSeguridad.Focus()
-        End If
-    End Sub
-
-    Private Sub txtSeguridad_KeyDown(sender As Object, e As KeyEventArgs) Handles txtSeguridad.KeyDown
-        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
-            Me.txtSeguridad.Text = Format(CDec(Me.txtSeguridad.Text), formatoMoneda)
-            fnTotal()
-            Me.txtComisiones.Focus()
-        End If
-    End Sub
-
-    Private Sub txtComisiones_KeyDown(sender As Object, e As KeyEventArgs) Handles txtComisiones.KeyDown
-        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
-            Me.txtComisiones.Text = Format(CDec(Me.txtComisiones.Text), formatoMoneda)
-            fnTotal()
-            Me.txtOtrosGastos.Focus()
-        End If
-    End Sub
-
-    Private Sub txtOtrosGastos_KeyDown(sender As Object, e As KeyEventArgs) Handles txtOtrosGastos.KeyDown
-        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
-            Me.txtOtrosGastos.Text = Format(CDec(Me.txtOtrosGastos.Text), formatoMoneda)
-            fnTotal()
-            Me.txtFleteNaviera.Focus()
-        End If
-    End Sub
-
-    Private Sub txtFleteNaviera_KeyDown(sender As Object, e As KeyEventArgs) Handles txtFleteNaviera.KeyDown
-        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
-            Me.txtFleteNaviera.Text = Format(CDec(Me.txtFleteNaviera.Text), formatoMoneda)
-            fnTotal()
-            Me.txtNumeroPoliza.Focus()
-        End If
-    End Sub
-
-    Private Sub txtNumeroPoliza_KeyDown(sender As Object, e As KeyEventArgs) Handles txtNumeroPoliza.KeyDown
-        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
-            Me.txtGastosNaviera.Focus()
-        End If
-    End Sub
-#End Region
 
 #Region "Evento Formatos y Totales"
 
@@ -349,8 +270,8 @@ Public Class frmNacionalizacion
                     r.idEntrada = codigo
                     r.idArticulo = w.idArticulo
                     r.cantidad = w.cantidad
-                    r.costoIVA = w.costoIVA * tasaincremento * tasapromedio
-                    r.costoSinIVA = w.costoSinIVA * tasaincremento * tasapromedio
+                    r.costoIVA = CDec(Format(w.costoIVA * tasaincremento * tasapromedio, formatoNumero5dec))
+                    r.costoSinIVA = CDec(Format(w.costoIVA * tasaincremento * tasapromedio, formatoNumero5dec))
                     r.preformaCantidad = w.preformaCantidad
                     r.preformaCostoIVA = w.preformaCostoIVA
                     r.preformaCostoSinIVA = w.preformaCostoSinIVA
@@ -379,7 +300,132 @@ Public Class frmNacionalizacion
 
 #End Region
 
-    Private Sub rgbInformacion_Click(sender As Object, e As EventArgs) Handles rgbInformacion.Click
+#Region "Eventos Enter"
 
+    Private Sub txtGastosNaviera_KeyDown(sender As Object, e As KeyEventArgs) Handles txtGastosNaviera.KeyDown
+        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
+            Me.txtGastosNaviera.Text = Format(CDec(Me.txtGastosNaviera.Text), formatoMoneda)
+            fnTotal()
+            Me.txtIvaImportacion.Focus()
+        End If
     End Sub
+
+    Private Sub txtIvaImportacion_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtIvaImportacion.KeyDown
+        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
+            Me.txtIvaImportacion.Text = Format(CDec(Me.txtIvaImportacion.Text), formatoMoneda)
+            fnTotal()
+            Me.txtImpuestoImportacion.Focus()
+        End If
+    End Sub
+
+    Private Sub txtImpuestoImportacion_KeyDown(sender As Object, e As KeyEventArgs) Handles txtImpuestoImportacion.KeyDown
+        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
+            Me.txtImpuestoImportacion.Text = Format(CDec(Me.txtImpuestoImportacion.Text), formatoMoneda)
+            fnTotal()
+            Me.txtTramitesAduanales.Focus()
+        End If
+    End Sub
+
+    Private Sub txtTramitesAduanales_KeyDown(sender As Object, e As KeyEventArgs) Handles txtTramitesAduanales.KeyDown
+        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
+            Me.txtTramitesAduanales.Text = Format(CDec(Me.txtTramitesAduanales.Text), formatoMoneda)
+            fnTotal()
+            Me.txtTransporte.Focus()
+        End If
+    End Sub
+
+    Private Sub txtTransporte_KeyDown(sender As Object, e As KeyEventArgs) Handles txtTransporte.KeyDown
+        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
+            Me.txtTransporte.Text = Format(CDec(Me.txtTransporte.Text), formatoMoneda)
+            fnTotal()
+            Me.txtSeguridad.Focus()
+        End If
+    End Sub
+
+    Private Sub txtSeguridad_KeyDown(sender As Object, e As KeyEventArgs) Handles txtSeguridad.KeyDown
+        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
+            Me.txtSeguridad.Text = Format(CDec(Me.txtSeguridad.Text), formatoMoneda)
+            fnTotal()
+            Me.txtComisiones.Focus()
+        End If
+    End Sub
+
+    Private Sub txtComisiones_KeyDown(sender As Object, e As KeyEventArgs) Handles txtComisiones.KeyDown
+        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
+            Me.txtComisiones.Text = Format(CDec(Me.txtComisiones.Text), formatoMoneda)
+            fnTotal()
+            Me.txtOtrosGastos.Focus()
+        End If
+    End Sub
+
+    Private Sub txtOtrosGastos_KeyDown(sender As Object, e As KeyEventArgs) Handles txtOtrosGastos.KeyDown
+        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
+            Me.txtOtrosGastos.Text = Format(CDec(Me.txtOtrosGastos.Text), formatoMoneda)
+            fnTotal()
+            Me.txtFleteNaviera.Focus()
+        End If
+    End Sub
+
+    Private Sub txtFleteNaviera_KeyDown(sender As Object, e As KeyEventArgs) Handles txtFleteNaviera.KeyDown
+        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
+            Me.txtFleteNaviera.Text = Format(CDec(Me.txtFleteNaviera.Text), formatoMoneda)
+            fnTotal()
+            Me.txtNumeroPoliza.Focus()
+        End If
+    End Sub
+
+    Private Sub txtNumeroPoliza_KeyDown(sender As Object, e As KeyEventArgs) Handles txtNumeroPoliza.KeyDown
+        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Tab Then
+            Me.txtGastosNaviera.Focus()
+        End If
+    End Sub
+#End Region
+
+#Region "Eventos Lost Focus"
+    Private Sub txtGastosNaviera_LostFocus(sender As Object, e As EventArgs) Handles txtGastosNaviera.LostFocus
+        Me.txtGastosNaviera.Text = Format(CDec(Me.txtGastosNaviera.Text), formatoMoneda)
+        fnTotal()
+    End Sub
+
+    Private Sub txtComisiones_LostFocus(sender As Object, e As EventArgs) Handles txtComisiones.LostFocus
+        Me.txtComisiones.Text = Format(CDec(Me.txtComisiones.Text), formatoMoneda)
+        fnTotal()
+    End Sub
+
+    Private Sub txtIvaImportacion_LostFocus(sender As Object, e As EventArgs) Handles txtIvaImportacion.LostFocus
+        Me.txtIvaImportacion.Text = Format(CDec(Me.txtIvaImportacion.Text), formatoMoneda)
+        fnTotal()
+    End Sub
+
+    Private Sub txtImpuestoImportacion_LostFocus(sender As Object, e As EventArgs) Handles txtImpuestoImportacion.LostFocus
+        Me.txtImpuestoImportacion.Text = Format(CDec(Me.txtImpuestoImportacion.Text), formatoMoneda)
+        fnTotal()
+    End Sub
+
+    Private Sub txtTramitesAduanales_LostFocus(sender As Object, e As EventArgs) Handles txtTramitesAduanales.LostFocus
+        Me.txtTramitesAduanales.Text = Format(CDec(Me.txtTramitesAduanales.Text), formatoMoneda)
+        fnTotal()
+    End Sub
+
+    Private Sub txtTransporte_LostFocus(sender As Object, e As EventArgs) Handles txtTransporte.LostFocus
+        Me.txtTransporte.Text = Format(CDec(Me.txtTransporte.Text), formatoMoneda)
+        fnTotal()
+    End Sub
+
+    Private Sub txtSeguridad_LostFocus(sender As Object, e As EventArgs) Handles txtSeguridad.LostFocus
+        Me.txtSeguridad.Text = Format(CDec(Me.txtSeguridad.Text), formatoMoneda)
+        fnTotal()
+    End Sub
+
+    Private Sub txtOtrosGastos_LostFocus(sender As Object, e As EventArgs) Handles txtOtrosGastos.LostFocus
+        Me.txtOtrosGastos.Text = Format(CDec(Me.txtOtrosGastos.Text), formatoMoneda)
+        fnTotal()
+    End Sub
+
+    Private Sub txtFleteNaviera_LostFocus(sender As Object, e As EventArgs) Handles txtFleteNaviera.LostFocus
+        Me.txtFleteNaviera.Text = Format(CDec(Me.txtFleteNaviera.Text), formatoMoneda)
+        fnTotal()
+    End Sub
+#End Region
+
 End Class

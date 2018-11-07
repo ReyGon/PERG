@@ -6811,14 +6811,8 @@ Public Class frmSalidas
                 End If
             Else
 
-
-                ' Me.grdProductos.Rows(Me.grdProductos.CurrentRow.Index).Cells("txmCantidad").Value = CType(mdlPublicVars.superSearchCantidad, Integer)
-
-
             End If
 
-
-            'End If
         Catch ex As Exception
             RadMessageBox.Show(ex.Message, mdlPublicVars.nombreSistema, MessageBoxButtons.OK, RadMessageIcon.Error)
         End Try

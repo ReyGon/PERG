@@ -360,7 +360,6 @@
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblPendientePorPedir_tblUsuariosConfirma" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblSurtir_tblUsuarios" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblUsuarios_tblVendedor" />
-        <EntityTypeShape EntityType="dsi_pos_demoModel.tblNacionalizacion" Width="1.5" PointX="7.7210990021569188" PointY="8.88150600012462" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblProveedorProcedencia" Width="1.5" PointX="4.6841939448771042" PointY="12.752593508340695" />
         <AssociationConnector Association="dsi_pos_demoModel.FK_tblProveedor_tblProveedorProcedencia" />
         <EntityTypeShape EntityType="dsi_pos_demoModel.tblPrecarga" Width="1.5" PointX="10.039723371174059" PointY="0.47049492619489086" />
@@ -490,6 +489,7 @@
         <AssociationConnector Association="dsi_pos_demoModel.fk_cuentabancaria" />
         <AssociationConnector Association="dsi_pos_demoModel.fk_cuentabancaria2" />
         <AssociationConnector Association="dsi_pos_demoModel.fk_idconcepto" />
+        <EntityTypeShape EntityType="dsi_pos_demoModel.tblNacionalizacion" Width="1.5" PointX="8.4723614568227728" PointY="31.608214542087268" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

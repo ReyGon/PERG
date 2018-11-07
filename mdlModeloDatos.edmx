@@ -3042,7 +3042,7 @@
           <Property Name="idNacionalizacion" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="identradainvoice" Type="int" Nullable="false" />
           <Property Name="documento" Type="varchar" MaxLength="100" />
-          <Property Name="tasacambio" Type="decimal" Scale="2" />
+          <Property Name="tasacambio" Type="decimal" Scale="5" />
           <Property Name="gastosnaviera" Type="decimal" Scale="2" />
           <Property Name="ivaimportacion" Type="decimal" Scale="2" />
           <Property Name="impuestosimportacion" Type="decimal" Scale="2" />
@@ -3053,7 +3053,7 @@
           <Property Name="otrosgastos" Type="decimal" Scale="2" />
           <Property Name="fletenaviera" Type="decimal" Scale="2" />
           <Property Name="numeropoliza" Type="varchar" MaxLength="100" />
-          <Property Name="tasaincremento" Type="decimal" Scale="2" />
+          <Property Name="tasaincremento" Type="decimal" Scale="5" />
         </EntityType>
         <EntityType Name="tblNotificaciones">
           <Key>
@@ -10810,7 +10810,6 @@
             <Parameter Name="idcliente" Mode="In" Type="Int32" />
             <Parameter Name="idusuario" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="tblNacionalizacions" EntityType="dsi_pos_demoModel.tblNacionalizacion" />
           <EntitySet Name="tblProveedorProcedencias" EntityType="dsi_pos_demoModel.tblProveedorProcedencia" />
           <AssociationSet Name="FK_tblProveedor_tblProveedorProcedencia" Association="dsi_pos_demoModel.FK_tblProveedor_tblProveedorProcedencia">
             <End Role="tblProveedorProcedencia" EntitySet="tblProveedorProcedencias" />
@@ -11374,6 +11373,7 @@
             <Parameter Name="idinvoice" Mode="In" Type="Int32" />
             <Parameter Name="idpreforma" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="tblNacionalizacions" EntityType="dsi_pos_demoModel.tblNacionalizacion" />
           </EntityContainer>
         <EntityType Name="dtproperty">
           <Key>
@@ -18003,26 +18003,6 @@
           <Property Type="Decimal" Name="Pago" Nullable="false" Precision="18" Scale="5" />
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="50" />
         </ComplexType>
-        <EntityType Name="tblNacionalizacion">
-          <Key>
-            <PropertyRef Name="idNacionalizacion" />
-          </Key>
-          <Property Type="Int32" Name="idNacionalizacion" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="identradainvoice" Nullable="false" />
-          <Property Type="String" Name="documento" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="tasacambio" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="gastosnaviera" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="ivaimportacion" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="impuestosimportacion" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="tramitesaduanales" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="transporte" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="seguridad" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="comisiones" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="otrosgastos" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="fletenaviera" Precision="18" Scale="2" />
-          <Property Type="String" Name="numeropoliza" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="tasaincremento" Precision="18" Scale="2" />
-        </EntityType>
         <EntityType Name="tblProveedorProcedencia">
           <Key>
             <PropertyRef Name="codigo" />
@@ -20128,6 +20108,26 @@
           <Property Type="Decimal" Name="Disponible" Nullable="true" Precision="18" Scale="2" />
           <Property Type="String" Name="txmConsumir" Nullable="false" MaxLength="1" />
         </ComplexType>
+        <EntityType Name="tblNacionalizacion">
+          <Key>
+            <PropertyRef Name="idNacionalizacion" />
+          </Key>
+          <Property Type="Int32" Name="idNacionalizacion" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="identradainvoice" Nullable="false" />
+          <Property Type="String" Name="documento" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="tasacambio" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="gastosnaviera" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="ivaimportacion" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="impuestosimportacion" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="tramitesaduanales" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="transporte" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="seguridad" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="comisiones" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="otrosgastos" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="fletenaviera" Precision="18" Scale="2" />
+          <Property Type="String" Name="numeropoliza" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="tasaincremento" Precision="18" Scale="5" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -24747,27 +24747,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="tblNacionalizacions">
-            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblNacionalizacion">
-              <MappingFragment StoreEntitySet="tblNacionalizacion">
-                <ScalarProperty Name="tasaincremento" ColumnName="tasaincremento" />
-                <ScalarProperty Name="numeropoliza" ColumnName="numeropoliza" />
-                <ScalarProperty Name="fletenaviera" ColumnName="fletenaviera" />
-                <ScalarProperty Name="otrosgastos" ColumnName="otrosgastos" />
-                <ScalarProperty Name="comisiones" ColumnName="comisiones" />
-                <ScalarProperty Name="seguridad" ColumnName="seguridad" />
-                <ScalarProperty Name="transporte" ColumnName="transporte" />
-                <ScalarProperty Name="tramitesaduanales" ColumnName="tramitesaduanales" />
-                <ScalarProperty Name="impuestosimportacion" ColumnName="impuestosimportacion" />
-                <ScalarProperty Name="ivaimportacion" ColumnName="ivaimportacion" />
-                <ScalarProperty Name="gastosnaviera" ColumnName="gastosnaviera" />
-                <ScalarProperty Name="tasacambio" ColumnName="tasacambio" />
-                <ScalarProperty Name="documento" ColumnName="documento" />
-                <ScalarProperty Name="identradainvoice" ColumnName="identradainvoice" />
-                <ScalarProperty Name="idNacionalizacion" ColumnName="idNacionalizacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblProveedorProcedencias">
             <EntityTypeMapping TypeName="dsi_pos_demoModel.tblProveedorProcedencia">
               <MappingFragment StoreEntitySet="tblProveedorProcedencia">
@@ -25458,6 +25437,27 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="tblNacionalizacions">
+            <EntityTypeMapping TypeName="dsi_pos_demoModel.tblNacionalizacion">
+              <MappingFragment StoreEntitySet="tblNacionalizacion">
+                <ScalarProperty Name="tasaincremento" ColumnName="tasaincremento" />
+                <ScalarProperty Name="numeropoliza" ColumnName="numeropoliza" />
+                <ScalarProperty Name="fletenaviera" ColumnName="fletenaviera" />
+                <ScalarProperty Name="otrosgastos" ColumnName="otrosgastos" />
+                <ScalarProperty Name="comisiones" ColumnName="comisiones" />
+                <ScalarProperty Name="seguridad" ColumnName="seguridad" />
+                <ScalarProperty Name="transporte" ColumnName="transporte" />
+                <ScalarProperty Name="tramitesaduanales" ColumnName="tramitesaduanales" />
+                <ScalarProperty Name="impuestosimportacion" ColumnName="impuestosimportacion" />
+                <ScalarProperty Name="ivaimportacion" ColumnName="ivaimportacion" />
+                <ScalarProperty Name="gastosnaviera" ColumnName="gastosnaviera" />
+                <ScalarProperty Name="tasacambio" ColumnName="tasacambio" />
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="identradainvoice" ColumnName="identradainvoice" />
+                <ScalarProperty Name="idNacionalizacion" ColumnName="idNacionalizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

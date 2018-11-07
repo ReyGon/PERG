@@ -82,11 +82,7 @@ Public Class frmHistorialPagos
 
                     Dim idpreforma As Integer = CInt((From x In conexion.tblEntradas Where x.idEntrada = idInvoice Select x.IdPreformaInvoice).FirstOrDefault)
 
-<<<<<<< HEAD
                     dt = EntitiToDataTable(conexion.sp_PagosProveedoresImportacion(idproveedor, idInvoice, idpreforma))
-=======
-                    dt = EntitiToDataTable(conexion.sp_PagosProveedoresImportacion(idproveedor, 0, 0))
->>>>>>> 3ade32b28bb292d0f4b48826d35d31823ebb4cc5
 
                     Me.grdPagos.DataSource = dt
 

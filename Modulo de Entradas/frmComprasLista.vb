@@ -37,6 +37,21 @@ Public Class frmComprasLista
         cmbFiltroFecha.Visible = True
     End Sub
 
+    Private Sub fnSumarios()
+        Try
+            grdDatos.SummaryRowsTop.Clear()
+
+            Dim summaryTotalQ As New GridViewSummaryItem("TotalQ", mdlPublicVars.SimboloSuma + "=" + mdlPublicVars.formatoMonedaGridTelerik, GridAggregateFunction.Sum)
+
+            'agregar la fila de operaciones aritmeticas
+            Dim summaryRowItem As New GridViewSummaryRowItem(New GridViewSummaryItem() {summaryTotalQ})
+
+            grdDatos.SummaryRowsTop.Add(summaryRowItem)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
     'LLENAR COMBO
     Private Sub fnLlenarCombo()
         Dim datos = (From x In ctx.tblListaFiltroFechas Select x.orden, codigo = x.dias, x.nombre
@@ -53,6 +68,7 @@ Public Class frmComprasLista
     Private Sub llenagrid()
 
         Try
+            fnSumarios()
             Me.grdDatos.Columns.Clear()
             Dim diasFiltro As Integer = CInt(cmbFiltroFecha.SelectedValue)
             Dim fechaFiltro As DateTime = Today.AddDays(-diasFiltro)

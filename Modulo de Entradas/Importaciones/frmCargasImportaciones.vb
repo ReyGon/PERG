@@ -600,7 +600,7 @@ Public Class frmCargasImportaciones
 
                         costo = (From x In conexion.tblEntradasDetalles Where x.idEntrada = Invoice And x.nocaja.Equals(cajano) And x.idArticulo = idarticulo Select x.costoIVA).FirstOrDefault
 
-                        Me.grdProductos.Rows.Add(tblR.Rows(index).Item(0), tblR.Rows(index).Item(1), tblR.Rows(index).Item(2), tblR.Rows(index).Item(3), tblR.Rows(index).Item(4), Format(CType(costo, Double), formatoNumero), Format(tblR.Rows(index).Item(4) * CDec(costo), formatoNumero))
+                        Me.grdProductos.Rows.Add(tblR.Rows(index).Item(0), tblR.Rows(index).Item(1), tblR.Rows(index).Item(2), tblR.Rows(index).Item(3), tblR.Rows(index).Item(4), Format(CType(costo, Double), formatoNumero5dec), Format(tblR.Rows(index).Item(4) * CDec(costo), formatoNumero))
                     Next
 
                     conn.Close()
